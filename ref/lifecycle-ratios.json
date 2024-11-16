@@ -1,0 +1,26 @@
+{
+    "orig-ratio-trunc": {
+        "apache": {
+            "ratio": 1.0,
+            "tech": 1.0,
+            "social": 1.0
+        },
+        "github": {
+            "ratio": 4.1507782252508845,
+            "tech": 7.61248393123391,
+            "social": 0.6890725192678596
+        }
+    },
+    "activity-trunc": {
+        "apache": {
+            "ratio": 1.0,
+            "tech": 1.0,
+            "social": 1.0
+        },
+        "github": {
+            "ratio": 1.7434859417831223,
+            "tech": 3.03785460974684,
+            "social": 0.4491172738194046
+        }
+    }
+}

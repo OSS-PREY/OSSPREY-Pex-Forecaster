@@ -1,0 +1,1873 @@
+{
+    "Modeling": [
+        {
+            "EMFStore": "emfstore"
+        },
+        {
+            "Epsilon": "epsilon"
+        },
+        {
+            "OCL (Object Constraint Language)": "ocl"
+        },
+        {
+            "QVT Operational": "qvt-operational"
+        },
+        {
+            "Hawk": "hawk"
+        },
+        {
+            "MDT UML2": "mdt-uml2"
+        },
+        {
+            "MoDisco": "modisco"
+        },
+        {
+            "EMF Client Platform": "emf-client-platform"
+        },
+        {
+            "Sirius": "sirius"
+        },
+        {
+            "ATL": "atl"
+        },
+        {
+            "Graphiti": "graphiti"
+        },
+        {
+            "Layout Kernel": "layout-kernel"
+        },
+        {
+            "Papyrus": "papyrus"
+        },
+        {
+            "QVTd (QVT Declarative)": "qvtd"
+        },
+        {
+            "GEMOC Studio": "gemoc-studio"
+        },
+        {
+            "Model Driven Health Tools": "model-driven-health-tools"
+        },
+        {
+            "UML Profiles Repository": "uml-profiles-repository"
+        },
+        {
+            "EMF Feature Model": "emf-feature-model"
+        },
+        {
+            "Acceleo": "acceleo"
+        },
+        {
+            "Formal Modeling Project": "formal-modeling-project"
+        },
+        {
+            "UML Generators": "uml-generators"
+        },
+        {
+            "VIATRA": "viatra"
+        },
+        {
+            "EMF": "emf"
+        },
+        {
+            "Fundamental Modeling Concepts": "fundamental-modeling-concepts"
+        },
+        {
+            "SmartMDSD": "smartmdsd"
+        },
+        {
+            "EMF Diff/Merge": "emf-diff-merge"
+        },
+        {
+            "Xtext": "xtext"
+        },
+        {
+            "EMF-IncQuery": "emf"
+        },
+        {
+            "EMF Compare": "emf-compare"
+        },
+        {
+            "Business Process Model and Notation (BPMN2)": "business-process-model-and-notation"
+        },
+        {
+            "Edapt": "edapt"
+        },
+        {
+            "Papyrus for Real Time (Papyrus-RT)": "papyrus-for-real-time"
+        },
+        {
+            "Capra": "capra"
+        },
+        {
+            "EMF Services": "emf-services"
+        },
+        {
+            "EMF Parsley": "emf-parsley"
+        },
+        {
+            "Ecore Tools": "ecore-tools"
+        },
+        {
+            "Agile UML": "agile-uml"
+        },
+        {
+            "EATOP": "eatop"
+        },
+        {
+            "AMW - Atlas Model Weaver": "amw"
+        },
+        {
+            "b3": "b3"
+        },
+        {
+            "eTrice": "etrice"
+        },
+        {
+            "Extended Editing Framework (EEF)": "extended-editing-framework"
+        },
+        {
+            "Agent Modeling Platform": "agent-modeling-platform"
+        },
+        {
+            "Amalgam": "amalgam"
+        },
+        {
+            "CDO Model Repository": "cdo-model-repository"
+        },
+        {
+            "EMF Facet": "emf-facet"
+        },
+        {
+            "EMF Query": "emf-query"
+        },
+        {
+            "EMF Transaction": "emf-transaction"
+        },
+        {
+            "EMF Validation": "emf-validation"
+        },
+        {
+            "emfatic": "emfatic"
+        },
+        {
+            "Generation Factories (EGF)": "generation-factories"
+        },
+        {
+            "Generative Modeling Technologies (GMT)": "generative-modeling-technologies"
+        },
+        {
+            "GMF Notation": "gmf-notation"
+        },
+        {
+            "GMF Runtime": "gmf-runtime"
+        },
+        {
+            "GMF Tooling": "gmf-tooling"
+        },
+        {
+            "MDT XSD (XML Schema Definition)": "mdt-xsd"
+        },
+        {
+            "Model Framework Technology (EMFT)": "model-framework-technology"
+        },
+        {
+            "Modeling Project": "modeling-project"
+        },
+        {
+            "Modeling Workflow Engine": "modeling-workflow-engine"
+        },
+        {
+            "POOSL": "poosl"
+        },
+        {
+            "Requirements Modeling Framework": "requirements-modeling-framework"
+        },
+        {
+            "Xpand": "xpand"
+        },
+        {
+            "EMF Query2": "emf-query2"
+        },
+        {
+            "EMF Refactor": "emf-refactor"
+        },
+        {
+            "EMF Teneo Model - Relational Database Integration": "emf-teneo-model"
+        },
+        {
+            "EMFT Texo": "emft-texo"
+        },
+        {
+            "Model-to-Model Transformation (MMT)": "model"
+        },
+        {
+            "Henshin": "henshin"
+        },
+        {
+            "Java Emitter Templates (JET2)": "java-emitter-templates"
+        },
+        {
+            "Model Development Tools (MDT)": "model-development-tools"
+        },
+        {
+            "Model To Text (M2T)": "model-to-text"
+        },
+        {
+            "Gendoc": "gendoc"
+        },
+        {
+            "Xsemantics": "xsemantics"
+        },
+        {
+            "Doc2Model": "doc2model"
+        },
+        {
+            "AVSys": "avsys"
+        },
+        {
+            "Franca": "franca"
+        },
+        {
+            "Modeling Framework - Container Project": "modeling-framework"
+        },
+        {
+            "OMELET": "omelet"
+        },
+        {
+            "Papyrus for xtUML": "papyrus-for-xtuml"
+        },
+        {
+            "PMF": "pmf"
+        },
+        {
+            "SysON": "syson"
+        },
+        {
+            "Xpect": "xpect"
+        },
+        {
+            "Graphical Modeling Project": "graphical-modeling-project"
+        },
+        {
+            "IMM Releng": "imm-releng"
+        },
+        {
+            "Textual Modeling Framework": "textual-modeling-framework"
+        },
+        {
+            "Wazaabi": "wazaabi"
+        },
+        {
+            "Web Modeling Framework": "web-modeling-framework"
+        }
+    ],
+    "IoT": [
+        {
+            "Paho": "paho"
+        },
+        {
+            "NeoSCADA": "neoscada"
+        },
+        {
+            "Embedded CDT (C/C++ Development Tools)": "embedded-cdt"
+        },
+        {
+            "Concierge": "concierge"
+        },
+        {
+            "Arrowhead": "arrowhead"
+        },
+        {
+            "Streamsheets": "streamsheets"
+        },
+        {
+            "Mita": "mita"
+        },
+        {
+            "SmartHome": "smarthome"
+        },
+        {
+            "Duttile": "duttile"
+        },
+        {
+            "fog05": "fog05"
+        },
+        {
+            "Kanto": "kanto"
+        },
+        {
+            "Keyple": "keyple"
+        },
+        {
+            "RISE V2G": "rise-v2g"
+        },
+        {
+            "Thingweb": "thingweb"
+        },
+        {
+            "Zenoh": "zenoh"
+        },
+        {
+            "IoT": "iot"
+        },
+        {
+            "4diac": "4diac"
+        },
+        {
+            "Hono": "hono"
+        },
+        {
+            "IoT Packages": "iot-packages"
+        },
+        {
+            "Keypop": "keypop"
+        },
+        {
+            "Kiso-testing": "kiso"
+        },
+        {
+            "Kura": "kura"
+        },
+        {
+            "Leshan": "leshan"
+        },
+        {
+            "Mosquitto": "mosquitto"
+        },
+        {
+            "OM2M": "om2m"
+        },
+        {
+            "Vorto": "vorto"
+        },
+        {
+            "Moquette MQTT": "moquette-mqtt"
+        },
+        {
+            "Californium (Cf) CoAP Framework": "californiumcoap-framework"
+        },
+        {
+            "Ditto": "ditto"
+        },
+        {
+            "Keti": "keti"
+        },
+        {
+            "Tahu": "tahu"
+        },
+        {
+            "Tiaki": "tiaki"
+        },
+        {
+            "Unide": "unide"
+        },
+        {
+            "Wakaama": "wakaama"
+        },
+        {
+            "Sparkplug": "sparkplug"
+        },
+        {
+            "Agail": "agail"
+        },
+        {
+            "Amlen": "amlen"
+        },
+        {
+            "Cyclone DDS": "cyclone-dds"
+        },
+        {
+            "Diafanis": "diafanis"
+        },
+        {
+            "EdiTDor": "editdor"
+        },
+        {
+            "Edje": "edje"
+        },
+        {
+            "Grela": "grela"
+        },
+        {
+            "Hara": "hara"
+        },
+        {
+            "hawkBit": "hawkbit"
+        },
+        {
+            "HIP": "hip"
+        },
+        {
+            "Ignite|IoT": "ignite|iot"
+        },
+        {
+            "ioFog": "iofog"
+        },
+        {
+            "Kapua": "kapua"
+        },
+        {
+            "Kiso": "kiso"
+        },
+        {
+            "Krikkit": "krikkit"
+        },
+        {
+            "Milo": "milo"
+        },
+        {
+            "MRAA": "mraa"
+        },
+        {
+            "OneOFour": "oneofour"
+        },
+        {
+            "Paho Incubator": "paho-incubator"
+        },
+        {
+            "Phizog": "phizog"
+        },
+        {
+            "Ponte": "ponte"
+        },
+        {
+            "Symphony": "symphony"
+        },
+        {
+            "ThreadX": "threadx"
+        },
+        {
+            "tinydtls": "tinydtls"
+        },
+        {
+            "Tocandira": "tocandira"
+        },
+        {
+            "UPM": "upm"
+        },
+        {
+            "VOLTTRON": "volttron"
+        },
+        {
+            "Whiskers": "whiskers"
+        },
+        {
+            "Yasham": "yasham"
+        },
+        {
+            "Mihini": "mihini"
+        },
+        {
+            "Tangle Identity": "tangle-identity"
+        },
+        {
+            "Tangle Marketplaces": "tangle-marketplaces"
+        }
+    ],
+    "Tools": [
+        {
+            "Trace Compass": "trace-compass"
+        },
+        {
+            "Lua Development Tools": "lua-development-tools"
+        },
+        {
+            "Object Teams": "object-teams"
+        },
+        {
+            "WindowBuilder": "windowbuilder"
+        },
+        {
+            "Linux Tools": "linux-tools"
+        },
+        {
+            "Target Management: Terminal and Remote System Explorer (RSE)": "target-management"
+        },
+        {
+            "Mobile Tools for Java": "mobile-tools-for-java"
+        },
+        {
+            "AspectJ": "aspectj"
+        },
+        {
+            "Titan": "titan"
+        },
+        {
+            "Trace Compass Incubator": "trace-compass-incubator"
+        },
+        {
+            "Buildship: Plug-ins for Gradle": "buildship"
+        },
+        {
+            "Corrosion: the IDE for Rust": "corrosion"
+        },
+        {
+            "PHP Development Tools": "php-development-tools"
+        },
+        {
+            "Buckminster Component Assembly": "buckminster-component-assembly"
+        },
+        {
+            "Memory Analyzer": "memory-analyzer"
+        },
+        {
+            "Oomph": "oomph"
+        },
+        {
+            "Graphical Editing Framework (GEF)": "graphical-editing-framework"
+        },
+        {
+            "Visual Editor for XML": "visual-editor-for-xml"
+        },
+        {
+            "aCute - C# and .NET Core development tools in IDE": "acute"
+        },
+        {
+            "ShellWax": "shellwax"
+        },
+        {
+            "Andmore": "andmore"
+        },
+        {
+            "Mylyn": "mylyn"
+        },
+        {
+            "Ajax Tools Framework (ATF)": "ajax-tools-framework"
+        },
+        {
+            "AJDT - AspectJ Development Tools Project": "ajdt"
+        },
+        {
+            "CDT (C/C++ Development Tooling)": "cdt"
+        },
+        {
+            "Dartboard": "dartboard"
+        },
+        {
+            "Data Tools Incubator": "data-tools-incubator"
+        },
+        {
+            "Data Tools Platform": "data-tools-platform"
+        },
+        {
+            "Mylyn Docs": "mylyn-docs"
+        },
+        {
+            "Orbit Project": "orbit-project"
+        },
+        {
+            "Parallel Tools Platform (PTP)": "parallel-tools-platform"
+        },
+        {
+            "Target Communication Framework": "target-communication-framework"
+        },
+        {
+            "Tools Project": "tools-project"
+        },
+        {
+            "EGL Development Tools": "egl-development-tools"
+        },
+        {
+            "Mylyn Builds": "mylyn-builds"
+        },
+        {
+            "Mylyn Commons": "mylyn-commons"
+        },
+        {
+            "Mylyn Context": "mylyn-context"
+        },
+        {
+            "Mylyn Docs Intent": "mylyn-docs-intent"
+        },
+        {
+            "Mylyn Incubator": "mylyn-incubator"
+        },
+        {
+            "Mylyn Reviews": "mylyn-reviews"
+        },
+        {
+            "Mylyn Tasks": "mylyn-tasks"
+        },
+        {
+            "Mylyn Versions": "mylyn-versions"
+        },
+        {
+            "R4E (Review for Eclipse)": "r4e"
+        },
+        {
+            "Sequoyah": "sequoyah"
+        },
+        {
+            "Test and Performance Tools Platform": "test-and-performance-tools-platform"
+        },
+        {
+            "SeCo Blocks": "seco-blocks"
+        },
+        {
+            "Wild Web Developer": "wild-web-developer"
+        },
+        {
+            "Damos": "damos"
+        },
+        {
+            "Data Tools Connectivity": "data-tools-connectivity"
+        },
+        {
+            "Data Tools Enablement": "data-tools-enablement"
+        },
+        {
+            "Data Tools Model Base": "data-tools-model-base"
+        },
+        {
+            "Data Tools SQL Dev Tools": "data-tools-sql-dev-tools"
+        },
+        {
+            "LSPHub": "lsphub"
+        },
+        {
+            "PDT Incubator": "pdt-incubator"
+        },
+        {
+            "Photran Fortran Development Tools": "photran-fortran-development-tools"
+        },
+        {
+            "Thym": "thym"
+        },
+        {
+            "TOMLed": "tomled"
+        },
+        {
+            "Model Focusing Tools": "model-focusing-tools"
+        }
+    ],
+    "Technology": [
+        {
+            "Apogy": "apogy"
+        },
+        {
+            "Collections": "collections"
+        },
+        {
+            "MDM@WEB": "mdm@web"
+        },
+        {
+            "Ogee": "ogee"
+        },
+        {
+            "Dynamic Languages Toolkit": "dynamic-languages-toolkit"
+        },
+        {
+            "Nebula - Supplemental Widgets for SWT": "nebula"
+        },
+        {
+            "LSP4J": "lsp4j"
+        },
+        {
+            "JGit: Java implementation of Git": "jgit"
+        },
+        {
+            "Handly": "handly"
+        },
+        {
+            "Open Standard Business Platform": "open-standard-business-platform"
+        },
+        {
+            "Package Drone": "package-drone"
+        },
+        {
+            "MicroProfile": "microprofile"
+        },
+        {
+            "SW360antenna": "sw360antenna"
+        },
+        {
+            "N4JS": "n4js"
+        },
+        {
+            "sensiNact": "sensinact"
+        },
+        {
+            "Signalling Engineering Toolbox": "signalling-engineering-toolbox"
+        },
+        {
+            "eLogbook@openK": "elogbook@openk"
+        },
+        {
+            "Steady": "steady"
+        },
+        {
+            "Transformer": "transformer"
+        },
+        {
+            "Xpanse": "xpanse"
+        },
+        {
+            "OSGi Specification Project": "osgi-specification-project"
+        },
+        {
+            "OSGi Technology Project": "osgi-technology-project"
+        },
+        {
+            "Advanced Scripting Environment (EASE)": "advanced-scripting-environment"
+        },
+        {
+            "SWTBot": "swtbot"
+        },
+        {
+            "BIRT (Business Intelligence and Reporting Tools)": "birt"
+        },
+        {
+            "Marketplace Client": "marketplace-client"
+        },
+        {
+            "Passage": "passage"
+        },
+        {
+            "User Storage Service SDK": "user-storage-service-sdk"
+        },
+        {
+            "Code Recommenders": "code-recommenders"
+        },
+        {
+            "EGit: Git Integration for Eclipse": "egit"
+        },
+        {
+            "Maven Integration for Web Tools Platform": "maven-integration-for-web-tools-platform"
+        },
+        {
+            "RCP Testing Tool": "rcp-testing-tool"
+        },
+        {
+            "Aether": "aether"
+        },
+        {
+            "BPMN2 Modeler Project": "bpmn2-modeler-project"
+        },
+        {
+            "CommaSuite": "commasuite"
+        },
+        {
+            "Free BIRD Tools": "free-bird-tools"
+        },
+        {
+            "Maven Integration - m2eclipse": "maven-integration"
+        },
+        {
+            "Nebula NatTable": "nebula-nattable"
+        },
+        {
+            "RedDeer": "reddeer"
+        },
+        {
+            "Subversive SVN Team Provider": "subversive-svn-team-provider"
+        },
+        {
+            "TM4E - TextMate support in the IDE": "tm4e"
+        },
+        {
+            "TEA (Tasking Engine Advanced)": "tea"
+        },
+        {
+            "EclEmma": "eclemma"
+        },
+        {
+            "e(fx)clipse": "eclipse"
+        },
+        {
+            "LSP4E": "lsp4e"
+        },
+        {
+            "XWT": "xwt"
+        },
+        {
+            "ESCET (Supervisory Control Engineering Toolkit)": "escet"
+        },
+        {
+            "Higgins": "higgins"
+        },
+        {
+            "LSAT": "lsat"
+        },
+        {
+            "Lyo": "lyo"
+        },
+        {
+            "Scout": "scout"
+        },
+        {
+            "TRACE4CPS": "trace4cps"
+        },
+        {
+            "Koneki": "koneki"
+        },
+        {
+            "EGerrit": "egerrit"
+        },
+        {
+            "UOMo": "uomo"
+        },
+        {
+            "Accessibility Tools Framework": "accessibility-tools-framework"
+        },
+        {
+            "Babel": "babel"
+        },
+        {
+            "DataEggs": "dataeggs"
+        },
+        {
+            "Golo": "golo"
+        },
+        {
+            "Jubula Functional Testing Tool": "jubula-functional-testing-tool"
+        },
+        {
+            "JustJ": "justj"
+        },
+        {
+            "Hudson": "hudson"
+        },
+        {
+            "iceoryx": "iceoryx"
+        },
+        {
+            "Jifa": "jifa"
+        },
+        {
+            "JNoSQL": "jnosql"
+        },
+        {
+            "Aidge": "aidge"
+        },
+        {
+            "LemMinX": "lemminx"
+        },
+        {
+            "RDF4J": "rdf4j"
+        },
+        {
+            "Open System Engineering Environment": "open-system-engineering-environment"
+        },
+        {
+            "Process Framework Project": "process-framework-project"
+        },
+        {
+            "Runtime Packaging Project": "runtime-packaging-project"
+        },
+        {
+            "Sapphire": "sapphire"
+        },
+        {
+            "Sisu": "sisu"
+        },
+        {
+            "Spatio-Temporal Epidemiological Modeler": "spatio"
+        },
+        {
+            "Voice Tools Project": "voice-tools-project"
+        },
+        {
+            "g-Technology Project": "g"
+        },
+        {
+            "IDE for Education": "ide-for-education"
+        },
+        {
+            "Skalli": "skalli"
+        },
+        {
+            "Sketch": "sketch"
+        },
+        {
+            "Tigerstripe": "tigerstripe"
+        },
+        {
+            "Bridge.IoT": "bridge.iot"
+        },
+        {
+            "Common Build Infrastructure": "common-build-infrastructure"
+        },
+        {
+            "Dash": "dash"
+        },
+        {
+            "Deeplearning4j": "deeplearning4j"
+        },
+        {
+            "IoT-Testware": "iot"
+        },
+        {
+            "jbom": "jbom"
+        },
+        {
+            "OpenJ9": "openj9"
+        },
+        {
+            "Packaging Project": "packaging-project"
+        },
+        {
+            "Serializer": "serializer"
+        },
+        {
+            "Store": "store"
+        },
+        {
+            "Tycho": "tycho"
+        },
+        {
+            "Code Recommenders Incubator": "code-recommenders-incubator"
+        },
+        {
+            "SimRel": "simrel"
+        },
+        {
+            "Cloud Application Management Framework": "cloud-application-management-framework"
+        },
+        {
+            "Apoapsis": "apoapsis"
+        },
+        {
+            "Ceylon": "ceylon"
+        },
+        {
+            "CogniCrypt": "cognicrypt"
+        },
+        {
+            "Common Security Infrastructure": "common-security-infrastructure"
+        },
+        {
+            "Corinthian": "corinthian"
+        },
+        {
+            "Daanse - Data and Analysis Services": "daanse"
+        },
+        {
+            "Dash Commits Dashboard": "dash-commits-dashboard"
+        },
+        {
+            "Jemo - Cloud Application Runtime": "jemo"
+        },
+        {
+            "openK User Modules": "openk-user-modules"
+        },
+        {
+            "Dataspace Components": "dataspace-components"
+        },
+        {
+            "Dataspace TCK": "dataspace-tck"
+        },
+        {
+            "DROPS": "drops"
+        },
+        {
+            "Furo": "furo"
+        },
+        {
+            "Graphene": "graphene"
+        },
+        {
+            "openK Core Modules": "openk-core-modules"
+        },
+        {
+            "ImageN": "imagen"
+        },
+        {
+            "IOTA Trinity": "iota-trinity"
+        },
+        {
+            "Skills": "skills"
+        },
+        {
+            "LSP4Jakarta, the Language Server for EE": "lsp4jakarta,-the-language-server-for-ee"
+        },
+        {
+            "LSP4MP - Language Server for MicroProfile": "lsp4mp"
+        },
+        {
+            "Mbeddr": "mbeddr"
+        },
+        {
+            "openK platform": "openk-platform"
+        },
+        {
+            "Nebula Incubator": "nebula-incubator"
+        },
+        {
+            "OMR": "omr"
+        },
+        {
+            "OS-Gov": "os"
+        },
+        {
+            "Oscano": "oscano"
+        },
+        {
+            "Packager": "packager"
+        },
+        {
+            "Patchwork Kilt": "patchwork-kilt"
+        },
+        {
+            "Picasso: A free open-source visualizer for Convolutional Neural Networks": "picasso"
+        },
+        {
+            "Plato": "plato"
+        },
+        {
+            "Public Access Submission System (PASS)": "public-access-submission-system"
+        },
+        {
+            "Qrisp": "qrisp"
+        },
+        {
+            "Real-Time Software Components": "real"
+        },
+        {
+            "Remus": "remus"
+        },
+        {
+            "Repairnator": "repairnator"
+        },
+        {
+            "SCAVA": "scava"
+        },
+        {
+            "SW360": "sw360"
+        },
+        {
+            "SystemFOCUS": "systemfocus"
+        },
+        {
+            "Technology": "technology"
+        },
+        {
+            "Vhant": "vhant"
+        },
+        {
+            "WattAdvisor": "wattadvisor"
+        },
+        {
+            "XFSC (Cross Federation Services Components)": "xfsc"
+        },
+        {
+            "Graphical Editing Framework 3D": "graphical-editing-framework-3d"
+        },
+        {
+            "The Examples Project": "the-examples-project"
+        },
+        {
+            "The IDE Meta-tooling Platform": "the-ide-meta"
+        },
+        {
+            "Visual Editor": "visual-editor"
+        }
+    ],
+    "Web Tools Platform": [
+        {
+            "GlassFish Tools": "glassfish-tools"
+        },
+        {
+            "Web Tools Platform Project": "web-tools-platform-project"
+        },
+        {
+            "Libra": "libra"
+        },
+        {
+            "WTP Source Editing": "wtp-source-editing"
+        },
+        {
+            "VJet": "vjet"
+        },
+        {
+            "Datatools": "datatools"
+        },
+        {
+            "Dali Java Persistence Tools": "dali-java-persistence-tools"
+        },
+        {
+            "JavaScript Development Tools": "javascript-development-tools"
+        },
+        {
+            "Server Tools": "server-tools"
+        },
+        {
+            "Tools for Faces": "tools-for-faces"
+        },
+        {
+            "Web Services Tools": "web-services-tools"
+        },
+        {
+            "Java EE Module Configuration Editors": "java-ee-module-configuration-editors"
+        },
+        {
+            "Web Tools Common": "web-tools-common"
+        },
+        {
+            "Webtools Releng": "webtools-releng"
+        },
+        {
+            "WTP EJB Tools": "wtp-ejb-tools"
+        },
+        {
+            "WTP Incubator": "wtp-incubator"
+        },
+        {
+            "WTP Java EE Tools": "wtp-java-ee-tools"
+        }
+    ],
+    "Science": [
+        {
+            "January": "january"
+        },
+        {
+            "Advanced Visualization Project": "advanced-visualization-project"
+        },
+        {
+            "ChemClipse": "chemclipse"
+        },
+        {
+            "The Integrated Computational Environment": "the-integrated-computational-environment"
+        },
+        {
+            "StatET: Tooling for the R language": "statet"
+        },
+        {
+            "TeXlipse": "texlipse"
+        },
+        {
+            "Triquetrum": "triquetrum"
+        },
+        {
+            "DAWNSci": "dawnsci"
+        },
+        {
+            "SWTChart": "swtchart"
+        },
+        {
+            "Rich Beans": "rich-beans"
+        },
+        {
+            "Scanning": "scanning"
+        },
+        {
+            "Science": "science"
+        },
+        {
+            "XACC": "xacc"
+        }
+    ],
+    "Digital Twin": [
+        {
+            "AASX Package Explorer and Server": "aasx-package-explorer-and-server"
+        },
+        {
+            "AAS Model for Java": "aas-model-for-java"
+        },
+        {
+            "Semantic Modeling Framework (ESMF)": "semantic-modeling-framework"
+        },
+        {
+            "BaSyx": "basyx"
+        },
+        {
+            "AAS Web Client": "aas-web-client"
+        },
+        {
+            "Service Lifecycle Management": "service-lifecycle-management"
+        },
+        {
+            "Digital Twin": "digital-twin"
+        },
+        {
+            "FA\u00b3ST": "fa\u00b3st"
+        }
+    ],
+    "Automotive": [
+        {
+            "Sphinx": "sphinx"
+        },
+        {
+            "openPASS": "openpass"
+        },
+        {
+            "Ambient Light Services": "ambient-light-services"
+        },
+        {
+            "Autowrx": "autowrx"
+        },
+        {
+            "eCAL (enhanced Communication Abstraction Layer)": "ecal"
+        },
+        {
+            "Leda": "leda"
+        },
+        {
+            "MOSAIC": "mosaic"
+        },
+        {
+            "openDuT": "opendut"
+        },
+        {
+            "SUMO": "sumo"
+        },
+        {
+            "Velocitas": "velocitas"
+        },
+        {
+            "APP4MC": "app4mc"
+        },
+        {
+            "MDM|BL": "mdm|bl"
+        },
+        {
+            "Tractus-X": "tractus"
+        },
+        {
+            "ADAAA (Adaptive Cruise Control Demo Application for Adaptive AUTOSAR)": "adaaa"
+        },
+        {
+            "Ankaios": "ankaios"
+        },
+        {
+            "ArchE": "arche"
+        },
+        {
+            "Automated Driving Open Research (ADORe)": "automated-driving-open-research"
+        },
+        {
+            "Automotive": "automotive"
+        },
+        {
+            "Backend function Bindings (BfB)": "backend-function-bindings"
+        },
+        {
+            "BlueChi": "bluechi"
+        },
+        {
+            "Chariott": "chariott"
+        },
+        {
+            "Cloe": "cloe"
+        },
+        {
+            "Heimlig": "heimlig"
+        },
+        {
+            "Ibeji": "ibeji"
+        },
+        {
+            "Kuksa": "kuksa"
+        },
+        {
+            "Leda Incubator": "leda-incubator"
+        },
+        {
+            "MoEc": "moec"
+        },
+        {
+            "Muto": "muto"
+        },
+        {
+            "OpenMCx": "openmcx"
+        },
+        {
+            "OpenXilEnv": "openxilenv"
+        },
+        {
+            "p3com": "p3com"
+        },
+        {
+            "SCM": "scm"
+        },
+        {
+            "SDV Blueprints": "sdv-blueprints"
+        },
+        {
+            "SDV Developer Console": "sdv-developer-console"
+        },
+        {
+            "SommR": "sommr"
+        },
+        {
+            "uProtocol": "uprotocol"
+        },
+        {
+            "Winery": "winery"
+        }
+    ],
+    "Cloud Development": [
+        {
+            "Tools for Cloud Foundry": "tools-for-cloud-foundry"
+        },
+        {
+            "Codewind": "codewind"
+        },
+        {
+            "EMF Cloud": "emf-cloud"
+        },
+        {
+            "GLSP": "glsp"
+        },
+        {
+            "Theia": "theia"
+        },
+        {
+            "Dirigible": "dirigible"
+        },
+        {
+            "JKube": "jkube"
+        },
+        {
+            "Che": "che"
+        },
+        {
+            "Orion": "orion"
+        },
+        {
+            "Sprotty": "sprotty"
+        },
+        {
+            "Che4z": "che4z"
+        },
+        {
+            "Langium": "langium"
+        },
+        {
+            "Open VSX": "open-vsx"
+        },
+        {
+            "CDT Cloud": "cdt-cloud"
+        },
+        {
+            "Cloud Development": "cloud-development"
+        },
+        {
+            "Flux": "flux"
+        },
+        {
+            "Novamoon": "novamoon"
+        },
+        {
+            "OpenSmartCLIDE": "opensmartclide"
+        }
+    ],
+    "Adoptium": [
+        {
+            "Temurin": "temurin"
+        },
+        {
+            "Mission Control": "mission-control"
+        },
+        {
+            "Adoptium": "adoptium"
+        },
+        {
+            "Adoptium Incubator": "adoptium-incubator"
+        },
+        {
+            "AQAvit": "aqavit"
+        },
+        {
+            "Migration Toolkit for Java": "migration-toolkit-for-java"
+        },
+        {
+            "Temurin Compliance": "temurin-compliance"
+        }
+    ],
+    "EE4J": [
+        {
+            "Messaging": "messaging"
+        },
+        {
+            "GlassFish": "glassfish"
+        },
+        {
+            "Exousia": "exousia"
+        },
+        {
+            "Yasson": "yasson"
+        },
+        {
+            "Contexts and Dependency Injection": "contexts-and-dependency-injection"
+        },
+        {
+            "Cargo Tracker": "cargo-tracker"
+        },
+        {
+            "EE TCK": "ee-tck"
+        },
+        {
+            "EclipseLink": "eclipselink"
+        },
+        {
+            "Annotations": "annotations"
+        },
+        {
+            "EE4J": "ee4j"
+        },
+        {
+            "Angus": "angus"
+        },
+        {
+            "Jersey": "jersey"
+        },
+        {
+            "Batch": "batch"
+        },
+        {
+            "Parsson": "parsson"
+        },
+        {
+            "Mail": "mail"
+        },
+        {
+            "Validation": "validation"
+        },
+        {
+            "Documentation for EE": "documentation-for-ee"
+        },
+        {
+            "Epicyro": "epicyro"
+        },
+        {
+            "Examples for EE": "examples-for-ee"
+        },
+        {
+            "ExpressLy": "expressly"
+        },
+        {
+            "Gran Sasso": "gran-sasso"
+        },
+        {
+            "Grizzly": "grizzly"
+        },
+        {
+            "Implementation of JAXB": "implementation-of-jaxb"
+        },
+        {
+            "Krazo": "krazo"
+        },
+        {
+            "Metro": "metro"
+        },
+        {
+            "Mojarra": "mojarra"
+        },
+        {
+            "Open DI": "open-di"
+        },
+        {
+            "OpenMQ": "openmq"
+        },
+        {
+            "ORB": "orb"
+        },
+        {
+            "Soteria": "soteria"
+        },
+        {
+            "Starter for EE": "starter-for-ee"
+        },
+        {
+            "Tyrus": "tyrus"
+        },
+        {
+            "WaSP": "wasp"
+        },
+        {
+            "Activation": "activation"
+        },
+        {
+            "Authentication": "authentication"
+        },
+        {
+            "Authorization": "authorization"
+        },
+        {
+            "Concurrency": "concurrency"
+        },
+        {
+            "Config": "config"
+        },
+        {
+            "Connectors": "connectors"
+        },
+        {
+            "Data": "data"
+        },
+        {
+            "EE Platform": "ee-platform"
+        },
+        {
+            "Enterprise Beans": "enterprise-beans"
+        },
+        {
+            "Expression Language": "expression-language"
+        },
+        {
+            "Faces": "faces"
+        },
+        {
+            "Interceptors": "interceptors"
+        },
+        {
+            "JSON Binding": "json-binding"
+        },
+        {
+            "JSON Processing": "json-processing"
+        },
+        {
+            "MVC": "mvc"
+        },
+        {
+            "NoSQL": "nosql"
+        },
+        {
+            "Persistence": "persistence"
+        },
+        {
+            "RESTful Web Services": "restful-web-services"
+        },
+        {
+            "RPC": "rpc"
+        },
+        {
+            "Security": "security"
+        },
+        {
+            "Server Pages": "server-pages"
+        },
+        {
+            "Servlet": "servlet"
+        },
+        {
+            "Stable APIs": "stable-apis"
+        },
+        {
+            "Standard Tag Library": "standard-tag-library"
+        },
+        {
+            "Transactions": "transactions"
+        },
+        {
+            "WebSocket": "websocket"
+        },
+        {
+            "XML Binding": "xml-binding"
+        },
+        {
+            "XML Web Services": "xml-web-services"
+        }
+    ],
+    "Eclipse Project": [
+        {
+            "Project": "project"
+        },
+        {
+            "JDT LS": "jdt-ls"
+        },
+        {
+            "e4 Project": "e4-project"
+        },
+        {
+            "Equinox": "equinox"
+        },
+        {
+            "JDT (Java development tools)": "jdt"
+        },
+        {
+            "PDE": "pde"
+        },
+        {
+            "Platform": "platform"
+        },
+        {
+            "Project Incubator": "project-incubator"
+        },
+        {
+            "Equinox p2": "equinox-p2"
+        },
+        {
+            "JDT Core": "jdt-core"
+        },
+        {
+            "JDT Debug": "jdt-debug"
+        },
+        {
+            "JDT UI": "jdt-ui"
+        },
+        {
+            "Platform Debug": "platform-debug"
+        },
+        {
+            "SWT": "swt"
+        },
+        {
+            "E4": "e4"
+        },
+        {
+            "Equinox Incubator": "equinox-incubator"
+        },
+        {
+            "Equinox Bundles": "equinox-bundles"
+        },
+        {
+            "Equinox Framework": "equinox-framework"
+        },
+        {
+            "Equinox Security": "equinox-security"
+        },
+        {
+            "Equinox Website": "equinox-website"
+        },
+        {
+            "Platform Incubator": "platform-incubator"
+        },
+        {
+            "Platform Text": "platform-text"
+        },
+        {
+            "Platform UI": "platform-ui"
+        },
+        {
+            "RelEng": "releng"
+        },
+        {
+            "Resources": "resources"
+        },
+        {
+            "UA": "ua"
+        },
+        {
+            "UFaceKit": "ufacekit"
+        }
+    ],
+    "Oniro": [
+        {
+            "Oniro Core Platform": "oniro-core-platform"
+        },
+        {
+            "Oniro": "oniro"
+        },
+        {
+            "Oniro Blueprints": "oniro-blueprints"
+        },
+        {
+            "Oniro Compliance Toolchain": "oniro-compliance-toolchain"
+        },
+        {
+            "Oniro for OpenHarmony": "oniro-for-openharmony"
+        }
+    ],
+    "RT": [
+        {
+            "Vert.x": "vert.x"
+        },
+        {
+            "Remote Application Platform": "remote-application-platform"
+        },
+        {
+            "Apricot": "apricot"
+        },
+        {
+            "Communications Framework": "communications-framework"
+        },
+        {
+            "Gemini": "gemini"
+        },
+        {
+            "Gyrex Project": "gyrex-project"
+        },
+        {
+            "Jetty - Servlet Engine and Http Server": "jetty"
+        },
+        {
+            "Riena": "riena"
+        },
+        {
+            "SMILA": "smila"
+        },
+        {
+            "Virgo": "virgo"
+        },
+        {
+            "Gemini Management": "gemini-management"
+        },
+        {
+            "Gemini Blueprint": "gemini-blueprint"
+        },
+        {
+            "Gemini DBAccess": "gemini-dbaccess"
+        },
+        {
+            "Gemini JPA": "gemini-jpa"
+        },
+        {
+            "Gemini Web": "gemini-web"
+        },
+        {
+            "Bundle Recipes": "bundle-recipes"
+        },
+        {
+            "RT": "rt"
+        },
+        {
+            "Gemini Naming": "gemini-naming"
+        },
+        {
+            "Remote Application Platform Incubator": "remote-application-platform-incubator"
+        }
+    ],
+    "SOA Platform": [
+        {
+            "eBAM": "ebam"
+        },
+        {
+            "BPEL Designer": "bpel-designer"
+        },
+        {
+            "eBPM": "ebpm"
+        },
+        {
+            "Stardust": "stardust"
+        },
+        {
+            "JWT": "jwt"
+        },
+        {
+            "SCA Tools": "sca-tools"
+        },
+        {
+            "Swordfish": "swordfish"
+        },
+        {
+            "BPMN modeler": "bpmn-modeler"
+        },
+        {
+            "score": "score"
+        },
+        {
+            "Mangrove - SOA Modeling Framework": "mangrove"
+        },
+        {
+            "SOA Platform Project": "soa-platform-project"
+        }
+    ],
+    "PolarSys": [
+        {
+            "CHESS": "chess"
+        },
+        {
+            "Capella": "capella"
+        },
+        {
+            "PolarSys": "polarsys"
+        },
+        {
+            "PolarSys 3P": "polarsys-3p"
+        },
+        {
+            "B612": "b612"
+        },
+        {
+            "COTSAQ": "cotsaq"
+        },
+        {
+            "Kitalpha": "kitalpha"
+        },
+        {
+            "LibIMS": "libims"
+        },
+        {
+            "NG661 Designer": "ng661-designer"
+        },
+        {
+            "OpenCert": "opencert"
+        },
+        {
+            "POP": "pop"
+        },
+        {
+            "Product Lifecycle Management Platform": "product-lifecycle-management-platform"
+        },
+        {
+            "ReqCycle": "reqcycle"
+        },
+        {
+            "Rover": "rover"
+        },
+        {
+            "Safety Framework": "safety-framework"
+        },
+        {
+            "Time4Sys": "time4sys"
+        }
+    ],
+    "LocationTech": [
+        {
+            "GeoMesa": "geomesa"
+        },
+        {
+            "GeoGig": "geogig"
+        },
+        {
+            "GeoWave": "geowave"
+        },
+        {
+            "GeoTrellis": "geotrellis"
+        },
+        {
+            "Spatial4j": "spatial4j"
+        },
+        {
+            "LocationTech": "locationtech"
+        },
+        {
+            "GeoBench": "geobench"
+        },
+        {
+            "GeoJinni": "geojinni"
+        },
+        {
+            "GeoPeril": "geoperil"
+        },
+        {
+            "JTS Topology Suite": "jts-topology-suite"
+        },
+        {
+            "libspatialindex": "libspatialindex"
+        },
+        {
+            "Proj4J": "proj4j"
+        },
+        {
+            "RasterFrames": "rasterframes"
+        },
+        {
+            "SFCurve": "sfcurve"
+        },
+        {
+            "uDig: User-friendly Desktop Internet GIS": "udig"
+        }
+    ],
+    "OpenHW Group": [
+        {
+            "OpenHW Group CORE-V Cores": "openhw-group-core"
+        },
+        {
+            "OpenHW Group": "openhw-group"
+        }
+    ],
+    "AsciiDoc": [
+        {
+            "AsciiDoc Language": "asciidoc-language"
+        },
+        {
+            "AsciiDoc": "asciidoc"
+        },
+        {
+            "Austen": "austen"
+        }
+    ]
+}

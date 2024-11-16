@@ -1,0 +1,22 @@
+{
+    "substring-bots": [
+        "bot",
+        "butler",
+        "crawler",
+        "gardener",
+        "github",
+        "lint",
+        "robot",
+        "scraper",
+        "spider"
+    ],
+    "project-bots": [
+        "github",
+        "gitlab release tools bot",
+        "\ud83e\udd16 gitlab bot \ud83e\udd16",
+        "dependabot-preview[bot]",
+        "node.js github bot",
+        "tensorflower gardener",
+        "snyk-bot"
+    ]
+}

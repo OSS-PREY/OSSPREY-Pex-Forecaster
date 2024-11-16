@@ -1,0 +1,28 @@
+{
+    "graduated": [
+        "airflow",
+        "busybox",
+        "node",
+        "social-app-django",
+        "tensorflow"
+    ],
+    "retired": [
+        "ActionBarSherlock",
+        "baker",
+        "calipso",
+        "component",
+        "django-social-auth",
+        "docker-registry",
+        "famous",
+        "forem",
+        "generator-gulp-angular",
+        "inherited_resources",
+        "kissy",
+        "meteor-up",
+        "mojito",
+        "neocomplcache.vim",
+        "scripted",
+        "sstoolkit"
+    ],
+    "incubating": []
+}

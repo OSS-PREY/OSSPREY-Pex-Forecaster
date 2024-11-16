@@ -1,0 +1,241 @@
+{
+    "datasets": [
+        "apache",
+        "github",
+        "eclipse"
+    ],
+    "ext": "parquet",
+    "net-ext": "csv",
+    "abbreviations": {
+        "apache": "A",
+        "github": "G",
+        "eclipse": "E"
+    },
+    "social-type": {
+        "apache": "emails",
+        "github": "issues",
+        "eclipse": "emails-issues"
+    },
+    "tech-type": {
+        "apache": "commits",
+        "github": "commits",
+        "eclipse": "commits"
+    },
+    "field-mappings": {
+        "eclipse": {
+            "tech": {
+                "project": "project_name",
+                "start_date": "project_start_date",
+                "end_date": "project_end_date",
+                "ign_col_1": "[IGNORE]1",
+                "status": "status",
+                "commit": "commit_id",
+                "committer_email": "sender_email",
+                "committer_name": "sender_name",
+                "committer_time": "date",
+                "ign_col_2": "[IGNORE]2",
+                "filename": "file_name",
+                "change_type": "change_type",
+                "added": "added",
+                "deleted": "deleted",
+                "commit_message": "commit_msg"
+            },
+            "social": {
+                "Type": "type",
+                "URL": "subject",
+                "Title": "title",
+                "Sender Name": "sender_name",
+                "Date": "date",
+                "Status": "[IGNORE]1"
+            }
+        }
+    },
+    "dtypes": {
+        "apache": {
+
+        },
+        "github": {
+
+        },
+        "eclipse": {
+            
+        }
+    },
+    "author-source-field": {
+        "apache": "author_full_name",
+        "github": "sender_name",
+        "eclipse": "sender_name"
+    },
+    "augmentations": {
+        "apache": {
+            "tech": {
+                "0": "00-commits",
+                "1": "01-commits-clean",
+                "2": "02-commits-trunc",
+                "3": "03-commits-trunc-activity"
+            },
+            "social": {
+                "0": "00-emails",
+                "1": "01-emails-clean",
+                "2": "02-emails-trunc",
+                "3": "03-emails-trunc-activity"
+            }
+        },
+        "github": {
+            "tech": {
+                "0": "00-commits",
+                "1": "01-commits-imputed",
+                "2-DEPRECATED": "02-commits-dealias-prebots",
+                "2": "02-commits-real",
+                "3": "03-commits-dealias",
+                "4": "04-commits-trunc",
+                "5": "05-commits-trunc-activity"
+            },
+            "social": {
+                "0": "00-issues",
+                "1-DEPRECATED": "01-issues-imputed",
+                "1": "01-issues-msg",
+                "2": "02-issues-imputed-msgid",
+                "3-DEPRECATED": "03-issues-dealias-prebots",
+                "3": "03-issues-real",
+                "4": "04-issues-dealias",
+                "5": "05-issues-trunc",
+                "6": "06-issues-trunc-activity"
+            }
+        },
+        "eclipse": {
+            "tech": {
+                "orig-0": "orig-00-commits",
+                "orig-1": "orig-01-commits-processed",
+                "0": "00-commits",
+                "1": "01-commits-processed"
+            },
+            "social": {
+                "orig-0": "orig-00-issues",
+                "orig-1": "orig-01-issues-processed",
+                "0": "00-issues",
+                "1": "01-issues-processed"
+            }
+        }
+    },
+    "augmentation-descriptions": {
+        "apache": {
+            "tech": {
+                "0": "base commits data",
+                "1": "filepaths cleaned commits data",
+                "2": "Nafiz generated--DEPRECATED",
+                "3": "Nafiz generated--DEPRECATED",
+                "4": "Nafiz generated--DEPRECATED"
+            },
+            "social": {
+                "0": "base emails data",
+                "1": "sender name cleaned emails data",
+                "2": "Nafiz generated--DEPRECATED",
+                "3": "Nafiz generated--DEPRECATED",
+                "4": "Nafiz generated--DEPRECATED"
+            }
+        },
+        "github": {
+            "tech": {
+                "0": "raw commits data",
+                "1": "source file imputed commits data",
+                "2-DEPRECATED": "[deprecated] de-aliased w/o bot removal commits data",
+                "2": "bot-free commits data",
+                "3": "dealiased commits data",
+                "4": "truncated commits data",
+                "5": "truncated via activity commits data"
+            },
+            "social": {
+                "0": "raw issues data",
+                "1-DEPRECATED": "[deprecated] reply imputed w/ sender name issues data",
+                "1": "message id imputed issues data",
+                "2": "reply imputed w/ msg-id issues data",
+                "3-DEPRECATED": "[deprecated] de-aliased w/o bot removal issues data",
+                "3": "bot-free issues data",
+                "4": "de-aliased issues data",
+                "5": "truncated issues data",
+                "6": "truncated via activity issues data"
+            }
+        },
+        "eclipse": {
+            "tech": {
+                "orig-0": "raw commits data",
+                "orig-1": "dealiased w/ source files & bots commits data",
+                "0": "raw commits data, now aggregated by project",
+                "1": "dealiased w/ source files & bots commits data, now aggregated by project"
+            },
+            "social": {
+                "orig-0": "raw issues data",
+                "orig-1": "deliased w/ reply & bots issues data",
+                "0": "raw issues data",
+                "1": "deliased w/ reply & bots issues data"                
+            }
+        }
+    },
+    "incubation-time": {
+        "apache": "./utility/apache_proj_incubation.json",
+        "github": "./utility/github_proj_incubation.json",
+        "eclipse": "./utility/eclipse_proj_incubation.json"
+    },
+    "project-status": {
+        "apache": "./utility/apache_project_status.json",
+        "github": "./utility/github_project_status.json",
+        "eclipse": "./utility/eclipse_project_status.json"
+    },
+    "programming-langs": {
+        "apache": "programming-langs.json",
+        "github": "programming-langs.json",
+        "eclipse": "programming-langs.json"
+    },
+    "transfer-strats": {
+        "ful": "full: B --> T",
+        "mix": "mixed: B' + T' --> B'' + T''",
+        "trg": "target: B + T' --> T''"
+    },
+    "default-versions": {
+        "apache": [1, 1],
+        "github": [3, 4],
+        "eclipse": [1, 1]
+    },
+    "network-augmentations": {
+        "clean": "clean",
+        "interval": "ivl",
+        "proportion-interval": "pivl",
+        "lag-interval": "livl",
+        "jitter": "jtr",
+        "normalize-actdev": "nrmad",
+        "normalize-minmax": "nrmmm",
+        "normalize-zscore": "nrmzs",
+        "aggregate": "agg",
+        "diff": "diff",
+        "upsample": "upsamp",
+        "downsample": "downsamp",
+        "feature-subset": "subset"
+    },
+    "network-aug-shorthand": {
+        "*": "interval",
+        "%": "proportion-interval",
+        "l": "lag-interval",
+        "j": "jitter",
+        "n": "normalize-actdev",
+        "m": "normalize-minmax",
+        "z": "normalize-zscore",
+        "a": "aggregate",
+        "d": "diff",
+        "u": "upsample",
+        "b": "downsample",
+        "c": "feature-subset"
+    },
+    "network-aug-groups": [
+        ["*", "%", "l"],
+        ["u", "j", "b"],
+        ["n", "m", "z"],
+        ["a"],
+        ["d"],
+        ["c"]
+    ],
+    "lifecycle-ratios": "./utility/lifecycle-ratios.json",
+    "test-prop": 0.20,
+    "network-data-format": "../network_data/netdata/{}-{}-network-data-{}.{}",
+    "model-weights-format": "../model-weights/{}/{}-[a{}]-[f{}]-[p{}]-[r{}].pt"
+}

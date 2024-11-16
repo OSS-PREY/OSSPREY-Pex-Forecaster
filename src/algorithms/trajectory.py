@@ -55,6 +55,7 @@ def diminish_grad(grad: float, cur_pos: float, strat: str="diff") -> float:
         case _:
             return 0
 
+
 def export_traj(trajectories: dict | list | np.ndarray, filename: Path=None) -> str:
     """Exports the trajectories into a JSON format for easy export.
 
