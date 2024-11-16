@@ -142,7 +142,7 @@ def plot_traj(forecast: np.ndarray | list, trajectories: np.ndarray, m: int=-1, 
 
 
 # Primary Algorithms
-def traj_simple(forecast: np.ndarray, lag: int=3, k: int=3) -> np.ndarray:
+def traj_simple(forecast: np.ndarray, lag: int=3, k: int=3, **grad_kwargs) -> np.ndarray:
     """Generates a simple, single trajectory for the next `k` months for every 
     month lag - 1 and onwards. Notice that if the trajectory is negative, we'll
     slow the rate of decrease as we approach closer to 0. The same is done for 
@@ -191,7 +191,7 @@ def traj_simple(forecast: np.ndarray, lag: int=3, k: int=3) -> np.ndarray:
             pos += grad
             
             # update grad
-            grad = diminish_grad(grad, pos)
+            grad = diminish_grad(grad, pos, **grad_kwargs)
         
     # export as ndarray
     return np.array(trajectories)
@@ -210,13 +210,22 @@ class TrajTesterSimple(unittest.TestCase):
             "random"
         ]
     
-    def initial_test(self):
+    def diff_test(self):
         for i, data in enumerate(self.data):
             res = traj_simple(forecast=data)
             print(res)
             plot_traj(
                 data, res,
-                path=Path().cwd() / "visuals" / "trajectories" / self.labels[i]
+                path=Path().cwd() / "visuals" / "trajectories" / (self.labels[i] + "-diff")
+            )
+            
+    def exp_test(self):
+        for i, data in enumerate(self.data):
+            res = traj_simple(forecast=data, strat="exp")
+            print(res)
+            plot_traj(
+                data, res,
+                path=Path().cwd() / "visuals" / "trajectories" / (self.labels[i] + "-exp")
             )
         
 
@@ -224,5 +233,6 @@ class TrajTesterSimple(unittest.TestCase):
 if __name__ == "__main__":
     tester = TrajTesterSimple()
     tester.setUp()
-    tester.initial_test()
+    tester.diff_test()
+    tester.exp_test()
     
