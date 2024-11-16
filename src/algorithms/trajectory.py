@@ -197,6 +197,30 @@ def traj_simple(forecast: np.ndarray, lag: int=3, k: int=3, **grad_kwargs) -> np
     return np.array(trajectories)
 
 
+def traj_ar(forecast: np.ndarray, lag: int=3, k: int=3, arch: str="ARIMA", ci: int=95) -> np.ndarray:
+    """Uses an autoregressive model (ARIMA, etc.) to generate the forecast more
+    accurately.
+
+    Args:
+        forecast (np.array): original forecast information as an array.
+        lag (int, optional): number of months to take into account when 
+            generating a trajectory; this means we take lag - 1 slopes when 
+            creating the projection
+        k (int, optional): number of months to predict forward. Defaults to 3.
+        arch (str, optional): model architecture to use. Defaults to "ARIMA".
+        ci (int, optional): confidence interval for error bounds. Defaults to 
+            95.
+
+    Returns:
+        np.ndarray: for every month lag - 1 and above, we generate the next k 
+            forecasts. If our forecast has n months of data, we return an 
+            ndarray of dimension (n - (lag + 1)) x k where the 0th row maps to
+            the (lag + 1)th month forecasts, and so on.
+    """
+    
+    pass
+
+
 # Unit Tests
 class TrajTesterSimple(unittest.TestCase):
     def setUp(self):
