@@ -11,11 +11,14 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from statsmodels.tsa.arima.model import ARIMA
+from pmdarima import auto_arima
 
 ## built-in
 import unittest
 import json
 from pathlib import Path
+import warnings
 
 
 # Helper Algorithms
@@ -80,7 +83,7 @@ def export_traj(trajectories: dict | list | np.ndarray, filename: Path=None) -> 
     return export_str
 
 
-def plot_traj(forecast: np.ndarray | list, trajectories: np.ndarray, m: int=-1, **label_kwargs) -> None:
+def plot_traj(forecast: np.ndarray | list, trajectories: np.ndarray, m: int=-1, ci=None, **label_kwargs) -> None:
     """Plots the trajectory given a forecast.
 
     Args:
@@ -88,6 +91,7 @@ def plot_traj(forecast: np.ndarray | list, trajectories: np.ndarray, m: int=-1, 
         trajectories (np.array): trajectories for all months
         m (int, optional): month number to plot; if not specified, plot all
             months' trajectories.
+        ci (): confidence interval to plot as well
         **label_kwargs: specify the following:
             - "title" for the plot title
             - "path" for the save path
@@ -171,7 +175,7 @@ def traj_simple(forecast: np.ndarray, lag: int=3, k: int=3, **grad_kwargs) -> np
         raise ValueError(f"Lag must be greater than 1 (need at least one slope): {lag=}")
     
     # trackers
-    trajectories = [[None] * k for _ in range(lag, n)]
+    trajectories = [[None] * (k + 1) for _ in range(lag, n)]
     
     # generation of the monthly trajectories
     for i in range(lag, n):
@@ -181,7 +185,7 @@ def traj_simple(forecast: np.ndarray, lag: int=3, k: int=3, **grad_kwargs) -> np
         pos = forecast[i]
         
         # generation of each trajectory
-        for j in range(k):
+        for j in range(k + 1):
             # clip position
             pos = max(0, pos)
             pos = min(1, pos)
@@ -216,22 +220,74 @@ def traj_ar(forecast: np.ndarray, lag: int=3, k: int=3, arch: str="ARIMA", ci: i
             forecasts. If our forecast has n months of data, we return an 
             ndarray of dimension (n - (lag + 1)) x k where the 0th row maps to
             the (lag + 1)th month forecasts, and so on.
+        np.ndarray: for every month lag - 1 and above, we generate a lower and 
+            upper bound on the trajectory for the forecast
     """
     
-    pass
+    # suppress MLE and convergence failure warnings
+    warnings.filterwarnings("ignore")
+    
+    # edge case
+    n = len(forecast)
+    if n < lag:
+        raise ValueError(f"Length of forecast can't be less than lag: {n=} < {lag=}")
+    if lag <= 1:
+        raise ValueError(f"Lag must be greater than 1 (need at least one slope): {lag=}")
+    
+    # trackers
+    trajectories = [[None] for _ in range(lag, n)]
+    ci = [[None] for _ in range(lag, n)]
+    est_order = (
+        lag,        # autoregressive, use all lag samples
+        1,          # differencing
+        lag         # moving average component, use all lag samples
+    )
+    
+    # generation of the monthly trajectories
+    for i in range(lag, n):
+        # build simple AR model; we'll use basic lag terms
+        match arch:
+            case "ARIMA":
+                model = ARIMA(forecast[:i + 1], order=est_order)
+            
+            case _:
+                raise ValueError(f"Invalid architecture {arch=}")
+        
+        model = model.fit()
+        
+        # generate trajectory
+        forecaster = model.get_forecast(k)
+        cur_traj = forecaster.predicted_mean
+        traj_ci = forecaster.conf_int()
+        
+        # clip trajectories to be a valid probability
+        cur_traj = np.clip(cur_traj, 0, 1)
+        
+        # track
+        trajectories[i - lag][0] = forecast[i]        # root the first prediction to cur value
+        trajectories[i - lag].extend(cur_traj)
+        ci[i - lag][0] = [forecast[i], forecast[i]]   # no variance in the current forecast
+        ci[i - lag].extend(traj_ci)
+        
+    # export as ndarray
+    return np.array(trajectories), np.array(traj_ci)
 
 
 # Unit Tests
-class TrajTesterSimple(unittest.TestCase):
+class TrajTester(unittest.TestCase):
     def setUp(self):
         # arrays for testing
         self.data = [
             np.linspace(0.0, 0.7, 10),
-            np.random.random(size=(10))
+            np.cumsum(np.random.random(size=(10)) / 10),
+            np.sin(np.linspace(0, 2 * np.pi, 10)) / 2 + 0.5,
+            1 / (1 + np.exp(-np.linspace(-5, 5, 10)))
         ]
         self.labels = [
             "linear",
-            "random"
+            "random",
+            "sinusoidal",
+            "sigmoid"
         ]
     
     def diff_test(self):
@@ -251,12 +307,24 @@ class TrajTesterSimple(unittest.TestCase):
                 data, res,
                 path=Path().cwd() / "visuals" / "trajectories" / (self.labels[i] + "-exp")
             )
+            
+    def ar_test(self):
+        for i, data in enumerate(self.data):
+            res, ci = traj_ar(forecast=data)
+            print(res)
+            print(ci)
+            plot_traj(
+                data, res, ci=ci,
+                path=Path().cwd() / "visuals" / "trajectories" / (self.labels[i] + "-arima")
+            )
         
 
 # Run Tests
 if __name__ == "__main__":
-    tester = TrajTesterSimple()
+    tester = TrajTester()
     tester.setUp()
+    tester.ar_test()
+    exit()
     tester.diff_test()
     tester.exp_test()
     
