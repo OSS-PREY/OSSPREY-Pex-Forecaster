@@ -83,15 +83,17 @@ def export_traj(trajectories: dict | list | np.ndarray, filename: Path=None) -> 
     return export_str
 
 
-def plot_traj(forecast: np.ndarray | list, trajectories: np.ndarray, m: int=-1, ci=None, **label_kwargs) -> None:
+def plot_traj(forecast: np.ndarray | list, trajectories: np.ndarray, m: int=-1, ci: np.ndarray=None, **label_kwargs) -> None:
     """Plots the trajectory given a forecast.
 
     Args:
         forecast (np.array | list): actual forecast
         trajectories (np.array): trajectories for all months
         m (int, optional): month number to plot; if not specified, plot all
-            months' trajectories.
-        ci (): confidence interval to plot as well
+            months' trajectories. Defaults to -1.
+        ci (np.ndarray, optional): confidence interval to plot; requires a 
+            the same number of rows as trajectory, each with two elements 
+            [lower, upper]. Defaults to None.
         **label_kwargs: specify the following:
             - "title" for the plot title
             - "path" for the save path
@@ -115,18 +117,23 @@ def plot_traj(forecast: np.ndarray | list, trajectories: np.ndarray, m: int=-1, 
         marker="*"
     )
     
+    # months to plot
+    months = range(m, m + 1) if m >= 0 else range(len(trajectories))
+    
     # plot the trajectories
-    if m < 0:
-        for i, row in enumerate(trajectories):
-            plt.plot(
-                range(l + i, l + i + k), row, color=colors[i],
-                linestyle="dashed", marker="x"
-            )
-    else:
+    for i in months:
+        # plot traj
         plt.plot(
-            range(l + m, l + m + k), trajectories[m, :], color=colors[m],
+            range(l + i, l + i + k), trajectories[i], color=colors[i],
             linestyle="dashed", marker="x"
         )
+        
+        # plot ci if possible
+        if ci is not None:
+            plt.fill_between(
+                x=range(l + i, l + i + k), y1=ci[i, :, 0], y2=ci[i, :, 1],
+                color=colors[i], alpha=0.3
+            )
         
     # plot details
     plt.xlabel("Month")
@@ -267,10 +274,10 @@ def traj_ar(forecast: np.ndarray, lag: int=3, k: int=3, arch: str="ARIMA", ci: i
         trajectories[i - lag][0] = forecast[i]        # root the first prediction to cur value
         trajectories[i - lag].extend(cur_traj)
         ci[i - lag][0] = [forecast[i], forecast[i]]   # no variance in the current forecast
-        ci[i - lag].extend(traj_ci)
+        ci[i - lag].extend([list(bounds) for bounds in traj_ci])
         
     # export as ndarray
-    return np.array(trajectories), np.array(traj_ci)
+    return np.array(trajectories), np.array(ci)
 
 
 # Unit Tests
@@ -293,7 +300,6 @@ class TrajTester(unittest.TestCase):
     def diff_test(self):
         for i, data in enumerate(self.data):
             res = traj_simple(forecast=data)
-            print(res)
             plot_traj(
                 data, res,
                 path=Path().cwd() / "visuals" / "trajectories" / (self.labels[i] + "-diff")
@@ -302,7 +308,6 @@ class TrajTester(unittest.TestCase):
     def exp_test(self):
         for i, data in enumerate(self.data):
             res = traj_simple(forecast=data, strat="exp")
-            print(res)
             plot_traj(
                 data, res,
                 path=Path().cwd() / "visuals" / "trajectories" / (self.labels[i] + "-exp")
@@ -311,8 +316,6 @@ class TrajTester(unittest.TestCase):
     def ar_test(self):
         for i, data in enumerate(self.data):
             res, ci = traj_ar(forecast=data)
-            print(res)
-            print(ci)
             plot_traj(
                 data, res, ci=ci,
                 path=Path().cwd() / "visuals" / "trajectories" / (self.labels[i] + "-arima")
@@ -323,8 +326,7 @@ class TrajTester(unittest.TestCase):
 if __name__ == "__main__":
     tester = TrajTester()
     tester.setUp()
-    tester.ar_test()
-    exit()
     tester.diff_test()
     tester.exp_test()
+    tester.ar_test()
     
