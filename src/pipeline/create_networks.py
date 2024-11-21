@@ -10,18 +10,22 @@
     # import base64
     # import quopri
 
+# ------------- Environment Setup ------------- #
+# external packages
+import networkx as nx
+import pandas as pd
+from tqdm import tqdm
+
+# built-in modules
 import os
 import json
 import sys
 from collections import Counter
 from typing import Any
+from pathlib import Path
 
-import networkx as nx
-import pandas as pd
-from tqdm import tqdm
-
-import general_utils as util
-
+# DECAL modules
+import src.utils as util
 
 """
 # convert to UTF-8 coding

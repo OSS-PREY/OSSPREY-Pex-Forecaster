@@ -4,15 +4,20 @@
     @creation-date February 2024
 """
 
-# Environment
-import sys
+# ------------- Environment Setup ------------- #
+# external packages -- none for now
 
-import general_utils as util
-import rawdata as rd
-from _monthly_data import *
-from _create_networks import *
-from _network_features import *
-from _network_visualizations import *
+# built-in modules
+import sys
+from pathlib import Path
+
+# DECAL modules
+import src.utils as util
+import src.abstractions.rawdata as rd
+from src.pipeline.monthly_data import *
+from src.pipeline.create_networks import *
+from src.pipeline.network_features import *
+from src.pipeline.network_visualizations import *
 
 
 # dispatch utility

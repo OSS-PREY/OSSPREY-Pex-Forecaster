@@ -8,23 +8,21 @@
 """
 
 
-# ---------------- environment setup ---------------- #
-# model definition & deployment
+# ---------------- Environment Setup ---------------- #
+# external modules
 import pandas as pd
-
-# auxiliary functionality for user reporting
 from tqdm import tqdm
 
-# interfacing w/ system
+# built-in modules
 import sys
 from typing import Iterable, Any
 from itertools import product, permutations, chain, combinations
 
-# abstractions
-import general_utils as util
-from modeldata import *
-from perfdata import *
-from tsmodel import *
+# DECAL modules
+import src.utils as util
+from src.abstractions.modeldata import *
+from src.abstractions.perfdata import *
+from src.abstractions.tsmodel import *
 
 
 # ---------------- modeling script ---------------- #

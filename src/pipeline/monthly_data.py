@@ -6,17 +6,20 @@
 """
 
 
-# ---------------- environment setup ---------------- #
+# ---------------- Environment Setup ---------------- #
+# external packages
+import pandas as pd
+from tqdm import tqdm
+
+# built-in modules
 import os
 import sys
 import json
 from math import floor
 
-import pandas as pd
-from tqdm import tqdm
-
-import general_utils as util
-from rawdata import *
+# DECAL modules
+import src.utils as util
+from src.abstractions.rawdata import *
 
 
 # ------------------- relative time generation ---------------------- #

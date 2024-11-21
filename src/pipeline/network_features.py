@@ -7,18 +7,24 @@
 """
 
 #coding:utf-8
+
+# ------------- Environment Setup ------------- #
+# external packages
 import networkx as nx
 import pandas as pd
 import matplotlib.pyplot as plt
 from networkx.algorithms import bipartite
 from tqdm import tqdm
 
+# built-in modules
 import os
 import json
 import warnings
 import sys
+from pathlib import Path
 
-import general_utils as util
+# DECAL modules
+import src.utils as util
 
 
 # ---------------- define utility ---------------- #

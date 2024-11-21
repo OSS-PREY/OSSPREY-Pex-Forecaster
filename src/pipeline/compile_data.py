@@ -3,10 +3,12 @@
     @author Arjun Ashok (arjun3.ashok@gmail.com)
 """
 
-
+# ------------- Environment Setup ------------- #
+# external packages
 import pandas as pd
 from tqdm import tqdm
 
+# built-in modules
 import json
 import mailbox
 import os
@@ -14,8 +16,9 @@ import sys
 import re
 from pathlib import Path
 
-import general_utils as util
-import rawdata as rd
+# DECAL modules
+import src.utils as util
+import src.abstractions.rawdata as rd
 
 
 # ------------- utility ------------- #
