@@ -15,7 +15,7 @@ pex-forecaster/
 │   README.md
 │   requirements.txt    
 │
-└───src/
+└───decalforecaster/
 |   |   utils.py
 |   |
 │   └───abstractions/
@@ -83,49 +83,56 @@ NOT YET UPLOADED, WORK IN PROGRESS...
 ### Environment Setup
 It's recommended to use virtual environments to run this module, although most
 environments with relatively modern versions of the listed modules in
-`requirements.txt` likely will suffice. We've elected to use Conda. Install all 
+`requirements.txt` likely will suffice. We've elected to use Conda. Install all
 requirements (or check the installation) via:
 ```
 pip install -r requirements.txt
 ```
 
 ## Usage
-All modules under `src` are written such that they can be individually imported
-into another program without too much dependency on the narrow task, i.e.
-somewhat package-ready. That said, to perform the tasks this module is built
-for, do the following:
+All modules under `decalforecaster` are written such that they can be
+individually imported into another program without too much dependency on the
+narrow task, i.e. somewhat package-ready. That said, to perform the tasks this
+module is built for, do the following:
 
-1. Raw Data --> Network Data Pipeline: leverage the `src/pipeline/` module to 
-    run the tasks required; by default, the `pipeline.py` wrapper calls all 
-    required functions to do this, including some helpful utility to pre-process
-    raw data as well--given we assume pre-processed data is already being used,
-    we'll ignore that functionality.
+1. Raw Data --> Network Data Pipeline: leverage the `decalforecaster/pipeline/`
+    module to run the tasks required; by default, the `pipeline.py` wrapper
+    calls all required functions to do this, including some helpful utility to
+    pre-process raw data as well--given we assume pre-processed data is already
+    being used, we'll ignore that functionality.
 
-2. Network Data --> Sustainability Forecasts: leverage the `src/pipeline/`
-    module once again to do this; specifically, `modeling.py` is focused on
-    building different types of trials with helpful functions for individual
-    tests. For a more extensive overview of the grammar we use to parse a
-    trial's goal, reference the documentation found in the sister-research 
-    repository [here](https://github.com/arjashok/OSS-Research)
+2. Network Data --> Sustainability Forecasts: leverage the
+    `decalforecaster/pipeline/` module once again to do this; specifically,
+    `modeling.py` is focused on building different types of trials with helpful
+    functions for individual tests. For a more extensive overview of the grammar
+    we use to parse a trial's goal, reference the documentation found in the
+    sister-research repository [here](https://github.com/arjashok/OSS-Research)
 
-3. Trajectory Generation: the module `src/algorithms/trajectory.py` focuses 
-    entirely on generating the future trajectories. Further documentation on the
-    strategies and functionality are present within the program itself.
+3. Trajectory Generation: the module `decalforecaster/algorithms/trajectory.py`
+    focuses entirely on generating the future trajectories. Further
+    documentation on the strategies and functionality are present within the
+    program itself.
 
 Quick usage commands are provided here:
 - Modeling:
 ```
-python3 "_modeling.py" '{"strategy": "Acbn + Ecbn^ --> Ecbn^^", "trials": 5, "model-arch": "BLSTM", "hyperparams": {"learning_rate": 0.001, "scheduler": "plateau", "num_epochs": 200}}'
+python3 -m decalforecaster.pipeline.modeling --kwargs \
+    strategy="Acbn + Ecbn^ --> Ecbn^^" \
+    trials=5 \
+    model-arch="BLSTM" \
+    hyperparams='{"learning_rate": 0.001, "scheduler": "plateau", "num_epochs": 200}'
 ```
 
 - Network Gen:
 ```
-python3 "pipeline.py" '{"incubator": "apache", "versions": {"tech": 1, "social": 1}}'
+python3 -m decalforecaster.pipeline.pipeline --kwargs \
+    incubator=apache \
+    versions='{"tech": 1, "social": 1}'
 ```
 
 - Visualizations:
 ```
-python3 "perfdata.py"
+python3 -m decalforecaster.pipeline.perfdata
 ```
 
 

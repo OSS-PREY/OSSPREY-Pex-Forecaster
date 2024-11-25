@@ -21,7 +21,8 @@
         "github": "commits",
         "eclipse": "commits"
     },
-    "dataset-dir": "",
+    "dataset-dir": "./data/",
+    "network-dir": "./network-data/",
     "field-mappings": {
         "eclipse": {
             "tech": {
