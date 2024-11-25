@@ -90,16 +90,17 @@ def net_vis_info(args_dict: dict[str, Any]) -> None:
     versions = args_dict["versions"]
     social_type = params_dict["social-type"][args_dict["incubator"]]
     tech_type = params_dict["tech-type"][args_dict["incubator"]]
+    network_dir = Path(params_dict["network-dir"])
 
-    mapping_path = f"../network_data/mappings/{args_dict['incubator']}-mapping-{versions['tech']}-{versions['social']}.csv"
-    t_dir = f"../network_data/{args_dict['incubator']}_{tech_type}/"
-    s_dir = f"../network_data/{args_dict['incubator']}_{social_type}/"
+    mapping_path = network_dir / f"mappings/{args_dict['incubator']}-mapping-{versions['tech']}-{versions['social']}.csv"
+    t_dir = network_dir / f"{args_dict['incubator']}_{tech_type}/"
+    s_dir = network_dir / f"{args_dict['incubator']}_{social_type}/"
     proj_inc_path = params_dict["incubation-time"][args_dict["incubator"]]
 
-    base_dir = f"../network_data/net-vis/"
+    base_dir = network_dir / f"net-vis/"
     util._check_dir(base_dir)
-    t_output_dir = f"{base_dir}{args_dict['incubator']}_{tech_type}/"
-    s_output_dir = f"{base_dir}{args_dict['incubator']}_{social_type}/"
+    t_output_dir = base_dir / f"{args_dict['incubator']}_{tech_type}/"
+    s_output_dir = base_dir / f"{args_dict['incubator']}_{social_type}/"
 
     # setup & prepare (clear output dirs, get iteration list)
     util._clear_dir(t_output_dir)
@@ -131,11 +132,11 @@ def net_vis_info(args_dict: dict[str, Any]) -> None:
         for month in range(project_incubation_dict.get(project_name, 0)):
             # unpack
             net_file = "{}__{}.edgelist".format(project_name, month)
-            tech_net_path = t_dir + net_file
-            tech_net_out = t_output_dir + net_file
+            tech_net_path = t_dir / net_file
+            tech_net_out = t_output_dir / net_file
 
-            social_net_path = s_dir + net_file
-            social_net_out = s_output_dir + net_file
+            social_net_path = s_dir / net_file
+            social_net_out = s_output_dir / net_file
 
             # grab necessary info & save
             tech_net_info(tech_net_path, tech_net_out)

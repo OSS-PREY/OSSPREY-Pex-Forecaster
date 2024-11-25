@@ -47,15 +47,14 @@ def text_encoding(encoded_words):
 
 
 # ---------------- processing utility ---------------- #
-# processing technical nets
-def process_tech_nets(author_field: str, t_source: str, t_output: str) -> None:
+def process_tech_nets(author_field: str, t_source: Path, t_output: Path) -> None:
     projects = os.listdir(t_source)
     util._check_dir(t_output)
 
     for project in tqdm(projects):
         technical_net = {}
         project_name, period = project.replace(".csv", "").split("__")
-        df = pd.read_csv(t_source+project, engine="c", low_memory=False)
+        df = pd.read_csv(t_source / project, engine="c", low_memory=False)
         df.query("is_bot == False and is_coding == True", inplace=True)
         df = df[df[author_field].notna()]
 
@@ -76,11 +75,11 @@ def process_tech_nets(author_field: str, t_source: str, t_output: str) -> None:
         g = nx.DiGraph(technical_net)
         # add disconnected nodes
         g.add_nodes_from(technical_net.keys())
-        nx.write_edgelist(g, t_output + "{}__{}.edgelist".format(project_name, str(period)), delimiter="##", data=["weight"])
+        nx.write_edgelist(g, t_output / "{}__{}.edgelist".format(project_name, str(period)), delimiter="##", data=["weight"])
 
 
 # ---------------- processing social nets ---------------------- #
-def process_social_nets(author_field: str, s_source: str, s_output: str, mapping_path: str) -> None:
+def process_social_nets(author_field: str, s_source: Path, s_output: Path, mapping_path: Path) -> None:
     # directory handling
     projects = os.listdir(s_source)
     util._check_dir(s_output)
@@ -97,7 +96,7 @@ def process_social_nets(author_field: str, s_source: str, s_output: str, mapping
         project_name, period = project.replace(".csv", "").split("__")
 
         # load project data
-        df = pd.read_csv(s_source+project, engine="c")
+        df = pd.read_csv(s_source / project, engine="c")
         df.query("is_bot == False", inplace=True)
 
         df = df[df[author_field].notna()]
@@ -184,7 +183,7 @@ def process_social_nets(author_field: str, s_source: str, s_output: str, mapping
         
         ## add disconnected nodes
         g.add_nodes_from(social_net.keys())
-        nx.write_edgelist(g, s_output + "{}__{}.edgelist".format(
+        nx.write_edgelist(g, s_output / "{}__{}.edgelist".format(
             project_name, 
             str(period)
         ), delimiter="##", data=["weight"])
@@ -210,20 +209,22 @@ def create_networks(args_dict: dict[str, Any]):
     incubator = args_dict["incubator"]
     social_type = params_dict["social-type"][incubator]
     tech_type = params_dict["tech-type"][incubator]
-    dataset_dir = params_dict["dataset-dir"]
-    network_dir = params_dict["network-dir"]
+    dataset_dir = Path(params_dict["dataset-dir"])
+    network_dir = Path(params_dict["network-dir"])
 
-    t_dir = f"{dataset_dir}/{incubator}_data/monthly_data/{tech_type}/"
-    s_dir = f"{dataset_dir}/{incubator}_data/monthly_data/{social_type}/"
-    t_output_dir = f"{network_dir}/{incubator}_{tech_type}/"
-    s_output_dir = f"{network_dir}/{incubator}_{social_type}/"
-    mapping_out_source = f"{network_dir}/mappings/{incubator}-mapping-{versions['tech']}-{versions['social']}.csv"
+    t_dir = dataset_dir / f"{incubator}_data" / "monthly_data" / f"{tech_type}/"
+    s_dir = dataset_dir / f"{incubator}_data" / "monthly_data" / f"{social_type}/"
+    t_output_dir = network_dir / f"{incubator}_{tech_type}/"
+    s_output_dir = network_dir / f"{incubator}_{social_type}/"
+    mapping_out_dir = network_dir / "mappings/"
+    mapping_out_source = str(mapping_out_dir) + f"/{incubator}-mapping-{versions['tech']}-{versions['social']}.csv"
 
     # ensure clean save
     util._check_dir(t_output_dir)
     util._check_dir(s_output_dir)
     util._clear_dir(t_output_dir)
     util._clear_dir(s_output_dir)
+    util._check_dir(mapping_out_dir)
 
     # process
     process_tech_nets(author_field, t_dir, t_output_dir)

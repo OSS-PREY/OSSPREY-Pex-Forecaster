@@ -245,4 +245,5 @@ def extract_features(args_dict: dict):
 if __name__ == "__main__":
     # args & dispatch
     args_dict = util._parse_input(sys.argv)
+    extract_features()
 

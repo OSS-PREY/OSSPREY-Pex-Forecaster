@@ -170,7 +170,10 @@ def aggregate_projects(incubator: str, df: pd.DataFrame) -> pd.DataFrame:
     """
 
     # load lookup
-    with open(f"./utility/{incubator}_project_groups.json", "r") as f:
+    params_dict = util._load_params()
+    util_dir = params_dict["ref-dir"]
+    
+    with open(Path(util_dir) / f"{incubator}_project_groups.json", "r") as f:
         proj_groups = json.load(f)
     
     # transform each project name
@@ -249,9 +252,10 @@ def combine_tech(incubator: str, params_dict: dict, tech_out: str) -> pd.DataFra
 
     # explicitly define columns
     col_mapper = params_dict["field-mappings"][incubator]["tech"]
+    dataset_dir = util._load_params()["dataset-dir"]
 
     # iterate dir
-    input_dir = f"../{incubator}_data/{params_dict['tech-type'][incubator]}-raw/"
+    input_dir = f"{dataset_dir}/{incubator}_data/{params_dict['tech-type'][incubator]}-raw/"
     col_names = list(col_mapper.values())
     dfs: list[pd.DataFrame] = []
     projects: list[str] = []
@@ -336,7 +340,8 @@ def combine_social(incubator: str, params_dict: dict, social_out: str) -> pd.Dat
     
 
     # iterate dir
-    input_dir = f"../{incubator}_data/{params_dict['social-type'][incubator]}-raw/"
+    dataset_dir = util._load_params()["dataset_dir"]
+    input_dir = f"{dataset_dir}/{incubator}_data/{params_dict['social-type'][incubator]}-raw/"
     social_df = pd.DataFrame(columns=col_names)
     dfs: list[pd.DataFrame] = []
     projects: list[str] = []
@@ -465,10 +470,11 @@ if __name__ == "__main__":
     # rearrange_project_groups(incubator)
     
     # combine
+    dataset_dir = Path(params_dict["dataset-dir"])
     main(
         incubator=incubator,
         params_dict=params_dict,
-        tech_out=f"../{incubator}_data/{params_dict['augmentations'][incubator]['tech']['0']}.{params_dict['ext']}",
-        social_out=f"../{incubator}_data/{params_dict['augmentations'][incubator]['social']['0']}.{params_dict['ext']}"
+        tech_out= dataset_dir / f"{incubator}_data" / f"{params_dict['augmentations'][incubator]['tech']['0']}.{params_dict['ext']}",
+        social_out= dataset_dir / f"{incubator}_data" / f"{params_dict['augmentations'][incubator]['social']['0']}.{params_dict['ext']}"
     )
 

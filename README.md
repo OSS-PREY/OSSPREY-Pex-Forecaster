@@ -57,16 +57,16 @@ data/
 │   requirements.txt    
 │
 └───apache_data/
-│   |   commits.csv (01-commits-clean.csv)
-│   |   emails.csv (01-emails-clean.csv)
+│   |   commits.parquet (01-commits-clean.parquet)
+│   |   emails.parquet (01-emails-clean.parquet)
 |
 └───github_data/
-│   |   commits.csv (03-commits-dealias.csv)
-│   |   issues.csv (04-issues-dealias.csv)
+│   |   commits.parquet (03-commits-dealias.parquet)
+│   |   issues.parquet (04-issues-dealias.parquet)
 │
 └───eclipse_data/
-    |   commits.csv (01-commits-processed.csv)
-    |   issues.csv (01-issues-processed.csv)
+    |   commits.parquet (01-commits-processed.parquet)
+    |   issues.parquet (01-issues-processed.parquet)
 ```
 
 There are various ways to get started with further unprocessed data or without 

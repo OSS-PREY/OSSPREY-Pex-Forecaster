@@ -84,7 +84,7 @@ def _check_dir(dir: str | Path) -> None:
         Checks if a dir exists, makes it if it doesn't
     """
 
-    if not os.path.exists(dir):
+    if not Path(dir).exists():
         os.makedirs(dir)
 
 
@@ -93,7 +93,7 @@ def _check_path(path: str | Path) -> None:
         Checks if the dir for a file exists, otherwise creates it.
     """
 
-    dir = os.path.dirname(path)
+    dir = Path(path).parent
     _check_dir(dir)
 
 
@@ -104,11 +104,11 @@ def _clear_dir(dir: str | Path, skip_input: bool=False) -> None:
     """
 
     # check existence
-    if not os.path.exists(dir):
+    if not Path(dir).exists():
         return
 
     # failsafe
-    if "_data" not in dir:
+    if "_data" not in str(dir):
         print(f"<WARNING> attempting to delete potentially sensitive directory: {dir}")
 
         if not skip_input:

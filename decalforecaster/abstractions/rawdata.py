@@ -40,8 +40,9 @@ def _load_paths(incubator: str, versions: dict[str, str], ext: str = "parquet") 
     params_dict = util._load_params()
 
     # return lookup for paths
+    dataset_dir = Path(params_dict["dataset-dir"])
     return {
-        data_type: f"../{incubator}_data/{paths[versions[data_type]]}.{ext}" 
+        data_type: dataset_dir / f"{incubator}_data/{paths[versions[data_type]]}.{ext}"
         for data_type, paths in params_dict["augmentations"][incubator].items()
     }
 

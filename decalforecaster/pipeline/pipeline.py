@@ -69,17 +69,15 @@ def process_data(args_dict: dict[str, Any]) -> None:
 if __name__ == "__main__":
     # params
     args_dict = util._parse_input(sys.argv)
-    print(json.dumps(args_dict, indent=4))
-    exit()
 
     if "processing" in args_dict:
         process_data(args_dict)
 
     # monthly segment
-    monthly_segmentation(args_dict)
+    # monthly_segmentation(args_dict)
 
     # create nets
-    create_networks(args_dict)
+    # create_networks(args_dict)
 
     # network visualizations utility
     net_vis_info(args_dict)

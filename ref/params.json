@@ -23,6 +23,7 @@
     },
     "dataset-dir": "./data/",
     "network-dir": "./network-data/",
+    "ref-dir": "./ref/",
     "field-mappings": {
         "eclipse": {
             "tech": {
@@ -71,105 +72,51 @@
     "augmentations": {
         "apache": {
             "tech": {
-                "0": "00-commits",
-                "1": "01-commits-clean",
-                "2": "02-commits-trunc",
-                "3": "03-commits-trunc-activity"
+                "1": "commits"
             },
             "social": {
-                "0": "00-emails",
-                "1": "01-emails-clean",
-                "2": "02-emails-trunc",
-                "3": "03-emails-trunc-activity"
+                "1": "emails"
             }
         },
         "github": {
             "tech": {
-                "0": "00-commits",
-                "1": "01-commits-imputed",
-                "2-DEPRECATED": "02-commits-dealias-prebots",
-                "2": "02-commits-real",
-                "3": "03-commits-dealias",
-                "4": "04-commits-trunc",
-                "5": "05-commits-trunc-activity"
+                "3": "commits"
             },
             "social": {
-                "0": "00-issues",
-                "1-DEPRECATED": "01-issues-imputed",
-                "1": "01-issues-msg",
-                "2": "02-issues-imputed-msgid",
-                "3-DEPRECATED": "03-issues-dealias-prebots",
-                "3": "03-issues-real",
-                "4": "04-issues-dealias",
-                "5": "05-issues-trunc",
-                "6": "06-issues-trunc-activity"
+                "4": "issues"
             }
         },
         "eclipse": {
             "tech": {
-                "orig-0": "orig-00-commits",
-                "orig-1": "orig-01-commits-processed",
-                "0": "00-commits",
-                "1": "01-commits-processed"
+                "1": "commits"
             },
             "social": {
-                "orig-0": "orig-00-issues",
-                "orig-1": "orig-01-issues-processed",
-                "0": "00-issues",
-                "1": "01-issues-processed"
+                "1": "issues"
             }
         }
     },
     "augmentation-descriptions": {
         "apache": {
             "tech": {
-                "0": "base commits data",
-                "1": "filepaths cleaned commits data",
-                "2": "Nafiz generated--DEPRECATED",
-                "3": "Nafiz generated--DEPRECATED",
-                "4": "Nafiz generated--DEPRECATED"
+                "1": "filepaths cleaned commits data"
             },
             "social": {
-                "0": "base emails data",
-                "1": "sender name cleaned emails data",
-                "2": "Nafiz generated--DEPRECATED",
-                "3": "Nafiz generated--DEPRECATED",
-                "4": "Nafiz generated--DEPRECATED"
+                "1": "sender name cleaned emails data"
             }
         },
         "github": {
             "tech": {
-                "0": "raw commits data",
-                "1": "source file imputed commits data",
-                "2-DEPRECATED": "[deprecated] de-aliased w/o bot removal commits data",
-                "2": "bot-free commits data",
-                "3": "dealiased commits data",
-                "4": "truncated commits data",
-                "5": "truncated via activity commits data"
+                "3": "source imputation, bot-free, dealiased commits data"
             },
             "social": {
-                "0": "raw issues data",
-                "1-DEPRECATED": "[deprecated] reply imputed w/ sender name issues data",
-                "1": "message id imputed issues data",
-                "2": "reply imputed w/ msg-id issues data",
-                "3-DEPRECATED": "[deprecated] de-aliased w/o bot removal issues data",
-                "3": "bot-free issues data",
-                "4": "de-aliased issues data",
-                "5": "truncated issues data",
-                "6": "truncated via activity issues data"
+                "4": "reply imputed, m-id imputed, bot-free, de-aliased issues data"
             }
         },
         "eclipse": {
             "tech": {
-                "orig-0": "raw commits data",
-                "orig-1": "dealiased w/ source files & bots commits data",
-                "0": "raw commits data, now aggregated by project",
                 "1": "dealiased w/ source files & bots commits data, now aggregated by project"
             },
             "social": {
-                "orig-0": "raw issues data",
-                "orig-1": "deliased w/ reply & bots issues data",
-                "0": "raw issues data",
                 "1": "deliased w/ reply & bots issues data"                
             }
         }
@@ -238,6 +185,6 @@
     ],
     "lifecycle-ratios": "./ref/lifecycle-ratios.json",
     "test-prop": 0.20,
-    "network-data-format": "../network_data/netdata/{}-{}-network-data-{}.{}",
-    "model-weights-format": "../model-weights/{}/{}-[a{}]-[f{}]-[p{}]-[r{}].pt"
+    "network-data-format": "./network-data/netdata/{}-{}-network-data-{}.{}",
+    "model-weights-format": "./model-weights/{}/{}-[a{}]-[f{}]-[p{}]-[r{}].pt"
 }
