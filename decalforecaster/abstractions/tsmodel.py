@@ -6,9 +6,9 @@
     @version 0.1.0
 """
 
-# Imports
+# --- Environment Setup --- #
+# external modules
 import pandas as pd
-from torchsummary import summary
 import numpy as np
 import torch
 import torch.nn as nn
@@ -16,20 +16,30 @@ import torch.optim as optim
 import torch.nn.functional as F
 import shap
 import lime
+import torchviz
+import matplotlib.pyplot as plt
+import seaborn as sns
+from torchsummary import summary
+from torchviz import make_dot
 from tqdm import tqdm
 from sklearn.metrics import classification_report
 from sklearn.utils.class_weight import compute_class_weight
-import torchviz
-from torchviz import make_dot
 
+## built-in modules
 import json
 import re
 import copy
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
+## DECAL modules
 from decalforecaster.abstractions.netdata import *
 from decalforecaster.abstractions.perfdata import *
+
+
+# Constants
+params_dict = util._load_params()
+weights_dir = Path(params_dict["weights-dir"])
 
 
 # Model Architectures
@@ -686,20 +696,21 @@ class TimeSeriesModel:
         
         # ensure directory
         cleaned_strat = re.sub(r"\s*\+\s*", "_", strategy)                      # cleaned strategy string
-        dir = f"../model-weights/{cleaned_strat}/"
+        dir = weights_dir / f"{cleaned_strat}/"
         util._check_dir(dir)
         
         # generate path
-        path = util._load_params()["model-weights-format"].format(
+        path = Path(params_dict["model-weights-format"].format(
             cleaned_strat,
             self.model_arch,
             metrics["accuracy"],
             metrics["f1-score"],
             metrics["precision"],
             metrics["recall"]
-        )
+        ))
         
         # save to path
+        util._check_dir(path.parent)
         torch.save(self.model.state_dict(), path)
         util._log(f"saved model weights to \"{path}\"")
         
@@ -722,7 +733,7 @@ class TimeSeriesModel:
         
         # check saves exist
         cleaned_strat = re.sub(r"\s*\+\s*", "_", strategy)
-        dir = f"../model-weights/{cleaned_strat}/"
+        dir = weights_dir / f"{cleaned_strat}/"
         
         if not os.path.exists(dir):
             util._log("strategy has no saved weights", "warning")
@@ -1023,14 +1034,11 @@ class TimeSeriesModel:
             return
 
         util._log("Training completed.", "log")
-        
 
         print(f"Model Name: {self.model_arch}")
         print(f"Input size: {self.hyperparams['input_size']}")
         print(f"Hidden size: {self.hyperparams['hidden_size']}")
         print(f"Number of layers: {self.hyperparams['num_layers']}")
-
-        # from torchviz import make_dot
 
         # x = torch.randn(1, input_size)
         # y = model(x)
@@ -1038,9 +1046,6 @@ class TimeSeriesModel:
         # dot.render("model_architecture", format="png")
 
         # visualize loss
-        import matplotlib.pyplot as plt
-        import seaborn as sns
-
         dir = "../model-reports/loss-visualization/"
         util._check_dir(dir)
 
@@ -1435,7 +1440,7 @@ class TimeSeriesModel:
 
         Args:
             dir (Path | str, optional): directory to clean. Defaults to 
-                "../model-weights/".
+                weights dir.
 
         Returns:
             dict[str, int]: statistics, e.g. num_removed (number of files 

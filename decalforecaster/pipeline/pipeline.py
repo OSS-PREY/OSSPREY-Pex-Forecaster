@@ -74,10 +74,10 @@ if __name__ == "__main__":
         process_data(args_dict)
 
     # monthly segment
-    # monthly_segmentation(args_dict)
+    monthly_segmentation(args_dict)
 
     # create nets
-    # create_networks(args_dict)
+    create_networks(args_dict)
 
     # network visualizations utility
     net_vis_info(args_dict)

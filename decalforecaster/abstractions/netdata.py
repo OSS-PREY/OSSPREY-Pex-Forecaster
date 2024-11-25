@@ -28,6 +28,12 @@ from pathlib import Path
 import decalforecaster.utils as util
 
 
+# Constants
+params_dict = util._load_params()
+util_dir = Path(params_dict["ref-dir"])
+network_dir = Path(params_dict["network-dir"])
+
+
 # Class
 @dataclass(slots=True)
 class NetData:
@@ -203,7 +209,7 @@ class NetData:
         """
 
         # base projects
-        with open(f"./utility/{self.incubator}_proj_incubation.json", "r") as f:
+        with open(util_dir / f"{self.incubator}_proj_incubation.json", "r") as f:
             self.base_projects = set(json.load(f).keys())
 
         # return network data
@@ -389,7 +395,7 @@ class NetData:
             Loads in the project status as given by the params dict.
         """
 
-        with open(f"./utility/{self.incubator}_project_status.json", "r") as f:
+        with open(util_dir / f"{self.incubator}_project_status.json", "r") as f:
             project_status = json.load(f)
         self.project_status = {s: set(project_status[s]) for s in project_status}
 
@@ -686,7 +692,7 @@ class NetData:
         """
 
         # setup report
-        output_dir = "../network_data/statistics/distributions/"
+        output_dir = network_dir / "statistics" / "distributions/"
         util._check_dir(output_dir)
         report_path = f"{output_dir}{self.incubator}-{self.versions['tech']}-{self.versions['social']}"
 
@@ -778,7 +784,7 @@ class NetData:
         
         ## export
         incubator_names = "-".join(incubators)
-        output_dir = Path("../network_data/statistics/project_lengths/")
+        output_dir = network_dir / f"statistics" / "project_lengths/"
         util._check_dir(output_dir)
         
         plt.savefig(
@@ -789,7 +795,7 @@ class NetData:
         plt.close()
     
 
-    def feature_correlations(self, save_dir: Path | str="../network_data/statistics/") -> None:
+    def feature_correlations(self, save_dir: Path | str=None) -> None:
         """
             Generates a correlation matrix of all features. Note, the assumption 
             here is that every timestep's observation is independent, which may 
@@ -798,6 +804,10 @@ class NetData:
             @param save_dir: directory to save in, can be modified for custom 
                 trials.
         """
+        
+        # save dir
+        if save_dir is None:
+            save_dir = network_dir / "statistics/"
         
         # copy & select out non-numeric features
         df = self.data.copy()
@@ -1693,4 +1703,4 @@ if __name__ == "__main__":
 
     # nd = {s: NetData(s, test_prop=0.0, is_train="train") for s in ["apache", "github", "eclipse"]}
     # nd = {k: n.upsample_netdata(inplace=True) for k, n in nd.items()}
-    # nd = {n.data.to_csv(f"../network_data/netdata/upsampled-{k}-network-data-{n.versions['tech']}-{n.versions['social']}.csv") for n, k in nd.items()}
+    # nd = {n.data.to_csv(f"../network-data/netdata/upsampled-{k}-network-data-{n.versions['tech']}-{n.versions['social']}.csv") for n, k in nd.items()}

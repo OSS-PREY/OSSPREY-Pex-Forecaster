@@ -132,7 +132,7 @@ python3 -m decalforecaster.pipeline.pipeline --kwargs \
 
 - Visualizations:
 ```
-python3 -m decalforecaster.pipeline.perfdata
+python3 -m decalforecaster.abstractions.perfdata
 ```
 
 
@@ -153,6 +153,12 @@ Some useful, but constrictive, mechanisms are baked into the pipeline such as:
     structured to mimic that. In future versions, we'll attempt to remedy this 
     to enable easier package use and program running. Please leverage the 
     example usage program in the meantime.
+
+3. Centralized Parameters: rather than requesting duplicate information at
+    different points in the pipeline, we utilize
+    `/pex-forecaster/ref/params.json` as a means of aggregating some key
+    parameters that span multiple trials. Thus, we only require minimal input to
+    conduct a variety of trials without repeating information.
 
 
 ## Repository Maintainance

@@ -78,7 +78,7 @@ def icse_25_experiments():
 class PerfData:
     # data
     perf_source: str = field(
-        default="../model-reports/databases/performance_db"
+        default="./model-reports/databases/performance_db"
     )                                                                           # storage location
     data: pd.DataFrame = field(init=False, repr=False)                          # database
     
@@ -103,7 +103,7 @@ class PerfData:
 
         try:
             self.data = reader[self.ext](f"{self.perf_source}.{self.ext}")
-        except:
+        except FileNotFoundError as fe:
             self.data = pd.DataFrame(columns=[
                 "date",
                 "transfer_strategy",
@@ -149,15 +149,18 @@ class PerfData:
 
 
     # external utility
-    def export(self, path: str="") -> None:
+    def export(self, path: Path | str="") -> None:
         """
             Exports the data (in the case that updates were made).
 
             CAUTION: overwrites unless otherwise specified
         """
+        
+        # ensure directory
+        save_path = f"{path}.{self.ext}" if path != "" else f"{self.perf_source}.{self.ext}"
+        util._check_dir(Path(save_path).parent)
 
         # save
-        save_path = f"{path}.{self.ext}" if path != "" else f"{self.perf_source}.{self.ext}"
         match self.ext:
             case "csv":
                 self.data.to_csv(save_path, index=False)
@@ -483,6 +486,7 @@ class PerfData:
             # generate output path
             if output_path is None:
                 output_path = Path("../model-reports") / "summaries" / "summary_db"
+            util._check_path(output_path)
 
             # save
             df.to_csv(f"{output_path}.csv")
@@ -1250,9 +1254,10 @@ if __name__ == "__main__":
 
     ############################################################################
     # ICSE EXPERIMENTS #
-    icse_wrapper()
+    # icse_wrapper()
     ############################################################################
     
+    pfd = PerfData()
     
     # normal experiments
     # pfd = PerfData()

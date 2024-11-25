@@ -84,8 +84,8 @@ def _check_dir(dir: str | Path) -> None:
         Checks if a dir exists, makes it if it doesn't
     """
 
-    if not Path(dir).exists():
-        os.makedirs(dir)
+    # make the dir along with its parents
+    Path(dir).mkdir(parents=True, exist_ok=True)
 
 
 def _check_path(path: str | Path) -> None:

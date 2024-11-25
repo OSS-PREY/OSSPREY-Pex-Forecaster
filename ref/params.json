@@ -14,7 +14,7 @@
     "social-type": {
         "apache": "emails",
         "github": "issues",
-        "eclipse": "emails-issues"
+        "eclipse": "issues"
     },
     "tech-type": {
         "apache": "commits",
@@ -24,6 +24,8 @@
     "dataset-dir": "./data/",
     "network-dir": "./network-data/",
     "ref-dir": "./ref/",
+    "weights-dir": "./model-weights/",
+    "reports-dir": "./model-reports/",
     "field-mappings": {
         "eclipse": {
             "tech": {
