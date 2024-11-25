@@ -21,6 +21,7 @@
         "github": "commits",
         "eclipse": "commits"
     },
+    "dataset-dir": "",
     "field-mappings": {
         "eclipse": {
             "tech": {
@@ -173,14 +174,14 @@
         }
     },
     "incubation-time": {
-        "apache": "./utility/apache_proj_incubation.json",
-        "github": "./utility/github_proj_incubation.json",
-        "eclipse": "./utility/eclipse_proj_incubation.json"
+        "apache": "./ref/apache_proj_incubation.json",
+        "github": "./ref/github_proj_incubation.json",
+        "eclipse": "./ref/eclipse_proj_incubation.json"
     },
     "project-status": {
-        "apache": "./utility/apache_project_status.json",
-        "github": "./utility/github_project_status.json",
-        "eclipse": "./utility/eclipse_project_status.json"
+        "apache": "./ref/apache_project_status.json",
+        "github": "./ref/github_project_status.json",
+        "eclipse": "./ref/eclipse_project_status.json"
     },
     "programming-langs": {
         "apache": "programming-langs.json",
@@ -234,7 +235,7 @@
         ["d"],
         ["c"]
     ],
-    "lifecycle-ratios": "./utility/lifecycle-ratios.json",
+    "lifecycle-ratios": "./ref/lifecycle-ratios.json",
     "test-prop": 0.20,
     "network-data-format": "../network_data/netdata/{}-{}-network-data-{}.{}",
     "model-weights-format": "../model-weights/{}/{}-[a{}]-[f{}]-[p{}]-[r{}].pt"

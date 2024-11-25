@@ -4,9 +4,11 @@
     @creation-date February 2024
 """
 
-# Environment
+# --- Environment Setup --- #
+## built-in modules
 import json
 import os
+import shutil
 from typing import Any
 
 
@@ -17,7 +19,7 @@ def _load_params() -> dict[str, Any]:
     """
 
     # load & return
-    with open("./utility/params.json", "r") as f:
+    with open("./ref/params.json", "r") as f:
         params_dict = json.load(f)
     return params_dict
 
@@ -72,7 +74,6 @@ def _clear_dir(dir: str, skip_input: bool=False) -> None:
     
     # remove
     print("\t\t<clearing previous trials>")
-    import shutil
     shutil.rmtree(dir)
 
 
