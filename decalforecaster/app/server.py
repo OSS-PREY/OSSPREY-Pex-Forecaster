@@ -12,6 +12,7 @@ from flask import Flask, request, jsonify
 # built-in modules
 import sys
 from pathlib import Path
+from typing import Any
 
 # DECAL modules
 import decalforecaster.utils as util
@@ -23,12 +24,14 @@ app = Flask(__name__)
 
 # ------------- API Endpoints ------------- #
 # local vars for storage
-proj_name = None
-tdata = None
-sdata = None
+data_pkg = {
+    "proj_name": None,
+    "tdata": None,
+    "sdata": None
+}
 
 # receiver route
-@app.route("/grab_data/", methods=["POST"])
+@app.route("/process_data/", methods=["POST"])
 def pull_raw_data():
     """Route for grabbing the raw data as a JSON dictionary.
     
@@ -42,7 +45,7 @@ def pull_raw_data():
         (tasks): list[str], match the tasks implemented
     }
     
-    Implemented Tasks:
+    Implemented Tasks (key to be matched with):
         - *(pp-paths): Pre-processing via File Path Cleansing
         - *(pp-names): Pre-processing via Sender Name Cleansing
         - *(pp-months): Pre-processing via Month Imputation
@@ -67,10 +70,6 @@ def pull_raw_data():
         (500) Unidentified error
     """
     
-    # setup the input validation
-    needed_keys = ["project_name", "commits_data", "issues_data", "tasks"]
-    val_types = [str, dict, dict, list]
-    
     try:
         # grab the JSON request
         data = request.get_json()
@@ -80,29 +79,15 @@ def pull_raw_data():
             return jsonify({"error": "No data provided"}), 400
         
         # error handling if incorrectly structured
-        if not isinstance(data, dict):
-            return jsonify({"error": "Data not formatted as a dictionary"}), 400
-        
-        if not all(key in data for key in needed_keys):
-            return jsonify({
-                "error": f"Missing some expected information; expected {needed_keys}, got {list(data.keys())}"
-            }), 400
-        
-        if not all(isinstance(val, val_type) for val, val_type in zip(data.values(), val_types)):
-            actual_types = [str(type(v)) for v in data.values()]
-            return jsonify({
-                "error": f"Values of are an unexpected type; expected {val_types}, got {actual_types}"
-            }), 400
+        error_msg = check_request_structure(data)
             
-        # error handling if incorrectly formatted
-        try:
-            # parse dataframes
-            tdata = pd.DataFrame(data["commits_data"])
-            sdata = pd.DataFrame(data["issues_data"])
-        except ValueError as ve:
-            return jsonify({"error": f"Data not parse-able by pandas: {str(ve)}"}), 400
+        # error handling if incorrectly formatted; attempt parsing
+        error_msg = attempt_request_parse(data)
+        if error_msg:
+            return jsonify({"error": error_msg["error"]}), error_msg["error_code"]
         
-        proj_name = data["project_name"]
+        # dispatch tasks to complete
+        dispatch_tasks(tasks, data_pkg)
         
         # store the data received into local var
         return jsonify({"message": "Data received successfully", "data": data}), 200
@@ -137,5 +122,95 @@ def export_trajectories():
     """
     pass
 
-if __name__ == '__main__':
+
+# ------------- Endpoint Helpers ------------- #
+def attempt_request_parse(data: dict[str, Any]) -> dict[str, int | Any] | None:
+    """Wraps the parsing functionality for the data package with verified 
+    entries. Checks the format of the data, essentially.
+
+    Args:
+        data (dict[str, Any]): data received
+
+    Returns:
+        dict[str, int | Any] | None: error info if a return is given, otherwise
+            None.
+    """
+    
+    # attempt parsing
+    try:
+        # parse dataframes
+        data_pkg["tdata"] = pd.DataFrame(data["commits_data"])
+        data_pkg["sdata"] = pd.DataFrame(data["issues_data"])
+        
+        # parse project name
+        data_pkg["proj_name"] = data["project_name"]
+        
+        # parse tasks to complete
+        data_pkg["tasks"] = data["tasks"]
+        
+    except ValueError as ve:
+        return {
+            "error": f"Data not parse-able by pandas: {str(ve)}",
+            "error_code": 400
+        }
+
+
+def check_request_structure(data: dict[str, Any]) -> tuple[dict, int] | None:
+    """Wraps the parsing functionality for the data package with a valid 
+    structure, i.e. keys expected.
+
+    Args:
+        data (dict[str, Any]): data received
+
+    Returns:
+        tuple[dict, int] | None: returns an error package to route back unless
+            no error exists.
+    """
+    
+    # setup the input validation
+    needed_keys = ["project_name", "commits_data", "issues_data", "tasks"]
+    val_types = [str, dict, dict, list]
+    implemented_tasks = {
+        "net-gen",
+        "traj",
+        "forecast",
+        "pp-paths",
+        "pp-names",
+        "pp-months",
+        "pp-msg-id",
+        "pp-is-coding",
+        "pp-replies",
+        "pp-bots",
+        "pp-de-alias"
+    }
+    
+    # check type of data
+    if not isinstance(data, dict):
+        return jsonify({"error": "Data not formatted as a dictionary"}), 400
+    
+    # check all info is included
+    if not all(key in data for key in needed_keys):
+        return jsonify({
+            "error": f"Missing some expected information; expected {needed_keys}, got {list(data.keys())}"
+        }), 400
+    
+    # check all value types are valid
+    if not all(isinstance(val, val_type) for val, val_type in zip(data.values(), val_types)):
+        actual_types = [str(type(v)) for v in data.values()]
+        return jsonify({
+            "error": f"Values of are an unexpected type; expected {val_types}, got {actual_types}"
+        }), 400
+    
+    # check all tasks are implemented
+    if not all(task in implemented_tasks for task in data["tasks"]):
+        return jsonify({
+            "error": f"Values of are an unexpected type; expected {val_types}, got {actual_types}"
+        }), 400
+    
+    # no error
+    return None
+
+
+if __name__ == "__main__":
     app.run(debug=True)
+
