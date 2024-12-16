@@ -1,5 +1,5 @@
 """
-    @brief [Temporary?] utility for running the full network pipeline.
+    @brief Utility for running the full network pipeline.
     @author Arjun Ashok (arjun3.ashok@gmail.com)
     @creation-date February 2024
 """
@@ -20,7 +20,7 @@ from decalforecaster.pipeline.network_features import *
 from decalforecaster.pipeline.network_visualizations import *
 
 
-# dispatch utility
+# ------------- Dispatch Utility ------------- #
 def process_data(args_dict: dict[str, Any]) -> None:
     """
         Dispatches the required processing steps to do.
@@ -65,14 +65,13 @@ def process_data(args_dict: dict[str, Any]) -> None:
     rd._save_data(raw.data, raw.incubator, new_versions)
 
 
-# Pipeline
-if __name__ == "__main__":
-    # params
-    args_dict = util._parse_input(sys.argv)
+def generate_netdata(args_dict: dict[str, Any]) -> None:
+    """Small wrapper to process the cleaned RawData into network data.
 
-    if "processing" in args_dict:
-        process_data(args_dict)
-
+    Args:
+        args_dict (dict[str, Any]): args to pass in about incubator, etc.
+    """
+    
     # monthly segment
     monthly_segmentation(args_dict)
 
@@ -84,5 +83,31 @@ if __name__ == "__main__":
 
     # extract net features
     extract_features(args_dict)
+    
 
-    # metrics
+def pipeline(args_dict: dict[str, Any]) -> None:
+    """Wrapper for the full pipeline.
+
+    Args:
+        args_dict (dict[str, Any]): command-line args.
+    """
+    
+    # pre-processing raw data if specified
+    if "processing" in args_dict:
+        process_data(args_dict)
+        
+    # network gen
+    generate_netdata(args_dict)
+
+    # modeling
+    
+
+
+# Pipeline
+if __name__ == "__main__":
+    # params
+    args_dict = util._parse_input(sys.argv)
+    
+    # dispath
+    pipeline(args_dict)
+
