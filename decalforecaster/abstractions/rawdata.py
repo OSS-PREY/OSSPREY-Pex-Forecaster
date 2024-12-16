@@ -13,10 +13,12 @@ import pandas as pd
 import numpy as np
 from tqdm import tqdm
 from pandarallel import pandarallel
+from jellyfish import jaro_winkler_similarity
 
 import json
 import re
 from pathlib import Path
+from collections import defaultdict
 from dataclasses import dataclass, field
 from functools import partial
 from typing import Any
@@ -181,7 +183,7 @@ def _validate_data(data_lookup: dict[str, pd.DataFrame]) -> bool:
 
 
 # Augmentations
-def clean_file_paths(data_lookup: dict[str, pd.DataFrame], copy: bool=False) -> dict[str, pd.DataFrame]:
+def clean_file_paths(data_lookup: dict[str, pd.DataFrame], incubator: str=None, copy: bool=False) -> dict[str, pd.DataFrame]:
     """
     
         Cleans filepaths which contains artifacts from the commit messages.
@@ -221,7 +223,7 @@ def clean_file_paths(data_lookup: dict[str, pd.DataFrame], copy: bool=False) -> 
     return data_lookup
 
 
-def clean_sender_names(data_lookup: dict[str, pd.DataFrame], copy: bool=False) -> dict[str, pd.DataFrame]:
+def clean_sender_names(data_lookup: dict[str, pd.DataFrame], incubator: str=None, copy: bool=False) -> dict[str, pd.DataFrame]:
     """
         Cleans sender names of any extraneous characters that may interfere with 
         network generation.
@@ -269,7 +271,7 @@ def clean_sender_names(data_lookup: dict[str, pd.DataFrame], copy: bool=False) -
     return data_lookup
 
 
-def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", copy: bool=False) -> dict[str, pd.DataFrame]:
+def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incubator: str=None, copy: bool=False) -> dict[str, pd.DataFrame]:
     """
         Imputes the month field using the start date as a relative point in time:
             1. [strat="month"] Use the start month as the base, i.e. 3/17/2024 
@@ -356,7 +358,7 @@ def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", copy
     return data_lookup
 
 
-def impute_messageid(data_lookup: dict[str, pd.DataFrame], copy: bool=True) -> dict[str, pd.DataFrame]:
+def impute_messageid(data_lookup: dict[str, pd.DataFrame], incubator: str=None, copy: bool=True) -> dict[str, pd.DataFrame]:
     """
         Generates a unique messageid from project, sender, timestamp. This 
         inherently applies only to the social data.
@@ -429,7 +431,7 @@ def impute_messageid(data_lookup: dict[str, pd.DataFrame], copy: bool=True) -> d
     return data_lookup
 
 
-def infer_replies(data_lookup: dict[str, pd.DataFrame], copy: bool=True) -> dict[str, pd.DataFrame]:
+def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, copy: bool=True) -> dict[str, pd.DataFrame]:
     """
         Generate reply information by grouping by project, subject then 
         associating replies with the reply before it.
@@ -505,7 +507,7 @@ def infer_replies(data_lookup: dict[str, pd.DataFrame], copy: bool=True) -> dict
     return data_lookup
 
 
-def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str, copy: bool=True) -> dict[str, pd.DataFrame]:
+def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str=None, copy: bool=True) -> dict[str, pd.DataFrame]:
     """
         Ensure that only coding files are used for technical network generation 
         in the commits data by imputing the `is_coding` field.
@@ -579,7 +581,7 @@ def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str, cop
     return data_lookup
 
 
-def infer_bots(data_lookup: dict[str, pd.DataFrame], incubator: str, copy: bool=True) -> dict[str, pd.DataFrame]:
+def infer_bots(data_lookup: dict[str, pd.DataFrame], incubator: str, threshold: float=0.05, copy: bool=True) -> dict[str, pd.DataFrame]:
     """
         Uses heurstics about bot names and string matching to infer whether or 
         not a user is a bot. NOTE we only remove bots that contribute a 
@@ -588,16 +590,21 @@ def infer_bots(data_lookup: dict[str, pd.DataFrame], incubator: str, copy: bool=
 
     # setup imputation
     print("\n<Inferring Bots>")
-    THRESHOLD = .05                 # threshold for commits
-    NUM_PROCESSES = 6               # multiprocessing
     field = "is_bot"
     params_dict = util._load_params()
     author_field = params_dict["author-source-field"][incubator]
-    dir_bot_def = f"./utility/{incubator}_bot_names.json"
+    dir_bot_def = Path(params_dict["ref-dir"]) / f"{incubator}_bot_names.json"
 
     # specify bots
-    with open(dir_bot_def, "r") as f:
-        bot_names = json.load(f)
+    try:
+        with open(dir_bot_def, "r") as f:
+            bot_names = json.load(f)
+    except FileNotFoundError as fe:
+        util._log(f"Failed to find reference file for bot names @ {dir_bot_def}", "warning")
+        bot_names = {
+            "substring-bots": set(),
+            "project-bots": set()
+        }
 
     bot_substrings = bot_names["substring-bots"]
     bot_specific = bot_names["project-bots"]
@@ -640,7 +647,7 @@ def infer_bots(data_lookup: dict[str, pd.DataFrame], incubator: str, copy: bool=
         # flags
         name_match = sender.lower() in bot_specific                         # specifically defined as bot (manually)
         sub_match = any(sub in sender.lower() for sub in bot_substrings)    # substring matches with a bot name
-        outlier_match = prop > THRESHOLD                                    # proportion of commits matches
+        outlier_match = prop > threshold                                    # proportion of commits matches
 
         # set true
         return {sender: {
@@ -723,12 +730,6 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
     author_lookup = util._load_params()["author-source-field"]
     author_field = source_field if source_field != "" else author_lookup[incubator]
     output_field = "dealised_author_full_name"
-    
-    # environment
-    from jellyfish import jaro_winkler_similarity
-    from collections import defaultdict
-    import re
-    import sys
     
     # dealias functionality
     def indices_dict(lis):

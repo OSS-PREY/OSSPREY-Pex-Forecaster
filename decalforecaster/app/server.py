@@ -17,6 +17,7 @@ from typing import Any
 # DECAL modules
 import decalforecaster.utils as util
 from decalforecaster.pipeline import *
+from decalforecaster.abstractions.projdata import *
 
 # setup the App for communication
 app = Flask(__name__)
@@ -170,19 +171,7 @@ def check_request_structure(data: dict[str, Any]) -> tuple[dict, int] | None:
     # setup the input validation
     needed_keys = ["project_name", "commits_data", "issues_data", "tasks"]
     val_types = [str, dict, dict, list]
-    implemented_tasks = {
-        "net-gen",
-        "traj",
-        "forecast",
-        "pp-paths",
-        "pp-names",
-        "pp-months",
-        "pp-msg-id",
-        "pp-is-coding",
-        "pp-replies",
-        "pp-bots",
-        "pp-de-alias"
-    }
+    implemented_tasks = set(IMPLEMENTED_TASKS.keys())
     
     # check type of data
     if not isinstance(data, dict):

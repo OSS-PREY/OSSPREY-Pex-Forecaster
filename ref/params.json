@@ -2,24 +2,28 @@
     "datasets": [
         "apache",
         "github",
-        "eclipse"
+        "eclipse",
+        "ospos"
     ],
     "ext": "parquet",
     "net-ext": "csv",
     "abbreviations": {
         "apache": "A",
         "github": "G",
-        "eclipse": "E"
+        "eclipse": "E",
+        "ospos": "O"
     },
     "social-type": {
         "apache": "emails",
         "github": "issues",
-        "eclipse": "issues"
+        "eclipse": "issues",
+        "ospos": "issues"
     },
     "tech-type": {
         "apache": "commits",
         "github": "commits",
-        "eclipse": "commits"
+        "eclipse": "commits",
+        "ospos": "commits"
     },
     "dataset-dir": "./data/",
     "network-dir": "./network-data/",
