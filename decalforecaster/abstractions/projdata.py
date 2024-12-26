@@ -1,6 +1,9 @@
 """
 @brief Defines the project data abstraction for pushing a single project's data
-    through the pipeline.
+    through the pipeline. Note the caching mechanism will work inherently via 
+    the pre-defined saving mechanism since overlapping months will be 
+    overwritten and new months won't be considered. We simply add functionality
+    to ignore previous months.
 @author Arjun Ashok (arjun3.ashok@gmail.com)
 @creation-date Decemeber 2024
 @version 0.1.0
@@ -15,9 +18,6 @@ from tqdm import tqdm
 from pandarallel import pandarallel
 
 # built-in modules
-import sys
-import json
-import re
 from copy import deepcopy
 from pathlib import Path
 from typing import Any
@@ -28,6 +28,7 @@ import decalforecaster.utils as util
 from decalforecaster.abstractions.rawdata import clean_file_paths, \
     clean_sender_names, impute_months, impute_messageid, infer_replies, \
     infer_bots, clean_source_files, dealias_senders
+import decalforecaster.pipeline.monthly_data import segment_data
 import decalforecaster.pipeline.create_networks import 
 
 # constants & setup parallel processing
@@ -194,46 +195,9 @@ class ProjData:
         author_field = "dealised_author_full_name"
         time_strat = "default"
         ratios = dict()
-        
-        # auxiliary function
-        def segment_data(df: pd.DataFrame, author_field: str) -> list[pd.DataFrame]:
-            """Segments data by month without considering relative time.
 
-            Args:
-                df (pd.DataFrame): data to segment by month.
-                author_field (str): field to treat as the author field.
-                
-            Returns:
-                list[pd.DataFrame]: each month (0 - n) links to its respective
-                    index conditioned on the groupby respecting order.
-            """
-
-            # generate lookup for each project
-            df = dict(tuple(df.groupby("project_name")))
-
-            # tracking each project's months
-            seg_data: list[pd.DataFrame] = list()
-            
-            for project in tqdm(df):
-                # generate the monthly dictionary
-                monthly_df_dict = dict(tuple(df[project].groupby("month")))
-                
-                # save in memory
-                for month in monthly_df_dict:
-                    # grab current month and remove missing rows
-                    monthly_df = monthly_df_dict[month]
-                    monthly_df = monthly_df[monthly_df[author_field].notna()]
-                    
-                    # skip empty data
-                    if monthly_df.empty: continue
-
-                    # tracking
-                    seg_data.append(monthly_df)
-                    
-            # export compiled months' data
-            return seg_data
-
-        # segmentation; overwrite the previous data
+        # segmentation; overwrite the previous data for the built-in caching 
+        # (effectively)
         util._log("segmenting...")
         self.data["tech"] = segment_data(
             self.tdata, time_strat, author_field=author_field,
