@@ -25,15 +25,18 @@ from dataclasses import dataclass, field
 
 # DECAL modules
 import decalforecaster.utils as util
-from rawdata import clean_file_paths, clean_sender_names, impute_months, \
-    impute_messageid, infer_replies, infer_bots, clean_source_files, \
-    dealias_senders
+from decalforecaster.abstractions.rawdata import clean_file_paths, \
+    clean_sender_names, impute_months, impute_messageid, infer_replies, \
+    infer_bots, clean_source_files, dealias_senders
+import decalforecaster.pipeline.create_networks import 
 
 # constants & setup parallel processing
 NUM_PROCESSES = 6
 PARQUET_ENGINE = "pyarrow"
 pandarallel.initialize(nb_workers=NUM_PROCESSES, progress_bar=True)
+params_dict = util._load_params()
 tqdm.pandas()
+INCUBATOR_ALIAS = "ospos"
 
 IMPLEMENTED_TASKS = {
     "net-gen": None,
@@ -87,38 +90,44 @@ def _route_preprocesses(data: dict[str, pd.DataFrame], tasks: list[str], incubat
 @dataclass(slots=False)
 class ProjData:
     # data
-    proj_name: str                                                              # identifier for the project
+    ## user specified
+    proj_name: str = field(init=True, repr=True)                                # identifier for the project
     tdata: pd.DataFrame = field(init=True, repr=False)                          # tech df
     sdata: pd.DataFrame = field(init=True, repr=False)                          # social df
     tasks: list[str] = field(init=True, repr=True)                              # tasks to complete on the data
+    
+    ## inferred
+    incubations: dict[str, int] = field(init=False, repr=False)                 # incubation time lookup
     gen_full: bool = field(default=False)                                       # if base data, generate processed version
     data: dict[str, pd.DataFrame] = field(init=False, repr=False)               # type : df
+    netdata: pd.DataFrame = field(init=False, repr=False)                       # network data produced
 
     # post-initialization
-    def __post_init__(self,tasks: list[str]):
+    def __post_init__(self):
         # intialize the data
         self.data = {
             "tech": self.tdata,
             "social": self.sdata
         }
         
+        # check if tasks are valid
+        if self.tasks[0] == "ALL":
+            self.tasks = list(IMPLEMENTED_TASKS.keys())
+        
         # generate auxiliary information
         self.gen_proj_incubation()
         self.check_missing_data()
 
         # pre-processing
-        _route_preprocesses(self.data, tasks)
+        _route_preprocesses(self.data, self.tasks)
             
 
-    # utility
+    # internal utility
     def gen_proj_incubation(self):
         """
             Generates the lookup for project lengths. Uses the maximum recorded 
             month for each project.
         """
-
-        # params
-        params_dict = util._load_params()
 
         # generate lookups
         t_proj_incubation = self.data["tech"].groupby("project_name")["month"].max().to_dict()
@@ -130,8 +139,8 @@ class ProjData:
         proj_incubation = dict(sorted(proj_incubation.items()))
         proj_incubation = {k: int(v) for k, v in proj_incubation.items()}
 
-        with open(params_dict["incubation-time"][self.incubator], "w") as f:
-            json.dump(proj_incubation, f, indent=4)
+        # save in memory itself
+        self.incubations = proj_incubation
 
 
     def check_missing_data(self, cols: list[str]=None) -> None:
@@ -173,9 +182,85 @@ class ProjData:
 
         # save
         pass
+    
+    
+    # split by month
+    def monthwise_split(self) -> None:
+        """Wraps the first pipeline stage for splitting the data by month.
+        """
+        
+        # setup
+        util._log("Segmenting Monthly Data", "log")
+        author_field = "dealised_author_full_name"
+        time_strat = "default"
+        ratios = dict()
+        
+        # auxiliary function
+        def segment_data(df: pd.DataFrame, author_field: str) -> list[pd.DataFrame]:
+            """Segments data by month without considering relative time.
+
+            Args:
+                df (pd.DataFrame): data to segment by month.
+                author_field (str): field to treat as the author field.
+                
+            Returns:
+                list[pd.DataFrame]: each month (0 - n) links to its respective
+                    index conditioned on the groupby respecting order.
+            """
+
+            # generate lookup for each project
+            df = dict(tuple(df.groupby("project_name")))
+
+            # tracking each project's months
+            seg_data: list[pd.DataFrame] = list()
+            
+            for project in tqdm(df):
+                # generate the monthly dictionary
+                monthly_df_dict = dict(tuple(df[project].groupby("month")))
+                
+                # save in memory
+                for month in monthly_df_dict:
+                    # grab current month and remove missing rows
+                    monthly_df = monthly_df_dict[month]
+                    monthly_df = monthly_df[monthly_df[author_field].notna()]
+                    
+                    # skip empty data
+                    if monthly_df.empty: continue
+
+                    # tracking
+                    seg_data.append(monthly_df)
+                    
+            # export compiled months' data
+            return seg_data
+
+        # segmentation; overwrite the previous data
+        util._log("segmenting...")
+        self.data["tech"] = segment_data(
+            self.tdata, time_strat, author_field=author_field,
+            ratios=ratios
+        )
+        self.data["social"] = segment_data(
+            self.sdata, time_strat, author_field=author_field,
+            ratios=ratios
+        )
+        
+    
+    # network generation
+    def network_gen(self) -> None:
+        """Generates the networks and caches in memory for quicker usage and no
+        need for clearing cache later.
+        """
+        
+        
+        
 
 
 # Testing
 if __name__ == "__main__":
     # rd = RawData("github", {"tech": 3, "social": 4})
-    jd = ProjData()
+    jd = ProjData(
+        proj_name="tester",
+        tdata=pd.DataFrame(),
+        sdata=pd.DataFrame(),
+        tasks=[""]
+    )
