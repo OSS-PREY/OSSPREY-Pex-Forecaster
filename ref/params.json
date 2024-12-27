@@ -192,5 +192,6 @@
     "lifecycle-ratios": "./ref/lifecycle-ratios.json",
     "test-prop": 0.20,
     "network-data-format": "./network-data/netdata/{}-{}-network-data-{}.{}",
-    "model-weights-format": "./model-weights/{}/{}-[a{}]-[f{}]-[p{}]-[r{}].pt"
+    "model-weights-format": "./model-weights/{}/{}-[a{}]-[f{}]-[p{}]-[r{}].pt",
+    "delta-cache-dir": "./ref/delta_months.json"
 }

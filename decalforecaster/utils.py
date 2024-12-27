@@ -18,6 +18,7 @@ from typing import Any
 # Constants
 PARAMS_PATH = Path("./ref/params.json")
 PARQUET_ENGINE = "pyarrow"
+CSV_ENGINE = "c"
 
 
 # Utility
