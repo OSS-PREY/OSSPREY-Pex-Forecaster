@@ -19,6 +19,7 @@ from math import floor
 
 # DECAL modules
 import decalforecaster.utils as util
+from decalforecaster.utils import PARQUET_ENGINE
 from decalforecaster.abstractions.rawdata import *
 
 
@@ -128,8 +129,8 @@ def segment_data(df: pd.DataFrame, incubator: str, time_strat: str, output_dir: 
             monthly_df = monthly_df[monthly_df[author_field].notna()]
             if monthly_df.empty: continue
 
-            file_path = output_dir / "{}__{}.csv".format(project, str(int(month)))
-            monthly_df.to_csv(file_path, index=False)
+            file_path = output_dir / "{}__{}.parquet".format(project, str(int(month)))
+            monthly_df.to_parquet(file_path, engine=PARQUET_ENGINE, index=False)
 
 
 # ---------------- script ---------------- #

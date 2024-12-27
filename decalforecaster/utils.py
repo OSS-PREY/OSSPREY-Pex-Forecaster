@@ -17,6 +17,7 @@ from typing import Any
 
 # Constants
 PARAMS_PATH = Path("./ref/params.json")
+PARQUET_ENGINE = "pyarrow"
 
 
 # Utility

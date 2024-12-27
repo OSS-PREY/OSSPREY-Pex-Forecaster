@@ -25,8 +25,9 @@ from typing import Any
 from multiprocessing import Pool
 
 import decalforecaster.utils as util
+from decalforecaster.utils import PARQUET_ENGINE
+
 NUM_PROCESSES = 6
-PARQUET_ENGINE = "pyarrow"
 pandarallel.initialize(nb_workers=NUM_PROCESSES, progress_bar=True)
 tqdm.pandas()
 

@@ -25,6 +25,7 @@ from pathlib import Path
 
 # DECAL modules
 import decalforecaster.utils as util
+from decalforecaster.utils import PARQUET_ENGINE, CSV_ENGINE
 
 
 # ---------------- define utility ---------------- #
@@ -40,7 +41,7 @@ def cal_tech_net(path, visualize_net: bool=False):
                 "t_dev_nodes": set()}
 
     bipartite_G = nx.Graph()
-    df = pd.read_csv(path, header=None, sep="##", engine="python")
+    df = pd.read_csv(path, header=None, sep="##", engine=CSV_ENGINE)
     df.columns = ["file", "dev", "weight"]
 
     ## Logic to add nodes and edges to graph with their metadata
@@ -211,7 +212,7 @@ def calc_net_features(t_path: str, s_path: str, proj_inc_path: str, outfile_path
 
     # export
     util._check_path(outfile_path)
-    df.to_csv(outfile_path, index=False)
+    df.to_csv(outfile_path, engine=CSV_ENGINE, index=False)
 
 
 # ---------------- script ---------------- #

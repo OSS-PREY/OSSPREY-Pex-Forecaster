@@ -26,6 +26,8 @@ from pathlib import Path
 
 # DECAL modules
 import decalforecaster.utils as util
+from decalforecaster.utils import PARQUET_ENGINE, CSV_ENGINE
+
 
 """
 # convert to UTF-8 coding
@@ -53,8 +55,8 @@ def process_tech_nets(author_field: str, t_source: Path, t_output: Path) -> None
 
     for project in tqdm(projects):
         technical_net = {}
-        project_name, period = project.replace(".csv", "").split("__")
-        df = pd.read_csv(t_source / project, engine="c", low_memory=False)
+        project_name, period = project.replace(".parquet", "").split("__")
+        df = pd.read_parquet(t_source / project, engine=PARQUET_ENGINE)
         df.query("is_bot == False and is_coding == True", inplace=True)
         df = df[df[author_field].notna()]
 
@@ -93,10 +95,10 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
         # setup project social network
         social_net = {}
         emailID_to_author = {}
-        project_name, period = project.replace(".csv", "").split("__")
+        project_name, period = project.replace(".parquet", "").split("__")
 
         # load project data
-        df = pd.read_csv(s_source / project, engine="c")
+        df = pd.read_parquet(s_source / project, engine=PARQUET_ENGINE)
         df.query("is_bot == False", inplace=True)
 
         df = df[df[author_field].notna()]
@@ -190,7 +192,7 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
 
     # export
     df = pd.DataFrame.from_dict(sender_dic)
-    df.to_csv(mapping_path, index=False)
+    df.to_csv(mapping_path, engine=CSV_ENGINE, index=False)
 
 
 # Script

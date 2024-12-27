@@ -26,6 +26,7 @@ from itertools import permutations
 from math import ceil
 
 import decalforecaster.utils as util
+from decalforecaster.utils import PARQUET_ENGINE
 
 
 # Auxiliary Functions

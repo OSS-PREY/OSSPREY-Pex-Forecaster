@@ -5,7 +5,7 @@
     overwritten and new months won't be considered. We simply add functionality
     to ignore previous months.
 @author Arjun Ashok (arjun3.ashok@gmail.com)
-@creation-date Decemeber 2024
+@creation-date December 2024
 @version 0.1.0
 """
 
@@ -28,8 +28,7 @@ import decalforecaster.utils as util
 from decalforecaster.abstractions.rawdata import clean_file_paths, \
     clean_sender_names, impute_months, impute_messageid, infer_replies, \
     infer_bots, clean_source_files, dealias_senders
-import decalforecaster.pipeline.monthly_data import segment_data
-import decalforecaster.pipeline.create_networks import 
+from decalforecaster.pipeline.monthly_data import segment_data
 
 # constants & setup parallel processing
 NUM_PROCESSES = 6

@@ -21,6 +21,7 @@ from pathlib import Path
 
 # DECAL modules
 import decalforecaster.utils as util
+from decalforecaster.utils import PARQUET_ENGINE, CSV_ENGINE
 
 
 # ---------------- processing utility ---------------- #
@@ -37,7 +38,7 @@ def tech_net_info(t_path: str, output_path: str) -> None:
         return
 
     # read in file
-    df = pd.read_csv(t_path, header=None, sep="##", engine="python")
+    df = pd.read_csv(t_path, header=None, sep="##", engine=CSV_ENGINE)
     df.columns = ["file", "dev", "weight"]
 
     # file extensions
@@ -63,7 +64,7 @@ def social_net_info(s_path: str, output_path: str) -> None:
         return
 
     # read in file
-    df = pd.read_csv(s_path, header=None, sep="##", engine="python")
+    df = pd.read_csv(s_path, header=None, sep="##", engine=CSV_ENGINE)
     df.columns = ["sender", "receiver", "weight"]
 
     # file extensions

@@ -26,6 +26,7 @@ from typing import Any
 from pathlib import Path
 
 import decalforecaster.utils as util
+from decalforecaster.utils import PARQUET_ENGINE
 
 
 # Constants

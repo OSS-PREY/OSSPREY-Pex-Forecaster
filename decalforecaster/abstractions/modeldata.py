@@ -18,6 +18,7 @@ from typing import Any
 from dataclasses import dataclass, field
 
 import decalforecaster.utils as util
+from decalforecaster.utils import PARQUET_ENGINE
 from decalforecaster.abstractions.tsmodel import *
 from decalforecaster.abstractions.netdata import *
 
