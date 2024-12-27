@@ -30,6 +30,8 @@ from decalforecaster.abstractions.rawdata import clean_file_paths, \
     clean_sender_names, impute_months, impute_messageid, infer_replies, \
     infer_bots, clean_source_files, dealias_senders
 from decalforecaster.pipeline.monthly_data import segment_data
+from decalforecaster.pipeline.create_networks import process_social_nets, \
+    process_tech_nets
 
 # constants & setup parallel processing
 NUM_PROCESSES = 6
@@ -85,8 +87,7 @@ def _route_preprocesses(data: dict[str, pd.DataFrame], tasks: list[str], incubat
     # return if needed
     return data if not inplace else None
 
-
-def load_cached_data(proj_name: str) -> pd.DataFrame:
+def _load_cached_data(proj_name: str) -> pd.DataFrame:
     """Helper function to load the cached data if possible.
 
     Args:
@@ -140,16 +141,16 @@ class DeltaData:
             self.tasks = list(IMPLEMENTED_TASKS.keys())
         
         # load cached data if possible
-        self.cached_netdata = load_cached_data(self.proj_name)
+        ## IO
+        self.cached_netdata = _load_cached_data(self.proj_name)
         
         ## set the correct cached month; maintain the correct limit
         if self.last_cached_month == -1:
             self.last_cached_month = self.cached_netdata.shape[0]
         else:
             self.cached_netdata = self.cached_netdata[self.cached_netdata["month"] < self.last_cached_month]
-            self.last_cached_month -= 1
         
-        util._log(f"using the months [0, {self.last_cached_month}] from the cache")
+        util._log(f"using the months [0, {self.last_cached_month}) from the cache")
         
         # generate auxiliary information
         self.gen_proj_incubation()
@@ -178,7 +179,6 @@ class DeltaData:
 
         # save in memory itself
         self.incubations = proj_incubation
-
 
     def check_missing_data(self, cols: list[str]=None) -> None:
         """
@@ -211,7 +211,6 @@ class DeltaData:
         missing_data_util(dtype="tech", cols=cols)
         missing_data_util(dtype="social", cols=cols)
 
-
     def save_data(self) -> None:
         """
             Saves data to specified format.
@@ -231,17 +230,63 @@ class DeltaData:
         author_field = "dealised_author_full_name"
         time_strat = "default"
         ratios = dict()
+        
+        # helper fn
+        def segment_data(df: pd.DataFrame, author_field: str, save_dir: Path, start_month: int=0) -> None:
+            """Segments data by month without considering relative time.
+            Args:
+                df (pd.DataFrame): data to segment by month.
+                author_field (str): field to treat as the author field.
+                save_dir (Path): path to save to.
+                start_month (int): month to start number at. Defaults to 0.
+                
+            Returns:
+                None
+            """
+            
+            # make the directory if not already
+            save_dir.mkdirs(exist="ok")
+            
+            # generate lookup for each project
+            df = dict(tuple(df.groupby("project_name")))
+            
+            # save each project's month's data
+            for project in tqdm(df):
+                # generate the monthly dictionary
+                monthly_df_dict = dict(tuple(df[project].groupby("month")))
+                
+                # save in memory
+                for month in monthly_df_dict:
+                    # grab current month and remove missing rows
+                    monthly_df = monthly_df_dict[month]
+                    monthly_df = monthly_df[monthly_df[author_field].notna()]
+                    
+                    # skip empty data
+                    if monthly_df.empty: continue
+                    
+                    # save
+                    file_path = save_dir / f"{project}__{str(int(month))}.parquet"
+                    monthly_df.to_parquet(file_path, engine=PARQUET_ENGINE, index=False)
+                    
+            # end fn
+            return
+
+        # routing for the IO
+        dataset_dir = Path(params_dict["dataset-dir"])
+        monthly_data_dir = dataset_dir / f"{INCUBATOR_ALIAS}_data" / "monthly_data/"
+        t_output_dir = monthly_data_dir / f"{params_dict['tech-type'][INCUBATOR_ALIAS]}/"
+        s_output_dir = monthly_data_dir / f"{params_dict['social-type'][INCUBATOR_ALIAS]}/"
 
         # segmentation; overwrite the previous data for the built-in caching 
         # (effectively)
         util._log("segmenting...")
-        self.data["tech"] = segment_data(
-            self.tdata, time_strat, author_field=author_field,
-            ratios=ratios
+        segment_data(
+            self.tdata, author_field=author_field, save_dir=t_output_dir, 
+            start_month=self.last_cached_month
         )
-        self.data["social"] = segment_data(
-            self.sdata, time_strat, author_field=author_field,
-            ratios=ratios
+        segment_data(
+            self.sdata, author_field=author_field, save_dir=s_output_dir,
+            start_month=self.last_cached_month
         )
         
     
@@ -251,16 +296,15 @@ class DeltaData:
         need for clearing cache later.
         """
         
-        
+        pass
         
 
 
 # Testing
 if __name__ == "__main__":
-    # rd = RawData("github", {"tech": 3, "social": 4})
-    jd = ProjData(
+    dd = DeltaData(
         proj_name="tester",
         tdata=pd.DataFrame(),
         sdata=pd.DataFrame(),
-        tasks=[""]
+        tasks=["ALL"]
     )

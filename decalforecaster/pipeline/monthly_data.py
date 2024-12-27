@@ -116,8 +116,8 @@ def segment_data(df: pd.DataFrame, incubator: str, time_strat: str, output_dir: 
         num_months = proj_df["month"].max()
         proj_df["month"] = proj_df["month"].apply(
             relative_time, 
-            strat=time_strat, 
-            incubator_name=incubator, 
+            strat=time_strat,
+            incubator_name=incubator,
             reltime_pack=ratios
         )
 
