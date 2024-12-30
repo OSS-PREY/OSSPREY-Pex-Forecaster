@@ -328,7 +328,8 @@ class DeltaData:
         
         pass
     
-    def gen_trajectories(self) 
+    def gen_trajectories(self) -> dict[int, dict[str, list[float]]]:
+        pass
     
     
     
