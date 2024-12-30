@@ -74,10 +74,9 @@ raw data at all, but given the narrow focus of this pipeline we will assume
 only the most processed data is ready. These are available at the following
 links:
 
-NOT YET UPLOADED, WORK IN PROGRESS...
-- [apache_data]()
-- [eclipse_data]()
-- [github_data]()
+- [apache_data](https://drive.google.com/drive/folders/1-f8AEReRwegpecnOXmdg5XdrzZPuULeF?usp=drive_link)
+- [eclipse_data](https://drive.google.com/drive/folders/1CNLy-d353_KL0L-QxiUMTOZTpfCj1YSA?usp=drive_link)
+- [github_data](https://drive.google.com/drive/folders/1NPa5oBV_e9mduITmXyw_VrxnrmmBXc1e?usp=drive_link)
 
 
 ### Environment Setup
