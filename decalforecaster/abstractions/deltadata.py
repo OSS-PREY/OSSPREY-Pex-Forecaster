@@ -122,11 +122,15 @@ class DeltaData:
     ## either specified or inferred
     last_cached_month: int = field(init=True, default=-1)                       # last month previously calculated; MAY NOT BE REQUIRED
     
-    ## inferred
+    ## inferred or loaded upon initialization
     incubations: dict[str, int] = field(init=False, repr=False)                 # incubation time lookup; MAY NOT BE REQUIRED
     data: dict[str, pd.DataFrame] = field(init=False, repr=False)               # type : df
-    netdata: pd.DataFrame = field(init=False, repr=False)                       # network data produced
     cached_netdata: pd.DataFrame = field(init=False, repr=False)                # cached network data from previous months
+    
+    ## potentially calculatec
+    netdata: pd.DataFrame = field(init=False, repr=False)                       # network data produced (whole project history)
+    forecasts: dict[int, float] = field(init=False, repr=True)                  # sustainability forecasts (for new months only)
+    trajectories: dict[int, dict[str, list[float]]] = field(init=False)         # trajectories for the latest months as {month: {forecast_type: forecasts as a list}}
 
     # post-initialization
     def __post_init__(self):
@@ -158,7 +162,7 @@ class DeltaData:
 
         # pre-processing
         _route_preprocesses(self.data, self.tasks)
-            
+
 
     # internal utility
     def gen_proj_incubation(self):
@@ -218,8 +222,8 @@ class DeltaData:
 
         # save
         pass
-    
-    
+
+
     # split by month
     def monthwise_split(self) -> None:
         """Wraps the first pipeline stage for splitting the data by month.
@@ -228,8 +232,6 @@ class DeltaData:
         # setup
         util._log("Segmenting Monthly Data", "log")
         author_field = "dealised_author_full_name"
-        time_strat = "default"
-        ratios = dict()
         
         # helper fn
         def segment_data(df: pd.DataFrame, author_field: str, save_dir: Path, start_month: int=0) -> None:
@@ -288,16 +290,48 @@ class DeltaData:
             self.sdata, author_field=author_field, save_dir=s_output_dir,
             start_month=self.last_cached_month
         )
-        
-    
+
+
     # network generation
-    def network_gen(self) -> None:
+    def gen_networks(self) -> None:
         """Generates the networks and caches in memory for quicker usage and no
-        need for clearing cache later.
+        need for clearing cache later. Ensures to combine the new data and save
+        to ensure updated cache for future work.
         """
         
         pass
         
+        # create the edgelists
+        
+        # extract features
+        
+        # clear space for limiting memory usage
+        
+        # combine network data (vertical stacking, essentially)
+        
+        # cache the new combined data
+        
+
+        # end fn
+        return
+
+    
+    # predictions & trajectories
+    def gen_forecasts(self) -> dict[int, float]:
+        """Generates the forecasts for all new months of data for export back.
+        Caches the result within the object for easy tasks in the future.
+
+        Returns:
+            dict[int, float]: month number to sustainability forecast for that 
+                month.
+        """
+        
+        pass
+    
+    def gen_trajectories(self) 
+    
+    
+    
 
 
 # Testing

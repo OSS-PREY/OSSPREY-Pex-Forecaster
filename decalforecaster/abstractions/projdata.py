@@ -95,7 +95,7 @@ class ProjData:
     tdata: pd.DataFrame = field(init=True, repr=False)                          # tech df
     sdata: pd.DataFrame = field(init=True, repr=False)                          # social df
     tasks: list[str] = field(init=True, repr=True)                              # tasks to complete on the data
-    
+
     ## inferred
     incubations: dict[str, int] = field(init=False, repr=False)                 # incubation time lookup
     gen_full: bool = field(default=False)                                       # if base data, generate processed version
@@ -120,7 +120,6 @@ class ProjData:
 
         # pre-processing
         _route_preprocesses(self.data, self.tasks)
-            
 
     # internal utility
     def gen_proj_incubation(self):
@@ -141,7 +140,6 @@ class ProjData:
 
         # save in memory itself
         self.incubations = proj_incubation
-
 
     def check_missing_data(self, cols: list[str]=None) -> None:
         """
@@ -174,7 +172,6 @@ class ProjData:
         missing_data_util(dtype="tech", cols=cols)
         missing_data_util(dtype="social", cols=cols)
 
-
     def save_data(self) -> None:
         """
             Saves data to specified format.
@@ -182,8 +179,7 @@ class ProjData:
 
         # save
         pass
-    
-    
+
     # split by month
     def monthwise_split(self) -> None:
         """Wraps the first pipeline stage for splitting the data by month.
@@ -206,16 +202,12 @@ class ProjData:
             self.sdata, time_strat, author_field=author_field,
             ratios=ratios
         )
-        
-    
+
     # network generation
     def network_gen(self) -> None:
         """Generates the networks and caches in memory for quicker usage and no
         need for clearing cache later.
         """
-        
-        
-        
 
 
 # Testing
