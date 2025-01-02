@@ -76,7 +76,8 @@
     "author-source-field": {
         "apache": "author_full_name",
         "github": "sender_name",
-        "eclipse": "sender_name"
+        "eclipse": "sender_name",
+        "ospos": "author_full_name"
     },
     "augmentations": {
         "apache": {

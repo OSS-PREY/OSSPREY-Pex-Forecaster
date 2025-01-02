@@ -85,10 +85,28 @@ def _route_preprocesses(data: dict[str, pd.DataFrame], tasks: list[str],
             continue
         
         # route
-        IMPLEMENTED_TASKS[tasks](data, incubator=incubator, copy=False)
+        IMPLEMENTED_TASKS[task](data, incubator=incubator, copy=False)
         
     # return if needed
     return data if not inplace else None
+
+def _cache_path(proj_name: str, **kwargs) -> Path:
+    """Generates a path to load/save the cached netdata.
+
+    Args:
+        proj_name (str): project name.
+
+    Returns:
+        Path: path object pointing to the dedicated path
+    """
+    
+    # return the formulation
+    path = Path(params_dict["delta-cache-dir"]) / f"{proj_name}.csv"
+    
+    if not path.exists():
+        path.touch(exist_ok=False)
+    
+    return path
 
 def _load_cached_data(proj_name: str) -> pd.DataFrame:
     """Helper function to load the cached data if possible.
@@ -102,7 +120,7 @@ def _load_cached_data(proj_name: str) -> pd.DataFrame:
     """
     
     # generate the path
-    path = Path(params_dict["delta-cache-dir"]) / f"{proj_name}.csv"
+    path = _cache_path(proj_name)
     
     # check the file
     if not path.exists():
@@ -132,10 +150,11 @@ class DeltaData:
     data: dict[str, pd.DataFrame] = field(init=False, repr=False)               # type : df
     cached_netdata: pd.DataFrame = field(init=False, repr=False)                # cached network data from previous months
     
-    ## potentially calculatec
+    ## potentially calculated
     netdata: pd.DataFrame = field(init=False, repr=False)                       # network data produced (whole project history)
     forecasts: dict[int, float] = field(init=False, repr=True)                  # sustainability forecasts (for new months only)
     trajectories: dict[int, dict[str, list[float]]] = field(init=False)         # trajectories for the latest months as {month: {forecast_type: forecasts as a list}}
+    net_vis: dict[str, list[list[str | int]]] = field(init=False, repr=False)   # network visualization info
 
     # post-initialization
     def __post_init__(self):
@@ -232,7 +251,9 @@ class DeltaData:
         """
 
         # save
-        pass
+        path = _cache_path(self.proj_name)
+        util._check_dir(path)
+        self.netdata.to_csv(path, index=False)
 
 
     # split by month
@@ -258,7 +279,7 @@ class DeltaData:
             """
             
             # make the directory if not already
-            save_dir.mkdirs(exist="ok")
+            save_dir.mkdir(exist_ok=True)
             
             # generate lookup for each project
             df = dict(tuple(df.groupby("project_name")))
@@ -333,6 +354,9 @@ class DeltaData:
         self.netdata = pd.concat(
             [self.cached_netdata, self.netdata], axis="rows", ignore_index=True
         )
+        
+        # export to cache
+        self.save_data()
 
         # end fn
         return
@@ -344,16 +368,27 @@ class DeltaData:
         
         # check the networks match this project; if not, clear and generate 
         # networks
-        network_dir = params_dict["network-dir"]
-        t_dir = network_dir / f"{self.incubator}_{tech_type}/"
-        s_dir = network_dir / f"{self.incubator}_{social_type}/"
+        
+        ## grab directories
+        network_dir = Path(params_dict["network-dir"])
+        tech_type = params_dict["tech-type"][INCUBATOR_ALIAS]
+        social_type = params_dict["social-type"][INCUBATOR_ALIAS]
+        
+        t_dir = network_dir / f"{self.incubator}_{tech_type}"
+        s_dir = network_dir / f"{self.incubator}_{social_type}"
+        
+        ## check all files match
+        if not all(f.name.startswith(self.proj_name) for f in t_dir.glob("**/*")):
+            wrong_files = [f.name for f in t_dir.glob("**/*") if not f.name.startswith(self.proj_name)]
+            raise ValueError(f"technical directory (\"{t_dir}\") contains non-matching project file (needs only {self.proj_name} files, got {wrong_files})")
+        if not all(f.name.startswith(self.proj_name) for f in s_dir.glob("**/*")):
+            wrong_files = [f.name for f in s_dir.glob("**/*") if not f.name.startswith(self.proj_name)]
+            raise ValueError(f"social directory (\"{s_dir}\") contains non-matching project file (needs only {self.proj_name} files, got {wrong_files})")
         
         # generate visualizations
-        net_vis_info(self.delta_args)
-        
-        pass
+        self.net_vis = net_vis_info(self.delta_args)
 
-    
+
     # predictions & trajectories
     def gen_forecasts(self) -> dict[int, float]:
         """Generates the forecasts for all new months of data for export back.
@@ -376,8 +411,17 @@ class DeltaData:
 # Testing
 if __name__ == "__main__":
     dd = DeltaData(
-        proj_name="tester",
-        tdata=pd.DataFrame(),
-        sdata=pd.DataFrame(),
+        proj_name="spark",
+        tdata=pd.DataFrame(
+            {'project_name': ['spark'], 'list_name': ['commits'], 'date': ['2013-07-08 13:42:05'], 'month': [8], 'message_id': ['<20130708134205.887D2238888A@eris.apache.org>'], 'sender_name': ['mattmann'], 'sender_email': ['mattmann@apache.org'], 'author_name': ['mattmann'], 'author_email': [None], 'file_name': ['incubator/spark/site/index.html'], 'loc': [0], 'ref_or_sha': ['1500725'], 'subject': ['svn commit: r1500725 - /incubator/spark/site/index.html'], 'commit_type': ['svn'], 'author_full_name': ['chris mattmann'], 'is_bot': [False], 'is_coding': [True], 'dealised_author_full_name': ['Chris Mattmann']}
+        ),
+        sdata=pd.DataFrame(
+            {'project_name': ['spark'], 'list_name': ['dev'], 'date': ['2013-06-22 00:03:10'], 'month': [8], 'message_id': ['<CDEA37A7.EA74B%chris.a.mattmann@jpl.nasa.gov>'], 'sender_name': ['Mattmann, Chris A (398J)'], 'references': [None], 'sender_email': ['chris.a.mattmann@jpl.nasa.gov'], 'in_reply_to': ['<CALuGr6Yo+5+OEWKW3a_REHKzTfLn7QMjAgpFBbwGXyGLdKrB5A@mail.gmail.com>'], 'cc_list': ['Matt Massie <massie@cs.berkeley.edu>, Reynold Xin <rxin@cs.berkeley.edu>,\n        Matei Zaharia <matei@apache.org>, Ankur Dave <ankurdave@gmail.com>,\n        "Tathagata Das" <tdas@eecs.berkeley.edu>,\n        Haoyuan Li\n\t<haoyuan@cs.berkeley.edu>,\n        "Josh Rosen" <joshrosen@cs.berkeley.edu>,\n        Shivaram\n Venkataraman <shivaram@eecs.berkeley.edu>,\n        Mosharaf Chowdhury\n\t<mosharaf@cs.berkeley.edu>,\n        Charles Reiss <charles@eecs.berkeley.edu>,\n        Andy\n Konwinski <andykonwinski@gmail.com>,\n        Patrick Wendell\n\t<pwendell@eecs.berkeley.edu>,\n        Imran Rashid <imran@quantifind.com>,\n        Ryan\n LeCompte <lecompte@gmail.com>,\n        "Ravi Pandya" <ravip@exchange.microsoft.com>,\n        Ram Sriharsha <harshars@yahoo-inc.com>,\n        Robert Evans <evans@yahoo-inc.com>,\n        "Mridul Muralidharan" <mridulm@yahoo-inc.com>,\n        Thomas Dudziak\n\t<tomdz@clearstorydata.com>,\n        Mark Hamstra <mark@clearstorydata.com>,\n        "Stephen\n Haberman" <stephen.haberman@gmail.com>,\n        Jason Dai <jason.dai@intel.com>,\n        "Shane Huang" <shannie.huang@gmail.com>,\n        Andrew xia <xiajunluan@gmail.com>,\n        "Nick Pentreath" <nick.pentreath@gmail.com>,\n        Sean McNamara\n\t<sean.mcnamara@webtrends.com>,\n        "Ramirez, Paul M (398J)"\n\t<paul.m.ramirez@jpl.nasa.gov>,\n        Roman Shaposhnik <rvs@apache.org>, "Suresh\n Marru" <smarru@apache.org>,\n        "Hart, Andrew F (398J)"\n\t<Andrew.F.Hart@jpl.nasa.gov>,\n        "dev@spark.incubator.apache.org"\n\t<dev@spark.incubator.apache.org>'], 'receiver_email': ['Henry Saputra <henry.saputra@gmail.com>'], 'subject': ['Re: Apache Spark podling: Created!'], 'from_commit': [0], 'author_full_name': ['mattmann chris a'], 'is_bot': [False], 'dealised_author_full_name': ['Mattmann, Chris A (398J)']}
+        ),
         tasks=["ALL"]
     )
+    dd.monthwise_split()
+    dd.gen_networks()
+    dd.vis_networks()
+    dd.netdata.to_csv("./temp.csv", index=False)
+    

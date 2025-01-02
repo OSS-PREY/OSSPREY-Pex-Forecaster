@@ -87,7 +87,12 @@ def _check_dir(dir: str | Path) -> None:
     """
 
     # make the dir along with its parents
-    Path(dir).mkdir(parents=True, exist_ok=True)
+    if isinstance(dir, str):
+        dir = Path(dir)
+    
+    if dir.is_file():
+        dir = dir.parent
+    dir.mkdir(parents=True, exist_ok=True)
 
 
 def _check_path(path: str | Path) -> None:

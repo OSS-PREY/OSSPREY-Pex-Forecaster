@@ -30,6 +30,7 @@ from decalforecaster.utils import PARQUET_ENGINE
 NUM_PROCESSES = 6
 pandarallel.initialize(nb_workers=NUM_PROCESSES, progress_bar=True)
 tqdm.pandas()
+params_dict = util._load_params()
 
 
 # Auxiliary Functions
@@ -38,9 +39,6 @@ def _load_paths(incubator: str, versions: dict[str, str], ext: str = "parquet") 
         Loads the paths from the params dictionary and the previously defined 
         user variables.
     """
-
-    # load params
-    params_dict = util._load_params()
 
     # return lookup for paths
     dataset_dir = Path(params_dict["dataset-dir"])
@@ -520,7 +518,7 @@ def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str=None
         data_lookup = {k: v.copy() for k, v in data_lookup.items()}
     df = data_lookup["tech"]
     field = "is_coding"
-    tech_file_path = "./utility/programming-langs.json"
+    tech_file_path = Path(params_dict["ref-dir"]) / "programming-langs.json"
 
     # initialize if field doesn't exist
     if field not in df.columns:
@@ -592,9 +590,9 @@ def infer_bots(data_lookup: dict[str, pd.DataFrame], incubator: str, threshold: 
     # setup imputation
     print("\n<Inferring Bots>")
     field = "is_bot"
-    params_dict = util._load_params()
     author_field = params_dict["author-source-field"][incubator]
-    dir_bot_def = Path(params_dict["ref-dir"]) / f"{incubator}_bot_names.json"
+    ref_dir = Path(params_dict["ref-dir"])
+    dir_bot_def = ref_dir / f"{incubator}_bot_names.json"
 
     # specify bots
     try:
@@ -710,9 +708,9 @@ def infer_bots(data_lookup: dict[str, pd.DataFrame], incubator: str, threshold: 
     print(f"Number of Social Bots (after): {num_social_bots}")
     
     # export
-    with open(f"./utility/{incubator}_tech_bots_removed.json", "w") as f:
+    with open(ref_dir / f"{incubator}_tech_bots_removed.json", "w") as f:
         json.dump(tech_bots, f, indent=4)
-    with open(f"./utility/{incubator}_social_bots_removed.json", "w") as f:
+    with open(ref_dir / f"{incubator}_social_bots_removed.json", "w") as f:
         json.dump(social_bots, f, indent=4)
     return data_lookup
 
@@ -728,9 +726,10 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
     """
 
     # source_field lookup
-    author_lookup = util._load_params()["author-source-field"]
+    author_lookup = params_dict["author-source-field"]
     author_field = source_field if source_field != "" else author_lookup[incubator]
     output_field = "dealised_author_full_name"
+    ref_dir = Path(params_dict["ref-dir"])
     
     # dealias functionality
     def indices_dict(lis):
@@ -895,7 +894,7 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
             
             project_alias_clustering[project] = disjoint_sets(clustering_pairs)
 
-        with open(f"./utility/{incubator}_project_alias_clustering.json", "w") as f:
+        with open(ref_dir / f"{incubator}_project_alias_clustering.json", "w") as f:
             json.dump(project_alias_clustering, f, indent = 4)
 
 
@@ -974,7 +973,7 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
                 else:
                     project_alias_clustering[project][n_index] = cluster
 
-        with open(f"./utility/{incubator}_project_alias_clustering_filtered.json", "w") as f:
+        with open(ref_dir / f"{incubator}_project_alias_clustering_filtered.json", "w") as f:
             json.dump(project_alias_clustering, f, indent = 4)
 
         # construct the alias to full name mapping
@@ -1013,7 +1012,7 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
                 final_name = " ".join(final_name_list)
                 alias_mapping[project].update({alias: final_name for alias in alias_list})
 
-        with open(f"./utility/{incubator}_alias_mapping.json", "w") as f:
+        with open(ref_dir / f"{incubator}_alias_mapping.json", "w") as f:
             json.dump(alias_mapping, f, indent=4)
 
         # returns
@@ -1022,7 +1021,7 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
 
     # PROCESS 2 -- enforce aliases
     def _dealiasing_enforce_aliases(**kwargs):
-        with open(f"./utility/{incubator}_alias_mapping.json", "r") as f:
+        with open(ref_dir / f"{incubator}_alias_mapping.json", "r") as f:
             alias_mapping = json.load(f)
 
         def _dealiasing(project_name, author_name):
@@ -1055,7 +1054,7 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
         return aft_num_tech, aft_num_tech
 
     # conduct
-    # bef_num_tech, bef_num_social = _dealiasing_gen_aliases(**kw_args)
+    bef_num_tech, bef_num_social = _dealiasing_gen_aliases(**kw_args)
     bef_num_tech, bef_num_social = data_lookup["tech"]["sender_name"].nunique(), data_lookup["social"]["sender_name"].nunique()
     aft_num_tech, aft_num_social = _dealiasing_enforce_aliases(**kw_args)
 
@@ -1090,12 +1089,12 @@ class RawData:
         if self.versions is None:
             self.versions = dict(zip(
                 ["tech", "social"],
-                util._load_params()["default-versions"][self.incubator]
+                params_dict["default-versions"][self.incubator]
             ))
         self.versions = {k: str(v) for k, v in self.versions.items()}   # allow for integer inputs
         self.paths = _load_paths(incubator=self.incubator, versions=self.versions, ext=self.ext)
 
-        dtypes = util._load_params()["dtypes"][self.incubator]
+        dtypes = params_dict["dtypes"][self.incubator]
         self.data = _load_data(self.paths, dtypes=dtypes)
         
         # validate
@@ -1150,7 +1149,7 @@ class RawData:
         # ensure some columns
         # for k, v in self.data.items():
         #     if "dealised_author_full_name" not in v.columns:
-        #         v["dealised_author_full_name"] = v[util._load_params()["author-field"][self.incubator]]
+        #         v["dealised_author_full_name"] = v[params_dict["author-field"][self.incubator]]
         #     if "is_bot" not in v.columns:
         #         v["is_bot"] = 0
         #     if k == "tech" and "is_coding" not in v.columns:
@@ -1234,9 +1233,6 @@ class RawData:
             Generates the lookup for project lengths. Uses the maximum recorded 
             month for each project.
         """
-
-        # params
-        params_dict = util._load_params()
 
         # generate lookups
         t_proj_incubation = self.data["tech"].groupby("project_name")["month"].max().to_dict()

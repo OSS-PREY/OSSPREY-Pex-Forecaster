@@ -25,7 +25,7 @@ from decalforecaster.utils import PARQUET_ENGINE, CSV_ENGINE
 
 
 # ---------------- processing utility ---------------- #
-def tech_net_info(t_path: str, output_path: str) -> None:
+def tech_net_info(t_path: str) -> list[list[str | int]]:
     """
         Generates a JSON formatted file given the input net file for the 
         technical network edges (per month).
@@ -33,9 +33,7 @@ def tech_net_info(t_path: str, output_path: str) -> None:
 
     # check file
     if not os.path.exists(t_path) or os.stat(t_path).st_size == 0:
-        with open(output_path, "w") as f:
-            json.dump([[]], f, indent=4)
-        return
+        return [[]]
 
     # read in file
     df = pd.read_csv(t_path, header=None, sep="##", engine=CSV_ENGINE)
@@ -47,11 +45,9 @@ def tech_net_info(t_path: str, output_path: str) -> None:
     list_df = agg_df.values.tolist()
 
     # export
-    with open(output_path, "w") as f:
-        json.dump(list_df, f, indent=4)
+    return list_df
 
-
-def social_net_info(s_path: str, output_path: str) -> None:
+def social_net_info(s_path: str) -> list[list[str | int]]:
     """
         Generates a JSON formatted file given the input net file for the social 
         network edges (per month).
@@ -59,9 +55,7 @@ def social_net_info(s_path: str, output_path: str) -> None:
 
     # check file
     if not os.path.exists(s_path) or os.stat(s_path).st_size == 0:
-        with open(output_path, "w") as f:
-            json.dump([[]], f, indent=4)
-        return
+        return [[]]
 
     # read in file
     df = pd.read_csv(s_path, header=None, sep="##", engine=CSV_ENGINE)
@@ -72,12 +66,11 @@ def social_net_info(s_path: str, output_path: str) -> None:
     list_df = agg_df.values.tolist()
 
     # export
-    with open(output_path, "w") as f:
-        json.dump(list_df, f, indent=4)
+    return list_df
 
 
 # ---------------- script ---------------- #
-def net_vis_info(args_dict: dict[str, Any]) -> None:
+def net_vis_info(args_dict: dict[str, Any]) -> dict[str, list[list[str | int]]]:
     """
         Wraps the full utility for generating the necessary lookups for the tech 
         and social networks.
@@ -126,21 +119,28 @@ def net_vis_info(args_dict: dict[str, Any]) -> None:
     with open(proj_inc_path, "r") as f:
         project_incubation_dict = json.load(f)
 
-    # generate network data
+    # generate network visualization information & store into a json
+    net_visuals = {
+        "tech": dict(),
+        "social": dict()
+    }
+    
     for project_name in tqdm(sorted(projects.keys())):
         # may not have the network data
         for month in range(project_incubation_dict.get(project_name, 0)):
-            # unpack
-            net_file = "{}__{}.edgelist".format(project_name, month)
+            # unpack file directions
+            net_file = "{}__{}.json".format(project_name, month)
             tech_net_path = t_dir / net_file
-            tech_net_out = t_output_dir / net_file
-
             social_net_path = s_dir / net_file
-            social_net_out = s_output_dir / net_file
 
             # grab necessary info & save
-            tech_net_info(tech_net_path, tech_net_out)
-            social_net_info(social_net_path, social_net_out)
+            net_visuals["tech"][month] = tech_net_info(tech_net_path)
+            net_visuals["social"][month] = social_net_info(social_net_path)
+            
+    # export to file & memory
+    with open(base_dir / f"{args_dict['incubator']}.json", "w") as f:
+        json.dump(net_visuals, f, indent=0)
+    return net_visuals
 
 
 if __name__ == "__main__":
