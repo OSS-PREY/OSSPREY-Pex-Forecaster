@@ -18,6 +18,7 @@ from tqdm import tqdm
 from pandarallel import pandarallel
 
 # built-in modules
+from os import cpu_count
 from copy import deepcopy
 from pathlib import Path
 from typing import Any
@@ -29,12 +30,12 @@ from decalforecaster.utils import PARQUET_ENGINE, CSV_ENGINE
 from decalforecaster.abstractions.rawdata import clean_file_paths, \
     clean_sender_names, impute_months, impute_messageid, infer_replies, \
     infer_bots, clean_source_files, dealias_senders
-from decalforecaster.pipeline.monthly_data import segment_data
-from decalforecaster.pipeline.create_networks import process_social_nets, \
-    process_tech_nets
+from decalforecaster.pipeline.create_networks import create_networks
+from decalforecaster.pipeline.network_features import extract_features
+from decalforecaster.pipeline.network_visualizations import net_vis_info
 
 # constants & setup parallel processing
-NUM_PROCESSES = 6
+NUM_PROCESSES = cpu_count()
 pandarallel.initialize(nb_workers=NUM_PROCESSES, progress_bar=True)
 params_dict = util._load_params()
 tqdm.pandas()
@@ -56,7 +57,9 @@ IMPLEMENTED_TASKS = {
 
 
 # ------------- Helper Fn ------------- #
-def _route_preprocesses(data: dict[str, pd.DataFrame], tasks: list[str], incubator: str="ospos", inplace: bool=True) -> None | dict[str, pd.DataFrame]:
+def _route_preprocesses(data: dict[str, pd.DataFrame], tasks: list[str],
+    incubator: str=INCUBATOR_ALIAS, inplace: bool=True
+) -> None | dict[str, pd.DataFrame]:
     """Wraps all pre-processing steps requested into one neat package.
 
     Args:
@@ -120,7 +123,9 @@ class DeltaData:
     tasks: list[str] = field(init=True, repr=True)                              # tasks to complete on the data
     
     ## either specified or inferred
+    incubator: str = field(init=True, default=INCUBATOR_ALIAS)                  # incubator to organize data by; may switch to project name
     last_cached_month: int = field(init=True, default=-1)                       # last month previously calculated; MAY NOT BE REQUIRED
+    delta_args: dict[str, Any] = field(init=True, default=None)                 # args to use in the pipeline calls
     
     ## inferred or loaded upon initialization
     incubations: dict[str, int] = field(init=False, repr=False)                 # incubation time lookup; MAY NOT BE REQUIRED
@@ -143,6 +148,12 @@ class DeltaData:
         # check if tasks are valid
         if self.tasks[0] == "ALL":
             self.tasks = list(IMPLEMENTED_TASKS.keys())
+        
+        # check if args are valid
+        if self.delta_args is None:
+            self.delta_args = {
+                "incubator": self.incubator
+            }
         
         # load cached data if possible
         ## IO
@@ -275,7 +286,7 @@ class DeltaData:
 
         # routing for the IO
         dataset_dir = Path(params_dict["dataset-dir"])
-        monthly_data_dir = dataset_dir / f"{INCUBATOR_ALIAS}_data" / "monthly_data/"
+        monthly_data_dir = dataset_dir / f"{self.incubator}_data" / "monthly_data/"
         t_output_dir = monthly_data_dir / f"{params_dict['tech-type'][INCUBATOR_ALIAS]}/"
         s_output_dir = monthly_data_dir / f"{params_dict['social-type'][INCUBATOR_ALIAS]}/"
         
@@ -305,20 +316,42 @@ class DeltaData:
         to ensure updated cache for future work.
         """
         
-        # create the edgelists
+        # create the edgelists, extract features from the networks on disk
+        create_networks(self.delta_args)
+        extract_features(self.delta_args)
         
+        # compile data into memory
+        net_path = Path(params_dict["network-dir"]) / "netdata" / f"{self.incubator}-network-data.csv"
+        self.netdata = pd.read_csv(net_path, engine=CSV_ENGINE)
         
-        # extract features
-        
-        # clear space for limiting memory usage
+        # clear space to reduce disk usage
+        util._clear_dir(f"{self.incubator}_data/", skip_input=True)
+        util._check_dir(f"{self.incubator}_data/")
+        util._del_file(net_path)
         
         # combine network data (vertical stacking, essentially)
-        
-        # cache the new combined data
-        
+        self.netdata = pd.concat(
+            [self.cached_netdata, self.netdata], axis="rows", ignore_index=True
+        )
 
         # end fn
         return
+    
+    def vis_networks(self) -> None:
+        """Generates the network visualization for the PEX tool to display 
+        accordian graphs, etc.
+        """
+        
+        # check the networks match this project; if not, clear and generate 
+        # networks
+        network_dir = params_dict["network-dir"]
+        t_dir = network_dir / f"{self.incubator}_{tech_type}/"
+        s_dir = network_dir / f"{self.incubator}_{social_type}/"
+        
+        # generate visualizations
+        net_vis_info(self.delta_args)
+        
+        pass
 
     
     # predictions & trajectories

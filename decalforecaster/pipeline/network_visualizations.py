@@ -1,6 +1,6 @@
 """
     @brief Generates the monthly network information for each project for easy 
-           visualization in an APEX-like tool.
+        visualization in an APEX-like tool.
     @author Arjun Ashok (arjun3.ashok@gmail.com)
     @creation-date April 2024
 """
@@ -88,12 +88,11 @@ def net_vis_info(args_dict: dict[str, Any]) -> None:
     params_dict = util._load_params()
 
     # execute input
-    versions = args_dict["versions"]
     social_type = params_dict["social-type"][args_dict["incubator"]]
     tech_type = params_dict["tech-type"][args_dict["incubator"]]
     network_dir = Path(params_dict["network-dir"])
 
-    mapping_path = network_dir / f"mappings/{args_dict['incubator']}-mapping-{versions['tech']}-{versions['social']}.csv"
+    mapping_path = network_dir / f"mappings/{args_dict['incubator']}-mapping.csv"
     t_dir = network_dir / f"{args_dict['incubator']}_{tech_type}/"
     s_dir = network_dir / f"{args_dict['incubator']}_{social_type}/"
     proj_inc_path = params_dict["incubation-time"][args_dict["incubator"]]

@@ -123,6 +123,21 @@ def _clear_dir(dir: str | Path, skip_input: bool=False) -> None:
     shutil.rmtree(dir)
 
 
+def _del_file(path: str | Path) -> None:
+    """
+        Deletes the specified file.
+    """
+    
+    # check path
+    path = Path(path)
+    
+    if path.is_dir():
+        raise ValueError(f"Path provided \"{path.absolute()}\" is a directory; use util._clear_dir() instead")
+    
+    # delete
+    path.unlink()
+
+
 def _log(msg: str="", log_type: str="log", output: str="console",
          file_name: str="logger") -> None:
     """

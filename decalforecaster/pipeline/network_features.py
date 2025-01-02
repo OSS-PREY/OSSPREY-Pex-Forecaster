@@ -235,7 +235,7 @@ def extract_features(args_dict: dict):
     t_path = f"{network_dir}/{incubator}_{tech_type}/"
     s_path = f"{network_dir}/{incubator}_{social_type}/"
     proj_inc_path = params_dict["incubation-time"][incubator]
-    outfile_path = f"{network_dir}/netdata/clean-{incubator}-network-data.csv"
+    outfile_path = f"{network_dir}/netdata/{incubator}-network-data.csv"
 
     # dispatch
     calc_net_features(t_path, s_path, proj_inc_path, outfile_path)
