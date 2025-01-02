@@ -278,9 +278,15 @@ class DeltaData:
         monthly_data_dir = dataset_dir / f"{INCUBATOR_ALIAS}_data" / "monthly_data/"
         t_output_dir = monthly_data_dir / f"{params_dict['tech-type'][INCUBATOR_ALIAS]}/"
         s_output_dir = monthly_data_dir / f"{params_dict['social-type'][INCUBATOR_ALIAS]}/"
+        
+        # clear disk usage to limit space requirement and prevent double 
+        # writing (using the same data twice) or mis-association (using one 
+        # project's data in another's)
+        util._clear_dir(dir=t_output_dir, skip_input=True)
+        util._clear_dir(dir=s_output_dir, skip_input=True)
 
-        # segmentation; overwrite the previous data for the built-in caching 
-        # (effectively)
+        # segmentation; no longer need to overwrite, we simply treat this as new
+        # data and we'll concatenate the old data with this
         util._log("segmenting...")
         segment_data(
             self.tdata, author_field=author_field, save_dir=t_output_dir, 
@@ -299,9 +305,8 @@ class DeltaData:
         to ensure updated cache for future work.
         """
         
-        pass
-        
         # create the edgelists
+        
         
         # extract features
         

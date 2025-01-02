@@ -68,6 +68,9 @@
         },
         "eclipse": {
             
+        },
+        "ospos": {
+
         }
     },
     "author-source-field": {
@@ -99,6 +102,14 @@
             "social": {
                 "1": "issues"
             }
+        },
+        "ospos": {
+            "tech": {
+                "0": "commits"
+            },
+            "social": {
+                "0": "issues"
+            }
         }
     },
     "augmentation-descriptions": {
@@ -125,17 +136,27 @@
             "social": {
                 "1": "deliased w/ reply & bots issues data"                
             }
+        },
+        "ospos": {
+            "tech": {
+                "0": "alias dataset"
+            },
+            "social": {
+                "0": "alias dataset"
+            }
         }
     },
     "incubation-time": {
         "apache": "./ref/apache_proj_incubation.json",
         "github": "./ref/github_proj_incubation.json",
-        "eclipse": "./ref/eclipse_proj_incubation.json"
+        "eclipse": "./ref/eclipse_proj_incubation.json",
+        "ospos": "./ref/ospos_proj_incubation.json"
     },
     "project-status": {
         "apache": "./ref/apache_project_status.json",
         "github": "./ref/github_project_status.json",
-        "eclipse": "./ref/eclipse_project_status.json"
+        "eclipse": "./ref/eclipse_project_status.json",
+        "ospos": "./ref/ospos_project_status.json"
     },
     "programming-langs": {
         "apache": "programming-langs.json",
@@ -193,5 +214,5 @@
     "test-prop": 0.20,
     "network-data-format": "./network-data/netdata/{}-{}-network-data-{}.{}",
     "model-weights-format": "./model-weights/{}/{}-[a{}]-[f{}]-[p{}]-[r{}].pt",
-    "delta-cache-dir": "./ref/delta_months.json"
+    "delta-cache-dir": "./network-data/caches/"
 }

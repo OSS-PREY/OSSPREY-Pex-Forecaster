@@ -212,7 +212,7 @@ def calc_net_features(t_path: str, s_path: str, proj_inc_path: str, outfile_path
 
     # export
     util._check_path(outfile_path)
-    df.to_csv(outfile_path, engine=CSV_ENGINE, index=False)
+    df.to_csv(outfile_path, index=False)
 
 
 # ---------------- script ---------------- #
@@ -225,8 +225,6 @@ def extract_features(args_dict: dict):
     print("\n<Extracting Network Features>")
     warnings.filterwarnings("ignore", category=FutureWarning)       # silence deprecation warnings for df.append()
     incubator = args_dict["incubator"]
-    tech_num = args_dict["versions"]["tech"]
-    social_num = args_dict["versions"]["social"]
 
     # execute input
     params_dict = util._load_params()
@@ -237,7 +235,7 @@ def extract_features(args_dict: dict):
     t_path = f"{network_dir}/{incubator}_{tech_type}/"
     s_path = f"{network_dir}/{incubator}_{social_type}/"
     proj_inc_path = params_dict["incubation-time"][incubator]
-    outfile_path = f"{network_dir}/netdata/clean-{incubator}-network-data-{tech_num}-{social_num}.csv"
+    outfile_path = f"{network_dir}/netdata/clean-{incubator}-network-data.csv"
 
     # dispatch
     calc_net_features(t_path, s_path, proj_inc_path, outfile_path)

@@ -192,7 +192,7 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
 
     # export
     df = pd.DataFrame.from_dict(sender_dic)
-    df.to_csv(mapping_path, engine=CSV_ENGINE, index=False)
+    df.to_csv(mapping_path, index=False)
 
 
 # Script
@@ -207,7 +207,6 @@ def create_networks(args_dict: dict[str, Any]):
     author_field = "dealised_author_full_name"
 
     # execute input
-    versions = args_dict["versions"]
     incubator = args_dict["incubator"]
     social_type = params_dict["social-type"][incubator]
     tech_type = params_dict["tech-type"][incubator]
@@ -219,7 +218,7 @@ def create_networks(args_dict: dict[str, Any]):
     t_output_dir = network_dir / f"{incubator}_{tech_type}/"
     s_output_dir = network_dir / f"{incubator}_{social_type}/"
     mapping_out_dir = network_dir / "mappings/"
-    mapping_out_source = str(mapping_out_dir) + f"/{incubator}-mapping-{versions['tech']}-{versions['social']}.csv"
+    mapping_out_source = str(mapping_out_dir) + f"/{incubator}-mapping.csv"
 
     # ensure clean save
     util._check_dir(t_output_dir)
