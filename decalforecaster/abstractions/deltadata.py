@@ -254,6 +254,37 @@ class DeltaData:
         util._check_path(path)
         self.netdata.to_csv(path, index=False)
 
+    def clean_disk(self) -> None:
+        """To be run when the destructor is called. Clears any used storage on 
+        disk to minimize concurrent disk usage.
+        """
+        
+        # MONTHWISE SPLIT
+        # clear disk usage to limit space requirement and prevent double 
+        # writing (using the same data twice) or mis-association (using one 
+        # project's data in another's)
+        dataset_dir = Path(params_dict["dataset-dir"])
+        monthly_data_dir = dataset_dir / f"{self.incubator}_data" / "monthly_data/"
+        t_output_dir = monthly_data_dir / f"{params_dict['tech-type'][INCUBATOR_ALIAS]}/"
+        s_output_dir = monthly_data_dir / f"{params_dict['social-type'][INCUBATOR_ALIAS]}/"
+        
+        util._clear_dir(dir=t_output_dir, skip_input=True)
+        util._clear_dir(dir=s_output_dir, skip_input=True)
+        
+        # NETWORK GENERATION
+        data_dir = Path(params_dict["dataset-dir"]) / f"{self.incubator}_data"
+        network_dir = Path(params_dict["network-dir"])
+        t_type = params_dict["tech-type"][INCUBATOR_ALIAS]
+        s_type = params_dict["social-type"][INCUBATOR_ALIAS]
+        net_path = network_dir / "netdata" / f"{self.incubator}-network-data.csv"
+        
+        util._clear_dir(data_dir, skip_input=True)
+        util._clear_dir(network_dir / f"{self.incubator}_{t_type}", skip_input=True)
+        util._clear_dir(network_dir / f"{self.incubator}_{s_type}", skip_input=True)
+        
+        util._check_dir(data_dir)
+        util._del_file(net_path)
+
 
     # split by month
     def monthwise_split(self) -> None:
@@ -343,21 +374,9 @@ class DeltaData:
         extract_features(self.delta_args, self.incubations)
         
         # compile data into memory
-        data_dir = Path(params_dict["dataset-dir"]) / f"{self.incubator}_data"
         network_dir = Path(params_dict["network-dir"])
-        t_type = params_dict["tech-type"][INCUBATOR_ALIAS]
-        s_type = params_dict["social-type"][INCUBATOR_ALIAS]
-        
         net_path = network_dir / "netdata" / f"{self.incubator}-network-data.csv"
         self.netdata = pd.read_csv(net_path, engine=CSV_ENGINE)
-        
-        # clear space to reduce disk usage
-        util._clear_dir(data_dir, skip_input=True)
-        util._clear_dir(network_dir / f"{self.incubator}_{t_type}", skip_input=True)
-        util._clear_dir(network_dir / f"{self.incubator}_{s_type}", skip_input=True)
-        
-        util._check_dir(data_dir)
-        util._del_file(net_path)
         
         # combine network data (vertical stacking, essentially); ensure to 
         # remove the extra rows created and we make-up for the month offset
@@ -407,6 +426,27 @@ class DeltaData:
         
         # generate visualizations
         self.net_vis = net_vis_info(self.delta_args)
+        
+        # update old visualizations if possible and re-store
+        vis_path = Path(params_dict["network-dir"]) / "net_vis" / f"{self.incubator}.json"
+        
+        if vis_path.exists():
+            with open(vis_path, "r") as f:
+                old_vis = json.load(self.net_vis, f, indent=0)
+        else:
+            old_vis = {
+                "tech": dict(),
+                "social": dict()
+            }
+
+        print(self.net_vis, old_vis)
+        self.net_vis["tech"].update(old_vis["tech"])
+        self.net_vis["social"].update(old_vis["social"])
+        self.net_vis["tech"] = dict(sorted(self.net_vis["tech"]))
+        self.net_vis["social"] = dict(sorted(self.net_vis["social"]))
+        
+        with open(vis_path, "w") as f:
+            json.dump(self.net_vis, f, indent=0)
 
 
     # predictions & trajectories
@@ -424,6 +464,12 @@ class DeltaData:
         """
         
         # aux functions
+        drop_cols = [
+            "proj_name", 
+            "month",
+            # "s_largest_component"   # hardcode the `c` strat for netdata
+        ]
+        
         def apply_augs(augs: str="cbn") -> None:
             """Temporarily hard-coded for the model-weights we use.
 
@@ -433,12 +479,11 @@ class DeltaData:
             """
             
             # aux fn
-            ignore_cols = self.netdata.columns.difference()
             keep_nan = 1e-10
             
             def zscore_normalize(df):
-                non_nrm_data = df[ignore_cols]
-                nrm_data = df.drop(columns=ignore_cols)
+                non_nrm_data = df[drop_cols]
+                nrm_data = df.drop(columns=drop_cols)
 
                 # normalize
                 nrm_data = (nrm_data - nrm_data.mean()) / (nrm_data.std() + keep_nan)
@@ -448,8 +493,8 @@ class DeltaData:
             
             def minmax_normalize(df):
                 # split
-                non_nrm_data = df[ignore_cols]
-                nrm_data = df.drop(columns=ignore_cols)
+                non_nrm_data = df[drop_cols]
+                nrm_data = df.drop(columns=drop_cols)
 
                 # normalize
                 nrm_data = (nrm_data - nrm_data.min()) / (nrm_data.max() + keep_nan)
@@ -463,8 +508,8 @@ class DeltaData:
                 """
 
                 # split
-                non_nrm_data = df[ignore_cols]
-                nrm_data = df.drop(columns=ignore_cols)
+                non_nrm_data = df[drop_cols]
+                nrm_data = df.drop(columns=drop_cols)
 
                 # normalize; sum of both networks in conjunction per month
                 # max_devs = (group["t_num_dev_nodes"] + group["s_num_nodes"])
@@ -496,19 +541,14 @@ class DeltaData:
             # ensure columns order
             self.netdata = self.netdata[[
                 "s_num_nodes", "s_weighted_mean_degree", "s_num_component",
-                "s_avg_clustering_coef", "s_largest_component", "s_graph_density",
-                "t_num_dev_nodes", "t_num_file_nodes", "t_num_dev_per_file",
-                "t_num_file_per_dev", "t_graph_density", "proj_name", "month",
-                "st_num_dev", "t_net_overlap", "s_net_overlap"
+                "s_avg_clustering_coef", "s_graph_density", "t_num_dev_nodes",
+                "t_num_file_nodes", "t_num_dev_per_file", "t_num_file_per_dev",
+                "t_graph_density", "proj_name", "month", "st_num_dev",
+                "t_net_overlap", "s_net_overlap"
             ]]
             
             # track in a dictionary format
             data_dict = {}
-            drop_cols = [
-                "proj_name", 
-                "month",
-                "s_largest_component"   # hardcode the `c` strat for netdata
-            ]
 
             # convert to list representation
             data_dict = self.netdata.drop(drop_cols, axis=1).values.tolist()
@@ -520,8 +560,6 @@ class DeltaData:
         num_months = self.netdata.shape[0]
         apply_augs()
         X = gen_tensors()
-        print(X.shape)
-        exit()
         
         # load in model
         model = None
@@ -551,7 +589,7 @@ class DeltaData:
         model.eval() 
         
         # generate forecasts
-        preds = dict()
+        fcs = dict()
         for i in range(1, num_months):
             # grab the first i months
             data = X[:i, ...]
@@ -561,18 +599,19 @@ class DeltaData:
             data = data.reshape(1, data.shape[0], -1)
             
             # generate raw prob forecast
-            preds = self.model.predict(data)[:, 1].to(DEVICE)
+            preds = model.predict(data)[:, 1].to(DEVICE)
 
             # concatenate lists
-            preds[i - 1] = preds.cpu().detach().numpy()[0]
+            fcs[i - 1] = float(preds.cpu().detach().numpy()[0])
 
         # save & export
         forecast_dir = Path(params_dict["forecast-dir"])
+        util._check_dir(forecast_dir)
         
-        with open(forecast_dir / f"{self.proj_name}.json") as f:
-            dump(preds, f, indent=4)
+        with open(forecast_dir / f"{self.proj_name}.json", "w") as f:
+            dump(fcs, f, indent=4)
             
-        self.forecasts = preds
+        self.forecasts = fcs
     
     def gen_trajectories(self) -> dict[int, dict[str, list[float]]]:
         pass
@@ -581,6 +620,20 @@ class DeltaData:
 # Testing
 if __name__ == "__main__":
     data_dir = Path().cwd() / "data" / "ospos_data"
+    
+    # first batch
+    dd = DeltaData(
+        proj_name="spark",
+        tdata=pd.read_parquet(data_dir / "commits.parquet"),
+        sdata=pd.read_parquet(data_dir / "issues.parquet"),
+        tasks=["ALL"]
+    )
+    dd.monthwise_split()
+    dd.gen_networks()
+    # dd.vis_networks()
+    dd.gen_forecasts()
+    
+    # second batch
     dd = DeltaData(
         proj_name="spark",
         tdata=pd.read_parquet(data_dir / "test_commits.parquet"),
@@ -589,7 +642,9 @@ if __name__ == "__main__":
     )
     dd.monthwise_split()
     dd.gen_networks()
-    print(dd.netdata)
-    dd.vis_networks()
-    # dd.netdata.to_csv("./temp.csv", index=False)
+    # dd.vis_networks()
+    dd.gen_forecasts()
     
+    (Path().cwd() / "network-data" / "caches" / "spark.csv").unlink()
+
+

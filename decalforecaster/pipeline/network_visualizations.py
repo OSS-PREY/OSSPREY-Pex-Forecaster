@@ -137,9 +137,7 @@ def net_vis_info(args_dict: dict[str, Any]) -> dict[str, list[list[str | int]]]:
             net_visuals["tech"][month] = tech_net_info(tech_net_path)
             net_visuals["social"][month] = social_net_info(social_net_path)
             
-    # export to file & memory
-    with open(base_dir / f"{args_dict['incubator']}.json", "w") as f:
-        json.dump(net_visuals, f, indent=0)
+    # export to memory
     return net_visuals
 
 

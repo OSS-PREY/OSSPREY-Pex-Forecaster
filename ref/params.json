@@ -30,6 +30,7 @@
     "ref-dir": "./ref/",
     "weights-dir": "./model-weights/",
     "reports-dir": "./model-reports/",
+    "forecast-dir": "./forecasts/",
     "field-mappings": {
         "eclipse": {
             "tech": {
