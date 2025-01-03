@@ -424,9 +424,84 @@ class DeltaData:
         """
         
         # aux functions
-        def apply_augs(augs: str="cbn")
+        def apply_augs(augs: str="cbn") -> None:
+            """Temporarily hard-coded for the model-weights we use.
+
+            Args:
+                augs (str, optional): augmentations to use in the standard
+                    grammar form. Defaults to "cbn".
+            """
+            
+            # aux fn
+            ignore_cols = self.netdata.columns.difference()
+            keep_nan = 1e-10
+            
+            def zscore_normalize(df):
+                non_nrm_data = df[ignore_cols]
+                nrm_data = df.drop(columns=ignore_cols)
+
+                # normalize
+                nrm_data = (nrm_data - nrm_data.mean()) / (nrm_data.std() + keep_nan)
+
+                # merge & return
+                return pd.concat([non_nrm_data, nrm_data], axis=1)
+            
+            def minmax_normalize(df):
+                # split
+                non_nrm_data = df[ignore_cols]
+                nrm_data = df.drop(columns=ignore_cols)
+
+                # normalize
+                nrm_data = (nrm_data - nrm_data.min()) / (nrm_data.max() + keep_nan)
+
+                # merge & return
+                return pd.concat([non_nrm_data, nrm_data], axis=1)
+            
+            def actdev_normalize(df):
+                """
+                    Normalizes by the number of active developers per month.
+                """
+
+                # split
+                non_nrm_data = df[ignore_cols]
+                nrm_data = df.drop(columns=ignore_cols)
+
+                # normalize; sum of both networks in conjunction per month
+                # max_devs = (group["t_num_dev_nodes"] + group["s_num_nodes"])
+                max_devs = df["st_num_dev"]
+                max_devs = max_devs + (max_devs == 0)           # force to one
+                nrm_data = nrm_data.div(max_devs, axis=0)
+
+                # merge & return
+                return pd.concat([non_nrm_data, nrm_data], axis=1)
+            
+            # router
+            aug_router = {
+                "j": None,
+                "n": actdev_normalize,
+                "m": minmax_normalize,
+                "z": zscore_normalize,
+                "a": None,
+                "d": None,
+                "u": None,
+                "b": lambda d: d,
+                "c": lambda d: d.drop(columns="s_largest_component")
+            }
+            
+            # apply augs inplace
+            for aug in augs:
+                self.netdata = aug_router[aug](self.netdata)
         
-        def gen_tensors():
+        def gen_tensors() -> torch.Tensor:
+            # ensure columns order
+            self.netdata = self.netdata[[
+                "s_num_nodes", "s_weighted_mean_degree", "s_num_component",
+                "s_avg_clustering_coef", "s_largest_component", "s_graph_density",
+                "t_num_dev_nodes", "t_num_file_nodes", "t_num_dev_per_file",
+                "t_num_file_per_dev", "t_graph_density", "proj_name", "month",
+                "st_num_dev", "t_net_overlap", "s_net_overlap"
+            ]]
+            
             # track in a dictionary format
             data_dict = {}
             drop_cols = [
@@ -436,23 +511,44 @@ class DeltaData:
             ]
 
             # convert to list representation
-            data_dict = self.netdata.drop(drop_cols, axis=1).values.tolist().to_dict()
+            data_dict = self.netdata.drop(drop_cols, axis=1).values.tolist()
 
             # convert to tensor form
             return torch.tensor(data_dict)
         
-        # convert to tensor for use in the model
+        # apply augmentations and convert to tensor for use in the model
         num_months = self.netdata.shape[0]
-        
-        ##
-        X = 
+        apply_augs()
+        X = gen_tensors()
+        print(X.shape)
+        exit()
         
         # load in model
         model = None
-        
+        path = Path(params_dict["weights-dir"])
+        hyperparams = {
+            "input_size": X.shape[1],
+            "hidden_size": 64,
+            "num_classes": 2,
+            "dropout_rate": 0.4,
+            "learning_rate": 0.0001,
+            "batch_size": 512,
+            "num_epochs": 10,
+            "num_layers": 1,
+        }
+                
         match model_arch:
             case "BLSTM":
-                model = BGNN()
+                model = BRNN(**hyperparams).to(DEVICE)
+                path = path / "BLSTM.pt"
+            case "BGRU":
+                model = BGNN(**hyperparams).to(DEVICE)
+                path = path / "BGRU.pt"
+            case _:
+                raise ValueError(f"Failed to associate model to provided architecture \"{model_arch}\". Expected one of [BLSTM, BGRU]")
+        
+        model.load_state_dict(torch.load(path, weights_only=True))
+        model.eval() 
         
         # generate forecasts
         preds = dict()

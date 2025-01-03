@@ -86,7 +86,7 @@ class forecast_model(ABC):
 class BRNN(nn.Module):
     def __init__(self, input_size, hidden_size, num_layers, num_classes, dropout_rate=0.4, **kwargs):
         super(BRNN, self).__init__()
-        self.hidden_size = hidden_size 
+        self.hidden_size = hidden_size
         self.num_layers = num_layers
         
         # LSTM layer
