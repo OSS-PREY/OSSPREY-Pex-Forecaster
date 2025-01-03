@@ -23,6 +23,7 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Any
 from dataclasses import dataclass, field
+from json import dump
 
 # DECAL modules
 import decalforecaster.utils as util
@@ -30,6 +31,7 @@ from decalforecaster.utils import PARQUET_ENGINE, CSV_ENGINE
 from decalforecaster.abstractions.rawdata import clean_file_paths, \
     clean_sender_names, impute_months, impute_messageid, infer_replies, \
     infer_bots, clean_source_files, dealias_senders
+from decalforecaster.abstractions.tsmodel import *
 from decalforecaster.pipeline.create_networks import create_networks
 from decalforecaster.pipeline.network_features import extract_features
 from decalforecaster.pipeline.network_visualizations import net_vis_info
@@ -40,6 +42,7 @@ pandarallel.initialize(nb_workers=NUM_PROCESSES, progress_bar=True)
 params_dict = util._load_params()
 tqdm.pandas()
 INCUBATOR_ALIAS = "ospos"
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 IMPLEMENTED_TASKS = {
     "net-gen": None,
@@ -363,6 +366,15 @@ class DeltaData:
             [self.cached_netdata, self.netdata], axis="rows", ignore_index=True
         )
         
+        # ensure column order
+        self.netdata = self.netdata[[
+            "s_num_nodes", "s_weighted_mean_degree", "s_num_component",
+            "s_avg_clustering_coef", "s_largest_component", "s_graph_density",
+            "t_num_dev_nodes", "t_num_file_nodes", "t_num_dev_per_file",
+            "t_num_file_per_dev", "t_graph_density", "proj_name", "month",
+            "st_num_dev", "t_net_overlap", "s_net_overlap"
+        ]]
+        
         # export to cache
         self.save_data()
 
@@ -398,16 +410,73 @@ class DeltaData:
 
 
     # predictions & trajectories
-    def gen_forecasts(self) -> dict[int, float]:
+    def gen_forecasts(self, model_arch: str="BLSTM", **kwargs) -> dict[int, float]:
         """Generates the forecasts for all new months of data for export back.
         Caches the result within the object for easy tasks in the future.
+
+        Args:
+            model_arch (str, optional): model architecture to use {BLSTM, BGRU}.
+                Defaults to "BLSTM".
 
         Returns:
             dict[int, float]: month number to sustainability forecast for that 
                 month.
         """
         
-        pass
+        # aux functions
+        def apply_augs(augs: str="cbn")
+        
+        def gen_tensors():
+            # track in a dictionary format
+            data_dict = {}
+            drop_cols = [
+                "proj_name", 
+                "month",
+                "s_largest_component"   # hardcode the `c` strat for netdata
+            ]
+
+            # convert to list representation
+            data_dict = self.netdata.drop(drop_cols, axis=1).values.tolist().to_dict()
+
+            # convert to tensor form
+            return torch.tensor(data_dict)
+        
+        # convert to tensor for use in the model
+        num_months = self.netdata.shape[0]
+        
+        ##
+        X = 
+        
+        # load in model
+        model = None
+        
+        match model_arch:
+            case "BLSTM":
+                model = BGNN()
+        
+        # generate forecasts
+        preds = dict()
+        for i in range(1, num_months):
+            # grab the first i months
+            data = X[:i, ...]
+            
+            # transform data to use
+            data = data.to(DEVICE)
+            data = data.reshape(1, data.shape[0], -1)
+            
+            # generate raw prob forecast
+            preds = self.model.predict(data)[:, 1].to(DEVICE)
+
+            # concatenate lists
+            preds[i - 1] = preds.cpu().detach().numpy()[0]
+
+        # save & export
+        forecast_dir = Path(params_dict["forecast-dir"])
+        
+        with open(forecast_dir / f"{self.proj_name}.json") as f:
+            dump(preds, f, indent=4)
+            
+        self.forecasts = preds
     
     def gen_trajectories(self) -> dict[int, dict[str, list[float]]]:
         pass
