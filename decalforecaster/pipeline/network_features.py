@@ -146,10 +146,11 @@ def get_net_overlap(net1, net2):
 
 
 # ---------------- network features calculation ---------------- #
-def calc_net_features(t_path: str, s_path: str, proj_inc_path: str, outfile_path: str):
+def calc_net_features(t_path: str, s_path: str, proj_inc: dict | str | Path, outfile_path: str | Path):
     # setup
     s_nets = set(os.listdir(s_path))
     t_nets = set(os.listdir(t_path))
+    
     # have either socio or technical netowrks
     nets = s_nets.union(t_nets)
 
@@ -162,10 +163,13 @@ def calc_net_features(t_path: str, s_path: str, proj_inc_path: str, outfile_path
         projects[project_name].add(int(period.replace(".edgelist", "")))
     for project_name in projects:
         projects[project_name] = sorted(list(projects[project_name]))
-
+    
     # incubation time
-    with open(proj_inc_path, "r") as f:
-        project_incubation_dict = json.load(f)
+    if isinstance(proj_inc, dict):
+        project_incubation_dict = proj_inc
+    else:
+        with open(proj_inc, "r") as f:
+            project_incubation_dict = json.load(f)
 
     # generate network data
     df = pd.DataFrame()
@@ -177,21 +181,21 @@ def calc_net_features(t_path: str, s_path: str, proj_inc_path: str, outfile_path
         # may not have the network data
         for month in range(project_incubation_dict.get(project_name, 0)):
             net_file = "{}__{}.edgelist".format(project_name, month)
-            social_net_path = s_path + net_file
-            tech_net_path = t_path + net_file
+            social_net_path = s_path / net_file
+            tech_net_path = t_path / net_file
             
             # remove extension
             s_net_features = cal_social_net(social_net_path)
             t_net_features = cal_tech_net(tech_net_path)
             # calculating network overlap
-            last_t_network = t_path + "{}__{}.edgelist".format(project_name, month-1)
+            last_t_network = t_path / "{}__{}.edgelist".format(project_name, month-1)
             if not os.path.exists(last_t_network) or not os.path.exists(tech_net_path):
                 t_net_overlap = 0
             else:
                 t_net_overlap = get_net_overlap(tech_net_path, last_t_network)
                 t_total.append(t_net_overlap)
 
-            last_s_network = s_path + "{}__{}.edgelist".format(project_name, month-1)
+            last_s_network = s_path / "{}__{}.edgelist".format(project_name, month-1)
             if not os.path.exists(last_s_network) or not os.path.exists(social_net_path):
                 s_net_overlap = 0
             else:
@@ -216,7 +220,7 @@ def calc_net_features(t_path: str, s_path: str, proj_inc_path: str, outfile_path
 
 
 # ---------------- script ---------------- #
-def extract_features(args_dict: dict):
+def extract_features(args_dict: dict[str, str | int | float], incubation_time: dict[str, int]=None):
     """
         Wrapper for extracting network features.
     """
@@ -230,15 +234,17 @@ def extract_features(args_dict: dict):
     params_dict = util._load_params()
     social_type = params_dict["social-type"][incubator]
     tech_type = params_dict["tech-type"][incubator]
-    network_dir = params_dict["network-dir"]
+    network_dir = Path(params_dict["network-dir"])
 
-    t_path = f"{network_dir}/{incubator}_{tech_type}/"
-    s_path = f"{network_dir}/{incubator}_{social_type}/"
-    proj_inc_path = params_dict["incubation-time"][incubator]
-    outfile_path = f"{network_dir}/netdata/{incubator}-network-data.csv"
+    t_path = network_dir / f"{incubator}_{tech_type}"
+    s_path = network_dir / f"{incubator}_{social_type}"
+    
+    proj_inc = incubation_time if incubation_time is not None else \
+        Path(params_dict["incubation-time"][incubator])
+    outfile_path = network_dir / "netdata" / f"{incubator}-network-data.csv"
 
     # dispatch
-    calc_net_features(t_path, s_path, proj_inc_path, outfile_path)
+    calc_net_features(t_path, s_path, proj_inc, outfile_path)
 
 
 if __name__ == "__main__":

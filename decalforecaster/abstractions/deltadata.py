@@ -90,7 +90,7 @@ def _route_preprocesses(data: dict[str, pd.DataFrame], tasks: list[str],
     # return if needed
     return data if not inplace else None
 
-def _cache_path(proj_name: str, **kwargs) -> Path:
+def _gen_cache_path(proj_name: str, **kwargs) -> Path:
     """Generates a path to load/save the cached netdata.
 
     Args:
@@ -102,10 +102,6 @@ def _cache_path(proj_name: str, **kwargs) -> Path:
     
     # return the formulation
     path = Path(params_dict["delta-cache-dir"]) / f"{proj_name}.csv"
-    
-    if not path.exists():
-        path.touch(exist_ok=False)
-    
     return path
 
 def _load_cached_data(proj_name: str) -> pd.DataFrame:
@@ -120,7 +116,7 @@ def _load_cached_data(proj_name: str) -> pd.DataFrame:
     """
     
     # generate the path
-    path = _cache_path(proj_name)
+    path = _gen_cache_path(proj_name)
     
     # check the file
     if not path.exists():
@@ -209,7 +205,7 @@ class DeltaData:
         # merge & save
         proj_incubation = {k: max(t_proj_incubation.get(k, 0), s_proj_incubation.get(k, 0)) for k in all_proj}
         proj_incubation = dict(sorted(proj_incubation.items()))
-        proj_incubation = {k: int(v) for k, v in proj_incubation.items()}
+        proj_incubation = {k: int(v) - self.last_cached_month + 1 for k, v in proj_incubation.items()}
 
         # save in memory itself
         self.incubations = proj_incubation
@@ -251,8 +247,8 @@ class DeltaData:
         """
 
         # save
-        path = _cache_path(self.proj_name)
-        util._check_dir(path)
+        path = _gen_cache_path(self.proj_name)
+        util._check_path(path)
         self.netdata.to_csv(path, index=False)
 
 
@@ -279,7 +275,7 @@ class DeltaData:
             """
             
             # make the directory if not already
-            save_dir.mkdir(exist_ok=True)
+            save_dir.mkdir(parents=True, exist_ok=True)
             
             # generate lookup for each project
             df = dict(tuple(df.groupby("project_name")))
@@ -298,8 +294,10 @@ class DeltaData:
                     # skip empty data
                     if monthly_df.empty: continue
                     
-                    # save
-                    file_path = save_dir / f"{project}__{str(int(month))}.parquet"
+                    # offset each month to treat as a new project--helps avoid
+                    # some padding that happens later on in the pipeline; save
+                    # to file
+                    file_path = save_dir / f"{project}__{str(int(month) - start_month)}.parquet"
                     monthly_df.to_parquet(file_path, engine=PARQUET_ENGINE, index=False)
                     
             # end fn
@@ -339,18 +337,28 @@ class DeltaData:
         
         # create the edgelists, extract features from the networks on disk
         create_networks(self.delta_args)
-        extract_features(self.delta_args)
+        extract_features(self.delta_args, self.incubations)
         
         # compile data into memory
-        net_path = Path(params_dict["network-dir"]) / "netdata" / f"{self.incubator}-network-data.csv"
+        data_dir = Path(params_dict["dataset-dir"]) / f"{self.incubator}_data"
+        network_dir = Path(params_dict["network-dir"])
+        t_type = params_dict["tech-type"][INCUBATOR_ALIAS]
+        s_type = params_dict["social-type"][INCUBATOR_ALIAS]
+        
+        net_path = network_dir / "netdata" / f"{self.incubator}-network-data.csv"
         self.netdata = pd.read_csv(net_path, engine=CSV_ENGINE)
         
         # clear space to reduce disk usage
-        util._clear_dir(f"{self.incubator}_data/", skip_input=True)
-        util._check_dir(f"{self.incubator}_data/")
+        util._clear_dir(data_dir, skip_input=True)
+        util._clear_dir(network_dir / f"{self.incubator}_{t_type}", skip_input=True)
+        util._clear_dir(network_dir / f"{self.incubator}_{s_type}", skip_input=True)
+        
+        util._check_dir(data_dir)
         util._del_file(net_path)
         
-        # combine network data (vertical stacking, essentially)
+        # combine network data (vertical stacking, essentially); ensure to 
+        # remove the extra rows created and we make-up for the month offset
+        self.netdata["month"] += self.last_cached_month
         self.netdata = pd.concat(
             [self.cached_netdata, self.netdata], axis="rows", ignore_index=True
         )
@@ -403,25 +411,20 @@ class DeltaData:
     
     def gen_trajectories(self) -> dict[int, dict[str, list[float]]]:
         pass
-    
-    
-    
 
 
 # Testing
 if __name__ == "__main__":
+    data_dir = Path().cwd() / "data" / "ospos_data"
     dd = DeltaData(
         proj_name="spark",
-        tdata=pd.DataFrame(
-            {'project_name': ['spark'], 'list_name': ['commits'], 'date': ['2013-07-08 13:42:05'], 'month': [8], 'message_id': ['<20130708134205.887D2238888A@eris.apache.org>'], 'sender_name': ['mattmann'], 'sender_email': ['mattmann@apache.org'], 'author_name': ['mattmann'], 'author_email': [None], 'file_name': ['incubator/spark/site/index.html'], 'loc': [0], 'ref_or_sha': ['1500725'], 'subject': ['svn commit: r1500725 - /incubator/spark/site/index.html'], 'commit_type': ['svn'], 'author_full_name': ['chris mattmann'], 'is_bot': [False], 'is_coding': [True], 'dealised_author_full_name': ['Chris Mattmann']}
-        ),
-        sdata=pd.DataFrame(
-            {'project_name': ['spark'], 'list_name': ['dev'], 'date': ['2013-06-22 00:03:10'], 'month': [8], 'message_id': ['<CDEA37A7.EA74B%chris.a.mattmann@jpl.nasa.gov>'], 'sender_name': ['Mattmann, Chris A (398J)'], 'references': [None], 'sender_email': ['chris.a.mattmann@jpl.nasa.gov'], 'in_reply_to': ['<CALuGr6Yo+5+OEWKW3a_REHKzTfLn7QMjAgpFBbwGXyGLdKrB5A@mail.gmail.com>'], 'cc_list': ['Matt Massie <massie@cs.berkeley.edu>, Reynold Xin <rxin@cs.berkeley.edu>,\n        Matei Zaharia <matei@apache.org>, Ankur Dave <ankurdave@gmail.com>,\n        "Tathagata Das" <tdas@eecs.berkeley.edu>,\n        Haoyuan Li\n\t<haoyuan@cs.berkeley.edu>,\n        "Josh Rosen" <joshrosen@cs.berkeley.edu>,\n        Shivaram\n Venkataraman <shivaram@eecs.berkeley.edu>,\n        Mosharaf Chowdhury\n\t<mosharaf@cs.berkeley.edu>,\n        Charles Reiss <charles@eecs.berkeley.edu>,\n        Andy\n Konwinski <andykonwinski@gmail.com>,\n        Patrick Wendell\n\t<pwendell@eecs.berkeley.edu>,\n        Imran Rashid <imran@quantifind.com>,\n        Ryan\n LeCompte <lecompte@gmail.com>,\n        "Ravi Pandya" <ravip@exchange.microsoft.com>,\n        Ram Sriharsha <harshars@yahoo-inc.com>,\n        Robert Evans <evans@yahoo-inc.com>,\n        "Mridul Muralidharan" <mridulm@yahoo-inc.com>,\n        Thomas Dudziak\n\t<tomdz@clearstorydata.com>,\n        Mark Hamstra <mark@clearstorydata.com>,\n        "Stephen\n Haberman" <stephen.haberman@gmail.com>,\n        Jason Dai <jason.dai@intel.com>,\n        "Shane Huang" <shannie.huang@gmail.com>,\n        Andrew xia <xiajunluan@gmail.com>,\n        "Nick Pentreath" <nick.pentreath@gmail.com>,\n        Sean McNamara\n\t<sean.mcnamara@webtrends.com>,\n        "Ramirez, Paul M (398J)"\n\t<paul.m.ramirez@jpl.nasa.gov>,\n        Roman Shaposhnik <rvs@apache.org>, "Suresh\n Marru" <smarru@apache.org>,\n        "Hart, Andrew F (398J)"\n\t<Andrew.F.Hart@jpl.nasa.gov>,\n        "dev@spark.incubator.apache.org"\n\t<dev@spark.incubator.apache.org>'], 'receiver_email': ['Henry Saputra <henry.saputra@gmail.com>'], 'subject': ['Re: Apache Spark podling: Created!'], 'from_commit': [0], 'author_full_name': ['mattmann chris a'], 'is_bot': [False], 'dealised_author_full_name': ['Mattmann, Chris A (398J)']}
-        ),
+        tdata=pd.read_parquet(data_dir / "test_commits.parquet"),
+        sdata=pd.read_parquet(data_dir / "test_issues.parquet"),
         tasks=["ALL"]
     )
     dd.monthwise_split()
     dd.gen_networks()
+    print(dd.netdata)
     dd.vis_networks()
-    dd.netdata.to_csv("./temp.csv", index=False)
+    # dd.netdata.to_csv("./temp.csv", index=False)
     

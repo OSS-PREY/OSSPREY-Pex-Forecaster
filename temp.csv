@@ -1,9 +1,0 @@
-s_num_nodes,s_weighted_mean_degree,s_num_component,s_avg_clustering_coef,s_largest_component,s_graph_density,t_num_dev_nodes,t_num_file_nodes,t_num_dev_per_file,t_num_file_per_dev,t_graph_density,proj_name,month,st_num_dev,t_net_overlap,s_net_overlap
-0,0,0,0,0,0,0,0,0,0,0,spark,0,0,0,0
-0,0,0,0,0,0,0,0,0,0,0,spark,1,0,0,0
-0,0,0,0,0,0,0,0,0,0,0,spark,2,0,0,0
-0,0,0,0,0,0,0,0,0,0,0,spark,3,0,0,0
-0,0,0,0,0,0,0,0,0,0,0,spark,4,0,0,0
-0,0,0,0,0,0,0,0,0,0,0,spark,5,0,0,0
-0,0,0,0,0,0,0,0,0,0,0,spark,6,0,0,0
-0,0,0,0,0,0,0,0,0,0,0,spark,7,0,0,0

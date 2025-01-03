@@ -96,9 +96,9 @@ def net_vis_info(args_dict: dict[str, Any]) -> dict[str, list[list[str | int]]]:
     s_output_dir = base_dir / f"{args_dict['incubator']}_{social_type}/"
 
     # setup & prepare (clear output dirs, get iteration list)
-    util._clear_dir(t_output_dir)
+    util._clear_dir(t_output_dir, skip_input=True)
     util._check_dir(t_output_dir)
-    util._clear_dir(s_output_dir)
+    util._clear_dir(s_output_dir, skip_input=True)
     util._check_dir(s_output_dir)
 
     s_nets = set(os.listdir(s_dir))

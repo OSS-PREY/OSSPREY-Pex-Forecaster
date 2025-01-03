@@ -47,7 +47,6 @@ def _load_paths(incubator: str, versions: dict[str, str], ext: str = "parquet") 
         for data_type, paths in params_dict["augmentations"][incubator].items()
     }
 
-
 def _load_data(paths: dict[str, str], dtypes: dict=None) -> dict[str, pd.DataFrame]:
     """
         Loads the paths from the params dictionary and the previously defined 
@@ -84,7 +83,6 @@ def _load_data(paths: dict[str, str], dtypes: dict=None) -> dict[str, pd.DataFra
     # export
     return ret
 
-
 def _save_data(data_lookup: dict[str, pd.DataFrame], incubator: str, new_version: dict[str, str]):
     """
         Saves the rawdata (tech & social) by their new version ids.
@@ -102,7 +100,6 @@ def _save_data(data_lookup: dict[str, pd.DataFrame], incubator: str, new_version
     util._log(f"saved social...")
     util._log(f"done!")
 
-
 def _memory_usage(data_lookup: dict[str, pd.DataFrame]) -> None:
     """
         Prints how much memory the lookup is using.
@@ -113,7 +110,6 @@ def _memory_usage(data_lookup: dict[str, pd.DataFrame]) -> None:
     # print memory usage
     for dt, df in data_lookup.items():
         print(df.memory_usage(deep=True))
-
 
 def _validate_data(data_lookup: dict[str, pd.DataFrame]) -> bool:
     """
@@ -221,7 +217,6 @@ def clean_file_paths(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
     # return reference
     return data_lookup
 
-
 def clean_sender_names(data_lookup: dict[str, pd.DataFrame], incubator: str=None, copy: bool=False) -> dict[str, pd.DataFrame]:
     """
         Cleans sender names of any extraneous characters that may interfere with 
@@ -268,7 +263,6 @@ def clean_sender_names(data_lookup: dict[str, pd.DataFrame], incubator: str=None
     print(f"Number of {field} Entries Corrected: {num_changed}")
     print(f"Corrected {num_changed / num_entries}% of the data")
     return data_lookup
-
 
 def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incubator: str=None, copy: bool=False) -> dict[str, pd.DataFrame]:
     """
@@ -356,7 +350,6 @@ def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incu
     # export
     return data_lookup
 
-
 def impute_messageid(data_lookup: dict[str, pd.DataFrame], incubator: str=None, copy: bool=True) -> dict[str, pd.DataFrame]:
     """
         Generates a unique messageid from project, sender, timestamp. This 
@@ -428,7 +421,6 @@ def impute_messageid(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
 
     # export
     return data_lookup
-
 
 def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, copy: bool=True) -> dict[str, pd.DataFrame]:
     """
@@ -505,7 +497,6 @@ def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, cop
     # export
     return data_lookup
 
-
 def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str=None, copy: bool=True) -> dict[str, pd.DataFrame]:
     """
         Ensure that only coding files are used for technical network generation 
@@ -578,7 +569,6 @@ def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str=None
 
     # export
     return data_lookup
-
 
 def infer_bots(data_lookup: dict[str, pd.DataFrame], incubator: str, threshold: float=0.05, copy: bool=True) -> dict[str, pd.DataFrame]:
     """
@@ -713,7 +703,6 @@ def infer_bots(data_lookup: dict[str, pd.DataFrame], incubator: str, threshold: 
     with open(ref_dir / f"{incubator}_social_bots_removed.json", "w") as f:
         json.dump(social_bots, f, indent=4)
     return data_lookup
-
 
 def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source_field: str="", \
                     sim_threshold: float=0.9, dev_threshold: int=6000, \
@@ -1133,7 +1122,7 @@ class RawData:
                 incubator=self.incubator, 
                 new_version={"tech": 1, "social": 1}
             )
-            
+    
 
     # utility
     def validate_data(self):
@@ -1227,7 +1216,6 @@ class RawData:
         # check the columns have valid data (heuristics-driven, not 
         # comprehensive)
 
-
     def gen_proj_incubation(self):
         """
             Generates the lookup for project lengths. Uses the maximum recorded 
@@ -1242,11 +1230,10 @@ class RawData:
         # merge & save
         proj_incubation = {k: max(t_proj_incubation.get(k, 0), s_proj_incubation.get(k, 0)) for k in all_proj}
         proj_incubation = dict(sorted(proj_incubation.items()))
-        proj_incubation = {k: int(v) for k, v in proj_incubation.items()}
+        proj_incubation = {k: int(v) + 1 for k, v in proj_incubation.items()}
 
         with open(params_dict["incubation-time"][self.incubator], "w") as f:
             json.dump(proj_incubation, f, indent=4)
-
 
     def check_missing_data(self, cols: list[str]=None) -> None:
         """
@@ -1278,7 +1265,6 @@ class RawData:
         # social & tech
         missing_data_util(dtype="tech", cols=cols)
         missing_data_util(dtype="social", cols=cols)
-
 
     def save_data(self) -> None:
         """

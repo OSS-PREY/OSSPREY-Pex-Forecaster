@@ -1,9 +1,609 @@
 [
     {
-        "chris mattmann": {
+        "aaron davidson": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.015466101694915255,
+            "is-bot": 0
+        }
+    },
+    {
+        "ahir reddy": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00014124293785310735,
+            "is-bot": 0
+        }
+    },
+    {
+        "andrew ash": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0004943502824858757,
+            "is-bot": 0
+        }
+    },
+    {
+        "andrew or": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.04074858757062147,
+            "is-bot": 0
+        }
+    },
+    {
+        "andrew tulloch": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.001059322033898305,
+            "is-bot": 0
+        }
+    },
+    {
+        "andrew xia": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0002824858757062147,
+            "is-bot": 0
+        }
+    },
+    {
+        "andy konwinski": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00346045197740113,
+            "is-bot": 0
+        }
+    },
+    {
+        "ankur dave": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0049435028248587575,
+            "is-bot": 0
+        }
+    },
+    {
+        "azuryyu": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00014124293785310735,
+            "is-bot": 0
+        }
+    },
+    {
+        "bijay bisht": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0002824858757062147,
+            "is-bot": 0
+        }
+    },
+    {
+        "binh nguyen": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.001271186440677966,
+            "is-bot": 0
+        }
+    },
+    {
+        "bouke van der bijl": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00014124293785310735,
+            "is-bot": 0
+        }
+    },
+    {
+        "bryn keller": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00014124293785310735,
+            "is-bot": 0
+        }
+    },
+    {
+        "chen chao": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.062146892655367e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "christian lundgren": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00014124293785310735,
+            "is-bot": 0
+        }
+    },
+    {
+        "codingcat": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015536723163841809,
+            "is-bot": 0
+        }
+    },
+    {
+        "eklavya": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.000423728813559322,
+            "is-bot": 0
+        }
+    },
+    {
+        "erik selin": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.062146892655367e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "ewen cheslackpostava": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00014124293785310735,
+            "is-bot": 0
+        }
+    },
+    {
+        "frank dai": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.009463276836158193,
+            "is-bot": 0
+        }
+    },
+    {
+        "grega kespret": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.000211864406779661,
+            "is-bot": 0
+        }
+    },
+    {
+        "harvey": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.062146892655367e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "harvey feng": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006285310734463277,
+            "is-bot": 0
+        }
+    },
+    {
+        "henry saputra": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.01461864406779661,
+            "is-bot": 0
+        }
+    },
+    {
+        "holden karau": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0009887005649717514,
+            "is-bot": 0
+        }
+    },
+    {
+        "hossein falaki": {
             "substring": 0,
             "outlier": 1,
-            "proportion": 1.0,
+            "proportion": 0.0576271186440678,
+            "is-bot": 0
+        }
+    },
+    {
+        "jerryshao": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00014124293785310735,
+            "is-bot": 0
+        }
+    },
+    {
+        "jey kottalam": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.062146892655367e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "jianping j wang": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00014124293785310735,
+            "is-bot": 0
+        }
+    },
+    {
+        "joseph e gonzalez": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0004943502824858757,
+            "is-bot": 0
+        }
+    },
+    {
+        "josh rosen": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0022598870056497176,
+            "is-bot": 0
+        }
+    },
+    {
+        "jyotiska": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0002824858757062147,
+            "is-bot": 0
+        }
+    },
+    {
+        "kay ousterhout": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.03672316384180791,
+            "is-bot": 0
+        }
+    },
+    {
+        "kevin mader": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.062146892655367e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "kousuke saruta": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.062146892655367e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "lian": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.001694915254237288,
+            "is-bot": 0
+        }
+    },
+    {
+        "liguoqiang": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00557909604519774,
+            "is-bot": 0
+        }
+    },
+    {
+        "luca rosellini": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.004661016949152543,
+            "is-bot": 0
+        }
+    },
+    {
+        "mark hamstra": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0023305084745762713,
+            "is-bot": 0
+        }
+    },
+    {
+        "martin jaggi": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.000635593220338983,
+            "is-bot": 0
+        }
+    },
+    {
+        "matei alexandru zaharia": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.01652542372881356,
+            "is-bot": 0
+        }
+    },
+    {
+        "matei zaharia": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.04858757062146893,
+            "is-bot": 0
+        }
+    },
+    {
+        "mridul muralidharan": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.000423728813559322,
+            "is-bot": 0
+        }
+    },
+    {
+        "nick pentreath": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.012570621468926554,
+            "is-bot": 0
+        }
+    },
+    {
+        "nirmalreddy": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.017372881355932204,
+            "is-bot": 0
+        }
+    },
+    {
+        "patrick wendell": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.2181497175141243,
+            "is-bot": 0
+        }
+    },
+    {
+        "pillis": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0002824858757062147,
+            "is-bot": 0
+        }
+    },
+    {
+        "prabeesh": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0005649717514124294,
+            "is-bot": 0
+        }
+    },
+    {
+        "prabeesh k": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.062146892655367e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "prashant sharma": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.06610169491525424,
+            "is-bot": 0
+        }
+    },
+    {
+        "punya biswal": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0016242937853107344,
+            "is-bot": 0
+        }
+    },
+    {
+        "qiuzhuang lian": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0002824858757062147,
+            "is-bot": 0
+        }
+    },
+    {
+        "qqsun": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00014124293785310735,
+            "is-bot": 0
+        }
+    },
+    {
+        "raymond liu": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.027824858757062147,
+            "is-bot": 0
+        }
+    },
+    {
+        "reynold xin": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.05360169491525424,
+            "is-bot": 0
+        }
+    },
+    {
+        "reza zadeh": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.06666666666666667,
+            "is-bot": 0
+        }
+    },
+    {
+        "ronggu": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.062146892655367e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "sandy ryza": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0009180790960451978,
+            "is-bot": 0
+        }
+    },
+    {
+        "saurabh rawat": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0002824858757062147,
+            "is-bot": 0
+        }
+    },
+    {
+        "sean owen": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.015395480225988701,
+            "is-bot": 0
+        }
+    },
+    {
+        "semih salihoglu": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00014124293785310735,
+            "is-bot": 0
+        }
+    },
+    {
+        "shanehuang": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.007274011299435028,
+            "is-bot": 0
+        }
+    },
+    {
+        "shivaram venkataraman": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0016242937853107344,
+            "is-bot": 0
+        }
+    },
+    {
+        "sproblvem": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.062146892655367e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "stevo slavi": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00035310734463276836,
+            "is-bot": 0
+        }
+    },
+    {
+        "sundeep narravula": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00014124293785310735,
+            "is-bot": 0
+        }
+    },
+    {
+        "takuya ueshin": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.062146892655367e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "tathagata das": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.16836158192090395,
+            "is-bot": 0
+        }
+    },
+    {
+        "thomas graves": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0033192090395480225,
+            "is-bot": 0
+        }
+    },
+    {
+        "tor myklebust": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0044491525423728815,
+            "is-bot": 0
+        }
+    },
+    {
+        "walker": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.03093220338983051,
+            "is-bot": 0
+        }
+    },
+    {
+        "wangdatan": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.017584745762711865,
+            "is-bot": 0
+        }
+    },
+    {
+        "william benton": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0005649717514124294,
+            "is-bot": 0
+        }
+    },
+    {
+        "xiangrui meng": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0019774011299435027,
+            "is-bot": 0
+        }
+    },
+    {
+        "xusen yin": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00014124293785310735,
+            "is-bot": 0
+        }
+    },
+    {
+        "yinan li": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00014124293785310735,
             "is-bot": 0
         }
     }

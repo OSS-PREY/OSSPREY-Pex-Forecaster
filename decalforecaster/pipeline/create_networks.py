@@ -223,8 +223,8 @@ def create_networks(args_dict: dict[str, Any]):
     # ensure clean save
     util._check_dir(t_output_dir)
     util._check_dir(s_output_dir)
-    util._clear_dir(t_output_dir)
-    util._clear_dir(s_output_dir)
+    util._clear_dir(t_output_dir, skip_input=True)
+    util._clear_dir(s_output_dir, skip_input=True)
     util._check_dir(mapping_out_dir)
 
     # process
