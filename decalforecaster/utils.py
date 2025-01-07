@@ -119,7 +119,7 @@ def _clear_dir(dir: str | Path, skip_input: bool=False) -> None:
                 return
     
     # remove
-    print("\t\t<clearing previous trials>")
+    print("<Clearing Previous Trials>")
     shutil.rmtree(dir)
 
 
@@ -139,7 +139,7 @@ def _del_file(path: str | Path) -> None:
 
 
 def _log(msg: str="", log_type: str="log", output: str="console",
-         file_name: str="logger") -> None:
+    file_name: str="logger") -> None:
     """
         Logs a different message depending on the type fed in.
 
@@ -162,16 +162,16 @@ def _log(msg: str="", log_type: str="log", output: str="console",
     # match type
     match log_type:
         case "log":
-            output_router[output](f"<log> {msg.capitalize()}")
+            output_router[output](f"Log> {msg.capitalize()}")
         
         case "warning":
-            output_router[output](f"<WARNING> {msg}")
+            output_router[output](f"WARNING> {msg}")
         
         case "error":
-            output_router[output](f"<ERROR> {msg}")
+            output_router[output](f"ERROR> {msg}")
         
         case "note":
-            output_router[output](f"<Note> {msg}")
+            output_router[output](f"Note> {msg}")
         
         case "debug":
             output_router[output](f"\n < DEBUGGING > {msg}")

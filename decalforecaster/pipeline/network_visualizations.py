@@ -25,14 +25,14 @@ from decalforecaster.utils import PARQUET_ENGINE, CSV_ENGINE
 
 
 # ---------------- processing utility ---------------- #
-def tech_net_info(t_path: str) -> list[list[str | int]]:
+def tech_net_info(t_path: Path) -> list[list[str | int]]:
     """
         Generates a JSON formatted file given the input net file for the 
         technical network edges (per month).
     """
 
     # check file
-    if not os.path.exists(t_path) or os.stat(t_path).st_size == 0:
+    if not t_path.exists() or t_path.stat().st_size == 0:
         return [[]]
 
     # read in file
@@ -47,14 +47,14 @@ def tech_net_info(t_path: str) -> list[list[str | int]]:
     # export
     return list_df
 
-def social_net_info(s_path: str) -> list[list[str | int]]:
+def social_net_info(s_path: Path) -> list[list[str | int]]:
     """
         Generates a JSON formatted file given the input net file for the social 
         network edges (per month).
     """
 
     # check file
-    if not os.path.exists(s_path) or os.stat(s_path).st_size == 0:
+    if not s_path.exists() or s_path.stat().st_size == 0:
         return [[]]
 
     # read in file
@@ -85,17 +85,16 @@ def net_vis_info(args_dict: dict[str, Any]) -> dict[str, list[list[str | int]]]:
     tech_type = params_dict["tech-type"][args_dict["incubator"]]
     network_dir = Path(params_dict["network-dir"])
 
-    mapping_path = network_dir / f"mappings/{args_dict['incubator']}-mapping.csv"
     t_dir = network_dir / f"{args_dict['incubator']}_{tech_type}/"
     s_dir = network_dir / f"{args_dict['incubator']}_{social_type}/"
     proj_inc_path = params_dict["incubation-time"][args_dict["incubator"]]
 
-    base_dir = network_dir / f"net-vis/"
-    util._check_dir(base_dir)
+    base_dir = Path(params_dict["network-visualization-dir"])
     t_output_dir = base_dir / f"{args_dict['incubator']}_{tech_type}/"
     s_output_dir = base_dir / f"{args_dict['incubator']}_{social_type}/"
 
     # setup & prepare (clear output dirs, get iteration list)
+    util._check_dir(base_dir)
     util._clear_dir(t_output_dir, skip_input=True)
     util._check_dir(t_output_dir)
     util._clear_dir(s_output_dir, skip_input=True)
@@ -129,7 +128,7 @@ def net_vis_info(args_dict: dict[str, Any]) -> dict[str, list[list[str | int]]]:
         # may not have the network data
         for month in range(project_incubation_dict.get(project_name, 0)):
             # unpack file directions
-            net_file = "{}__{}.json".format(project_name, month)
+            net_file = "{}__{}.edgelist".format(project_name, month)
             tech_net_path = t_dir / net_file
             social_net_path = s_dir / net_file
 

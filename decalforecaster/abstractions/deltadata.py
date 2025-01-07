@@ -192,6 +192,8 @@ class DeltaData:
 
         # pre-processing
         _route_preprocesses(self.data, self.tasks)
+        # self.route_tasks()
+        # self.clean_disk()
 
 
     # internal utility
@@ -278,6 +280,7 @@ class DeltaData:
         t_type = params_dict["tech-type"][INCUBATOR_ALIAS]
         s_type = params_dict["social-type"][INCUBATOR_ALIAS]
         net_path = network_dir / "netdata" / f"{self.incubator}-network-data.csv"
+        mapping_path = network_dir / "mappings" / f"{self.incubator}-network-data.csv"
         
         util._clear_dir(data_dir, skip_input=True)
         util._clear_dir(network_dir / f"{self.incubator}_{t_type}", skip_input=True)
@@ -285,6 +288,7 @@ class DeltaData:
         
         util._check_dir(data_dir)
         util._del_file(net_path)
+        util._del_file(mapping_path)
 
 
     # split by month
@@ -429,22 +433,27 @@ class DeltaData:
         self.net_vis = net_vis_info(self.delta_args)
         
         # update old visualizations if possible and re-store
-        vis_path = Path(params_dict["network-dir"]) / "net_vis" / f"{self.incubator}.json"
+        vis_path = Path(params_dict["network-visualization-dir"]) / f"{self.proj_name}.json"
+        util._check_path(vis_path)
         
         if vis_path.exists():
+            # load & ensure data types
             with open(vis_path, "r") as f:
-                old_vis = json.load(self.net_vis, f, indent=0)
+                old_vis = json.load(f)
+            old_vis = {
+                "tech": {int(k): v for k, v in old_vis["tech"].items()},
+                "social": {int(k): v for k, v in old_vis["social"].items()}
+            }
         else:
             old_vis = {
                 "tech": dict(),
                 "social": dict()
             }
 
-        print(self.net_vis, old_vis)
-        self.net_vis["tech"].update(old_vis["tech"])
-        self.net_vis["social"].update(old_vis["social"])
-        self.net_vis["tech"] = dict(sorted(self.net_vis["tech"]))
-        self.net_vis["social"] = dict(sorted(self.net_vis["social"]))
+        old_vis["tech"].update(self.net_vis["tech"])
+        old_vis["social"].update(self.net_vis["social"])
+        self.net_vis["tech"] = dict(sorted(old_vis["tech"].items()))
+        self.net_vis["social"] = dict(sorted(old_vis["social"].items()))
         
         with open(vis_path, "w") as f:
             json.dump(self.net_vis, f, indent=0)
@@ -650,7 +659,7 @@ class DeltaData:
         # generate via the strategy selected
         lag = min(3, len(self.forecasts))
         k = nmonths
-        forecasts = np.array(dict(sorted(self.forecasts.items())).values())
+        forecasts = np.array(list(dict(sorted(self.forecasts.items())).values()))
         trajs = route_traj(
             forecast=forecasts, strat=strat, lag=lag, k=k
         )
@@ -678,6 +687,15 @@ class DeltaData:
         return trajs
 
 
+    # router
+    def router(self) -> None:
+        """Routes all requested tasks. Any results will be cached in memory 
+        within the abstraction itself. Any necessary caching occurs 
+        automatically to disk.
+        """
+        
+        pass
+
 # Testing
 if __name__ == "__main__":
     data_dir = Path().cwd() / "data" / "ospos_data"
@@ -691,8 +709,9 @@ if __name__ == "__main__":
     )
     dd.monthwise_split()
     dd.gen_networks()
-    # dd.vis_networks()
+    dd.vis_networks()
     dd.gen_forecasts()
+    dd.gen_trajectories()
     
     # second batch
     dd = DeltaData(
@@ -703,9 +722,9 @@ if __name__ == "__main__":
     )
     dd.monthwise_split()
     dd.gen_networks()
-    # dd.vis_networks()
+    dd.vis_networks()
     dd.gen_forecasts()
+    dd.gen_trajectories()
     
     (Path().cwd() / "network-data" / "caches" / "spark.csv").unlink()
-
 
