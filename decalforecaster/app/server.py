@@ -58,6 +58,7 @@ def pull_raw_data():
         - *(pp-replies): Pre-processing via Reply Inferencing
         - *(pp-bots): Pre-processing via Bot Inference
         - *(pp-de-alias): Pre-processing via De-Aliasing
+        - (ALL): Shorthand to compute all pre-processing steps possible
         - (net-gen) Network Generation
         - (net-vis) Network Visualization
         - (forecast) Forecast predictions
@@ -216,6 +217,7 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
     to avoid re-computing any information.
 
     Args:
+        tasks (list[str]): tasks to complete.
         data (dict[str, Any]): data package from the request.
 
     Returns:

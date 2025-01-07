@@ -35,6 +35,7 @@ from decalforecaster.abstractions.tsmodel import *
 from decalforecaster.pipeline.create_networks import create_networks
 from decalforecaster.pipeline.network_features import extract_features
 from decalforecaster.pipeline.network_visualizations import net_vis_info
+from decalforecaster.algorithms.trajectory import route_traj
 
 # constants & setup parallel processing
 NUM_PROCESSES = cpu_count()
@@ -613,8 +614,29 @@ class DeltaData:
             
         self.forecasts = fcs
     
-    def gen_trajectories(self) -> dict[int, dict[str, list[float]]]:
-        pass
+    def gen_trajectories(self, nmonths: int=3, strat: str="AR") -> dict[int, dict[str, list[float]]]:
+        """Generates the trajectories for each month requested using the given
+        strategy.
+
+        Args:
+            nmonths (int, optional): number of months to project ahead. Defaults
+                to 3.
+            strat (str, optional): strategy to use when generating forecasts.
+                Defaults to "AR".
+
+        Returns:
+            dict[int, dict[str, list[float]]]: lookup for the trajectory result
+                as follows:
+                { month: {trajectory_type: [p_1, p_2, ..., p_nmonths] } }
+                
+                Trajectory type can be one of {"POSITIVE", "NEGATIVE", or 
+                "NEUTRAL"}.
+        """
+        
+        # generate via the strategy selected
+        lag = min(3, len(self.forecasts))
+        k = nmonths
+        self.trajectories = route_traj
 
 
 # Testing

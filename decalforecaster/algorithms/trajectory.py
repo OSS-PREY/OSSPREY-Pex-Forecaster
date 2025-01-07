@@ -58,7 +58,6 @@ def diminish_grad(grad: float, cur_pos: float, strat: str="diff") -> float:
         case _:
             return 0
 
-
 def export_traj(trajectories: dict | list | np.ndarray, filename: Path=None) -> str:
     """Exports the trajectories into a JSON format for easy export.
 
@@ -81,7 +80,6 @@ def export_traj(trajectories: dict | list | np.ndarray, filename: Path=None) -> 
         with open(filename, "w") as f:
             f.write(export_str)
     return export_str
-
 
 def plot_traj(forecast: np.ndarray | list, trajectories: np.ndarray, m: int=-1, ci: np.ndarray=None, **label_kwargs) -> None:
     """Plots the trajectory given a forecast.
@@ -207,7 +205,6 @@ def traj_simple(forecast: np.ndarray, lag: int=3, k: int=3, **grad_kwargs) -> np
     # export as ndarray
     return np.array(trajectories)
 
-
 def traj_ar(forecast: np.ndarray, lag: int=3, k: int=3, arch: str="ARIMA", ci: int=95) -> tuple[np.ndarray, np.ndarray]:
     """Uses an autoregressive model (ARIMA, etc.) to generate the forecast more
     accurately.
@@ -279,7 +276,6 @@ def traj_ar(forecast: np.ndarray, lag: int=3, k: int=3, arch: str="ARIMA", ci: i
     # export as ndarray
     return np.array(trajectories), np.array(ci)
 
-
 def traj_inf_ar(forecast: np.ndarray, lag: int=3, k: int=3, arch: str="ARIMA", ci: int=95) -> tuple[np.ndarray, np.ndarray]:
     """Autoregression for trajectories informed by the network features 
     evolution over time.
@@ -304,6 +300,59 @@ def traj_inf_ar(forecast: np.ndarray, lag: int=3, k: int=3, arch: str="ARIMA", c
     """
     
     pass
+
+def route_traj(forecast: np.ndarray, strat: str="AR", lag: int=3, k: int=3, **kwargs) -> dict[int, dict[str, list[float]]]:
+    """Routes the forecast strategy requested. If the strategy doesn't produce
+    upper and lower bounds by default, we return empty results.
+
+    Args:
+        forecast (np.ndarray): raw forecast for previous months.
+        strat (str, optional): strategy to use when building the trajectory. 
+            Should be one of {"AR", "INF_AR", "SIMPLE"}. Defaults to "AR".
+        lag (int, optional): number of months to consider when making the next 
+            step decision. Defaults to 3.
+        k (int, optional): number of months to predict ahead. Defaults to 3.
+
+    Returns:
+        dict[int, dict[str, list[float]]]: lookup of month: 
+            POSITIVE/NEGATIVE/NEUTRAL: list of trajectory results
+    """
+    
+    # wrap call
+    router = {
+        "SIMPLE": traj_simple,
+        "AR": traj_ar,
+        "INF_AR": traj_inf_ar
+    }
+    trajectories = router[strat](forecast=forecast, lag=lag, k=k, **kwargs)
+    
+    # account for bounds information
+    if isinstance(trajectories, tuple):
+        trajectories, bounds = trajectories
+    else:
+        bounds = None
+
+    # convert to dictionary in standard format
+    traj_pkg = dict()
+    
+    for i in range(trajectories.shape[0]):
+        # current package; add the baseline results
+        cur_pkg = dict()
+        cur_pkg["NEUTRAL"] = list(trajectories[i])
+        
+        # add the bound results if possible
+        if bounds is not None:
+            cur_pkg["NEGATIVE"] = list(bounds[i][:, 0])
+            cur_pkg["POSITIVE"] = list(bounds[i][:, 1])
+        else:
+            cur_pkg["POSITIVE"] = None
+            cur_pkg["NEGATIVE"] = None
+        
+        # track this month's result
+        traj_pkg[i] = cur_pkg
+    
+    # export the standard format results
+    return traj_pkg
 
 
 # Unit Tests
@@ -346,7 +395,7 @@ class TrajTester(unittest.TestCase):
                 data, res, ci=ci,
                 path=Path().cwd() / "visuals" / "trajectories" / (self.labels[i] + "-arima")
             )
-        
+
 
 # Run Tests
 if __name__ == "__main__":
