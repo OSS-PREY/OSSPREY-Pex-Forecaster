@@ -27,10 +27,12 @@
     },
     "dataset-dir": "./data/",
     "network-dir": "./network-data/",
+    "network-visualization-dir": "./network-data/net-vis/",
     "ref-dir": "./ref/",
     "weights-dir": "./model-weights/",
     "reports-dir": "./model-reports/",
     "forecast-dir": "./forecasts/",
+    "trajectory-dir": "./trajectories/",
     "field-mappings": {
         "eclipse": {
             "tech": {

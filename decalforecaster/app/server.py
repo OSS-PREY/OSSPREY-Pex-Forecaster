@@ -11,11 +11,13 @@ from flask import Flask, request, jsonify
 
 # built-in modules
 import sys
+import json
 from pathlib import Path
 from typing import Any
 
 # DECAL modules
 import decalforecaster.utils as util
+from decalforecaster.utils import PARQUET_ENGINE, CSV_ENGINE
 from decalforecaster.pipeline import *
 from decalforecaster.abstractions.projdata import *
 
@@ -30,6 +32,7 @@ data_pkg = {
     "tdata": None,
     "sdata": None
 }
+tasks_pkg = list()
 
 # receiver route
 @app.route("/process_data/", methods=["POST"])
@@ -56,8 +59,9 @@ def pull_raw_data():
         - *(pp-bots): Pre-processing via Bot Inference
         - *(pp-de-alias): Pre-processing via De-Aliasing
         - (net-gen) Network Generation
-        - (traj) Trajectories
+        - (net-vis) Network Visualization
         - (forecast) Forecast predictions
+        - (traj) Trajectories
         
         * All pre-processing tasks are done by default on any received data
 
@@ -88,13 +92,16 @@ def pull_raw_data():
             return jsonify({"error": error_msg["error"]}), error_msg["error_code"]
         
         # dispatch tasks to complete
-        dispatch_tasks(tasks, data_pkg)
+        router(tasks_pkg, data_pkg)
         
         # store the data received into local var
         return jsonify({"message": "Data received successfully", "data": data}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
+'''
+## NOT SURE IF THESE WILL BE MORE USEFUL
 # exporter route: forecasts
 @app.route("/forecaster/predictions", methods=["GET"])
 def export_forecasts():
@@ -115,17 +122,19 @@ def export_trajectories():
 
 # exporter route: networks
 @app.route("/forecaster/networks", methods=["GET"])
-def export_trajectories():
+def export_networks():
     """Route for grabbing the raw data as a JSON dictionary. Specified format 
     should be easily convertable into a pandas dataframe, i.e. {column: data}.
     
     Verification Messages:
     """
+    
+    # TODO
     pass
-
+'''
 
 # ------------- Endpoint Helpers ------------- #
-def attempt_request_parse(data: dict[str, Any]) -> dict[str, int | Any] | None:
+def attempt_request_parse(data: dict[str, Any]) -> dict[str, int | str] | None:
     """Wraps the parsing functionality for the data package with verified 
     entries. Checks the format of the data, essentially.
 
@@ -140,6 +149,7 @@ def attempt_request_parse(data: dict[str, Any]) -> dict[str, int | Any] | None:
     # attempt parsing
     try:
         # parse dataframes
+        global data_pkg
         data_pkg["tdata"] = pd.DataFrame(data["commits_data"])
         data_pkg["sdata"] = pd.DataFrame(data["issues_data"])
         
@@ -147,14 +157,14 @@ def attempt_request_parse(data: dict[str, Any]) -> dict[str, int | Any] | None:
         data_pkg["proj_name"] = data["project_name"]
         
         # parse tasks to complete
-        data_pkg["tasks"] = data["tasks"]
+        global tasks_pkg
+        tasks_pkg = data["tasks"]
         
     except ValueError as ve:
         return {
             "error": f"Data not parse-able by pandas: {str(ve)}",
             "error_code": 400
         }
-
 
 def check_request_structure(data: dict[str, Any]) -> tuple[dict, int] | None:
     """Wraps the parsing functionality for the data package with a valid 
@@ -200,6 +210,92 @@ def check_request_structure(data: dict[str, Any]) -> tuple[dict, int] | None:
     return None
 
 
+# ------------- Internal Router ------------- #
+def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
+    """Routes the calls we need to make plus intercepts any pre-computed calls 
+    to avoid re-computing any information.
+
+    Args:
+        data (dict[str, Any]): data package from the request.
+
+    Returns:
+        list[str]: list of tasks completed. Will contain any subset of
+            {"CACHED", "NETS", "FORECASTS", "TRAJECTORIES"}.
+    """
+    
+    # auxiliary fn & data
+    def check_cache(tasks: list[str], proj_name: str, end_month: int) -> dict[str, Any] | None:
+        """Checks if the info requested has already been cached. If so, returns
+        the requested data as if it has been computed fresh.
+
+        Args:
+            tasks (list[str]): tasks to complete.
+            proj_name (str): project name/identifier.
+            num_months (int): number of months to compute, i.e. [0, end_month].
+
+        Returns:
+            dict[str, Any]: package of results with each key being a requested 
+                task to its respective export package.
+        """
+        
+        # load in the project's information if we have a previous cache #
+        # available #
+
+        ## expected paths
+        params_dict = util._load_params()
+        paths = {
+            "net-gen": Path(params_dict["delta-cache-dir"]) / f"{proj_name}.csv",
+            "net-vis": Path(params_dict["network-visualization-dir"]) / f"{proj_name}.json",
+            "forecast": Path(params_dict["forecast-dir"]) / f"{proj_name}.json",
+            "traj": Path(params_dict["trajectory-dir"]) / f"{proj_name}.json"
+        }
+        
+        ## check all paths exist for the requested caches
+        if not all(paths[task].exists() for task in tasks):
+            return None
+        
+        ## load in the caches
+        caches = dict()
+
+        for task in tasks:
+            ## check type of call
+            if task == "net-gen":
+                caches[task] = pd.read_csv(paths[task], engine=CSV_ENGINE)
+            else:
+                with open(paths[task], "r") as f:
+                    caches[task] = json.load(f)
+            
+        # now that we have the caches, ensure each of them has enough info to 
+        # fulfill the request
+        for task, cache in caches.items():
+            if len(cache) < end_month + 1:
+                return None
+        
+        # export the valid caches for this result
+        for task in tasks:
+            if task == "net-gen":
+                caches[task] = caches[task].head(end_month + 1)
+            else:
+                caches[task] = {k: v for k, v in caches[task].items() if int(k) <= end_month}
+        
+        return caches
+    
+    def deliver_results(tasks: list[str], proj_name: str, pkg: dict[str, Any]) -> None:
+        """Handles the delivery of all the computed results for each task.
+
+        Args:
+            tasks (list[str]): tasks requested.
+            proj_name (str): identifier for the project operated on.
+            pkg (dict[str, Any]): package of results where each key matches a
+                task's key.
+        """
+        
+        pass
+    
+    # check if the cache is available
+    pass
+
+# ------------- Testing ------------- #
 if __name__ == "__main__":
     app.run(debug=True)
 
