@@ -23,7 +23,7 @@ from copy import deepcopy
 from pathlib import Path
 from typing import Any
 from dataclasses import dataclass, field
-from json import dump
+from json import dump, load
 
 # DECAL modules
 import decalforecaster.utils as util
@@ -605,14 +605,28 @@ class DeltaData:
             # concatenate lists
             fcs[i - 1] = float(preds.cpu().detach().numpy()[0])
 
-        # save & export
-        forecast_dir = Path(params_dict["forecast-dir"])
-        util._check_dir(forecast_dir)
+        # load old forecasts if possible
+        forecast_path = Path(params_dict["forecast-dir"]) / f"{self.proj_name}.json"
+        util._check_path(forecast_path)
         
-        with open(forecast_dir / f"{self.proj_name}.json", "w") as f:
+        if forecast_path.exists():
+            # load & ensure the typing
+            with open(forecast_path, "r") as f:
+                old_fcs = load(f)
+            old_fcs = {int(k): float(v) for k, v in old_fcs.items()}
+        else:
+            # default dict
+            old_fcs = dict()
+
+        # update, save, & export
+        fcs.update(old_fcs)
+        fcs = dict(sorted(fcs.items()))
+        
+        with open(forecast_path, "w") as f:
             dump(fcs, f, indent=4)
             
         self.forecasts = fcs
+        return fcs
     
     def gen_trajectories(self, nmonths: int=3, strat: str="AR") -> dict[int, dict[str, list[float]]]:
         """Generates the trajectories for each month requested using the given
@@ -636,7 +650,32 @@ class DeltaData:
         # generate via the strategy selected
         lag = min(3, len(self.forecasts))
         k = nmonths
-        self.trajectories = route_traj
+        forecasts = np.array(dict(sorted(self.forecasts.items())).values())
+        trajs = route_traj(
+            forecast=forecasts, strat=strat, lag=lag, k=k
+        )
+        
+        # import previous trajectories
+        traj_path = Path(params_dict["trajectory-dir"]) / f"{self.proj_name}.json"
+        util._check_path(traj_path)
+        
+        if traj_path.exists():
+            # load & ensure key types
+            with open(traj_path, "r") as f:
+                old_trajs = load(f)
+            old_trajs = {int(k): v for k, v in old_trajs.items()}
+        else:
+            old_trajs = dict()
+        
+        # update, save, and export
+        trajs.update(old_trajs)
+        trajs = dict(sorted(trajs.items()))
+        
+        with open(traj_path, "w") as f:
+            dump(trajs, f, indent=4)
+            
+        self.trajectories = trajs
+        return trajs
 
 
 # Testing
