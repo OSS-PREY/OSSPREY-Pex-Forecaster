@@ -282,7 +282,7 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
         
         return caches
     
-    def deliver_results(tasks: list[str], proj_name: str, pkg: dict[str, Any]) -> None:
+    def deliver_results(tasks: list[str], proj_name: str, pkg: dict[str, Any]) -> list[str]:
         """Handles the delivery of all the computed results for each task.
 
         Args:
@@ -290,6 +290,10 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
             proj_name (str): identifier for the project operated on.
             pkg (dict[str, Any]): package of results where each key matches a
                 task's key.
+        
+        Returns:
+            list[str]: list of tasks completed. Will contain any subset of
+                {"CACHED", "NETS", "FORECASTS", "TRAJECTORIES"}.
         """
         
         pass
@@ -316,7 +320,20 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
         end_month=data["month_range"][-1]
     )
     
-    # compute results if needed
+    ## send out cached result if possible
+    if cached_result is not None:
+        delivered_tasks = deliver_results(
+            tasks=tasks, proj_name=data["proj_name"], pkg=cached_result
+        )
+        return delivered_tasks
+    
+    # if not, compute a fresh result
+    computed_result = dispatcher(tasks=tasks, data=data)
+    delivered_tasks = deliver_results(
+        tasks=tasks, proj_name=data["proj_name"], pkg=computed_result
+    )
+    return delivered_tasks
+
 
 # ------------- Testing ------------- #
 if __name__ == "__main__":
