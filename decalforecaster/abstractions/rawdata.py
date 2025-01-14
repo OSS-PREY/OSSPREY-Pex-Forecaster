@@ -721,7 +721,12 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
     ref_dir = Path(params_dict["ref-dir"])
     
     # CACHING -- replace all pre-computed aliases #
+    # The idea here is that any future aliases we use can equivalently be mapped
+    # onto any aliases we've previously made. Thus, we save time by not needing
+    # to re-make the same aliases while preserving the opportunity to make new
+    # aliases
     alias_mapping_path = ref_dir / f"{incubator}_alias_mapping.json"
+    
     if alias_mapping_path.exists():
         # grab some debugging info
         bef_num_tech = data_lookup["tech"][author_field].unique().shape[0]
