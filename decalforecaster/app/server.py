@@ -19,7 +19,8 @@ from typing import Any
 import decalforecaster.utils as util
 from decalforecaster.utils import PARQUET_ENGINE, CSV_ENGINE
 from decalforecaster.pipeline import *
-from decalforecaster.abstractions.projdata import *
+from decalforecaster.abstractions.deltadata import *
+# from decalforecaster.abstractions.projdata import *
 
 # setup the App for communication
 app = Flask(__name__)
@@ -61,11 +62,12 @@ def pull_raw_data():
         - *(pp-replies): Pre-processing via Reply Inferencing
         - *(pp-bots): Pre-processing via Bot Inference
         - *(pp-de-alias): Pre-processing via De-Aliasing
-        - (ALL): Shorthand to compute all pre-processing steps possible
         - (net-gen) Network Generation
         - (net-vis) Network Visualization
         - (forecast) Forecast predictions
         - (traj) Trajectories
+        - (ALL): Shorthand to compute all pre-processing steps possible and then
+            compute all downstream tasks.
         
         * All pre-processing tasks are done by default on any received data
     
@@ -312,7 +314,25 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
                 progressed as expected, otherwise raises an error.
         """
         
-        pass
+        # initialize the delta data
+        dd = DeltaData(
+            proj_name=data["proj_name"], tdata=data["tdata"],
+            sdata=data["sdata"], tasks=tasks
+        )
+        
+        # capture the results from the object, subset from all computations
+        key_translator = {
+            "net-gen": dd.__dict__.get("netdata", None),
+            "net-vis": dd.__dict__.get("net_vis", None),
+            "forecast": dd.__dict__.get("forecasts", None),
+            "traj": dd.__dict__.get("trajectories", None)
+        }
+        dispatch_res = {task: key_translator[task] for task in tasks}
+        
+        # check that all tasks have been appropriately computed
+        if any(dispatch_res[task] is None for task in tasks):
+            compl_tasks = [task for task in tasks if dispatch_res[task] is not None]
+            raise ValueError(f"Tasks failed to compute as expected; needed {tasks}, but only have data for {compl_tasks}")
     
     # check if the cache is available
     cached_result = check_cache(

@@ -443,23 +443,16 @@ def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, cop
 
     # check overriding
     print("\n<Inferring Reply Information>")
-    if prop_replies_inference < 0.75:
-        print(f"<WARNING> :: inference strategy can only obtain < 75% of threads: {prop_replies_inference * 100}%")
-        
-        # resp = input("Continue [y/n]?")
-        resp = "y"
-        if resp.lower() != "y":
-            print("not imputing. . .")
-            return data_lookup
+    prop_filled = len(df["in_reply_to"].unique()) / df.shape[0]
+    if prop_replies_inference <= prop_filled:
+        print(f"<WARNING> :: inference strategy obtains less threads than already provided: {prop_replies_inference * 100}% < {prop_filled * 100}%")
+        print("not imputing. . .")
+        return data_lookup
 
-    if len(df["in_reply_to"].unique()) / df.shape[0] > 0.95:
+    if prop_filled > 0.95:
         print(f"<WARNING> :: in_reply_to field already has >95% unique replies: {len(df['in_reply_to'].unique()) / df.shape[0] * 100}%")
-        
-        # resp = input("Continue [y/n]?")
-        resp = "y"
-        if resp.lower() != "y":
-            print("not imputing. . .")
-            return data_lookup
+        print("not imputing. . .")
+        return data_lookup
 
     # inference
     print("continuing inference")
@@ -726,6 +719,31 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
     # to re-make the same aliases while preserving the opportunity to make new
     # aliases
     alias_mapping_path = ref_dir / f"{incubator}_alias_mapping.json"
+
+    def _enforce_aliases():
+        with open(ref_dir / f"{incubator}_alias_mapping.json", "r") as f:
+            alias_mapping = json.load(f)
+
+        def _dealiasing(project_name, author_name):
+            if (project_name in alias_mapping) and (author_name in alias_mapping[project_name]):
+                return alias_mapping[project_name][author_name]
+            return " ".join([name.capitalize() for name in author_name.split(" ")])
+        
+        # dealiasing
+        df = data_lookup["tech"]
+        df = df[(df["is_bot"] == False) & (df["is_coding"] == True) & (df[author_field] != "none")]
+        df = df[df[author_field].notna()]
+        df[output_field] = df.apply(lambda x: _dealiasing(x["project_name"], x[author_field]), axis=1)
+        aft_num_tech = df[output_field].nunique()
+
+        df = data_lookup["social"]
+        df = df[(df["is_bot"] == False) & (df[author_field] != "none")]
+        df = df[df[author_field].notna()]
+        df[output_field] = df.apply(lambda x: _dealiasing(x["project_name"], x[author_field]), axis=1)
+        aft_num_social = df[output_field].nunique()
+        
+        # returns
+        return aft_num_tech, aft_num_social
     
     if alias_mapping_path.exists():
         # grab some debugging info
@@ -733,7 +751,7 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
         bef_num_social = data_lookup["social"][author_field].unique().shape[0]
         
         # enforce the previous aliases we've found
-        aft_num_tech, aft_num_social = _dealiasing_enforce_aliases(**kwargs)
+        aft_num_tech, aft_num_social = _enforce_aliases(**kwargs)
         
         # give a summary of just the caching protocol
         print("======== CACHING SUMMARY ========")
@@ -1064,7 +1082,7 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
             _save_data(data_lookup, incubator, new_version=kwargs["new_version"])
 
         # returns
-        return aft_num_tech, aft_num_tech
+        return aft_num_tech, aft_num_social
 
     # conduct
     bef_num_tech, bef_num_social = _dealiasing_gen_aliases(**kw_args)

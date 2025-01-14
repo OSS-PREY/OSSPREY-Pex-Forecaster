@@ -47,8 +47,9 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 IMPLEMENTED_TASKS = {
     "net-gen": None,
-    "traj": None,
+    "net-vis": None,
     "forecast": None,
+    "traj": None,
     "pp-paths": clean_file_paths,
     "pp-names:": clean_sender_names,
     "pp-months": impute_months,
@@ -192,8 +193,8 @@ class DeltaData:
 
         # pre-processing
         _route_preprocesses(self.data, self.tasks, incubator=self.incubator)
-        # self.route_tasks()
-        # self.clean_disk()
+        self.router()
+        self.clean_disk()
 
 
     # internal utility
@@ -280,13 +281,13 @@ class DeltaData:
         t_type = params_dict["tech-type"][INCUBATOR_ALIAS]
         s_type = params_dict["social-type"][INCUBATOR_ALIAS]
         net_path = network_dir / "netdata" / f"{self.incubator}-network-data.csv"
-        mapping_path = network_dir / "mappings" / f"{self.incubator}-network-data.csv"
+        mapping_path = network_dir / "mappings" / f"{self.incubator}-mapping.csv"
         
-        util._clear_dir(data_dir, skip_input=True)
+        # util._clear_dir(data_dir, skip_input=True)
         util._clear_dir(network_dir / f"{self.incubator}_{t_type}", skip_input=True)
         util._clear_dir(network_dir / f"{self.incubator}_{s_type}", skip_input=True)
         
-        util._check_dir(data_dir)
+        # util._check_dir(data_dir)
         util._del_file(net_path)
         util._del_file(mapping_path)
 
@@ -694,37 +695,46 @@ class DeltaData:
         automatically to disk.
         """
         
-        pass
+        # define a task router
+        _router = {
+            "net-gen": [
+                self.monthwise_split,
+                self.gen_networks
+            ],
+            "net-vis": [
+                self.vis_networks
+            ],
+            "forecast": [
+                self.gen_forecasts
+            ],
+            "traj": [
+                self.gen_trajectories
+            ]
+        }
+        
+        # execute internal calls for all specified tasks
+        for task in self.tasks:
+            ## skip any pre-processing
+            if task.startswith("pp-"):
+                continue
+            
+            ## execute task steps
+            for step_fn in _router[task]:
+                step_fn()
+
 
 # Testing
 if __name__ == "__main__":
     data_dir = Path().cwd() / "data" / "ospos_data"
     
-    # first batch
-    dd = DeltaData(
-        proj_name="spark",
-        tdata=pd.read_parquet(data_dir / "commits.parquet"),
-        sdata=pd.read_parquet(data_dir / "issues.parquet"),
-        tasks=["ALL"]
-    )
-    dd.monthwise_split()
-    dd.gen_networks()
-    dd.vis_networks()
-    dd.gen_forecasts()
-    dd.gen_trajectories()
+    # batches
+    for i in range(9):
+        dd = DeltaData(
+            proj_name="tensorflow",
+            tdata=pd.read_parquet(data_dir / f"commits{i}.parquet"),
+            sdata=pd.read_parquet(data_dir / f"issues{i}.parquet"),
+            tasks=["ALL"]
+        )
     
-    # second batch
-    dd = DeltaData(
-        proj_name="spark",
-        tdata=pd.read_parquet(data_dir / "test_commits.parquet"),
-        sdata=pd.read_parquet(data_dir / "test_issues.parquet"),
-        tasks=["ALL"]
-    )
-    dd.monthwise_split()
-    dd.gen_networks()
-    dd.vis_networks()
-    dd.gen_forecasts()
-    dd.gen_trajectories()
-    
-    (Path().cwd() / "network-data" / "caches" / "spark.csv").unlink()
+    (Path().cwd() / "network-data" / "caches" / "tensorflow.csv").unlink()
 
