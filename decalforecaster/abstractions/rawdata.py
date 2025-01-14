@@ -720,6 +720,25 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
     output_field = "dealised_author_full_name"
     ref_dir = Path(params_dict["ref-dir"])
     
+    # CACHING -- replace all pre-computed aliases #
+    alias_mapping_path = ref_dir / f"{incubator}_alias_mapping.json"
+    if alias_mapping_path.exists():
+        # grab some debugging info
+        bef_num_tech = data_lookup["tech"][author_field].unique().shape[0]
+        bef_num_social = data_lookup["social"][author_field].unique().shape[0]
+        
+        # enforce the previous aliases we've found
+        aft_num_tech, aft_num_social = _dealiasing_enforce_aliases(**kwargs)
+        
+        # give a summary of just the caching protocol
+        print("======== CACHING SUMMARY ========")
+        print(f"Unique Tech Devs (before): {bef_num_tech}")
+        print(f"Unique Tech Devs (after): {aft_num_tech}")
+        print(f" ::::::::: DELTA TECH = {aft_num_tech - bef_num_tech}")
+        print(f"Unique Social Devs (before): {bef_num_social}")
+        print(f"Unique Social Devs (after): {aft_num_social}")
+        print(f" ::::::::: DELTA SOCIAL = {aft_num_social - bef_num_social}\n\n")
+    
     # dealias functionality
     def indices_dict(lis):
         d = defaultdict(list)

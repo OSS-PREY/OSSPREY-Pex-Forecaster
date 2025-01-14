@@ -191,7 +191,7 @@ class DeltaData:
         self.check_missing_data()
 
         # pre-processing
-        _route_preprocesses(self.data, self.tasks)
+        _route_preprocesses(self.data, self.tasks, incubator=self.incubator)
         # self.route_tasks()
         # self.clean_disk()
 
