@@ -30,7 +30,8 @@ app = Flask(__name__)
 data_pkg = {
     "proj_name": None,
     "tdata": None,
-    "sdata": None
+    "sdata": None,
+    "month_range": [None, None]
 }
 tasks_pkg = list()
 
@@ -39,14 +40,16 @@ tasks_pkg = list()
 def pull_raw_data():
     """Route for grabbing the raw data as a JSON dictionary.
     
-    The information expected is as follows:
+    The information expected in the request is as follows:
     {
         (project_name): str
-        (commits_data): dict, should be easily convertable into a pandas 
+        (tech_data): dict, should be easily convertable into a pandas 
             dataframe, i.e. {column: data}.
-        (issues_data): dict, should be easily convertable into a pandas 
+        (social_data): dict, should be easily convertable into a pandas 
             dataframe, i.e. {column: data}.
-        (tasks): list[str], match the tasks implemented
+        (tasks): list[str], match the tasks implemented.
+        (month_range): list[int], length of two to define the inclusive month 
+            range requested in the call. 
     }
     
     Implemented Tasks (key to be matched with):
@@ -65,10 +68,6 @@ def pull_raw_data():
         - (traj) Trajectories
         
         * All pre-processing tasks are done by default on any received data
-
-    Request Args:
-        data (dict[str, Iterable[int | float | str]]): pandas dataframe in 
-            dictionary representation
     
     Verification Messages:
         (200) Data is successfully received
@@ -151,11 +150,12 @@ def attempt_request_parse(data: dict[str, Any]) -> dict[str, int | str] | None:
     try:
         # parse dataframes
         global data_pkg
-        data_pkg["tdata"] = pd.DataFrame(data["commits_data"])
-        data_pkg["sdata"] = pd.DataFrame(data["issues_data"])
+        data_pkg["tdata"] = pd.DataFrame(data["tech_data"])
+        data_pkg["sdata"] = pd.DataFrame(data["social_data"])
         
-        # parse project name
+        # parse project name and month range
         data_pkg["proj_name"] = data["project_name"]
+        data_pkg["month_range"] = data["month_range"]
         
         # parse tasks to complete
         global tasks_pkg
@@ -180,8 +180,8 @@ def check_request_structure(data: dict[str, Any]) -> tuple[dict, int] | None:
     """
     
     # setup the input validation
-    needed_keys = ["project_name", "commits_data", "issues_data", "tasks"]
-    val_types = [str, dict, dict, list]
+    needed_keys = ["project_name", "tech_data", "social_data", "tasks", "month_range"]
+    val_types = [str, dict, dict, list, list]
     implemented_tasks = set(IMPLEMENTED_TASKS.keys())
     
     # check type of data
@@ -204,7 +204,7 @@ def check_request_structure(data: dict[str, Any]) -> tuple[dict, int] | None:
     # check all tasks are implemented
     if not all(task in implemented_tasks for task in data["tasks"]):
         return jsonify({
-            "error": f"Values of are an unexpected type; expected {val_types}, got {actual_types}"
+            "error": f"Received un-implemented tasks; expected a subset of {implemented_tasks}, got {data['tasks']}"
         }), 400
     
     # no error
@@ -293,9 +293,30 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
         """
         
         pass
+
+    def dispatcher(tasks: list[str], data: dict[str, Any]) -> dict[str, Any]:
+        """Dispatches the computation for all requested tasks via the DeltaData
+        abstraction. Raises an error on failure.
+
+        Args:
+            tasks (list[str]): tasks requested.
+            data (dict[str, Any]): data package to use in completing the 
+                requests.
+
+        Returns:
+            dict[str, Any]: returns a dictionary of valid results if computation
+                progressed as expected, otherwise raises an error.
+        """
+        
+        pass
     
     # check if the cache is available
-    pass
+    cached_result = check_cache(
+        tasks=tasks, proj_name=data["proj_name"],
+        end_month=data["month_range"][-1]
+    )
+    
+    # compute results if needed
 
 # ------------- Testing ------------- #
 if __name__ == "__main__":
