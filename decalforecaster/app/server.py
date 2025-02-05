@@ -7,7 +7,6 @@
 # ------------- Environment Setup ------------- #
 # external packages -- none for now
 import pandas as pd
-from flask import Flask, request, jsonify
 
 # built-in modules
 import sys
@@ -23,7 +22,7 @@ from decalforecaster.abstractions.deltadata import *
 # from decalforecaster.abstractions.projdata import *
 
 # setup the App for communication
-app = Flask(__name__)
+# no app, making local API
 
 
 # ------------- API Endpoints ------------- #
@@ -37,20 +36,20 @@ data_pkg = {
 tasks_pkg = list()
 
 # receiver route
-@app.route("/process_data/", methods=["POST"])
-def pull_raw_data():
-    """Route for grabbing the raw data as a JSON dictionary.
+def compute_forecast(data: dict[str, str | pd.DataFrame | list[str] | list[int]]) -> dict[str, str | int]:
+    """Wrapper API call for verifying the integrity of the input data and then 
+    executing the necessary computation.
     
     The information expected in the request is as follows:
     {
         (project_name): str
-        (tech_data): dict, should be easily convertable into a pandas 
-            dataframe, i.e. {column: data}.
-        (social_data): dict, should be easily convertable into a pandas 
-            dataframe, i.e. {column: data}.
+        (tech_data): pd.DataFrame or dict, should be easily convertable into a 
+            pandas dataframe, i.e. {column: data}.
+        (social_data): pd.DataFrame or dict, should be easily convertable into a
+            pandas dataframe, i.e. {column: data}.
         (tasks): list[str], match the tasks implemented.
         (month_range): list[int], length of two to define the inclusive month 
-            range requested in the call. 
+            range requested in the call.
     }
     
     Implemented Tasks (key to be matched with):
@@ -77,29 +76,21 @@ def pull_raw_data():
         (500) Unidentified error
     """
     
-    try:
-        # grab the JSON request
-        data = request.get_json()
+    # error handling if missing
+    if not data:
+        raise ValueError("No data provided")
+    
+    # error handling if incorrectly structured
+    check_request_structure(data)
         
-        # error handling if missing
-        if not data:
-            return jsonify({"error": "No data provided"}), 400
-        
-        # error handling if incorrectly structured
-        error_msg = check_request_structure(data)
-            
-        # error handling if incorrectly formatted; attempt parsing
-        error_msg = attempt_request_parse(data)
-        if error_msg:
-            return jsonify({"error": error_msg["error"]}), error_msg["error_code"]
-        
-        # dispatch tasks to complete
-        router(tasks_pkg, data_pkg)
-        
-        # store the data received into local var
-        return jsonify({"message": "Data received successfully", "data": data}), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    # error handling if incorrectly formatted; attempt parsing
+    attempt_request_parse(data)
+    
+    # dispatch tasks to complete
+    router(tasks_pkg, data_pkg)
+    
+    # send back okay message and aynchronously compute?
+    return {"message": "Data received successfully", "code": 200}
 
 
 '''
@@ -136,16 +127,13 @@ def export_networks():
 '''
 
 # ------------- Endpoint Helpers ------------- #
-def attempt_request_parse(data: dict[str, Any]) -> dict[str, int | str] | None:
+def attempt_request_parse(data: dict[str, Any]) -> None:
     """Wraps the parsing functionality for the data package with verified 
-    entries. Checks the format of the data, essentially.
+    entries. Checks the format of the data, essentially. Doesn't return an 
+    error, only raises.
 
     Args:
         data (dict[str, Any]): data received
-
-    Returns:
-        dict[str, int | Any] | None: error info if a return is given, otherwise
-            None.
     """
     
     # attempt parsing
@@ -164,12 +152,11 @@ def attempt_request_parse(data: dict[str, Any]) -> dict[str, int | str] | None:
         tasks_pkg = data["tasks"]
         
     except ValueError as ve:
-        return {
-            "error": f"Data not parse-able by pandas: {str(ve)}",
-            "error_code": 400
-        }
+        raise ValueError(
+            f"Data not parse-able by pandas: {str(ve)}"
+        )
 
-def check_request_structure(data: dict[str, Any]) -> tuple[dict, int] | None:
+def check_request_structure(data: dict[str, Any]) -> None:
     """Wraps the parsing functionality for the data package with a valid 
     structure, i.e. keys expected.
 
@@ -188,26 +175,24 @@ def check_request_structure(data: dict[str, Any]) -> tuple[dict, int] | None:
     
     # check type of data
     if not isinstance(data, dict):
-        return jsonify({"error": "Data not formatted as a dictionary"}), 400
+        raise ValueError("Data not formatted as a dictionary")
     
     # check all info is included
     if not all(key in data for key in needed_keys):
-        return jsonify({
-            "error": f"Missing some expected information; expected {needed_keys}, got {list(data.keys())}"
-        }), 400
+        raise ValueError(f"Missing some expected information; expected {needed_keys}, got {list(data.keys())}")
     
     # check all value types are valid
     if not all(isinstance(val, val_type) for val, val_type in zip(data.values(), val_types)):
         actual_types = [str(type(v)) for v in data.values()]
-        return jsonify({
-            "error": f"Values of are an unexpected type; expected {val_types}, got {actual_types}"
-        }), 400
+        raise ValueError(
+            f"Values of are an unexpected type; expected {val_types}, got {actual_types}"
+        )
     
     # check all tasks are implemented
     if not all(task in implemented_tasks for task in data["tasks"]):
-        return jsonify({
-            "error": f"Received un-implemented tasks; expected a subset of {implemented_tasks}, got {data['tasks']}"
-        }), 400
+        raise ValueError(
+            f"Received un-implemented tasks; expected a subset of {implemented_tasks}, got {data['tasks']}"
+        )
     
     # no error
     return None
@@ -228,14 +213,16 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
     """
     
     # auxiliary fn & data
-    def check_cache(tasks: list[str], proj_name: str, end_month: int) -> dict[str, Any] | None:
+    def check_cache(tasks: list[str], proj_name: str, end_month: int, start_month: int=0) -> dict[str, Any] | None:
         """Checks if the info requested has already been cached. If so, returns
         the requested data as if it has been computed fresh.
 
         Args:
             tasks (list[str]): tasks to complete.
             proj_name (str): project name/identifier.
-            num_months (int): number of months to compute, i.e. [0, end_month].
+            end_month (int): compute for [start_month, end_month].
+            start_month (int): compute for [start_month, end_month]. Defaults to 
+                0.
 
         Returns:
             dict[str, Any]: package of results with each key being a requested 
@@ -280,12 +267,13 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
             if task == "net-gen":
                 caches[task] = caches[task].head(end_month + 1)
             else:
-                caches[task] = {k: v for k, v in caches[task].items() if int(k) <= end_month}
+                caches[task] = {k: v for k, v in caches[task].items() if start_month <= int(k) <= end_month}
         
         return caches
     
     def deliver_results(tasks: list[str], proj_name: str, pkg: dict[str, Any]) -> list[str]:
-        """Handles the delivery of all the computed results for each task.
+        """Handles the delivery of all the computed results for each task. 
+        Exports them into an expected format.
 
         Args:
             tasks (list[str]): tasks requested.
@@ -294,8 +282,10 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
                 task's key.
         
         Returns:
-            list[str]: list of tasks completed. Will contain any subset of
-                {"CACHED", "NETS", "FORECASTS", "TRAJECTORIES"}.
+        {
+            
+            "tasks": list[str] -- list of tasks completed. Will contain any 
+                subset of {"CACHED", "NETS", "FORECASTS", "TRAJECTORIES"}.
         """
         
         pass
@@ -357,5 +347,8 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
 
 # ------------- Testing ------------- #
 if __name__ == "__main__":
-    app.run(debug=True)
+    test_data = {
+        
+    }
+    compute_forecast(test_data)
 
