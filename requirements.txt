@@ -15,3 +15,6 @@ torchviz
 torchsummary
 pandarallel
 jellyfish
+gdown
+setuptools
+statsmodels

@@ -24,8 +24,8 @@ from functools import partial
 from typing import Any
 from multiprocessing import Pool
 
-import decalforecaster.utils as util
-from decalforecaster.utils import PARQUET_ENGINE
+import decalfc.utils as util
+from decalfc.utils import PARQUET_ENGINE
 
 NUM_PROCESSES = 6
 pandarallel.initialize(nb_workers=NUM_PROCESSES, progress_bar=True)

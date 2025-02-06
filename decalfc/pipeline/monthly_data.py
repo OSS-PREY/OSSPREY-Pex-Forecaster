@@ -18,9 +18,9 @@ import json
 from math import floor
 
 # DECAL modules
-import decalforecaster.utils as util
-from decalforecaster.utils import PARQUET_ENGINE
-from decalforecaster.abstractions.rawdata import *
+import decalfc.utils as util
+from decalfc.utils import PARQUET_ENGINE
+from decalfc.abstractions.rawdata import *
 
 
 # ------------------- relative time generation ---------------------- #

@@ -24,11 +24,11 @@ from typing import Any
 from dataclasses import dataclass, field
 
 # DECAL modules
-import decalforecaster.utils as util
-from decalforecaster.abstractions.rawdata import clean_file_paths, \
+import decalfc.utils as util
+from decalfc.abstractions.rawdata import clean_file_paths, \
     clean_sender_names, impute_months, impute_messageid, infer_replies, \
     infer_bots, clean_source_files, dealias_senders
-from decalforecaster.pipeline.monthly_data import segment_data
+from decalfc.pipeline.monthly_data import segment_data
 
 # constants & setup parallel processing
 NUM_PROCESSES = 6

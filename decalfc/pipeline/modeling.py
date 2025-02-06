@@ -19,10 +19,10 @@ from typing import Iterable, Any
 from itertools import product, permutations, chain, combinations
 
 # DECAL modules
-import decalforecaster.utils as util
-from decalforecaster.abstractions.modeldata import *
-from decalforecaster.abstractions.perfdata import *
-from decalforecaster.abstractions.tsmodel import *
+import decalfc.utils as util
+from decalfc.abstractions.modeldata import *
+from decalfc.abstractions.perfdata import *
+from decalfc.abstractions.tsmodel import *
 
 
 # ---------------- modeling script ---------------- #

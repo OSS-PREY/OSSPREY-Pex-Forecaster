@@ -17,10 +17,10 @@ import re
 from typing import Any
 from dataclasses import dataclass, field
 
-import decalforecaster.utils as util
-from decalforecaster.utils import PARQUET_ENGINE
-from decalforecaster.abstractions.tsmodel import *
-from decalforecaster.abstractions.netdata import *
+import decalfc.utils as util
+from decalfc.utils import PARQUET_ENGINE
+from decalfc.abstractions.tsmodel import *
+from decalfc.abstractions.netdata import *
 
 
 # Class

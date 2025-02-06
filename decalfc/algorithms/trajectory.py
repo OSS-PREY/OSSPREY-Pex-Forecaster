@@ -12,7 +12,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from statsmodels.tsa.arima.model import ARIMA
-from pmdarima import auto_arima
+# from pmdarima import auto_arima
 
 ## built-in
 import unittest

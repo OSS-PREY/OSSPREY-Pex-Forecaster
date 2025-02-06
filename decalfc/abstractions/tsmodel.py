@@ -33,8 +33,8 @@ from typing import Any, Optional
 from dataclasses import dataclass, field
 
 ## DECAL modules
-from decalforecaster.abstractions.netdata import *
-from decalforecaster.abstractions.perfdata import *
+from decalfc.abstractions.netdata import *
+from decalfc.abstractions.perfdata import *
 
 
 # Constants

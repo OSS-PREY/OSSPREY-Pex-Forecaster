@@ -17,8 +17,8 @@ import re
 from pathlib import Path
 
 # DECAL modules
-import decalforecaster.utils as util
-import decalforecaster.abstractions.rawdata as rd
+import decalfc.utils as util
+import decalfc.abstractions.rawdata as rd
 
 
 # ------------- utility ------------- #

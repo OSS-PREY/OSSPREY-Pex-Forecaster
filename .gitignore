@@ -3,6 +3,8 @@ data/
 network-data/
 model-weights/
 model-reports/
+!model-weights/BGRU.pt
+!model-weights/BLSTM.pt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

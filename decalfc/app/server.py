@@ -15,10 +15,10 @@ from pathlib import Path
 from typing import Any
 
 # DECAL modules
-import decalforecaster.utils as util
-from decalforecaster.utils import PARQUET_ENGINE, CSV_ENGINE
-from decalforecaster.pipeline import *
-from decalforecaster.abstractions.deltadata import *
+import decalfc.utils as util
+from decalfc.utils import PARQUET_ENGINE, CSV_ENGINE
+from decalfc.pipeline import *
+from decalfc.abstractions.deltadata import *
 # from decalforecaster.abstractions.projdata import *
 
 # setup the App for communication
@@ -79,6 +79,10 @@ def compute_forecast(data: dict[str, str | pd.DataFrame | list[str] | list[int]]
     # error handling if missing
     if not data:
         raise ValueError("No data provided")
+    
+    # fill shorthand
+    if data["tasks"][0] == "ALL":
+        data["tasks"] = list(IMPLEMENTED_TASKS.keys())
     
     # error handling if incorrectly structured
     check_request_structure(data)
@@ -170,7 +174,7 @@ def check_request_structure(data: dict[str, Any]) -> None:
     
     # setup the input validation
     needed_keys = ["project_name", "tech_data", "social_data", "tasks", "month_range"]
-    val_types = [str, dict, dict, list, list]
+    val_types = [[str], [dict, pd.DataFrame], [dict, pd.DataFrame], [list], [list]]
     implemented_tasks = set(IMPLEMENTED_TASKS.keys())
     
     # check type of data
@@ -182,7 +186,7 @@ def check_request_structure(data: dict[str, Any]) -> None:
         raise ValueError(f"Missing some expected information; expected {needed_keys}, got {list(data.keys())}")
     
     # check all value types are valid
-    if not all(isinstance(val, val_type) for val, val_type in zip(data.values(), val_types)):
+    if not all(any(isinstance(val, val_type) for val_type in val_types) for val, val_types in zip(data.values(), val_types)):
         actual_types = [str(type(v)) for v in data.values()]
         raise ValueError(
             f"Values of are an unexpected type; expected {val_types}, got {actual_types}"
@@ -208,8 +212,19 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
         data (dict[str, Any]): data package from the request.
 
     Returns:
-        list[str]: list of tasks completed. Will contain any subset of
-            {"CACHED", "NETS", "FORECASTS", "TRAJECTORIES"}.
+        {
+            request_pkg: dict[str, str | list[int] | list[str]] -- original 
+                request without the raw data for purposes of matching the 
+                original request if asynchronously implemented in the server.
+                
+                - project: str -- project name
+                - months: list[int] -- months requested
+                - tasks: list[str] -- tasks requested
+            <task_name>: dict -- task_results_pkg (task dependent for the 
+                format)
+            ...
+            source: one of {"CACHE", "COMPUTED"}
+        }
     """
     
     # auxiliary fn & data
@@ -271,24 +286,44 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
         
         return caches
     
-    def deliver_results(tasks: list[str], proj_name: str, pkg: dict[str, Any]) -> list[str]:
+    def deliver_results(tasks: list[str], proj_name: str, month_range: list[int],
+                        pkg: dict[str, Any], is_cached: bool=False) -> dict[str, dict | str]:
         """Handles the delivery of all the computed results for each task. 
         Exports them into an expected format.
 
         Args:
             tasks (list[str]): tasks requested.
             proj_name (str): identifier for the project operated on.
+            month_range (list[int]): months requested.
             pkg (dict[str, Any]): package of results where each key matches a
-                task's key.
+                task's key. Mutates inside the delivery fn!
+            is_cached (bool, Optional): flag for whether the results are from a 
+                cache or not (for debugging purposes). Defaults to False.
         
         Returns:
         {
-            
-            "tasks": list[str] -- list of tasks completed. Will contain any 
-                subset of {"CACHED", "NETS", "FORECASTS", "TRAJECTORIES"}.
+            request_pkg: dict[str, str | list[int] | list[str]] -- original 
+                request without the raw data for purposes of matching the 
+                original request if asynchronously implemented in the server.
+                
+                - project: str -- project name
+                - months: list[int] -- months requested
+                - tasks: list[str] -- tasks requested
+            <task_name>: dict -- task_results_pkg (task dependent for the 
+                format)
+            ...
+            source: one of {"CACHE", "COMPUTED"}
+        }
         """
         
-        pass
+        # return wrapper for now, may change format in the future
+        pkg["request_pkg"] = {
+            "project": proj_name,
+            "months": month_range,
+            "tasks": tasks
+        }
+        pkg["source"] = "CACHE" if is_cached else "COMPUTED"
+        return pkg
 
     def dispatcher(tasks: list[str], data: dict[str, Any]) -> dict[str, Any]:
         """Dispatches the computation for all requested tasks via the DeltaData
@@ -317,7 +352,7 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
             "forecast": dd.__dict__.get("forecasts", None),
             "traj": dd.__dict__.get("trajectories", None)
         }
-        dispatch_res = {task: key_translator[task] for task in tasks}
+        dispatch_res = {downstream_task: result for downstream_task, result in key_translator.items() if downstream_task in tasks}
         
         # check that all tasks have been appropriately computed
         if any(dispatch_res[task] is None for task in tasks):
@@ -333,22 +368,40 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
     ## send out cached result if possible
     if cached_result is not None:
         delivered_tasks = deliver_results(
-            tasks=tasks, proj_name=data["proj_name"], pkg=cached_result
+            tasks=tasks, proj_name=data["proj_name"],
+            month_range=data["month_range"], pkg=cached_result, is_cached=True
         )
         return delivered_tasks
     
     # if not, compute a fresh result
     computed_result = dispatcher(tasks=tasks, data=data)
     delivered_tasks = deliver_results(
-        tasks=tasks, proj_name=data["proj_name"], pkg=computed_result
+        tasks=tasks, proj_name=data["proj_name"],
+        month_range=data["month_range"], pkg=computed_result, is_cached=False
     )
     return delivered_tasks
 
 
 # ------------- Testing ------------- #
 if __name__ == "__main__":
+    # load test data
+    proj_name = "ActionBarSherlock"
+    tdata = pd.read_parquet("./data/github_data/commits.parquet")
+    tdata = tdata[tdata.project_name == "ActionBarSherlock"]
+    sdata = pd.read_parquet("./data/github_data/issues.parquet")
+    sdata = sdata[sdata.project_name == "ActionBarSherlock"]
+    
+    # format pkg
     test_data = {
-        
+        "project_name": proj_name,
+        "tech_data": tdata,
+        "social_data": sdata,
+        "tasks": ["ALL"],
+        "month_range": [0, -1]
     }
-    compute_forecast(test_data)
+    
+    # call and check output
+    res = compute_forecast(test_data)
+    with open("temp.out", "w") as f:
+        f.write(res)
 

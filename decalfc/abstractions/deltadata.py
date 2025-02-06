@@ -26,16 +26,16 @@ from dataclasses import dataclass, field
 from json import dump, load
 
 # DECAL modules
-import decalforecaster.utils as util
-from decalforecaster.utils import PARQUET_ENGINE, CSV_ENGINE
-from decalforecaster.abstractions.rawdata import clean_file_paths, \
+import decalfc.utils as util
+from decalfc.utils import PARQUET_ENGINE, CSV_ENGINE
+from decalfc.abstractions.rawdata import clean_file_paths, \
     clean_sender_names, impute_months, impute_messageid, infer_replies, \
     infer_bots, clean_source_files, dealias_senders
-from decalforecaster.abstractions.tsmodel import *
-from decalforecaster.pipeline.create_networks import create_networks
-from decalforecaster.pipeline.network_features import extract_features
-from decalforecaster.pipeline.network_visualizations import net_vis_info
-from decalforecaster.algorithms.trajectory import route_traj
+from decalfc.abstractions.tsmodel import *
+from decalfc.pipeline.create_networks import create_networks
+from decalfc.pipeline.network_features import extract_features
+from decalfc.pipeline.network_visualizations import net_vis_info
+from decalfc.algorithms.trajectory import route_traj
 
 # constants & setup parallel processing
 NUM_PROCESSES = cpu_count()

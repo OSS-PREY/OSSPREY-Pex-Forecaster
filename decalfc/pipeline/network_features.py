@@ -24,8 +24,8 @@ import sys
 from pathlib import Path
 
 # DECAL modules
-import decalforecaster.utils as util
-from decalforecaster.utils import PARQUET_ENGINE, CSV_ENGINE
+import decalfc.utils as util
+from decalfc.utils import PARQUET_ENGINE, CSV_ENGINE
 
 
 # ---------------- define utility ---------------- #

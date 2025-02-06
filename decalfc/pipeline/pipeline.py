@@ -12,12 +12,12 @@ import sys
 from pathlib import Path
 
 # DECAL modules
-import decalforecaster.utils as util
-import decalforecaster.abstractions.rawdata as rd
-from decalforecaster.pipeline.monthly_data import *
-from decalforecaster.pipeline.create_networks import *
-from decalforecaster.pipeline.network_features import *
-from decalforecaster.pipeline.network_visualizations import *
+import decalfc.utils as util
+import decalfc.abstractions.rawdata as rd
+from decalfc.pipeline.monthly_data import *
+from decalfc.pipeline.create_networks import *
+from decalfc.pipeline.network_features import *
+from decalfc.pipeline.network_visualizations import *
 
 
 # ------------- Dispatch Utility ------------- #

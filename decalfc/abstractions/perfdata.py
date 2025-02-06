@@ -25,8 +25,8 @@ from functools import reduce
 from itertools import permutations
 from math import ceil
 
-import decalforecaster.utils as util
-from decalforecaster.utils import PARQUET_ENGINE
+import decalfc.utils as util
+from decalfc.utils import PARQUET_ENGINE
 
 
 # Auxiliary Functions
@@ -528,7 +528,7 @@ class PerfData:
 
         if field == "transfer_strategy":
             # remove all interval trials
-            data = data[~data[field].str.contains("\*")]
+            data = data[~data[field].str.contains("*")]
 
             # aggregate strategy, ignore version numbers (cleaner visualize)
             def clean_str(s):
