@@ -4,17 +4,9 @@
 @author Arjun Ashok (arjun3.ashok@gmail.com)
 """
 
-# ------------- Environment Setup ------------- #
-# external packages
-import gdown
-
+# ------------- Bare Environment Setup ------------- #
 # built-in modules
-from pathlib import Path
 from setuptools import setup, find_packages
-
-# DECAL modules
-from decalfc.utils import _load_params
-params_dict = _load_params()
 
 
 # ------------- Dependencies Setup ------------- #
@@ -32,7 +24,8 @@ setup(
     author="Arjun Ashok",
     author_email="arjun3.ashok@gmail.com",
     url="https://github.com/arjashok/pex-forecaster",
-    packages=["decalfc"],
+    # package_dir={"": "decalfc"},
+    packages=find_packages(),
     install_requires=reqs,
     scripts=[
         "forecast.sh",
@@ -41,30 +34,42 @@ setup(
 )
 
 
-# ------------- Data Setup ------------- #
-_DATA_URLS = {
-    "apache": {
-        "tech": "https://drive.google.com/file/d/1TWfOUGlqfHXGY0H2fpxnw8U3NmN_RV7C/view?usp=sharing",
-        "social": "https://drive.google.com/file/d/11H0lRToXQq83Vmfhoj3d7yLIyTKyieGE/view?usp=drive_link"
-    },
-    "github": {
-        "tech": "https://drive.google.com/file/d/1Y-afVT8XVlvQELGbi-1JZS-a6gk8pQHH/view?usp=drive_link",
-        "social": "https://drive.google.com/file/d/1RlRAp0jRscgVoNRAVkzK3DBytkS10j0K/view?usp=drive_link"
-    },
-    "eclipse": {
-        "tech": "https://drive.google.com/file/d/1zF0MAXte7O1Pkiq-e561isCjVdUTk_YD/view?usp=drive_link",
-        "social": "https://drive.google.com/file/d/1LczzKH4jG8jKrRb7zmQ0DItCW77SYz5B/view?usp=drive_link"
-    }
-}
-_DATA_PATH = Path(params_dict["dataset-dir"])
-_DATA_PATH.mkdir(exist_ok=True)
+# # ------------- Comprehensive Environment Setup ------------- #
+# # external packages
+# import gdown
 
-for ds, url_pkg in _DATA_URLS.items():
-    # download each of the sub-items
-    for dtype, url in url_pkg.items():
-        gdown.download(
-            url,
-            _DATA_PATH / f"{ds}_data" / f"{params_dict[f'{dtype}-type'][ds]}.parquet",
-            quiet=True
-        )
+# # built-in modules
+# from pathlib import Path
+
+# # DECAL modules
+# from decalfc.utils import _load_params
+# params_dict = _load_params()
+
+
+# # ------------- Data Setup ------------- #
+# _DATA_URLS = {
+#     "apache": {
+#         "tech": "https://drive.google.com/file/d/1TWfOUGlqfHXGY0H2fpxnw8U3NmN_RV7C/view?usp=sharing",
+#         "social": "https://drive.google.com/file/d/11H0lRToXQq83Vmfhoj3d7yLIyTKyieGE/view?usp=drive_link"
+#     },
+#     "github": {
+#         "tech": "https://drive.google.com/file/d/1Y-afVT8XVlvQELGbi-1JZS-a6gk8pQHH/view?usp=drive_link",
+#         "social": "https://drive.google.com/file/d/1RlRAp0jRscgVoNRAVkzK3DBytkS10j0K/view?usp=drive_link"
+#     },
+#     "eclipse": {
+#         "tech": "https://drive.google.com/file/d/1zF0MAXte7O1Pkiq-e561isCjVdUTk_YD/view?usp=drive_link",
+#         "social": "https://drive.google.com/file/d/1LczzKH4jG8jKrRb7zmQ0DItCW77SYz5B/view?usp=drive_link"
+#     }
+# }
+# _DATA_PATH = Path(params_dict["dataset-dir"])
+# _DATA_PATH.mkdir(exist_ok=True)
+
+# for ds, url_pkg in _DATA_URLS.items():
+#     # download each of the sub-items
+#     for dtype, url in url_pkg.items():
+#         gdown.download(
+#             url,
+#             _DATA_PATH / f"{ds}_data" / f"{params_dict[f'{dtype}-type'][ds]}.parquet",
+#             quiet=True
+#         )
 
