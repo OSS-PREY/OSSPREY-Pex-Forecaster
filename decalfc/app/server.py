@@ -91,7 +91,7 @@ def compute_forecast(data: dict[str, str | pd.DataFrame | list[str] | list[int]]
     attempt_request_parse(data)
     
     # dispatch tasks to complete
-    router(tasks_pkg, data_pkg)
+    return router(tasks_pkg, data_pkg)
     
     # send back okay message and aynchronously compute?
     return {"message": "Data received successfully", "code": 200}
@@ -255,9 +255,11 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
             "forecast": Path(params_dict["forecast-dir"]) / f"{proj_name}.json",
             "traj": Path(params_dict["trajectory-dir"]) / f"{proj_name}.json"
         }
+        tasks = set(tasks) & set(paths.keys())
         
         ## check all paths exist for the requested caches
         if not all(paths[task].exists() for task in tasks):
+            util._log(f"failed to find caches for {[task for task in tasks if not paths[task].exists()]}")
             return None
         
         ## load in the caches
@@ -274,13 +276,27 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
         # now that we have the caches, ensure each of them has enough info to 
         # fulfill the request
         for task, cache in caches.items():
-            if len(cache) < end_month + 1:
+            if task == "net-vis" and max(int(k) for k in cache["tech"].keys()) < end_month:
+                util._log(
+                    f"failed to find valid net-vis cache; have up to month {max(int(k) for k in cache["tech"].keys())}, need {end_month}"
+                )
+                return None
+            elif task != "net-vis" and len(cache) < end_month + 1:
+                util._log(
+                    f"failed to find valid length {task} cache; have {len(cache)} months, need {end_month + 1}"
+                )
                 return None
         
         # export the valid caches for this result
         for task in tasks:
             if task == "net-gen":
                 caches[task] = caches[task].head(end_month + 1)
+            elif task == "net-vis":
+                net_vis_info = {
+                    "tech": {k: v for k, v in caches[task]["tech"].items() if start_month <= int(k) <= end_month},
+                    "social": {k: v for k, v in caches[task]["social"].items() if start_month <= int(k) <= end_month}
+                }
+                caches[task] = net_vis_info
             else:
                 caches[task] = {k: v for k, v in caches[task].items() if start_month <= int(k) <= end_month}
         
@@ -352,12 +368,23 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
             "forecast": dd.__dict__.get("forecasts", None),
             "traj": dd.__dict__.get("trajectories", None)
         }
-        dispatch_res = {downstream_task: result for downstream_task, result in key_translator.items() if downstream_task in tasks}
+        tasks = set(tasks) & set(key_translator.keys())
+        dispatch_res = {task: key_translator[task] for task in tasks}
         
         # check that all tasks have been appropriately computed
         if any(dispatch_res[task] is None for task in tasks):
             compl_tasks = [task for task in tasks if dispatch_res[task] is not None]
             raise ValueError(f"Tasks failed to compute as expected; needed {tasks}, but only have data for {compl_tasks}")
+        
+        # export if everything checks out
+        return dispatch_res
+    
+    # infer end month if needed
+    if data["month_range"][-1] <= 0:
+        util._log("inferring end month", "warning")
+        data["month_range"][-1] = int(min(
+            data["tdata"].month.max(), data["sdata"].month.max()
+        ))
     
     # check if the cache is available
     cached_result = check_cache(
@@ -385,23 +412,29 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
 # ------------- Testing ------------- #
 if __name__ == "__main__":
     # load test data
-    proj_name = "ActionBarSherlock"
     tdata = pd.read_parquet("./data/github_data/commits.parquet")
-    tdata = tdata[tdata.project_name == "ActionBarSherlock"]
-    sdata = pd.read_parquet("./data/github_data/issues.parquet")
-    sdata = sdata[sdata.project_name == "ActionBarSherlock"]
+    proj_names = list(tdata.project_name.unique())
     
-    # format pkg
-    test_data = {
-        "project_name": proj_name,
-        "tech_data": tdata,
-        "social_data": sdata,
-        "tasks": ["ALL"],
-        "month_range": [0, -1]
-    }
-    
-    # call and check output
-    res = compute_forecast(test_data)
-    with open("temp.out", "w") as f:
-        f.write(res)
+    def temp_wrapper(pn):
+        tdata = pd.read_parquet("./data/github_data/commits.parquet")
+        tdata = tdata[tdata.project_name == pn]
+        sdata = pd.read_parquet("./data/github_data/issues.parquet")
+        sdata = sdata[sdata.project_name == pn]
+        
+        # format pkg
+        test_data = {
+            "project_name": pn,
+            "tech_data": tdata,
+            "social_data": sdata,
+            "tasks": ["ALL"],
+            "month_range": [0, -1]
+        }
+        
+        # call and check output
+        res = compute_forecast(test_data)
+        with open("temp.out", "w") as f:
+            f.write(str(res))
+            
+    for pn in proj_names:
+        temp_wrapper(pn)
 

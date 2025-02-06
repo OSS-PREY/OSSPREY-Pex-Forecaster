@@ -27,7 +27,7 @@
     },
     "dataset-dir": "./data/",
     "network-dir": "./network-data/",
-    "network-visualization-dir": "./network-data/net-vis/",
+    "network-visualization-dir": "./net-vis/",
     "ref-dir": "./ref/",
     "weights-dir": "./model-weights/",
     "reports-dir": "./model-reports/",
@@ -218,5 +218,5 @@
     "test-prop": 0.20,
     "network-data-format": "./network-data/netdata/{}-{}-network-data-{}.{}",
     "model-weights-format": "./model-weights/{}/{}-[a{}]-[f{}]-[p{}]-[r{}].pt",
-    "delta-cache-dir": "./network-data/caches/"
+    "delta-cache-dir": "./net-caches/"
 }

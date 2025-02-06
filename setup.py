@@ -57,6 +57,7 @@ _DATA_URLS = {
     }
 }
 _DATA_PATH = Path(params_dict["dataset-dir"])
+_DATA_PATH.mkdir(exist_ok=True)
 
 for ds, url_pkg in _DATA_URLS.items():
     # download each of the sub-items

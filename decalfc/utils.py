@@ -8,7 +8,7 @@
 ## built-in modules
 import argparse
 import json
-import os
+from os import cpu_count
 import shutil
 from ast import literal_eval
 from pathlib import Path
@@ -17,6 +17,7 @@ from typing import Any
 
 # Constants
 PARAMS_PATH = Path("./ref/params.json")
+NUM_PROCESSES = cpu_count()
 PARQUET_ENGINE = "pyarrow"
 CSV_ENGINE = "python"
 

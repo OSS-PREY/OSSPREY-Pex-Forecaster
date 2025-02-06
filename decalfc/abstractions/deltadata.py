@@ -27,18 +27,17 @@ from json import dump, load
 
 # DECAL modules
 import decalfc.utils as util
-from decalfc.utils import PARQUET_ENGINE, CSV_ENGINE
+from decalfc.utils import PARQUET_ENGINE, CSV_ENGINE, NUM_PROCESSES
 from decalfc.abstractions.rawdata import clean_file_paths, \
     clean_sender_names, impute_months, impute_messageid, infer_replies, \
     infer_bots, clean_source_files, dealias_senders
 from decalfc.abstractions.tsmodel import *
 from decalfc.pipeline.create_networks import create_networks
 from decalfc.pipeline.network_features import extract_features
-from decalfc.pipeline.network_visualizations import net_vis_info
+from decalfc.pipeline.network_visualizations import net_vis_info_projectwise
 from decalfc.algorithms.trajectory import route_traj
 
 # constants & setup parallel processing
-NUM_PROCESSES = cpu_count()
 pandarallel.initialize(nb_workers=NUM_PROCESSES, progress_bar=True)
 params_dict = util._load_params()
 tqdm.pandas()
@@ -382,7 +381,13 @@ class DeltaData:
         # compile data into memory
         network_dir = Path(params_dict["network-dir"])
         net_path = network_dir / "netdata" / f"{self.incubator}-network-data.csv"
-        self.netdata = pd.read_csv(net_path, engine=CSV_ENGINE)
+        
+        try:
+            self.netdata = pd.read_csv(net_path, engine=CSV_ENGINE)
+        except Exception as e:
+            raise ValueError(
+                f"Failed to read processed networks (check cache for issues?)"
+            )
         
         # combine network data (vertical stacking, essentially); ensure to 
         # remove the extra rows created and we make-up for the month offset
@@ -431,7 +436,7 @@ class DeltaData:
             raise ValueError(f"social directory (\"{s_dir}\") contains non-matching project file (needs only {self.proj_name} files, got {wrong_files})")
         
         # generate visualizations
-        self.net_vis = net_vis_info(self.delta_args)
+        self.net_vis = net_vis_info_projectwise(self.delta_args)
         
         # update old visualizations if possible and re-store
         vis_path = Path(params_dict["network-visualization-dir"]) / f"{self.proj_name}.json"

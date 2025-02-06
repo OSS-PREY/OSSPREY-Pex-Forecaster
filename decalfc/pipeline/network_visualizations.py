@@ -139,6 +139,70 @@ def net_vis_info(args_dict: dict[str, Any]) -> dict[str, list[list[str | int]]]:
     # export to memory
     return net_visuals
 
+def net_vis_info_projectwise(args_dict: dict[str, Any]) -> dict[str, list[list[str | int]]]:
+    """
+        Wraps the full utility for generating the necessary lookups for the tech 
+        and social networks. Only works for projectwise computation, i.e. 
+        assumes the entire edgelist dir is filled with only this project's data.
+    """
+
+    # setup
+    print("\n<Generating Network Info for Visualization>")
+    params_dict = util._load_params()
+
+    # execute input
+    social_type = params_dict["social-type"][args_dict["incubator"]]
+    tech_type = params_dict["tech-type"][args_dict["incubator"]]
+    network_dir = Path(params_dict["network-dir"])
+
+    t_dir = network_dir / f"{args_dict['incubator']}_{tech_type}/"
+    s_dir = network_dir / f"{args_dict['incubator']}_{social_type}/"
+    base_dir = Path(params_dict["network-visualization-dir"])
+
+    # setup & prepare (clear output dirs, get iteration list)
+    util._check_dir(base_dir)
+
+    # only use the overlap in tech and social
+    s_nets = set(os.listdir(s_dir))
+    t_nets = set(os.listdir(t_dir))
+    nets = s_nets.union(t_nets)
+
+    # load in
+    projects = dict()
+    for net_file in nets:
+        project_name, period = net_file.split("__")
+        if project_name not in projects:
+            projects[project_name] = set()
+        projects[project_name].add(int(period.replace(".edgelist", "")))
+    for project_name in projects:
+        projects[project_name] = sorted(list(projects[project_name]))
+    
+    # check project condition met
+    if len(projects) > 1:
+        raise ValueError(
+            f"Too many projects contained within the network edgelist dir: {list(projects.keys())}."
+        )
+
+    # generate network visualization information & store into a json
+    net_visuals = {
+        "tech": dict(),
+        "social": dict()
+    }
+    
+    for project in tqdm(projects):
+        # may not have the network data
+        for month in projects[project]:
+            # unpack file directions
+            net_file = "{}__{}.edgelist".format(project_name, month)
+            tech_net_path = t_dir / net_file
+            social_net_path = s_dir / net_file
+
+            # grab necessary info & cache
+            net_visuals["tech"][month] = tech_net_info(tech_net_path)
+            net_visuals["social"][month] = social_net_info(social_net_path)
+            
+    # export to memory
+    return net_visuals
 
 if __name__ == "__main__":
     args_dict = util._parse_input(sys.argv)
