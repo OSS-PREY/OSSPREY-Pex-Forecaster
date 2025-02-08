@@ -149,6 +149,20 @@ def plot_traj(forecast: np.ndarray | list, trajectories: np.ndarray, m: int=-1, 
     plt.show()
     plt.clf()
 
+def bound_traj(traj_seq: np.ndarray | list) -> list:
+    """Bounds a single sequence of trajectory predictions (i.e. next k months) 
+    by probability bounds to prevent negative or > 1 predictions.
+
+    Args:
+        traj_seq (np.ndarray | list): iterable of trajectory predictions.
+
+    Returns:
+        list: list of bounded trajectories.
+    """
+    
+    # simple wrapper
+    return [max(min(t_pred, 1), 0) for t_pred in traj_seq]
+
 
 # Primary Algorithms
 def traj_simple(forecast: np.ndarray, lag: int=3, k: int=3, **grad_kwargs) -> np.ndarray:
@@ -338,12 +352,12 @@ def route_traj(forecast: np.ndarray, strat: str="AR", lag: int=3, k: int=3, **kw
     for i in range(trajectories.shape[0]):
         # current package; add the baseline results
         cur_pkg = dict()
-        cur_pkg["NEUTRAL"] = list(trajectories[i])
+        cur_pkg["NEUTRAL"] = bound_traj(list(trajectories[i]))
         
         # add the bound results if possible
         if bounds is not None:
-            cur_pkg["NEGATIVE"] = list(bounds[i][:, 0])
-            cur_pkg["POSITIVE"] = list(bounds[i][:, 1])
+            cur_pkg["NEGATIVE"] = bound_traj(list(bounds[i][:, 0]))
+            cur_pkg["POSITIVE"] = bound_traj(list(bounds[i][:, 1]))
         else:
             cur_pkg["POSITIVE"] = None
             cur_pkg["NEGATIVE"] = None
@@ -399,9 +413,10 @@ class TrajTester(unittest.TestCase):
 
 # Run Tests
 if __name__ == "__main__":
-    tester = TrajTester()
-    tester.setUp()
-    tester.diff_test()
-    tester.exp_test()
-    tester.ar_test()
+    print(bound_traj([-1, 1.2, 0.8]))
+    # tester = TrajTester()
+    # tester.setUp()
+    # tester.diff_test()
+    # tester.exp_test()
+    # tester.ar_test()
     

@@ -63,7 +63,7 @@ IMPLEMENTED_TASKS = {
 # ------------- Helper Fn ------------- #
 def _route_preprocesses(data: dict[str, pd.DataFrame], tasks: list[str],
     incubator: str=INCUBATOR_ALIAS, inplace: bool=True
-) -> None | dict[str, pd.DataFrame]:
+) -> dict[str, pd.DataFrame]:
     """Wraps all pre-processing steps requested into one neat package.
 
     Args:
@@ -72,10 +72,12 @@ def _route_preprocesses(data: dict[str, pd.DataFrame], tasks: list[str],
         incubator (str, optional): incubator name to fall under. Defaults to 
             "OSPOS".
         inplace (bool, optional): whether to perform the action inplace or to 
-            copy. Defaults to True.
+            copy. Defaults to True. Note that this is not strict, still behave 
+            as though a correct value is returned, i.e. in-place is only a 
+            suggestion to underlying routed functions.
 
     Returns:
-        None | dict[str, pd.DataFrame]: returns data lookup if not inplace.
+        dict[str, pd.DataFrame]: reference to the CORRECT data lookup.
     """
     
     # copy if needed
@@ -89,10 +91,10 @@ def _route_preprocesses(data: dict[str, pd.DataFrame], tasks: list[str],
             continue
         
         # route
-        IMPLEMENTED_TASKS[task](data, incubator=incubator, copy=False)
+        data = IMPLEMENTED_TASKS[task](data, incubator=incubator, copy=False)
         
     # return if needed
-    return data if not inplace else None
+    return data
 
 def _gen_cache_path(proj_name: str, **kwargs) -> Path:
     """Generates a path to load/save the cached netdata.
@@ -191,7 +193,7 @@ class DeltaData:
         self.check_missing_data()
 
         # pre-processing
-        _route_preprocesses(self.data, self.tasks, incubator=self.incubator)
+        self.data = _route_preprocesses(self.data, self.tasks, incubator=self.incubator)
         self.router()
         self.clean_disk()
 
@@ -358,12 +360,12 @@ class DeltaData:
         # data and we'll concatenate the old data with this
         util._log("segmenting...")
         segment_data(
-            self.tdata, author_field=author_field, save_dir=t_output_dir, 
+            self.data["tech"], author_field=author_field, save_dir=t_output_dir, 
             start_month=self.last_cached_month
         )
         segment_data(
-            self.sdata, author_field=author_field, save_dir=s_output_dir,
-            start_month=self.last_cached_month
+            self.data["social"], author_field=author_field,
+            save_dir=s_output_dir, start_month=self.last_cached_month
         )
 
 

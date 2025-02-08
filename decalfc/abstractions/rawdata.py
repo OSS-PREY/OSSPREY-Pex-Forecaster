@@ -371,7 +371,7 @@ def impute_messageid(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
     # check not overriding
     print("\n<Imputing Message ID>")
     if len(df["message_id"].unique()) / df.shape[0] > 0.90:
-        print(f"<WARNING> :: message id field already has >95\% unique IDs: {len(df['message_id'].unique()) / df.shape[0] * 100}%")
+        print(f"<WARNING> :: message id field already has >95% unique IDs: {len(df['message_id'].unique()) / df.shape[0] * 100}%")
 
         # resp = input("Continue [y/n]?")
         resp = "y"
@@ -1060,33 +1060,33 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
             return " ".join([name.capitalize() for name in author_name.split(" ")])
         
         # dealiasing
-        df = data_lookup["tech"]
+        tdf = data_lookup["tech"]
         # df.query(f"is_bot == False and is_coding == True and {author_field} != 'none'", inplace=True)
-        df = df[(df["is_bot"] == False) & (df["is_coding"] == True) & (df[author_field] != "none")]
-        df = df[df[author_field].notna()]
-        df[output_field] = df.apply(lambda x: _dealiasing(x["project_name"], x[author_field]), axis=1)
-        # df[output_field] = _dealiasing(df["project_name"], df[author_field])
-        aft_num_tech = df[output_field].nunique()
+        tdf = tdf[(tdf["is_bot"] == False) & (tdf["is_coding"] == True) & (tdf[author_field] != "none")]
+        tdf = tdf[tdf[author_field].notna()]
+        tdf[output_field] = tdf.apply(lambda x: _dealiasing(x["project_name"], x[author_field]), axis=1)
+        # tdf[output_field] = _dealiasing(tdf["project_name"], tdf[author_field])
+        aft_num_tech = tdf[output_field].nunique()
 
-        df = data_lookup["social"]
+        sdf = data_lookup["social"]
         # df.query(f"is_bot == False and {author_field} != 'none'", inplace=True)
-        df = df[(df["is_bot"] == False) & (df[author_field] != "none")]
-        df = df[df[author_field].notna()]
+        sdf = sdf[(sdf["is_bot"] == False) & (sdf[author_field] != "none")]
+        sdf = sdf[sdf[author_field].notna()]
         # df[output_field] = _dealiasing(df["project_name"], df[author_field])
-        df[output_field] = df.apply(lambda x: _dealiasing(x["project_name"], x[author_field]), axis=1)
-        aft_num_social = df[output_field].nunique()
+        sdf[output_field] = sdf.apply(lambda x: _dealiasing(x["project_name"], x[author_field]), axis=1)
+        aft_num_social = sdf[output_field].nunique()
 
         # export
         if export:
             _save_data(data_lookup, incubator, new_version=kwargs["new_version"])
 
         # returns
-        return aft_num_tech, aft_num_social
+        return {"tech": tdf, "social": sdf}, aft_num_tech, aft_num_social
 
     # conduct
     bef_num_tech, bef_num_social = _dealiasing_gen_aliases(**kw_args)
     bef_num_tech, bef_num_social = data_lookup["tech"]["sender_name"].nunique(), data_lookup["social"]["sender_name"].nunique()
-    aft_num_tech, aft_num_social = _dealiasing_enforce_aliases(**kw_args)
+    new_lookup, aft_num_tech, aft_num_social = _dealiasing_enforce_aliases(**kw_args)
 
     # report
     print("======== SUMMARY ========")
@@ -1099,7 +1099,7 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
     print("All done!")
 
     # return
-    return data_lookup
+    return new_lookup
 
 
 # Class; we'll avoid slots since we're loading large datasets in

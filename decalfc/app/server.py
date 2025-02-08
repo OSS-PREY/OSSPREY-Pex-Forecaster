@@ -86,9 +86,13 @@ def compute_forecast(data: dict[str, str | pd.DataFrame | list[str] | list[int]]
     
     # error handling if incorrectly structured
     check_request_structure(data)
-        
+
     # error handling if incorrectly formatted; attempt parsing
     attempt_request_parse(data)
+    
+    # ensure the format is translated to an understood format
+    translate_data(data_pkg)
+    ensure_column_integrity(data_pkg)
     
     # dispatch tasks to complete
     return router(tasks_pkg, data_pkg)
@@ -200,6 +204,173 @@ def check_request_structure(data: dict[str, Any]) -> None:
     
     # no error
     return None
+
+def translate_data(data: dict[str, Any]) -> None:
+    """Provides a temporary translation utility for the incoming OSPOS input csv
+    to the format expected by underlying functionality. Updates in-place.
+
+    Args:
+        data (dict[str, Any]): data package post-parsing.
+    """
+    
+    # translator dictionary
+    translations = {
+        "tech": {
+            "project": "project_name",
+            "start_date": "project_start_date",
+            "end_date": "project_end_date",
+            "commit_sha": "commit_id",
+            "email": "sender_email",
+            "name": "sender_name",
+            "date": "date",
+            "timestamp": "timestamp",
+            "filename": "file_name",
+            "change_type": "change_type",
+            "lines_added": "added",
+            "lines_deleted": "deleted",
+            "commit_message": "commit_msg"
+        },
+        "social": {
+            "repo_name": "project_name",
+            "type": "type",
+            "issue_url": "subject",
+            "id": "comment_id",
+            "title": "title",
+            "user_login": "user_name",
+            "user_id": "user_id",
+            "user_name": "sender_name",
+            "user_email": "sender_email",
+            "created_at": "date",
+            "body": "body",
+        }
+    }
+    
+    # check columns exist
+    if any(req_col not in data["tdata"].columns for req_col in translations["tech"]):
+        missing_cols = [col for col in translations["tech"] if col not in data["tdata"].columns]
+        raise ValueError(
+            f"Missing required columns from incoming technical data: {missing_cols}"
+        )
+    if any(req_col not in data["sdata"].columns for req_col in translations["social"]):
+        missing_cols = [col for col in translations["social"] if col not in data["sdata"].columns]
+        raise ValueError(
+            f"Missing required columns from incoming social data: {missing_cols}"
+        )
+    
+    # translate and keep subset of columns
+    data["tdata"] = data["tdata"][list(translations["tech"].keys())]
+    data["sdata"] = data["sdata"][list(translations["social"].keys())]
+    data["tdata"].rename(columns=translations["tech"], inplace=True)
+    data["sdata"].rename(columns=translations["social"], inplace=True)
+    
+    # nothing more
+    return
+
+def ensure_column_integrity(data: dict[str, Any]) -> None:
+    """Ensures the required columns are present in the data (i.e. the 
+    pre-processing) for all the downstream tasks. Conducts in-place.
+
+    Args:
+        data (dict[str, Any]): data package.
+    """
+    
+    # auxiliary functions
+    def ensure_cols(data: dict[str, Any]) -> None:
+        """Ensures all expected columns at the very least exist; fill with blank
+        data if it doesn't. Computes in-place.
+
+        Args:
+            data (dict[str, Any]): data package.
+        """
+        
+        # columns to ensure
+        field_lookup = {
+            "required": {
+                "tdata": [
+                    "project_name",
+                    "date",
+                    "sender_name",
+                    "file_name"
+                ],
+                "sdata": [
+                    "project_name",
+                    "date",
+                    "sender_name",
+                    "subject"
+                ]
+            },
+            "blank_ok": {
+                "tdata": [
+                    ("month", 0),
+                    ("is_bot", 0),
+                    ("is_code", 0),
+                    ("dealised_author_full_name", "")
+                ],
+                "sdata": [
+                    ("month", 0),
+                    ("is_bot", 0),
+                    ("in_reply_to", ""),
+                    ("message_id", ""),
+                    ("dealised_author_full_name", "")
+                ]
+            }
+        }
+
+        # ensure the required columns
+        for dtype, cols in field_lookup["required"].items():
+            if any(col not in data[dtype].columns for col in cols):
+                missing_cols = [col for col in cols if col not in data[dtype].columns]
+                raise ValueError(
+                    f"FATAL :: missing required columns post-processing: {missing_cols}"
+                )
+        
+        # ensure/create the optional
+        for dtype, cols in field_lookup["blank_ok"].items():
+            for col, fill_val in cols:
+                # only create if it's not already there
+                if col in data[dtype].columns:
+                    continue
+                data[dtype][col] = fill_val
+
+        # done
+        return
+    
+    def impute_months(data: dict[str, Any]) -> None:
+        """Generates the month numbers. Notice that we ignore the day and only 
+        go by month number, e.g.:
+            - start @ 3/12/2025
+            - month 0: 3/12/2025 -- 3/31/2025
+            - month 1: 4/01/2025 -- 4/30/2025
+            - month 2: 5/01/2025 -- 5/31/2025
+            - etc.
+
+        Args:
+            df (pd.DataFrame): dataframe to impute.
+
+        Returns:
+            pd.DataFrame: imputed dataframe, only the "month" column will 
+                change.
+        """
+        
+        # wrap call to the underlying month imputation
+        month_imputed_data = IMPLEMENTED_TASKS["pp-months"]({
+            "tech": data["tdata"],
+            "social": data["sdata"]
+        }, copy=False)
+        
+        # done
+        data.update({
+            "tdata": month_imputed_data["tech"],
+            "sdata": month_imputed_data["social"]
+        })
+        return
+    
+    # run all tasks
+    ensure_cols(data)
+    impute_months(data)
+    
+    # done
+    return
 
 
 # ------------- Internal Router ------------- #
@@ -411,30 +582,47 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
 
 # ------------- Testing ------------- #
 if __name__ == "__main__":
-    # load test data
-    tdata = pd.read_parquet("./data/github_data/commits.parquet")
-    proj_names = list(tdata.project_name.unique())
+    # # load test data
+    # tdata = pd.read_parquet("./data/github_data/commits.parquet")
+    # proj_names = list(tdata.project_name.unique())
     
-    def temp_wrapper(pn):
-        tdata = pd.read_parquet("./data/github_data/commits.parquet")
-        tdata = tdata[tdata.project_name == pn]
-        sdata = pd.read_parquet("./data/github_data/issues.parquet")
-        sdata = sdata[sdata.project_name == pn]
+    # def temp_wrapper(pn):
+    #     tdata = pd.read_parquet("./data/github_data/commits.parquet")
+    #     tdata = tdata[tdata.project_name == pn]
+    #     sdata = pd.read_parquet("./data/github_data/issues.parquet")
+    #     sdata = sdata[sdata.project_name == pn]
         
-        # format pkg
-        test_data = {
-            "project_name": pn,
-            "tech_data": tdata,
-            "social_data": sdata,
-            "tasks": ["ALL"],
-            "month_range": [0, -1]
-        }
+    #     # format pkg
+    #     test_data = {
+    #         "project_name": pn,
+    #         "tech_data": tdata,
+    #         "social_data": sdata,
+    #         "tasks": ["ALL"],
+    #         "month_range": [0, -1]
+    #     }
         
-        # call and check output
-        res = compute_forecast(test_data)
-        with open("temp.out", "w") as f:
-            f.write(str(res))
+    #     # call and check output
+    #     res = compute_forecast(test_data)
+    #     with open("temp.out", "w") as f:
+    #         f.write(str(res))
+    
+    # # call for all projects
+    # for pn in proj_names:
+    #     temp_wrapper(pn)
+    
+    # --- testing --- #
+    # format pkg
+    test_data = {
+        "project_name": "hunter",
+        "tech_data": pd.read_csv("./data/ospos_data/hunter_commits.csv"),
+        "social_data": pd.read_csv("./data/ospos_data/hunter_issues.csv"),
+        "tasks": ["ALL"],
+        "month_range": [0, -1]
+    }
+    
+    # call and check output
+    res = compute_forecast(test_data)
+    with open("temp.out", "w") as f:
+        f.write(str(res))
             
-    for pn in proj_names:
-        temp_wrapper(pn)
 
