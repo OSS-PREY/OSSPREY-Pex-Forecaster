@@ -449,7 +449,7 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
         for task, cache in caches.items():
             if task == "net-vis" and max(int(k) for k in cache["tech"].keys()) < end_month:
                 util._log(
-                    f"failed to find valid net-vis cache; have up to month {max(int(k) for k in cache["tech"].keys())}, need {end_month}"
+                    f"failed to find valid net-vis cache; have up to month {max(int(k) for k in cache['tech'].keys())}, need {end_month}"
                 )
                 return None
             elif task != "net-vis" and len(cache) < end_month + 1:

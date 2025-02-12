@@ -42,7 +42,13 @@ pandarallel.initialize(nb_workers=NUM_PROCESSES, progress_bar=True)
 params_dict = util._load_params()
 tqdm.pandas()
 INCUBATOR_ALIAS = "ospos"
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+DEVICE = (
+    "cuda" if torch.cuda.is_available()
+    else (
+        "mps" if torch.backends.mps.is_available()
+        else "cpu"
+    )
+)
 
 IMPLEMENTED_TASKS = {
     "net-gen": None,
@@ -603,8 +609,8 @@ class DeltaData:
             case _:
                 raise ValueError(f"Failed to associate model to provided architecture \"{model_arch}\". Expected one of [BLSTM, BGRU]")
         
-        model.load_state_dict(torch.load(path, weights_only=True))
-        model.eval() 
+        model.load_state_dict(torch.load(path, weights_only=True, map_location=DEVICE))
+        model.eval()
         
         # generate forecasts
         fcs = dict()
