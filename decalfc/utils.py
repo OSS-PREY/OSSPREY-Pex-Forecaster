@@ -5,6 +5,11 @@
 """
 
 # --- Environment Setup --- #
+## packages
+import pandas as pd
+import pandarallel
+import tqdm
+
 ## built-in modules
 import argparse
 import json
@@ -14,16 +19,15 @@ from ast import literal_eval
 from pathlib import Path
 from typing import Any
 
-
-# Constants
+## constants
 PARAMS_PATH = Path("./ref/params.json")
 NUM_PROCESSES = cpu_count()
 PARQUET_ENGINE = "pyarrow"
 CSV_ENGINE = "python"
 
 
-# Utility
-def _load_params() -> dict[str, Any]:
+# --- Utility --- #
+def load_params() -> dict[str, Any]:
     """
         Wrapper for loading in the params dictionary for centralized params.
     """
@@ -33,8 +37,7 @@ def _load_params() -> dict[str, Any]:
         params_dict = json.load(f)
     return params_dict
 
-
-def _parse_input(argv: list[str], **kwargs) -> dict[str, Any]:
+def parse_input(argv: list[str], **kwargs) -> dict[str, Any]:
     """
         Centralized method for obtaining and parsing input into a readable 
         dictionary.
@@ -81,8 +84,7 @@ def _parse_input(argv: list[str], **kwargs) -> dict[str, Any]:
     # export
     return kwargs
 
-
-def _check_dir(dir: str | Path) -> None:
+def check_dir(dir: str | Path) -> None:
     """
         Checks if a dir exists, makes it if it doesn't
     """
@@ -90,17 +92,15 @@ def _check_dir(dir: str | Path) -> None:
     # make the dir along with its parents
     Path(dir).mkdir(parents=True, exist_ok=True)
 
-
-def _check_path(path: str | Path) -> None:
+def check_path(path: str | Path) -> None:
     """
         Checks if the dir for a file exists, otherwise creates it.
     """
 
     dir = Path(path).parent
-    _check_dir(dir)
+    check_dir(dir)
 
-
-def _clear_dir(dir: str | Path, skip_input: bool=False) -> None:
+def clear_dir(dir: str | Path, skip_input: bool=False) -> None:
     """
         Clears the contents of a directory if it exists. Main purpose is to 
         avoid accessing data from previous trials when generating networks.
@@ -123,8 +123,7 @@ def _clear_dir(dir: str | Path, skip_input: bool=False) -> None:
     print("<Clearing Previous Trials>")
     shutil.rmtree(dir)
 
-
-def _del_file(path: str | Path) -> None:
+def del_file(path: str | Path) -> None:
     """
         Deletes the specified file.
     """
@@ -138,8 +137,7 @@ def _del_file(path: str | Path) -> None:
     # delete
     path.unlink()
 
-
-def _log(msg: str="", log_type: str="log", output: str="console",
+def log(msg: str="", log_type: str="log", output: str="console",
     file_name: str="logger") -> None:
     """
         Logs a different message depending on the type fed in.
@@ -187,3 +185,8 @@ def _log(msg: str="", log_type: str="log", output: str="console",
         case _:
             output_router[output](f"\n<{msg.title()}>")
 
+
+# Environment Setup 
+pandarallel.initialize(nb_workers=NUM_PROCESSES, progress_bar=True)
+tqdm.pandas()
+params_dict = load_params()

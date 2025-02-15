@@ -1,7 +1,7 @@
 """
     @brief defines the network data class for easily interfacing with the 
-           post-processed dataset. Primary utility comes from bundling all 
-           relevant information in one object.
+        post-processed dataset. Primary utility comes from bundling all 
+        relevant information in one object.
     @author Arjun Ashok (arjun3.ashok@gmail.com)
     @creation-date January 2024
     @version 0.1.0
@@ -30,7 +30,7 @@ from decalfc.utils import PARQUET_ENGINE
 
 
 # Constants
-params_dict = util._load_params()
+params_dict = util.load_params()
 util_dir = Path(params_dict["ref-dir"])
 network_dir = Path(params_dict["network-dir"])
 
@@ -117,7 +117,7 @@ class NetData:
     ]))
 
     # modeling
-    rand_seed: int = field(default=42)                                          # for reproducability
+    rand_seed: int = field(default=17)                                          # for reproducability
     test_prop: float = field(default=0.30)                                      # proportion of data to be saved for testing
     base_projects: set[str] = field(default=None)                               # base projects to match to for end results association
     projects_set: set[str] = field(default=None)                                # set of projects in the data
@@ -142,7 +142,7 @@ class NetData:
             return potential_base_proj
         
         # failure means non-trainable project
-        util._log(f"failed to associate project {proj} using {potential_base_proj}", "warning")
+        util.log(f"failed to associate project {proj} using {potential_base_proj}", "warning")
         return proj
 
 
@@ -153,12 +153,14 @@ class NetData:
         """
 
         # gen_string
-        params_dict = util._load_params()
+        params_dict = util.load_params()
         if self.options == {}:
             return "clean"
 
-        return "-".join([params_dict["network-augmentations"][opt] \
-                         for opt, selected in self.options.items() if selected])
+        return "-".join([
+            params_dict["network-augmentations"][opt] \
+            for opt, selected in self.options.items() if selected
+        ])
     
 
     def _gen_network_data_path(self) -> None:
@@ -167,7 +169,7 @@ class NetData:
         """
 
         # load params
-        params_dict = util._load_params()
+        params_dict = util.load_params()
 
         # generate path
         PATH_FORMAT = params_dict["network-data-format"]
@@ -186,7 +188,7 @@ class NetData:
         """
 
         # generate the default versions dict
-        params_dict = util._load_params()
+        params_dict = util.load_params()
         self.versions = (dict(zip(
             ["tech", "social"],
             params_dict["default-versions"][self.incubator]
@@ -221,11 +223,11 @@ class NetData:
         
         # if doesn't exist, make it: 1. load default 2. apply options
         if not self.generate:
-            util._log(f"Data was not available w/ versions {self.versions} for {self.incubator}", "warning")
+            util.log(f"Data was not available w/ versions {self.versions} for {self.incubator}", "warning")
             exit(1)
     
-        util._log("Data was not available, automatically generating", "warning")
-        util._log("using default params for transforms. . .", "note")
+        util.log("Data was not available, automatically generating", "warning")
+        util.log("using default params for transforms. . .", "note")
 
         # load base
         self.data = pd.read_csv(self._gen_default_path())
@@ -249,13 +251,13 @@ class NetData:
             # flag if concat is necessary
             if "a" in self.options.keys() and "d" in self.options.keys():
                 self.transform_kwargs[option]["concat"] = True
-                util._log("BREAKING DEFAULT BEHAVIOR! Concatenation instead of overriding", "warning")
+                util.log("BREAKING DEFAULT BEHAVIOR! Concatenation instead of overriding", "warning")
 
             # route the correct transforms
             if len(self.transform_kwargs[option]) == 0:
-                util._log(f"Performing transformation [{option}] with default params")
+                util.log(f"Performing transformation [{option}] with default params")
             else:
-                util._log(f"Performing transformation [{option}] with the following params: {self.transform_kwargs[option]}")
+                util.log(f"Performing transformation [{option}] with the following params: {self.transform_kwargs[option]}")
             
             self.transform_router[option](
                 self,
@@ -361,10 +363,10 @@ class NetData:
             self.split_set["train"] = set()
             
         # reporting
-        util._log("\n< :::: TRAIN SET :::: >", "new", "file", "temp_log")
-        util._log(f"{self.split_set['train']}", "none", "file", "temp_log")
-        util._log("\n< :::: TEST SET :::: >", "new", "file", "temp_log")
-        util._log(f"{self.split_set['test']}", "none", "file", "temp_log")
+        util.log("\n< :::: TRAIN SET :::: >", "new", "file", "temp_log")
+        util.log(f"{self.split_set['train']}", "none", "file", "temp_log")
+        util.log("\n< :::: TEST SET :::: >", "new", "file", "temp_log")
+        util.log(f"{self.split_set['test']}", "none", "file", "temp_log")
 
 
     def _gen_data_dict(self) -> None:
@@ -549,7 +551,7 @@ class NetData:
         self.tensors = dict(zip(["train", "test"], [dict(), dict()]))
         self.is_intervaled = any((("interval" in opt) and sel) for opt, sel in self.options.items())
 
-        util._log(f"Tensor Info for {self.incubator}", "new")
+        util.log(f"Tensor Info for {self.incubator}", "new")
         if self.is_train in {"train", "both"}:
             ## soft probabilities don't require a split, we can simply pretend 
             ## they're pseudo projects again
@@ -573,9 +575,9 @@ class NetData:
             self.transform_kwargs = dict()
 
         # generate NetData object
-        util._log("setting up NetData")
+        util.log("setting up NetData")
         self._gen_network_data_path()
-        util._log("reading in/generating data")
+        util.log("reading in/generating data")
         self._load_data()
         
         # ensure column order
@@ -588,15 +590,15 @@ class NetData:
         self.data = self.data[self.column_order]
 
         # generation
-        util._log("generating project status, split")
+        util.log("generating project status, split")
         self._load_project_status()
         self._gen_train_test_split()
 
         if self.gen_tensors:
-            util._log("generating data lookup")
+            util.log("generating data lookup")
             self._gen_data_dict()
             
-            util._log("generating tensors")
+            util.log("generating tensors")
             self._gen_tensors()
 
 
@@ -608,7 +610,7 @@ class NetData:
         """
 
         # load project incubation
-        proj_inc_path = util._load_params()["incubation-time"][self.incubator]
+        proj_inc_path = util.load_params()["incubation-time"][self.incubator]
         with open(proj_inc_path, "r") as f:
             proj_inc_dict = json.load(f)
         
@@ -638,7 +640,7 @@ class NetData:
         data = data[data["month"] <= stop_month]
 
         # plotting activity per time
-        util._check_dir("../model-reports/synthetic-data/")
+        util.check_dir("../model-reports/synthetic-data/")
         sns.set_theme(style="darkgrid")
         plt.figure(figsize=(20, 6))
         sns.lineplot(x="month", y="st_num_dev", data=data, hue="proj_name", 
@@ -694,7 +696,7 @@ class NetData:
 
         # setup report
         output_dir = network_dir / "statistics" / "distributions/"
-        util._check_dir(output_dir)
+        util.check_dir(output_dir)
         report_path = f"{output_dir}{self.incubator}-{self.versions['tech']}-{self.versions['social']}"
 
         # project-wise metrics
@@ -752,10 +754,10 @@ class NetData:
         
         # check args
         if incubators is None:
-            incubators = util._load_params()["datasets"]
+            incubators = util.load_params()["datasets"]
         
         # load in all incubation timings
-        incubation_paths = util._load_params()["incubation-time"]
+        incubation_paths = util.load_params()["incubation-time"]
         project_lengths = {
             incubator: list(json.load(open(incubation_paths[incubator], "r")).values())
             for incubator in incubators
@@ -786,7 +788,7 @@ class NetData:
         ## export
         incubator_names = "-".join(incubators)
         output_dir = network_dir / f"statistics" / "project_lengths/"
-        util._check_dir(output_dir)
+        util.check_dir(output_dir)
         
         plt.savefig(
             output_dir / f"{incubator_names}_incubation_distribution.png", 
@@ -828,7 +830,7 @@ class NetData:
                     ))
 
         # print report
-        util._log("Highly Correlated Feature Pairs (corr > 0.85)", "new")
+        util.log("Highly Correlated Feature Pairs (corr > 0.85)", "new")
         for pair in high_corr_pairs:
             print(f"{pair[0]} - {pair[1]}: {pair[2]:.2f}")
 
@@ -839,7 +841,7 @@ class NetData:
         )
         plt.title("Network Feature Correlation Heatmap")
         plt.tight_layout()
-        util._check_dir(save_dir)
+        util.check_dir(save_dir)
         plt.savefig(Path(save_dir) / f"{self.incubator}_feature_correlations")
         plt.close()
 
@@ -868,8 +870,8 @@ class NetData:
         """
 
         # setup
-        util._log(f"Jittering Network Data", log_type="new")
-        util._log(f"Performing {num_cycles} cycles for {len(proj_subset)} projects")
+        util.log(f"Jittering Network Data", log_type="new")
+        util.log(f"Performing {num_cycles} cycles for {len(proj_subset)} projects")
         jittered_df = self.data.copy()                                          # keep original projects
         ignore_cols = ["proj_name", "month"]                                    # don't jitter the months
 
@@ -889,7 +891,7 @@ class NetData:
                 floor(group.shape[0] * entry_prop), 
                 replace=False
             )
-            util._log(f"Augmenting {group.name} with :: {floor(group.shape[0] * entry_prop)} :: modded rows")
+            util.log(f"Augmenting {group.name} with :: {floor(group.shape[0] * entry_prop)} :: modded rows")
 
             # jitter group
             for index in indices_to_modify:
@@ -1019,7 +1021,7 @@ class NetData:
         data = self.data
         
         # setup normalizing
-        util._log(f"Normalizing Network Data [{strat}]", log_type="new")
+        util.log(f"Normalizing Network Data [{strat}]", log_type="new")
         ignore_cols = ["proj_name", "month"]
         cols_to_normalize = data.columns.difference(ignore_cols)
 
@@ -1077,14 +1079,14 @@ class NetData:
         for col in cols_to_normalize:
             num_missing = normalized_data[col].isna().sum()
             if num_missing > 0:
-                util._log(f"missing from {col}: {num_missing}", log_type="warning")
+                util.log(f"missing from {col}: {num_missing}", log_type="warning")
         
         num_before = normalized_data.shape[0]
         normalized_data.dropna(inplace=True)
         
         num_removed = normalized_data.shape[0] - num_before
         if num_removed > 0:
-            util._log(f"Dropped {num_removed} from {num_before} to {normalized_data.shape[0]} rows", "warning")
+            util.log(f"Dropped {num_removed} from {num_before} to {normalized_data.shape[0]} rows", "warning")
 
         if inplace:
             self.data = normalized_data
@@ -1253,7 +1255,7 @@ class NetData:
                 return potential_base_proj
             
             # failure means error
-            util._log(f"FAILED to find base project for {proj} using {potential_base_proj}", log_type="error")
+            util.log(f"FAILED to find base project for {proj} using {potential_base_proj}", log_type="error")
             exit(1)
 
         def check_intervals(incubator: str, mod_data: pd.DataFrame, 
@@ -1267,7 +1269,7 @@ class NetData:
             """
             
             # load data
-            with open(util._load_params()["incubation-time"][incubator], "r") as f:
+            with open(util.load_params()["incubation-time"][incubator], "r") as f:
                 base_projects = json.load(f)                                        # compare count for each base
             
             mod_unique_projects = set(mod_data["proj_name"].unique()) - set(base_projects.keys())
@@ -1283,10 +1285,10 @@ class NetData:
 
                 # compare
                 if expected_months != mod_counter[proj]:
-                    util._log(f"FAILED CHECK @ {proj}, expected {expected_months} but got {(mod_data['proj_name'] == proj).sum()}", 
+                    util.log(f"FAILED CHECK @ {proj}, expected {expected_months} but got {(mod_data['proj_name'] == proj).sum()}", 
                             "error")
-                    util._log(f"DEBUG INFO: step @ {step}", "error")
-                    util._log(mod_data[mod_data["proj_name"] == proj], "error")
+                    util.log(f"DEBUG INFO: step @ {step}", "error")
+                    util.log(mod_data[mod_data["proj_name"] == proj], "error")
                     flag = False
                 
                 # base project counts
@@ -1294,7 +1296,7 @@ class NetData:
 
             # check all projects appeared
             if set(mod_projects.keys()) != set(base_projects.keys()):
-                util._log("missing the following projects from mod_projects: ", "warning")
+                util.log("missing the following projects from mod_projects: ", "warning")
                 for p in (set(base_projects.keys()) - set(mod_projects.keys())):
                     # fill in projects with only 1 month
                     if mod_counter.get(p, 0) == 1:
@@ -1315,7 +1317,7 @@ class NetData:
                 expected_months = ceil((base_count - start_month - 1) / step)
                 counted_months = mod_projects[base_proj]
                 if expected_months != counted_months:
-                    util._log(f"FAILED COUNTS CHECK, expected {expected_months}, got {counted_months} for {base_proj}", "error")
+                    util.log(f"FAILED COUNTS CHECK, expected {expected_months}, got {counted_months} for {base_proj}", "error")
                     print(f"\t\tDEBUG COUNTS INFO, {base_count=}, {start_month=}, {step=}")
                     print(f"\t\tNOTE: if this prints negative / incorrect expected value, then the issue is related to base_count <= start_month")
                     flag = False
@@ -1324,7 +1326,7 @@ class NetData:
             return flag
 
         # read in
-        util._log("Generating Intervals for Network Data", log_type="new")
+        util.log("Generating Intervals for Network Data", log_type="new")
         data_copy = data.copy()
 
         # setup augmentation
@@ -1343,7 +1345,7 @@ class NetData:
         #     util._log("Intervals failed to pass tests", "error")
         #     exit(1)
 
-        util._log(log_type="summary")
+        util.log(log_type="summary")
         print(f"Num Rows: {data.shape[0]} --> {intervaled_df.shape[0]}")
         bef_projects = data["proj_name"].unique().shape[0]
         aft_projects = intervaled_df["proj_name"].unique().shape[0]
@@ -1387,7 +1389,7 @@ class NetData:
         drop_cols = drop_cols + [col for col in self.data.columns if "_diff" in col]
 
         # setup
-        util._log("Aggregate NetData", "new")
+        util.log("Aggregate NetData", "new")
         keep_cols = data.columns.difference(drop_cols)
         agg_column_order = list(data.columns)
         concat_column_order = agg_column_order + [f"{k}_agg" for k in keep_cols]
@@ -1405,7 +1407,7 @@ class NetData:
 
         # aggregation
         if concat:
-            util._log("concatenating without overriding original features...")
+            util.log("concatenating without overriding original features...")
             original = data.copy()
         
         agg_df = data.groupby("proj_name").apply(aggregate_project).reset_index(drop=True)[agg_column_order]
@@ -1421,7 +1423,7 @@ class NetData:
         else:
             return agg_df
         if export:
-            util._log("EXPORT FOR `aggregate_netdata` not supported yet", "error")
+            util.log("EXPORT FOR `aggregate_netdata` not supported yet", "error")
 
 
     def diff_netdata(self, concat: bool=False, inplace: bool=True, 
@@ -1448,7 +1450,7 @@ class NetData:
         drop_cols = drop_cols + [col for col in self.data.columns if "_agg" in col]
 
         # setup
-        util._log("Diff NetData", "new")
+        util.log("Diff NetData", "new")
         keep_cols = data.columns.difference(drop_cols)
         diff_column_order = list(data.columns)
         concat_column_order = diff_column_order + [f"{k}_diff" for k in keep_cols]
@@ -1473,7 +1475,7 @@ class NetData:
 
         # project-wise diff calculations (lagging strategy)
         if concat:
-            util._log("concatenating without overriding original features...")
+            util.log("concatenating without overriding original features...")
             original = data.copy()
         diff_df = data.groupby("proj_name").apply(diff_project).reset_index(drop=True)[diff_column_order]
         
@@ -1488,7 +1490,7 @@ class NetData:
         else:
             return diff_df
         if export:
-            util._log("EXPORT FOR `diff_netdata` not supported yet", "error")
+            util.log("EXPORT FOR `diff_netdata` not supported yet", "error")
             raise NotImplementedError
 
 
@@ -1506,7 +1508,7 @@ class NetData:
         """
 
         # setup
-        util._log(f"upsample Data w/ [{strat}]", "new")
+        util.log(f"upsample Data w/ [{strat}]", "new")
         strat_router = {
             "jitter": self.jitter_netdata,
             "interpolation": self.interpolate_netdata,
@@ -1525,19 +1527,19 @@ class NetData:
         label_counts = [len(self.project_status["retired"] & self.split_set["train"] & self.projects_set), 
                         len(self.project_status["graduated"] & self.split_set["train"] & self.projects_set)]
         if label_counts[0] == label_counts[1]:
-            util._log(f"no imbalance detected, {label_counts[0]} retired and {label_counts[1]} graduated", "warning")
+            util.log(f"no imbalance detected, {label_counts[0]} retired and {label_counts[1]} graduated", "warning")
             return
 
         labels = ["retired", "graduated"]
         imbalanced_label = np.argmin(label_counts)
         imbalance = label_counts[imbalanced_label - 1] - label_counts[imbalanced_label]
         imbalanced_label = labels[imbalanced_label]
-        util._log(f"tt-split: {dict(zip(labels, label_counts))}")
+        util.log(f"tt-split: {dict(zip(labels, label_counts))}")
 
         # strategy
         project_subset = list(self.split_set["train"] & self.project_status[imbalanced_label] & self.projects_set)
         num_subset = len(project_subset)
-        util._log(f"Balancing for [{imbalanced_label}] projects w/ imbalance of {imbalance} projects and {num_subset} projects to sample from")
+        util.log(f"Balancing for [{imbalanced_label}] projects w/ imbalance of {imbalance} projects and {num_subset} projects to sample from")
 
         upsampled_df = strat_router[strat](
             proj_subset=project_subset,
@@ -1575,7 +1577,7 @@ class NetData:
         """
 
         # setup
-        util._log(f"Downsampling Data [{max_diff * 100:.4f}% leeway]", "new")
+        util.log(f"Downsampling Data [{max_diff * 100:.4f}% leeway]", "new")
         random.seed(self.rand_seed)
 
         # ensure completed args
@@ -1595,7 +1597,7 @@ class NetData:
         label_counts = [len(self.project_status["retired"] & self.projects_set), 
                         len(self.project_status["graduated"] & self.projects_set)]
         if label_counts[0] == label_counts[1]:
-            util._log(f"no imbalance detected, {label_counts[0]} retired and {label_counts[1]} graduated", "warning")
+            util.log(f"no imbalance detected, {label_counts[0]} retired and {label_counts[1]} graduated", "warning")
             return
 
         labels = ["retired", "graduated"]
@@ -1604,7 +1606,7 @@ class NetData:
         
         majority_label = labels[minority_label - 1]
         minority_label = labels[minority_label]
-        util._log(f"tt-split: {dict(zip(labels, label_counts))}")
+        util.log(f"tt-split: {dict(zip(labels, label_counts))}")
 
         # strategy
         minority_subset = list(self.project_status[minority_label] & self.projects_set)
@@ -1615,7 +1617,7 @@ class NetData:
 
         downsampled_projects = set(majority_subset) | set(minority_subset)
 
-        util._log(
+        util.log(
             f"Balancing for [{minority_label}] projects w/ imbalance of " \
             f"{imbalance} projects; using ALL {len(minority_subset)} from " \
             f"{minority_label} and ONLY {majority_sample} from " \

@@ -149,7 +149,7 @@ def monthly_predictions(params_dict: dict[str, Any], args_dict: dict[str, Any]) 
         if soft_prob_model_strat is None:
             ### get all incubators not used for training to gauge 
             ### generalizability
-            incubator_abbrv = set(util._load_params()["abbreviation"].keys())
+            incubator_abbrv = set(util.load_params()["abbreviation"].keys())
             train_incubators = {char for char in train_strat if char.isupper()}
             validation_incubators = incubator_abbrv - train_incubators
             
@@ -215,7 +215,7 @@ def monthly_predictions(params_dict: dict[str, Any], args_dict: dict[str, Any]) 
     train_inc = target_incubator_abbrv in train_strat
         
     ## reporting progress
-    util._log(
+    util.log(
         f"\n\n<Using `{train_strat}` to train>", log_type="none", output="file"
     )
     
@@ -250,8 +250,8 @@ def monthly_predictions(params_dict: dict[str, Any], args_dict: dict[str, Any]) 
     ## setup dir to ensure we can output without accidentally forgetting to
     ## overwrite
     dir = f"../predictions/{target_incubator}/"
-    util._clear_dir(dir, skip_input=True)
-    util._check_dir(dir)
+    util.clear_dir(dir, skip_input=True)
+    util.check_dir(dir)
     
     # for each project, iteratively generate and export the soft probabilities
     for proj in tqdm(projects):
@@ -298,20 +298,20 @@ def monthly_predictions(params_dict: dict[str, Any], args_dict: dict[str, Any]) 
 
         ### update confusion matrix & log file
         if final_target == -1:
-            util._log(f"Incubating: {proj}, predicted {rounded_pred} w/ {final_pred}", "log", output="file")
+            util.log(f"Incubating: {proj}, predicted {rounded_pred} w/ {final_pred}", "log", output="file")
             confusion_matrix["incubating"].append(proj)
         elif rounded_pred != final_target:
             if (final_target == 0.0) and (final_pred >= 0.5):
                 confusion_matrix["false-positive"].append(proj)
             elif (final_target == 1.0) and (final_pred < 0.5):
                 confusion_matrix["false-negative"].append(proj)
-            util._log(f"MIS-PREDICTION: expected {final_target}, got {rounded_pred} with {final_pred} for {proj}", "warning", output="file")
+            util.log(f"MIS-PREDICTION: expected {final_target}, got {rounded_pred} with {final_pred} for {proj}", "warning", output="file")
         else:
             if (final_target == 1.0) and (final_pred >= 0.5):
                 confusion_matrix["true-positive"].append(proj)
             if (final_target == 0.0) and (final_pred < 0.5):
                 confusion_matrix["true-negative"].append(proj)
-            util._log(f"Correct Prediction: expected {final_target}, got {final_pred} for {proj}", "log", output="file")
+            util.log(f"Correct Prediction: expected {final_target}, got {final_pred} for {proj}", "log", output="file")
 
         ### performance logging in perfdata; first round to hard probs then 
         ### track
@@ -328,7 +328,7 @@ def monthly_predictions(params_dict: dict[str, Any], args_dict: dict[str, Any]) 
     # export the final report
     count_confusion_matrix = {k: len(v) for k, v in confusion_matrix.items()}
     print(json.dumps(count_confusion_matrix, indent=4))
-    util._log(json.dumps(count_confusion_matrix, indent=4), output="file")
+    util.log(json.dumps(count_confusion_matrix, indent=4), output="file")
     with open(Path(dir) / "__confusion_matrix.json", "w") as f:
         json.dump(confusion_matrix, f, indent=4)
     with open(Path(dir) / "__confusion_matrix.json", "a") as f:
@@ -798,8 +798,8 @@ def icse_25_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) ->
 
 if __name__ == "__main__":
     # forward parameters to main
-    params_dict = util._load_params()
-    args_dict = util._parse_input(sys.argv)
+    params_dict = util.load_params()
+    args_dict = util.parse_input(sys.argv)
 
     trial_type = args_dict.get("trial-type", "regular")
     match trial_type:

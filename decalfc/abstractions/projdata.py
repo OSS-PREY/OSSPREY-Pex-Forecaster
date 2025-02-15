@@ -33,7 +33,7 @@ from decalfc.pipeline.monthly_data import segment_data
 
 # constants & setup parallel processing
 pandarallel.initialize(nb_workers=NUM_PROCESSES, progress_bar=True)
-params_dict = util._load_params()
+params_dict = util.load_params()
 tqdm.pandas()
 INCUBATOR_ALIAS = "ospos"
 
@@ -185,14 +185,14 @@ class ProjData:
         """
         
         # setup
-        util._log("Segmenting Monthly Data", "log")
+        util.log("Segmenting Monthly Data", "log")
         author_field = "dealised_author_full_name"
         time_strat = "default"
         ratios = dict()
 
         # segmentation; overwrite the previous data for the built-in caching 
         # (effectively)
-        util._log("segmenting...")
+        util.log("segmenting...")
         self.data["tech"] = segment_data(
             self.tdata, time_strat, author_field=author_field,
             ratios=ratios

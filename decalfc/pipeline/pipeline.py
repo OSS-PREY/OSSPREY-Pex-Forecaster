@@ -58,7 +58,7 @@ def process_data(args_dict: dict[str, Any]) -> None:
         if process in process_router:
             raw.data = process_router[process](raw.data, copy=False)
         else:
-            util._log(f"Could not locate process-method {process}. Skipping.", "warning")
+            util.log(f"Could not locate process-method {process}. Skipping.", "warning")
     
     # export
     new_versions = args_dict.get("new-versions", args_dict["versions"])
@@ -106,7 +106,7 @@ def pipeline(args_dict: dict[str, Any]) -> None:
 # Pipeline
 if __name__ == "__main__":
     # params
-    args_dict = util._parse_input(sys.argv)
+    args_dict = util.parse_input(sys.argv)
     
     # dispath
     pipeline(args_dict)

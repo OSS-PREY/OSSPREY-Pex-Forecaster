@@ -84,7 +84,7 @@ def enforce_cols(incubator: str, df: pd.DataFrame, dtype: str) -> None:
 
     # check
     if "dealised_author_full_name" not in df.columns:
-        df["dealised_author_full_name"] = df[util._load_params()["author-source-field"][incubator]]
+        df["dealised_author_full_name"] = df[util.load_params()["author-source-field"][incubator]]
     if "is_bot" not in df.columns:
         df["is_bot"] = 0
     if dtype == "tech" and "is_coding" not in df.columns:
@@ -151,7 +151,7 @@ def rearrange_project_groups(incubator: str) -> None:
             flipped_proj_groups[proj] = parent
 
     # export
-    util._log(set(flipped_proj_groups.values()))
+    util.log(set(flipped_proj_groups.values()))
     if input("y/n: ") == "y":
         with open(f"./utility/{incubator}_project_groups.json", "w") as f:
             json.dump(flipped_proj_groups, f, indent=4)
@@ -170,7 +170,7 @@ def aggregate_projects(incubator: str, df: pd.DataFrame) -> pd.DataFrame:
     """
 
     # load lookup
-    params_dict = util._load_params()
+    params_dict = util.load_params()
     util_dir = params_dict["ref-dir"]
     
     with open(Path(util_dir) / f"{incubator}_project_groups.json", "r") as f:
@@ -196,7 +196,7 @@ def reinfer_project_status(incubator: str) -> None:
     """
 
     # load project status & groups
-    params_dict = util._load_params()
+    params_dict = util.load_params()
     with open(params_dict["project-status"][incubator], "r") as f:
         proj_status = json.load(f)
     with open(f"./utility/{incubator}_project_groups.json", "r") as f:
@@ -217,7 +217,7 @@ def reinfer_project_status(incubator: str) -> None:
             proj_status["incubating"].add(parent)
         elif (parent not in proj_status["graduated"]) and (parent not in proj_status["retired"])\
             and (parent not in proj_status["incubating"]) and (parent != proj):
-            util._log(f"skipping project {proj} w/ parent {parent}", "warning")
+            util.log(f"skipping project {proj} w/ parent {parent}", "warning")
     
     # export
     proj_status = {k: list(v) for k, v in proj_status.items()}
@@ -232,7 +232,7 @@ def clean_project_status(incubator: str) -> None:
     """
 
     # load project status
-    params_dict = util._load_params()
+    params_dict = util.load_params()
     with open(params_dict["project-status"][incubator], "r") as f:
         ps = json.load(f)
     
@@ -252,7 +252,7 @@ def combine_tech(incubator: str, params_dict: dict, tech_out: str) -> pd.DataFra
 
     # explicitly define columns
     col_mapper = params_dict["field-mappings"][incubator]["tech"]
-    dataset_dir = util._load_params()["dataset-dir"]
+    dataset_dir = util.load_params()["dataset-dir"]
 
     # iterate dir
     input_dir = f"{dataset_dir}/{incubator}_data/{params_dict['tech-type'][incubator]}-raw/"
@@ -282,14 +282,14 @@ def combine_tech(incubator: str, params_dict: dict, tech_out: str) -> pd.DataFra
         dfs.append(proj_df)
 
     # merge
-    util._log("merging...")
+    util.log("merging...")
     tech_df = pd.concat(dfs, ignore_index=True)
 
     # check all projects included
     if set(projects) != set(tech_df["project_name"]):
-        util._log(f"missing projects from compiled dataframe, likely due to blank files: {set(projects) - set(tech_df['project_name'])}", "warning")
+        util.log(f"missing projects from compiled dataframe, likely due to blank files: {set(projects) - set(tech_df['project_name'])}", "warning")
     
-    util._log("dropping cols...")
+    util.log("dropping cols...")
     enforce_cols(incubator, tech_df, "tech")
 
     # # months
@@ -302,7 +302,7 @@ def combine_tech(incubator: str, params_dict: dict, tech_out: str) -> pd.DataFra
     # export
     # util._log("exporting...")
     # tech_dict["tech"].to_csv(tech_out, index=False)
-    util._log(f"\t<Number of Rows w/ Replacements> :: {total_changed}\n")
+    util.log(f"\t<Number of Rows w/ Replacements> :: {total_changed}\n")
     return tech_df
 
 
@@ -340,7 +340,7 @@ def combine_social(incubator: str, params_dict: dict, social_out: str) -> pd.Dat
     
 
     # iterate dir
-    dataset_dir = util._load_params()["dataset_dir"]
+    dataset_dir = util.load_params()["dataset_dir"]
     input_dir = f"{dataset_dir}/{incubator}_data/{params_dict['social-type'][incubator]}-raw/"
     social_df = pd.DataFrame(columns=col_names)
     dfs: list[pd.DataFrame] = []
@@ -368,13 +368,13 @@ def combine_social(incubator: str, params_dict: dict, social_out: str) -> pd.Dat
         dfs.append(proj_df)
 
     # merge
-    util._log("merging...")
+    util.log("merging...")
     social_df = pd.concat(dfs, ignore_index=True)
     enforce_cols(incubator, social_df, "social")
 
     # check all projects included
     if set(projects) != set(social_df["project_name"]):
-        util._log(f"missing projects from compiled dataframe, likely due to blank files: {set(projects) - set(social_df['project_name'])}", "warning")
+        util.log(f"missing projects from compiled dataframe, likely due to blank files: {set(projects) - set(social_df['project_name'])}", "warning")
 
     # # months + export
     # util._log("imputing months...")
@@ -385,7 +385,7 @@ def combine_social(incubator: str, params_dict: dict, social_out: str) -> pd.Dat
     
     # util._log("exporting...")
     # social_dict["social"].to_csv(social_out, index=False)
-    util._log(f"\t<Number of Rows w/ Replacements> :: {total_changed}")
+    util.log(f"\t<Number of Rows w/ Replacements> :: {total_changed}")
     return social_df
 
 
@@ -399,7 +399,7 @@ def incubator_augs(incubator: str, params_dict: dict, tech_out: str, social_out:
     """
 
     # define utility and call it
-    util._log("augmenting specific to incubator...")
+    util.log("augmenting specific to incubator...")
     def eclipse_augs(dfs: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
         """
             Ensures emails as usernames, infers subject-line from email title.
@@ -443,7 +443,7 @@ def incubator_augs(incubator: str, params_dict: dict, tech_out: str, social_out:
 # ------------- program ------------- #
 def main(incubator: str, params_dict: dict, tech_out: str, social_out: str):
     # combine + generate lookup
-    util._log(f"Combining Data for {incubator}", "new")
+    util.log(f"Combining Data for {incubator}", "new")
     df_lookup = dict()
     df_lookup["tech"] = combine_tech(incubator, params_dict, tech_out)
     df_lookup["social"] = combine_social(incubator, params_dict, social_out)
@@ -464,7 +464,7 @@ def main(incubator: str, params_dict: dict, tech_out: str, social_out: str):
 if __name__ == "__main__":
     # unpack args
     incubator = str(sys.argv[1])
-    params_dict = util._load_params()
+    params_dict = util.load_params()
 
     # # clean project groups
     # rearrange_project_groups(incubator)

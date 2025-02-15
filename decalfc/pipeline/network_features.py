@@ -215,7 +215,7 @@ def calc_net_features(t_path: str, s_path: str, proj_inc: dict | str | Path, out
             )], ignore_index=True)
 
     # export
-    util._check_path(outfile_path)
+    util.check_path(outfile_path)
     df.to_csv(outfile_path, index=False)
 
 
@@ -231,7 +231,7 @@ def extract_features(args_dict: dict[str, str | int | float], incubation_time: d
     incubator = args_dict["incubator"]
 
     # execute input
-    params_dict = util._load_params()
+    params_dict = util.load_params()
     social_type = params_dict["social-type"][incubator]
     tech_type = params_dict["tech-type"][incubator]
     network_dir = Path(params_dict["network-dir"])
@@ -249,6 +249,6 @@ def extract_features(args_dict: dict[str, str | int | float], incubation_time: d
 
 if __name__ == "__main__":
     # args & dispatch
-    args_dict = util._parse_input(sys.argv)
+    args_dict = util.parse_input(sys.argv)
     extract_features()
 

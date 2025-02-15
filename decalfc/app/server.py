@@ -419,7 +419,7 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
         # available #
 
         ## expected paths
-        params_dict = util._load_params()
+        params_dict = util.load_params()
         paths = {
             "net-gen": Path(params_dict["delta-cache-dir"]) / f"{proj_name}.csv",
             "net-vis": Path(params_dict["network-visualization-dir"]) / f"{proj_name}.json",
@@ -430,7 +430,7 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
         
         ## check all paths exist for the requested caches
         if not all(paths[task].exists() for task in tasks):
-            util._log(f"failed to find caches for {[task for task in tasks if not paths[task].exists()]}")
+            util.log(f"failed to find caches for {[task for task in tasks if not paths[task].exists()]}")
             return None
         
         ## load in the caches
@@ -448,12 +448,12 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
         # fulfill the request
         for task, cache in caches.items():
             if task == "net-vis" and max(int(k) for k in cache["tech"].keys()) < end_month:
-                util._log(
+                util.log(
                     f"failed to find valid net-vis cache; have up to month {max(int(k) for k in cache['tech'].keys())}, need {end_month}"
                 )
                 return None
             elif task != "net-vis" and len(cache) < end_month + 1:
-                util._log(
+                util.log(
                     f"failed to find valid length {task} cache; have {len(cache)} months, need {end_month + 1}"
                 )
                 return None
@@ -552,7 +552,7 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
     
     # infer end month if needed
     if data["month_range"][-1] <= 0:
-        util._log("inferring end month", "warning")
+        util.log("inferring end month", "warning")
         data["month_range"][-1] = int(min(
             data["tdata"].month.max(), data["sdata"].month.max()
         ))

@@ -25,11 +25,7 @@ from typing import Any
 from multiprocessing import Pool
 
 import decalfc.utils as util
-from decalfc.utils import PARQUET_ENGINE, NUM_PROCESSES
-
-pandarallel.initialize(nb_workers=NUM_PROCESSES, progress_bar=True)
-tqdm.pandas()
-params_dict = util._load_params()
+from decalfc.utils import PARQUET_ENGINE, params_dict
 
 
 # Auxiliary Functions
@@ -55,11 +51,11 @@ def _load_data(paths: dict[str, str], dtypes: dict=None) -> dict[str, pd.DataFra
     # return lookup for dataframes
     if all(Path(path).exists() for _, path in paths.items()):
         ## load data in parquet
-        util._log("loading parquet files")
+        util.log("loading parquet files")
         ret = dict()
         
         for data_type, path in paths.items():
-            util._log(f"loading in {data_type}")
+            util.log(f"loading in {data_type}")
             ret[data_type] = pd.read_parquet(path, engine=PARQUET_ENGINE)
 
         return ret
@@ -92,12 +88,12 @@ def _save_data(data_lookup: dict[str, pd.DataFrame], incubator: str, new_version
     paths = _load_paths(incubator, new_version, ext="parquet")
 
     # save
-    util._log(f"saving data for {incubator}: {new_version}")
+    util.log(f"saving data for {incubator}: {new_version}")
     data_lookup["tech"].to_parquet(paths["tech"], engine=PARQUET_ENGINE, index=False)
-    util._log(f"saved tech...")
+    util.log(f"saved tech...")
     data_lookup["social"].to_parquet(paths["social"], engine=PARQUET_ENGINE, index=False)
-    util._log(f"saved social...")
-    util._log(f"done!")
+    util.log(f"saved social...")
+    util.log(f"done!")
 
 def _memory_usage(data_lookup: dict[str, pd.DataFrame]) -> None:
     """
@@ -139,7 +135,7 @@ def _validate_data(data_lookup: dict[str, pd.DataFrame]) -> bool:
         min_months = {proj: min_month for proj, min_month in min_months.items() if min_month > 0}
         
         for proj, min_month in min_months.items():
-            util._log(f"correcting {proj} with {min_month=}...")
+            util.log(f"correcting {proj} with {min_month=}...")
             df.loc[df["project_name"] == proj, "month"] -= min_month
         
         return True
@@ -166,7 +162,7 @@ def _validate_data(data_lookup: dict[str, pd.DataFrame]) -> bool:
         ]
         
     ## report
-    util._log((
+    util.log((
         f"Altogether {len(total)} projects, and {len(overlap)} have tech "
         f"networks. Removing the {len(total) - len(overlap)} projects, i.e.: "
         f"{total - overlap}"
@@ -205,12 +201,12 @@ def clean_file_paths(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
     df = data_lookup["tech"]
     old_file_names = df["file_name"].copy()
     
-    util._log("processing file paths...")
+    util.log("processing file paths...")
     df["file_name"] = df["file_name"].parallel_apply(process_filename)
 
     # report
     num_changed = (df["file_name"] != old_file_names).sum()
-    util._log("", "summary")
+    util.log("", "summary")
     print(f"Number of Filenames Changed = {num_changed}")
     
     # return reference
@@ -229,7 +225,7 @@ def clean_sender_names(data_lookup: dict[str, pd.DataFrame], incubator: str=None
     """
 
     # setup imputation
-    util._log("setting up imputation...")
+    util.log("setting up imputation...")
     field = "dealised_author_full_name"
     
     if copy:
@@ -241,7 +237,7 @@ def clean_sender_names(data_lookup: dict[str, pd.DataFrame], incubator: str=None
     num_changed = 0
 
     # imputing
-    util._log("removing extraneous characters in the sender names")
+    util.log("removing extraneous characters in the sender names")
     for i, row in tqdm(df.iterrows()):
         # initialize
         name = str(row["sender_name"])
@@ -258,7 +254,7 @@ def clean_sender_names(data_lookup: dict[str, pd.DataFrame], incubator: str=None
         df.at[i, field] = name
     
     # summary
-    util._log("", "summary")
+    util.log("", "summary")
     print(f"Number of {field} Entries Corrected: {num_changed}")
     print(f"Corrected {num_changed / num_entries}% of the data")
     return data_lookup
@@ -274,7 +270,7 @@ def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incu
     """
 
     # setup
-    util._log(f"imputing months via {strat}", "new")
+    util.log(f"imputing months via {strat}", "new")
     if copy:
         data_lookup = {k: v.copy() for k, v in data_lookup.items()}
 
@@ -289,7 +285,7 @@ def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incu
     social_proj_set = set(data_lookup["social"]["project_name"].unique())
     tech_proj_set = set(data_lookup["tech"]["project_name"].unique())
     overlap_proj_set = set(social_proj_set & tech_proj_set)
-    util._log(f"removing {len(social_proj_set | tech_proj_set) - len(overlap_proj_set)} projects for not having both social and technical information", "warning")
+    util.log(f"removing {len(social_proj_set | tech_proj_set) - len(overlap_proj_set)} projects for not having both social and technical information", "warning")
 
     data_lookup["social"] = data_lookup["social"][
         data_lookup["social"]["project_name"].isin(overlap_proj_set)
@@ -301,7 +297,7 @@ def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incu
     # get earliest entry for both datasets; note, we'll require commits to be 
     # present in the first month, so realistically we only use the tech network
     # minimum month
-    util._log("getting start dates...")
+    util.log("getting start dates...")
     first_entry_date = data_lookup["tech"].groupby("project_name")["date"].min().reset_index()
 
     ## setup lookup
@@ -309,7 +305,7 @@ def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incu
     first_entry_date["first_entry_date"] = pd.to_datetime(first_entry_date["first_entry_date"])
 
     # utility
-    util._log("filling months...")
+    util.log("filling months...")
     def months_fill(df: pd.DataFrame, first_entry_date: pd.DataFrame, strat: str) -> pd.DataFrame:
         """
             Fills months using the strat.
@@ -581,7 +577,7 @@ def infer_bots(data_lookup: dict[str, pd.DataFrame], incubator: str, threshold: 
         with open(dir_bot_def, "r") as f:
             bot_names = json.load(f)
     except FileNotFoundError as fe:
-        util._log(f"Failed to find reference file for bot names @ {dir_bot_def}", "warning")
+        util.log(f"Failed to find reference file for bot names @ {dir_bot_def}", "warning")
         bot_names = {
             "substring-bots": set(),
             "project-bots": set()
