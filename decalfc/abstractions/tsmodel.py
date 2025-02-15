@@ -29,10 +29,12 @@ from sklearn.utils.class_weight import compute_class_weight
 import json
 import re
 import copy
+import math
 from typing import Any, Optional
 from dataclasses import dataclass, field
 
 ## DECAL modules
+from decalfc.utils import *
 from decalfc.abstractions.netdata import *
 from decalfc.abstractions.perfdata import *
 
@@ -433,118 +435,117 @@ class BN_BRNN(nn.Module):
 
 
 ## Transformer
-class TNN(nn.Module):
-    def __init__(self, input_size, hidden_size, num_layers, num_classes, num_heads=16, dropout_rate=0.2, **kwargs):
-        super(TNN, self).__init__()
-        self.input_size = input_size
-        self.hidden_size = hidden_size
-        self.num_layers = num_layers
-        self.num_classes = num_classes
-        
-        self.nheads = num_heads
-        self.d_model = ((input_size + self.nheads - 1) // self.nheads) * self.nheads
-        
-        self.input_proj = nn.Linear(input_size, self.d_model)
-        self.input_norm = nn.LayerNorm(self.d_model)
-        
-        self.transformer_layer = nn.TransformerEncoderLayer(
-            d_model=self.d_model,
-            nhead=self.nheads,
-            dim_feedforward=hidden_size * 2,
-            dropout=dropout_rate,
-            batch_first=True,
-            activation='relu'
-        )
-        self.transformer = nn.TransformerEncoder(
-            self.transformer_layer,
-            num_layers=num_layers,
-            norm=nn.LayerNorm(self.d_model)
-        )
-        
-        self.fc1 = nn.Linear(self.d_model, self.d_model)
-        self.fc2 = nn.Linear(self.d_model, self.d_model)
-        self.fc3 = nn.Linear(self.d_model, num_classes)
-        
-        self.relu = nn.ReLU()
-        self.dropout = nn.Dropout(dropout_rate)
-        
-        self.layer_norm1 = nn.LayerNorm(self.d_model)
-        self.layer_norm2 = nn.LayerNorm(self.d_model)
-        
-        self.softmax = nn.Softmax(dim=1)
-        self.init_weights()
-             
-    def forward(self, x):
-        # ensure x is 3D: [batch_size, seq_len, features]
-        if x.dim() == 2:
-            x = x.unsqueeze(0)  # Add batch dimension if it's missing
-        
-        # no need to permute if batch_first=True in TransformerEncoderLayer
-        x = self.input_proj(x)
-        x = self.input_norm(x)
-        x = self.transformer(x)
-        
-        # use global average pooling
-        x = torch.mean(x, dim=1)
-        
-        # fully connected layers with residual connections
-        residual = x
-        x = self.fc1(x)
-        x = self.relu(x)
-        x = self.dropout(x)
-        x = self.layer_norm1(x + residual)
-        
-        residual = x
-        x = self.fc2(x)
-        x = self.relu(x)
-        x = self.dropout(x)
-        x = self.layer_norm2(x + residual)
-        
-        x = self.fc3(x)
-
-        return x
-
-    def predict(self, x):
-        return self.softmax(self(x))
-    
-    def init_weights(self):
-        for p in self.parameters():
-            if p.dim() > 1:
-                nn.init.xavier_uniform_(p)
-            elif p.dim() == 1:
-                nn.init.constant_(p, 0.01)
-
 class PositionalEncoding(nn.Module):
-    def __init__(self, d_model, dropout=0.1, max_len=5000):
-        super(PositionalEncoding, self).__init__()
+    """
+    Implements the standard positional encoding (sinusoidal) as used in the Transformer.
+    """
+    def __init__(self, d_model, dropout: float=0.1, max_len: int=1000):
+        super().__init__()
         self.dropout = nn.Dropout(p=dropout)
-
+        
+        # pe matrix dependent on woul
         pe = torch.zeros(max_len, d_model)
         position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
-        div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-np.log(10000.0) / d_model))
-        pe[:, 0::2] = torch.sin(position * div_term)
-        pe[:, 1::2] = torch.cos(position * div_term)
-        pe = pe.unsqueeze(0).transpose(0, 1)
-        self.register_buffer('pe', pe)
+
+        # exponential decay
+        div_term = torch.exp(
+            torch.arange(0, d_model, 2, dtype=torch.float) *
+            (-math.log(10000.0) / d_model)
+        )
+        pe[:, 0::2] = torch.sin(position * div_term)  # even indices
+        pe[:, 1::2] = torch.cos(position * div_term)  # odd indices
+        pe = pe.unsqueeze(0)  # shape (1, max_len, d_model)
+        
+        # register as a buffer to save with model but avoid training
+        self.register_buffer("pe", pe)
 
     def forward(self, x):
-        x = x + self.pe[:x.size(0), :]
+        """
+        Args:
+            x: Tensor of shape (batch_size, seq_len, d_model)
+        Returns:
+            Tensor of shape (batch_size, seq_len, d_model) with positional encoding added.
+        """
+        
+        # unpack constants
+        seq_len = x.size(1)
+
+        # add encoding to the embeddings
+        x = x + self.pe[:, :seq_len, :]
         return self.dropout(x)
 
-class Base_TNN(nn.Module):
-    def __init__(self, input_size, hidden_size, num_layers, num_classes):
-        # model arch
-        self.transformer = nn.Transformer(
-            d_model=input_size,
-            nhead=16,
-            num_encoder_layers=12
+class TNN(nn.Module):
+    def __init__(
+        self, input_dim: int, model_dim: int=64, num_heads: int=4,
+        num_layers: int=2, dropout: float=0.1
+    ):
+        """
+        Args:
+            input_dim (int): Number of features per timestep.
+            model_dim (int, optional): Dimension to project each timestep into. 
+                Defaults to 64.
+            num_heads (int, optional): Number of attention heads in each 
+                transformer encoder layer. Defaults to 4.
+            num_layers (int, optional): Number of transformer encoder layers. 
+                Defaults to 2.
+            dropout (float, optional): Dropout probability. Defaults to 0.1.
+        """
+        
+        # initialize model
+        super().__init__()
+        
+        # project inputs onto the model_dim-dimensional space
+        self.input_projection = nn.Linear(input_dim, model_dim)
+        self.pos_encoder = PositionalEncoding(model_dim, dropout)
+        
+        # encoder
+        encoder_layer = nn.TransformerEncoderLayer(
+            d_model=model_dim,
+            nhead=num_heads,
+            dropout=dropout,
+            batch_first=True
         )
-             
-    def forward(self, x):
-        return self.transformer.forward(x)
-
-    def predict(self, x):
-        return self.softmax(self(x))
+        self.transformer_encoder = nn.TransformerEncoder(
+            encoder_layer, num_layers=num_layers
+        )
+        
+        # learnable CLS parameter
+        self.cls_token = nn.Parameter(torch.randn(1, 1, model_dim))
+        
+        # output head
+        self.fc = nn.Linear(model_dim, 1)
+        self.sigmoid = nn.Sigmoid()
+    
+    def forward(self, x: torch.tensor) -> torch.tensor:
+        """
+        Args:
+            x: Tensor of shape (batch_size, seq_len, input_dim)
+        
+        Returns:
+            Tensor of shape (batch_size,) representing probability outputs.
+        """
+        
+        # unpack
+        batch_size, seq_len, _ = x.size()
+        
+        # linear projection
+        x = self.input_projection(x)  # shape: (batch_size, seq_len, model_dim)
+        
+        # prepend the CLS token, one per batch
+        cls_tokens = self.cls_token.expand(batch_size, -1, -1)  # shape: (batch_size, 1, model_dim)
+        x = torch.cat((cls_tokens, x), dim=1)  # new sequence length is seq_len + 1
+        
+        x = self.pos_encoder(x)  # shape: (batch_size, seq_len+1, model_dim)
+        x = self.transformer_encoder(x)  # shape: (batch_size, seq_len+1, model_dim)
+        
+        # extract the CLS output
+        cls_representation = x[:, 0, :]  # shape: (batch_size, model_dim)
+        
+        # pass through classification head
+        out = self.fc(cls_representation)  # shape: (batch_size, 1)
+        out = self.sigmoid(out)  # probability between 0 and 1
+        
+        return out.squeeze(-1)  # shape: (batch_size,)
 
 
 ## Regressor (from Nafiz)
@@ -616,7 +617,7 @@ class TimeSeriesModel:
     targets: Any = field(init=False, repr=False)                                # targets
 
     # internal utility
-    def _gen_model_(self) -> None:
+    def gen_model(self) -> None:
         """
             Generates the model architecture based on the options given.
         """
@@ -681,7 +682,7 @@ class TimeSeriesModel:
                 exit(1)
 
 
-    def _save_model_(self, strategy: str, metrics: dict[str, float]) -> None:
+    def save(self, strategy: str, metrics: dict[str, float]) -> None:
         """
             Saves the model weights for later loading if needed.
             
@@ -715,7 +716,7 @@ class TimeSeriesModel:
         util.log(f"saved model weights to \"{path}\"")
         
     
-    def _load_model_(self, strategy: str, *args, **kwargs) -> bool:
+    def load(self, strategy: str, *args, **kwargs) -> bool:
         """
             Loads the best model without having to train; the assumption here is
             that some method already exists for pruning the saved model weights
@@ -760,7 +761,7 @@ class TimeSeriesModel:
         return True
 
 
-    def _check_device_(self) -> None:
+    def check_device(self) -> None:
         """
             Attempts to use CUDA enabled hardware if possible.
         """
@@ -770,7 +771,7 @@ class TimeSeriesModel:
         print(f"using ***{self.device}*** for training...")
 
 
-    def _gen_report_name_(self) -> None:
+    def gen_report_name(self) -> None:
         """
             Generates a unique identifier for the model for later retrieval of 
             info. Uses:
@@ -786,8 +787,8 @@ class TimeSeriesModel:
         # generate model archs
         util.log("Model Setup", "new")
         self.hyperparams = load_hyperparams(self.hyperparams)
-        self._check_device_()
-        self._gen_model_()
+        self.check_device()
+        self.gen_model()
 
         # optimizers
         # class_weights = compute_class_weight("balanced", np.unique(y), y.numpy())
@@ -815,7 +816,7 @@ class TimeSeriesModel:
             self.scheduler = self.scheduler(optimizer=self.optimizer)
 
 
-    def _test_results_regular_(self, X, y, raw_prob: bool=False) -> dict[str, list[Any]]:
+    def test_reg(self, X, y, raw_prob: bool=False) -> dict[str, list[Any]]:
         """
             Regular trials.
         """
@@ -853,7 +854,7 @@ class TimeSeriesModel:
         return {"preds": preds_list, "targets": targets_list, "missed-projects": missed_projects}
 
 
-    def _test_results_intervaled_(self, X_dict, y_dict, raw_prob: bool=False) -> dict[str, dict[str, list[Any]]]:
+    def test_intervaled(self, X_dict, y_dict, raw_prob: bool=False) -> dict[str, dict[str, list[Any]]]:
         """
             Defines the testing strategy specifically for the intervaled 
             trials, returning information for each month.
@@ -870,7 +871,7 @@ class TimeSeriesModel:
             y = y_dict[month]
 
             # gen preds
-            month_results = self._test_results_regular_(X, y, raw_prob)
+            month_results = self.test_reg(X, y, raw_prob)
             preds_dict[month] = month_results["preds"]
             targets_dict[month] = month_results["targets"]
 
@@ -879,8 +880,10 @@ class TimeSeriesModel:
 
 
     # external utility
-    def train_model(self, md, save_epochs: bool=False, 
-                    validation_loss: bool=True, attempt_load: bool=False) -> None:
+    def train(
+        self, md, save_epochs: bool=False, validation_loss: bool=True, 
+        attempt_load: bool=False
+    ) -> None:
         """
             Trains the model on the necessary data.
 
@@ -898,7 +901,7 @@ class TimeSeriesModel:
         self.strategy = md.transfer_strategy
         
         # attempt to greedy load if possible
-        if attempt_load and self._load_model_(strategy=self.strategy):
+        if attempt_load and self.load(strategy=self.strategy):
             return
         
         # track losses
@@ -1067,7 +1070,7 @@ class TimeSeriesModel:
         plt.clf()
 
 
-    def test_model(self, md, raw_prob: bool=False) -> None:
+    def test(self, md, raw_prob: bool=False) -> None:
         """
             Runs the model on the test data and returns the results. NOTE for 
             intervaled testing we assume all testing incubators have been 
@@ -1081,9 +1084,9 @@ class TimeSeriesModel:
         self.is_interval = md.is_interval
         
         if self.is_interval["test"]:
-            test_results = self._test_results_intervaled_(md.tensors["test"]["x"], md.tensors["test"]["y"], raw_prob=raw_prob)
+            test_results = self.test_intervaled(md.tensors["test"]["x"], md.tensors["test"]["y"], raw_prob=raw_prob)
         else:
-            test_results = self._test_results_regular_(md.tensors["test"]["x"], md.tensors["test"]["y"], raw_prob=raw_prob)
+            test_results = self.test_reg(md.tensors["test"]["x"], md.tensors["test"]["y"], raw_prob=raw_prob)
         
         self.preds = test_results["preds"]
         self.targets = test_results["targets"]
@@ -1159,7 +1162,7 @@ class TimeSeriesModel:
                 self.targets["all"], self.preds["all"], labels=list(range(2)), 
                 zero_division=0.0, output_dict=True
             )
-            self._save_model_(self.strategy, metrics={
+            self.save(self.strategy, metrics={
                 "accuracy": report_dict["accuracy"],
                 "f1-score": report_dict["macro avg"]["f1-score"],
                 "precision": report_dict["macro avg"]["precision"],
@@ -1176,7 +1179,7 @@ class TimeSeriesModel:
             )
             
             # save model
-            self._save_model_(self.strategy, metrics={
+            self.save(self.strategy, metrics={
                 "accuracy": report_dict["accuracy"],
                 "f1-score": report_dict["macro avg"]["f1-score"],
                 "precision": report_dict["macro avg"]["precision"],
@@ -1206,7 +1209,7 @@ class TimeSeriesModel:
         )
 
     
-    def interpret_model(self, md, strategy: str="SHAP") -> dict[str, float]:
+    def interpret(self, md, strategy: str="SHAP") -> dict[str, float]:
         """
             Generates an interpretation of the model via SHAP (or some model 
             agnostic program) and pushed out a dictionary of the importance for 
@@ -1428,7 +1431,7 @@ class TimeSeriesModel:
         # save model graph
         output_dir = "../model-reports/model-visualizations/"
         util.check_dir(output_dir)
-        dot.render(f"{output_dir}{self._gen_report_name_()}", format="png")
+        dot.render(f"{output_dir}{self.gen_report_name()}", format="png")
     
     ## class utility
     def clean_weights(dir: Path | str=None) -> dict[str, int]:

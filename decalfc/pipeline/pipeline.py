@@ -64,7 +64,6 @@ def process_data(args_dict: dict[str, Any]) -> None:
     new_versions = args_dict.get("new-versions", args_dict["versions"])
     rd._save_data(raw.data, raw.incubator, new_versions)
 
-
 def generate_netdata(args_dict: dict[str, Any]) -> None:
     """Small wrapper to process the cleaned RawData into network data.
 
@@ -83,7 +82,6 @@ def generate_netdata(args_dict: dict[str, Any]) -> None:
 
     # extract net features
     extract_features(args_dict)
-    
 
 def pipeline(args_dict: dict[str, Any]) -> None:
     """Wrapper for the full pipeline.
@@ -100,8 +98,6 @@ def pipeline(args_dict: dict[str, Any]) -> None:
     generate_netdata(args_dict)
 
     # modeling
-    
-
 
 # Pipeline
 if __name__ == "__main__":

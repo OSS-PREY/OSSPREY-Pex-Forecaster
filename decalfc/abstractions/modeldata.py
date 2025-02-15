@@ -331,12 +331,12 @@ class ModelData:
         train_strat = train_strat.replace("*", "")
         
         ## attempt greedy load
-        if not soft_prob_model._load_model_(strategy=train_strat):
+        if not soft_prob_model.load(strategy=train_strat):
             soft_prob_model_data = ModelData(
                 transfer_strategy=train_strat,
                 soft_prob=0
             )
-            soft_prob_model.train_model(
+            soft_prob_model.train(
                 md=soft_prob_model_data
             )
         

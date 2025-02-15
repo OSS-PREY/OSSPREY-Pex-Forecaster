@@ -128,7 +128,7 @@ class NetData:
 
 
     # internal utility
-    def _match_project(self, proj: str) -> str:
+    def match_proj(self, proj: str) -> str:
         """
             Gets the base project for the corresponding pseudo-project.
         """
@@ -145,8 +145,7 @@ class NetData:
         util.log(f"failed to associate project {proj} using {potential_base_proj}", "warning")
         return proj
 
-
-    def _combine_options(self) -> str:
+    def combine_opts(self) -> str:
         """
             Generates a string representation for the network data augmentations
             for easy path lookup.
@@ -162,8 +161,7 @@ class NetData:
             for opt, selected in self.options.items() if selected
         ])
     
-
-    def _gen_network_data_path(self) -> None:
+    def gen_netdata_path(self) -> None:
         """
             Generates the path for saving/loading the data.
         """
@@ -173,7 +171,7 @@ class NetData:
 
         # generate path
         PATH_FORMAT = params_dict["network-data-format"]
-        options_str = self._combine_options().replace("downsamp-", "")          # downsamp is post-loading
+        options_str = self.combine_opts().replace("downsamp-", "")          # downsamp is post-loading
         self.nd_path = PATH_FORMAT.format(
             options_str,
             self.incubator,
@@ -181,8 +179,7 @@ class NetData:
             self.ext
         )
 
-
-    def _gen_default_path(self) -> str:
+    def gen_default_path(self) -> str:
         """
             Generates the default path for a given incubator.
         """
@@ -202,13 +199,12 @@ class NetData:
             self.ext
         )
 
-
-    def _load_data(self) -> None:
+    def load(self) -> None:
         """
             Loads the network data, base projects, and projects set.
 
             @param generate: if True, automatically generates data if does not 
-                             yet exist
+                yet exist
         """
 
         # base projects
@@ -230,7 +226,7 @@ class NetData:
         util.log("using default params for transforms. . .", "note")
 
         # load base
-        self.data = pd.read_csv(self._gen_default_path())
+        self.data = pd.read_csv(self.gen_default_path())
 
         # applying options
         for option, selection in self.options.items():
@@ -266,10 +262,9 @@ class NetData:
         
         # automatically save
         self.projects_set = set(self.data["proj_name"].unique())
-        self._save_data()
+        self.save()
     
-
-    def _save_data(self) -> None:
+    def save(self) -> None:
         """
             Export network data.
         """
@@ -277,8 +272,7 @@ class NetData:
         # save
         self.data.to_csv(self.nd_path, index=False)
     
-
-    def _gen_train_test_split(self, strat="stratified") -> None:
+    def train_test_split(self, strat="stratified") -> None:
         """
             Generates the sets of projects for train and test. Defaults to 
             stratified sampling to test out performance more accurately.
@@ -368,8 +362,7 @@ class NetData:
         util.log("\n< :::: TEST SET :::: >", "new", "file", "temp_log")
         util.log(f"{self.split_set['test']}", "none", "file", "temp_log")
 
-
-    def _gen_data_dict(self) -> None:
+    def gen_data_dict(self) -> None:
         """
             Generates data lookup for tensors.
         """
@@ -379,7 +372,7 @@ class NetData:
         if self.is_train in ["train", "test"]:
             project_subset = ({
                 p for p in project_subset 
-                if self._match_project(p) in self.split_set[self.is_train]
+                if self.match_proj(p) in self.split_set[self.is_train]
             })
 
         self.data_dict = {}
@@ -392,8 +385,7 @@ class NetData:
         grouped_data = self.data[self.data["proj_name"].isin(project_subset)].groupby("proj_name").apply(process_group)
         self.data_dict = grouped_data.to_dict()
 
-
-    def _load_project_status(self) -> None:
+    def load_proj_status(self) -> None:
         """
             Loads in the project status as given by the params dict.
         """
@@ -402,21 +394,21 @@ class NetData:
             project_status = json.load(f)
         self.project_status = {s: set(project_status[s]) for s in project_status}
 
-
-    def _split_data(dataset_dirs: dict[str, str]) -> dict[str, dict[str, set]]:
+    def split_data(dataset_dirs: dict[str, str]) -> dict[str, dict[str, set]]:
         """
-            In the generic case, we'll always be using train, test, or both sets. As 
-            such, it would be of great utility to have the split and then combine as 
-            necessary.
+            In the generic case, we'll always be using train, test, or both 
+            sets. As such, it would be of great utility to have the split and 
+            then combine as necessary.
 
             The return is a dictionary of the split datasets.
         """
         
         pass
 
-    
-    def _interval_tensors(self, set_type: str=None, subset: set=None, 
-                          ignore_incubating: bool=False) -> dict[str: dict[str, Any]]:
+    def interval_tensors(
+        self, set_type: str=None, subset: set=None, 
+        ignore_incubating: bool=False
+    ) -> dict[str: dict[str, Any]]:
         """
             Testing for intervals creation; returns X, y, and info about the 
             selected projects for logging.
@@ -433,7 +425,7 @@ class NetData:
         # check every project (since we have to match to a base project)
         for proj in tqdm(self.projects_set):
             # check base
-            base_proj = self._match_project(proj)
+            base_proj = self.match_proj(proj)
             if base_proj not in subset:
                 continue
 
@@ -489,8 +481,7 @@ class NetData:
         
         return {"x": X, "y": y, "log": log_info}
 
-
-    def _regular_tensors(self, set_type: str=None, subset: set=None) -> dict[str, Any]:
+    def reg_tensors(self, set_type: str=None, subset: set=None) -> dict[str, Any]:
         """
             Testing for non-intervaled data creation; returns X, y, and info 
             about the selected projects for logging.
@@ -507,7 +498,7 @@ class NetData:
         # add all projects
         for proj in tqdm(self.projects_set):
             # check base
-            base_proj = self._match_project(proj)
+            base_proj = self.match_proj(proj)
             if base_proj not in subset:
                 continue
 
@@ -517,7 +508,7 @@ class NetData:
                 continue
 
             # association
-            base_proj = self._match_project(proj)
+            base_proj = self.match_proj(proj)
 
             # apply status
             if base_proj in self.project_status["graduated"]:
@@ -541,8 +532,7 @@ class NetData:
 
         return {"x": X, "y": y, "log": log_info}
 
-
-    def _gen_tensors(self) -> None:
+    def gen_tensors(self) -> None:
         """
             Generates the train and test tensors.
         """
@@ -555,20 +545,19 @@ class NetData:
         if self.is_train in {"train", "both"}:
             ## soft probabilities don't require a split, we can simply pretend 
             ## they're pseudo projects again
-            train_pkg = self._regular_tensors("train")
+            train_pkg = self.reg_tensors("train")
             self.tensors["train"]["x"] = train_pkg["x"]
             self.tensors["train"]["y"] = train_pkg["y"]
         if self.is_train in {"test", "both"}:
-            test_pkg = self._interval_tensors("test") if self.is_intervaled \
-                else self._regular_tensors("test")
+            test_pkg = self.interval_tensors("test") if self.is_intervaled \
+                else self.reg_tensors("test")
             self.tensors["test"]["x"] = test_pkg["x"]
             self.tensors["test"]["y"] = test_pkg["y"]
 
-    
     def __post_init__(self):
         # load default versions if needed
         if self.versions is None:
-            self._gen_default_path()
+            self.gen_default_path()
 
         # ensure transform kwargs
         if self.transform_kwargs is None:
@@ -576,9 +565,9 @@ class NetData:
 
         # generate NetData object
         util.log("setting up NetData")
-        self._gen_network_data_path()
+        self.gen_netdata_path()
         util.log("reading in/generating data")
-        self._load_data()
+        self.load()
         
         # ensure column order
         if self.options.get("aggregate", False):
@@ -591,15 +580,15 @@ class NetData:
 
         # generation
         util.log("generating project status, split")
-        self._load_project_status()
-        self._gen_train_test_split()
+        self.load_proj_status()
+        self.train_test_split()
 
         if self.gen_tensors:
             util.log("generating data lookup")
-            self._gen_data_dict()
+            self.gen_data_dict()
             
             util.log("generating tensors")
-            self._gen_tensors()
+            self.gen_tensors()
 
 
     # external utility
@@ -618,7 +607,9 @@ class NetData:
     
     
     ## visualizations & statistics
-    def visualize_synthetic(self, data: pd.DataFrame, base_proj: str, strategy: str) -> None:
+    def visualize_synthetic(
+        self, data: pd.DataFrame, base_proj: str, strategy: str
+    ) -> None:
         """
             Visualizes the synthetic projects generated from a base project.
 
@@ -631,7 +622,7 @@ class NetData:
 
         # get synthetic & base projects
         based_projects = [proj for proj in data["proj_name"].unique() 
-                          if self._match_project(proj) == base_proj]
+                          if self.match_proj(proj) == base_proj]
 
         # generate activity over time (number developers in both)
         data = data[data["proj_name"].isin(based_projects)]
@@ -655,7 +646,6 @@ class NetData:
         plt.savefig(f"../model-reports/synthetic-data/{strategy}-{self.incubator}-comparison")
         plt.clf()
     
-
     def distributions(self, outlier_threshold: float=None) -> int:
         """
             Generates a summary of the distributions of a network by feature. 
@@ -741,7 +731,6 @@ class NetData:
             f.write("\n")
         incubator_wide_data.to_csv(f"{report_path}-incubator-wide.csv")
 
-
     def project_length_distribution(incubators: list[str]=None) -> None:
         """
             Generates a distribution of the specified incubators and their 
@@ -797,7 +786,6 @@ class NetData:
         plt.show()
         plt.close()
     
-
     def feature_correlations(self, save_dir: Path | str=None) -> None:
         """
             Generates a correlation matrix of all features. Note, the assumption 
@@ -847,9 +835,11 @@ class NetData:
 
 
     ## Augmentations
-    def jitter_netdata(self, entry_prop: float=0.4, delta_prop: float=0.05, 
-                       proj_subset: list[str]=None, num_cycles: float=1,
-                       inplace: bool=True, export: bool=False) -> None | pd.DataFrame:
+    def jitter_netdata(
+        self, entry_prop: float=0.4, delta_prop: float=0.05, 
+        proj_subset: list[str]=None, num_cycles: float=1, inplace: bool=True,
+        export: bool=False
+    ) -> None | pd.DataFrame:
         """
             This program will jitter data for each project and create a duplicate
             for more consistent, and hopefully better, training. The idea is if 
@@ -958,9 +948,10 @@ class NetData:
         if export:
             pass
 
-
-    def interpolate_netdata(self, entry_prop: float=0.15, num_cycles: float=1,
-                            inplace: bool=True, export: bool=False) -> None | pd.DataFrame:
+    def interpolate_netdata(
+        self, entry_prop: float=0.15, num_cycles: float=1, inplace: bool=True,
+        export: bool=False
+    ) -> None | pd.DataFrame:
         """
             Interpolation for means of upsample/oversampling. The idea is we 
             can "remove" a proportion of rows within a project and then 
@@ -973,8 +964,8 @@ class NetData:
             base target label.
 
             @param entry_prop: percentage of entries in a project to augment; if 
-                               set to 1.0, it effectively creates a smoothed 
-                               curve for activity per time
+                set to 1.0, it effectively creates a smoothed curve for activity
+                per time.
             @param proj_subset: subset of projects to jitter, leaves the rest alone; 
                                 defaults to all projects
             @param num_cycles: number of times to jitter the projects specified; 
@@ -991,9 +982,10 @@ class NetData:
 
         pass
 
-
-    def normalize_netdata(self, keep_nan: float=1e-10, strat: str="actdev",
-                          inplace: bool=True, export: bool=False) -> None | pd.DataFrame:
+    def normalize_netdata(
+        self, keep_nan: float=1e-10, strat: str="actdev", inplace: bool=True,
+        export: bool=False
+    ) -> None | pd.DataFrame:
         """
             This program will normalize network features, project-wise and then 
             feature-wise for better transfer.
@@ -1008,12 +1000,12 @@ class NetData:
             instead of absolute ones.
 
             @param keep_nan: whether to force NaNs to zero or not; adds to every 
-                             division to avoid undefined numbers
+                division to avoid undefined numbers.
             @param strat: either active developers (actdev), min-max (minmax), 
-                          or z-score (zscore) normalized procedure
+                or z-score (zscore) normalized procedure.
             @param inplace: determines whether to run inplace of the dataset 
-                            passed in
-            @param export: determines whether to save the dataset generated
+                passed in.
+            @param export: determines whether to save the dataset generated.
         """
 
         # backwards compatibility
@@ -1096,11 +1088,11 @@ class NetData:
         if export:
             pass
 
-
-    def interval_netdata(self, start_month: int=0, spacing: int=1, 
-                         end_month: int=None, proportion: float=None, 
-                         backwards: bool=False, inplace: bool=True, 
-                         export: bool=False) -> None | pd.DataFrame:
+    def interval_netdata(
+        self, start_month: int=0, spacing: int=1, end_month: int=None, 
+        proportion: float=None, backwards: bool=False, inplace: bool=True, 
+        export: bool=False
+    ) -> None | pd.DataFrame:
         """
             Generates subsets of projects using the first x months of data, where x 
             is determined by the intervaling strategy.
@@ -1360,9 +1352,9 @@ class NetData:
         if export:
             pass
 
-
-    def aggregate_netdata(self, concat: bool=False, inplace: bool=True, 
-                          export: bool=False) -> None | pd.DataFrame:
+    def aggregate_netdata(
+        self, concat: bool=False, inplace: bool=True, export: bool=False
+    ) -> None | pd.DataFrame:
         """
             Replaces the feature-set with a cumulative sum per month in hopes of 
             better communicating information about the proportion of commits to the 
@@ -1425,9 +1417,9 @@ class NetData:
         if export:
             util.log("EXPORT FOR `aggregate_netdata` not supported yet", "error")
 
-
-    def diff_netdata(self, concat: bool=False, inplace: bool=True, 
-                     export: bool=False) -> None | pd.DataFrame:
+    def diff_netdata(
+        self, concat: bool=False, inplace: bool=True, export: bool=False
+    ) -> None | pd.DataFrame:
         """
             Generates a new numeric feature for every current network feature based 
             on the difference of the lagging mean (previous <= three months) and the 
@@ -1493,9 +1485,9 @@ class NetData:
             util.log("EXPORT FOR `diff_netdata` not supported yet", "error")
             raise NotImplementedError
 
-
-    def upsample_netdata(self, strat: str="jitter", inplace: bool=True, 
-                         export: bool=False) -> None | pd.DataFrame:
+    def upsample_netdata(
+        self, strat: str="jitter", inplace: bool=True, export: bool=False
+    ) -> None | pd.DataFrame:
         """
             Upsamples using the specified strategies to ensure an equal balance 
             of both target variables. We'll only jitter the training set to 
@@ -1517,9 +1509,9 @@ class NetData:
 
         # ensure completed args
         if self.project_status is None:
-            self._load_project_status()
+            self.load_proj_status()
         if self.split_set is None:
-            self._gen_train_test_split()
+            self.train_test_split()
         if self.projects_set is None:
             self.projects_set = set(self.data["proj_name"].unique())
 
@@ -1548,7 +1540,7 @@ class NetData:
         )
 
         # visualize
-        self._visualize_synthetic(upsampled_df, base_proj=project_subset[0], strategy=strat)
+        self.visualize_synthetic(upsampled_df, base_proj=project_subset[0], strategy=strat)
 
         # export
         if inplace:
@@ -1559,9 +1551,9 @@ class NetData:
         if export:
             pass
 
-
-    def downsample_netdata(self, max_diff: float=0.1, inplace: bool=True, 
-                           export: bool=False) -> None | pd.DataFrame:
+    def downsample_netdata(
+        self, max_diff: float=0.1, inplace: bool=True, export: bool=False
+    ) -> None | pd.DataFrame:
         """
             Downsamples the network data to ignore an imbalance. Allows for some 
             leeway if necessary. Notice that we can simply adjust the set of 
@@ -1582,7 +1574,7 @@ class NetData:
 
         # ensure completed args
         if self.project_status is None:
-            self._load_project_status()
+            self.load_proj_status()
         if self.projects_set is None:
             self.projects_set = set(self.data["proj_name"].unique())
         if self.base_projects is None:
@@ -1591,7 +1583,7 @@ class NetData:
                 set(self.project_status["retired"])
             )
         if self.split_set is None:
-            self.split_set = self._gen_train_test_split()
+            self.split_set = self.train_test_split()
 
         # get target labels to gauge number of entries to create
         label_counts = [len(self.project_status["retired"] & self.projects_set), 
@@ -1634,9 +1626,10 @@ class NetData:
         if export:
             pass
 
-
-    def subset_features(self, include: list=None, disclude: list=None, 
-                        inplace: bool=True, export: bool=False) -> None | pd.DataFrame:
+    def subset_features(
+        self, include: list=None, disclude: list=None, inplace: bool=True, 
+        export: bool=False
+    ) -> None | pd.DataFrame:
         """
             Takes a subset of the network features to use in training.
 
@@ -1668,7 +1661,6 @@ class NetData:
         
         if export:
             pass
-
 
     def combine_options() -> None:
         """

@@ -1,7 +1,7 @@
 """
     @brief Modeling framework w/ testing built-in for switching out model types, 
-           testing accuracies with different methods, and augmenting data prior
-           to testing. 
+        testing accuracies with different methods, and augmenting data prior
+        to testing. 
     @author Arjun Ashok (arjun3.ashok@gmail.com)
     @acknowledgements Nafiz I. Khan, Dr. Likang Yin
     @creation-date October 2023
@@ -19,7 +19,7 @@ from typing import Iterable, Any
 from itertools import product, permutations, chain, combinations
 
 # DECAL modules
-import decalfc.utils as util
+from decalfc.utils import *
 from decalfc.abstractions.modeldata import *
 from decalfc.abstractions.perfdata import *
 from decalfc.abstractions.tsmodel import *
@@ -58,8 +58,8 @@ def modeling(params_dict: dict, args_dict: dict, *args, **kwargs):
     # model.visualize_model(
     #     data_shape=(md.tensors["train"]["x"][0].shape[0], hyperparams["input_size"])
     # )
-    model.train_model(md)
-    model.test_model(md)
+    model.train(md)
+    model.test(md)
     # model.interpret_model(md, strategy=hyperparams.get("interpretation-strategy", "SHAP"))
 
     # reporting
@@ -85,7 +85,6 @@ def modeling(params_dict: dict, args_dict: dict, *args, **kwargs):
         model.monthly_predictions(
             **args_dict["monthly-preds"]
         )
-
 
 def monthly_predictions(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> None:
     """
@@ -149,7 +148,7 @@ def monthly_predictions(params_dict: dict[str, Any], args_dict: dict[str, Any]) 
         if soft_prob_model_strat is None:
             ### get all incubators not used for training to gauge 
             ### generalizability
-            incubator_abbrv = set(util.load_params()["abbreviation"].keys())
+            incubator_abbrv = set(params_dict["abbreviation"].keys())
             train_incubators = {char for char in train_strat if char.isupper()}
             validation_incubators = incubator_abbrv - train_incubators
             
@@ -186,7 +185,7 @@ def monthly_predictions(params_dict: dict[str, Any], args_dict: dict[str, Any]) 
             model_arch=model_arch,
             hyperparams=hyperparams
         )
-        model.train_model(md=md, attempt_load=attempt_load)
+        model.train(md=md, attempt_load=attempt_load)
         
         # export
         return model
@@ -215,7 +214,7 @@ def monthly_predictions(params_dict: dict[str, Any], args_dict: dict[str, Any]) 
     train_inc = target_incubator_abbrv in train_strat
         
     ## reporting progress
-    util.log(
+    log(
         f"\n\n<Using `{train_strat}` to train>", log_type="none", output="file"
     )
     
@@ -250,13 +249,13 @@ def monthly_predictions(params_dict: dict[str, Any], args_dict: dict[str, Any]) 
     ## setup dir to ensure we can output without accidentally forgetting to
     ## overwrite
     dir = f"../predictions/{target_incubator}/"
-    util.clear_dir(dir, skip_input=True)
-    util.check_dir(dir)
+    clear_dir(dir, skip_input=True)
+    check_dir(dir)
     
     # for each project, iteratively generate and export the soft probabilities
     for proj in tqdm(projects):
         ## setup data to push into the soft prob model
-        tensors = nd._regular_tensors(subset=proj)
+        tensors = nd.reg_tensors(subset=proj)
         X, y = tensors["x"][0], tensors["y"][0]
         
         ## generate intervals ourselves without having to associate all pseudo 
@@ -298,20 +297,20 @@ def monthly_predictions(params_dict: dict[str, Any], args_dict: dict[str, Any]) 
 
         ### update confusion matrix & log file
         if final_target == -1:
-            util.log(f"Incubating: {proj}, predicted {rounded_pred} w/ {final_pred}", "log", output="file")
+            log(f"Incubating: {proj}, predicted {rounded_pred} w/ {final_pred}", "log", output="file")
             confusion_matrix["incubating"].append(proj)
         elif rounded_pred != final_target:
             if (final_target == 0.0) and (final_pred >= 0.5):
                 confusion_matrix["false-positive"].append(proj)
             elif (final_target == 1.0) and (final_pred < 0.5):
                 confusion_matrix["false-negative"].append(proj)
-            util.log(f"MIS-PREDICTION: expected {final_target}, got {rounded_pred} with {final_pred} for {proj}", "warning", output="file")
+            log(f"MIS-PREDICTION: expected {final_target}, got {rounded_pred} with {final_pred} for {proj}", "warning", output="file")
         else:
             if (final_target == 1.0) and (final_pred >= 0.5):
                 confusion_matrix["true-positive"].append(proj)
             if (final_target == 0.0) and (final_pred < 0.5):
                 confusion_matrix["true-negative"].append(proj)
-            util.log(f"Correct Prediction: expected {final_target}, got {final_pred} for {proj}", "log", output="file")
+            log(f"Correct Prediction: expected {final_target}, got {final_pred} for {proj}", "log", output="file")
 
         ### performance logging in perfdata; first round to hard probs then 
         ### track
@@ -328,7 +327,7 @@ def monthly_predictions(params_dict: dict[str, Any], args_dict: dict[str, Any]) 
     # export the final report
     count_confusion_matrix = {k: len(v) for k, v in confusion_matrix.items()}
     print(json.dumps(count_confusion_matrix, indent=4))
-    util.log(json.dumps(count_confusion_matrix, indent=4), output="file")
+    log(json.dumps(count_confusion_matrix, indent=4), output="file")
     with open(Path(dir) / "__confusion_matrix.json", "w") as f:
         json.dump(confusion_matrix, f, indent=4)
     with open(Path(dir) / "__confusion_matrix.json", "a") as f:
@@ -351,7 +350,6 @@ def monthly_predictions(params_dict: dict[str, Any], args_dict: dict[str, Any]) 
     
     # end function
     return
-
 
 def full_trials(params_dict: dict[str, Any], trials: int=10, model_arch: str="BLSTM", **kwargs) -> None:
     """
@@ -489,7 +487,6 @@ def full_trials(params_dict: dict[str, Any], trials: int=10, model_arch: str="BL
     even_mix_trials()
     uneven_mix_trials()
 
-
 def breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> None:
     """
         Given a set of options, generates a breakdown surrounding those options.
@@ -503,10 +500,9 @@ def breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> None:
         Notice we'll check k = 2, 3, . . ., len(versions) for the mixes and 
         split.
 
-        @param params_dict: centralized parameter structure
+        @param params_dict: centralized parameter structure.
         @param args_dict: arguments passed in; should include some specification 
-                          of the options selected (as a str of characters to 
-                          append)
+            of the options selected (as a str of characters to append).
     """
 
     # unpack args
@@ -643,21 +639,21 @@ def breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> None:
     p.subset_breakdown(options=options_str)
     p.comparison(field="transfer_strategy")
 
-
-def incubator_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any],
-                        augmentations: list[str]=None) -> None:
+def incubator_breakdown(
+    params_dict: dict[str, Any], args_dict: dict[str, Any],
+    augmentations: list[str]=None
+) -> None:
     """
         Goes through all augmentations and generates a table for easy viewing 
         and augmentation comparison. The end goal is a short-list of strategies 
         for a given incubator's transfer.
 
-        @param params_dict: centralized parameter structure
+        @param params_dict: centralized parameter structure.
         @param args_dict: arguments passed in; should include some specification 
-                          of the incubator needed (e.g. "apache").
+            of the incubator needed (e.g. "apache").
         @param augmentations: list of options strings to feed into the training 
-                              scheme; note, all incubators will have this 
-                              augmentation regime applied, including the test to 
-                              ensure transfer
+            scheme; note, all incubators will have this augmentation regime 
+            applied, including the test to ensure transfer.
     """
 
     # auxiliary functions
@@ -731,7 +727,6 @@ def incubator_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any],
     # generate reports
     p = PerfData()
 
-
 def icse_25_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> None:
     """
         Temporary utility for the ICSE '25 Paper table generation; saves all 
@@ -739,7 +734,7 @@ def icse_25_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) ->
     
         @param params_dict: centralized parameter structure
         @param args_dict: arguments passed in; should include some specification 
-                          of the incubator needed (e.g. "apache").
+            of the incubator needed (e.g. "apache").
     """
     
     # trials to do
@@ -794,14 +789,15 @@ def icse_25_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) ->
     regex_matches = [re.sub(r"\{\}", r".*", s) for s in trial_structs]
     perf_db = PerfData(perf_source=perf_db_path)
     best_df = perf_db.best_perfs(transfer_strats=trial_structs)
-    
 
-if __name__ == "__main__":
-    # forward parameters to main
-    params_dict = util.load_params()
-    args_dict = util.parse_input(sys.argv)
 
+# Script
+def main():
+    # setup
+    args_dict = parse_input(sys.argv)
     trial_type = args_dict.get("trial-type", "regular")
+    
+    # match trial
     match trial_type:
         case "regular":
             for i in range(args_dict.get("trials", 1)):
@@ -833,4 +829,8 @@ if __name__ == "__main__":
         
         case _:
             print(":(")
+
+if __name__ == "__main__":
+    # forward parameters to main
+    main()
 

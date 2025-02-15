@@ -25,8 +25,7 @@ from typing import Any
 from pathlib import Path
 
 # DECAL modules
-import decalfc.utils as util
-from decalfc.utils import PARQUET_ENGINE, CSV_ENGINE
+from decalfc.utils import *
 
 
 """
@@ -51,7 +50,7 @@ def text_encoding(encoded_words):
 # ---------------- processing utility ---------------- #
 def process_tech_nets(author_field: str, t_source: Path, t_output: Path) -> None:
     projects = os.listdir(t_source)
-    util.check_dir(t_output)
+    check_dir(t_output)
 
     for project in tqdm(projects):
         technical_net = {}
@@ -73,8 +72,9 @@ def process_tech_nets(author_field: str, t_source: Path, t_output: Path) -> None
                 technical_net[file_name][author_name]["weight"] = 0
             technical_net[file_name][author_name]["weight"] += 1
 
-        #save as directed graph
+        # save as directed graph
         g = nx.DiGraph(technical_net)
+        
         # add disconnected nodes
         g.add_nodes_from(technical_net.keys())
         nx.write_edgelist(g, t_output / "{}__{}.edgelist".format(project_name, str(period)), delimiter="##", data=["weight"])
@@ -84,7 +84,7 @@ def process_tech_nets(author_field: str, t_source: Path, t_output: Path) -> None
 def process_social_nets(author_field: str, s_source: Path, s_output: Path, mapping_path: Path) -> None:
     # directory handling
     projects = os.listdir(s_source)
-    util.check_dir(s_output)
+    check_dir(s_output)
 
     # get sender-receiver timestamp
     sender_dic = {"project": [], "message_id":[], "sender":[], "receiver":[], \
@@ -203,7 +203,6 @@ def create_networks(args_dict: dict[str, Any]):
 
     # setup
     print("\n<Creating Socio-Technical Networks>")
-    params_dict = util.load_params()
     author_field = "dealised_author_full_name"
 
     # execute input
@@ -221,11 +220,11 @@ def create_networks(args_dict: dict[str, Any]):
     mapping_out_source = str(mapping_out_dir) + f"/{incubator}-mapping.csv"
 
     # ensure clean save
-    util.check_dir(t_output_dir)
-    util.check_dir(s_output_dir)
-    util.clear_dir(t_output_dir, skip_input=True)
-    util.clear_dir(s_output_dir, skip_input=True)
-    util.check_dir(mapping_out_dir)
+    check_dir(t_output_dir)
+    check_dir(s_output_dir)
+    clear_dir(t_output_dir, skip_input=True)
+    clear_dir(s_output_dir, skip_input=True)
+    check_dir(mapping_out_dir)
 
     # process
     process_tech_nets(author_field, t_dir, t_output_dir)
@@ -234,6 +233,6 @@ def create_networks(args_dict: dict[str, Any]):
 
 if __name__ == "__main__":
     # load input
-    args_dict = util.parse_input(sys.argv)
+    args_dict = parse_input(sys.argv)
     create_networks(args_dict)
     
