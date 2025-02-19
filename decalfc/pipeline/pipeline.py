@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 # DECAL modules
-import decalfc.utils as util
+from decalfc.utils import *
 import decalfc.abstractions.rawdata as rd
 from decalfc.pipeline.monthly_data import *
 from decalfc.pipeline.create_networks import *
@@ -21,7 +21,7 @@ from decalfc.pipeline.network_visualizations import *
 
 
 # ------------- Dispatch Utility ------------- #
-def process_data(args_dict: dict[str, Any]) -> None:
+def preprocess_data(args_dict: dict[str, Any]) -> None:
     """
         Dispatches the required processing steps to do.
     """
@@ -58,7 +58,7 @@ def process_data(args_dict: dict[str, Any]) -> None:
         if process in process_router:
             raw.data = process_router[process](raw.data, copy=False)
         else:
-            util.log(f"Could not locate process-method {process}. Skipping.", "warning")
+            log(f"Could not locate process-method {process}. Skipping.", "warning")
     
     # export
     new_versions = args_dict.get("new-versions", args_dict["versions"])
@@ -92,7 +92,7 @@ def pipeline(args_dict: dict[str, Any]) -> None:
     
     # pre-processing raw data if specified
     if "processing" in args_dict:
-        process_data(args_dict)
+        preprocess_data(args_dict)
         
     # network gen
     generate_netdata(args_dict)
@@ -102,7 +102,7 @@ def pipeline(args_dict: dict[str, Any]) -> None:
 # Pipeline
 if __name__ == "__main__":
     # params
-    args_dict = util.parse_input(sys.argv)
+    args_dict = parse_input(sys.argv)
     
     # dispath
     pipeline(args_dict)

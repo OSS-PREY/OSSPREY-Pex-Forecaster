@@ -7,8 +7,8 @@
 # --- Environment Setup --- #
 ## packages
 import pandas as pd
-import pandarallel
-import tqdm
+from pandarallel import pandarallel
+from tqdm import tqdm
 
 ## built-in modules
 import argparse
