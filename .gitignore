@@ -5,9 +5,9 @@ model-weights/
 model-reports/
 !model-weights/BGRU.pt
 !model-weights/BLSTM.pt
-!netdata/clean-apache-network-data.csv
-!netdata/clean-eclipse-network-data.csv
-!netdata/clean-github-network-data.csv
+!network-data/netdata/clean-apache-network-data.csv
+!network-data/netdata/clean-eclipse-network-data.csv
+!network-data/netdata/clean-github-network-data.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
