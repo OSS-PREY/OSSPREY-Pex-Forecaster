@@ -33,6 +33,8 @@
     "reports-dir": "./model-reports/",
     "forecast-dir": "./forecasts/",
     "trajectory-dir": "./trajectories/",
+    "delta-cache-dir": "./net-caches/",
+    "visuals-dir": "./visuals/",
     "field-mappings": {
         "eclipse": {
             "tech": {
@@ -217,6 +219,5 @@
     "lifecycle-ratios": "./ref/lifecycle-ratios.json",
     "test-prop": 0.20,
     "network-data-format": "./network-data/netdata/{}-{}-network-data-{}.{}",
-    "model-weights-format": "./model-weights/{}/{}-[a{}]-[f{}]-[p{}]-[r{}].pt",
-    "delta-cache-dir": "./net-caches/"
+    "model-weights-format": "./model-weights/{}/{}-[a{}]-[f{}]-[p{}]-[r{}].pt"
 }

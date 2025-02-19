@@ -26,6 +26,10 @@ PARQUET_ENGINE = "pyarrow"
 CSV_ENGINE = "python"
 
 
+# --- Setup Utility --- #
+
+
+
 # --- Utility --- #
 def load_params() -> dict[str, Any]:
     """
@@ -138,14 +142,26 @@ def del_file(path: str | Path) -> None:
     path.unlink()
 
 def log(msg: str="", log_type: str="log", output: str="console",
-    file_name: str="logger") -> None:
-    """
-        Logs a different message depending on the type fed in.
+    file_name: str="logger", check_verbosity: bool=True) -> None:
+    """Logs a different message depending on the type fed in.
 
-        @param msg: output to print/store to console or log file
-        @param log_type: str, one of {"log", "warning", "error", "note", "debug", 
-            "summary"}; "new" will efault to a custom type of log identifier
+    Args:
+        msg (str, optional): output to print/store to console or log file. 
+            Defaults to "".
+        log_type (str, optional): str, one of {"log", "warning", "error", 
+            "note", "debug", "summary"}; "new" will default to a custom type of 
+            log identifier. Defaults to "log".
+        output (str, optional): buffer to print to, one of {"console", "file"}. 
+            Defaults to "console".
+        file_name (str, optional): filename to print to. Defaults to "logger".
+        check_verbosity (bool, optional): condition to print or not, helpful for
+            concise logging with verbosity checks. True indicates we do print, 
+            False indicates we skip logging entirely. Defaults to True.
     """
+    
+    # check verbosity, only skip if we're logging to STDOUT
+    if not check_verbosity and output == "file":
+        return
 
     # auxiliary functions
     def log_file(info: str):
@@ -186,7 +202,8 @@ def log(msg: str="", log_type: str="log", output: str="console",
             output_router[output](f"\n<{msg.title()}>")
 
 
-# Environment Setup 
+# Environment Setup
 pandarallel.initialize(nb_workers=NUM_PROCESSES, progress_bar=True)
 tqdm.pandas()
 params_dict = load_params()
+

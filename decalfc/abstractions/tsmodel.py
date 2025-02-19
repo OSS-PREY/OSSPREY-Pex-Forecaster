@@ -476,8 +476,8 @@ class PositionalEncoding(nn.Module):
 
 class TNN(nn.Module):
     def __init__(
-        self, input_dim: int, model_dim: int=64, num_heads: int=4,
-        num_layers: int=2, dropout: float=0.1
+        self, input_size: int, hidden_size: int=64, num_heads: int=4,
+        num_layers: int=2, dropout_rate: float=0.1, num_classes: int=2, **kwargs
     ):
         """
         Args:
@@ -495,14 +495,14 @@ class TNN(nn.Module):
         super().__init__()
         
         # project inputs onto the model_dim-dimensional space
-        self.input_projection = nn.Linear(input_dim, model_dim)
-        self.pos_encoder = PositionalEncoding(model_dim, dropout)
+        self.input_projection = nn.Linear(input_size, hidden_size)
+        self.pos_encoder = PositionalEncoding(hidden_size, dropout_rate)
         
         # encoder
         encoder_layer = nn.TransformerEncoderLayer(
-            d_model=model_dim,
+            d_model=hidden_size,
             nhead=num_heads,
-            dropout=dropout,
+            dropout=dropout_rate,
             batch_first=True
         )
         self.transformer_encoder = nn.TransformerEncoder(
@@ -510,10 +510,10 @@ class TNN(nn.Module):
         )
         
         # learnable CLS parameter
-        self.cls_token = nn.Parameter(torch.randn(1, 1, model_dim))
+        self.cls_token = nn.Parameter(torch.randn(1, 1, hidden_size))
         
         # output head
-        self.fc = nn.Linear(model_dim, 1)
+        self.fc = nn.Linear(hidden_size, num_classes)
         self.sigmoid = nn.Sigmoid()
     
     def forward(self, x: torch.tensor) -> torch.tensor:
@@ -543,10 +543,12 @@ class TNN(nn.Module):
         
         # pass through classification head
         out = self.fc(cls_representation)  # shape: (batch_size, 1)
-        out = self.sigmoid(out)  # probability between 0 and 1
+        out = self.sigmoid(out)
         
         return out.squeeze(-1)  # shape: (batch_size,)
 
+    def predict(self, x):
+        return F.softmax(self(x), dim=1)
 
 ## Regressor (from Nafiz)
 class Regressor(nn.Module):
@@ -635,7 +637,7 @@ class TimeSeriesModel:
                 self.model = BGNN(
                     **self.hyperparams
                 ).to(self.device)
-                  
+
             case "DLSTM":
                 util.log("Model Chosen :: Dilated LSTM", "new")
                 self.model = DRNN(
