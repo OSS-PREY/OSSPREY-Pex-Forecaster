@@ -16,8 +16,44 @@ from decalfc.utils import *
 __IMPL_INCUBATORS = [
     "apache",
     "eclipse",
-    "github"
+    "github",
+    "osgeo"
 ]
+_DATA_URLS = {
+    "apache": {
+        "tech": {
+            "commits": "https://drive.google.com/file/d/1TWfOUGlqfHXGY0H2fpxnw8U3NmN_RV7C/view?usp=sharing"
+        },
+        "social": {
+            "emails": "https://drive.google.com/file/d/11H0lRToXQq83Vmfhoj3d7yLIyTKyieGE/view?usp=drive_link"
+        }
+    },
+    "github": {
+        "tech": {
+            "commits": "https://drive.google.com/file/d/1Y-afVT8XVlvQELGbi-1JZS-a6gk8pQHH/view?usp=drive_link"
+        },
+        "social": {
+            "issues": "https://drive.google.com/file/d/1RlRAp0jRscgVoNRAVkzK3DBytkS10j0K/view?usp=drive_link"
+        }
+    },
+    "eclipse": {
+        "tech": {
+            "commits": "https://drive.google.com/file/d/1zF0MAXte7O1Pkiq-e561isCjVdUTk_YD/view?usp=drive_link"
+        },
+        "social": {
+            "issues": "https://drive.google.com/file/d/1LczzKH4jG8jKrRb7zmQ0DItCW77SYz5B/view?usp=drive_link"
+        }
+    },
+    "osgeo": {
+        "tech": {
+            "commits": "https://drive.google.com/file/d/1LTex3X2_sgAy2Dy79wYvVURbi3sJzYyA/view?usp=sharing"
+        },
+        "social": {
+            "emails": "",
+            "issues": ""
+        }
+    }
+}
 
 
 # --- Auxiliary Utility --- #
@@ -35,22 +71,6 @@ def check_raw_data(verbosity: int=2) -> int:
     Returns:
         int: number of downloads required; treating each file as separate.
     """
-
-    # URLs lookup
-    _DATA_URLS = {
-        "apache": {
-            "tech": "https://drive.google.com/file/d/1TWfOUGlqfHXGY0H2fpxnw8U3NmN_RV7C/view?usp=sharing",
-            "social": "https://drive.google.com/file/d/11H0lRToXQq83Vmfhoj3d7yLIyTKyieGE/view?usp=drive_link"
-        },
-        "github": {
-            "tech": "https://drive.google.com/file/d/1Y-afVT8XVlvQELGbi-1JZS-a6gk8pQHH/view?usp=drive_link",
-            "social": "https://drive.google.com/file/d/1RlRAp0jRscgVoNRAVkzK3DBytkS10j0K/view?usp=drive_link"
-        },
-        "eclipse": {
-            "tech": "https://drive.google.com/file/d/1zF0MAXte7O1Pkiq-e561isCjVdUTk_YD/view?usp=drive_link",
-            "social": "https://drive.google.com/file/d/1LczzKH4jG8jKrRb7zmQ0DItCW77SYz5B/view?usp=drive_link"
-        }
-    }
     
     # crawler setup, check directory exist
     _DATA_PATH = Path(params_dict["dataset-dir"])
@@ -58,36 +78,39 @@ def check_raw_data(verbosity: int=2) -> int:
     ndownloads = 0
 
     # crawl the data paths
-    for ds, url_pkg in _DATA_URLS.items():
+    for ds, dtype_urls in _DATA_URLS.items():
         # ensure the directory exists
         incubator_data_path = _DATA_PATH / f"{ds}_data"
         incubator_data_path.mkdir(exist_ok=True)
         
         # download each of the sub-items if they don't exist
-        for dtype, url in url_pkg.items():
-            # unpack file path
-            dl_path = incubator_data_path / f"{params_dict[f'{dtype}-type'][ds]}.parquet"
-            
-            # check if we need to download
-            if dl_path.exists():
-                if verbosity:
-                    log(
-                        f"Skipping the <{dtype}> data for <{ds}>, exists @ {dl_path}",
-                        "log", check_verbosity=(verbosity > 1)
-                    )
-                continue
-            
-            # download required
-            log(
-                f"Downloading the <{dtype}> data for <{ds}>, saving to {dl_path}",
-                "log", check_verbosity=(verbosity > 0)
-            )
-            ndownloads += 1
-            gdown.download(
-                url,
-                dl_path,
-                quiet=(verbosity < 2)
-            )
+        for dtype, urls_pkg in dtype_urls.items():
+            # check each sub-list of the given dtype and combine if needed
+            for subtype, url in urls_pkg.items():
+                
+                # unpack file path
+                dl_path = incubator_data_path / f"{params_dict[f'{dtype}-type'][ds]}.parquet"
+                
+                # check if we need to download
+                if dl_path.exists():
+                    if verbosity:
+                        log(
+                            f"Skipping the <{dtype}> data for <{ds}>, exists @ {dl_path}",
+                            "log", check_verbosity=(verbosity > 1)
+                        )
+                    continue
+                
+                # download required
+                log(
+                    f"Downloading the <{dtype}> data for <{ds}>, saving to {dl_path}",
+                    "log", check_verbosity=(verbosity > 0)
+                )
+                ndownloads += 1
+                gdown.download(
+                    url,
+                    dl_path,
+                    quiet=(verbosity < 2)
+                )
             
     # summary
     log(log_type="summary")

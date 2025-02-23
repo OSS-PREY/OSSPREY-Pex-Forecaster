@@ -476,8 +476,8 @@ class PositionalEncoding(nn.Module):
 
 class TNN(nn.Module):
     def __init__(
-        self, input_size: int, hidden_size: int=64, num_heads: int=4,
-        num_layers: int=2, dropout_rate: float=0.1, num_classes: int=2, **kwargs
+        self, input_size: int, hidden_size: int=128, num_heads: int=2,
+        num_layers: int=1, dropout_rate: float=0.1, num_classes: int=2, **kwargs
     ):
         """
         Args:
@@ -494,7 +494,7 @@ class TNN(nn.Module):
         # initialize model
         super().__init__()
         
-        # project inputs onto the model_dim-dimensional space
+        # project inputs onto the hidden-size dimensional space
         self.input_projection = nn.Linear(input_size, hidden_size)
         self.pos_encoder = PositionalEncoding(hidden_size, dropout_rate)
         
@@ -576,12 +576,12 @@ def load_hyperparams(new_hp: dict[str, Any]) -> dict[str, Any]:
         "input_size": 14,
         "hidden_size": 64,
         "num_classes": 2,
-        # "num_heads": 1,   # has to be specified to override default value since nheads varies across model archs, gets too confusing
-        "dropout_rate": 0.4,
-        "learning_rate": 0.0001,
-        "batch_size": 512,
-        "num_epochs": 10,
-        "num_layers": 1,
+        # # "num_heads": 1,   # has to be specified to override default value since nheads varies across model archs, gets too confusing
+        "dropout_rate": 0.1,
+        "learning_rate": 0.001,
+        # "batch_size": 16,
+        "num_epochs": 200,
+        "num_layers": 2,
         "scheduler": "plateau"
     }
 

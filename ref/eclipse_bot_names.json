@@ -10,7 +10,8 @@
         "lint",
         "robot",
         "scraper",
-        "spider"
+        "spider",
+        "no-reply"
     ],
     "project-bots": [
         "github",

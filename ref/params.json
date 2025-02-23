@@ -3,6 +3,7 @@
         "apache",
         "github",
         "eclipse",
+        "osgeo",
         "ospos"
     ],
     "ext": "parquet",
@@ -11,18 +12,21 @@
         "apache": "A",
         "github": "G",
         "eclipse": "E",
-        "ospos": "O"
+        "osgeo": "O",
+        "ospos": "P"
     },
     "social-type": {
         "apache": "emails",
         "github": "issues",
         "eclipse": "issues",
+        "osgeo": "emails-issues",
         "ospos": "issues"
     },
     "tech-type": {
         "apache": "commits",
         "github": "commits",
         "eclipse": "commits",
+        "osgeo": "commits",
         "ospos": "commits"
     },
     "dataset-dir": "./data/",
@@ -62,6 +66,37 @@
                 "Date": "date",
                 "Status": "[IGNORE]1"
             }
+        },
+        "osgeo": {
+            "tech": {
+                "project_name": "project_name",
+                "status": "status",
+                "commit": "commit_id",
+                "committer_email": "sender_email",
+                "committer_name": "sender_name",
+                "committer_time": "date",
+                "ign_col_2": "[IGNORE]2",
+                "filename": "file_name",
+                "change_type": "change_type",
+                "added": "added",
+                "deleted": "deleted",
+                "commit_message": "commit_msg"
+            },
+            "social": {
+                "emails": {
+                },
+                "issues": {
+                    "project_name": "project_name",
+                    "timestamp": "date",
+                    "month": "month",
+                    "comment_id": "message_id",
+                    "author_aliase_id": "sender_name",
+                    "comment_text": "body",
+                    "thread_id": "subject",
+                    "folder_name": "folder_name",
+                    "thread": "thread"
+                }
+            }
         }
     },
     "dtypes": {
@@ -74,6 +109,9 @@
         "eclipse": {
             
         },
+        "osgeo": {
+            
+        },
         "ospos": {
 
         }
@@ -82,6 +120,7 @@
         "apache": "author_full_name",
         "github": "sender_name",
         "eclipse": "sender_name",
+        "osgeo": "sender_name",
         "ospos": "sender_name"
     },
     "augmentations": {
@@ -107,6 +146,14 @@
             },
             "social": {
                 "1": "issues"
+            }
+        },
+        "osgeo": {
+            "tech": {
+                "0": "commits"
+            },
+            "social": {
+                "0": "emails-issues"
             }
         },
         "ospos": {
@@ -143,6 +190,14 @@
                 "1": "deliased w/ reply & bots issues data"                
             }
         },
+        "osgeo": {
+            "tech": {
+                "0": "commits (final) from google drive"
+            },
+            "social": {
+                "0": "emails-issues (final) from google drive, combined into one"
+            }
+        },
         "ospos": {
             "tech": {
                 "0": "alias dataset"
@@ -156,18 +211,21 @@
         "apache": "./ref/apache_proj_incubation.json",
         "github": "./ref/github_proj_incubation.json",
         "eclipse": "./ref/eclipse_proj_incubation.json",
+        "osgeo": "./ref/osgeo_proj_incubation.json",
         "ospos": "./ref/ospos_proj_incubation.json"
     },
     "project-status": {
         "apache": "./ref/apache_project_status.json",
         "github": "./ref/github_project_status.json",
         "eclipse": "./ref/eclipse_project_status.json",
+        "osgeo": "./ref/osgeo_project_status.json",
         "ospos": "./ref/ospos_project_status.json"
     },
     "programming-langs": {
         "apache": "programming-langs.json",
         "github": "programming-langs.json",
-        "eclipse": "programming-langs.json"
+        "eclipse": "programming-langs.json",
+        "osgeo": "programming-langs.json"
     },
     "transfer-strats": {
         "ful": "full: B --> T",
@@ -177,7 +235,8 @@
     "default-versions": {
         "apache": [1, 1],
         "github": [3, 4],
-        "eclipse": [1, 1]
+        "eclipse": [1, 1],
+        "osgeo": [0, 0]
     },
     "network-augmentations": {
         "clean": "clean",
