@@ -20,8 +20,7 @@ from typing import Any
 from pathlib import Path
 
 # DECAL modules
-import decalfc.utils as util
-from decalfc.utils import PARQUET_ENGINE, CSV_ENGINE
+from decalfc.utils import *
 
 
 # ---------------- processing utility ---------------- #
@@ -78,7 +77,7 @@ def net_vis_info(args_dict: dict[str, Any]) -> dict[str, list[list[str | int]]]:
 
     # setup
     print("\n<Generating Network Info for Visualization>")
-    params_dict = util._load_params()
+    params_dict = load_params()
 
     # execute input
     social_type = params_dict["social-type"][args_dict["incubator"]]
@@ -94,11 +93,11 @@ def net_vis_info(args_dict: dict[str, Any]) -> dict[str, list[list[str | int]]]:
     s_output_dir = base_dir / f"{args_dict['incubator']}_{social_type}/"
 
     # setup & prepare (clear output dirs, get iteration list)
-    util._check_dir(base_dir)
-    util._clear_dir(t_output_dir, skip_input=True)
-    util._check_dir(t_output_dir)
-    util._clear_dir(s_output_dir, skip_input=True)
-    util._check_dir(s_output_dir)
+    check_dir(base_dir)
+    clear_dir(t_output_dir, skip_input=True)
+    check_dir(t_output_dir)
+    clear_dir(s_output_dir, skip_input=True)
+    check_dir(s_output_dir)
 
     s_nets = set(os.listdir(s_dir))
     t_nets = set(os.listdir(t_dir))
@@ -148,7 +147,7 @@ def net_vis_info_projectwise(args_dict: dict[str, Any]) -> dict[str, list[list[s
 
     # setup
     print("\n<Generating Network Info for Visualization>")
-    params_dict = util._load_params()
+    params_dict = load_params()
 
     # execute input
     social_type = params_dict["social-type"][args_dict["incubator"]]
@@ -160,7 +159,7 @@ def net_vis_info_projectwise(args_dict: dict[str, Any]) -> dict[str, list[list[s
     base_dir = Path(params_dict["network-visualization-dir"])
 
     # setup & prepare (clear output dirs, get iteration list)
-    util._check_dir(base_dir)
+    check_dir(base_dir)
 
     # only use the overlap in tech and social
     s_nets = set(os.listdir(s_dir))
@@ -205,6 +204,6 @@ def net_vis_info_projectwise(args_dict: dict[str, Any]) -> dict[str, list[list[s
     return net_visuals
 
 if __name__ == "__main__":
-    args_dict = util._parse_input(sys.argv)
+    args_dict = parse_input(sys.argv)
     net_vis_info(args_dict)
 

@@ -1,0 +1,15 @@
+{
+    "substring-bots": [
+        "bot",
+        "butler",
+        "crawler",
+        "gardener",
+        "github",
+        "lint",
+        "robot",
+        "scraper",
+        "spider",
+        "no-reply"
+    ],
+    "project-bots": []
+}

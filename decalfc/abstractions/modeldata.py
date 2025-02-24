@@ -17,8 +17,7 @@ import re
 from typing import Any
 from dataclasses import dataclass, field
 
-import decalfc.utils as util
-from decalfc.utils import PARQUET_ENGINE
+from decalfc.utils import *
 from decalfc.abstractions.tsmodel import *
 from decalfc.abstractions.netdata import *
 
@@ -99,7 +98,7 @@ class ModelData:
         """
 
         # setup
-        params = util._load_params()
+        params = load_params()
         possible_options = params["network-aug-shorthand"]
         decoder = dict(zip(
             params["abbreviations"].values(),
@@ -125,7 +124,7 @@ class ModelData:
         # generate test props using ticks (0 -- all, any -- 0.20)
         for token in train_prop_tokens:
             if "^" in token and token:
-                self.test_props[decoder[token[0].upper()]] = float(util._load_params()["test-prop"])
+                self.test_props[decoder[token[0].upper()]] = float(load_params()["test-prop"])
             else:
                 self.test_props[decoder[token[0].upper()]] = 0
 
@@ -179,7 +178,7 @@ class ModelData:
         """
 
         # setup
-        util._log("Generating Tensors for Model Data", "new")
+        log("Generating Tensors for Model Data", "new")
         t_keys = ["train", "test"]
         d_keys = ["x", "y"]
         self.tensors = {t: {d: None for d in d_keys} for t in t_keys}
@@ -195,7 +194,7 @@ class ModelData:
                 options = o_info[i]
 
                 # load NetData
-                util._log(f"Tensor for {i} for {t}", "new")
+                log(f"Tensor for {i} for {t}", "new")
 
                 subset_project = None
                 if self.predict_project is not None:

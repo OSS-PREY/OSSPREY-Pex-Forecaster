@@ -26,8 +26,7 @@ from dataclasses import dataclass, field
 from json import dump, load
 
 # DECAL modules
-import decalfc.utils as util
-from decalfc.utils import PARQUET_ENGINE, CSV_ENGINE, NUM_PROCESSES
+from decalfc.utils import *
 from decalfc.abstractions.rawdata import clean_file_paths, \
     clean_sender_names, impute_months, impute_messageid, infer_replies, \
     infer_bots, clean_source_files, dealias_senders
@@ -38,18 +37,7 @@ from decalfc.pipeline.network_visualizations import net_vis_info_projectwise
 from decalfc.algorithms.trajectory import route_traj
 
 # constants & setup parallel processing
-pandarallel.initialize(nb_workers=NUM_PROCESSES, progress_bar=True)
-params_dict = util._load_params()
-tqdm.pandas()
 INCUBATOR_ALIAS = "ospos"
-DEVICE = (
-    "cuda" if torch.cuda.is_available()
-    else (
-        "mps" if torch.backends.mps.is_available()
-        else "cpu"
-    )
-)
-
 IMPLEMENTED_TASKS = {
     "net-gen": None,
     "net-vis": None,
@@ -192,7 +180,7 @@ class DeltaData:
         else:
             self.cached_netdata = self.cached_netdata[self.cached_netdata["month"] < self.last_cached_month]
         
-        util._log(f"using the months [0, {self.last_cached_month}) from the cache")
+        log(f"using the months [0, {self.last_cached_month}) from the cache")
         
         # generate auxiliary information
         self.gen_proj_incubation()
@@ -262,7 +250,7 @@ class DeltaData:
 
         # save
         path = _gen_cache_path(self.proj_name)
-        util._check_path(path)
+        check_path(path)
         self.netdata.to_csv(path, index=False)
 
     def clean_disk(self) -> None:
@@ -279,8 +267,8 @@ class DeltaData:
         t_output_dir = monthly_data_dir / f"{params_dict['tech-type'][INCUBATOR_ALIAS]}/"
         s_output_dir = monthly_data_dir / f"{params_dict['social-type'][INCUBATOR_ALIAS]}/"
         
-        util._clear_dir(dir=t_output_dir, skip_input=True)
-        util._clear_dir(dir=s_output_dir, skip_input=True)
+        clear_dir(dir=t_output_dir, skip_input=True)
+        clear_dir(dir=s_output_dir, skip_input=True)
         
         # NETWORK GENERATION
         data_dir = Path(params_dict["dataset-dir"]) / f"{self.incubator}_data"
@@ -290,14 +278,24 @@ class DeltaData:
         net_path = network_dir / "netdata" / f"{self.incubator}-network-data.csv"
         mapping_path = network_dir / "mappings" / f"{self.incubator}-mapping.csv"
         
-        # util._clear_dir(data_dir, skip_input=True)
-        util._clear_dir(network_dir / f"{self.incubator}_{t_type}", skip_input=True)
-        util._clear_dir(network_dir / f"{self.incubator}_{s_type}", skip_input=True)
+        # clear_dir(data_dir, skip_input=True)
+        clear_dir(network_dir / f"{self.incubator}_{t_type}", skip_input=True)
+        clear_dir(network_dir / f"{self.incubator}_{s_type}", skip_input=True)
         
-        # util._check_dir(data_dir)
-        util._del_file(net_path)
-        util._del_file(mapping_path)
+        # check_dir(data_dir)
+        del_file(net_path)
+        del_file(mapping_path)
 
+    def clear_cache(self, products: list[str]=None) -> None:
+        """Clears all cached data products specified, defaults to all.
+
+        Args:
+            products (list[str], optional): end products to clear out. Should be
+                a subset of {"net-gen", "net-vis", "forecast", "traj"}.
+        """
+        
+        # call the utility
+        return reset_cache(proj=self.proj_name, products=products)
 
     # split by month
     def monthwise_split(self) -> None:
@@ -305,7 +303,7 @@ class DeltaData:
         """
         
         # setup
-        util._log("Segmenting Monthly Data", "log")
+        log("Segmenting Monthly Data", "log")
         author_field = "dealised_author_full_name"
         
         # helper fn
@@ -359,12 +357,12 @@ class DeltaData:
         # clear disk usage to limit space requirement and prevent double 
         # writing (using the same data twice) or mis-association (using one 
         # project's data in another's)
-        util._clear_dir(dir=t_output_dir, skip_input=True)
-        util._clear_dir(dir=s_output_dir, skip_input=True)
+        clear_dir(dir=t_output_dir, skip_input=True)
+        clear_dir(dir=s_output_dir, skip_input=True)
 
         # segmentation; no longer need to overwrite, we simply treat this as new
         # data and we'll concatenate the old data with this
-        util._log("segmenting...")
+        log("segmenting...")
         segment_data(
             self.data["tech"], author_field=author_field, save_dir=t_output_dir, 
             start_month=self.last_cached_month
@@ -448,7 +446,7 @@ class DeltaData:
         
         # update old visualizations if possible and re-store
         vis_path = Path(params_dict["network-visualization-dir"]) / f"{self.proj_name}.json"
-        util._check_path(vis_path)
+        check_path(vis_path)
         
         if vis_path.exists():
             # load & ensure data types
@@ -493,8 +491,15 @@ class DeltaData:
             "month",
             # "s_largest_component"   # hardcode the `c` strat for netdata
         ]
+        col_order = [
+            "s_num_nodes", "s_weighted_mean_degree", "s_num_component",
+            "s_avg_clustering_coef", "s_largest_component", "s_graph_density", 
+            "t_num_dev_nodes", "t_num_file_nodes", "t_num_dev_per_file", 
+            "t_num_file_per_dev", "t_graph_density", "proj_name", "month", 
+            "st_num_dev", "t_net_overlap", "s_net_overlap"
+        ]
         
-        def apply_augs(augs: str="cbn") -> None:
+        def apply_augs(augs: str="bn") -> None:
             """Temporarily hard-coded for the model-weights we use.
 
             Args:
@@ -544,13 +549,23 @@ class DeltaData:
                 # merge & return
                 return pd.concat([non_nrm_data, nrm_data], axis=1)
             
+            def aggregate_netdata(df):
+                """
+                    Utility function to aggregate a given project's data.
+                """
+
+                # don't apply to dropped cols
+                keep_cols = list(set(df.columns) - set(drop_cols))
+                df[keep_cols] = df[keep_cols].cumsum()
+                return df[col_order]
+            
             # router
             aug_router = {
                 "j": None,
                 "n": actdev_normalize,
                 "m": minmax_normalize,
                 "z": zscore_normalize,
-                "a": None,
+                "a": aggregate_netdata,
                 "d": None,
                 "u": None,
                 "b": lambda d: d,
@@ -558,46 +573,54 @@ class DeltaData:
             }
             
             # apply augs inplace
+            transformed_netdata = self.netdata.__deepcopy__()
             for aug in augs:
-                self.netdata = aug_router[aug](self.netdata)
+                transformed_netdata = aug_router[aug](transformed_netdata)
+            return transformed_netdata
         
-        def gen_tensors() -> torch.Tensor:
+        def gen_tensors(transformed_netdata: pd.DataFrame) -> torch.Tensor:
             # ensure columns order
-            self.netdata = self.netdata[[
-                "s_num_nodes", "s_weighted_mean_degree", "s_num_component",
-                "s_avg_clustering_coef", "s_graph_density", "t_num_dev_nodes",
-                "t_num_file_nodes", "t_num_dev_per_file", "t_num_file_per_dev",
-                "t_graph_density", "proj_name", "month", "st_num_dev",
-                "t_net_overlap", "s_net_overlap"
-            ]]
+            # self.netdata = self.netdata[[
+            #     "s_num_nodes", "s_weighted_mean_degree", "s_num_component",
+            #     "s_avg_clustering_coef", "s_graph_density", "t_num_dev_nodes",
+            #     "t_num_file_nodes", "t_num_dev_per_file", "t_num_file_per_dev",
+            #     "t_graph_density", "proj_name", "month", "st_num_dev",
+            #     "t_net_overlap", "s_net_overlap"
+            # ]]
+            # transformed_netdata = transformed_netdata[col_order]
+            
             
             # track in a dictionary format
             data_dict = {}
 
             # convert to list representation
-            data_dict = self.netdata.drop(drop_cols, axis=1).values.tolist()
+            data_dict = transformed_netdata.drop(drop_cols, axis=1).values.tolist()
 
             # convert to tensor form
             return torch.tensor(data_dict)
         
         # apply augmentations and convert to tensor for use in the model
         num_months = self.netdata.shape[0]
-        apply_augs()
-        X = gen_tensors()
+        transformed_netdata = apply_augs()
+        X = gen_tensors(transformed_netdata)
+        
+        # # ensure columns order
+        # self.netdata = self.netdata[[
+        #     "s_num_nodes", "s_weighted_mean_degree", "s_num_component",
+        #     "s_avg_clustering_coef", "s_graph_density", "t_num_dev_nodes",
+        #     "t_num_file_nodes", "t_num_dev_per_file", "t_num_file_per_dev",
+        #     "t_graph_density", "proj_name", "month", "st_num_dev",
+        #     "t_net_overlap", "s_net_overlap"
+        # ]]
         
         # load in model
         model = None
         path = Path(params_dict["weights-dir"])
         hyperparams = {
             "input_size": X.shape[1],
-            "hidden_size": 64,
-            "num_classes": 2,
-            "dropout_rate": 0.4,
-            "learning_rate": 0.0001,
-            "batch_size": 512,
-            "num_epochs": 10,
-            "num_layers": 1,
+            "num_layers": 1
         }
+        hyperparams = load_hyperparams(new_hp=hyperparams)
                 
         match model_arch:
             case "BLSTM":
@@ -614,7 +637,8 @@ class DeltaData:
         
         # generate forecasts
         fcs = dict()
-        for i in range(1, num_months):
+        log("Generating Forecasts", "new")
+        for i in tqdm(range(1, num_months + 1)):
             # grab the first i months
             data = X[:i, ...]
             
@@ -630,7 +654,7 @@ class DeltaData:
 
         # load old forecasts if possible
         forecast_path = Path(params_dict["forecast-dir"]) / f"{self.proj_name}.json"
-        util._check_path(forecast_path)
+        check_path(forecast_path)
         
         if forecast_path.exists():
             # load & ensure the typing
@@ -642,6 +666,7 @@ class DeltaData:
             old_fcs = dict()
 
         # update, save, & export
+        log("updating previous forecasts...", "log")
         fcs.update(old_fcs)
         fcs = dict(sorted(fcs.items()))
         
@@ -674,13 +699,15 @@ class DeltaData:
         lag = min(3, len(self.forecasts))
         k = nmonths
         forecasts = np.array(list(dict(sorted(self.forecasts.items())).values()))
+        
+        log("Generating Trajectories", "new")
         trajs = route_traj(
             forecast=forecasts, strat=strat, lag=lag, k=k
         )
         
         # import previous trajectories
         traj_path = Path(params_dict["trajectory-dir"]) / f"{self.proj_name}.json"
-        util._check_path(traj_path)
+        check_path(traj_path)
         
         if traj_path.exists():
             # load & ensure key types
@@ -691,6 +718,7 @@ class DeltaData:
             old_trajs = dict()
         
         # update, save, and export
+        log("updating previous trajectories...", "log")
         trajs.update(old_trajs)
         trajs = dict(sorted(trajs.items()))
         

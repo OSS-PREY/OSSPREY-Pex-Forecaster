@@ -15,8 +15,7 @@ from pathlib import Path
 from typing import Any
 
 # DECAL modules
-import decalfc.utils as util
-from decalfc.utils import PARQUET_ENGINE, CSV_ENGINE
+from decalfc.utils import *
 from decalfc.pipeline import *
 from decalfc.abstractions.deltadata import *
 # from decalforecaster.abstractions.projdata import *
@@ -419,7 +418,6 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
         # available #
 
         ## expected paths
-        params_dict = util._load_params()
         paths = {
             "net-gen": Path(params_dict["delta-cache-dir"]) / f"{proj_name}.csv",
             "net-vis": Path(params_dict["network-visualization-dir"]) / f"{proj_name}.json",
@@ -430,7 +428,7 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
         
         ## check all paths exist for the requested caches
         if not all(paths[task].exists() for task in tasks):
-            util._log(f"failed to find caches for {[task for task in tasks if not paths[task].exists()]}")
+            log(f"failed to find caches for {[task for task in tasks if not paths[task].exists()]}")
             return None
         
         ## load in the caches
@@ -448,12 +446,12 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
         # fulfill the request
         for task, cache in caches.items():
             if task == "net-vis" and max(int(k) for k in cache["tech"].keys()) < end_month:
-                util._log(
+                log(
                     f"failed to find valid net-vis cache; have up to month {max(int(k) for k in cache['tech'].keys())}, need {end_month}"
                 )
                 return None
             elif task != "net-vis" and len(cache) < end_month + 1:
-                util._log(
+                log(
                     f"failed to find valid length {task} cache; have {len(cache)} months, need {end_month + 1}"
                 )
                 return None
@@ -552,7 +550,7 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
     
     # infer end month if needed
     if data["month_range"][-1] <= 0:
-        util._log("inferring end month", "warning")
+        log("inferring end month", "warning")
         data["month_range"][-1] = int(min(
             data["tdata"].month.max(), data["sdata"].month.max()
         ))
@@ -621,8 +619,8 @@ if __name__ == "__main__":
     }
     
     # call and check output
-    res = compute_forecast(test_data)
-    with open("temp.out", "w") as f:
-        f.write(str(res))
-            
+    reset_cache(proj_name=test_data["project_name"])
+    # res = compute_forecast(test_data)
+    # with open("temp.out", "w") as f:
+    #     f.write(str(res))
 

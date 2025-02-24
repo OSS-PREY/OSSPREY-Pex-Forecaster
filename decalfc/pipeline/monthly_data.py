@@ -18,7 +18,7 @@ import json
 from math import floor
 
 # DECAL modules
-import decalfc.utils as util
+from decalfc.utils import *
 from decalfc.utils import PARQUET_ENGINE
 from decalfc.abstractions.rawdata import *
 
@@ -137,23 +137,23 @@ def segment_data(df: pd.DataFrame, incubator: str, time_strat: str, output_dir: 
 def monthly_segmentation(args_dict):
     # setup
     print("\n<Segmenting Monthly Data>")
-    params_dict = util._load_params()
+    params_dict = load_params()
     dataset_dir = Path(params_dict["dataset-dir"])
 
     # execute input
-    util._log("reading in raw data...")
+    log("reading in raw data...")
     rd = RawData(incubator=args_dict["incubator"], versions=args_dict["versions"])
     with open(params_dict["lifecycle-ratios"], "r") as f:
         lifecycle_dict = json.load(f)
     author_field = "dealised_author_full_name"
     
     # check clean trials
-    util._log("clearing out previous trials...")
+    log("clearing out previous trials...")
     monthly_data_dir = dataset_dir / f"{rd.incubator}_data" / "monthly_data/"
-    util._clear_dir(monthly_data_dir)
+    clear_dir(monthly_data_dir)
 
     # relative time calculation
-    util._log("figuring out relative time strategy...")
+    log("figuring out relative time strategy...")
     if args_dict.get("reltime", "default") != "default":
         relative_time_info = args_dict["reltime"].split("-", 1)
         time_strat = relative_time_info[0]
@@ -167,13 +167,13 @@ def monthly_segmentation(args_dict):
     s_output_dir = monthly_data_dir / f"{params_dict['social-type'][rd.incubator]}/"
 
     # segmentation
-    util._log("segmenting...")
+    log("segmenting...")
     segment_data(rd.data["tech"], rd.incubator, time_strat, t_output_dir, author_field=author_field, ratios=ratios)
     segment_data(rd.data["social"], rd.incubator, time_strat, s_output_dir, author_field=author_field, ratios=ratios)
 
 
 if __name__ == "__main__":
     # user args
-    args_dict = util._parse_input(sys.argv)
+    args_dict = parse_input(sys.argv)
     monthly_segmentation(args_dict)
 

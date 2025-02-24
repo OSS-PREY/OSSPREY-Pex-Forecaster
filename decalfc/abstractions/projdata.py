@@ -24,17 +24,13 @@ from typing import Any
 from dataclasses import dataclass, field
 
 # DECAL modules
-import decalfc.utils as util
-from decalfc.utils import NUM_PROCESSES, PARQUET_ENGINE, CSV_ENGINE
+from decalfc.utils import *
 from decalfc.abstractions.rawdata import clean_file_paths, \
     clean_sender_names, impute_months, impute_messageid, infer_replies, \
     infer_bots, clean_source_files, dealias_senders
 from decalfc.pipeline.monthly_data import segment_data
 
 # constants & setup parallel processing
-pandarallel.initialize(nb_workers=NUM_PROCESSES, progress_bar=True)
-params_dict = util._load_params()
-tqdm.pandas()
 INCUBATOR_ALIAS = "ospos"
 
 IMPLEMENTED_TASKS = {
@@ -185,14 +181,14 @@ class ProjData:
         """
         
         # setup
-        util._log("Segmenting Monthly Data", "log")
+        log("Segmenting Monthly Data", "log")
         author_field = "dealised_author_full_name"
         time_strat = "default"
         ratios = dict()
 
         # segmentation; overwrite the previous data for the built-in caching 
         # (effectively)
-        util._log("segmenting...")
+        log("segmenting...")
         self.data["tech"] = segment_data(
             self.tdata, time_strat, author_field=author_field,
             ratios=ratios
