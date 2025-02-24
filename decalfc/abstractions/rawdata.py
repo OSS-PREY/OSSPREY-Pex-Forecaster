@@ -296,7 +296,12 @@ def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incu
     
     ## check the dates, else we'll make them
     if proj_name not in start_date_cache:
-        start_date_cache[proj_name] = df.date.min()
+        ## update the cache
+        start_date_cache[proj_name] = str(df.date.min())
+        
+        ## export the cache due to the update
+        with open(cache_path, "w") as f:
+            json.dump(start_date_cache, f, indent=2)
 
     # utility
     log("filling months...")
