@@ -7,6 +7,7 @@
 # ------------- Environment Setup ------------- #
 # external packages -- none for now
 import pandas as pd
+import numpy as np
 
 # built-in modules
 import sys
@@ -585,9 +586,9 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
     # infer end month if needed
     if data["month_range"][-1] <= 0:
         log("inferring end month", "warning")
-        data["month_range"][-1] = int(min(
+        data["month_range"][-1] = int(np.nanmin([
             data["tdata"].month.max(), data["sdata"].month.max()
-        ))
+        ]))
     
     # check if the cache is available
     cached_result = check_cache(
@@ -647,7 +648,7 @@ if __name__ == "__main__":
     test_data = {
         "project_name": "hunter",
         "tech_data": pd.read_csv("./data/ospos_data/hunter_commits.csv"),
-        "social_data": pd.DataFrame(), #pd.read_csv("./data/ospos_data/hunter_issues.csv"),
+        "social_data": pd.read_csv("./data/ospos_data/hunter_issues.csv"),
         "tasks": ["ALL"],
         "month_range": [0, -1],
         "ignore_cache": True

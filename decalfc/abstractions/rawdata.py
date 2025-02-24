@@ -184,6 +184,11 @@ def clean_file_paths(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
     Returns:
         dict[str, pd.DataFrame]: lookup
     """
+    
+    # check if we have an empty dataframe
+    if data_lookup["tech"].shape[0] == 0:
+        return data_lookup
+    
     # aux fn
     def process_filename(filename):
         regex_str = r"^  - copied, (changed|unchanged) from r\d*, "
@@ -222,6 +227,10 @@ def clean_sender_names(data_lookup: dict[str, pd.DataFrame], incubator: str=None
     Returns:
         dict[str, pd.DataFrame]: reference to lookup
     """
+    
+    # check if we have an empty dataframe
+    if data_lookup["social"].shape[0] == 0:
+        return data_lookup
 
     # setup imputation
     log("setting up imputation...")
@@ -232,7 +241,7 @@ def clean_sender_names(data_lookup: dict[str, pd.DataFrame], incubator: str=None
     df = data_lookup["social"]
     
     # setup
-    num_entries = df.shape[0]
+    num_entries = max(df.shape[0], 1)
     num_changed = 0
 
     # imputing
@@ -288,6 +297,7 @@ def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incu
     
     ## open cache if possible, create if needed
     cache_path = Path(params_dict["ospex-start-date-cache"])
+    check_dir(cache_path.parent)
     start_date_cache = dict()
     
     if cache_path.exists():
@@ -305,7 +315,7 @@ def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incu
 
     # utility
     log("filling months...")
-    def months_fill(df: pd.DataFrame, first_entry_date: str | pd.DatetimeTZDtype, strat: str="month") -> pd.DataFrame:
+    def months_fill(df: pd.DataFrame, start_date: str | pd.DatetimeTZDtype, strat: str="month") -> pd.DataFrame:
         """
             Fills months using the specified strat.
         """
@@ -319,11 +329,13 @@ def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incu
         match strat:
             case "month":
                 # impute the months with intermediary columns
-                start_date = pd.to_datetime(
-                    start_date_cache[proj_name]
-                )
-                start_month = start_date.dt.month
-                start_year = start_date.dt.year
+                start_date = pd.to_datetime(start_date)
+                
+                if isinstance(start_date, pd.Timestamp):
+                    start_date = start_date.to_pydatetime()
+                
+                start_month = start_date.month
+                start_year = start_date.year
 
                 # number of months since the first month
                 df["month"] = (df["date"].dt.year - start_year) * 12 \
@@ -359,6 +371,11 @@ def impute_messageid(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
 
         @param data_lookup: lookup for the tech & social datasets
     """
+    
+    # check if we have an empty dataframe
+    if data_lookup["social"].shape[0] == 0:
+        data_lookup["social"]["message_id"] = ""
+        return data_lookup
 
     # references
     if copy:
@@ -433,6 +450,11 @@ def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, cop
 
         @param data_lookup: lookup for the tech & social datasets
     """
+    
+    # check if we have an empty dataframe
+    if data_lookup["social"].shape[0] == 0:
+        data_lookup["social"]["in_reply_to"] = ""
+        return data_lookup
 
     # references
     if copy:
@@ -497,6 +519,11 @@ def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str=None
         Ensure that only coding files are used for technical network generation 
         in the commits data by imputing the `is_coding` field.
     """
+    
+    # check if we have an empty dataframe
+    if data_lookup["tech"].shape[0] == 0:
+        data_lookup["tech"]["is_coding"] = 1
+        return data_lookup
 
     # setup
     print("\n<Ensuring Definition for Code Source Files>")
@@ -508,7 +535,7 @@ def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str=None
 
     # initialize if field doesn't exist
     if field not in df.columns:
-       df[field] = 0
+        df[field] = 0
 
     # specify tech files
     with open(tech_file_path, "r") as f:
@@ -586,7 +613,7 @@ def infer_bots(data_lookup: dict[str, pd.DataFrame], incubator: str, threshold: 
     except FileNotFoundError as fe:
         log(f"Failed to find reference file for bot names @ {dir_bot_def}", "warning")
         bot_names = {
-            "substring-bots": set(),
+            "substring-bots": set(params_dict["bot-substrings"]),
             "project-bots": set()
         }
 
@@ -672,11 +699,18 @@ def infer_bots(data_lookup: dict[str, pd.DataFrame], incubator: str, threshold: 
         df[field] = df[author_field].apply(check_bot)
         return df
 
-    # apply
-    tech_bots = gen_bots_lookup(grouped_tech_df, proj_activity_lookup["tech"], bot_subs=bot_substrings)
-    tech_df = impute_bots(tech_df, tech_bots)
-    social_bots = gen_bots_lookup(grouped_social_df, proj_activity_lookup["social"], bot_subs=bot_substrings)
-    social_df = impute_bots(social_df, social_bots)
+    # apply if we haven't been passed an empty dataframe
+    if tech_df.shape[0] > 0:
+        tech_bots = gen_bots_lookup(grouped_tech_df, proj_activity_lookup["tech"], bot_subs=bot_substrings)
+        tech_df = impute_bots(tech_df, tech_bots)
+    else:
+        tech_bots = dict()
+    
+    if social_df.shape[0] > 0:
+        social_bots = gen_bots_lookup(grouped_social_df, proj_activity_lookup["social"], bot_subs=bot_substrings)
+        social_df = impute_bots(social_df, social_bots)
+    else:
+        social_bots = dict()
 
     # report
     num_tech_bots = tech_df[tech_df["is_bot"] == 1] \
@@ -732,17 +766,19 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
             return " ".join([name.capitalize() for name in author_name.split(" ")])
         
         # dealiasing
-        df = data_lookup["tech"]
-        df = df[(df["is_bot"] == False) & (df["is_coding"] == True) & (df[author_field] != "none")]
-        df = df[df[author_field].notna()]
-        df[output_field] = df.apply(lambda x: _dealiasing(x["project_name"], x[author_field]), axis=1)
-        aft_num_tech = df[output_field].nunique()
+        tdf = data_lookup["tech"]
+        tdf = tdf[(tdf["is_bot"] == False) & (tdf["is_coding"] == True) & (tdf[author_field] != "none")]
+        tdf = tdf[tdf[author_field].notna()]
+        if tdf.shape[0] > 0:
+            tdf[output_field] = tdf.apply(lambda x: _dealiasing(x["project_name"], x[author_field]), axis=1)
+        aft_num_tech = tdf[output_field].nunique()
 
-        df = data_lookup["social"]
-        df = df[(df["is_bot"] == False) & (df[author_field] != "none")]
-        df = df[df[author_field].notna()]
-        df[output_field] = df.apply(lambda x: _dealiasing(x["project_name"], x[author_field]), axis=1)
-        aft_num_social = df[output_field].nunique()
+        sdf = data_lookup["social"]
+        sdf = sdf[(sdf["is_bot"] == False) & (sdf[author_field] != "none")]
+        sdf = sdf[sdf[author_field].notna()]
+        if sdf.shape[0] > 0:
+            sdf[output_field] = sdf.apply(lambda x: _dealiasing(x["project_name"], x[author_field]), axis=1)
+        aft_num_social = sdf[output_field].nunique()
         
         # returns
         return aft_num_tech, aft_num_social
@@ -1067,7 +1103,8 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
         # df.query(f"is_bot == False and is_coding == True and {author_field} != 'none'", inplace=True)
         tdf = tdf[(tdf["is_bot"] == False) & (tdf["is_coding"] == True) & (tdf[author_field] != "none")]
         tdf = tdf[tdf[author_field].notna()]
-        tdf[output_field] = tdf.apply(lambda x: _dealiasing(x["project_name"], x[author_field]), axis=1)
+        if tdf.shape[0] > 0:
+            tdf[output_field] = tdf.apply(lambda x: _dealiasing(x["project_name"], x[author_field]), axis=1)
         # tdf[output_field] = _dealiasing(tdf["project_name"], tdf[author_field])
         aft_num_tech = tdf[output_field].nunique()
 
@@ -1076,7 +1113,8 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
         sdf = sdf[(sdf["is_bot"] == False) & (sdf[author_field] != "none")]
         sdf = sdf[sdf[author_field].notna()]
         # df[output_field] = _dealiasing(df["project_name"], df[author_field])
-        sdf[output_field] = sdf.apply(lambda x: _dealiasing(x["project_name"], x[author_field]), axis=1)
+        if sdf.shape[0] > 0:
+            sdf[output_field] = sdf.apply(lambda x: _dealiasing(x["project_name"], x[author_field]), axis=1)
         aft_num_social = sdf[output_field].nunique()
 
         # export

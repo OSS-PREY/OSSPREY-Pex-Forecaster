@@ -219,5 +219,18 @@
     "network-data-format": "./network-data/netdata/{}-{}-network-data-{}.{}",
     "model-weights-format": "./model-weights/{}/{}-[a{}]-[f{}]-[p{}]-[r{}].pt",
     "delta-cache-dir": "./net-caches/",
-    "ospex-start-date-cache": "./ospex-ref/start_dates.json"
+    "ospex-start-date-cache": "./ospex-ref/start_dates.json",
+    "bot_substrings": [
+        "bot",
+        "butler",
+        "crawler",
+        "gardener",
+        "github",
+        "lint",
+        "robot",
+        "scraper",
+        "spider",
+        "no-reply",
+        "noreply"
+    ]
 }
