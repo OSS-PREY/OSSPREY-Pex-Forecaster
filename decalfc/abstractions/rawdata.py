@@ -262,10 +262,10 @@ def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incu
     """
         Imputes the month field using the start date as a relative point in time:
             1. [strat="month"] Use the start month as the base, i.e. 3/17/2024 
-               would make 3 the base month, so 4/01/2024 would still be month 1
+                would make 3 the base month, so 4/01/2024 would still be month 1
             2. [strat="day"] Use the start day as the base and use a set 
-               interval of 30 days, i.e. 3/17/2024 would make 4/16/2024 the 
-               first day of month 1, etc.
+                interval of 30 days, i.e. 3/17/2024 would make 4/16/2024 the 
+                first day of month 1, etc.
     """
 
     # setup
@@ -278,56 +278,55 @@ def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incu
         
         if df["date"].dt.tz is None:
             df["date"] = df["date"].dt.tz_localize("UTC")
-
-    # ensure no NaT by removing any projects that don't have both social and 
-    # tech info
-    social_proj_set = set(data_lookup["social"]["project_name"].unique())
-    tech_proj_set = set(data_lookup["tech"]["project_name"].unique())
-    overlap_proj_set = set(social_proj_set & tech_proj_set)
-    log(f"removing {len(social_proj_set | tech_proj_set) - len(overlap_proj_set)} projects for not having both social and technical information", "warning")
-
-    data_lookup["social"] = data_lookup["social"][
-        data_lookup["social"]["project_name"].isin(overlap_proj_set)
-    ]
-    data_lookup["tech"] = data_lookup["tech"][
-        data_lookup["tech"]["project_name"].isin(overlap_proj_set)
-    ]
     
     # get earliest entry for both datasets; note, we'll require commits to be 
     # present in the first month, so realistically we only use the tech network
-    # minimum month
+    # minimum month. Check the cache to see if this is a new project or not.
     log("getting start dates...")
-    first_entry_date = data_lookup["tech"].groupby("project_name")["date"].min().reset_index()
-
-    ## setup lookup
-    first_entry_date.rename(columns={"date": "first_entry_date"}, inplace=True)
-    first_entry_date["first_entry_date"] = pd.to_datetime(first_entry_date["first_entry_date"])
+    df = data_lookup["tech"] if data_lookup["tech"].shape[0] > 0 else data_lookup["social"]
+    proj_name = df.project_name[0]
+    
+    ## open cache if possible, create if needed
+    cache_path = Path(params_dict["ospex-start-date-cache"])
+    start_date_cache = dict()
+    
+    if cache_path.exists():
+        with open(cache_path, "r") as f:
+            start_date_cache = json.load(f)
+    
+    ## check the dates, else we'll make them
+    if proj_name not in start_date_cache:
+        start_date_cache[proj_name] = df.date.min()
 
     # utility
     log("filling months...")
-    def months_fill(df: pd.DataFrame, first_entry_date: pd.DataFrame, strat: str) -> pd.DataFrame:
+    def months_fill(df: pd.DataFrame, first_entry_date: str | pd.DatetimeTZDtype, strat: str="month") -> pd.DataFrame:
         """
-            Fills months using the strat.
+            Fills months using the specified strat.
         """
+        
+        # check if empty df, then just enforce column name
+        if df.shape[0] == 0:
+            df["month"] = []
+            return df
 
         # generate months
         match strat:
             case "month":
-                # merge
-                df = pd.merge(df, first_entry_date, on="project_name", how="left")
-                df["first_month"] = df["first_entry_date"].dt.month
-                df["first_year"] = df["first_entry_date"].dt.year
+                # impute the months with intermediary columns
+                start_date = pd.to_datetime(
+                    start_date_cache[proj_name]
+                )
+                start_month = start_date.dt.month
+                start_year = start_date.dt.year
 
                 # number of months since the first month
-                df["month"] = (df["date"].dt.year - df["first_year"]) * 12 \
-                    + (df["date"].dt.month - df["first_month"])
-                
-                # clean
-                df.drop(columns=["first_month", "first_year", "first_entry_date"], inplace=True)
+                df["month"] = (df["date"].dt.year - start_year) * 12 \
+                    + (df["date"].dt.month - start_month)
             
             case "day":
-                min_dates = df.groupby("project_name")["date"].transform("min")
-                df["month"] = (df["date"] - min_dates).dt.days // 30
+                min_date = df.date.min()
+                df["month"] = (df["date"] - min_date).dt.days // 30
 
             case _:
                 print(f"<ERROR> failed to resolve strat {strat} chosen for imputing months")
@@ -336,10 +335,14 @@ def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incu
         return df
     
     # execution
-    data_lookup = {k: months_fill(df, first_entry_date, strat) for k, df in data_lookup.items()}
+    data_lookup = {
+        k: months_fill(df, start_date_cache[proj_name], strat)
+        for k, df in data_lookup.items()
+    }
     
     # remove any social data prior to first commit
     data_lookup["social"] = data_lookup["social"][data_lookup["social"]["month"] >= 0]
+    data_lookup["tech"] = data_lookup["tech"][data_lookup["tech"]["month"] >= 0]
     
     # export
     return data_lookup

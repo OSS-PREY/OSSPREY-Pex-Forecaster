@@ -30,7 +30,8 @@ data_pkg = {
     "proj_name": None,
     "tdata": None,
     "sdata": None,
-    "month_range": [None, None]
+    "month_range": [None, None],
+    "ignore_cache": False
 }
 tasks_pkg = list()
 
@@ -49,6 +50,13 @@ def compute_forecast(data: dict[str, str | pd.DataFrame | list[str] | list[int]]
         (tasks): list[str], match the tasks implemented.
         (month_range): list[int], length of two to define the inclusive month 
             range requested in the call.
+        (ignore_cache): bool=False, whether to clear the cache and re-compute.
+            Useful for fixing a project's calculation should a one-time bug 
+            occur.
+                WARNING #1: permanently erases the previous cache
+                WARNING #2: requires the full raw data (from start to current) 
+                    to be passed in since we're ignoring previously computed 
+                    info
     }
     
     Implemented Tasks (key to be matched with):
@@ -154,6 +162,9 @@ def attempt_request_parse(data: dict[str, Any]) -> None:
         data_pkg["proj_name"] = data["project_name"]
         data_pkg["month_range"] = data["month_range"]
         
+        # parse any other fields
+        data_pkg["ignore_cache"] = data.get("ignore_cache", False)
+        
         # parse tasks to complete
         global tasks_pkg
         tasks_pkg = data["tasks"]
@@ -176,8 +187,12 @@ def check_request_structure(data: dict[str, Any]) -> None:
     """
     
     # setup the input validation
-    needed_keys = ["project_name", "tech_data", "social_data", "tasks", "month_range"]
-    val_types = [[str], [dict, pd.DataFrame], [dict, pd.DataFrame], [list], [list]]
+    needed_keys = [
+        "project_name", "tech_data", "social_data", "tasks", "month_range"
+    ]
+    val_types = [
+        [str], [dict, pd.DataFrame], [dict, pd.DataFrame], [list], [list]
+    ]
     implemented_tasks = set(IMPLEMENTED_TASKS.keys())
     
     # check type of data
@@ -243,6 +258,20 @@ def translate_data(data: dict[str, Any]) -> None:
             "body": "body",
         }
     }
+    
+    # allow blank data to pass through, but not both blank
+    if data["tdata"].shape[0] + data["sdata"].shape[0] == 0:
+        raise ValueError(
+            f"Passed in empty technical and social raw data, need at least one to have information"
+        )
+    if data["tdata"].shape[0] == 0:
+        data["tdata"] = pd.DataFrame({
+            col: list() for col in translations["tech"].keys()
+        })
+    if data["sdata"].shape[0] == 0:
+        data["sdata"] = pd.DataFrame({
+            col: list() for col in translations["social"].keys()
+        })
     
     # check columns exist
     if any(req_col not in data["tdata"].columns for req_col in translations["tech"]):
@@ -548,6 +577,11 @@ def router(tasks: list[str], data: dict[str, Any]) -> list[str]:
         # export if everything checks out
         return dispatch_res
     
+    # reset cache if required
+    if data.get("ignore_cache", False):
+        prods = [t for t in tasks if not t.startswith("pp-")]
+        reset_cache(proj_name=data["proj_name"], products=prods)
+    
     # infer end month if needed
     if data["month_range"][-1] <= 0:
         log("inferring end month", "warning")
@@ -613,14 +647,12 @@ if __name__ == "__main__":
     test_data = {
         "project_name": "hunter",
         "tech_data": pd.read_csv("./data/ospos_data/hunter_commits.csv"),
-        "social_data": pd.read_csv("./data/ospos_data/hunter_issues.csv"),
+        "social_data": pd.DataFrame(), #pd.read_csv("./data/ospos_data/hunter_issues.csv"),
         "tasks": ["ALL"],
-        "month_range": [0, -1]
+        "month_range": [0, -1],
+        "ignore_cache": True
     }
     
     # call and check output
-    reset_cache(proj_name=test_data["project_name"])
-    # res = compute_forecast(test_data)
-    # with open("temp.out", "w") as f:
-    #     f.write(str(res))
+    res = compute_forecast(test_data)
 
