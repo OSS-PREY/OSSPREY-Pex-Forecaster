@@ -7,6 +7,7 @@
 # --- Environment Setup --- #
 ## packages
 import pandas as pd
+import torch
 from pandarallel import pandarallel
 from tqdm import tqdm
 
@@ -24,10 +25,13 @@ PARAMS_PATH = Path("./ref/params.json")
 NUM_PROCESSES = cpu_count()
 PARQUET_ENGINE = "pyarrow"
 CSV_ENGINE = "python"
-
-
-# --- Setup Utility --- #
-
+DEVICE = (
+    "cuda" if torch.cuda.is_available()
+    else (
+        "mps" if torch.backends.mps.is_available()
+        else "cpu"
+    )
+)
 
 
 # --- Utility --- #

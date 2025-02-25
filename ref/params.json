@@ -150,9 +150,11 @@
         },
         "osgeo": {
             "tech": {
-                "0": "commits"
+                "0": "00-commits"
             },
             "social": {
+                "0e": "00-emails",
+                "0i": "00-issues",
                 "0": "emails-issues"
             }
         },

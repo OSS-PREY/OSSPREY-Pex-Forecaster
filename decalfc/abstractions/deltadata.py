@@ -18,7 +18,6 @@ from tqdm import tqdm
 from pandarallel import pandarallel
 
 # built-in modules
-from os import cpu_count
 from copy import deepcopy
 from pathlib import Path
 from typing import Any
@@ -26,8 +25,7 @@ from dataclasses import dataclass, field
 from json import dump, load
 
 # DECAL modules
-import decalfc.utils as util
-from decalfc.utils import PARQUET_ENGINE, CSV_ENGINE, NUM_PROCESSES
+from decalfc.utils import *
 from decalfc.abstractions.rawdata import clean_file_paths, \
     clean_sender_names, impute_months, impute_messageid, infer_replies, \
     infer_bots, clean_source_files, dealias_senders
@@ -38,18 +36,7 @@ from decalfc.pipeline.network_visualizations import net_vis_info_projectwise
 from decalfc.algorithms.trajectory import route_traj
 
 # constants & setup parallel processing
-pandarallel.initialize(nb_workers=NUM_PROCESSES, progress_bar=True)
-params_dict = util.load_params()
-tqdm.pandas()
 INCUBATOR_ALIAS = "ospos"
-DEVICE = (
-    "cuda" if torch.cuda.is_available()
-    else (
-        "mps" if torch.backends.mps.is_available()
-        else "cpu"
-    )
-)
-
 IMPLEMENTED_TASKS = {
     "net-gen": None,
     "net-vis": None,
@@ -192,7 +179,7 @@ class DeltaData:
         else:
             self.cached_netdata = self.cached_netdata[self.cached_netdata["month"] < self.last_cached_month]
         
-        util.log(f"using the months [0, {self.last_cached_month}) from the cache")
+        log(f"using the months [0, {self.last_cached_month}) from the cache")
         
         # generate auxiliary information
         self.gen_proj_incubation()
@@ -262,7 +249,7 @@ class DeltaData:
 
         # save
         path = _gen_cache_path(self.proj_name)
-        util.check_path(path)
+        check_path(path)
         self.netdata.to_csv(path, index=False)
 
     def clean_disk(self) -> None:
@@ -279,8 +266,8 @@ class DeltaData:
         t_output_dir = monthly_data_dir / f"{params_dict['tech-type'][INCUBATOR_ALIAS]}/"
         s_output_dir = monthly_data_dir / f"{params_dict['social-type'][INCUBATOR_ALIAS]}/"
         
-        util.clear_dir(dir=t_output_dir, skip_input=True)
-        util.clear_dir(dir=s_output_dir, skip_input=True)
+        clear_dir(dir=t_output_dir, skip_input=True)
+        clear_dir(dir=s_output_dir, skip_input=True)
         
         # NETWORK GENERATION
         data_dir = Path(params_dict["dataset-dir"]) / f"{self.incubator}_data"
@@ -290,13 +277,13 @@ class DeltaData:
         net_path = network_dir / "netdata" / f"{self.incubator}-network-data.csv"
         mapping_path = network_dir / "mappings" / f"{self.incubator}-mapping.csv"
         
-        # util._clear_dir(data_dir, skip_input=True)
-        util.clear_dir(network_dir / f"{self.incubator}_{t_type}", skip_input=True)
-        util.clear_dir(network_dir / f"{self.incubator}_{s_type}", skip_input=True)
+        # _clear_dir(data_dir, skip_input=True)
+        clear_dir(network_dir / f"{self.incubator}_{t_type}", skip_input=True)
+        clear_dir(network_dir / f"{self.incubator}_{s_type}", skip_input=True)
         
-        # util._check_dir(data_dir)
-        util.del_file(net_path)
-        util.del_file(mapping_path)
+        # _check_dir(data_dir)
+        del_file(net_path)
+        del_file(mapping_path)
 
 
     # split by month
@@ -305,7 +292,7 @@ class DeltaData:
         """
         
         # setup
-        util.log("Segmenting Monthly Data", "log")
+        log("Segmenting Monthly Data", "log")
         author_field = "dealised_author_full_name"
         
         # helper fn
@@ -359,12 +346,12 @@ class DeltaData:
         # clear disk usage to limit space requirement and prevent double 
         # writing (using the same data twice) or mis-association (using one 
         # project's data in another's)
-        util.clear_dir(dir=t_output_dir, skip_input=True)
-        util.clear_dir(dir=s_output_dir, skip_input=True)
+        clear_dir(dir=t_output_dir, skip_input=True)
+        clear_dir(dir=s_output_dir, skip_input=True)
 
         # segmentation; no longer need to overwrite, we simply treat this as new
         # data and we'll concatenate the old data with this
-        util.log("segmenting...")
+        log("segmenting...")
         segment_data(
             self.data["tech"], author_field=author_field, save_dir=t_output_dir, 
             start_month=self.last_cached_month
@@ -448,7 +435,7 @@ class DeltaData:
         
         # update old visualizations if possible and re-store
         vis_path = Path(params_dict["network-visualization-dir"]) / f"{self.proj_name}.json"
-        util.check_path(vis_path)
+        check_path(vis_path)
         
         if vis_path.exists():
             # load & ensure data types
@@ -630,7 +617,7 @@ class DeltaData:
 
         # load old forecasts if possible
         forecast_path = Path(params_dict["forecast-dir"]) / f"{self.proj_name}.json"
-        util.check_path(forecast_path)
+        check_path(forecast_path)
         
         if forecast_path.exists():
             # load & ensure the typing
@@ -680,7 +667,7 @@ class DeltaData:
         
         # import previous trajectories
         traj_path = Path(params_dict["trajectory-dir"]) / f"{self.proj_name}.json"
-        util.check_path(traj_path)
+        check_path(traj_path)
         
         if traj_path.exists():
             # load & ensure key types
