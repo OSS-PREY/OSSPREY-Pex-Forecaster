@@ -153,8 +153,8 @@ def log(msg: str="", log_type: str="log", output: str="console",
         msg (str, optional): output to print/store to console or log file. 
             Defaults to "".
         log_type (str, optional): str, one of {"log", "warning", "error", 
-            "note", "debug", "summary"}; "new" will default to a custom type of 
-            log identifier. Defaults to "log".
+            "note", "debug", "summary", "report"}; "new" will default to a 
+            custom type of log identifier. Defaults to "log".
         output (str, optional): buffer to print to, one of {"console", "file"}. 
             Defaults to "console".
         file_name (str, optional): filename to print to. Defaults to "logger".
@@ -197,6 +197,15 @@ def log(msg: str="", log_type: str="log", output: str="console",
         
         case "summary":
             output_router[output]("\n::: < SUMMARY > :::")
+        
+        case "report":
+            # skip print if we can't match the type
+            if not isinstance(msg, dict):
+                return
+            
+            # convert to strings then print the joined string
+            stat_strs = [f"{k}:\t{v}" for k, v in msg.items()]
+            output_router[output]("\n".join(stat_strs))
         
         case "none":
             output_router[output](msg)

@@ -150,12 +150,16 @@
         },
         "osgeo": {
             "tech": {
-                "0": "00-commits"
+                "0": "00-commits",
+                "0t": "00-commits-trunc",
+                "1": "commits"
             },
             "social": {
                 "0e": "00-emails",
                 "0i": "00-issues",
-                "0": "emails-issues"
+                "0t": "00-emails-issues-trunc",
+                "0": "00-emails-issues",
+                "1": "emails-issues"
             }
         },
         "ospos": {
