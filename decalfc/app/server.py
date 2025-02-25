@@ -647,13 +647,25 @@ if __name__ == "__main__":
     # format pkg
     test_data = {
         "project_name": "hunter",
-        "tech_data": pd.read_csv("./data/ospos_data/hunter_commits.csv"),
-        "social_data": pd.read_csv("./data/ospos_data/hunter_issues.csv"),
+        "tech_data": pd.read_csv("./data/ospos_data/hunter_commits.csv").sort_values(by="date", ascending=True),
+        "social_data": pd.read_csv("./data/ospos_data/hunter_issues.csv").sort_values(by="created_at", ascending=True),
         "tasks": ["ALL"],
         "month_range": [0, -1],
         "ignore_cache": True
     }
     
+    # partition data
+    partial_one = test_data.copy()
+    partial_one["tech_data"] = test_data["tech_data"].iloc[:10, :]
+    partial_one["social_data"] = test_data["social_data"].iloc[:10, :]
+    
+    partial_two = test_data.copy()
+    partial_two["tech_data"] = test_data["tech_data"].iloc[10:, :]
+    partial_two["social_data"] = test_data["social_data"].iloc[10:, :]
+    
     # call and check output
-    res = compute_forecast(test_data)
+    reset_cache("hunter")
+    # res = compute_forecast(partial_one)
+    # res = compute_forecast(partial_two)
+    # res = compute_forecast(test_data)
 

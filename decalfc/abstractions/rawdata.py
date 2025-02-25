@@ -293,7 +293,7 @@ def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incu
     # minimum month. Check the cache to see if this is a new project or not.
     log("getting start dates...")
     df = data_lookup["tech"] if data_lookup["tech"].shape[0] > 0 else data_lookup["social"]
-    proj_name = df.project_name[0]
+    proj_name = df["project_name"].iloc[0]
     
     ## open cache if possible, create if needed
     cache_path = Path(params_dict["ospex-start-date-cache"])
