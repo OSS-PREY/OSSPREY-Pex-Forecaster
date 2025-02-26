@@ -78,12 +78,25 @@ def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame) -> dict[str, p
     """
     
     # auxiliary fn
-    def is_valid_project(proj_tdf: pd.DataFrame, proj_sdf: pd.DataFrame, ndays_tol: int=7) -> bool:
+    def is_valid_project(proj_tdf: pd.DataFrame, proj_sdf: pd.DataFrame, ndays_tol: int=30) -> bool:
         """Indicator function to test if a project contains the necessary 
         requirements to be kept. Requires tech and social data for a given 
         project simultaneously. Allows for some number of days of tolerance.
         
         Returns True if the project is valid, otherwise False.
+        """
+        
+        """
+        if (proj_tdf.date.max().date)< proj_tdf.end_date.iloc[0].date:
+            proj_end_date = proj_tdf.date.max().date
+        else:
+            proj_end_date = proj_tdf.end_date.iloc[0].date
+        
+        if (proj_tdf.date.min().date)> proj_tdf.st_date.iloc[0].date:
+            proj_end_date = proj_tdf.date.min().date
+        else:
+            proj_end_date = proj_tdf.st_date.iloc[0].date
+        
         """
         
         # check if the end dates are within the tolerance or better
@@ -96,6 +109,7 @@ def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame) -> dict[str, p
 
         # passed checks
         return True
+
     
     # only keep overlapping projects
     overlap_projects = set(proj_tdf.project_name) & set(proj_sdf.project_name)

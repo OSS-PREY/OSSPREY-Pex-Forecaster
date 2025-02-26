@@ -18,7 +18,7 @@
     "social-type": {
         "apache": "emails",
         "github": "issues",
-        "eclipse": "issues",
+        "eclipse": "emails-issues",
         "osgeo": "emails-issues",
         "ospos": "issues"
     },
@@ -70,31 +70,40 @@
         "osgeo": {
             "tech": {
                 "project_name": "project_name",
-                "status": "status",
-                "commit": "commit_id",
-                "committer_email": "sender_email",
-                "committer_name": "sender_name",
-                "committer_time": "date",
-                "ign_col_2": "[IGNORE]2",
-                "filename": "file_name",
-                "change_type": "change_type",
+                "proj_id": "[IGNORE]1",
+                "action": "action",
+                "commiter_aliase_id": "alias_id",
+                "month": "month",
+                "author_aliase_id": "author_name",
+                "file_name": "file_name",
+                "commit_timestamp": "date",
+                "commit_sha": "[IGNORE]2",
                 "added": "added",
-                "deleted": "deleted",
+                "removed": "deleted",
                 "commit_message": "commit_msg"
             },
             "social": {
                 "emails": {
+                    "project_name": "project_name",
+                    "author_aliase_id": "alias_id",
+                    "author_name": "author_name",
+                    "timestamp": "date",
+                    "month": "month",
+                    "message_id": "message_id",
+                    "subject": "subject",
+                    "message_text": "body",
+                    "folder_name": "[IGNORE]1"
                 },
                 "issues": {
                     "project_name": "project_name",
+                    "author_aliase_id": "alias_id",
                     "timestamp": "date",
                     "month": "month",
                     "comment_id": "message_id",
-                    "author_aliase_id": "sender_name",
                     "comment_text": "body",
                     "thread_id": "subject",
-                    "folder_name": "folder_name",
-                    "thread": "thread"
+                    "thread": "thread_name",
+                    "folder_name": "[IGNORE]1"
                 }
             }
         }
@@ -145,20 +154,22 @@
                 "1": "commits"
             },
             "social": {
-                "1": "issues"
+                "1": "emails-issues"
             }
         },
         "osgeo": {
             "tech": {
                 "0": "00-commits",
-                "0t": "00-commits-trunc",
+                "0a": "00-commits-alias",
                 "1": "commits"
             },
             "social": {
                 "0e": "00-emails",
                 "0i": "00-issues",
-                "0t": "00-emails-issues-trunc",
+                "0ea": "00-emails-alias",
+                "0ia": "00-issues-alias",
                 "0": "00-emails-issues",
+                "0t": "00-emails-issues-trunc",
                 "1": "emails-issues"
             }
         },
@@ -190,18 +201,27 @@
         },
         "eclipse": {
             "tech": {
-                "1": "dealiased w/ source files & bots commits data, now aggregated by project"
+                "1": "dealiased w/ source files & bots commits data, now aggregated by project",
+                "2": "truncated to incubation period only"
             },
             "social": {
-                "1": "deliased w/ reply & bots issues data"                
+                "1": "deliased w/ reply & bots issues data",
+                "2": "truncated to incubation period only"             
             }
         },
         "osgeo": {
             "tech": {
-                "0": "commits (final) from google drive"
+                "0": "commits from google drive with typing and saved as parquet",
+                "0a": "alias standardized dataset",
+                "1": "truncated to incubation period only"
             },
             "social": {
-                "0": "emails-issues (final) from google drive, combined into one"
+                "0e": "emails from google drive with typing and saved as parquet",
+                "0i": "issues from google drive with typing and saved as parquet",
+                "0ea": "alias standardized emails dataset",
+                "0ia": "alias standardized issues dataset",
+                "0": "emails-issues combined dataset w/ standardized aliases",
+                "1": "emails-issues truncated to incubation period only"
             }
         },
         "ospos": {

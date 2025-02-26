@@ -1,5 +1,6 @@
 """
-@brief Script to enforce the incubation dates for a given dataset.
+@brief Script to combine multiple social network mediums (issues, emails, etc.)
+    into one centralized social dataset.
 @author Arjun Ashok (arjun3.ashok@gmail.com)
 @creation-date February 2025
 """
