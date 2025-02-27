@@ -436,20 +436,26 @@ def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, cop
     prop_replies_inference = (reply_freq["count"] > 1).sum() / len(reply_freq)
 
     # check overriding
-    print("\n<Inferring Reply Information>")
+    log("Inferring Reply Information", "new")
     prop_filled = len(df["in_reply_to"].unique()) / df.shape[0]
     if prop_replies_inference <= prop_filled:
-        print(f"<WARNING> :: inference strategy obtains less threads than already provided: {prop_replies_inference * 100}% < {prop_filled * 100}%")
-        print("not imputing. . .")
+        log(
+            f"inference strategy obtains less threads than already provided: {prop_replies_inference * 100}% < {prop_filled * 100}%",
+            "warning"
+        )
+        log("not imputing. . .")
         return data_lookup
 
     if prop_filled > 0.95:
-        print(f"<WARNING> :: in_reply_to field already has >95% unique replies: {len(df['in_reply_to'].unique()) / df.shape[0] * 100}%")
-        print("not imputing. . .")
+        log(
+            f"in_reply_to field already has >95% unique replies: {len(df['in_reply_to'].unique()) / df.shape[0] * 100}%",
+            "warning"
+        )
+        log("not imputing. . .")
         return data_lookup
 
     # inference
-    print("continuing inference")
+    log("continuing inference")
     field = "in_reply_to"
     impute_source_field = "message_id"
 
@@ -475,7 +481,7 @@ def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, cop
     prop_after = missing_after / num_entries * 100
     prop_delta = prop_after - prop_before
 
-    print("\n ::: SUMMARY ::: ")
+    log(log_type="summary")
     print(f"Number of Missing Entries (before): {missing_before}")
     print(f"Number of Missing Entries (after): {missing_after}")
     print(f"Number of {field} Entries Imputed: {delta}")

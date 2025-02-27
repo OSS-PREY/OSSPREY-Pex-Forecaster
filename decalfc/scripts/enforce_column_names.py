@@ -63,7 +63,7 @@ def enforce_naming_scheme(
             
             # grab and enforce naming scheme
             if len(datasets) > 1:
-                names = field_mappings[dtype][incubator][ds]
+                names = field_mappings[dtype][ds]
             else:
                 names = field_mappings[dtype]
             

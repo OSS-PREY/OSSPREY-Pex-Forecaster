@@ -83,7 +83,7 @@
                 "commit_message": "commit_msg"
             },
             "social": {
-                "emails": {
+                "0e": {
                     "project_name": "project_name",
                     "author_aliase_id": "alias_id",
                     "author_name": "author_name",
@@ -94,7 +94,7 @@
                     "message_text": "body",
                     "folder_name": "[IGNORE]1"
                 },
-                "issues": {
+                "0i": {
                     "project_name": "project_name",
                     "author_aliase_id": "alias_id",
                     "timestamp": "date",
