@@ -1104,6 +1104,49 @@ def dealias_senders(
     # return
     return new_lookup
 
+def pre_process_data(
+    data_lookup: dict[str, pd.DataFrame], incubator: str, copy: bool=False,
+    save_versions: dict[str, int]=None, **kwargs
+) -> None:
+    """Pre-Processes the raw data via the usual steps (e.g. message_id 
+    imputation, reply inference, source file cleaning, bot inference, and 
+    de-aliasing).
+
+    Args:
+        data_lookup (dict[str, pd.DataFrame]): data lookup of tech/social to the
+            respective data.
+        incubator (str): incubator reference to use.
+        copy (bool, optional): copy flag to pass into each computation. Defaults
+            to False to avoid OOM errors.
+        save_versions (dict[str, int], optional): version lookup of social/tech 
+            to the respective version to use. Defaults to 1/1 for tech/social.
+    """
+    
+    log("Pre-Processing Raw Data", "new")
+    
+    # infer save versions if needed
+    if save_versions is None:
+        save_versions = {"tech": 1, "social": 1}
+
+    # validation
+    is_invalid, error_msg = _validate_data()
+    if is_invalid:
+        log(f"invalid data: {error_msg}", "error")
+        exit(1)
+
+    # cleaning; we'll cache prior to the de-aliasing step in case of OOM errors
+    data_lookup = impute_messageid(data_lookup, copy=False)
+    data_lookup = infer_replies(data_lookup, copy=False)
+    data_lookup = clean_source_files(data_lookup, incubator=incubator, copy=False)
+    data_lookup = infer_bots(data_lookup, incubator=incubator, copy=False)
+    _save_data(
+        data_lookup=data_lookup, incubator=incubator, new_version=save_versions
+    )
+    data_lookup = dealias_senders(data_lookup, incubator=incubator, copy=False)
+    _save_data(
+        data_lookup=data_lookup, incubator=incubator, new_version=save_versions
+    )
+
 
 # Class; we'll avoid slots since we're loading large datasets in
 @dataclass(slots=False)
@@ -1139,7 +1182,6 @@ class RawData:
         if base_set:
             # project incubation
             self.gen_proj_incubation()
-
 
         if self.gen_full and base_set:
             print("\n<Generating Processed Data>")

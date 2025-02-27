@@ -213,15 +213,17 @@
             "tech": {
                 "0": "commits from google drive with typing and saved as parquet",
                 "0a": "alias standardized dataset",
-                "1": "truncated to incubation period only"
+                "1": "truncated to incubation period only",
+                "2": "emails-issues with all of the regular cleaning steps (months, de-aliasing, source imputation, bot detection, etc.)"
             },
             "social": {
                 "0e": "emails from google drive with typing and saved as parquet",
                 "0i": "issues from google drive with typing and saved as parquet",
                 "0ea": "alias standardized emails dataset",
                 "0ia": "alias standardized issues dataset",
-                "0": "emails-issues combined dataset w/ standardized aliases",
-                "1": "emails-issues truncated to incubation period only"
+                "0": "emails-issues combined dataset w/ standardized aliases and reply-inference",
+                "1": "emails-issues truncated to incubation period only",
+                "2": "emails-issues with all of the regular cleaning steps (months, de-aliasing, bot detection, etc.)"
             }
         },
         "ospos": {
