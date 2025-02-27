@@ -18,7 +18,7 @@ from json import dump, load
 
 # DECAL modules
 from decalfc.utils import *
-from decalfc.abstractions.rawdata import _load_data, _load_paths, _save_data, infer_replies
+from decalfc.abstractions.rawdata import infer_replies
 
 # constants & setup parallel processing
 __ISSUES_COLUMN_MAPPER__ = {
@@ -111,8 +111,7 @@ def ensure_cols(df: pd.DataFrame, version: str) -> pd.DataFrame:
 
 # ------------- Primary Utility ------------- #
 def combine_social_mediums(
-    incubator: str, social_versions: list[str]=None,
-    save_version: str="0"
+    incubator: str, social_versions: list[str]=None, save_version: str="0"
 ) -> pd.DataFrame:
     """Wrapper to truncate the social and technical data to only the time under
     incubation.
@@ -130,33 +129,24 @@ def combine_social_mediums(
         pd.DataFrame: post-combination social dataset.
     """
 
-    # infer dates lookup if needed
-    if not isinstance(dates, dict):
-        # enforce path object
-        dates = Path(dates)
-        
-        # open json
-        with open(dates, "r") as f:
-            dates = load(f)
-
     # infer versions if needed
-    if versions is None:
-        versions = ["0i", "0e"]
-    versions = [str(v) for v in versions]
+    if social_versions is None:
+        social_versions = ["0i", "0e"]
+    social_versions = [str(v) for v in social_versions]
     
     # load the data
     sdfs = [
         pd.read_parquet(
             Path(params_dict["dataset-dir"]) / f"{incubator}_data" /
-            f"{params_dict['augmentations'][incubator]['social'][versions]}.parquet"
-        ) for version in versions
+            f"{params_dict['augmentations'][incubator]['social'][version]}.parquet"
+        ) for version in social_versions
     ]
     
     # ensure replies prior to merge
     sdfs = [ensure_reply_information(df) for df in sdfs]
     
     # ensure column alignment
-    sdfs = [ensure_cols(df, v) for df, v in zip(sdfs, versions)]
+    sdfs = [ensure_cols(df, v) for df, v in zip(sdfs, social_versions)]
     
     # concatenate the dataframes by matching columns
     social_df = pd.concat(sdfs, ignore_index=True)

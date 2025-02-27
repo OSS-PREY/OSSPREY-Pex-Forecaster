@@ -12,7 +12,8 @@
 # combine social data in emails-issues
 python3 -m decalfc.scripts.combine_social --kwargs \
     incubator="osgeo" \
-    load_save_versions='{"0ia": "0ia", "0ea": "0ea"}'
+    social_versions='["0i", "0e"]' \
+    save_version="0"
 
 # truncate datasets
 # python3 -m decalfc.scripts.enforce_dates --kwargs \
