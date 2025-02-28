@@ -22,6 +22,26 @@ from decalfc.utils import *
 from decalfc.abstractions.rawdata import _load_data, _load_paths, _save_data, pre_process_data
 
 
+# ------------- Auxiliary Utility ------------- #
+def clean_special_chars(df: pd.DataFrame) -> pd.DataFrame:
+    """Removes all special character sequences (e.g. "##", "/", etc.) from any
+    column and replaces the string with a dash instead.
+
+    Args:
+        df (pd.DataFrame): dataframe to clean.
+
+    Returns:
+        pd.DataFrame: cleaned dataframe.
+    """
+    
+    # for every column, clean all substrings
+    for col in df.columns:
+        df[col] = df[col].str.replace(r"/", "-").replace("##", "-")
+
+    # export df
+    return df
+
+
 # ------------- Primary Utility ------------- #
 def pre_process_raw_data(
     incubator: str, load_versions: dict[str, str], save_versions: dict[str, str]
@@ -38,6 +58,9 @@ def pre_process_raw_data(
     # load data
     paths = _load_paths(incubator, load_versions)
     data_lookup = _load_data(paths)
+    
+    # clean strings
+    data_lookup = {k: clean_special_chars(v) for k, v in data_lookup.items()}
     
     # pre-process data
     pre_process_data(

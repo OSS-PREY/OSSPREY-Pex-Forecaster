@@ -25,8 +25,7 @@ from functools import reduce
 from itertools import permutations
 from math import ceil
 
-import decalfc.utils as util
-from decalfc.utils import PARQUET_ENGINE
+from decalfc.utils import *
 
 
 # Auxiliary Functions
@@ -159,7 +158,7 @@ class PerfData:
         
         # ensure directory
         save_path = f"{path}.{self.ext}" if path != "" else f"{self.perf_source}.{self.ext}"
-        util.check_dir(Path(save_path).parent)
+        check_dir(Path(save_path).parent)
 
         # save
         match self.ext:
@@ -170,7 +169,7 @@ class PerfData:
                 self.data.to_parquet(save_path, index=False)
 
             case _:
-                util.log("failed to match extension to writer; defaulting to csv", "warning")
+                log("failed to match extension to writer; defaulting to csv", "warning")
                 self.data.to_csv("../model-reports/TEMP_SAVE_FOR_PERF_DB.csv", index=False)
     
 
@@ -368,7 +367,7 @@ class PerfData:
         # setup
         df = self.data.copy().drop(columns=["date"])
         group_cols = ["transfer_strategy", "model_arch", "month", "label", "metric"]
-        params = util.load_params()
+        params = params
         
         if metrics == None:
             metrics = ["accuracy"]
@@ -384,12 +383,9 @@ class PerfData:
 
             # setup
             translated_str = f"[{strat}] -- "
-            decoder = {
-                "A": "apache",
-                "G": "github",
-                "E": "eclipse"
-            }
-            lookup_augs = util.load_params()["augmentation-descriptions"]
+            decoder = params["abbreviations"]
+            decoder = {v: k for k, v in decoder.items()}
+            lookup_augs = params["augmentation-descriptions"]
 
             # tokenize
             train_str, test_str = strat.split("-->")
@@ -487,7 +483,7 @@ class PerfData:
             # generate output path
             if output_path is None:
                 output_path = Path("../model-reports") / "summaries" / "summary_db"
-            util.check_path(output_path)
+            check_path(output_path)
 
             # save
             df.to_csv(f"{output_path}.csv")
@@ -517,7 +513,7 @@ class PerfData:
         }
 
         if field not in group_fields:
-            util.log("field is not currently supported", "warning")
+            log("field is not currently supported", "warning")
             return
         
         # set accuracy field, group, & aggregate
@@ -790,7 +786,7 @@ class PerfData:
                        ("weighted avg", "f1-score")]
         if isinstance(options, str):
             # generate options dict
-            abbrevations = util.load_params()["network-aug-shorthand"]
+            abbrevations = params["network-aug-shorthand"]
             options = set(options)
             options = {k: (k in options) for k in abbrevations}
 
@@ -804,7 +800,7 @@ class PerfData:
             name_modifier = "-".join([abbrevations.get(k, "ERR") for k in options if options.get(k, False)])
 
             # load abbrevations and only select specified ones
-            abbrevations = util.load_params()["network-aug-shorthand"]
+            abbrevations = params["network-aug-shorthand"]
             shorthand_abbrv = [k for k, v in abbrevations.items() if options.get(k, False)]
             match_strs = "|".join(map(re.escape, shorthand_abbrv))       # escape special chars
 
@@ -826,7 +822,7 @@ class PerfData:
                 group_strs = "|".join(map(re.escape, shorthand_abbrv_orders))
                 subset_df = subset_df[subset_df["transfer_strategy"].str.contains(group_strs)]
         else:
-            util.log("must specify either `trial_type` or `options` in `PerfData.subset_breakdown()`", "error")
+            log("must specify either `trial_type` or `options` in `PerfData.subset_breakdown()`", "error")
             raise ValueError("must specify either `trial_type` or `options` in `PerfData.subset_breakdown()`")
 
         # narrow down the rows even further
@@ -914,7 +910,7 @@ class PerfData:
 
         if export:
             save_dir = "../model-reports/breakdowns/"
-            util.check_dir(save_dir)
+            check_dir(save_dir)
 
             plt.savefig(f"{save_dir}breakdown-{name_modifier}", bbox_inches="tight")
             breakdown.to_csv(f"{save_dir}breakdown-{name_modifier}.csv")
@@ -1066,7 +1062,7 @@ class PerfData:
             plt.close()
         
         # check incubator
-        params = util.load_params()
+        params = params
         if incubator is None:
             incubators = params["datasets"]
         else:
@@ -1076,7 +1072,7 @@ class PerfData:
         if multi_incubator:
             # setup saving
             exp_dir = "../predictions/comparisons/"
-            util.check_dir(exp_dir)
+            check_dir(exp_dir)
             
             # generate multi-incubator paths
             paths = list()

@@ -124,7 +124,10 @@ def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame) -> dict[str, p
     invalid_info = dict()
     
     # traverse valid projects
-    for (proj, proj_tdf), (_, proj_sdf) in zip(mtdf.groupby("project_name"), msdf.groupby("project_name")):
+    for (proj, proj_tdf), (_, proj_sdf) in zip(
+        mtdf.groupby("project_name", observed=True),
+        msdf.groupby("project_name", observed=True)
+    ):
         if is_valid_project(proj_tdf, proj_sdf):
             valid_projects.append(proj)
         else:
@@ -158,15 +161,15 @@ def truncate_data(df: pd.DataFrame) -> tuple[pd.DataFrame, int]:
     """
     
     # grab some tracker info to check statistics
-    orig_end_dates = df.groupby("project_name")["date"].max().to_dict()
-    orig_st_dates = df.groupby("project_name")["date"].min().to_dict()
+    orig_end_dates = df.groupby("project_name", observed=True)["date"].max().to_dict()
+    orig_st_dates = df.groupby("project_name", observed=True)["date"].min().to_dict()
     
     # enforce incubation st-end dates
     df = df[(df.st_date <= df.date) & (df.date <= df.end_date)]
     
     # compare tracker info
-    trunc_end_dates = df.groupby("project_name")["date"].max().to_dict()
-    trunc_st_dates = df.groupby("project_name")["date"].min().to_dict()
+    trunc_end_dates = df.groupby("project_name", observed=True)["date"].max().to_dict()
+    trunc_st_dates = df.groupby("project_name", observed=True)["date"].min().to_dict()
     
     ndiffs = len(orig_end_dates) - len(trunc_end_dates) # number of projects truncated out
     for proj in trunc_end_dates: # number of projects with different dates

@@ -1,0 +1,17 @@
+{
+    "deegree": 21,
+    "gdal-ogr": 26,
+    "geonetwork": 21,
+    "geonode": 19,
+    "geos": 56,
+    "geoserver": 42,
+    "grass": 25,
+    "mapserver": 36,
+    "openlayers": 13,
+    "osgeolive": 8,
+    "postgis": 36,
+    "proj": 7,
+    "pycsw": 24,
+    "pywps": 24,
+    "qgis": 13
+}

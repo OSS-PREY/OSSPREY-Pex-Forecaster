@@ -228,6 +228,7 @@ def extract_features(args_dict: dict[str, str | int | float], incubation_time: d
     print("\n<Extracting Network Features>")
     warnings.filterwarnings("ignore", category=FutureWarning)       # silence deprecation warnings for df.append()
     incubator = args_dict["incubator"]
+    tversion, sversion = args_dict["versions"]["tech"], args_dict["versions"]["social"]
 
     # execute input
     social_type = params_dict["social-type"][incubator]
@@ -239,7 +240,7 @@ def extract_features(args_dict: dict[str, str | int | float], incubation_time: d
     
     proj_inc = incubation_time if incubation_time is not None else \
         Path(params_dict["incubation-time"][incubator])
-    outfile_path = network_dir / "netdata" / f"{incubator}-network-data.csv"
+    outfile_path = network_dir / "netdata" / f"clean-{incubator}-network-data-{tversion}-{sversion}.csv"
 
     # dispatch
     calc_net_features(t_path, s_path, proj_inc, outfile_path)

@@ -1,0 +1,41 @@
+{
+    "graduated": [
+        "GeoNode",
+        "GeoNetwork",
+        "pycsw",
+        "Marble",
+        "gvSIG Desktop",
+        "QGIS Desktop",
+        "GRASS GIS",
+        "OSGeoLive",
+        "MapServer",
+        "deegree",
+        "OpenLayers",
+        "GeoMoose",
+        "Mapbender",
+        "PyWPS",
+        "GeoServer",
+        "PROJ",
+        "GeoTools",
+        "Orfeo ToolBox",
+        "GDAL/OGR",
+        "GEOS",
+        "PostGIS",
+        "MapGuide Open Source",
+        "mapfish",
+        "FDO",
+        "OSSIM (Open Source Software Image Map)",
+        "Community Mapbuilder"
+    ],
+    "incubating": [
+        "Opticks",
+        "ZOO-Project",
+        "istSOS",
+        "TEAM Engine",
+        "Oskari"
+    ],
+    "retired": [
+        "rasdaman",
+        "MetaCRS"
+    ]
+}

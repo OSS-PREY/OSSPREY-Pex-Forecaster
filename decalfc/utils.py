@@ -15,7 +15,7 @@ from tqdm import tqdm
 import argparse
 import json
 import shutil
-from pprint import pformat
+from pprint import pformat, pprint
 from os import cpu_count
 from ast import literal_eval
 from pathlib import Path

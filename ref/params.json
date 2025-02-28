@@ -151,10 +151,12 @@
         },
         "eclipse": {
             "tech": {
-                "1": "commits"
+                "1": "01-commits",
+                "2": "commits"
             },
             "social": {
-                "1": "emails-issues"
+                "1": "01-emails-issues",
+                "2": "emails-issues"
             }
         },
         "osgeo": {
@@ -266,7 +268,7 @@
         "apache": [1, 1],
         "github": [3, 4],
         "eclipse": [1, 1],
-        "osgeo": [0, 0]
+        "osgeo": [2, 2]
     },
     "network-augmentations": {
         "clean": "clean",
