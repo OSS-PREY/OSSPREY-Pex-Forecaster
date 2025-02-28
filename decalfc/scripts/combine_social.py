@@ -18,7 +18,7 @@ from json import dump, load
 
 # DECAL modules
 from decalfc.utils import *
-from decalfc.abstractions.rawdata import infer_replies
+from decalfc.abstractions.rawdata import infer_replies, impute_months
 
 # constants & setup parallel processing
 __ISSUES_COLUMN_MAPPER__ = {
@@ -63,6 +63,11 @@ def ensure_reply_information(df: pd.DataFrame) -> pd.DataFrame:
     if "in_reply_to" not in df.columns:
         df["in_reply_to"] = None
     
+    # ensure the month field is valid; we'll impute all replies based on threads
+    # across month and handle the mis-referencing in the graph creation since 
+    # we're splitting by month anyways
+    df["month"] = 0
+    
     # wrap call to underlying reply inference technique
     df = infer_replies({"social": df}, copy=False)["social"]
     return df
@@ -83,7 +88,7 @@ def ensure_cols(df: pd.DataFrame, version: str) -> pd.DataFrame:
     # infer the lookup
     social_type = None
     for substr in __SUBSTR_LOOKUP__:
-        if version.endswith(substr):
+        if substr in version:
             social_type = substr
             break
     
@@ -133,6 +138,7 @@ def combine_social_mediums(
     if social_versions is None:
         social_versions = ["0i", "0e"]
     social_versions = [str(v) for v in social_versions]
+    save_version = str(save_version)
     
     # load the data
     sdfs = [
@@ -143,7 +149,10 @@ def combine_social_mediums(
     ]
     
     # ensure replies prior to merge
-    sdfs = [ensure_reply_information(df) for df in sdfs]
+    sdfs = ([
+        ensure_reply_information(df) if not v.endswith("e") else df
+        for df, v in zip(sdfs, social_versions)
+    ])
     
     # ensure column alignment
     sdfs = [ensure_cols(df, v) for df, v in zip(sdfs, social_versions)]

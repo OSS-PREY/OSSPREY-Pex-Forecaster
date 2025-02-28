@@ -100,11 +100,14 @@ def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame) -> dict[str, p
         """
         
         # check if the end dates are within the tolerance or better
-        if (proj_tdf.date.max().date - proj_tdf.end_date.iloc[0].date).days < ndays_tol:
+        if pd.isnull(proj_tdf.end_date.iloc[0].date()) or pd.isnull(proj_tdf.st_date.iloc[0].date()):
+            return False
+        
+        if (proj_tdf.date.max().date() - proj_tdf.end_date.iloc[0].date()).days < ndays_tol:
             return False
 
         # check if the start dates are within the tolerance or better
-        if (proj_tdf.date.min().date - proj_tdf.st_date.iloc[0].date).days > ndays_tol:
+        if (proj_tdf.date.min().date() - proj_tdf.st_date.iloc[0].date()).days > ndays_tol:
             return False
 
         # passed checks
@@ -112,7 +115,7 @@ def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame) -> dict[str, p
 
     
     # only keep overlapping projects
-    overlap_projects = set(proj_tdf.project_name) & set(proj_sdf.project_name)
+    overlap_projects = set(mtdf.project_name) & set(msdf.project_name)
     mtdf = mtdf[mtdf.project_name.isin(overlap_projects)]
     msdf = msdf[msdf.project_name.isin(overlap_projects)]
     
@@ -159,20 +162,20 @@ def truncate_data(df: pd.DataFrame) -> tuple[pd.DataFrame, int]:
     orig_st_dates = df.groupby("project_name")["date"].min().to_dict()
     
     # enforce incubation st-end dates
-    df = df[df.st_date <= df.date <= df.end_date]
+    df = df[(df.st_date <= df.date) & (df.date <= df.end_date)]
     
     # compare tracker info
     trunc_end_dates = df.groupby("project_name")["date"].max().to_dict()
     trunc_st_dates = df.groupby("project_name")["date"].min().to_dict()
     
-    ndiffs = 0
-    for proj in orig_end_dates:
+    ndiffs = len(orig_end_dates) - len(trunc_end_dates) # number of projects truncated out
+    for proj in trunc_end_dates: # number of projects with different dates
         if ((orig_end_dates[proj] != trunc_end_dates[proj]) or
             (orig_st_dates[proj] != trunc_st_dates[proj])):
             ndiffs += 1
     
     # drop extraneous columns
-    df.drop(columns=["end_date", "st_date"], inplace=True)
+    df = df.drop(columns=["end_date", "st_date"])
     
     # export stats
     return df, ndiffs
@@ -240,6 +243,7 @@ def truncate_incubation_time(
     dates = pd.DataFrame(dates)
     dates["start-incubation"] = pd.to_datetime(dates["start-incubation"])
     dates["end-incubation"] = pd.to_datetime(dates["end-incubation"])
+    dates.reset_index(names="project", inplace=True)
     dates.rename(
         columns={"start-incubation": "st_date", "end-incubation": "end_date"},
         inplace=True

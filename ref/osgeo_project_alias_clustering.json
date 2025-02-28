@@ -1,0 +1,60 @@
+{
+    "geonode": [
+        [
+            "root",
+            "root@bgdem1.cr.usgs.gov"
+        ],
+        [
+            "Francesco",
+            "Francesco Bartoli"
+        ],
+        [
+            "Clarence Davis",
+            "Clarence"
+        ],
+        [
+            "bartvde",
+            "bartvde@osgis.nl",
+            "bartvde@xs4all.nl"
+        ],
+        [
+            "PedroBelo",
+            "Pedro"
+        ],
+        [
+            "Jeremiah C. Foster",
+            "Jeremiah Cooper"
+        ]
+    ],
+    "geoserver": [
+        [
+            "Davide",
+            "DavidLeal"
+        ],
+        [
+            "jgarnett",
+            "jody.garnett"
+        ],
+        [
+            "yjacolin@free.fr",
+            "yjacolin"
+        ],
+        [
+            "Andrea",
+            "Andrea Aime"
+        ],
+        [
+            "volaya",
+            "volayaf"
+        ],
+        [
+            "dwins",
+            "dwinslow"
+        ]
+    ],
+    "grass": [],
+    "mapserver": [],
+    "osgeolive": [],
+    "proj": [],
+    "pycsw": []
+}

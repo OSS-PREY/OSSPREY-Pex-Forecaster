@@ -432,7 +432,7 @@ def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, cop
     df = data_lookup["social"]
 
     # utility for checking inference strategy (check number of potential replies)
-    reply_freq = df.groupby(["project_name", "month", "subject"]).size().reset_index(name="count")
+    reply_freq = df.groupby(["project_name", "month", "subject"], observed=True).size().reset_index(name="count")
     prop_replies_inference = (reply_freq["count"] > 1).sum() / len(reply_freq)
 
     # check overriding
@@ -466,7 +466,7 @@ def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, cop
 
     # sort and group for easy association
     df.sort_values(by=["project_name", "subject", "date"], inplace=True)
-    grouped = df.groupby(["project_name", "subject"])
+    grouped = df.groupby(["project_name", "subject"], observed=True)
 
     # transform
     df[field] = grouped[impute_source_field].transform(lambda x: x.shift(1))
@@ -1129,10 +1129,11 @@ def pre_process_data(
         save_versions = {"tech": 1, "social": 1}
 
     # validation
-    is_invalid, error_msg = _validate_data()
-    if is_invalid:
-        log(f"invalid data: {error_msg}", "error")
-        exit(1)
+    if _validate_data(data_lookup):
+        _save_data(
+            data_lookup=data_lookup, incubator=incubator,
+            new_version=save_versions
+        )
 
     # cleaning; we'll cache prior to the de-aliasing step in case of OOM errors
     data_lookup = impute_messageid(data_lookup, copy=False)

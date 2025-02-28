@@ -14,8 +14,9 @@ from tqdm import tqdm
 ## built-in modules
 import argparse
 import json
-from os import cpu_count
 import shutil
+from pprint import pformat
+from os import cpu_count
 from ast import literal_eval
 from pathlib import Path
 from typing import Any
@@ -204,7 +205,7 @@ def log(msg: str="", log_type: str="log", output: str="console",
                 return
             
             # convert to strings then print the joined string
-            stat_strs = [f"{k}:\t{v}" for k, v in msg.items()]
+            stat_strs = [f"{k}:\t{v if isinstance(v, str) else pformat(v, indent=4)}" for k, v in msg.items()]
             output_router[output]("\n".join(stat_strs))
         
         case "none":

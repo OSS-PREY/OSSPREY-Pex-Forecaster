@@ -161,7 +161,8 @@
             "tech": {
                 "0": "00-commits",
                 "0a": "00-commits-alias",
-                "1": "commits"
+                "1": "01-commits",
+                "2": "commits"
             },
             "social": {
                 "0e": "00-emails",
@@ -170,7 +171,8 @@
                 "0ia": "00-issues-alias",
                 "0": "00-emails-issues",
                 "0t": "00-emails-issues-trunc",
-                "1": "emails-issues"
+                "1": "01-emails-issues",
+                "2": "emails-issues"
             }
         },
         "ospos": {
