@@ -40,7 +40,7 @@ from decalfc.abstractions.perfdata import *
 
 
 # Constants
-params_dict = util.load_params()
+params_dict = load_params()
 weights_dir = Path(params_dict["weights-dir"])
 
 
@@ -627,49 +627,49 @@ class TimeSeriesModel:
         # router
         match self.model_arch:
             case "BLSTM":
-                util.log("Model Chosen :: Bidirectional LSTM", "new")
+                log("Model Chosen :: Bidirectional LSTM", "new")
                 self.model = BRNN(
                     **self.hyperparams
                 ).to(self.device)
             
             case "BGRU":
-                util.log("Model Chosen :: Bidirectional Gated Recurrent Unit [GRU]", "new")
+                log("Model Chosen :: Bidirectional Gated Recurrent Unit [GRU]", "new")
                 self.model = BGNN(
                     **self.hyperparams
                 ).to(self.device)
 
             case "DLSTM":
-                util.log("Model Chosen :: Dilated LSTM", "new")
+                log("Model Chosen :: Dilated LSTM", "new")
                 self.model = DRNN(
                     **self.hyperparams
                 ).to(self.device)
                 
             case "LSTM":
-                util.log("Model Chosen :: One-Directional LSTM", "new")
+                log("Model Chosen :: One-Directional LSTM", "new")
                 self.model = RNN(
                     **self.hyperparams
                 ).to(self.device)
             
             case "S_BLSTM":
-                util.log("Model Chosen :: Sigmoid Bidirectional LSTM", "new")
+                log("Model Chosen :: Sigmoid Bidirectional LSTM", "new")
                 self.model = S_BRNN(
                     **self.hyperparams
                 ).to(self.device)
             
             case "BN_BLSTM":
-                util.log("Model Chosen :: Batch Normalized Bidirectional LSTM", "new")
+                log("Model Chosen :: Batch Normalized Bidirectional LSTM", "new")
                 self.model = BN_BRNN(
                     **self.hyperparams
                 ).to(self.device)
 
             case "Transformer":
-                util.log("Model Chosen :: Transformer", "new")
+                log("Model Chosen :: Transformer", "new")
                 self.model = TNN(
                     **self.hyperparams
                 ).to(self.device)
             
             case "Regressor":
-                util.log("Model Chose :: Regressor", "new")
+                log("Model Chose :: Regressor", "new")
                 self.model = Regressor(
                     self.hyperparams["input_size"],
                     32,
@@ -680,7 +680,7 @@ class TimeSeriesModel:
                 self.hyperparams["batch_size"] = 32
 
             case _:
-                util.log(f"model architecture `{self.model_arch}` undefined", "error")
+                log(f"model architecture `{self.model_arch}` undefined", "error")
                 exit(1)
 
 
@@ -700,7 +700,7 @@ class TimeSeriesModel:
         # ensure directory
         cleaned_strat = re.sub(r"\s*\+\s*", "_", strategy)                      # cleaned strategy string
         dir = weights_dir / f"{cleaned_strat}/"
-        util.check_dir(dir)
+        check_dir(dir)
         
         # generate path
         path = Path(params_dict["model-weights-format"].format(
@@ -713,9 +713,9 @@ class TimeSeriesModel:
         ))
         
         # save to path
-        util.check_dir(path.parent)
+        check_dir(path.parent)
         torch.save(self.model.state_dict(), path)
-        util.log(f"saved model weights to \"{path}\"")
+        log(f"saved model weights to \"{path}\"")
         
     
     def load(self, strategy: str, *args, **kwargs) -> bool:
@@ -739,7 +739,7 @@ class TimeSeriesModel:
         dir = weights_dir / f"{cleaned_strat}/"
         
         if not os.path.exists(dir):
-            util.log("strategy has no saved weights", "warning")
+            log("strategy has no saved weights", "warning")
             return False
             
         # check model has prior weights
@@ -750,14 +750,14 @@ class TimeSeriesModel:
         ])
 
         if len(matched_weights) < 1:
-            util.log(f"model architecture has no saved weights for <{cleaned_strat}>", "warning")
+            log(f"model architecture has no saved weights for <{cleaned_strat}>", "warning")
             return False
         
         # load best model weight, prioritize perf in order of metric listing
         matched_weights.sort()
         best_weights = Path().cwd().parent / "model-weights" / cleaned_strat / matched_weights[-1]
         
-        util.log(f"using <{cleaned_strat}  {best_weights.stem}> for the model")
+        log(f"using <{cleaned_strat}  {best_weights.stem}> for the model")
         self.model.load_state_dict(torch.load(best_weights))
         self.model.eval()
         return True
@@ -787,7 +787,7 @@ class TimeSeriesModel:
 
     def __post_init__(self):
         # generate model archs
-        util.log("Model Setup", "new")
+        log("Model Setup", "new")
         self.hyperparams = load_hyperparams(self.hyperparams)
         self.check_device()
         self.gen_model()
@@ -927,9 +927,9 @@ class TimeSeriesModel:
         )
 
         if (self.is_interval["train"]) and is_soft_prob:
-            util.log("found soft probabilities for training")
+            log("found soft probabilities for training")
         elif (self.is_interval["train"]) and (not is_soft_prob):
-            util.log("training directly on intervals without soft probabilities")
+            log("training directly on intervals without soft probabilities")
 
         # initialize optimizer and scheduler
         self.optimizer = torch.optim.AdamW(
@@ -1006,14 +1006,14 @@ class TimeSeriesModel:
             test_losses[epoch] = np.mean(test_losses[epoch])
 
             current_lr = self.optimizer.param_groups[0]["lr"]
-            util.log(f"Epoch [{epoch + 1}/{self.hyperparams['num_epochs']}] | "
+            log(f"Epoch [{epoch + 1}/{self.hyperparams['num_epochs']}] | "
                       f"Loss: {losses[epoch]:.4f}, Test Loss: {test_losses[epoch]:.4f}, "
                       f"LR: {current_lr:.6f}", "log")
 
             # scheduler step
             if self.scheduler is not None:
                 if not validation_loss:
-                    util.log("Unable to schedule step without validation loss", "error")
+                    log("Unable to schedule step without validation loss", "error")
                 else:
                     self.scheduler.step(test_losses[epoch])
 
@@ -1030,15 +1030,15 @@ class TimeSeriesModel:
                 patience -= 1
 
                 if patience == 0:
-                    util.log("Early stopping triggered. Loading best model weights.", "log")
+                    log("Early stopping triggered. Loading best model weights.", "log")
                     self.model.load_state_dict(best_model_weights)
                     break
 
         if np.isnan(sorted(losses.items(), reverse=True)[0][1]) or np.isinf(sorted(losses.items(), reverse=True)[0][1]):
-            util.log("NaN or Inf loss generated, i.e. failed to converge: ignoring and exiting", "error")
+            log("NaN or Inf loss generated, i.e. failed to converge: ignoring and exiting", "error")
             return
 
-        util.log("Training completed.", "log")
+        log("Training completed.", "log")
 
         print(f"Model Name: {self.model_arch}")
         print(f"Input size: {self.hyperparams['input_size']}")
@@ -1052,7 +1052,7 @@ class TimeSeriesModel:
 
         # visualize loss
         dir = "../model-reports/loss-visualization/"
-        util.check_dir(dir)
+        check_dir(dir)
 
         df = pd.DataFrame(list(losses.items()), columns=["Epoch", "Loss"])
         test_df = pd.DataFrame(list(test_losses.items()), columns=["Epoch", "Loss"])
@@ -1204,7 +1204,7 @@ class TimeSeriesModel:
         """
 
         # export weights
-        util.log("DEPRECATED save method, not saving w/ perf info", "warning")
+        log("DEPRECATED save method, not saving w/ perf info", "warning")
         torch.save(
             self.model.state_dict(),
             f"../model-reports/transfer-weights/{self.report_name}.pt"
@@ -1256,7 +1256,7 @@ class TimeSeriesModel:
         n_features = X_train[0].shape[-1]  # Should be 14
         max_seq_length = max(len(seq) for seq in X_train)  # Should be 530
         
-        util.log(f"Number of features: {n_features}, Max sequence length: {max_seq_length}", "log")
+        log(f"Number of features: {n_features}, Max sequence length: {max_seq_length}", "log")
         feature_names = [f"f{i}_t{t}" for t in range(max_seq_length) for i in range(n_features)]
 
         # Pad and flatten the training data
@@ -1268,7 +1268,7 @@ class TimeSeriesModel:
             X_train_padded.append(padded_seq.flatten())
         X_train_flat = np.array(X_train_padded)
 
-        util.log(f"Shape of flattened training data: {X_train_flat.shape}", "log")
+        log(f"Shape of flattened training data: {X_train_flat.shape}", "log")
 
         # Create a LIME explainer
         explainer = lime.lime_tabular.LimeTabularExplainer(
@@ -1280,13 +1280,13 @@ class TimeSeriesModel:
 
         # Function to get model prediction for a single sample
         def predict_proba(x):
-            util.log(f"Input shape to predict_proba: {x.shape}", "log")
+            log(f"Input shape to predict_proba: {x.shape}", "log")
             
             # Reshape x to match the expected input of the model
             x = x.reshape(-1, max_seq_length, n_features)
             x_tensor = torch.tensor(x, dtype=torch.float32).to(self.device)
             
-            util.log(f"Reshaped tensor shape: {x_tensor.shape}", "log")
+            log(f"Reshaped tensor shape: {x_tensor.shape}", "log")
             
             with torch.no_grad():
                 output = self.model(x_tensor)
@@ -1307,7 +1307,7 @@ class TimeSeriesModel:
             X_test_padded = np.pad(X_test_sample, ((0, max_seq_length - len(X_test_sample)), (0, 0)), mode='constant')
             X_test_flat = X_test_padded.flatten()
 
-            util.log(f"Shape of flattened test sample: {X_test_flat.shape}", "log")
+            log(f"Shape of flattened test sample: {X_test_flat.shape}", "log")
 
             print("Features to consider", X_test_flat.shape[0])
             FeaturesToConsider = int(X_test_flat.shape[0])
@@ -1333,11 +1333,11 @@ class TimeSeriesModel:
                 total_importance[f"feature_{feature}"] += (importance)
 
 
-        util.log("Aggregated Feature Importance (LIME):", "log")
+        log("Aggregated Feature Importance (LIME):", "log")
         for feature, importance in total_importance.items():
-            util.log(f"{feature}: {importance:.4f}", "log")
+            log(f"{feature}: {importance:.4f}", "log")
 
-        util.log("LIME analysis completed.", "log")
+        log("LIME analysis completed.", "log")
 
 
     def shap_analysis(self, md, ModelWrapper):
@@ -1353,7 +1353,7 @@ class TimeSeriesModel:
         # determine the number of features and maximum sequence length
         n_features = X_train[0].shape[-1]  # Should be 13/14 depending on if feature subset was taken or not
         max_seq_length = max(len(seq) for seq in X_train)  # Should be 530
-        util.log(f"Number of features: {n_features}, Max sequence length: {max_seq_length}", "log")
+        log(f"Number of features: {n_features}, Max sequence length: {max_seq_length}", "log")
         feature_names = [f"f{i}_t{t}" for t in range(max_seq_length) for i in range(n_features)]
 
         # pad the training data
@@ -1365,7 +1365,7 @@ class TimeSeriesModel:
             X_train_padded.append(padded_seq)
         X_train_padded = np.array(X_train_padded)
 
-        util.log(f"Shape of padded training data: {X_train_padded.shape}", "log")
+        log(f"Shape of padded training data: {X_train_padded.shape}", "log")
 
         def compute_shap_values(model_wrapper, inputs):
             inputs = inputs.detach().requires_grad_(True)
@@ -1396,7 +1396,7 @@ class TimeSeriesModel:
                 X_test_sample = X_test_sample.cpu().numpy()
             X_test_padded = np.pad(X_test_sample, ((0, max_seq_length - len(X_test_sample)), (0, 0)), mode='constant')
 
-            util.log(f"Shape of padded test sample: {X_test_padded.shape}", "log")
+            log(f"Shape of padded test sample: {X_test_padded.shape}", "log")
 
             # Convert to tensor
             X_test_tensor = torch.tensor(X_test_padded.reshape(1, max_seq_length, n_features), dtype=torch.float32).to(self.device)
@@ -1414,11 +1414,11 @@ class TimeSeriesModel:
                 importance = np.sum(shap_values[0, :, feature])
                 total_importance[f"feature_{feature}"] += importance
 
-        util.log("Aggregated Feature Importance (SHAP-like):", "log")
+        log("Aggregated Feature Importance (SHAP-like):", "log")
         for feature, importance in total_importance.items():
-            util.log(f"{feature}: {importance:.4f}", "log")
+            log(f"{feature}: {importance:.4f}", "log")
 
-        util.log("SHAP-like analysis completed.", "log")
+        log("SHAP-like analysis completed.", "log")
         
     
     def visualize_model(self, data_shape):
@@ -1432,7 +1432,7 @@ class TimeSeriesModel:
 
         # save model graph
         output_dir = "../model-reports/model-visualizations/"
-        util.check_dir(output_dir)
+        check_dir(output_dir)
         dot.render(f"{output_dir}{self.gen_report_name()}", format="png")
     
     ## class utility
@@ -1531,12 +1531,12 @@ class TimeSeriesModel:
         # report
         stats["mem_saved"] /= 1e6
         
-        util.log("", "summary")
+        log("", "summary")
         for stat, val in stats.items():
             if stat == "mem_saved":
-                util.log(f"{stat.replace('_', ' ').title()}: {val:.4f} Mb")
+                log(f"{stat.replace('_', ' ').title()}: {val:.4f} Mb")
             else:
-                util.log(f"{stat.replace('_', ' ').title()}: {val}")
+                log(f"{stat.replace('_', ' ').title()}: {val}")
     
 
 # Testing

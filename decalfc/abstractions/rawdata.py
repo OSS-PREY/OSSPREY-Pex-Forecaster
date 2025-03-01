@@ -1310,8 +1310,8 @@ class RawData:
         """
 
         # generate lookups
-        t_proj_incubation = self.data["tech"].groupby("project_name")["month"].max().to_dict()
-        s_proj_incubation = self.data["social"].groupby("project_name")["month"].max().to_dict()
+        t_proj_incubation = self.data["tech"].groupby("project_name", observed=True)["month"].max().to_dict()
+        s_proj_incubation = self.data["social"].groupby("project_name", observed=True)["month"].max().to_dict()
         all_proj = set(t_proj_incubation.keys()) | set(s_proj_incubation.keys())
 
         # merge & save
