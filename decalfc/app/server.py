@@ -108,6 +108,30 @@ def compute_forecast(data: dict[str, str | pd.DataFrame | list[str] | list[int]]
     # send back okay message and aynchronously compute?
     return {"message": "Data received successfully", "code": 200}
 
+def range_forecast(proj_name: str, month_range: list[int]) -> dict[str, str | int]:
+    """API endpoint for computing the forecasts over any variable range of 
+    months for a given project.
+
+    Args:
+        proj_name (str): name of the project to compute forecasts for.
+        month_range (list[int]): range of months to compute, inclusive.
+
+    Raises:
+        ValueError: in the case of a project's cache doesn't exist. Assumes that
+            the caller will handle computing the forecast via the compute 
+            forecast endpoint in this case.
+
+    Returns:
+        dict[str, float]: lookup of forecasted sustainability values for each 
+            month in the range slider.
+    """
+    
+    # attempt a cache load
+    cached_result = router.check_cache(
+        tasks=["forecast"], proj_name=proj_name,
+        end_month=month_range[-1]
+    )
+
 
 '''
 ## NOT SURE IF THESE WILL BE MORE USEFUL
