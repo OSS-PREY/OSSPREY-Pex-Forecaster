@@ -1,0 +1,1517 @@
+{
+    "missing": {
+        "4diac": {
+            "data_end_date": "2024-03-22 16:35:24+00:00",
+            "data_st_date": "2015-03-05 19:24:44+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "AAS Model for Java": {
+            "data_end_date": "2024-03-14 13:11:58+00:00",
+            "data_st_date": "2022-05-20 11:42:36+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "AAS Web Client": {
+            "data_end_date": "2023-04-03 11:29:36+00:00",
+            "data_st_date": "2021-05-20 15:50:51+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "AASX Package Explorer and Server": {
+            "data_end_date": "2024-03-21 15:21:44+00:00",
+            "data_st_date": "2019-10-08 10:19:42+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "AQAvit": {
+            "data_end_date": "2024-03-24 00:56:49+00:00",
+            "data_st_date": "2017-04-22 09:59:11+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Adoptium": {
+            "data_end_date": "2024-02-22 14:51:40+00:00",
+            "data_st_date": "2019-07-11 09:06:07+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Advanced Visualization Project": {
+            "data_end_date": "2017-06-12 20:13:08+00:00",
+            "data_st_date": "2016-03-11 20:50:42+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Agail": {
+            "data_end_date": "2018-12-07 09:26:03+00:00",
+            "data_st_date": "2018-12-07 08:18:05+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Agile UML": {
+            "data_end_date": "2024-03-14 15:23:58+00:00",
+            "data_st_date": "2019-10-07 15:20:12+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Amlen": {
+            "data_end_date": "2024-01-24 09:09:04+00:00",
+            "data_st_date": "2021-04-22 18:18:35+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Andmore": {
+            "data_end_date": "2017-12-02 07:06:31+00:00",
+            "data_st_date": "2007-12-11 20:57:55+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Ankaios": {
+            "data_end_date": "2024-03-22 15:19:20+00:00",
+            "data_st_date": "2023-09-05 12:29:13+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Apoapsis": {
+            "data_end_date": "2024-03-22 15:08:04+00:00",
+            "data_st_date": "2022-07-05 21:03:58+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Arrowhead": {
+            "data_end_date": "2024-03-13 10:41:54+00:00",
+            "data_st_date": "2019-05-22 10:00:22+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Automated Driving Open Research (ADORe)": {
+            "data_end_date": "2023-09-18 19:19:40+00:00",
+            "data_st_date": "2020-06-29 15:14:55+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "BaSyx": {
+            "data_end_date": "2024-03-21 07:40:51+00:00",
+            "data_st_date": "2017-10-23 17:48:41+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Babel": {
+            "data_end_date": "2024-01-09 17:09:10+00:00",
+            "data_st_date": "2007-09-21 20:07:18+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "BlueChi": {
+            "data_end_date": "2024-03-22 08:57:17+00:00",
+            "data_st_date": "2020-07-06 20:40:46+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "CDT Cloud": {
+            "data_end_date": "2024-03-22 20:22:42+00:00",
+            "data_st_date": "2017-03-01 13:53:12+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Californium (Cf) CoAP Framework": {
+            "data_end_date": "2024-03-18 06:49:18+00:00",
+            "data_st_date": "2014-05-28 14:10:02+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Capra": {
+            "data_end_date": "2021-05-05 14:17:10+00:00",
+            "data_st_date": "2016-09-21 18:01:58+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Chariott": {
+            "data_end_date": "2024-02-14 20:21:46+00:00",
+            "data_st_date": "2022-10-27 08:25:56+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Che": {
+            "data_end_date": "2024-03-22 17:13:04+00:00",
+            "data_st_date": "2016-02-12 07:47:36+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Che4z": {
+            "data_end_date": "2024-03-21 10:53:24+00:00",
+            "data_st_date": "2019-08-02 10:22:42+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "ChemClipse": {
+            "data_end_date": "2024-03-20 09:26:45+00:00",
+            "data_st_date": "2015-06-22 14:46:27+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Cloe": {
+            "data_end_date": "2024-02-02 14:23:37+00:00",
+            "data_st_date": "2021-01-07 12:53:47+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "CogniCrypt": {
+            "data_end_date": "2022-11-10 09:07:27+00:00",
+            "data_st_date": "2015-07-17 19:10:16+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Common Build Infrastructure": {
+            "data_end_date": "2024-03-20 14:52:03+00:00",
+            "data_st_date": "2009-11-25 19:39:40+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Config": {
+            "data_end_date": "2024-03-07 10:42:47+00:00",
+            "data_st_date": "2021-10-14 15:39:19+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Corrosion: the IDE for Rust": {
+            "data_end_date": "2023-11-17 21:44:33+00:00",
+            "data_st_date": "2018-03-20 18:33:46+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Cyclone DDS": {
+            "data_end_date": "2024-03-22 15:10:03+00:00",
+            "data_st_date": "2018-04-10 15:03:59+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "DAWNSci": {
+            "data_end_date": "2018-05-18 15:19:16+00:00",
+            "data_st_date": "2015-02-10 16:11:56+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Dartboard": {
+            "data_end_date": "2020-11-06 09:44:17+00:00",
+            "data_st_date": "2019-06-03 17:44:11+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Data": {
+            "data_end_date": "2024-03-21 19:23:02+00:00",
+            "data_st_date": "2022-09-13 08:03:18+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Dataspace Components": {
+            "data_end_date": "2024-03-23 14:37:55+00:00",
+            "data_st_date": "2018-07-03 13:27:14+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Deeplearning4j": {
+            "data_end_date": "2023-12-10 00:55:22+00:00",
+            "data_st_date": "2019-06-06 12:21:15+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Documentation for EE": {
+            "data_end_date": "2023-05-18 13:31:38+00:00",
+            "data_st_date": "2017-10-07 21:58:59+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "EMF Cloud": {
+            "data_end_date": "2023-12-21 10:49:29+00:00",
+            "data_st_date": "2018-07-11 09:03:02+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "EMF Diff_Merge": {
+            "data_end_date": "2023-05-04 07:40:12+00:00",
+            "data_st_date": "2012-07-02 15:42:03+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "EdiTDor": {
+            "data_end_date": "2023-03-31 09:14:51+00:00",
+            "data_st_date": "2020-06-19 06:15:50+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Examples for EE": {
+            "data_end_date": "2023-08-02 15:46:27+00:00",
+            "data_st_date": "2019-08-01 01:30:05+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Exousia": {
+            "data_end_date": "2024-03-18 20:24:18+00:00",
+            "data_st_date": "2019-09-30 15:01:42+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "ExpressLy": {
+            "data_end_date": "2023-12-07 23:29:45+00:00",
+            "data_st_date": "2018-06-07 08:56:39+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Free BIRD Tools": {
+            "data_end_date": "2024-03-03 15:52:06+00:00",
+            "data_st_date": "2020-01-21 19:52:40+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Furo": {
+            "data_end_date": "2024-03-23 12:20:04+00:00",
+            "data_st_date": "2019-03-21 12:37:54+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "GEMOC Studio": {
+            "data_end_date": "2023-12-18 16:44:14+00:00",
+            "data_st_date": "2017-07-31 09:01:13+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "GeoGig": {
+            "data_end_date": "2021-11-12 12:45:23+00:00",
+            "data_st_date": "2014-11-17 12:51:46+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "GeoTrellis": {
+            "data_end_date": "2024-01-08 04:18:07+00:00",
+            "data_st_date": "2016-11-25 16:25:44+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "GeoWave": {
+            "data_end_date": "2022-06-17 13:08:27+00:00",
+            "data_st_date": "2014-06-12 21:05:30+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Hara": {
+            "data_end_date": "2024-03-08 15:03:38+00:00",
+            "data_st_date": "2021-07-30 08:56:47+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Heimlig": {
+            "data_end_date": "2024-03-14 17:02:04+00:00",
+            "data_st_date": "2021-09-06 09:12:48+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Henshin": {
+            "data_end_date": "2023-02-12 15:21:02+00:00",
+            "data_st_date": "2009-11-16 13:58:01+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Ibeji": {
+            "data_end_date": "2024-03-19 21:12:46+00:00",
+            "data_st_date": "2022-11-28 22:22:08+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "ImageN": {
+            "data_end_date": "2019-09-12 19:42:43+00:00",
+            "data_st_date": "2018-03-19 17:01:31+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "IoT-Testware": {
+            "data_end_date": "2021-09-12 09:55:58+00:00",
+            "data_st_date": "2018-03-29 13:45:50+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "JDT (Java development tools)": {
+            "data_end_date": "2024-03-22 20:13:08+00:00",
+            "data_st_date": "2001-05-02 21:31:31+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "JDT LS": {
+            "data_end_date": "2024-03-20 07:56:53+00:00",
+            "data_st_date": "2001-06-05 16:17:58+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "JNoSQL": {
+            "data_end_date": "2024-03-16 09:31:37+00:00",
+            "data_st_date": "2016-07-16 10:12:39+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "JTS Topology Suite": {
+            "data_end_date": "2024-03-15 04:24:02+00:00",
+            "data_st_date": "2016-11-03 23:36:12+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "January": {
+            "data_end_date": "2022-01-21 08:59:29+00:00",
+            "data_st_date": "2014-11-03 16:43:05+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Jifa": {
+            "data_end_date": "2024-03-23 05:45:12+00:00",
+            "data_st_date": "2020-07-27 12:58:04+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "JustJ": {
+            "data_end_date": "2024-03-20 15:10:26+00:00",
+            "data_st_date": "2020-04-23 20:58:11+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Kanto": {
+            "data_end_date": "2024-02-12 08:34:13+00:00",
+            "data_st_date": "2022-02-11 14:50:04+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Keti": {
+            "data_end_date": "2019-10-30 03:52:21+00:00",
+            "data_st_date": "2018-01-09 19:44:57+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Keypop": {
+            "data_end_date": "2024-03-16 20:05:58+00:00",
+            "data_st_date": "2023-07-20 16:59:03+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Kiso-testing": {
+            "data_end_date": "2023-12-05 09:03:11+00:00",
+            "data_st_date": "2018-06-29 20:49:04+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Kuksa": {
+            "data_end_date": "2024-03-20 22:08:39+00:00",
+            "data_st_date": "2018-06-19 15:28:20+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "LSP4E": {
+            "data_end_date": "2024-03-22 13:35:46+00:00",
+            "data_st_date": "2016-11-30 11:00:12+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "LSP4J": {
+            "data_end_date": "2024-03-02 10:34:11+00:00",
+            "data_st_date": "2016-11-10 15:50:38+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "LSP4Jakarta, the Language Server for EE": {
+            "data_end_date": "2024-02-27 13:35:31+00:00",
+            "data_st_date": "2020-09-16 20:18:30+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "LSP4MP - Language Server for MicroProfile": {
+            "data_end_date": "2024-02-01 18:27:49+00:00",
+            "data_st_date": "2020-07-10 22:34:41+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Langium": {
+            "data_end_date": "2024-03-20 09:48:36+00:00",
+            "data_st_date": "2021-02-22 13:51:32+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Layout Kernel": {
+            "data_end_date": "2024-02-13 08:26:16+00:00",
+            "data_st_date": "2015-09-03 20:57:32+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Leda": {
+            "data_end_date": "2023-12-15 15:16:35+00:00",
+            "data_st_date": "2022-07-26 07:19:38+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Leda Incubator": {
+            "data_end_date": "2023-11-09 10:04:36+00:00",
+            "data_st_date": "2022-11-11 10:59:52+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "LemMinX": {
+            "data_end_date": "2024-02-18 13:45:55+00:00",
+            "data_st_date": "2018-06-22 16:29:19+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "LibIMS": {
+            "data_end_date": "2018-06-22 12:11:53+00:00",
+            "data_st_date": "2018-06-22 12:11:53+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "MOSAIC": {
+            "data_end_date": "2024-03-22 13:42:30+00:00",
+            "data_st_date": "2020-09-23 12:20:01+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "MRAA": {
+            "data_end_date": "2024-02-29 01:24:47+00:00",
+            "data_st_date": "2014-04-08 17:45:30+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "MVC": {
+            "data_end_date": "2023-04-30 20:13:11+00:00",
+            "data_st_date": "2020-06-24 16:51:28+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Messaging": {
+            "data_end_date": "2022-02-25 21:14:01+00:00",
+            "data_st_date": "2018-01-17 15:41:28+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "MicroProfile": {
+            "data_end_date": "2024-03-21 16:55:36+00:00",
+            "data_st_date": "2016-07-19 08:19:35+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Migration Toolkit for Java": {
+            "data_end_date": "2024-03-20 04:05:26+00:00",
+            "data_st_date": "2022-06-21 03:51:16+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Milo": {
+            "data_end_date": "2024-02-09 12:45:02+00:00",
+            "data_st_date": "2016-05-11 13:41:44+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Mita": {
+            "data_end_date": "2021-06-25 13:22:11+00:00",
+            "data_st_date": "2018-03-27 19:41:02+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Model Development Tools (MDT)": {
+            "data_end_date": "2023-06-01 16:24:44+00:00",
+            "data_st_date": "2006-10-17 18:35:28+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Model-to-Model Transformation (MMT)": {
+            "data_end_date": "2021-06-10 07:59:13+00:00",
+            "data_st_date": "2012-05-18 16:17:29+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Modeling Framework - Container Project": {
+            "data_end_date": "2024-03-14 10:03:23+00:00",
+            "data_st_date": "2004-03-06 18:00:09+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Muto": {
+            "data_end_date": "2024-03-15 14:09:00+00:00",
+            "data_st_date": "2020-07-08 08:05:20+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Mylyn Docs Intent": {
+            "data_end_date": "2017-09-26 14:07:51+00:00",
+            "data_st_date": "2011-03-31 17:41:33+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "N4JS": {
+            "data_end_date": "2024-03-07 12:27:51+00:00",
+            "data_st_date": "2017-04-07 14:50:19+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "NG661 Designer": {
+            "data_end_date": "2017-09-19 07:18:52+00:00",
+            "data_st_date": "2017-09-14 07:30:57+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "NoSQL": {
+            "data_end_date": "2024-02-23 06:30:48+00:00",
+            "data_st_date": "2019-06-17 18:40:41+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "OMR": {
+            "data_end_date": "2024-03-22 19:31:15+00:00",
+            "data_st_date": "2016-03-02 20:02:08+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "OSGi Specification Project": {
+            "data_end_date": "2024-02-28 16:47:08+00:00",
+            "data_st_date": "2004-07-01 16:19:16+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "OSGi Technology Project": {
+            "data_end_date": "2024-03-20 09:34:06+00:00",
+            "data_st_date": "2014-02-24 07:42:41+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "OneOFour": {
+            "data_end_date": "2023-10-18 05:41:08+00:00",
+            "data_st_date": "2020-05-09 12:27:39+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Oniro for OpenHarmony": {
+            "data_end_date": "2024-03-22 16:08:32+00:00",
+            "data_st_date": "2023-03-30 14:11:59+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Open DI": {
+            "data_end_date": "2022-10-17 06:38:08+00:00",
+            "data_st_date": "2021-11-17 09:37:07+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Open VSX": {
+            "data_end_date": "2024-03-21 16:09:37+00:00",
+            "data_st_date": "2020-01-29 07:49:31+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "OpenHW Group CORE-V Cores": {
+            "data_end_date": "2024-03-22 17:39:14+00:00",
+            "data_st_date": "2016-12-29 20:41:59+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "OpenJ9": {
+            "data_end_date": "2024-03-22 01:03:06+00:00",
+            "data_st_date": "2016-03-07 19:17:56+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "OpenMCx": {
+            "data_end_date": "2021-10-23 13:20:48+00:00",
+            "data_st_date": "2021-09-05 17:21:15+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "OpenSmartCLIDE": {
+            "data_end_date": "2023-11-03 09:35:10+00:00",
+            "data_st_date": "2013-02-11 23:00:20+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "PDE": {
+            "data_end_date": "2024-03-19 08:26:48+00:00",
+            "data_st_date": "2001-05-22 22:18:28+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "POOSL": {
+            "data_end_date": "2023-05-26 11:34:47+00:00",
+            "data_st_date": "2021-06-25 13:04:45+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Packager": {
+            "data_end_date": "2024-02-21 08:43:44+00:00",
+            "data_st_date": "2019-05-27 13:24:40+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Parsson": {
+            "data_end_date": "2024-02-27 10:56:20+00:00",
+            "data_st_date": "2021-06-07 16:54:46+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Platform": {
+            "data_end_date": "2024-03-23 17:57:29+00:00",
+            "data_st_date": "2001-05-02 17:05:12+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Product Lifecycle Management Platform": {
+            "data_end_date": "2019-10-07 08:15:39+00:00",
+            "data_st_date": "2017-09-22 15:52:43+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Proj4J": {
+            "data_end_date": "2023-06-02 13:57:55+00:00",
+            "data_st_date": "2017-10-11 01:42:22+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Public Access Submission System (PASS)": {
+            "data_end_date": "2024-02-27 15:10:48+00:00",
+            "data_st_date": "2008-02-11 15:22:32+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Qrisp": {
+            "data_end_date": "2024-03-06 10:16:47+00:00",
+            "data_st_date": "2023-05-05 10:14:50+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "RPC": {
+            "data_end_date": "2023-02-06 07:12:15+00:00",
+            "data_st_date": "2023-02-06 07:12:15+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "RasterFrames": {
+            "data_end_date": "2023-10-04 04:11:58+00:00",
+            "data_st_date": "2018-03-21 01:09:13+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "RedDeer": {
+            "data_end_date": "2023-09-06 07:21:21+00:00",
+            "data_st_date": "2012-08-01 13:31:46+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Remote Application Platform Incubator": {
+            "data_end_date": "2020-11-04 20:10:11+00:00",
+            "data_st_date": "2018-11-12 10:34:09+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Repairnator": {
+            "data_end_date": "2023-06-22 15:28:55+00:00",
+            "data_st_date": "2016-12-21 15:12:58+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Requirements Modeling Framework": {
+            "data_end_date": "2015-09-16 10:25:52+00:00",
+            "data_st_date": "2011-08-29 15:29:55+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Rich Beans": {
+            "data_end_date": "2018-02-01 15:26:24+00:00",
+            "data_st_date": "2014-07-15 13:10:40+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "SDV Blueprints": {
+            "data_end_date": "2024-03-18 19:28:55+00:00",
+            "data_st_date": "2023-06-30 13:45:05+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "SFCurve": {
+            "data_end_date": "2022-09-12 18:53:50+00:00",
+            "data_st_date": "2015-07-10 20:25:03+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "SW360": {
+            "data_end_date": "2024-03-21 07:47:08+00:00",
+            "data_st_date": "2016-09-22 14:44:44+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "SWTChart": {
+            "data_end_date": "2024-03-19 07:25:13+00:00",
+            "data_st_date": "2018-12-11 20:37:27+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Scanning": {
+            "data_end_date": "2017-11-20 10:53:58+00:00",
+            "data_st_date": "2017-03-03 11:00:37+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Semantic Modeling Framework (ESMF)": {
+            "data_end_date": "2024-03-21 10:44:05+00:00",
+            "data_st_date": "2017-10-07 21:58:59+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Serializer": {
+            "data_end_date": "2024-03-12 13:29:44+00:00",
+            "data_st_date": "2023-04-13 07:17:48+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Service Lifecycle Management": {
+            "data_end_date": "2023-12-14 10:48:06+00:00",
+            "data_st_date": "2023-03-27 19:34:55+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Signalling Engineering Toolbox": {
+            "data_end_date": "2024-03-22 12:39:07+00:00",
+            "data_st_date": "2022-03-31 08:14:41+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Sisu": {
+            "data_end_date": "2024-02-03 10:26:12+00:00",
+            "data_st_date": "2011-09-21 18:08:20+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "SmartMDSD": {
+            "data_end_date": "2022-01-21 13:09:16+00:00",
+            "data_st_date": "2020-04-07 13:31:26+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Sparkplug": {
+            "data_end_date": "2022-12-23 19:23:03+00:00",
+            "data_st_date": "2021-01-12 18:31:09+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Starter for EE": {
+            "data_end_date": "2024-02-04 20:15:20+00:00",
+            "data_st_date": "2020-04-22 13:59:47+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Steady": {
+            "data_end_date": "2023-08-12 14:47:40+00:00",
+            "data_st_date": "2018-10-11 16:10:50+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Store": {
+            "data_end_date": "2024-03-19 11:14:52+00:00",
+            "data_st_date": "2023-05-12 07:54:22+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Streamsheets": {
+            "data_end_date": "2022-01-14 18:50:44+00:00",
+            "data_st_date": "2019-10-18 10:01:33+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Symphony": {
+            "data_end_date": "2024-03-19 10:33:48+00:00",
+            "data_st_date": "2023-02-17 04:41:04+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "SysON": {
+            "data_end_date": "2024-03-22 16:30:25+00:00",
+            "data_st_date": "2023-12-01 16:36:35+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "TEA (Tasking Engine Advanced)": {
+            "data_end_date": "2024-03-14 08:56:00+00:00",
+            "data_st_date": "2017-05-19 19:35:09+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "TM4E - TextMate support in the IDE": {
+            "data_end_date": "2024-03-13 18:04:38+00:00",
+            "data_st_date": "2016-03-13 11:27:22+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "TOMLed": {
+            "data_end_date": "2022-02-23 15:14:55+00:00",
+            "data_st_date": "2022-02-09 12:10:13+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Tahu": {
+            "data_end_date": "2023-11-03 18:08:07+00:00",
+            "data_st_date": "2018-09-06 04:45:46+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "TeXlipse": {
+            "data_end_date": "2024-03-06 09:48:32+00:00",
+            "data_st_date": "2017-06-21 20:20:28+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "The Integrated Computational Environment": {
+            "data_end_date": "2017-07-06 14:27:54+00:00",
+            "data_st_date": "2014-11-03 16:43:05+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Thingweb": {
+            "data_end_date": "2024-03-18 15:54:49+00:00",
+            "data_st_date": "2018-06-06 08:47:40+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "ThreadX": {
+            "data_end_date": "2024-02-28 02:04:53+00:00",
+            "data_st_date": "2020-05-04 17:37:16+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Time4Sys": {
+            "data_end_date": "2018-06-04 10:22:56+00:00",
+            "data_st_date": "2017-05-10 09:07:01+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Tools Project": {
+            "data_end_date": "2019-08-27 14:44:57+00:00",
+            "data_st_date": "2006-10-04 13:48:38+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Trace Compass Incubator": {
+            "data_end_date": "2024-02-26 21:52:20+00:00",
+            "data_st_date": "2017-05-11 18:06:38+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Tractus-X": {
+            "data_end_date": "2024-03-22 21:09:13+00:00",
+            "data_st_date": "2021-12-20 10:43:18+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Transformer": {
+            "data_end_date": "2023-06-07 15:48:03+00:00",
+            "data_st_date": "2020-04-15 20:17:18+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Tycho": {
+            "data_end_date": "2024-03-22 13:29:33+00:00",
+            "data_st_date": "2011-09-19 09:51:45+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "UOMo": {
+            "data_end_date": "2023-12-11 23:06:57+00:00",
+            "data_st_date": "2010-10-22 13:28:23+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "UPM": {
+            "data_end_date": "2020-03-05 23:14:11+00:00",
+            "data_st_date": "2014-04-25 13:48:43+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "VOLTTRON": {
+            "data_end_date": "2024-03-18 21:28:32+00:00",
+            "data_st_date": "2020-08-18 20:28:01+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Velocitas": {
+            "data_end_date": "2024-03-22 14:40:33+00:00",
+            "data_st_date": "2022-06-23 09:53:04+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Vert.x": {
+            "data_end_date": "2024-03-23 10:34:02+00:00",
+            "data_st_date": "2013-08-01 15:10:56+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Vorto": {
+            "data_end_date": "2023-02-20 03:53:51+00:00",
+            "data_st_date": "2014-12-03 16:04:41+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Winery": {
+            "data_end_date": "2023-04-25 08:34:09+00:00",
+            "data_st_date": "2014-03-27 18:43:58+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "XACC": {
+            "data_end_date": "2023-08-01 21:44:29+00:00",
+            "data_st_date": "2017-01-13 14:53:29+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Xpanse": {
+            "data_end_date": "2024-03-20 02:55:54+00:00",
+            "data_st_date": "2022-02-20 10:00:55+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Xpect": {
+            "data_end_date": "2023-10-14 15:30:39+00:00",
+            "data_st_date": "2017-08-31 17:23:31+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Xsemantics": {
+            "data_end_date": "2023-11-29 13:09:39+00:00",
+            "data_st_date": "2017-09-07 19:05:10+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "Zenoh": {
+            "data_end_date": "2024-03-23 13:14:31+00:00",
+            "data_st_date": "2020-03-05 16:38:43+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "aCute - C# and .NET Core development tools in IDE": {
+            "data_end_date": "2022-11-25 18:46:29+00:00",
+            "data_st_date": "2017-08-31 18:04:41+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "eCAL (enhanced Communication Abstraction Layer)": {
+            "data_end_date": "2024-03-22 13:25:28+00:00",
+            "data_st_date": "2019-06-04 07:31:10+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "fog05": {
+            "data_end_date": "2021-12-03 08:46:48+00:00",
+            "data_st_date": "2018-07-16 12:24:51+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "hawkBit": {
+            "data_end_date": "2024-03-19 15:35:14+00:00",
+            "data_st_date": "2015-11-06 14:54:16+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "ioFog": {
+            "data_end_date": "2024-02-05 09:56:04+00:00",
+            "data_st_date": "2016-04-01 16:38:05+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "jbom": {
+            "data_end_date": "2023-04-07 01:41:26+00:00",
+            "data_st_date": "2021-12-20 23:39:41+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "openDuT": {
+            "data_end_date": "2024-03-04 07:22:52+00:00",
+            "data_st_date": "2023-12-12 08:47:30+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "p3com": {
+            "data_end_date": "2023-05-16 11:40:25+00:00",
+            "data_st_date": "2023-03-31 13:43:12+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "sensiNact": {
+            "data_end_date": "2024-03-14 17:36:49+00:00",
+            "data_st_date": "2017-06-22 14:08:34+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "tinydtls": {
+            "data_end_date": "2024-03-18 11:18:31+00:00",
+            "data_st_date": "2016-02-02 17:39:21+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "uDig: User-friendly Desktop Internet GIS": {
+            "data_end_date": "2022-07-06 07:40:27+00:00",
+            "data_st_date": "2010-04-07 02:23:05+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        },
+        "uProtocol": {
+            "data_end_date": "2024-03-19 15:23:13+00:00",
+            "data_st_date": "2023-05-18 00:41:48+00:00",
+            "inc_end_date": "NaT",
+            "inc_st_date": "NaT"
+        }
+    },
+    "st_late": {
+        "Activation": {
+            "data_end_date": "2024-02-14 15:04:26+00:00",
+            "data_st_date": "2018-09-07 09:37:33+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-06-20 00:00:00+00:00"
+        },
+        "Amalgam": {
+            "data_end_date": "2023-05-10 09:50:02+00:00",
+            "data_st_date": "2008-08-11 12:33:03+00:00",
+            "inc_end_date": "2010-06-11 00:00:00+00:00",
+            "inc_st_date": "2008-01-30 00:00:00+00:00"
+        },
+        "BIRT (Business Intelligence and Reporting Tools)": {
+            "data_end_date": "2024-03-21 05:22:49+00:00",
+            "data_st_date": "2005-02-03 22:37:19+00:00",
+            "inc_end_date": "2009-06-10 00:00:00+00:00",
+            "inc_st_date": "2004-09-30 00:00:00+00:00"
+        },
+        "Batch": {
+            "data_end_date": "2022-06-02 21:48:35+00:00",
+            "data_st_date": "2019-07-11 16:25:53+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2019-06-05 00:00:00+00:00"
+        },
+        "Cargo Tracker": {
+            "data_end_date": "2024-01-07 23:24:19+00:00",
+            "data_st_date": "2019-09-16 04:11:30+00:00",
+            "inc_end_date": "2021-03-17 00:00:00+00:00",
+            "inc_st_date": "2019-08-07 00:00:00+00:00"
+        },
+        "Dali Java Persistence Tools": {
+            "data_end_date": "2023-08-01 00:51:19+00:00",
+            "data_st_date": "2007-04-25 20:09:37+00:00",
+            "inc_end_date": "2007-02-28 00:00:00+00:00",
+            "inc_st_date": "2005-07-21 00:00:00+00:00"
+        },
+        "Dirigible": {
+            "data_end_date": "2024-03-22 18:32:12+00:00",
+            "data_st_date": "2015-05-11 15:57:00+00:00",
+            "inc_end_date": "2017-11-14 00:00:00+00:00",
+            "inc_st_date": "2015-03-18 00:00:00+00:00"
+        },
+        "Dynamic Languages Toolkit": {
+            "data_end_date": "2023-07-14 12:00:09+00:00",
+            "data_st_date": "2007-02-08 12:38:54+00:00",
+            "inc_end_date": "2009-06-10 00:00:00+00:00",
+            "inc_st_date": "2006-12-06 00:00:00+00:00"
+        },
+        "EE Platform": {
+            "data_end_date": "2023-12-05 23:26:28+00:00",
+            "data_st_date": "2018-12-20 10:24:40+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-06-20 00:00:00+00:00"
+        },
+        "EGerrit": {
+            "data_end_date": "2020-03-24 18:31:03+00:00",
+            "data_st_date": "2015-05-19 13:06:41+00:00",
+            "inc_end_date": "2017-06-07 00:00:00+00:00",
+            "inc_st_date": "2015-02-18 00:00:00+00:00"
+        },
+        "EMF Client Platform": {
+            "data_end_date": "2022-11-07 10:56:06+00:00",
+            "data_st_date": "2010-11-24 15:14:01+00:00",
+            "inc_end_date": "2013-06-12 00:00:00+00:00",
+            "inc_st_date": "2010-08-25 00:00:00+00:00"
+        },
+        "EMFStore": {
+            "data_end_date": "2022-05-02 09:22:05+00:00",
+            "data_st_date": "2010-12-15 19:08:36+00:00",
+            "inc_end_date": "2013-07-24 00:00:00+00:00",
+            "inc_st_date": "2010-08-25 00:00:00+00:00"
+        },
+        "EclEmma": {
+            "data_end_date": "2024-02-15 19:03:12+00:00",
+            "data_st_date": "2016-08-30 18:01:19+00:00",
+            "inc_end_date": "2017-06-07 00:00:00+00:00",
+            "inc_st_date": "2016-07-27 00:00:00+00:00"
+        },
+        "Edapt": {
+            "data_end_date": "2023-09-12 09:29:08+00:00",
+            "data_st_date": "2009-07-29 14:56:45+00:00",
+            "inc_end_date": "2014-10-29 00:00:00+00:00",
+            "inc_st_date": "2009-06-10 00:00:00+00:00"
+        },
+        "Expression Language": {
+            "data_end_date": "2024-02-22 17:35:29+00:00",
+            "data_st_date": "2018-06-07 08:56:39+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-03-07 00:00:00+00:00"
+        },
+        "Faces": {
+            "data_end_date": "2023-03-16 20:57:41+00:00",
+            "data_st_date": "2022-01-26 01:52:53+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2019-07-03 00:00:00+00:00"
+        },
+        "Grizzly": {
+            "data_end_date": "2023-11-29 22:16:52+00:00",
+            "data_st_date": "2018-01-22 10:38:38+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2017-12-18 00:00:00+00:00"
+        },
+        "Implementation of JAXB": {
+            "data_end_date": "2024-03-05 21:24:22+00:00",
+            "data_st_date": "2018-09-12 09:36:49+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-07-04 00:00:00+00:00"
+        },
+        "JSON Binding": {
+            "data_end_date": "2024-03-07 12:14:19+00:00",
+            "data_st_date": "2018-05-25 14:18:08+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-03-07 00:00:00+00:00"
+        },
+        "Jersey": {
+            "data_end_date": "2024-03-14 12:29:20+00:00",
+            "data_st_date": "2018-04-25 15:50:03+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2017-12-18 00:00:00+00:00"
+        },
+        "Kapua": {
+            "data_end_date": "2024-03-22 16:17:04+00:00",
+            "data_st_date": "2016-10-14 15:23:13+00:00",
+            "inc_end_date": "2018-10-03 00:00:00+00:00",
+            "inc_st_date": "2016-07-06 00:00:00+00:00"
+        },
+        "Keyple": {
+            "data_end_date": "2024-03-19 17:30:23+00:00",
+            "data_st_date": "2019-03-08 14:49:36+00:00",
+            "inc_end_date": "2022-09-13 00:00:00+00:00",
+            "inc_st_date": "2018-10-03 00:00:00+00:00"
+        },
+        "Kiso": {
+            "data_end_date": "2024-03-05 09:20:10+00:00",
+            "data_st_date": "2019-12-18 08:49:30+00:00",
+            "inc_end_date": "2021-07-21 00:00:00+00:00",
+            "inc_st_date": "2019-05-15 00:00:00+00:00"
+        },
+        "Kitalpha": {
+            "data_end_date": "2024-03-19 20:50:27+00:00",
+            "data_st_date": "2014-07-21 13:12:10+00:00",
+            "inc_end_date": "2019-12-04 00:00:00+00:00",
+            "inc_st_date": "2014-04-09 00:00:00+00:00"
+        },
+        "Krazo": {
+            "data_end_date": "2023-07-25 06:56:16+00:00",
+            "data_st_date": "2018-12-15 06:43:27+00:00",
+            "inc_end_date": "2020-10-21 00:00:00+00:00",
+            "inc_st_date": "2018-09-19 00:00:00+00:00"
+        },
+        "Lyo": {
+            "data_end_date": "2024-01-01 16:38:59+00:00",
+            "data_st_date": "2011-10-17 12:49:26+00:00",
+            "inc_end_date": "2012-10-10 00:00:00+00:00",
+            "inc_st_date": "2011-07-13 00:00:00+00:00"
+        },
+        "Mail": {
+            "data_end_date": "2024-02-16 07:58:51+00:00",
+            "data_st_date": "2018-09-10 07:04:25+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-03-07 00:00:00+00:00"
+        },
+        "Metro": {
+            "data_end_date": "2024-03-06 14:57:32+00:00",
+            "data_st_date": "2018-09-19 12:58:20+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-07-04 00:00:00+00:00"
+        },
+        "Mojarra": {
+            "data_end_date": "2024-03-23 13:47:45+00:00",
+            "data_st_date": "2018-04-16 06:18:46+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2017-12-18 00:00:00+00:00"
+        },
+        "ORB": {
+            "data_end_date": "2024-02-05 17:52:06+00:00",
+            "data_st_date": "2018-09-05 15:15:11+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-07-04 00:00:00+00:00"
+        },
+        "OpenMQ": {
+            "data_end_date": "2024-03-23 17:39:37+00:00",
+            "data_st_date": "2018-01-24 16:45:05+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2017-12-18 00:00:00+00:00"
+        },
+        "Orbit Project": {
+            "data_end_date": "2024-02-15 15:31:11+00:00",
+            "data_st_date": "2016-03-25 22:41:44+00:00",
+            "inc_end_date": "2023-02-08 00:00:00+00:00",
+            "inc_st_date": "2006-09-11 00:00:00+00:00"
+        },
+        "Packaging Project": {
+            "data_end_date": "2021-10-14 09:10:28+00:00",
+            "data_st_date": "2019-10-10 13:51:43+00:00",
+            "inc_end_date": "2008-05-20 00:00:00+00:00",
+            "inc_st_date": "2007-01-31 00:00:00+00:00"
+        },
+        "Persistence": {
+            "data_end_date": "2024-03-22 19:45:17+00:00",
+            "data_st_date": "2018-08-30 20:27:36+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-07-18 00:00:00+00:00"
+        },
+        "RDF4J": {
+            "data_end_date": "2024-03-06 20:28:20+00:00",
+            "data_st_date": "2016-01-14 21:28:23+00:00",
+            "inc_end_date": "2016-08-17 00:00:00+00:00",
+            "inc_st_date": "2015-06-03 00:00:00+00:00"
+        },
+        "RESTful Web Services": {
+            "data_end_date": "2024-03-20 14:14:07+00:00",
+            "data_st_date": "2018-02-13 18:14:39+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2017-12-18 00:00:00+00:00"
+        },
+        "Remote Application Platform": {
+            "data_end_date": "2024-03-13 12:00:00+00:00",
+            "data_st_date": "2006-08-03 20:57:35+00:00",
+            "inc_end_date": "2009-06-10 00:00:00+00:00",
+            "inc_st_date": "2006-06-21 00:00:00+00:00"
+        },
+        "SUMO": {
+            "data_end_date": "2024-03-24 00:34:37+00:00",
+            "data_st_date": "2018-04-10 10:10:26+00:00",
+            "inc_end_date": "2019-10-02 00:00:00+00:00",
+            "inc_st_date": "2017-06-21 00:00:00+00:00"
+        },
+        "SWTBot": {
+            "data_end_date": "2023-12-15 09:50:22+00:00",
+            "data_st_date": "2008-12-16 15:48:04+00:00",
+            "inc_end_date": "2013-03-20 00:00:00+00:00",
+            "inc_st_date": "2008-11-12 00:00:00+00:00"
+        },
+        "Server Pages": {
+            "data_end_date": "2024-02-27 13:30:34+00:00",
+            "data_st_date": "2018-08-17 07:54:03+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-05-02 00:00:00+00:00"
+        },
+        "Servlet": {
+            "data_end_date": "2024-03-22 11:26:45+00:00",
+            "data_st_date": "2018-06-06 09:24:17+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-05-02 00:00:00+00:00"
+        },
+        "Soteria": {
+            "data_end_date": "2022-11-22 12:05:29+00:00",
+            "data_st_date": "2018-05-25 06:23:25+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-03-07 00:00:00+00:00"
+        },
+        "Sprotty": {
+            "data_end_date": "2024-03-11 12:53:24+00:00",
+            "data_st_date": "2018-09-29 07:35:11+00:00",
+            "inc_end_date": "2023-10-04 00:00:00+00:00",
+            "inc_st_date": "2018-08-01 00:00:00+00:00"
+        },
+        "Standard Tag Library": {
+            "data_end_date": "2023-02-06 19:34:40+00:00",
+            "data_st_date": "2018-08-17 01:19:21+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-03-07 00:00:00+00:00"
+        },
+        "Tools for Cloud Foundry": {
+            "data_end_date": "2017-09-07 19:38:55+00:00",
+            "data_st_date": "2015-10-07 20:45:43+00:00",
+            "inc_end_date": "2016-06-01 00:00:00+00:00",
+            "inc_st_date": "2015-08-19 00:00:00+00:00"
+        },
+        "Tools for Faces": {
+            "data_end_date": "2023-08-30 04:13:30+00:00",
+            "data_st_date": "2005-12-03 01:14:37+00:00",
+            "inc_end_date": "2007-02-28 00:00:00+00:00",
+            "inc_st_date": "2005-08-26 00:00:00+00:00"
+        },
+        "Transactions": {
+            "data_end_date": "2022-02-02 14:09:07+00:00",
+            "data_st_date": "2018-04-12 10:20:48+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-03-07 00:00:00+00:00"
+        },
+        "Tyrus": {
+            "data_end_date": "2024-01-05 15:32:22+00:00",
+            "data_st_date": "2018-01-19 12:07:00+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2017-12-18 00:00:00+00:00"
+        },
+        "Virgo": {
+            "data_end_date": "2023-10-29 18:48:15+00:00",
+            "data_st_date": "2010-04-20 11:01:27+00:00",
+            "inc_end_date": "2011-09-21 00:00:00+00:00",
+            "inc_st_date": "2010-02-24 00:00:00+00:00"
+        },
+        "WaSP": {
+            "data_end_date": "2023-12-08 13:16:50+00:00",
+            "data_st_date": "2020-12-22 20:05:34+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2020-05-20 00:00:00+00:00"
+        },
+        "Wakaama": {
+            "data_end_date": "2024-02-08 10:46:43+00:00",
+            "data_st_date": "2014-07-16 17:34:01+00:00",
+            "inc_end_date": "2018-12-19 00:00:00+00:00",
+            "inc_st_date": "2014-03-26 00:00:00+00:00"
+        },
+        "WebSocket": {
+            "data_end_date": "2024-01-12 07:56:05+00:00",
+            "data_st_date": "2018-01-18 14:30:49+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2017-12-18 00:00:00+00:00"
+        },
+        "Wild Web Developer": {
+            "data_end_date": "2024-02-27 18:27:27+00:00",
+            "data_st_date": "2018-09-11 18:41:50+00:00",
+            "inc_end_date": "2022-11-02 00:00:00+00:00",
+            "inc_st_date": "2018-08-01 00:00:00+00:00"
+        },
+        "XML Binding": {
+            "data_end_date": "2024-02-19 08:21:49+00:00",
+            "data_st_date": "2018-09-24 09:31:06+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-06-20 00:00:00+00:00"
+        },
+        "XML Web Services": {
+            "data_end_date": "2024-03-20 18:58:47+00:00",
+            "data_st_date": "2018-09-12 11:46:45+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-06-20 00:00:00+00:00"
+        },
+        "iceoryx": {
+            "data_end_date": "2024-03-19 09:45:22+00:00",
+            "data_st_date": "2019-10-23 16:14:00+00:00",
+            "inc_end_date": "2021-04-07 00:00:00+00:00",
+            "inc_st_date": "2019-08-07 00:00:00+00:00"
+        }
+    },
+    "end_early": {
+        "Bridge.IoT": {
+            "data_end_date": "2018-12-14 09:26:32+00:00",
+            "data_st_date": "2018-11-09 16:04:13+00:00",
+            "inc_end_date": "2022-02-16 00:00:00+00:00",
+            "inc_st_date": "2017-12-06 00:00:00+00:00"
+        },
+        "Ceylon": {
+            "data_end_date": "2020-04-27 18:36:12+00:00",
+            "data_st_date": "2017-12-07 19:48:33+00:00",
+            "inc_end_date": "2023-04-05 00:00:00+00:00",
+            "inc_st_date": "2017-07-19 00:00:00+00:00"
+        },
+        "Concierge": {
+            "data_end_date": "2019-10-23 12:26:11+00:00",
+            "data_st_date": "2014-03-13 05:13:17+00:00",
+            "inc_end_date": "2022-10-19 00:00:00+00:00",
+            "inc_st_date": "2014-08-13 00:00:00+00:00"
+        },
+        "Edje": {
+            "data_end_date": "2017-02-07 08:28:54+00:00",
+            "data_st_date": "2016-07-21 14:35:29+00:00",
+            "inc_end_date": "2018-10-03 00:00:00+00:00",
+            "inc_st_date": "2016-03-02 00:00:00+00:00"
+        },
+        "Gemini Naming": {
+            "data_end_date": "2015-02-19 15:02:27+00:00",
+            "data_st_date": "2010-02-18 16:16:40+00:00",
+            "inc_end_date": "2022-05-25 00:00:00+00:00",
+            "inc_st_date": "2012-02-15 00:00:00+00:00"
+        },
+        "Golo": {
+            "data_end_date": "2021-10-19 21:42:09+00:00",
+            "data_st_date": "2015-06-30 14:50:18+00:00",
+            "inc_end_date": "2022-09-14 00:00:00+00:00",
+            "inc_st_date": "2015-06-17 00:00:00+00:00"
+        },
+        "Jemo - Cloud Application Runtime": {
+            "data_end_date": "2019-10-21 09:38:32+00:00",
+            "data_st_date": "2019-01-08 15:45:56+00:00",
+            "inc_end_date": "2023-09-14 00:00:00+00:00",
+            "inc_st_date": "2018-12-19 00:00:00+00:00"
+        },
+        "MoDisco": {
+            "data_end_date": "2018-05-24 12:52:48+00:00",
+            "data_st_date": "2006-11-03 14:18:25+00:00",
+            "inc_end_date": "2019-11-20 00:00:00+00:00",
+            "inc_st_date": "2016-06-01 00:00:00+00:00"
+        },
+        "NeoSCADA": {
+            "data_end_date": "2019-04-11 09:57:19+00:00",
+            "data_st_date": "2013-09-17 08:35:24+00:00",
+            "inc_end_date": "2021-03-03 00:00:00+00:00",
+            "inc_st_date": "2020-04-15 00:00:00+00:00"
+        },
+        "Parallel Tools Platform (PTP)": {
+            "data_end_date": "2023-06-06 21:46:04+00:00",
+            "data_st_date": "2004-12-10 16:07:36+00:00",
+            "inc_end_date": "2023-11-29 00:00:00+00:00",
+            "inc_st_date": "2017-01-18 00:00:00+00:00"
+        },
+        "Ponte": {
+            "data_end_date": "2017-02-17 22:42:52+00:00",
+            "data_st_date": "2014-04-18 07:56:25+00:00",
+            "inc_end_date": "2018-07-18 00:00:00+00:00",
+            "inc_st_date": "2014-08-13 00:00:00+00:00"
+        },
+        "Riena": {
+            "data_end_date": "2020-06-02 12:43:37+00:00",
+            "data_st_date": "2008-01-16 16:40:54+00:00",
+            "inc_end_date": "2024-10-07 00:00:00+00:00",
+            "inc_st_date": "2007-12-19 00:00:00+00:00"
+        },
+        "SW360antenna": {
+            "data_end_date": "2021-01-15 15:28:41+00:00",
+            "data_st_date": "2018-09-14 17:45:27+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-05-16 00:00:00+00:00"
+        },
+        "SmartHome": {
+            "data_end_date": "2019-01-31 14:37:00+00:00",
+            "data_st_date": "2014-01-10 14:53:28+00:00",
+            "inc_end_date": "2020-05-06 00:00:00+00:00",
+            "inc_st_date": "2014-08-13 00:00:00+00:00"
+        },
+        "Stable APIs": {
+            "data_end_date": "2019-08-06 20:36:06+00:00",
+            "data_st_date": "2018-05-24 17:29:02+00:00",
+            "inc_end_date": "2021-02-17 00:00:00+00:00",
+            "inc_st_date": "2018-05-16 00:00:00+00:00"
+        },
+        "Tangle Marketplaces": {
+            "data_end_date": "2020-09-16 07:44:03+00:00",
+            "data_st_date": "2020-09-16 07:44:03+00:00",
+            "inc_end_date": "2022-02-02 00:00:00+00:00",
+            "inc_st_date": "2020-05-06 00:00:00+00:00"
+        },
+        "Unide": {
+            "data_end_date": "2019-11-29 08:26:38+00:00",
+            "data_st_date": "2016-12-07 11:54:29+00:00",
+            "inc_end_date": "2023-09-27 00:00:00+00:00",
+            "inc_st_date": "2016-09-14 00:00:00+00:00"
+        }
+    },
+    "unmatched_inc_labels": [
+        "Lua Development Tools",
+        "Papyrus",
+        "WTP Source Editing",
+        "EMF",
+        "Handly",
+        "BPMN2 Modeler Project",
+        "Target Management: Terminal and Remote System Explorer (RSE)"
+    ],
+    "Number of Incubation Labels that went Unmatched": 7,
+    "Number of Missing Dates": 176,
+    "Number of Start Late": 56,
+    "Number of End Early": 17,
+    "Number of Truncated Tech Projects": 76,
+    "Number of Truncated Social Projects": 76
+}

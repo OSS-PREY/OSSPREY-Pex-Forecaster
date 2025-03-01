@@ -42,7 +42,16 @@ def merge_st_end_dates(df: pd.DataFrame, dates: pd.DataFrame) -> pd.DataFrame:
         df, dates, left_on="project_name", right_on="project", how="left"
     )
     merged.drop(columns="project", inplace=True)
-    return merged
+    
+    # localize timezone
+    if merged.date.iloc[0].tzinfo is None:
+        merged.date = merged.date.dt.tz_localize("UTC")
+    
+    # check which incubation labels got skipped
+    inc_no_match = set(dates.project.unique()) - set(df.project_name.unique())
+    
+    # return 
+    return merged, inc_no_match
 
 def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame) -> dict[str, pd.DataFrame | dict[str, dict[str, str]]]:
     """Checks whether we have data to cover the full incubation period for a 
@@ -78,40 +87,28 @@ def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame) -> dict[str, p
     """
     
     # auxiliary fn
-    def is_valid_project(proj_tdf: pd.DataFrame, proj_sdf: pd.DataFrame, ndays_tol: int=30) -> bool:
+    def is_valid_project(proj_tdf: pd.DataFrame, proj_sdf: pd.DataFrame, ndays_tol: int=30) -> str:
         """Indicator function to test if a project contains the necessary 
         requirements to be kept. Requires tech and social data for a given 
         project simultaneously. Allows for some number of days of tolerance.
         
-        Returns True if the project is valid, otherwise False.
-        """
-        
-        """
-        if (proj_tdf.date.max().date)< proj_tdf.end_date.iloc[0].date:
-            proj_end_date = proj_tdf.date.max().date
-        else:
-            proj_end_date = proj_tdf.end_date.iloc[0].date
-        
-        if (proj_tdf.date.min().date)> proj_tdf.st_date.iloc[0].date:
-            proj_end_date = proj_tdf.date.min().date
-        else:
-            proj_end_date = proj_tdf.st_date.iloc[0].date
-        
+        Returns the reason for invalidity (missing, end_early, st_late) or 
+        valid as str 
         """
         
         # check if the end dates are within the tolerance or better
         if pd.isnull(proj_tdf.end_date.iloc[0].date()) or pd.isnull(proj_tdf.st_date.iloc[0].date()):
-            return False
+            return "missing"
         
-        if (proj_tdf.date.max().date() - proj_tdf.end_date.iloc[0].date()).days < ndays_tol:
-            return False
+        if (proj_tdf.date.max().date() - proj_tdf.end_date.iloc[0].date()).days < -ndays_tol:
+            return "end_early"
 
         # check if the start dates are within the tolerance or better
         if (proj_tdf.date.min().date() - proj_tdf.st_date.iloc[0].date()).days > ndays_tol:
-            return False
+            return "st_late"
 
         # passed checks
-        return True
+        return "valid"
 
     
     # only keep overlapping projects
@@ -121,21 +118,28 @@ def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame) -> dict[str, p
     
     # lookups to build
     valid_projects = list()
-    invalid_info = dict()
+    invalid_info = dict(zip(
+        ["missing", "st_late", "end_early"],
+        [dict() for _ in range(3)]
+    ))
     
     # traverse valid projects
     for (proj, proj_tdf), (_, proj_sdf) in zip(
         mtdf.groupby("project_name", observed=True),
         msdf.groupby("project_name", observed=True)
     ):
-        if is_valid_project(proj_tdf, proj_sdf):
+        # grab validity info
+        is_valid = is_valid_project(proj_tdf, proj_sdf)
+        
+        # record
+        if is_valid == "valid":
             valid_projects.append(proj)
         else:
-            invalid_info[proj] = {
-                "data_end_date": proj_tdf.date.max(),
-                "data_st_date": proj_tdf.date.min(),
-                "inc_end_date": proj_sdf.end_date.iloc[0],
-                "inc_st_date": proj_sdf.st_date.iloc[0]
+            invalid_info[is_valid][proj] = {
+                "data_end_date": str(proj_tdf.date.max()),
+                "data_st_date": str(proj_tdf.date.min()),
+                "inc_end_date": str(proj_tdf.end_date.iloc[0]),
+                "inc_st_date": str(proj_tdf.st_date.iloc[0])
             }
     
     # remove invalids
@@ -146,7 +150,7 @@ def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame) -> dict[str, p
     return {
         "mtdf": mtdf,
         "msdf": msdf,
-        "missing": invalid_info
+        "info": invalid_info
     }
 
 def truncate_data(df: pd.DataFrame) -> tuple[pd.DataFrame, int]:
@@ -244,8 +248,8 @@ def truncate_incubation_time(
     
     # convert lookup into a useable format
     dates = pd.DataFrame(dates)
-    dates["start-incubation"] = pd.to_datetime(dates["start-incubation"])
-    dates["end-incubation"] = pd.to_datetime(dates["end-incubation"])
+    dates["start-incubation"] = pd.to_datetime(dates["start-incubation"]).dt.tz_localize("UTC")
+    dates["end-incubation"] = pd.to_datetime(dates["end-incubation"]).dt.tz_localize("UTC")
     dates.reset_index(names="project", inplace=True)
     dates.rename(
         columns={"start-incubation": "st_date", "end-incubation": "end_date"},
@@ -254,14 +258,14 @@ def truncate_incubation_time(
 
     # merge the lookup
     log("integrating start and end dates...")
-    mtdf = merge_st_end_dates(tdf, dates)
-    msdf = merge_st_end_dates(sdf, dates)
+    mtdf, t_inc_no_match = merge_st_end_dates(tdf, dates)
+    msdf, s_inc_no_match = merge_st_end_dates(sdf, dates)
     
     # check that we keep only the projects with enough data
     log("checking projects with sufficient, overlapping data...")
     csd_ret = check_sufficient_data(mtdf, msdf)
     mtdf, msdf = csd_ret["mtdf"], csd_ret["msdf"]
-    validity_info = csd_ret["missing"]
+    validity_info = csd_ret["info"]
     
     # enforce the truncation restriction
     log("enforcing truncation...")
@@ -269,12 +273,23 @@ def truncate_incubation_time(
     msdf, ntruncated_social = truncate_data(msdf)
     
     # update report info and print the report
-    validity_info.update({
-        "num_projects_truncated_tech": ntruncated_tech,
-        "num_projects_truncated_social": ntruncated_social
-    })
+    validity_info["unmatched_inc_labels"] = list(t_inc_no_match)
+    report_info = {
+        "Number of Incubation Labels that went Unmatched": len(t_inc_no_match),
+        "Number of Missing Dates": len(validity_info["missing"]),
+        "Number of Start Late": len(validity_info["st_late"]),
+        "Number of End Early": len(validity_info["end_early"]),
+        "Number of Truncated Tech Projects": ntruncated_tech,
+        "Number of Truncated Social Projects": ntruncated_social
+    }
     log(log_type="summary")
-    log(validity_info, log_type="report")
+    log(report_info, log_type="report")
+    validity_info.update(report_info)
+    
+    report_path = Path(params_dict["preprocess-report-dir"]) / "date_enforcement"
+    check_dir(report_path)
+    with open(report_path / f"{incubator}.json", "w") as f:
+        json.dump(validity_info, f, indent=4)
     
     # save the files
     if save_versions is not None:

@@ -39,6 +39,7 @@
     "trajectory-dir": "./trajectories/",
     "delta-cache-dir": "./net-caches/",
     "visuals-dir": "./visuals/",
+    "preprocess-report-dir": "./reports/",
     "field-mappings": {
         "eclipse": {
             "tech": {

@@ -17,7 +17,7 @@ __IMPL_INCUBATORS = [
     "apache",
     "eclipse",
     "github",
-    "osgeo"
+    # "osgeo"
 ]
 _DATA_URLS = {
     "apache": {
@@ -107,9 +107,10 @@ def check_raw_data(verbosity: int=2) -> int:
                 )
                 ndownloads += 1
                 gdown.download(
-                    url,
-                    dl_path,
-                    quiet=(verbosity < 2)
+                    url=str(url),
+                    output=str(dl_path),
+                    quiet=(verbosity < 2),
+                    fuzzy=True
                 )
             
     # summary
@@ -148,7 +149,7 @@ def check_directory_structure(verbosity: int=2) -> int:
     ncreations = 0
     
     # create all necessary folders
-    for folder_name, folder in __FOLDERS:
+    for folder_name, folder in __FOLDERS.items():
         # join paths
         dir_path = BASE_PATH / folder
         
