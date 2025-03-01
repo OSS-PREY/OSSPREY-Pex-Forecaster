@@ -367,7 +367,6 @@ class PerfData:
         # setup
         df = self.data.copy().drop(columns=["date"])
         group_cols = ["transfer_strategy", "model_arch", "month", "label", "metric"]
-        params = params
         
         if metrics == None:
             metrics = ["accuracy"]
@@ -383,9 +382,9 @@ class PerfData:
 
             # setup
             translated_str = f"[{strat}] -- "
-            decoder = params["abbreviations"]
+            decoder = params_dict["abbreviations"]
             decoder = {v: k for k, v in decoder.items()}
-            lookup_augs = params["augmentation-descriptions"]
+            lookup_augs = params_dict["augmentation-descriptions"]
 
             # tokenize
             train_str, test_str = strat.split("-->")
@@ -408,7 +407,7 @@ class PerfData:
                     matched_str = re.match(default_pattern, incubator_str)
                     inc = matched_str.group(1)
                     
-                    default_version = params["default-versions"][decoder[inc]]
+                    default_version = params_dict["default-versions"][decoder[inc]]
                     tec = default_version[0]
                     soc = default_version[1]
                 else:
@@ -786,7 +785,7 @@ class PerfData:
                        ("weighted avg", "f1-score")]
         if isinstance(options, str):
             # generate options dict
-            abbrevations = params["network-aug-shorthand"]
+            abbrevations = params_dict["network-aug-shorthand"]
             options = set(options)
             options = {k: (k in options) for k in abbrevations}
 
@@ -800,7 +799,7 @@ class PerfData:
             name_modifier = "-".join([abbrevations.get(k, "ERR") for k in options if options.get(k, False)])
 
             # load abbrevations and only select specified ones
-            abbrevations = params["network-aug-shorthand"]
+            abbrevations = params_dict["network-aug-shorthand"]
             shorthand_abbrv = [k for k, v in abbrevations.items() if options.get(k, False)]
             match_strs = "|".join(map(re.escape, shorthand_abbrv))       # escape special chars
 
@@ -1062,9 +1061,8 @@ class PerfData:
             plt.close()
         
         # check incubator
-        params = params
         if incubator is None:
-            incubators = params["datasets"]
+            incubators = params_dict["datasets"]
         else:
             incubators = [incubator]
             

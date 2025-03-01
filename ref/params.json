@@ -268,7 +268,7 @@
     "default-versions": {
         "apache": [1, 1],
         "github": [3, 4],
-        "eclipse": [1, 1],
+        "eclipse": [2, 2],
         "osgeo": [2, 2]
     },
     "network-augmentations": {
