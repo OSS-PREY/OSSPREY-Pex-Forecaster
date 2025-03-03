@@ -472,13 +472,17 @@ class DeltaData:
 
 
     # predictions & trajectories
-    def gen_forecasts(self, model_arch: str="BLSTM", **kwargs) -> dict[int, float]:
+    def gen_forecasts(self, model_arch: str="BLSTM", lag: int=12, **kwargs) -> dict[int, float]:
         """Generates the forecasts for all new months of data for export back.
         Caches the result within the object for easy tasks in the future.
 
         Args:
             model_arch (str, optional): model architecture to use {BLSTM, BGRU}.
                 Defaults to "BLSTM".
+            lag (int, optional): number of months to consider for the prediction
+                of the next month, i.e. feeds in months [m - lag, m - 1] to 
+                predict month m. For months < m, we'll feed all possible months.
+                Defaults to 12.
 
         Returns:
             dict[int, float]: month number to sustainability forecast for that 
@@ -639,8 +643,8 @@ class DeltaData:
         fcs = dict()
         log("Generating Forecasts", "new")
         for i in tqdm(range(1, num_months + 1)):
-            # grab the first i months
-            data = X[:i, ...]
+            # grab the first i months up to lag months
+            data = X[max(i - lag, 0):i, ...]
             
             # transform data to use
             data = data.to(DEVICE)
@@ -676,7 +680,7 @@ class DeltaData:
         self.forecasts = fcs
         return fcs
     
-    def gen_trajectories(self, nmonths: int=3, strat: str="AR") -> dict[int, dict[str, list[float]]]:
+    def gen_trajectories(self, nmonths: int=3, strat: str="AR", lag: int=12) -> dict[int, dict[str, list[float]]]:
         """Generates the trajectories for each month requested using the given
         strategy.
 
@@ -685,6 +689,9 @@ class DeltaData:
                 to 3.
             strat (str, optional): strategy to use when generating forecasts.
                 Defaults to "AR".
+            lag (int, optional): number of months to consider when generating 
+                the trajectory. Defaults to min{12, number of forecasted 
+                months}.
 
         Returns:
             dict[int, dict[str, list[float]]]: lookup for the trajectory result
@@ -696,7 +703,7 @@ class DeltaData:
         """
         
         # generate via the strategy selected
-        lag = min(3, len(self.forecasts))
+        lag = min(12, len(self.forecasts))
         k = nmonths
         forecasts = np.array(list(dict(sorted(self.forecasts.items())).values()))
         

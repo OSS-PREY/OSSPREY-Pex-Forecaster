@@ -17,7 +17,7 @@ with open("requirements.txt", "r") as f:
 
 setup(
     name="decalfc",
-    version="1.2",
+    version="1.2.1",
     description="Module for on the fly socio-technical network data generation, forecasting, and trajectory building.",
     license="Apache",
     long_description=long_description,
