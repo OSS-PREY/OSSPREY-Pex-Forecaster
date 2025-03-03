@@ -46,11 +46,11 @@ _DATA_URLS = {
     },
     "osgeo": {
         "tech": {
-            "commits": "https://drive.google.com/file/d/1LTex3X2_sgAy2Dy79wYvVURbi3sJzYyA/view?usp=sharing"
+            "commits": "https://drive.google.com/file/d/1qoIa1XVQL2etWbEyIkILjnBCB5BsiJqL/view?usp=drive_link"
         },
         "social": {
-            "emails": "",
-            "issues": ""
+            "emails": "https://drive.google.com/file/d/1gYIMaY-tTluMWhYde20U5bTtp5fLy-r9/view?usp=drive_link",
+            "issues": "https://drive.google.com/file/d/1rQvN1TkWUuL8othGXQrWzhJLSdSuCjGe/view?usp=drive_link"
         }
     }
 }
