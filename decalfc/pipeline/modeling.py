@@ -351,7 +351,10 @@ def monthly_predictions(params_dict: dict[str, Any], args_dict: dict[str, Any]) 
     # end function
     return
 
-def full_trials(params_dict: dict[str, Any], trials: int=10, model_arch: str="BLSTM", **kwargs) -> None:
+def full_trials(
+    params_dict: dict[str, Any], args_dict: dict[str, Any], trials: int=10,
+    model_arch: str="BLSTM", **kwargs
+) -> None:
     """
         Generates all trials.
     """
