@@ -8,20 +8,20 @@
 # python3 -m decalfc.pipeline.modeling --kwargs \
 #     strategy="E^ --> E^^" \
 #     trials=1 \
-#     model-arch="BLSTM" \
+#     model-arch="Transformer" \
 #     hyperparams='{"learning_rate": 0.001, "scheduler": "plateau", "num_epochs": 200}'
 
 # python3 -m decalfc.pipeline.modeling --kwargs \
 #     strategy="A --> E" \
 #     trials=1 \
-#     model-arch="BLSTM" \
+#     model-arch="Transformer" \
 #     hyperparams='{"learning_rate": 0.001, "scheduler": "plateau", "num_epochs": 200}'
 
-python3 -m decalfc.pipeline.modeling --kwargs \
-    strategy="A + E --> G" \
-    trials=1 \
-    model-arch="BLSTM" \
-    hyperparams='{"learning_rate": 0.001, "scheduler": "plateau", "num_epochs": 200}'
+# python3 -m decalfc.pipeline.modeling --kwargs \
+#     strategy="A + E --> G" \
+#     trials=1 \
+#     model-arch="BLSTM" \
+#     hyperparams='{"learning_rate": 0.001, "scheduler": "plateau", "num_epochs": 200}'
 
 # python3 -m decalfc.pipeline.modeling --kwargs \
 #     strategy="A --> G" \
@@ -29,9 +29,9 @@ python3 -m decalfc.pipeline.modeling --kwargs \
 #     model-arch="Transformer" \
 #     hyperparams='{"learning_rate": 0.001, "scheduler": "plateau", "num_epochs": 200}'
 
-# python3 -m decalfc.pipeline.modeling --kwargs \
-#     strategy="A --> O" \
-#     trials=1 \
-#     model-arch="BLSTM" \
-#     hyperparams='{}'
+python3 -m decalfc.pipeline.modeling --kwargs \
+    strategy="A --> O" \
+    trials=1 \
+    model-arch="BLSTM" \
+    hyperparams='{}'
 

@@ -85,6 +85,7 @@ def _save_data(data_lookup: dict[str, pd.DataFrame], incubator: str, new_version
     # generate paths
     new_version = {k: str(v) for k, v in new_version.items()}   # enforce types
     paths = _load_paths(incubator, new_version, ext="parquet")
+    print(paths)
 
     # save
     log(f"saving data for {incubator}: {new_version}")

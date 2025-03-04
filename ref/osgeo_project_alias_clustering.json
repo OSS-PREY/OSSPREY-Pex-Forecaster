@@ -5,25 +5,25 @@
             "root@bgdem1.cr.usgs.gov"
         ],
         [
-            "Francesco",
-            "Francesco Bartoli"
+            "Pedro",
+            "PedroBelo"
         ],
         [
-            "Clarence Davis",
-            "Clarence"
+            "Jeremiah C. Foster",
+            "Jeremiah Cooper"
+        ],
+        [
+            "Clarence",
+            "Clarence Davis"
+        ],
+        [
+            "Francesco Bartoli",
+            "Francesco"
         ],
         [
             "bartvde",
             "bartvde@osgis.nl",
             "bartvde@xs4all.nl"
-        ],
-        [
-            "PedroBelo",
-            "Pedro"
-        ],
-        [
-            "Jeremiah C. Foster",
-            "Jeremiah Cooper"
         ]
     ],
     "geoserver": [
@@ -32,24 +32,24 @@
             "DavidLeal"
         ],
         [
-            "jgarnett",
-            "jody.garnett"
+            "dwins",
+            "dwinslow"
         ],
         [
-            "yjacolin@free.fr",
-            "yjacolin"
-        ],
-        [
-            "Andrea",
-            "Andrea Aime"
+            "jody.garnett",
+            "jgarnett"
         ],
         [
             "volaya",
             "volayaf"
         ],
         [
-            "dwins",
-            "dwinslow"
+            "Andrea Aime",
+            "Andrea"
+        ],
+        [
+            "yjacolin@free.fr",
+            "yjacolin"
         ]
     ],
     "grass": [],

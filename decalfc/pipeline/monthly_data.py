@@ -141,6 +141,11 @@ def monthly_segmentation(args_dict):
     # execute input
     log("reading in raw data...")
     rd = RawData(incubator=args_dict["incubator"], versions=args_dict["versions"])
+    
+    # create the project incubation times each time
+    rd.gen_proj_incubation()
+    
+    # load lifecycles
     with open(params_dict["lifecycle-ratios"], "r") as f:
         lifecycle_dict = json.load(f)
     author_field = "dealised_author_full_name"

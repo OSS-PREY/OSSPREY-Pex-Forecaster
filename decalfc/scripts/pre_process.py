@@ -36,6 +36,8 @@ def clean_special_chars(df: pd.DataFrame) -> pd.DataFrame:
     
     # for every column, clean all substrings
     for col in df.columns:
+        if df.dtypes[col] != "object":
+            continue
         df[col] = df[col].str.replace(r"/", "-").replace("##", "-")
 
     # export df

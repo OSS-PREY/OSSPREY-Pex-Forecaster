@@ -41,16 +41,16 @@ _DATA_URLS = {
             "commits": "https://drive.google.com/file/d/1zF0MAXte7O1Pkiq-e561isCjVdUTk_YD/view?usp=drive_link"
         },
         "social": {
-            "issues": "https://drive.google.com/file/d/1LczzKH4jG8jKrRb7zmQ0DItCW77SYz5B/view?usp=drive_link"
+            "emails-issues": "https://drive.google.com/file/d/1LczzKH4jG8jKrRb7zmQ0DItCW77SYz5B/view?usp=drive_link"
         }
     },
     "osgeo": {
         "tech": {
-            "commits": "https://drive.google.com/file/d/1qoIa1XVQL2etWbEyIkILjnBCB5BsiJqL/view?usp=drive_link"
+            "commits": "https://drive.google.com/file/d/1tuKlkrNoy2CCH2KHsT7WPiI8J90vnFFK/view?usp=sharing"
         },
         "social": {
-            "emails": "https://drive.google.com/file/d/1gYIMaY-tTluMWhYde20U5bTtp5fLy-r9/view?usp=drive_link",
-            "issues": "https://drive.google.com/file/d/1rQvN1TkWUuL8othGXQrWzhJLSdSuCjGe/view?usp=drive_link"
+            "emails": "https://drive.google.com/file/d/1dS0EidICtcwsPzCmrWdkuohWaCDizDvc/view?usp=drive_link",
+            "issues": "https://drive.google.com/file/d/1w6zy-RLcfsnzKhDammFR9aIHE-q9F29p/view?usp=drive_link"
         }
     }
 }
@@ -89,7 +89,7 @@ def check_raw_data(verbosity: int=2) -> int:
             for subtype, url in urls_pkg.items():
                 
                 # unpack file path
-                dl_path = incubator_data_path / f"{params_dict[f'{dtype}-type'][ds]}.parquet"
+                dl_path = incubator_data_path / f"{subtype}.parquet"
                 
                 # check if we need to download
                 if dl_path.exists():

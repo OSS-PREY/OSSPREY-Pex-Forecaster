@@ -53,7 +53,7 @@ def merge_st_end_dates(df: pd.DataFrame, dates: pd.DataFrame) -> pd.DataFrame:
     # return 
     return merged, inc_no_match
 
-def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame) -> dict[str, pd.DataFrame | dict[str, dict[str, str]]]:
+def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame, ndays_tol: int=130) -> dict[str, pd.DataFrame | dict[str, dict[str, str]]]:
     """Checks whether we have data to cover the full incubation period for a 
     given project. If we lack the data, we'll note the project down and remove 
     its data. If we have extra data, we'll truncate to only fit the project 
@@ -87,7 +87,7 @@ def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame) -> dict[str, p
     """
     
     # auxiliary fn
-    def is_valid_project(proj_tdf: pd.DataFrame, proj_sdf: pd.DataFrame, ndays_tol: int=30) -> str:
+    def is_valid_project(proj_tdf: pd.DataFrame, proj_sdf: pd.DataFrame, ndays_tol: int=1200) -> str:
         """Indicator function to test if a project contains the necessary 
         requirements to be kept. Requires tech and social data for a given 
         project simultaneously. Allows for some number of days of tolerance.
@@ -136,6 +136,8 @@ def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame) -> dict[str, p
             valid_projects.append(proj)
         else:
             invalid_info[is_valid][proj] = {
+                "delta_st": str(proj_tdf.date.min() - proj_tdf.st_date.iloc[0]) if not pd.isnull(proj_tdf.st_date.iloc[0]) else "NaT",
+                "delta_end": str(proj_tdf.date.max() - proj_tdf.end_date.iloc[0]) if not pd.isnull(proj_tdf.end_date.iloc[0]) else "NaT",
                 "data_end_date": str(proj_tdf.date.max()),
                 "data_st_date": str(proj_tdf.date.min()),
                 "inc_end_date": str(proj_tdf.end_date.iloc[0]),
@@ -169,8 +171,10 @@ def truncate_data(df: pd.DataFrame) -> tuple[pd.DataFrame, int]:
     orig_st_dates = df.groupby("project_name", observed=True)["date"].min().to_dict()
     
     # enforce incubation st-end dates
+    print("before enforcing", len(df))
     df = df[(df.st_date <= df.date) & (df.date <= df.end_date)]
-    
+    print("after enforcing", len(df))
+
     # compare tracker info
     trunc_end_dates = df.groupby("project_name", observed=True)["date"].max().to_dict()
     trunc_st_dates = df.groupby("project_name", observed=True)["date"].min().to_dict()
@@ -190,8 +194,9 @@ def truncate_data(df: pd.DataFrame) -> tuple[pd.DataFrame, int]:
 
 # ------------- Primary Utility ------------- #
 def truncate_incubation_time(
-    incubator: str, dates: Path | str | dict[str, dict[str, str]],
-    versions: dict[str, str]=None, save_versions: dict[str, int]=None
+    incubator: str, dates: Path | str | dict[str, dict[str, str]], 
+    ndays_tol: int=1200, versions: dict[str, str]=None,
+    save_versions: dict[str, int]=None
 ) -> dict[str, pd.DataFrame]:
     """Wrapper to truncate the social and technical data to only the time under
     incubation.
@@ -205,6 +210,8 @@ def truncate_incubation_time(
                 "start-incubation"/"end-incubation": {
                     "project_name": "date_str"
                 }}
+        ndays_tols (int, optional): number of days of tolerance between the data
+            and incubation boundaries. Defaults to 1200.
         versions (dict[str, str], optional): versions of the incubator's dataset
             to use; assumes the `date` field is present in both social and 
             technical data for this version. Defaults to the default versions.
