@@ -270,7 +270,7 @@ def truncate_incubation_time(
     
     # check that we keep only the projects with enough data
     log("checking projects with sufficient, overlapping data...")
-    csd_ret = check_sufficient_data(mtdf, msdf)
+    csd_ret = check_sufficient_data(mtdf, msdf, ndays_tol)
     mtdf, msdf = csd_ret["mtdf"], csd_ret["msdf"]
     validity_info = csd_ret["info"]
     
