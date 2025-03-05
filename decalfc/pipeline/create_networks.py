@@ -176,6 +176,28 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
             social_net[prev_author][sender_name]["weight"] = 0
         social_net[prev_author][sender_name]["weight"] += 1
     
+    def clean_references(references: str) -> list[str]:
+        # deal with the issue that a line breaker exists in message_id:
+        # e.g., <4\n829AB62.6000302@apache.org>
+        references = [r.strip() for r in references.replace("\n", " ").replace("\t", " ").split(" ") if r.strip()]
+
+        # store references as a list of individual references
+        new_refs = list()
+        
+        # if the references cross the whitespace boundary, try to combine them
+        # into one reference
+        for i in range(len(references)-1):
+            if "<" in references[i] and ">" not in references[i] and "<" not in references[i+1] and ">" in references[i+1]:
+                new_refs.append(references[i] + references[i + 1])
+        
+        # add all valid references
+        for r in references:
+            if "<" in r and ">" in r:
+                new_refs.append(r)
+        
+        # export references
+        return new_refs
+    
     # directory handling
     projects = os.listdir(s_source)
     check_dir(s_output)
@@ -210,29 +232,15 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
             sender_name = row[author_field]
             timestamp = row["date"]
             
+            # ignores if this email does not reply to previous emails;
             # regardless of reply information, let's track that there exists a 
             # node in this month
-            social_net[sender_name]
-            
-            # ignores if this email does not reply to previous emails
             if pd.isna(references) or references == "None":
+                social_net[sender_name] = dict()
                 continue
-
-            # deal with the issue that a line breaker exists in message_id:
-            # e.g., <4\n829AB62.6000302@apache.org>
-            references = [r.strip() for r in references.replace("\n", " ").replace("\t", " ").split(" ") if r.strip()]
-
-            new_refs = set()
-            for i in range(len(references)-1):
-                if "<" in references[i] and ">" not in references[i] and "<" not in references[i+1] and ">" in references[i+1]:
-                    new_refs.add(references[i] + references[i+1])
-            for r in references:
-                if "<" in r and ">" in r:
-                    new_refs.add(r)
-
-            print(references, new_refs)
-            exit()
-            references = new_refs
+            
+            # clean and transform references into a list of references
+            references = clean_references(references)
 
             # for each previous replier that this current communication refers 
             # to, we'll track the social activity
