@@ -420,12 +420,57 @@ def impute_messageid(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
 def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, copy: bool=True) -> dict[str, pd.DataFrame]:
     """
         Generate reply information by grouping by project, subject then 
-        associating replies with the reply before it.
+        associating replies with the reply before it. Note that we'll now assume
+        that anyone who replies after another person, replies to every who has 
+        replied in that thread.
 
         NOTE: uses message id for reply info
 
         @param data_lookup: lookup for the tech & social datasets
     """
+    
+    # auxiliary fn
+    def basic_reply_inference(group: pd.DataFrame) -> pd.DataFrame:
+        """Basic reply inferencing by drawing an edge with only the previous 
+        person who is being replied to.
+        """
+        
+        # shift down message id's by one
+        return group.shift(1)
+        
+    
+    def period_reply_inference(group: pd.DataFrame) -> pd.DataFrame:
+        """A function to be used in conjunction with groupby and transform to 
+        conduct reply inference on a period of a given project's data. Note that
+        this generic formula can be applied regardless of if we 
+
+        Args:
+            group (pd.DataFrame): a period of a single project's data, grouped 
+                by subject.
+
+        Returns:
+            pd.DataFrame: reply-inferred periodic dictionary.
+        """
+        
+        # sort by date to ensure correct accumulation
+        group = group.sort_values("date")
+        
+        # store the accumulated message_ids
+        accumulated = []
+        current = ""
+        
+        # 
+        for message in group[field]:
+            # If current is not empty, append a space and the new message_id
+            if current:
+                current += " " + message
+            else:
+                current = message
+            accumulated.append(current)
+        
+        # assign new column
+        group['accumulated_message'] = accumulated
+        return group
 
     # references
     if copy:
@@ -469,8 +514,13 @@ def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, cop
     df.sort_values(by=["project_name", "subject", "date"], inplace=True)
     grouped = df.groupby(["project_name", "subject"], observed=True)
 
-    # transform
-    df[field] = grouped[impute_source_field].transform(lambda x: x.shift(1))
+    # transform to get the in_reply_to field imputed
+    df[field] = grouped[impute_source_field].transform(basic_reply_inference)
+    
+    # transform to accumulate the replies to accurately reflect the reply chain
+    df = df.groupby(["project_name", "subject"], observed=True).apply(
+        period_reply_inference
+    )
 
     # remove self-referencing edges
     same_sender_mask = df[impute_source_field] == df[field]

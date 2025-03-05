@@ -83,22 +83,22 @@ def process_tech_nets(author_field: str, t_source: Path, t_output: Path) -> None
 # ---------------- processing social nets ---------------------- #
 def process_social_nets(author_field: str, s_source: Path, s_output: Path, mapping_path: Path) -> None:
     # auxiliary utility
-    def gen_email_id_lookup(df: pd.DataFrame, author_field: str) -> dict[str, tuple[str, str]]:
-        """Generates a lookup of the email ID to author.
+    def gen_msg_id_lookup(df: pd.DataFrame, author_field: str) -> dict[str, tuple[str, str]]:
+        """Generates a lookup of the message id to the author and timestamp.
 
         Args:
             df (pd.DataFrame): dataframe containing the email data
             author_field (str): name of the author field in the dataframe
 
         Returns:
-            dict[str, tuple[str, str]]: email ID to author lookup
+            dict[str, tuple[str, str]]: message id: sender, timestamp
         """
         
         # store lookup
         email_to_author = {}
 
         # generate the lookup
-        for index, row in df.iterrows():
+        for _, row in df.iterrows():
             message_id = str(row["message_id"]).strip()
             sender_name = row[author_field]
             timestamp = row["date"]
@@ -177,16 +177,29 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
         social_net[prev_author][sender_name]["weight"] += 1
     
     def clean_references(references: str) -> list[str]:
+        """Cleans up the references into a list of references to be used in 
+        joining nodes in the network.
+
+        Args:
+            references (str): references string, i.e. in_reply_to field.
+
+        Returns:
+            list[str]: list of cleaned references, one per entry
+        """
+        
         # deal with the issue that a line breaker exists in message_id:
         # e.g., <4\n829AB62.6000302@apache.org>
-        references = [r.strip() for r in references.replace("\n", " ").replace("\t", " ").split(" ") if r.strip()]
+        references = references.replace("\n", " ").replace("\t", " ").split(" ")
+        
+        # remove empty references
+        references = [r.strip() for r in references if r.strip()]
 
         # store references as a list of individual references
         new_refs = list()
         
         # if the references cross the whitespace boundary, try to combine them
         # into one reference
-        for i in range(len(references)-1):
+        for i in range(len(references) - 1):
             if "<" in references[i] and ">" not in references[i] and "<" not in references[i+1] and ">" in references[i+1]:
                 new_refs.append(references[i] + references[i + 1])
         
@@ -198,6 +211,85 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
         # export references
         return new_refs
     
+    def process_communication(
+        row: pd.DataFrame, social_net: dict[str, dict[str, dict[str, int]]],
+        sender_dic: dict[str, list], msgid_to_author: dict[str, tuple[str, str]]
+    ) -> None:
+        """Processes a row of communication into the network and mapping. All 
+        work happens in-place due to the mutable nature of dictionaries.
+
+        Args:
+            row (pd.DataFrame): entry in the social data.
+            social_net (dict[str, dict[str, dict[str, int]]]): social network
+                representation as a dictionary.
+            sender_dic (dict[str, list]): sender-receiver mapping.
+            msgid_to_author (dict[str, tuple[str, str]]): constant lookup of 
+                message ID to author and timestamp.
+        """
+        
+        # unpack useful information
+        message_id = str(row["message_id"]).strip()
+        references = str(row["in_reply_to"]).strip()
+        sender_name = row[author_field]
+        timestamp = row["date"]
+        
+        # ignores if this email does not reply to previous emails;
+        # regardless of reply information, let's track that there exists a 
+        # node in this month if we haven't already
+        if pd.isna(references) or references == "None":
+            if social_net.get(sender_name, None) is None:
+                social_net[sender_name] = dict()
+            return
+        
+        # clean and transform references into a list of references
+        references = clean_references(references)
+
+        # for each previous replier that this current communication refers 
+        # to, we'll track the social activity
+        for reference_id in references:
+            # if we can't identify this communicator, we skip them
+            if reference_id not in msgid_to_author:
+                continue
+            
+            # unpack the previous author's information
+            prev_author, prev_timestamp = msgid_to_author[reference_id]
+            
+            # if replying to themselves, continue
+            if prev_author == sender_name:
+                continue
+            
+            # update the social network
+            update_sr_mapping(
+                sender_dic, project_name, message_id, sender_name, 
+                prev_author, timestamp, prev_timestamp
+            )
+            track_social_signal(social_net, sender_name, prev_author)
+    
+    def export_graph(
+        social_net: dict[str, dict[str, dict[str, int]]], project_name: str,
+        period: str | int, s_output: Path
+    ) -> None:
+        """Exports the graph for this project's month of data into an edgelist 
+        format.
+
+        Args:
+            social_net (dict[str, dict[str, dict[str, int]]]): social network 
+                representation of the graph for this month.
+            project_name (str): name of the project.
+            period (str | int): month number.
+            s_output (Path): output directory.
+        """
+        
+        # create the graph
+        g = nx.DiGraph(social_net)
+        
+        # add any disconnected nodes
+        g.add_nodes_from(social_net.keys())
+        nx.write_edgelist(
+            g, s_output / f"{project_name}__{str(period)}.edgelist",
+            delimiter="##", data=["weight"]
+        )
+    
     # directory handling
     projects = os.listdir(s_source)
     check_dir(s_output)
@@ -208,11 +300,11 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
         "timestamp": [], "broadcast": []
     }
 
-    # process each project
+    # process each project's month of data
     for project in tqdm(projects):
         # setup project social network
         social_net = {}
-        emailID_to_author = {}
+        msgid_to_author = {}
         project_name, period = project.replace(".parquet", "").split("__")
 
         # load project data & ensure only valid communications are considered
@@ -221,57 +313,15 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
         df = df[df[author_field].notna()]
         
         # generate a lookup of the email ID to author
-        emailID_to_author = gen_email_id_lookup(df, author_field)
+        msgid_to_author = gen_msg_id_lookup(df, author_field)
 
         # for each communication in the social data, let's track the 
         # sender-receiver relationship in a graph
-        for index, row in df.iterrows():
-            # unpack useful information
-            message_id = str(row["message_id"]).strip()
-            references = str(row["in_reply_to"]).strip()
-            sender_name = row[author_field]
-            timestamp = row["date"]
-            
-            # ignores if this email does not reply to previous emails;
-            # regardless of reply information, let's track that there exists a 
-            # node in this month
-            if pd.isna(references) or references == "None":
-                social_net[sender_name] = dict()
-                continue
-            
-            # clean and transform references into a list of references
-            references = clean_references(references)
-
-            # for each previous replier that this current communication refers 
-            # to, we'll track the social activity
-            for reference_id in references:
-                # if we can't identify this communicator, we skip them
-                if reference_id not in emailID_to_author:
-                    continue
-                
-                # unpack the previous author's information
-                prev_author, prev_timestamp = emailID_to_author[reference_id]
-                
-                # if replying to themselves, continue
-                if prev_author == sender_name:
-                    continue
-                
-                # update the social network
-                update_sr_mapping(
-                    sender_dic, project_name, message_id, sender_name, 
-                    prev_author, timestamp, prev_timestamp
-                )
-                track_social_signal(social_net, sender_name, prev_author)
+        for _, row in df.iterrows():
+            process_communication(row, social_net, sender_dic, msgid_to_author)
 
         # save as directed graph
-        g = nx.DiGraph(social_net)
-        
-        ## add disconnected nodes
-        g.add_nodes_from(social_net.keys())
-        nx.write_edgelist(g, s_output / "{}__{}.edgelist".format(
-            project_name, 
-            str(period)
-        ), delimiter="##", data=["weight"])
+        export_graph(social_net, project_name, period, s_output)
 
     # export
     df = pd.DataFrame.from_dict(sender_dic)
