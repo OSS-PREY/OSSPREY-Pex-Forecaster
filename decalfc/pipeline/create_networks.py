@@ -82,13 +82,109 @@ def process_tech_nets(author_field: str, t_source: Path, t_output: Path) -> None
 
 # ---------------- processing social nets ---------------------- #
 def process_social_nets(author_field: str, s_source: Path, s_output: Path, mapping_path: Path) -> None:
+    # auxiliary utility
+    def gen_email_id_lookup(df: pd.DataFrame, author_field: str) -> dict[str, tuple[str, str]]:
+        """Generates a lookup of the email ID to author.
+
+        Args:
+            df (pd.DataFrame): dataframe containing the email data
+            author_field (str): name of the author field in the dataframe
+
+        Returns:
+            dict[str, tuple[str, str]]: email ID to author lookup
+        """
+        
+        # store lookup
+        email_to_author = {}
+
+        # generate the lookup
+        for index, row in df.iterrows():
+            message_id = str(row["message_id"]).strip()
+            sender_name = row[author_field]
+            timestamp = row["date"]
+            email_to_author[message_id] = (sender_name, timestamp)
+        
+        # export
+        return email_to_author
+    
+    def update_sr_mapping(
+        sender_dic: dict[str, list], project_name: str, message_id: str,
+        sender_name: str, prev_author: list[str], timestamp: str,
+        prev_timestamp: str
+    ) -> None:
+        """Updates the sender-receiver mapping with a single 
+        interaction.
+
+        Args:
+            sender_dic (dict[str, list]): sender-receiver mapping.
+            project_name (str): project name.
+            message_id (str): unique communication id for the 
+                current communication.
+            sender_name (str): sender of the email.
+            prev_author (list[str]): single previous email author, 
+                i.e. whoever sent a previous email.
+            timestamp (str): timestamp of the current email.
+            prev_timestamp (str): timestamp of the email being 
+                replied to.
+        
+        Returns:
+            None: all actions happen inplace
+        """
+        
+        # add to the sender-receiver mapping sender drops an email to 
+        # previous author
+        sender_dic["project"].append(project_name)
+        sender_dic["message_id"].append(message_id)
+        sender_dic["sender"].append(sender_name)
+        sender_dic["receiver"].append(prev_author)
+        sender_dic["timestamp"].append(timestamp)
+        sender_dic["broadcast"].append(0)    
+
+        # since the previous author sent information to this receiver 
+        # since the receivier replied
+        sender_dic["project"].append(project_name)
+        sender_dic["message_id"].append(reference_id)
+        sender_dic["sender"].append(prev_author)
+        sender_dic["receiver"].append(sender_name)
+        sender_dic["timestamp"].append(prev_timestamp)
+        sender_dic["broadcast"].append(1)
+    
+    def track_social_signal(social_net: dict[str, dict[str, dict[str, int]]], sender_name: str, prev_author: str) -> None:
+        """Tracks the bi-directional interaction between two social collaborators.
+
+        Args:
+            social_net (dict[str, dict[str, dict[str, int]]]): social network as a dictionary lookup.
+            sender_name (str): unique sender name
+            prev_author (str): unique previous author name, i.e. person replying to the sender
+        """
+        
+        # ensure the nodes are in the network
+        if sender_name not in social_net:
+            social_net[sender_name] = {}
+        if prev_author not in social_net:
+            social_net[prev_author] = {}
+        
+        # if node B replies node A, it means B sends signal to A
+        if prev_author not in social_net[sender_name]:
+            social_net[sender_name][prev_author] = {}
+            social_net[sender_name][prev_author]["weight"] = 0
+        social_net[sender_name][prev_author]["weight"] += 1
+
+        # if node B replies node A, it means A also sent signal to B
+        if sender_name not in social_net[prev_author]:
+            social_net[prev_author][sender_name] = {}
+            social_net[prev_author][sender_name]["weight"] = 0
+        social_net[prev_author][sender_name]["weight"] += 1
+    
     # directory handling
     projects = os.listdir(s_source)
     check_dir(s_output)
 
     # get sender-receiver timestamp
-    sender_dic = {"project": [], "message_id":[], "sender":[], "receiver":[], \
-                  "timestamp":[], "broadcast":[]}
+    sender_dic = {
+        "project": [], "message_id": [], "sender": [], "receiver": [], 
+        "timestamp": [], "broadcast": []
+    }
 
     # process each project
     for project in tqdm(projects):
@@ -97,27 +193,27 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
         emailID_to_author = {}
         project_name, period = project.replace(".parquet", "").split("__")
 
-        # load project data
+        # load project data & ensure only valid communications are considered
         df = pd.read_parquet(s_source / project, engine=PARQUET_ENGINE)
         df.query("is_bot == False", inplace=True)
-
         df = df[df[author_field].notna()]
         
-        # generate dict lookup
-        for index, row in df.iterrows():
-            message_id = str(row["message_id"]).strip()
-            sender_name = row[author_field]
-            timestamp = row["date"]
-            emailID_to_author[message_id] = (sender_name, timestamp)
+        # generate a lookup of the email ID to author
+        emailID_to_author = gen_email_id_lookup(df, author_field)
 
-        # raise KeyError
+        # for each communication in the social data, let's track the 
+        # sender-receiver relationship in a graph
         for index, row in df.iterrows():
+            # unpack useful information
             message_id = str(row["message_id"]).strip()
             references = str(row["in_reply_to"]).strip()
             sender_name = row[author_field]
             timestamp = row["date"]
             
-
+            # regardless of reply information, let's track that there exists a 
+            # node in this month
+            social_net[sender_name]
+            
             # ignores if this email does not reply to previous emails
             if pd.isna(references) or references == "None":
                 continue
@@ -134,51 +230,30 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
                 if "<" in r and ">" in r:
                     new_refs.add(r)
 
+            print(references, new_refs)
+            exit()
             references = new_refs
 
+            # for each previous replier that this current communication refers 
+            # to, we'll track the social activity
             for reference_id in references:
+                # if we can't identify this communicator, we skip them
                 if reference_id not in emailID_to_author:
                     continue
+                
+                # unpack the previous author's information
                 prev_author, prev_timestamp = emailID_to_author[reference_id]
-                # if it's the same person, continue
+                
+                # if replying to themselves, continue
                 if prev_author == sender_name:
                     continue
-
-                # add to the sender-receiver mapping
-                # sender drops an email to previous author
-                sender_dic["project"].append(project_name)
-                sender_dic["message_id"].append(message_id)
-                sender_dic["sender"].append(sender_name)
-                sender_dic["receiver"].append(prev_author)
-                sender_dic["timestamp"].append(timestamp)
-                sender_dic["broadcast"].append(0)    
-
-                # since the previous author sent information to 
-                # this receiver since the receivier replied.
-                sender_dic["project"].append(project_name)
-                sender_dic["message_id"].append(reference_id)
-                sender_dic["sender"].append(prev_author)
-                sender_dic["receiver"].append(sender_name)
-                sender_dic["timestamp"].append(prev_timestamp)
-                sender_dic["broadcast"].append(1)
-
-                if sender_name not in social_net:
-                    social_net[sender_name] = {}
-                    
-                if prev_author not in social_net:
-                    social_net[prev_author] = {}
-
-                # if node B replies node A, it means B sends signal to A
-                if prev_author not in social_net[sender_name]:
-                    social_net[sender_name][prev_author] = {}
-                    social_net[sender_name][prev_author]["weight"] = 0
-                social_net[sender_name][prev_author]["weight"] += 1
-
-                # if node B replies node A, it means A also sent signal to B
-                if sender_name not in social_net[prev_author]:
-                    social_net[prev_author][sender_name] = {}
-                    social_net[prev_author][sender_name]["weight"] = 0
-                social_net[prev_author][sender_name]["weight"] += 1
+                
+                # update the social network
+                update_sr_mapping(
+                    sender_dic, project_name, message_id, sender_name, 
+                    prev_author, timestamp, prev_timestamp
+                )
+                track_social_signal(social_net, sender_name, prev_author)
 
         # save as directed graph
         g = nx.DiGraph(social_net)
