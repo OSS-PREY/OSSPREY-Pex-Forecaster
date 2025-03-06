@@ -482,7 +482,7 @@ def infer_replies(
 
     # utility for checking inference strategy (check number of potential replies)
     reply_freq = df.groupby(["project_name", "subject"], observed=True).size().reset_index(name="count")
-    prop_replies_inference = (reply_freq["count"] > 1).sum() / len(reply_freq)
+    prop_replies_inference = reply_freq[reply_freq.count > 1].sum() / len(reply_freq)
 
     # check overriding; either if we can't impute more than exists or we're 
     # imputing when we probably don't need to
@@ -528,6 +528,7 @@ def infer_replies(
 
     # transform to get the in_reply_to field imputed
     log("imputing from the source field...")
+    # df[field] = grouped[impute_source_field].transform(basic_reply_inference)
     df[field] = grouped[impute_source_field].transform(basic_reply_inference)
     
     # transform to accumulate the replies to accurately reflect the reply chain
@@ -1453,8 +1454,9 @@ if __name__ == "__main__":
     df = rd.data["social"]
     
     df = df[["in_reply_to", "subject", "project_name", "date", "message_id", "sender_name"]]
+    df = df[~df.in_reply_to.isna()]
     df.sort_values(by=["project_name", "subject", "date"], inplace=True)
-    print(df)
+    df.to_csv("./temp.csv", index=False)
     
     # rd = RawData("eclipse", {"tech": 0, "social": 0})
     # rd.gen_proj_incubation()

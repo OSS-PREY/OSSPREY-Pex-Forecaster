@@ -191,7 +191,7 @@ def log(msg: str="", log_type: str="log", output: str="console",
     match log_type:
         case "log":
             output_router[output](
-                f"Log [{nhrs}h, {nmin}m, {nsec}s]> {msg.capitalize()}"
+                f"Log [{nhrs}h, {nmin}m, {nsec:.3f}s]> {msg.capitalize()}"
             )
         
         case "warning":
