@@ -392,7 +392,7 @@ class DeltaData:
             self.netdata = pd.read_csv(net_path, engine=CSV_ENGINE)
         except Exception as e:
             raise ValueError(
-                f"Failed to read processed networks (check cache for issues?)"
+                f"Failed to read processed networks (check cache for issues?) {e}"
             )
         
         # combine network data (vertical stacking, essentially); ensure to 
