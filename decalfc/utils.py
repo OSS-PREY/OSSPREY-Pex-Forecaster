@@ -15,6 +15,7 @@ from tqdm import tqdm
 import argparse
 import json
 import shutil
+from time import time
 from pprint import pformat, pprint
 from os import cpu_count
 from ast import literal_eval
@@ -148,7 +149,9 @@ def del_file(path: str | Path) -> None:
 
 def log(msg: str="", log_type: str="log", output: str="console",
     file_name: str="logger", check_verbosity: bool=True) -> None:
-    """Logs a different message depending on the type fed in.
+    """Logs a different message depending on the type fed in. Default "log" now
+    supports a timing scheme to dictate how long the PREVIOUS action took, i.e. 
+    from the previous call to ANY log function.
 
     Args:
         msg (str, optional): output to print/store to console or log file. 
@@ -163,6 +166,11 @@ def log(msg: str="", log_type: str="log", output: str="console",
             concise logging with verbosity checks. True indicates we do print, 
             False indicates we skip logging entirely. Defaults to True.
     """
+    
+    # timer
+    delta_time = time() - log.prev_time
+    nhrs = delta_time // 3600
+    nmin, nsec = divmod(delta_time, 60)
     
     # check verbosity, only skip if we're logging to STDOUT
     if not check_verbosity and output == "file":
@@ -182,7 +190,9 @@ def log(msg: str="", log_type: str="log", output: str="console",
     # match type
     match log_type:
         case "log":
-            output_router[output](f"Log> {msg.capitalize()}")
+            output_router[output](
+                f"Log [{nhrs}h, {nmin}m, {nsec}s]> {msg.capitalize()}"
+            )
         
         case "warning":
             output_router[output](f"WARNING> {msg}")
@@ -214,6 +224,10 @@ def log(msg: str="", log_type: str="log", output: str="console",
         # default to new
         case _:
             output_router[output](f"\n<{msg.title()}>")
+            
+    # update time
+    log.prev_time = time()
+log.prev_time = time()
 
 
 # Environment Setup

@@ -27,23 +27,22 @@ from pathlib import Path
 # DECAL modules
 from decalfc.utils import *
 
-
 """
-# convert to UTF-8 coding
-def text_encoding(encoded_words):
-    # return ascii code
-    if "=" not in encoded_words:
-        return encoded_words
-    try:
-        encoded_word_regex = r"=\?{1}(.+)\?{1}([B|Q])\?{1}(.+)\?{1}="
-        charset, encoding, encoded_text = re.match(encoded_word_regex, encoded_words).groups()
-        if encoding == "B":
-            byte_string = base64.b64decode(encoded_text)
-        elif encoding == "Q":
-            byte_string = quopri.decodestring(encoded_text)
-        return byte_string.decode(charset)
-    except:
-        return encoded_words
+# # convert to UTF-8 coding
+# def text_encoding(encoded_words):
+#     # return ascii code
+#     if "=" not in encoded_words:
+#         return encoded_words
+#     try:
+#         encoded_word_regex = r"=\?{1}(.+)\?{1}([B|Q])\?{1}(.+)\?{1}="
+#         charset, encoding, encoded_text = re.match(encoded_word_regex, encoded_words).groups()
+#         if encoding == "B":
+#             byte_string = base64.b64decode(encoded_text)
+#         elif encoding == "Q":
+#             byte_string = quopri.decodestring(encoded_text)
+#         return byte_string.decode(charset)
+#     except:
+#         return encoded_words
 """
 
 
@@ -245,7 +244,21 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
         references = clean_references(references)
 
         # for each previous replier that this current communication refers 
-        # to, we'll track the social activity
+        # to, we'll track the social activity. Note that we'll make sure to not
+        # double count any of the activity to the same person, i.e. we can only
+        # increase the weight of the edge by one per reply rather than allowing 
+        # the weights to stack. e.g.
+        #
+        #   1. A sends email to B
+        #   2. B replies to A
+        #   3. A replies to B
+        #   4. B replies to A
+        #   5. A replies to B
+        #
+        # step 5 will only increase the weight of the edge between A & B by 1 
+        # rather than by 4 (number of times A replied to B or vice versa)
+        unique_prev_authors = set()
+        
         for reference_id in references:
             # if we can't identify this communicator, we skip them
             if reference_id not in msgid_to_author:
@@ -258,12 +271,19 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
             if prev_author == sender_name:
                 continue
             
+            # if replying to someone already tracked in this email, skip
+            if prev_author in unique_prev_authors:
+                continue
+            
             # update the social network
             update_sr_mapping(
                 sender_dic, project_name, message_id, sender_name, 
                 prev_author, timestamp, prev_timestamp
             )
             track_social_signal(social_net, sender_name, prev_author)
+            
+            # update the unique authors we've encountered
+            unique_prev_authors.add(prev_author)
     
     def export_graph(
         social_net: dict[str, dict[str, dict[str, int]]], project_name: str,

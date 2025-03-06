@@ -21,6 +21,7 @@ from pathlib import Path
 from collections import defaultdict
 from dataclasses import dataclass, field
 from functools import partial
+from itertools import accumulate
 from typing import Any
 from multiprocessing import Pool
 
@@ -417,7 +418,10 @@ def impute_messageid(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
     # export
     return data_lookup
 
-def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, copy: bool=True) -> dict[str, pd.DataFrame]:
+def infer_replies(
+    data_lookup: dict[str, pd.DataFrame], incubator: str=None, copy: bool=True,
+    force_impute: bool=False
+) -> dict[str, pd.DataFrame]:
     """
         Generate reply information by grouping by project, subject then 
         associating replies with the reply before it. Note that we'll now assume
@@ -426,51 +430,50 @@ def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, cop
 
         NOTE: uses message id for reply info
 
-        @param data_lookup: lookup for the tech & social datasets
+        Args:
+            data_lookup (dict[str, pd.DataFrame]): lookup of tech/social to the 
+                data.
+            incubator (str, optional): name of the incubator. Not needed, only 
+                here for backwards compatibility. Defaults to None.
+            copy (bool, optional): whether to copy prior to imputation. Defaults
+                to True.
+            force_impute (bool, optional): whether to ignore warnings about 
+                pre-existing reply information. Defaults to False.
     """
     
     # auxiliary fn
-    def basic_reply_inference(group: pd.DataFrame) -> pd.DataFrame:
+    def basic_reply_inference(col: pd.Series) -> pd.Series:
         """Basic reply inferencing by drawing an edge with only the previous 
         person who is being replied to.
         """
         
         # shift down message id's by one
-        return group.shift(1)
-        
+        return col.shift(1)
     
-    def period_reply_inference(group: pd.DataFrame) -> pd.DataFrame:
+    def period_reply_inference(reply_col: pd.Series) -> list[str]:
         """A function to be used in conjunction with groupby and transform to 
         conduct reply inference on a period of a given project's data. Note that
         this generic formula can be applied regardless of if we 
 
         Args:
-            group (pd.DataFrame): a period of a single project's data, grouped 
-                by subject.
+            reply_col (pd.Series): a period of a single project's reply data, 
+                grouped by subject and sorted by date.
 
         Returns:
-            pd.DataFrame: reply-inferred periodic dictionary.
+            list[str]: accumulate replies for the given thread of a single 
+                project.
         """
         
-        # sort by date to ensure correct accumulation
-        group = group.sort_values("date")
+        # custom accumulate logic
+        def acc_fn(x: str, y: str) -> str:
+            if not x:
+                return y
+            if not y:
+                return x
+            return x + " " + y
         
-        # store the accumulated message_ids
-        accumulated = []
-        current = ""
-        
-        # 
-        for message in group[field]:
-            # If current is not empty, append a space and the new message_id
-            if current:
-                current += " " + message
-            else:
-                current = message
-            accumulated.append(current)
-        
-        # assign new column
-        group['accumulated_message'] = accumulated
-        return group
+        # accumulate the replies and return the column
+        return list(accumulate(reply_col, acc_fn))
 
     # references
     if copy:
@@ -478,27 +481,36 @@ def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, cop
     df = data_lookup["social"]
 
     # utility for checking inference strategy (check number of potential replies)
-    reply_freq = df.groupby(["project_name", "month", "subject"], observed=True).size().reset_index(name="count")
+    reply_freq = df.groupby(["project_name", "subject"], observed=True).size().reset_index(name="count")
     prop_replies_inference = (reply_freq["count"] > 1).sum() / len(reply_freq)
 
-    # check overriding
+    # check overriding; either if we can't impute more than exists or we're 
+    # imputing when we probably don't need to
     log("Inferring Reply Information", "new")
     prop_filled = len(df["in_reply_to"].unique()) / df.shape[0]
     if prop_replies_inference <= prop_filled:
+        # print warning
         log(
             f"inference strategy obtains less threads than already provided: {prop_replies_inference * 100}% < {prop_filled * 100}%",
             "warning"
         )
-        log("not imputing. . .")
-        return data_lookup
+        
+        # skip imputation if not forcing
+        if not force_impute:
+            log("not imputing. . .")
+            return data_lookup
 
     if prop_filled > 0.95:
+        # print warning
         log(
             f"in_reply_to field already has >95% unique replies: {len(df['in_reply_to'].unique()) / df.shape[0] * 100}%",
             "warning"
         )
-        log("not imputing. . .")
-        return data_lookup
+        
+        # skip imputation if not forcing
+        if not force_impute:
+            log("not imputing. . .")
+            return data_lookup
 
     # inference
     log("continuing inference")
@@ -515,12 +527,12 @@ def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, cop
     grouped = df.groupby(["project_name", "subject"], observed=True)
 
     # transform to get the in_reply_to field imputed
+    log("imputing from the source field...")
     df[field] = grouped[impute_source_field].transform(basic_reply_inference)
     
     # transform to accumulate the replies to accurately reflect the reply chain
-    df = df.groupby(["project_name", "subject"], observed=True).apply(
-        period_reply_inference
-    )
+    log("accumulating the replies...")
+    df[field] = grouped[field].transform(period_reply_inference)
 
     # remove self-referencing edges
     same_sender_mask = df[impute_source_field] == df[field]
@@ -1436,8 +1448,13 @@ def gen_df_lookup(augs: dict[str, list[int]], params: dict[str, Any]) -> dict[st
 # Testing
 if __name__ == "__main__":
     # rd = RawData("github", {"tech": 3, "social": 4})
-    rd = RawData("apache", {"tech": 1, "social": 1})
+    rd = RawData("eclipse", {"tech": 1, "social": 1})
+    rd.data = infer_replies(rd.data, rd.incubator, copy=False, force_impute=True)
+    df = rd.data["social"]
     
+    df = df[["in_reply_to", "subject", "project_name", "date", "message_id", "sender_name"]]
+    df.sort_values(by=["project_name", "subject", "date"], inplace=True)
+    print(df)
     
     # rd = RawData("eclipse", {"tech": 0, "social": 0})
     # rd.gen_proj_incubation()
