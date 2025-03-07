@@ -6,9 +6,12 @@ model-reports/
 !model-weights/BGRU.pt
 !model-weights/BLSTM.pt
 !network-data/netdata/clean-apache-network-data.csv
+!network-data/netdata/clean-apache-network-data-2-2.csv
 !network-data/netdata/clean-eclipse-network-data.csv
 !network-data/netdata/clean-github-network-data.csv
+!network-data/netdata/clean-github-network-data-4-5.csv
 !network-data/netdata/clean-eclipse-network-data-2-2.csv
+!network-data/netdata/clean-eclipse-network-data-3-3.csv
 !network-data/netdata/clean-osgeo-network-data-2-2.csv
 
 # Byte-compiled / optimized / DLL files
