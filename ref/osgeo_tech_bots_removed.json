@@ -2296,6 +2296,46 @@
         }
     },
     {
+        "404": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.009876543209876543,
+            "is-bot": 0
+        }
+    },
+    {
+        "Anton Haglund": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.5592592592592592,
+            "is-bot": 0
+        }
+    },
+    {
+        "daniel": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.35432098765432096,
+            "is-bot": 0
+        }
+    },
+    {
+        "guest": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.007407407407407408,
+            "is-bot": 0
+        }
+    },
+    {
+        "takubo.morio": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.0691358024691358,
+            "is-bot": 0
+        }
+    },
+    {
         "Chris Bailey": {
             "substring": 0,
             "outlier": 0,

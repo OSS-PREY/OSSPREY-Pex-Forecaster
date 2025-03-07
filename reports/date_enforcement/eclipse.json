@@ -1462,13 +1462,13 @@
         }
     },
     "unmatched_inc_labels": [
-        "Target Management: Terminal and Remote System Explorer (RSE)",
-        "EMF",
-        "Lua Development Tools",
         "WTP Source Editing",
+        "Lua Development Tools",
         "Handly",
+        "EMF",
+        "Papyrus",
         "BPMN2 Modeler Project",
-        "Papyrus"
+        "Target Management: Terminal and Remote System Explorer (RSE)"
     ],
     "Number of Incubation Labels that went Unmatched": 7,
     "Number of Missing Dates": 176,

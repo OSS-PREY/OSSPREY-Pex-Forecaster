@@ -218,14 +218,6 @@
         }
     },
     "st_late": {
-        "geomoose": {
-            "delta_st": "533 days 14:04:14",
-            "delta_end": "3077 days 16:19:04",
-            "data_end_date": "2021-09-21 16:19:04+00:00",
-            "data_st_date": "2013-05-24 14:04:14+00:00",
-            "inc_end_date": "2013-04-19 00:00:00+00:00",
-            "inc_st_date": "2011-12-08 00:00:00+00:00"
-        },
         "geotools": {
             "delta_st": "1794 days 15:09:24",
             "delta_end": "4826 days 11:02:59",
@@ -241,27 +233,19 @@
             "data_st_date": "2011-04-25 17:01:25+00:00",
             "inc_end_date": "2006-07-15 00:00:00+00:00",
             "inc_st_date": "2006-02-04 00:00:00+00:00"
-        },
-        "pgrouting": {
-            "delta_st": "442 days 05:05:03",
-            "delta_end": "4508 days 21:55:00",
-            "data_end_date": "2021-10-05 21:55:00+00:00",
-            "data_st_date": "2007-05-15 05:05:03+00:00",
-            "inc_end_date": "2009-06-02 00:00:00+00:00",
-            "inc_st_date": "2006-02-27 00:00:00+00:00"
         }
     },
     "end_early": {},
     "unmatched_inc_labels": [
         "fdo",
+        "gvsig",
         "community",
-        "mapfish",
-        "gvsig"
+        "mapfish"
     ],
     "Number of Incubation Labels that went Unmatched": 4,
     "Number of Missing Dates": 27,
-    "Number of Start Late": 4,
+    "Number of Start Late": 2,
     "Number of End Early": 0,
-    "Number of Truncated Tech Projects": 15,
-    "Number of Truncated Social Projects": 15
+    "Number of Truncated Tech Projects": 17,
+    "Number of Truncated Social Projects": 17
 }

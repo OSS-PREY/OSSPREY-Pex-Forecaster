@@ -22,7 +22,7 @@ python3 -m decalfc.scripts.enforce_dates --kwargs \
     versions='{"tech": "0a", "social": "0"}' \
     save_versions='{"tech": "1", "social": "1"}'
 
-# regular cleaning steps
+# regular cleaning steps, new reply inference
 python3 -m decalfc.scripts.pre_process --kwargs \
     incubator="osgeo" \
     load_versions='{"tech": "1", "social": "1"}' \

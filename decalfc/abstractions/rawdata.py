@@ -346,12 +346,29 @@ def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incu
     # export
     return data_lookup
 
-def impute_messageid(data_lookup: dict[str, pd.DataFrame], incubator: str=None, copy: bool=True) -> dict[str, pd.DataFrame]:
-    """
-        Generates a unique messageid from project, sender, timestamp. This 
-        inherently applies only to the social data.
-
-        @param data_lookup: lookup for the tech & social datasets
+def impute_messageid(
+    data_lookup: dict[str, pd.DataFrame], incubator: str=None, copy: bool=True,
+    force_impute: bool=False, strat: str="conserve"
+) -> dict[str, pd.DataFrame]:
+    """Generates a unique messageid from project, sender, timestamp. This 
+    inherently applies only to the social data.
+    
+    Args:
+        data_lookup (dict[str, pd.DataFrame]): lookup of tech/social to 
+            dataframe.
+        incubator (str, optional): not needed, only here as an argument for 
+            backwards compatability. Defaults to None.
+        copy (bool, optional): whether to copy data prior to imputation. 
+            Defaults to True.
+        force_impute (bool, optional): whether to forcefully impute even if the
+            field is already mostly filled (95% threshold). Defaults to False.
+        strat (str, optional): one of {"conserve", "long"}.
+            - "conserve" generates a memory conservative unique message id for 
+            each communication (i.e. simple numbering)
+            - "long" generates a unique id using other fields available in the 
+            social dataset
+            
+            Defaults to "conserve".
     """
 
     # references
@@ -366,25 +383,25 @@ def impute_messageid(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
     df["message_id"] = df["message_id"].astype(str)
 
     # check not overriding
-    print("\n<Imputing Message ID>")
-    if len(df["message_id"].unique()) / df.shape[0] > 0.90:
+    log("Imputing Message ID", "new")
+    if len(df["message_id"].unique()) / df.shape[0] > 0.95:
+        # print warning
         print(f"<WARNING> :: message id field already has >95% unique IDs: {len(df['message_id'].unique()) / df.shape[0] * 100}%")
 
-        # resp = input("Continue [y/n]?")
-        resp = "y"
-        if resp.lower() != "y":
+        # forcefully impute or not
+        if not force_impute:
             print("not imputing. . .")
             return data_lookup
     
     # setup
-    print("continuing imputation. . .")
+    log("continuing imputation. . .")
     field = "message_id"
     num_entries = df.shape[0]
     num_missing_bef = df[field].isna().sum()
     missing_field = 0
     
     # generate unique ids
-    def gen_msg_id(row):
+    def gen_long_msg_id(row):
         # create unique id
         time = row["date"]
         project = row["project_name"]
@@ -399,7 +416,10 @@ def impute_messageid(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
         return f"<{time}={project}@{author}>".replace(" ", "")
 
     # apply
-    df["message_id"] = df.apply(gen_msg_id, axis=1).reset_index(drop=True)
+    if strat == "conserve":
+        df["message_id"] = pd.Series(range(df.shape[0])).astype(int)
+    else:
+        df["message_id"] = df.apply(gen_long_msg_id, axis=1).reset_index(drop=True)
 
     # report
     num_missing_aft = df[field].isna().sum()
@@ -408,7 +428,7 @@ def impute_messageid(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
     prop_after = num_missing_aft / num_entries * 100
     prop_delta = prop_after - prop_before
 
-    print("\n ::: SUMMARY ::: ")
+    log(log_type="summary")
     print(f"Number Missing {field} (before): {num_missing_bef}")
     print(f"Number Missing {field} (after): {num_missing_aft}")
     print(f"Number of {field} Entries Corrected: {delta}")
@@ -470,7 +490,7 @@ def infer_replies(
                 return y
             if not y:
                 return x
-            return x + " " + y
+            return f"{x} {y}"
         
         # accumulate the replies and return the column
         return list(accumulate(reply_col, acc_fn))
@@ -482,7 +502,7 @@ def infer_replies(
 
     # utility for checking inference strategy (check number of potential replies)
     reply_freq = df.groupby(["project_name", "subject"], observed=True).size().reset_index(name="count")
-    prop_replies_inference = reply_freq[reply_freq.count > 1].sum() / len(reply_freq)
+    prop_replies_inference = reply_freq[reply_freq["count"] > 1]["count"].sum() / len(reply_freq)
 
     # check overriding; either if we can't impute more than exists or we're 
     # imputing when we probably don't need to
@@ -1200,7 +1220,7 @@ def pre_process_data(
         )
 
     # cleaning; we'll cache prior to the de-aliasing step in case of OOM errors
-    data_lookup = impute_messageid(data_lookup, copy=False)
+    data_lookup = impute_messageid(data_lookup, copy=False, force_impute=True)
     data_lookup = infer_replies(data_lookup, copy=False)
     data_lookup = clean_source_files(data_lookup, incubator=incubator, copy=False)
     data_lookup = infer_bots(data_lookup, incubator=incubator, copy=False)

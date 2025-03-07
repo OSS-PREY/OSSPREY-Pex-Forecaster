@@ -108,8 +108,8 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
     
     def update_sr_mapping(
         sender_dic: dict[str, list], project_name: str, message_id: str,
-        sender_name: str, prev_author: list[str], timestamp: str,
-        prev_timestamp: str
+        sender_name: str, reference_id: str, prev_author: list[str],
+        timestamp: str, prev_timestamp: str
     ) -> None:
         """Updates the sender-receiver mapping with a single 
         interaction.
@@ -120,6 +120,7 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
             message_id (str): unique communication id for the 
                 current communication.
             sender_name (str): sender of the email.
+            reference_id (str): id for the message
             prev_author (list[str]): single previous email author, 
                 i.e. whoever sent a previous email.
             timestamp (str): timestamp of the current email.
@@ -277,7 +278,7 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
             
             # update the social network
             update_sr_mapping(
-                sender_dic, project_name, message_id, sender_name, 
+                sender_dic, project_name, message_id, sender_name, reference_id,
                 prev_author, timestamp, prev_timestamp
             )
             track_social_signal(social_net, sender_name, prev_author)

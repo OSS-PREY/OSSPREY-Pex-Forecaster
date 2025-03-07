@@ -136,28 +136,34 @@
     "augmentations": {
         "apache": {
             "tech": {
-                "1": "commits"
+                "1": "01-commits",
+                "2": "02-commits"
             },
             "social": {
-                "1": "emails"
+                "1": "01-emails",
+                "2": "02-emails"
             }
         },
         "github": {
             "tech": {
-                "3": "commits"
+                "3": "03-commits",
+                "4": "04-commits"
             },
             "social": {
-                "4": "issues"
+                "4": "04-issues",
+                "5": "05-issues"
             }
         },
         "eclipse": {
             "tech": {
                 "1": "01-commits",
-                "2": "commits"
+                "2": "02-commits",
+                "3": "03-commits"
             },
             "social": {
                 "1": "01-emails-issues",
-                "2": "emails-issues"
+                "2": "02-emails-issues",
+                "3": "03-emails-issues"
             }
         },
         "osgeo": {
@@ -165,7 +171,7 @@
                 "0": "00-commits",
                 "0a": "00-commits-alias",
                 "1": "01-commits",
-                "2": "commits"
+                "2": "02-commits"
             },
             "social": {
                 "0e": "00-emails",
@@ -175,7 +181,7 @@
                 "0": "00-emails-issues",
                 "0t": "00-emails-issues-trunc",
                 "1": "01-emails-issues",
-                "2": "emails-issues"
+                "2": "02-emails-issues"
             }
         },
         "ospos": {
@@ -190,28 +196,34 @@
     "augmentation-descriptions": {
         "apache": {
             "tech": {
-                "1": "filepaths cleaned commits data"
+                "1": "filepaths cleaned commits data",
+                "2": "replies re-inferred with the new strategy"
             },
             "social": {
-                "1": "sender name cleaned emails data"
+                "1": "sender name cleaned emails data",
+                "2": "replies re-inferred with the new strategy"
             }
         },
         "github": {
             "tech": {
-                "3": "source imputation, bot-free, dealiased commits data"
+                "3": "source imputation, bot-free, dealiased commits data",
+                "4": "replies re-inferred with the new strategy"
             },
             "social": {
-                "4": "reply imputed, m-id imputed, bot-free, de-aliased issues data"
+                "4": "reply imputed, m-id imputed, bot-free, de-aliased issues data",
+                "5": "replies re-inferred with the new strategy"
             }
         },
         "eclipse": {
             "tech": {
                 "1": "dealiased w/ source files & bots commits data, now aggregated by project",
-                "2": "truncated to incubation period only"
+                "2": "truncated to incubation period only",
+                "3": "new reply inferencing technique (only applies to the social nets, but for ease of use we'll call it 3)"
             },
             "social": {
                 "1": "deliased w/ reply & bots issues data",
-                "2": "truncated to incubation period only"             
+                "2": "truncated to incubation period only",
+                "3": "new reply inferencing technique"
             }
         },
         "osgeo": {
@@ -268,7 +280,7 @@
     "default-versions": {
         "apache": [1, 1],
         "github": [3, 4],
-        "eclipse": [2, 2],
+        "eclipse": [3, 3],
         "osgeo": [2, 2]
     },
     "network-augmentations": {
