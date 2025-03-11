@@ -348,7 +348,8 @@ def impute_months(data_lookup: dict[str, pd.DataFrame], strat: str="month", incu
 
 def impute_messageid(
     data_lookup: dict[str, pd.DataFrame], incubator: str=None, copy: bool=True,
-    force_impute: bool=False, strat: str="conserve"
+    force_impute: bool=False, strat: str="conserve", field: str="message_id",
+    author_field: str=None
 ) -> dict[str, pd.DataFrame]:
     """Generates a unique messageid from project, sender, timestamp. This 
     inherently applies only to the social data.
@@ -375,16 +376,19 @@ def impute_messageid(
     if copy:
         data_lookup = {k: v.copy() for k, v in data_lookup.items()}
     df = data_lookup["social"]
-    author_field = "sender_name"
+    author_field = author_field if author_field else (
+        params_dict["author-source-field"][incubator] if incubator is not None
+        else "sender_name"
+    )
 
     # enforce type (for later imputation of replies, etc.)
-    if "message_id" not in df.columns:
-        df["message_id"] = None
-    df["message_id"] = df["message_id"].astype(str)
+    if field not in df.columns:
+        df[field] = None
+    df[field] = df[field].astype(str)
 
     # check not overriding
     log("Imputing Message ID", "new")
-    if len(df["message_id"].unique()) / df.shape[0] > 0.95:
+    if len(df[field].unique()) / df.shape[0] > 0.95:
         # print warning
         print(f"<WARNING> :: message id field already has >95% unique IDs: {len(df['message_id'].unique()) / df.shape[0] * 100}%")
 
@@ -395,7 +399,6 @@ def impute_messageid(
     
     # setup
     log("continuing imputation. . .")
-    field = "message_id"
     num_entries = df.shape[0]
     num_missing_bef = df[field].isna().sum()
     missing_field = 0
@@ -417,9 +420,13 @@ def impute_messageid(
 
     # apply
     if strat == "conserve":
-        df["message_id"] = pd.Series(range(df.shape[0])).astype(int)
+        # craft ids via integers
+        df[field] = pd.Series(range(df.shape[0])).astype(int)
+        
+        # add the brackets to be verified as replies
+        df[field] = "<" + df[field].astype(str) + ">"
     else:
-        df["message_id"] = df.apply(gen_long_msg_id, axis=1).reset_index(drop=True)
+        df[field] = df.apply(gen_long_msg_id, axis=1).reset_index(drop=True)
 
     # report
     num_missing_aft = df[field].isna().sum()
@@ -1220,8 +1227,10 @@ def pre_process_data(
         )
 
     # cleaning; we'll cache prior to the de-aliasing step in case of OOM errors
-    data_lookup = impute_messageid(data_lookup, copy=False, force_impute=True)
-    data_lookup = infer_replies(data_lookup, copy=False)
+    data_lookup = impute_messageid(
+        data_lookup, incubator=incubator, copy=False, force_impute=True
+    )
+    data_lookup = infer_replies(data_lookup, incubator=incubator, copy=False)
     data_lookup = clean_source_files(data_lookup, incubator=incubator, copy=False)
     data_lookup = infer_bots(data_lookup, incubator=incubator, copy=False)
     _save_data(

@@ -3,17 +3,21 @@ python3 -m decalfc.pipeline.pipeline --kwargs \
     incubator=apache \
     versions='{"tech": 2, "social": 2}'
 
-python3 -m decalfc.pipeline.pipeline --kwargs \
-    incubator=github \
-    versions='{"tech": 4, "social": 5}'
+# python3 -m decalfc.pipeline.pipeline --kwargs \
+#     incubator=apache \
+#     versions='{"tech": 1, "social": 1}'
 
-python3 -m decalfc.pipeline.pipeline --kwargs \
-    incubator=eclipse \
-    versions='{"tech": 3, "social": 3}'
+# python3 -m decalfc.pipeline.pipeline --kwargs \
+#     incubator=github \
+#     versions='{"tech": 4, "social": 5}'
 
-python3 -m decalfc.pipeline.pipeline --kwargs \
-    incubator=osgeo \
-    versions='{"tech": 2, "social": 2}'
+# python3 -m decalfc.pipeline.pipeline --kwargs \
+#     incubator=eclipse \
+#     versions='{"tech": 3, "social": 3}'
+
+# python3 -m decalfc.pipeline.pipeline --kwargs \
+#     incubator=osgeo \
+#     versions='{"tech": 2, "social": 2}'
 
 # python3 -m decalfc.pipeline.pipeline --kwargs \
 #     incubator=ospos \

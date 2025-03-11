@@ -1,60 +1,99 @@
 {
-    "geonode": [
+    "geomajas": [
         [
-            "Francesco",
-            "Francesco Bartoli"
+            "dosi-bingov",
+            "dosi.bingov"
         ],
         [
-            "bartvde@osgis.nl",
+            "OliverMay",
+            "Oliver Mooney"
+        ]
+    ],
+    "geonode": [
+        [
+            "PedroBelo",
+            "Pedro"
+        ],
+        [
+            "Francesco Bartoli",
+            "Francesco"
+        ],
+        [
+            "Clarence Davis",
+            "Clarence"
+        ],
+        [
+            "Jeremiah C. Foster",
+            "Jeremiah Cooper"
+        ],
+        [
             "bartvde",
+            "bartvde@osgis.nl",
             "bartvde@xs4all.nl"
         ],
         [
-            "Pedro",
-            "PedroBelo"
-        ],
+            "root",
+            "root@bgdem1.cr.usgs.gov"
+        ]
+    ],
+    "geopaparazzi": [
         [
-            "Jeremiah Cooper",
-            "Jeremiah C. Foster"
-        ],
-        [
-            "Clarence",
-            "Clarence Davis"
-        ],
-        [
-            "root@bgdem1.cr.usgs.gov",
-            "root"
+            "AndrewM-",
+            "Andrea"
         ]
     ],
     "geoserver": [
         [
-            "volayaf",
-            "volaya"
-        ],
-        [
-            "dwins",
-            "dwinslow"
-        ],
-        [
-            "jgarnett",
-            "jody.garnett"
+            "DavidLeal",
+            "Davide"
         ],
         [
             "Andrea Aime",
             "Andrea"
         ],
         [
-            "yjacolin",
-            "yjacolin@free.fr"
+            "yjacolin@free.fr",
+            "yjacolin"
         ],
         [
-            "Davide",
-            "DavidLeal"
+            "jody.garnett",
+            "jgarnett"
+        ],
+        [
+            "volaya",
+            "volayaf"
+        ],
+        [
+            "dwinslow",
+            "dwins"
+        ]
+    ],
+    "geowave": [],
+    "get-it": [
+        [
+            "root",
+            "root@bgdem1.cr.usgs.gov"
+        ],
+        [
+            "alesarrett",
+            "alessandro.sarretta"
         ]
     ],
     "grass": [],
+    "istsos": [],
     "mapserver": [],
     "osgeolive": [],
+    "ossim": [
+        [
+            "dburken@comcast.net",
+            "dburken"
+        ],
+        [
+            "McKenzie Tugui",
+            "65674943+McKenzieTugui"
+        ]
+    ],
+    "pdal": [],
     "proj": [],
     "pycsw": []
 }

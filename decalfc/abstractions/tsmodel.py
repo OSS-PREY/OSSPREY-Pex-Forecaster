@@ -581,7 +581,7 @@ def load_hyperparams(new_hp: dict[str, Any]) -> dict[str, Any]:
         "learning_rate": 0.001,
         # "batch_size": 16,
         "num_epochs": 200,
-        "num_layers": 2,
+        "num_layers": 4,
         "scheduler": "plateau"
     }
 
@@ -1022,7 +1022,7 @@ class TimeSeriesModel:
             if avg_loss < best_loss - TOLERANCE:
                 best_loss = avg_loss
                 best_model_weights = copy.deepcopy(self.model.state_dict())      
-                patience = 10
+                patience = 20
                 best_epoch = epoch
                 if save_epochs:
                     torch.save(self.model.state_dict(), f"best_model_epoch_{epoch}.pth")
@@ -1068,7 +1068,7 @@ class TimeSeriesModel:
                  horizontalalignment="right", verticalalignment="top", 
                  transform=plt.gca().transAxes)
 
-        plt.savefig(f"{dir}[{md.transfer_strategy}].png")
+        # plt.savefig(f"{dir}[{md.transfer_strategy}].png")
         plt.clf()
 
 

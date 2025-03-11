@@ -38,6 +38,10 @@ def merge_st_end_dates(df: pd.DataFrame, dates: pd.DataFrame) -> pd.DataFrame:
     """
     
     # return the merged dataframe without the excess project column
+
+    print(df.columns)
+    print(dates.columns)
+
     merged = pd.merge(
         df, dates, left_on="project_name", right_on="project", how="left"
     )
@@ -49,11 +53,12 @@ def merge_st_end_dates(df: pd.DataFrame, dates: pd.DataFrame) -> pd.DataFrame:
     
     # check which incubation labels got skipped
     inc_no_match = set(dates.project.unique()) - set(df.project_name.unique())
+    print(inc_no_match)
     
     # return 
     return merged, inc_no_match
 
-def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame, ndays_tol: int=130) -> dict[str, pd.DataFrame | dict[str, dict[str, str]]]:
+def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame, ndays_tol: int=12000000) -> dict[str, pd.DataFrame | dict[str, dict[str, str]]]:
     """Checks whether we have data to cover the full incubation period for a 
     given project. If we lack the data, we'll note the project down and remove 
     its data. If we have extra data, we'll truncate to only fit the project 
@@ -87,7 +92,7 @@ def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame, ndays_tol: int
     """
     
     # auxiliary fn
-    def is_valid_project(proj_tdf: pd.DataFrame, proj_sdf: pd.DataFrame, ndays_tol: int=1200) -> str:
+    def is_valid_project(proj_tdf: pd.DataFrame, proj_sdf: pd.DataFrame, ndays_tol=12000000) -> str:
         """Indicator function to test if a project contains the necessary 
         requirements to be kept. Requires tech and social data for a given 
         project simultaneously. Allows for some number of days of tolerance.
@@ -195,7 +200,7 @@ def truncate_data(df: pd.DataFrame) -> tuple[pd.DataFrame, int]:
 # ------------- Primary Utility ------------- #
 def truncate_incubation_time(
     incubator: str, dates: Path | str | dict[str, dict[str, str]], 
-    ndays_tol: int=1200, versions: dict[str, str]=None,
+    ndays_tol: int=12000000, versions: dict[str, str]=None,
     save_versions: dict[str, int]=None
 ) -> dict[str, pd.DataFrame]:
     """Wrapper to truncate the social and technical data to only the time under

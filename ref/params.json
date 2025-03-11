@@ -278,8 +278,8 @@
         "trg": "target: B + T' --> T''"
     },
     "default-versions": {
-        "apache": [1, 1],
-        "github": [3, 4],
+        "apache": [2, 2],
+        "github": [4, 5],
         "eclipse": [3, 3],
         "osgeo": [2, 2]
     },

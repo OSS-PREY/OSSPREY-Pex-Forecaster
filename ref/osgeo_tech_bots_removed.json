@@ -312,6 +312,238 @@
         }
     },
     {
+        "Andre Nosalsky": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006565427192733466,
+            "is-bot": 0
+        }
+    },
+    {
+        "Bruce Williams": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00018734033494181095,
+            "is-bot": 0
+        }
+    },
+    {
+        "DavidLeal": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00536758444507522,
+            "is-bot": 0
+        }
+    },
+    {
+        "Emiel van de Laar": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.003261424921941527,
+            "is-bot": 0
+        }
+    },
+    {
+        "Francesco Dal Canton": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.002128867442520579,
+            "is-bot": 0
+        }
+    },
+    {
+        "Jan": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.1616860630144763,
+            "is-bot": 0
+        }
+    },
+    {
+        "Jan Varwig": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0297104740278172,
+            "is-bot": 0
+        }
+    },
+    {
+        "Jan Venstermans": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.021351121203519726,
+            "is-bot": 0
+        }
+    },
+    {
+        "Jens Norrgrann": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00019017882486517174,
+            "is-bot": 0
+        }
+    },
+    {
+        "Joachim Bean": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.2723162077774624,
+            "is-bot": 0
+        }
+    },
+    {
+        "Justine Adam": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 2.838489923360772e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Kristof Houben": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.017232472324723247,
+            "is-bot": 0
+        }
+    },
+    {
+        "Matthias Platzer": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.037255180244110134,
+            "is-bot": 0
+        }
+    },
+    {
+        "Oliver Gerlich": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.15713880215725234,
+            "is-bot": 0
+        }
+    },
+    {
+        "Oliver Mooney": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.13358501277320464,
+            "is-bot": 0
+        }
+    },
+    {
+        "Pieter De Graef": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008132273630428613,
+            "is-bot": 0
+        }
+    },
+    {
+        "Pieter de Bie": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.09915413000283849,
+            "is-bot": 0
+        }
+    },
+    {
+        "Torsten Becker": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 3.9738858927050806e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Wouter": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.001370990632983253,
+            "is-bot": 0
+        }
+    },
+    {
+        "Youri Park": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00034629577065001417,
+            "is-bot": 0
+        }
+    },
+    {
+        "balder": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00027249503264263413,
+            "is-bot": 0
+        }
+    },
+    {
+        "dosi-bingov": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006718705648594948,
+            "is-bot": 0
+        }
+    },
+    {
+        "dosi.bingov": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0026823729775759296,
+            "is-bot": 0
+        }
+    },
+    {
+        "jandm": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.007300596082883906,
+            "is-bot": 0
+        }
+    },
+    {
+        "jenkins": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.02151007663922793,
+            "is-bot": 0
+        }
+    },
+    {
+        "maesfran": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.947771785410161e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "noreply": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.004203803576497304,
+            "is-bot": 0
+        }
+    },
+    {
+        "paltman": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00016747090547828555,
+            "is-bot": 0
+        }
+    },
+    {
+        "streulma": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 4.257734885041158e-05,
+            "is-bot": 0
+        }
+    },
+    {
         "404": {
             "substring": 0,
             "outlier": 1,
@@ -1036,6 +1268,214 @@
             "substring": 0,
             "outlier": 0,
             "proportion": 0.001434548714883443,
+            "is-bot": 0
+        }
+    },
+    {
+        "404": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0001066010660106601,
+            "is-bot": 0
+        }
+    },
+    {
+        "406": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 8.200082000820008e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Andrea": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.16782697826978268,
+            "is-bot": 0
+        }
+    },
+    {
+        "AndrewM-": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 2.050020500205002e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Brent Fraser": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0075645756457564575,
+            "is-bot": 0
+        }
+    },
+    {
+        "Brent Meyer": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 6.150061500615006e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Cesar Martinez Izquierdo": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006396063960639606,
+            "is-bot": 0
+        }
+    },
+    {
+        "Dmitry Vassiliev": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 4.100041000410004e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Francesco": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 4.510045100451004e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Ken": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 1.6400164001640016e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Luca Mearelli": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0032103321033210334,
+            "is-bot": 0
+        }
+    },
+    {
+        "Mark Johnson": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.8105863058630586,
+            "is-bot": 0
+        }
+    },
+    {
+        "Mark Josef": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 1.2300123001230013e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Taco": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006055760557605576,
+            "is-bot": 0
+        }
+    },
+    {
+        "Thomas Eichmann": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 4.100041000410004e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Tim Howard": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 2.870028700287003e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "cesar.izq": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 5.740057400574006e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "emc": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 8.200082000820008e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "hofoen": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 8.200082000820008e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "isync": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 4.100041000410004e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "mario.danic": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0005166051660516605,
+            "is-bot": 0
+        }
+    },
+    {
+        "nimu": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 4.100041000410004e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "noreply": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0025789257892578927,
+            "is-bot": 0
+        }
+    },
+    {
+        "silvia.franceschi": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 4.100041000410004e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "silviafranceschi": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0005740057400574006,
+            "is-bot": 0
+        }
+    },
+    {
+        "tim.schaub": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 5.330053300533005e-05,
             "is-bot": 0
         }
     },
@@ -1768,6 +2208,350 @@
         }
     },
     {
+        "Guido": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.022598870056497175,
+            "is-bot": 0
+        }
+    },
+    {
+        "Julia Khusainova": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0010761366693570083,
+            "is-bot": 0
+        }
+    },
+    {
+        "MarcBellingrath": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.010761366693570083,
+            "is-bot": 0
+        }
+    },
+    {
+        "Markus Bengts": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.06187785848802798,
+            "is-bot": 0
+        }
+    },
+    {
+        "bettge": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.037933817594834544,
+            "is-bot": 0
+        }
+    },
+    {
+        "huhabla": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.04331450094161959,
+            "is-bot": 0
+        }
+    },
+    {
+        "noreply": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.44283023944040895,
+            "is-bot": 0
+        }
+    },
+    {
+        "soerengebbert": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.15953726123217649,
+            "is-bot": 0
+        }
+    },
+    {
+        "tawalika": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.2200699488835082,
+            "is-bot": 0
+        }
+    },
+    {
+        "404": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0002849544072948328,
+            "is-bot": 0
+        }
+    },
+    {
+        "ABasoni": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0002849544072948328,
+            "is-bot": 0
+        }
+    },
+    {
+        "Alessandro Oggioni": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0019946808510638296,
+            "is-bot": 0
+        }
+    },
+    {
+        "Alessio Fabiani": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.08482142857142858,
+            "is-bot": 0
+        }
+    },
+    {
+        "Andrea": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.004179331306990881,
+            "is-bot": 0
+        }
+    },
+    {
+        "Andrea Vianello": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.026975683890577508,
+            "is-bot": 0
+        }
+    },
+    {
+        "Diego": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.014912613981762917,
+            "is-bot": 0
+        }
+    },
+    {
+        "Fabio Pavesi": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0005699088145896656,
+            "is-bot": 0
+        }
+    },
+    {
+        "Francesco": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0477773556231003,
+            "is-bot": 0
+        }
+    },
+    {
+        "Monica": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0023746200607902735,
+            "is-bot": 0
+        }
+    },
+    {
+        "Paolo Tagliolato": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.018332066869300914,
+            "is-bot": 0
+        }
+    },
+    {
+        "Simone Lanucara": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.02213145896656535,
+            "is-bot": 0
+        }
+    },
+    {
+        "Stefano": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.04549772036474164,
+            "is-bot": 0
+        }
+    },
+    {
+        "Stefano Menegon": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.1398176291793313,
+            "is-bot": 0
+        }
+    },
+    {
+        "Walter Lorenzetti": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.001519756838905775,
+            "is-bot": 0
+        }
+    },
+    {
+        "Walter McGinnis": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.015957446808510637,
+            "is-bot": 0
+        }
+    },
+    {
+        "alesarrett": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 9.498480243161094e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "alessandro.sarretta": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.12613981762917933,
+            "is-bot": 0
+        }
+    },
+    {
+        "andrea": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0013297872340425532,
+            "is-bot": 0
+        }
+    },
+    {
+        "angular-cli": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0024696048632218844,
+            "is-bot": 0
+        }
+    },
+    {
+        "fzeiser": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.2656724924012158,
+            "is-bot": 0
+        }
+    },
+    {
+        "noreply": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.12433510638297872,
+            "is-bot": 0
+        }
+    },
+    {
+        "rcasas": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00037993920972644377,
+            "is-bot": 0
+        }
+    },
+    {
+        "root": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0014247720364741641,
+            "is-bot": 0
+        }
+    },
+    {
+        "root@bgdem1.cr.usgs.gov": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0028495440729483282,
+            "is-bot": 0
+        }
+    },
+    {
+        "spookyisland": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.01310790273556231,
+            "is-bot": 0
+        }
+    },
+    {
+        "starterkit": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0012348024316109422,
+            "is-bot": 0
+        }
+    },
+    {
+        "404": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.005545286506469501,
+            "is-bot": 0
+        }
+    },
+    {
+        "IvanKozik": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.035274183610597656,
+            "is-bot": 0
+        }
+    },
+    {
+        "Jachym Cepicky": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.015865680837954404,
+            "is-bot": 0
+        }
+    },
+    {
+        "Marcel Molina": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.756007393715342,
+            "is-bot": 0
+        }
+    },
+    {
+        "Martin Baum": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.1170671595810228,
+            "is-bot": 0
+        }
+    },
+    {
+        "ludmilafurtkevicov": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00015403573629081948,
+            "is-bot": 0
+        }
+    },
+    {
+        "noreply": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.07008626001232286,
+            "is-bot": 0
+        }
+    },
+    {
         "312910815": {
             "substring": 0,
             "outlier": 0,
@@ -2051,6 +2835,158 @@
         "404": {
             "substring": 0,
             "outlier": 0,
+            "proportion": 0.0007415494263291243,
+            "is-bot": 0
+        }
+    },
+    {
+        "Antonovic P. Milan": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.08165283127690691,
+            "is-bot": 0
+        }
+    },
+    {
+        "DanieleMetilli": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00037077471316456217,
+            "is-bot": 0
+        }
+    },
+    {
+        "DanieleStrigaro": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00012359157105485406,
+            "is-bot": 0
+        }
+    },
+    {
+        "Florin Cioloboc": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006962325169423445,
+            "is-bot": 0
+        }
+    },
+    {
+        "Istituto scienze della Terra - SUPSI": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00012359157105485406,
+            "is-bot": 0
+        }
+    },
+    {
+        "Kevin": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 2.059859517580901e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Massimiliano Pepe": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.07104455476136527,
+            "is-bot": 0
+        }
+    },
+    {
+        "MassimilianoCannata": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0059735926009846126,
+            "is-bot": 0
+        }
+    },
+    {
+        "Milan": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.3865738356644077,
+            "is-bot": 0
+        }
+    },
+    {
+        "Mirko Cardoso": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 8.239438070323604e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Mirko Vogt": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.08338311327167487,
+            "is-bot": 0
+        }
+    },
+    {
+        "Ondrej Hrebicek": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 2.059859517580901e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Rahul Chauhan": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006591550456258883,
+            "is-bot": 0
+        }
+    },
+    {
+        "felipe07": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.16546851504727378,
+            "is-bot": 0
+        }
+    },
+    {
+        "florin": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.005067254413249017,
+            "is-bot": 0
+        }
+    },
+    {
+        "luka.glusica89": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.01476919274105506,
+            "is-bot": 0
+        }
+    },
+    {
+        "milan.antonovic": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008239438070323604,
+            "is-bot": 0
+        }
+    },
+    {
+        "noreply": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.17613858734834284,
+            "is-bot": 0
+        }
+    },
+    {
+        "404": {
+            "substring": 0,
+            "outlier": 0,
             "proportion": 0.0020885018480076957,
             "is-bot": 0
         }
@@ -2292,6 +3228,990 @@
             "substring": 0,
             "outlier": 1,
             "proportion": 0.11036789297658862,
+            "is-bot": 0
+        }
+    },
+    {
+        "404": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0018983168740082743,
+            "is-bot": 0
+        }
+    },
+    {
+        "43353330+KWright8": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0001666461377946195,
+            "is-bot": 0
+        }
+    },
+    {
+        "65674943+McKenzieTugui": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.016483476673163452,
+            "is-bot": 0
+        }
+    },
+    {
+        "Aaron Baldwin": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0003622742125969989,
+            "is-bot": 0
+        }
+    },
+    {
+        "Aaron Drake": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0007752668149575777,
+            "is-bot": 0
+        }
+    },
+    {
+        "Andrew Nagawiecki": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00021011904330625936,
+            "is-bot": 0
+        }
+    },
+    {
+        "Bas Peters": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0003043103385814791,
+            "is-bot": 0
+        }
+    },
+    {
+        "Ben Straub": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.245484251939979e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Benjamin Birnbaum": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 4.347290551163987e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Brad Pitcher": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.970032677133976e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Cale Mooth": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.245484251939979e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Chris Bailey": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 3.622742125969989e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Christopher Friedrich": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00010868226377909968,
+            "is-bot": 0
+        }
+    },
+    {
+        "Cory Ondrejka": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.07288957157451618,
+            "is-bot": 0
+        }
+    },
+    {
+        "Craig": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 5.796387401551983e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Dave Brophy": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 6.52093582674598e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "DavidLeal": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.010824753472398328,
+            "is-bot": 0
+        }
+    },
+    {
+        "Dylan.Cannisi": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.000695566488186238,
+            "is-bot": 0
+        }
+    },
+    {
+        "Garrett LeSage": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.03592311092111841,
+            "is-bot": 0
+        }
+    },
+    {
+        "JulienCastelain": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.245484251939979e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Kevin Naquin": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0010940681220429366,
+            "is-bot": 0
+        }
+    },
+    {
+        "Luc Heischbourg": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 9.419129527521971e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Ludovic Bouges": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 1.4490968503879958e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Manuel J. Simoni": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.245484251939979e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Matthew Stafford": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0012896961968453162,
+            "is-bot": 0
+        }
+    },
+    {
+        "McKenzie Tugui": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.07249831542491142,
+            "is-bot": 0
+        }
+    },
+    {
+        "Michael Aufreiter": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0004274835708644587,
+            "is-bot": 0
+        }
+    },
+    {
+        "Nick Poulden": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.245484251939979e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Omar Khudeira": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.245484251939979e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Peter Subacz": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.09477093401537491,
+            "is-bot": 0
+        }
+    },
+    {
+        "Praveen Chekuri": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0002898193700775991,
+            "is-bot": 0
+        }
+    },
+    {
+        "Rashad Karanouh": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006513690342494041,
+            "is-bot": 0
+        }
+    },
+    {
+        "Ryan Feldbush": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.38482215958903615,
+            "is-bot": 0
+        }
+    },
+    {
+        "Ryan Mudryk": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.245484251939979e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "ScottMiller": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0005796387401551982,
+            "is-bot": 0
+        }
+    },
+    {
+        "Stephen Wan": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.000695566488186238,
+            "is-bot": 0
+        }
+    },
+    {
+        "Tony Narlock": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 1.4490968503879958e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Trevor Wennblom": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00011592774803103966,
+            "is-bot": 0
+        }
+    },
+    {
+        "Tyler McMullen": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.003644478578725809,
+            "is-bot": 0
+        }
+    },
+    {
+        "aimee": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.14379388046400082,
+            "is-bot": 0
+        }
+    },
+    {
+        "aimtrettel": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0007825122992095177,
+            "is-bot": 0
+        }
+    },
+    {
+        "arocnies": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0004419745393683387,
+            "is-bot": 0
+        }
+    },
+    {
+        "calecohee": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.000695566488186238,
+            "is-bot": 0
+        }
+    },
+    {
+        "dburken": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 4.347290551163987e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "dburken@comcast.net": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 8.694581102327975e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "ewleaver": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 3.622742125969989e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "gpotts": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.001318678133853076,
+            "is-bot": 0
+        }
+    },
+    {
+        "jzuehsow": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 5.796387401551983e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "kitplummer": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 1.4490968503879958e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "ktran": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00012317323228297963,
+            "is-bot": 0
+        }
+    },
+    {
+        "lbartoletti": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 1.4490968503879958e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "lbartoletti at tuxfamily.org": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 2.8981937007759915e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "mikefedak": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 4.347290551163987e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "mkrutz": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 5.796387401551983e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "mr.kev": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 2.8981937007759915e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "mstafford2012": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.012570915177115862,
+            "is-bot": 0
+        }
+    },
+    {
+        "natalie": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0038980705275437084,
+            "is-bot": 0
+        }
+    },
+    {
+        "noreply": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.029416666062876313,
+            "is-bot": 0
+        }
+    },
+    {
+        "omarossim": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 2.8981937007759915e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "oscar.fonts": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0012027503858220365,
+            "is-bot": 0
+        }
+    },
+    {
+        "oscarkramer": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.09282189875160306,
+            "is-bot": 0
+        }
+    },
+    {
+        "pelangovan": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0003985016338566988,
+            "is-bot": 0
+        }
+    },
+    {
+        "roberts365": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.245484251939979e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "sbortman": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.004122680539353848,
+            "is-bot": 0
+        }
+    },
+    {
+        "walley ": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00012317323228297963,
+            "is-bot": 0
+        }
+    },
+    {
+        "404": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 2.835883856376662e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Alex Gaynor": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 3.5448548204708277e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "AndrewNesbitt": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.15586017674646135,
+            "is-bot": 0
+        }
+    },
+    {
+        "Bas Peters": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00012052506389600814,
+            "is-bot": 0
+        }
+    },
+    {
+        "Bradley Griffith": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.018649481210497025,
+            "is-bot": 0
+        }
+    },
+    {
+        "Bruno Mattarollo": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.089709640941655e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Carl Jackson": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 2.835883856376662e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Chris Bailey": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00646936004735926,
+            "is-bot": 0
+        }
+    },
+    {
+        "Chris Ortner": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.3009581742579733,
+            "is-bot": 0
+        }
+    },
+    {
+        "Connor Montgomery": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0065686159823324436,
+            "is-bot": 0
+        }
+    },
+    {
+        "Grigory Yaroslavtsev": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0010386424623979524,
+            "is-bot": 0
+        }
+    },
+    {
+        "Howard Butler": {
+            "substring": 1,
+            "outlier": 0,
+            "proportion": 0.0006841569803508697,
+            "is-bot": 0
+        }
+    },
+    {
+        "IvanKozik": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 1.0634564461412483e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "James Darling": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 1.7724274102354138e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Jason": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 3.190369338423745e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "JohnMcGrath": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 3.190369338423745e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Kevin Shannon": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.089709640941655e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Kirk Richey": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.023062825461983204,
+            "is-bot": 0
+        }
+    },
+    {
+        "Kristian Kraljic": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 1.0634564461412483e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "KyleMann": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0016802611849031724,
+            "is-bot": 0
+        }
+    },
+    {
+        "Larry": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.089709640941655e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Logan Hanks": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 5.3172822307062414e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Luca Mearelli": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.089709640941655e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Martijn Storck": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 2.1269128922824967e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Mateusz U": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0009571108015271235,
+            "is-bot": 0
+        }
+    },
+    {
+        "Matthew O'Connor": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 1.0634564461412483e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "MatthewMohrman": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 1.417941928188331e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Max Schoening": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 3.5448548204708277e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Michael Aufreiter": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.024321248923250348,
+            "is-bot": 0
+        }
+    },
+    {
+        "NicolasRaspal": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 8.507651569129987e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Paul": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.000740874657478403,
+            "is-bot": 0
+        }
+    },
+    {
+        "Paul Sadauskas": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.03520395322209579,
+            "is-bot": 0
+        }
+    },
+    {
+        "Pete": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.003991506527850152,
+            "is-bot": 0
+        }
+    },
+    {
+        "Pierre-Alexandre Meyer": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 3.5448548204708277e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Pramukta Kumar": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 4.9627967486591585e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Raphael Simon": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 1.417941928188331e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Rob Emanuele": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 3.5448548204708277e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Ryan Mudryk": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 7.089709640941655e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Sandro Turriate": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 9.571108015271234e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "ScottMiller": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0004856451104045034,
+            "is-bot": 0
+        }
+    },
+    {
+        "Stefan": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 3.5448548204708277e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "Thomas Eichmann": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 3.5448548204708277e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "ToddBealmear": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 1.417941928188331e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Uday Kanth Chintala": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 1.0634564461412483e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Whitney Zoller": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00017015303138259973,
+            "is-bot": 0
+        }
+    },
+    {
+        "chambbj": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.004129755865848514,
+            "is-bot": 0
+        }
+    },
+    {
+        "cuitingting01": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 3.5448548204708277e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "dewall": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 3.5448548204708277e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "even.rouault": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 2.1269128922824967e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "jsoto": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.002080829779616376,
+            "is-bot": 0
+        }
+    },
+    {
+        "manuel.pegourie-gonnard": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 8.153166087082904e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "mpg@lizardtech.com": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00016306332174165808,
+            "is-bot": 0
+        }
+    },
+    {
+        "noreply": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.02995047837815802,
+            "is-bot": 0
+        }
+    },
+    {
+        "pdal": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.38181631271291283,
+            "is-bot": 0
+        }
+    },
+    {
+        "pdal-docs bot": {
+            "substring": 1,
+            "outlier": 0,
+            "proportion": 3.5448548204708277e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "stefan.hansen": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 3.5448548204708277e-06,
+            "is-bot": 0
+        }
+    },
+    {
+        "wenzeslaus": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 2.4813983743295792e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "womeara": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00017015303138259973,
             "is-bot": 0
         }
     },

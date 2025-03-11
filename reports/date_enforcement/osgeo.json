@@ -40,27 +40,11 @@
             "inc_end_date": "NaT",
             "inc_st_date": "NaT"
         },
-        "geomajas": {
-            "delta_st": "NaT",
-            "delta_end": "NaT",
-            "data_end_date": "2020-02-20 15:38:47+00:00",
-            "data_st_date": "2010-01-26 19:58:12+00:00",
-            "inc_end_date": "NaT",
-            "inc_st_date": "NaT"
-        },
         "geomesa": {
             "delta_st": "NaT",
             "delta_end": "NaT",
             "data_end_date": "2021-09-27 13:58:58+00:00",
             "data_st_date": "2013-09-30 16:13:54+00:00",
-            "inc_end_date": "NaT",
-            "inc_st_date": "NaT"
-        },
-        "geopaparazzi": {
-            "delta_st": "NaT",
-            "delta_end": "NaT",
-            "data_end_date": "2021-09-24 19:46:56+00:00",
-            "data_st_date": "2010-09-01 13:03:32+00:00",
             "inc_end_date": "NaT",
             "inc_st_date": "NaT"
         },
@@ -77,38 +61,6 @@
             "delta_end": "NaT",
             "data_end_date": "2021-10-04 17:38:20+00:00",
             "data_st_date": "2011-12-23 10:01:38+00:00",
-            "inc_end_date": "NaT",
-            "inc_st_date": "NaT"
-        },
-        "geowave": {
-            "delta_st": "NaT",
-            "delta_end": "NaT",
-            "data_end_date": "2021-10-04 19:03:11+00:00",
-            "data_st_date": "2018-03-12 12:19:55+00:00",
-            "inc_end_date": "NaT",
-            "inc_st_date": "NaT"
-        },
-        "get-it": {
-            "delta_st": "NaT",
-            "delta_end": "NaT",
-            "data_end_date": "2021-09-21 18:09:17+00:00",
-            "data_st_date": "2013-10-25 18:17:24+00:00",
-            "inc_end_date": "NaT",
-            "inc_st_date": "NaT"
-        },
-        "gisquick": {
-            "delta_st": "NaT",
-            "delta_end": "NaT",
-            "data_end_date": "2021-10-05 08:52:25+00:00",
-            "data_st_date": "2015-11-12 14:49:25+00:00",
-            "inc_end_date": "NaT",
-            "inc_st_date": "NaT"
-        },
-        "istsos": {
-            "delta_st": "NaT",
-            "delta_end": "NaT",
-            "data_end_date": "2021-09-14 08:51:08+00:00",
-            "data_st_date": "2011-07-06 10:09:11+00:00",
             "inc_end_date": "NaT",
             "inc_st_date": "NaT"
         },
@@ -168,27 +120,11 @@
             "inc_end_date": "NaT",
             "inc_st_date": "NaT"
         },
-        "ossim": {
-            "delta_st": "NaT",
-            "delta_end": "NaT",
-            "data_end_date": "2021-09-27 11:11:05+00:00",
-            "data_st_date": "2015-09-02 16:20:52+00:00",
-            "inc_end_date": "NaT",
-            "inc_st_date": "NaT"
-        },
         "owslib": {
             "delta_st": "NaT",
             "delta_end": "NaT",
             "data_end_date": "2021-10-04 09:57:54+00:00",
             "data_st_date": "2006-04-05 03:33:34+00:00",
-            "inc_end_date": "NaT",
-            "inc_st_date": "NaT"
-        },
-        "pdal": {
-            "delta_st": "NaT",
-            "delta_end": "NaT",
-            "data_end_date": "2021-10-04 21:36:19+00:00",
-            "data_st_date": "2011-02-03 15:06:15+00:00",
             "inc_end_date": "NaT",
             "inc_st_date": "NaT"
         },
@@ -217,35 +153,26 @@
             "inc_st_date": "NaT"
         }
     },
-    "st_late": {
-        "geotools": {
-            "delta_st": "1794 days 15:09:24",
-            "delta_end": "4826 days 11:02:59",
-            "data_end_date": "2021-10-04 11:02:59+00:00",
-            "data_st_date": "2011-01-26 15:09:24+00:00",
-            "inc_end_date": "2008-07-18 00:00:00+00:00",
-            "inc_st_date": "2006-02-27 00:00:00+00:00"
-        },
-        "mapbender": {
-            "delta_st": "1906 days 17:01:25",
-            "delta_end": "5562 days 10:42:03",
-            "data_end_date": "2021-10-06 10:42:03+00:00",
-            "data_st_date": "2011-04-25 17:01:25+00:00",
-            "inc_end_date": "2006-07-15 00:00:00+00:00",
-            "inc_st_date": "2006-02-04 00:00:00+00:00"
-        }
-    },
+    "st_late": {},
     "end_early": {},
     "unmatched_inc_labels": [
+        "moss",
+        "virtual terrain project",
         "fdo",
+        "geoserver client php",
         "gvsig",
+        "mapfish",
         "community",
-        "mapfish"
+        "metacrs",
+        "rasdaman",
+        "mapguide open source",
+        "community mapbuilder",
+        "portable gis"
     ],
-    "Number of Incubation Labels that went Unmatched": 4,
-    "Number of Missing Dates": 27,
-    "Number of Start Late": 2,
+    "Number of Incubation Labels that went Unmatched": 12,
+    "Number of Missing Dates": 19,
+    "Number of Start Late": 0,
     "Number of End Early": 0,
-    "Number of Truncated Tech Projects": 17,
-    "Number of Truncated Social Projects": 17
+    "Number of Truncated Tech Projects": 19,
+    "Number of Truncated Social Projects": 19
 }
