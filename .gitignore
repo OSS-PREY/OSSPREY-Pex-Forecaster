@@ -4,6 +4,7 @@ network-data/
 model-weights/
 model-reports/
 netdata-old/
+experiments_*
 !model-weights/BGRU.pt
 !model-weights/BLSTM.pt
 !network-data/netdata/clean-apache-network-data.csv

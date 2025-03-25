@@ -447,7 +447,7 @@ def impute_messageid(
 
 def infer_replies(
     data_lookup: dict[str, pd.DataFrame], incubator: str=None, copy: bool=True,
-    force_impute: bool=False
+    force_impute: bool=False, strat: str="ONE"
 ) -> dict[str, pd.DataFrame]:
     """
         Generate reply information by grouping by project, subject then 
@@ -466,6 +466,9 @@ def infer_replies(
                 to True.
             force_impute (bool, optional): whether to ignore warnings about 
                 pre-existing reply information. Defaults to False.
+            strat (str, optional): strategy to use, should be one of {"ONE", 
+                "ALL"}. ONE only imputes the previous reply, ALL imputes all 
+                previous replies. Defaults to ONE.
     """
     
     # auxiliary fn
@@ -555,12 +558,12 @@ def infer_replies(
 
     # transform to get the in_reply_to field imputed
     log("imputing from the source field...")
-    # df[field] = grouped[impute_source_field].transform(basic_reply_inference)
     df[field] = grouped[impute_source_field].transform(basic_reply_inference)
     
     # transform to accumulate the replies to accurately reflect the reply chain
-    log("accumulating the replies...")
-    df[field] = grouped[field].transform(period_reply_inference)
+    if strat == "ALL":
+        log("accumulating the replies...")
+        df[field] = grouped[field].transform(period_reply_inference)
 
     # remove self-referencing edges
     same_sender_mask = df[impute_source_field] == df[field]

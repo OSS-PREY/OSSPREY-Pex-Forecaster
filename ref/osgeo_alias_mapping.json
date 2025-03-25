@@ -1,49 +1,49 @@
 {
     "geomajas": {
-        "dosi-bingov": "Dosi-bingov",
-        "dosi.bingov": "Dosi-bingov",
+        "Oliver Mooney": "Oliver Mooney",
         "OliverMay": "Oliver Mooney",
-        "Oliver Mooney": "Oliver Mooney"
+        "dosi-bingov": "Dosi-bingov",
+        "dosi.bingov": "Dosi-bingov"
     },
     "geonode": {
-        "PedroBelo": "Pedrobelo",
-        "Pedro": "Pedrobelo",
-        "Francesco Bartoli": "Francesco Bartoli",
-        "Francesco": "Francesco Bartoli",
+        "root": "Root@bgdem1.cr.usgs.gov",
+        "root@bgdem1.cr.usgs.gov": "Root@bgdem1.cr.usgs.gov",
         "Clarence Davis": "Clarence Davis",
         "Clarence": "Clarence Davis",
-        "Jeremiah C. Foster": "Jeremiah Cooper",
-        "Jeremiah Cooper": "Jeremiah Cooper",
+        "bartvde@xs4all.nl": "Bartvde@xs4all.nl",
         "bartvde": "Bartvde@xs4all.nl",
         "bartvde@osgis.nl": "Bartvde@xs4all.nl",
-        "bartvde@xs4all.nl": "Bartvde@xs4all.nl",
-        "root": "Root@bgdem1.cr.usgs.gov",
-        "root@bgdem1.cr.usgs.gov": "Root@bgdem1.cr.usgs.gov"
+        "Jeremiah Cooper": "Jeremiah Cooper",
+        "Jeremiah C. Foster": "Jeremiah Cooper",
+        "PedroBelo": "Pedrobelo",
+        "Pedro": "Pedrobelo",
+        "Francesco": "Francesco Bartoli",
+        "Francesco Bartoli": "Francesco Bartoli"
     },
     "geopaparazzi": {
         "AndrewM-": "Andrewm-",
         "Andrea": "Andrewm-"
     },
     "geoserver": {
-        "DavidLeal": "Davidleal",
-        "Davide": "Davidleal",
         "Andrea Aime": "Andrea Aime",
         "Andrea": "Andrea Aime",
-        "yjacolin@free.fr": "Yjacolin@free.fr",
         "yjacolin": "Yjacolin@free.fr",
-        "jody.garnett": "Jody.garnett",
-        "jgarnett": "Jody.garnett",
-        "volaya": "Volayaf",
+        "yjacolin@free.fr": "Yjacolin@free.fr",
         "volayaf": "Volayaf",
+        "volaya": "Volayaf",
         "dwinslow": "Dwinslow",
-        "dwins": "Dwinslow"
+        "dwins": "Dwinslow",
+        "Davide": "Davidleal",
+        "DavidLeal": "Davidleal",
+        "jgarnett": "Jody.garnett",
+        "jody.garnett": "Jody.garnett"
     },
     "geowave": {},
     "get-it": {
-        "root": "Root@bgdem1.cr.usgs.gov",
-        "root@bgdem1.cr.usgs.gov": "Root@bgdem1.cr.usgs.gov",
         "alesarrett": "Alessandro.sarretta",
-        "alessandro.sarretta": "Alessandro.sarretta"
+        "alessandro.sarretta": "Alessandro.sarretta",
+        "root": "Root@bgdem1.cr.usgs.gov",
+        "root@bgdem1.cr.usgs.gov": "Root@bgdem1.cr.usgs.gov"
     },
     "grass": {},
     "istsos": {},

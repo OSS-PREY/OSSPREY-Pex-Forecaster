@@ -1,39 +1,39 @@
 {
     "geomajas": [
         [
-            "dosi-bingov",
-            "dosi.bingov"
+            "Oliver Mooney",
+            "OliverMay"
         ],
         [
-            "OliverMay",
-            "Oliver Mooney"
+            "dosi-bingov",
+            "dosi.bingov"
         ]
     ],
     "geonode": [
         [
-            "PedroBelo",
-            "Pedro"
-        ],
-        [
-            "Francesco Bartoli",
-            "Francesco"
+            "root",
+            "root@bgdem1.cr.usgs.gov"
         ],
         [
             "Clarence Davis",
             "Clarence"
         ],
         [
-            "Jeremiah C. Foster",
-            "Jeremiah Cooper"
-        ],
-        [
+            "bartvde@xs4all.nl",
             "bartvde",
-            "bartvde@osgis.nl",
-            "bartvde@xs4all.nl"
+            "bartvde@osgis.nl"
         ],
         [
-            "root",
-            "root@bgdem1.cr.usgs.gov"
+            "Jeremiah Cooper",
+            "Jeremiah C. Foster"
+        ],
+        [
+            "PedroBelo",
+            "Pedro"
+        ],
+        [
+            "Francesco",
+            "Francesco Bartoli"
         ]
     ],
     "geopaparazzi": [
@@ -44,39 +44,39 @@
     ],
     "geoserver": [
         [
-            "DavidLeal",
-            "Davide"
-        ],
-        [
             "Andrea Aime",
             "Andrea"
         ],
         [
-            "yjacolin@free.fr",
-            "yjacolin"
+            "yjacolin",
+            "yjacolin@free.fr"
         ],
         [
-            "jody.garnett",
-            "jgarnett"
-        ],
-        [
-            "volaya",
-            "volayaf"
+            "volayaf",
+            "volaya"
         ],
         [
             "dwinslow",
             "dwins"
+        ],
+        [
+            "Davide",
+            "DavidLeal"
+        ],
+        [
+            "jgarnett",
+            "jody.garnett"
         ]
     ],
     "geowave": [],
     "get-it": [
         [
-            "root",
-            "root@bgdem1.cr.usgs.gov"
-        ],
-        [
             "alesarrett",
             "alessandro.sarretta"
+        ],
+        [
+            "root",
+            "root@bgdem1.cr.usgs.gov"
         ]
     ],
     "grass": [],

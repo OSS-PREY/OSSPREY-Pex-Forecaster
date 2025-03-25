@@ -38,10 +38,8 @@ def merge_st_end_dates(df: pd.DataFrame, dates: pd.DataFrame) -> pd.DataFrame:
     """
     
     # return the merged dataframe without the excess project column
-
-    print(df.columns)
-    print(dates.columns)
-
+    print(dates)
+    exit()
     merged = pd.merge(
         df, dates, left_on="project_name", right_on="project", how="left"
     )

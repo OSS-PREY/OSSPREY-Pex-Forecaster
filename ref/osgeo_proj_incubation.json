@@ -22,21 +22,5 @@
     "proj": 7,
     "pycsw": 24,
     "pywps": 24,
-    "qgis": 13,
-    "rasdaman": 100,
-    "metacrs": 100,
-    "proj-jni": 100,
-    "pronto raster": 100,
-    "geoserver client php": 100,
-    "loader": 100,
-    "geohealthcheck": 100,
-    "portable gis": 100,
-    "virtual terrain project": 100,
-    "bezitopo": 100,
-    "lerc": 100,
-    "rasterframes": 100,
-    "terraformer": 100,
-    "moss": 100,
-    "mapguide open source": 100,
-    "community mapbuilder": 100
+    "qgis": 13
 }

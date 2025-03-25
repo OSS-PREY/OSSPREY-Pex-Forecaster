@@ -84,158 +84,7 @@ class forecast_model(ABC):
 #     def predict(self, x):
 #         return self.softmax(self(x))
 """
-
-# class NBeatsBlock(nn.Module):
-#     def __init__(self, input_size, hidden_size, output_size, num_layers=2):
-#         super().__init__()
-#         self.mlp = nn.Sequential(
-#             *[nn.Linear(hidden_size if i > 0 else input_size, hidden_size) for i in range(num_layers)],
-#             nn.Linear(hidden_size, output_size)
-#         )
-    
-#     def forward(self, x):
-#         return self.mlp(x)
-
-# class NBeatsTransformer(nn.Module):
-#     def __init__(self, input_size, hidden_size=128, num_heads=4, num_layers=2, num_classes=None,forecast_horizon=10):
-#         super().__init__()
         
-#         self.input_projection = nn.Linear(input_size, hidden_size)
-        
-#         encoder_layer = nn.TransformerEncoderLayer(
-#             d_model=hidden_size, nhead=num_heads, batch_first=True
-#         )
-#         self.transformer_encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
-        
-#         self.cls_token = nn.Parameter(torch.randn(1, 1, hidden_size))
-        
-#         self.trend_block = NBeatsBlock(hidden_size, hidden_size, forecast_horizon)
-#         self.seasonality_block = NBeatsBlock(hidden_size, hidden_size, forecast_horizon)
-        
-#     def forward(self, x):
-#         batch_size, seq_len, _ = x.size()
-        
-#         x = self.input_projection(x)
-        
-#         cls_tokens = self.cls_token.expand(batch_size, -1, -1)
-#         x = torch.cat((cls_tokens, x), dim=1)
-        
-#         x = self.transformer_encoder(x)
-#         cls_representation = x[:, 0, :]
-        
-#         trend = self.trend_block(cls_representation)
-#         seasonality = self.seasonality_block(cls_representation)
-        
-#         return trend + seasonality
-
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-
-class NBeatsBlock(nn.Module):
-    def __init__(self, input_size, hidden_size, output_size, num_layers=2):
-        super().__init__()
-        self.mlp = nn.Sequential(
-            *[nn.Linear(hidden_size if i > 0 else input_size, hidden_size) for i in range(num_layers)],
-            nn.Linear(hidden_size, output_size)
-        )
-    
-    def forward(self, x):
-        return self.mlp(x)
-
-class NBeatsTransformer(nn.Module):
-    def __init__(self, input_size, hidden_size=128, num_heads=4, num_layers=2, num_classes=2, forecast_horizon=10, **kwargs):
-        super().__init__()
-        
-        self.input_projection = nn.Linear(input_size, hidden_size)
-        
-        encoder_layer = nn.TransformerEncoderLayer(
-            d_model=hidden_size, nhead=num_heads, batch_first=True
-        )
-        self.transformer_encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
-        
-        self.cls_token = nn.Parameter(torch.randn(1, 1, hidden_size))
-        
-        self.trend_block = NBeatsBlock(hidden_size, hidden_size, forecast_horizon)
-        self.seasonality_block = NBeatsBlock(hidden_size, hidden_size, forecast_horizon)
-        
-        if num_classes is not None:
-            self.classification_head = nn.Linear(hidden_size, num_classes)
-        else:
-            self.classification_head = None
-
-    def forward(self, x):
-        batch_size, seq_len, _ = x.size()
-        
-        x = self.input_projection(x)
-        
-        cls_tokens = self.cls_token.expand(batch_size, -1, -1)
-        x = torch.cat((cls_tokens, x), dim=1)
-        
-        x = self.transformer_encoder(x)
-        cls_representation = x[:, 0, :]
-        
-        trend = self.trend_block(cls_representation)
-        seasonality = self.seasonality_block(cls_representation)
-        
-        output = trend + seasonality
-        
-        if self.classification_head:
-            return self.classification_head(cls_representation)  # Classification output
-        return output  # Forecasting output
-    
-    def predict(self, x):
-        self.eval()
-        with torch.no_grad():
-            return self.forward(x)
-
-
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-
-class TemporalFusionTransformer(nn.Module):
-    def __init__(self, input_size, hidden_size=128, num_heads=4, num_layers=2, forecast_horizon=10, **kwargs):
-        super().__init__()
-        
-        self.input_projection = nn.Linear(input_size, hidden_size)
-        
-        encoder_layer = nn.TransformerEncoderLayer(
-            d_model=hidden_size, nhead=num_heads, batch_first=True
-        )
-        self.transformer_encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
-        
-        self.decoder_layer = nn.TransformerDecoderLayer(
-            d_model=hidden_size, nhead=num_heads, batch_first=True
-        )
-        self.transformer_decoder = nn.TransformerDecoder(self.decoder_layer, num_layers=num_layers)
-        
-        self.cls_token = nn.Parameter(torch.randn(1, 1, hidden_size))
-        
-        self.fc = nn.Linear(hidden_size, forecast_horizon)
-        
-        # Ensure decoder parameters require gradients
-        for param in self.transformer_decoder.parameters():
-            param.requires_grad = True
-
-    def forward(self, x, tgt):
-        batch_size, seq_len, _ = x.size()
-        
-        x = self.input_projection(x.to(torch.float32))
-        
-        cls_tokens = self.cls_token.expand(batch_size, -1, -1)
-        x = torch.cat((cls_tokens, x), dim=1)
-        
-        memory = self.transformer_encoder(x)
-        output = self.transformer_decoder(tgt.to(torch.float32), memory)
-        
-        return self.fc(output[:, 0, :])
-    
-    def predict(self, x, tgt):
-        self.eval()
-        return self.forward(x, tgt)
-
-
 class BRNN(nn.Module):
     def __init__(self, input_size, hidden_size, num_layers, num_classes, dropout_rate=0.4, **kwargs):
         super(BRNN, self).__init__()
@@ -701,91 +550,6 @@ class TNN(nn.Module):
     def predict(self, x):
         return F.softmax(self(x), dim=1)
 
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-
-class RobustTNN(nn.Module):
-    def __init__(
-        self, input_size: int, hidden_size: int = 128, num_heads: int = 2,
-        num_layers: int = 2, dropout_rate: float = 0.2, num_classes: int = 2, **kwargs
-    ):
-        super().__init__()
-
-        # Input projection with dropout
-        self.input_projection = nn.Linear(input_size, hidden_size)
-        self.input_dropout = nn.Dropout(dropout_rate)
-        
-        # Positional encoding (relative positional encoding can be used)
-        self.pos_encoder = PositionalEncoding(hidden_size, dropout_rate)
-
-        # Transformer Encoder with Layer Normalization
-        encoder_layer = nn.TransformerEncoderLayer(
-            d_model=hidden_size,
-            nhead=num_heads,
-            dropout=dropout_rate,
-            batch_first=True
-        )
-        self.transformer_encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
-        self.layer_norm = nn.LayerNorm(hidden_size)  # Pre-normalization
-
-        # Learnable CLS Token
-        self.cls_token = nn.Parameter(torch.randn(1, 1, hidden_size))
-
-        # Output head with additional dropout
-        self.fc = nn.Linear(hidden_size, num_classes)
-        self.output_dropout = nn.Dropout(dropout_rate)
-
-        # Choose activation based on number of classes
-        self.activation = nn.Sigmoid() if num_classes == 1 else nn.Softmax(dim=1)
-
-        # Initialize weights
-        self._init_weights()
-
-    def _init_weights(self):
-        """Initialize weights using Xavier uniform initialization."""
-        for m in self.modules():
-            if isinstance(m, nn.Linear):
-                nn.init.xavier_uniform_(m.weight)
-                if m.bias is not None:
-                    nn.init.zeros_(m.bias)
-
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        batch_size, seq_len, _ = x.size()
-
-        # Apply input projection and dropout
-        x = self.input_projection(x)
-        x = self.input_dropout(x)
-
-        # Prepend CLS token
-        cls_tokens = self.cls_token.expand(batch_size, -1, -1)
-        x = torch.cat((cls_tokens, x), dim=1)
-
-        # Apply positional encoding
-        x = self.pos_encoder(x)
-
-        # Apply Layer Norm before Transformer Encoder
-        x = self.layer_norm(x)
-        x = self.transformer_encoder(x)
-
-        # Extract CLS representation
-        cls_representation = x[:, 0, :]
-
-        # Apply final dropout and classification head
-        out = self.output_dropout(cls_representation)
-        out = self.fc(out)
-        out = self.activation(out)
-
-        return out.squeeze(-1) if out.shape[-1] == 1 else out  # Handle binary/multi-class
-
-    def predict(self, x):
-        """Returns class probabilities or binary decision."""
-        logits = self.forward(x)
-        return (logits > 0.5).float() if logits.shape[-1] == 1 else logits  # Threshold for binary classification
-
-
-
-
 ## Regressor (from Nafiz)
 class Regressor(nn.Module):
     def __init__(self, input_size, hidden_size1, hidden_size2, **kwargs):
@@ -800,32 +564,6 @@ class Regressor(nn.Module):
         x = self.fc3(x)
         return x
 
-
-
-class FocalLoss(nn.Module):
-    def __init__(self, alpha=0.25, gamma=2.0, reduction='mean'):
-        """
-        Focal Loss to address class imbalance.
-        :param alpha: Weighting factor for the minority class
-        :param gamma: Focusing parameter to down-weight easy examples
-        :param reduction: Reduction method ('mean' or 'sum')
-        """
-        super(FocalLoss, self).__init__()
-        self.alpha = alpha
-        self.gamma = gamma
-        self.reduction = reduction
-
-    def forward(self, inputs, targets):
-        bce_loss = nn.functional.binary_cross_entropy_with_logits(inputs, targets, reduction="none")
-        probas = torch.sigmoid(inputs)
-        p_t = targets * probas + (1 - targets) * (1 - probas)
-        loss = self.alpha * (1 - p_t) ** self.gamma * bce_loss
-
-        if self.reduction == "mean":
-            return loss.mean()
-        elif self.reduction == "sum":
-            return loss.sum()
-        return loss
 
 # Class
 @dataclass
@@ -897,22 +635,10 @@ class TimeSeriesModel:
 
             case "Transformer":
                 log("Model Chosen :: Transformer", "new")
-                self.model = RobustTNN(
+                self.model = TNN(
                     **self.hyperparams
                 ).to(self.device)
             
-            case "NBeatsTransformer":
-                log("Model Chosen :: Transformer", "new")
-                self.model = NBeatsTransformer(
-                    **self.hyperparams
-                ).to(self.device)
-            
-            case "TemporalFusionTransformer":
-                log("Model Chosen :: Transformer", "new")
-                self.model = TemporalFusionTransformer(
-                    **self.hyperparams
-                ).to(self.device)
-
             case "Regressor":
                 log("Model Chose :: Regressor", "new")
                 self.model = Regressor(
@@ -1187,157 +913,83 @@ class TimeSeriesModel:
         )
 
         # training
-        # for epoch in range(self.hyperparams["num_epochs"]):
-        #     # setup
-        #     self.model.train()
-        #     losses[epoch] = []
-
-        #     ## iterate batches
-        #     for data, target in tqdm(list(zip(md.tensors["train"]["x"], md.tensors["train"]["y"]))):
-        #         # transform data for training
-        #         data = data.to(self.device)
-        #         data = data.reshape(1, data.shape[0], -1)
-        #         target = target.to(self.device).to(torch.float32)
-                
-        #         # forward; grab the probability of success
-        #         pred = self.model.predict(data)
-        #         pred = pred[..., 1].to(torch.float32)
-
-        #         # backward
-        #         loss = self.loss_fc(pred, target)   
-        #         self.optimizer.zero_grad()
-        #         loss.backward()
-
-        #         # Gradient clipping
-        #         torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
-
-        #         # optimizer step
-        #         self.optimizer.step()
-                
-        #         # loss
-        #         losses[epoch].append(loss.item())
-                        
-        #     # validation loss & loss tracking
-        #     X_test = md.tensors["test"]["x"]
-        #     y_test = md.tensors["test"]["y"]
-            
-        #     # only gauge fit on full projects
-        #     if md.is_interval["test"]:
-        #         X_val = X_test["all"]
-        #         y_val = y_test["all"]
-        #     else:
-        #         X_val = X_test
-        #         y_val = y_test
-
-        #     if validation_loss:
-        #         self.model.eval()
-        #         test_losses[epoch] = []
-
-        #         with torch.no_grad():                    
-        #             # for every test tensor; treated as validation here
-        #             for data, target in list(zip(X_val, y_val)):
-        #                 # transform data
-        #                 data = data.to(self.device)
-        #                 data = data.reshape(1, data.shape[0], -1)
-        #                 target = target.to(self.device).to(torch.float32)
-
-        #                 # prediction
-        #                 pred = self.model(data)[..., 1].to(torch.float32)
-
-        #                 # track loss
-        #                 test_losses[epoch].append(self.loss_fc(pred, target).item())
-            
-        #     losses[epoch] = np.mean(losses[epoch])
-        #     test_losses[epoch] = np.mean(test_losses[epoch])
-
-        #     current_lr = self.optimizer.param_groups[0]["lr"]
-        #     log(f"Epoch [{epoch + 1}/{self.hyperparams['num_epochs']}] | "
-        #               f"Loss: {losses[epoch]:.4f}, Test Loss: {test_losses[epoch]:.4f}, "
-        #               f"LR: {current_lr:.6f}", "log")
-
-        #     # scheduler step
-        #     if self.scheduler is not None:
-        #         if not validation_loss:
-        #             log("Unable to schedule step without validation loss", "error")
-        #         else:
-        #             self.scheduler.step(test_losses[epoch])
-
-        #     # early stopping; avg the test and train perf since we don't have enough for validation
-        #     # avg_loss = (test_losses[epoch] + losses[epoch]) / 2
-        #     avg_loss = losses[epoch]
-
-        #     if avg_loss < best_loss - TOLERANCE:
-        #         best_loss = avg_loss
-        #         best_model_weights = copy.deepcopy(self.model.state_dict())      
-        #         patience = 10
-        #         best_epoch = epoch
-        #         if save_epochs:
-        #             torch.save(self.model.state_dict(), f"best_model_epoch_{epoch}.pth")
-        #     else:
-        #         patience -= 1
-
-        #         if patience == 0:
-        #             log("Early stopping triggered. Loading best model weights.", "log")
-        #             self.model.load_state_dict(best_model_weights)
-        #             break
-
-        self.loss_fc = FocalLoss(alpha=0.5, gamma=2.0)
-
-        # Training loop
         for epoch in range(self.hyperparams["num_epochs"]):
+            # setup
             self.model.train()
             losses[epoch] = []
 
+            ## iterate batches
             for data, target in tqdm(list(zip(md.tensors["train"]["x"], md.tensors["train"]["y"]))):
-                data = data.to(self.device).reshape(1, data.shape[0], -1)
+                # transform data for training
+                data = data.to(self.device)
+                data = data.reshape(1, data.shape[0], -1)
                 target = target.to(self.device).to(torch.float32)
-
-                # Forward pass
-                pred = self.model.predict(data)[..., 1].to(torch.float32)
-
-                # Compute loss (Focal Loss)
-                loss = self.loss_fc(pred, target)
                 
-                # Backward pass
+                # forward; grab the probability of success
+                pred = self.model.predict(data)
+                pred = pred[..., 1].to(torch.float32)
+
+                # backward
+                loss = self.loss_fc(pred, target)   
                 self.optimizer.zero_grad()
                 loss.backward()
 
                 # Gradient clipping
                 torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
 
-                # Optimizer step
+                # optimizer step
                 self.optimizer.step()
-
-                # Track loss
+                
+                # loss
                 losses[epoch].append(loss.item())
+                        
+            # validation loss & loss tracking
+            X_test = md.tensors["test"]["x"]
+            y_test = md.tensors["test"]["y"]
+            
+            # only gauge fit on full projects
+            if md.is_interval["test"]:
+                X_val = X_test["all"]
+                y_val = y_test["all"]
+            else:
+                X_val = X_test
+                y_val = y_test
 
-            # Validation loss computation
-            self.model.eval()
-            test_losses[epoch] = []
+            if validation_loss:
+                self.model.eval()
+                test_losses[epoch] = []
 
-            with torch.no_grad():
-                for data, target in list(zip(md.tensors["test"]["x"], md.tensors["test"]["y"])):
-                    data = data.to(self.device).reshape(1, data.shape[0], -1)
-                    target = target.to(self.device).to(torch.float32)
+                with torch.no_grad():                    
+                    # for every test tensor; treated as validation here
+                    for data, target in list(zip(X_val, y_val)):
+                        # transform data
+                        data = data.to(self.device)
+                        data = data.reshape(1, data.shape[0], -1)
+                        target = target.to(self.device).to(torch.float32)
 
-                    pred = self.model(data)[..., 1].to(torch.float32)
-                    test_losses[epoch].append(self.loss_fc(pred, target).item())
+                        # prediction
+                        pred = self.model(data)[..., 1].to(torch.float32)
 
-            # Compute mean loss per epoch
+                        # track loss
+                        test_losses[epoch].append(self.loss_fc(pred, target).item())
+            
             losses[epoch] = np.mean(losses[epoch])
             test_losses[epoch] = np.mean(test_losses[epoch])
 
-            # Logging
             current_lr = self.optimizer.param_groups[0]["lr"]
             log(f"Epoch [{epoch + 1}/{self.hyperparams['num_epochs']}] | "
-                f"Loss: {losses[epoch]:.4f}, Test Loss: {test_losses[epoch]:.4f}, "
-                f"LR: {current_lr:.6f}", "log")
+                      f"Loss: {losses[epoch]:.4f}, Test Loss: {test_losses[epoch]:.4f}, "
+                      f"LR: {current_lr:.6f}", "log")
 
-            # Learning rate scheduling
+            # scheduler step
             if self.scheduler is not None:
-                self.scheduler.step(test_losses[epoch])
+                if not validation_loss:
+                    log("Unable to schedule step without validation loss", "error")
+                else:
+                    self.scheduler.step(test_losses[epoch])
 
-            # Early stopping
+            # early stopping; avg the test and train perf since we don't have enough for validation
+            # avg_loss = (test_losses[epoch] + losses[epoch]) / 2
             avg_loss = losses[epoch]
 
             if avg_loss < best_loss - TOLERANCE:
@@ -1349,14 +1001,15 @@ class TimeSeriesModel:
                     torch.save(self.model.state_dict(), f"best_model_epoch_{epoch}.pth")
             else:
                 patience -= 1
+
                 if patience == 0:
                     log("Early stopping triggered. Loading best model weights.", "log")
                     self.model.load_state_dict(best_model_weights)
                     break
 
-        # Final check for NaN or Inf loss
         if np.isnan(sorted(losses.items(), reverse=True)[0][1]) or np.isinf(sorted(losses.items(), reverse=True)[0][1]):
             log("NaN or Inf loss generated, i.e. failed to converge: ignoring and exiting", "error")
+            return
 
         log("Training completed.", "log")
 
@@ -1867,14 +1520,14 @@ def load_hyperparams(new_hp: dict[str, Any]) -> dict[str, Any]:
     # default
     hyperparams = {
         "input_size": 14,
-        "hidden_size": 64,
+        "hidden_size": 512,
         "num_classes": 2,
         # # "num_heads": 1,   # has to be specified to override default value since nheads varies across model archs, gets too confusing
         "dropout_rate": 0.1,
         "learning_rate": 0.001,
         # "batch_size": 16,
         "num_epochs": 1,
-        "num_layers": 2,
+        "num_layers": 3,
         "scheduler": "plateau"
     }
 
