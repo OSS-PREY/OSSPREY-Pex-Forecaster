@@ -18,3 +18,4 @@ jellyfish
 gdown
 setuptools
 statsmodels
+PyWavelets>=1.8.0

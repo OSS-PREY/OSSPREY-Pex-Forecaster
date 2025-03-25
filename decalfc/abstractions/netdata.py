@@ -13,7 +13,10 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import pywt
 from tqdm import tqdm
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import IterativeImputer
 
 import os
 import re
@@ -44,6 +47,8 @@ class NetData:
         "normalize-actdev": False,
         "normalize-minmax": False,
         "normalize-zscore": False,
+        "smooth": False,
+        "impute": False,
         "jitter": False,
         "upsample": False,
         "downsample": False,
@@ -59,6 +64,7 @@ class NetData:
     is_train: str = field(default="none")                                       # specify if train or test; if None, generates both
     do_compute_tensors: bool = field(default=True)                              # whether to generate tensors or not
     soft_prob: bool = field(default=False)                                      # soft probabilities for training
+    ignore_cache: bool = field(default=False)                                   # ignore cache if needed
 
     # internal
     generate: bool = field(default=True)                                        # generate data if not prepared already
@@ -77,6 +83,8 @@ class NetData:
         "jitter": NetData.jitter_netdata,                                       # jitter data, doubles number projects  
         "upsample": NetData.upsample_netdata,                                   # up-sampling 
         "downsample": NetData.downsample_netdata,                               # down-sampling
+        "smooth": NetData.smoothe_netdata,                                      # smoothing (default ETS)
+        "imput": NetData.interpolate_netdata,                                   # interpolation (default spline)
         "diff": NetData.diff_netdata,                                           # first-order differentiation of the features
         "aggregate": NetData.aggregate_netdata,                                 # cumulative sum per column
         "interval": NetData.interval_netdata,                                   # interval subsets of data
@@ -209,7 +217,7 @@ class NetData:
             self.base_projects = set(json.load(f).keys())
 
         # return network data
-        if os.path.exists(self.nd_path):
+        if Path(self.nd_path).exists() and not self.ignore_cache:
             self.data = pd.read_csv(self.nd_path, engine="c")
             self.projects_set = set(self.data["proj_name"].unique())
             return
@@ -830,6 +838,62 @@ class NetData:
         plt.savefig(Path(save_dir) / f"{self.incubator}_feature_correlations")
         plt.close()
 
+    def compare_netdata_timelines(df1: pd.DataFrame, df2: pd.DataFrame, proj_name: str=None) -> None:
+        """Plot a grid of lineplots to compare each column from two DataFrames.
+
+        Both DataFrames must have the same columns. This function resets the
+        index (assuming it represents time or sequential order) and adds a
+        'Source' column to differentiate between the two DataFrames. The data is
+        then transformed into long-format and a Seaborn FacetGrid is used to
+        plot a separate lineplot for each variable.
+
+        Args:
+            df1 (pd.DataFrame): first DataFrame to compare.
+            df2 (pd.DataFrame): second DataFrame to compare.
+            proj_name (str, optional): project to compare. Defaults to comparing
+                all projects as a distribution for each data point.
+        """
+        
+        # ensure columns
+        if set(df1.columns) != set(df2.columns):
+            raise ValueError("Both DataFrames must have identical columns.")
+        
+        # divide the data
+        if proj_name is not None:
+            df1 = df1[df1.proj_name == proj_name]
+            df2 = df2[df2.proj_name == proj_name]
+        else:
+            proj_name = "all projects"
+        
+        df1_reset = df1.reset_index()
+        df2_reset = df2.reset_index()
+        df1_reset["source"] = "DataFrame 1"
+        df2_reset["source"] = "DataFrame 2"
+        
+        
+        # Combine the DataFrames
+        combined = pd.concat([df1_reset, df2_reset], ignore_index=True)
+        
+        # melt the combined DataFrame into long format each row now represents a
+        # single observation for a given variable.
+        value_vars = list(df1.columns)
+        long_df = pd.melt(
+            combined, id_vars=["month", "source"], value_vars=value_vars, 
+            var_name="feature", value_name="feature value"
+        )
+        
+        # grid of lineplots
+        g = sns.FacetGrid(
+            long_df, col="feature", hue="source", sharey=False, col_wrap=3,
+            height=ceil(df1.shape[1] / 3), aspect=1.5, palette="viridis"
+        )
+        g.map(sns.lineplot, "month", "feature value").add_legend(title="source")
+        plt.tight_layout()
+        
+        save_path = Path(params_dict["visuals-dir"]) / "strat-comparison-timelines" / f"{proj_name}.png"
+        check_dir(save_path.parent)
+        plt.savefig(save_path)
+
 
     ## Augmentations
     def jitter_netdata(
@@ -860,7 +924,7 @@ class NetData:
         log(f"Jittering Network Data", log_type="new")
         log(f"Performing {num_cycles} cycles for {len(proj_subset)} projects")
         jittered_df = self.data.copy()                                          # keep original projects
-        ignore_cols = ["proj_name", "month"]                                    # don't jitter the months
+        ignore_cols = self.drop_cols                                            # don't jitter the months
 
         if proj_subset is None:
             proj_subset = self.data["proj_name"].unique()
@@ -1011,7 +1075,7 @@ class NetData:
         
         # setup normalizing
         log(f"Normalizing Network Data [{strat}]", log_type="new")
-        ignore_cols = ["proj_name", "month"]
+        ignore_cols = self.drop_cols
         cols_to_normalize = data.columns.difference(ignore_cols)
 
         # routing scalers
@@ -1549,7 +1613,7 @@ class NetData:
             pass
 
     def downsample_netdata(
-        self, max_diff: float=0.1, inplace: bool=True, export: bool=False
+        self, max_diff: float=0.1, inplace: bool=True, export: bool=False,
     ) -> None | pd.DataFrame:
         """
             Downsamples the network data to ignore an imbalance. Allows for some 
@@ -1636,7 +1700,7 @@ class NetData:
                             passed in
             @param export: determines whether to save the dataset generated
 
-            @returns None | pd.DataFrame: _description_
+            @returns None | pd.DataFrame: if not inplace, returns the df
         """
         
         # prepare args
@@ -1659,6 +1723,255 @@ class NetData:
         if export:
             pass
 
+    def impute_netdata(
+        self, impute_cols: list=None, strat: str="spline", threshold: int=3, 
+        inplace: bool=True, export: bool=False, verbose: bool=True
+    ) -> None | pd.DataFrame:
+        """Imputes any holes in the network data by project and feature.
+        
+        Args:
+            impute_cols (list, optional): columns to impute. Defaults to all but
+                the ignore cols.
+            strat (str, optional): strategy to use to impute the dataset; one of
+                {MICE, spline, GAN}. Defaults to spline. Note, if you pass in 
+                another strategy it defaults to the built-in pandas interpolate
+                method with that strategy specified.
+            threshold (int, optional): threshold for the number of consecutive 
+                missing months of data to impute. Defaults to 3.
+            inplace (bool, optional): determines whether to run inplace of the 
+                dataset passed in. Defaults to True.
+            export (bool, optional): determines whether to save the dataset 
+                generated. Defaults to False.
+            verbose (bool, optional): whether to print a summary of the 
+                imputation. Defaults to True.
+
+        Returns:
+            None | pd.DataFrame: returns a df if not in-place
+        """
+        
+        # aux imputation fns
+        def spline_impute(data: pd.DataFrame, threshold: int, strat: str="spline") -> pd.DataFrame:
+            """Impute missing values using a spline interpolation.
+
+            Args:
+                data (pd.DataFrame): dataset to impute.
+                threshold (int, optional): threshold for the number of 
+                    consecutive missing months of data to impute. Defaults to 3.
+
+            Returns:
+                pd.DataFrame: imputed dataset.
+            """
+            
+            # infer 0's as NaNs
+            data.replace(0, np.nan, inplace=True)
+            
+            # interpolate via spline (or custom fn)
+            data.interpolate(method=strat, limit=threshold, axis=0, inplace=True)
+            
+            # re-infer NaNs as 0's
+            data.fillna(0, inplace=True)
+            
+            # export
+            return data
+        
+        def mice_impute(data: pd.DataFrame, threshold: int) -> pd.DataFrame:
+            """Imputes the dataframe using the multi-variate chained equations 
+            technique via decision tree based models.
+
+            Args:
+                data (pd.DataFrame): data to impute.
+
+            Returns:
+                pd.DataFrame: imputed dataframe.
+            """
+            
+            # infer as a float array
+            imputed_data = data.copy().astype(float)
+            n_rows, n_cols = imputed_data.shape
+
+            # mask for all chains of missing values of a valid length <= 
+            # threshold
+            mask = np.zeros_like(imputed_data, dtype=bool)
+
+            # range each column and determine individually
+            for j in range(n_cols):
+                # unpack
+                col = imputed_data[:, j]
+                start = None
+                
+                # build chains of zeros
+                for i in range(n_rows):
+                    # start/continue chain
+                    if col[i] == 0:
+                        if start is None:
+                            start = i
+                    
+                    # end chain if possible
+                    else:
+                        if start is not None:
+                            chain_length = i - start
+                            if chain_length <= threshold:
+                                mask[start:i, j] = True
+                            start = None
+
+                # chain reaches the end of the col
+                if start is not None:
+                    chain_length = n_rows - start
+                    if chain_length <= threshold:
+                        mask[start:n_rows, j] = True
+
+            # working copy with nan's over 0's
+            impute_data = imputed_data.copy()
+            impute_data[mask] = np.nan
+
+            # iteratively impute via MICE
+            imputer = IterativeImputer(self.rand_seed)
+            imputed_result = imputer.fit_transform(impute_data)
+
+            # only change the data points that don't exceed the threshold
+            final_result = imputed_data.copy()
+            final_result[mask] = imputed_result[mask]
+            return final_result
+        
+        # routing
+        impute_fn = {
+            "spline": lambda x: spline_impute(x, threshold, "spline"),
+            "mice": lambda x: mice_impute(x, threshold)
+        }.get(strat, lambda x: spline_impute(x, threshold, strat))
+        
+        # impute on the copy and ensure column order
+        data_copy = self.data.copy()
+        data_copy[impute_cols] = impute_fn(data_copy[impute_cols])
+
+        data_copy = data_copy[self.column_order]
+        
+        # determine the export strategy
+        if export:
+            raise NotImplementedError
+        
+        if inplace:
+            self.data = data_copy
+        return data_copy
+    
+    def smoothe_netdata(
+        self, cols: list=None, strat: str="exp", inplace: bool=True, 
+        export: bool=False, verbose: bool=True
+    ) -> None | pd.DataFrame:
+        """Imputes any holes in the network data by project and feature.
+        
+        Args:
+            cols (list, optional): columns to impute. Defaults to all but the 
+                ignore.
+            strat (str, optional): strategy to use to impute the dataset; one of
+                {exp (exponential smoothing), wav (wavelet transform)}. Defaults
+                to exp.
+            inplace (bool, optional): determines whether to run inplace of the 
+                dataset passed in. Defaults to True.
+            export (bool, optional): determines whether to save the dataset 
+                generated. Defaults to False.
+            verbose (bool, optional): whether to print a summary of the 
+                imputation. Defaults to True.
+
+        Returns:
+            None | pd.DataFrame: returns a df if not in-place
+        """
+        
+        # smoothing aux fns
+        def wavelet_smoothing(data: np.ndarray, wavelet: str="db4", level: int=1) -> np.ndarray:
+            """Smoothing using the wavelet transform.
+
+            Args:
+                data (np.ndarray): column of data to smooth.
+                wavelet (str, optional): wavelet type. Defaults to "db4".
+                level (int, optional): level of detail coeffs to use for the 
+                    de-noising protocol. Defaults to 1.
+
+            Returns:
+                np.ndarray: transformed data reconstructed from the core waves.
+            """
+            
+            # constants
+            median_abs_deviation_to_std = 1 / 0.6745
+            
+            # fit the wavelets onto the data
+            coeff = pywt.wavedec(data, wavelet, mode="per")
+            max_level = pywt.dwt_max_level(len(data), pywt.Wavelet("db4").dec_len)
+            level = min(level, max_level)
+            
+            # estimate stddev
+            sigma = median_abs_deviation_to_std * np.median(
+                np.abs(coeff[-level] - np.median(coeff[-level]))
+            )
+            
+            # universal threshold calculation
+            universal_thresh = sigma * np.sqrt(2 * np.log(len(data)))
+            universal_thresh = 1 if universal_thresh == 0.0 else universal_thresh
+            coeff[1:] = (
+                pywt.threshold(i, value=universal_thresh, mode="soft")
+                for i in coeff[1:]
+            )
+            
+            # apply the threshold and reconstruct the data
+            return pywt.waverec(coeff, wavelet, mode="per")[:data.shape[0]]
+
+        def exp_smoothing(data: np.ndarray, alpha: float = 0.2) -> np.ndarray:
+            """Smooth data using simple exponential smoothing.
+
+            This function applies simple exponential smoothing to the input data.
+            Exponential smoothing computes a weighted average of past observations,
+            where the weights decay exponentially with time. A higher alpha discounts
+            older observations faster, giving more emphasis to recent data.
+
+            Args:
+                data (np.ndarray): col of data to smooth.
+                alpha (float, optional): smoothing factor between 0 (exclusive)
+                    and 1 (inclusive). A higher value gives more weight to 
+                    recent observations. Defaults to 0.2.
+
+            Returns:
+                np.ndarray: The exponentially smoothed data.
+            """
+            
+            # validate alpha
+            if not (0 < alpha <= 1):
+                raise ValueError("alpha must be in the interval (0, 1].")
+
+            # initialize smoothed col
+            smoothed = np.empty_like(data)
+            smoothed[0] = data[0]
+
+            # recursively smooth via exp fn
+            for i in range(1, len(data)):
+                smoothed[i] = alpha * data[i] + (1 - alpha) * smoothed[i - 1]
+
+            # export
+            return smoothed
+
+        # infer args
+        if cols is None:
+            cols = self.data.columns.difference(self.drop_cols)
+        smooth_fn = {
+            "exp": exp_smoothing,
+            "wav": wavelet_smoothing
+        }[strat]
+        
+        data_copy = self.data.copy()
+
+        # smoothing
+        for col in cols:
+            data_copy[col] = data_copy.groupby("proj_name")[col].transform(
+                lambda x: smooth_fn(x.values)
+            )
+
+        # exporting and finish
+        if inplace:
+            self.data = data_copy
+        else:
+            return data_copy
+
+        if export:
+            raise NotImplementedError
+
     def combine_options() -> None:
         """
             Allows for new column generation via concatenating two different 
@@ -1673,12 +1986,14 @@ class NetData:
 # Testing
 if __name__ == "__main__":
     # load all incubators
-    nd = NetData("apache")
-    nd_b = NetData("apache", options={"downsample": True})
+    nd = NetData("apache", do_compute_tensors=False)
+    nd_s = NetData("apache", options={"smooth": True}, do_compute_tensors=False, ignore_cache=True)
     
-    print(nd_b.split_set["train"] & nd.split_set["test"])
-    print({len(s) for _, s in nd.split_set.items()})
-    print({len(s) for _, s in nd_b.split_set.items()})
+    NetData.compare_netdata_timelines(nd.data, nd_s.data, "spark")
+    
+    # print(nd_b.split_set["train"] & nd.split_set["test"])
+    # print({len(s) for _, s in nd.split_set.items()})
+    # print({len(s) for _, s in nd_b.split_set.items()})
     
     # incubators = _load_params()["datasets"]
     # for incubator in incubators:

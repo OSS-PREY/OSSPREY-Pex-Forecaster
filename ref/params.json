@@ -278,9 +278,9 @@
         "trg": "target: B + T' --> T''"
     },
     "default-versions": {
-        "apache": [2, 2],
-        "github": [4, 5],
-        "eclipse": [3, 3],
+        "apache": [1, 1],
+        "github": [3, 4],
+        "eclipse": [2, 2],
         "osgeo": [2, 2]
     },
     "network-augmentations": {
@@ -292,6 +292,8 @@
         "normalize-actdev": "nrmad",
         "normalize-minmax": "nrmmm",
         "normalize-zscore": "nrmzs",
+        "smooth": "smth",
+        "impute": "imp",
         "aggregate": "agg",
         "diff": "diff",
         "upsample": "upsamp",
@@ -310,7 +312,9 @@
         "d": "diff",
         "u": "upsample",
         "b": "downsample",
-        "c": "feature-subset"
+        "c": "feature-subset",
+        "i": "impute",
+        "s": "smooth"
     },
     "network-aug-groups": [
         ["*", "%", "l"],
@@ -318,7 +322,9 @@
         ["n", "m", "z"],
         ["a"],
         ["d"],
-        ["c"]
+        ["c"],
+        ["i"],
+        ["s"]
     ],
     "lifecycle-ratios": "./ref/lifecycle-ratios.json",
     "test-prop": 0.20,
