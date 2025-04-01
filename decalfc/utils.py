@@ -208,6 +208,10 @@ def log(msg: str="", log_type: str="log", output: str="console",
         
         case "summary":
             output_router[output]("\n::: < SUMMARY > :::")
+            
+            # automatically print the summary if the report exists
+            if len(msg):
+                log(msg, "report", output, file_name, check_verbosity)
         
         case "report":
             # skip print if we can't match the type

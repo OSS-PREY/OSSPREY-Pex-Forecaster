@@ -1,0 +1,19 @@
+{
+    "tech": {
+        "0": {
+            "Number of Missing Aliases in Original": 0,
+            "Number of Unmatched Aliases in Final Data": 0
+        }
+    },
+    "social": {
+        "0i": {
+            "Number of Missing Aliases in Original": 0,
+            "Number of Unmatched Aliases in Final Data": 0
+        },
+        "0e": {
+            "Number of Missing Aliases in Original": 0,
+            "Number of Unmatched Aliases in Final Data": 0
+        }
+    },
+    "Number of Missing Aliases in Alias Lookup": 0
+}

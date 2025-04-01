@@ -1,4 +1,4 @@
-# clean column names
+# # clean column names
 # python3 -m decalfc.scripts.enforce_column_names --kwargs \
 #     incubator="osgeo" \
 #     versions='{"tech": ["0"], "social": ["0i", "0e"]}'
@@ -15,12 +15,12 @@
 #     social_versions='["0ia", "0ea"]' \
 #     save_version="0"
 
-# truncate datasets
-python3 -m decalfc.scripts.enforce_dates --kwargs \
-    incubator="osgeo" \
-    dates="./ref/osgeo_incubation_times.json" \
-    versions='{"tech": "0a", "social": "0"}' \
-    save_versions='{"tech": "1", "social": "1"}'
+# # truncate datasets
+# python3 -m decalfc.scripts.enforce_dates --kwargs \
+#     incubator="osgeo" \
+#     dates="./ref/osgeo_incubation_times.json" \
+#     versions='{"tech": "0a", "social": "0"}' \
+#     save_versions='{"tech": "1", "social": "1"}'
 
 # regular cleaning steps, new reply inference
 python3 -m decalfc.scripts.pre_process --kwargs \

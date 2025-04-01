@@ -66,7 +66,8 @@ def ensure_reply_information(df: pd.DataFrame) -> pd.DataFrame:
     # ensure the month field is valid; we'll impute all replies based on threads
     # across month and handle the mis-referencing in the graph creation since 
     # we're splitting by month anyways
-    df["month"] = 0
+    if "month" not in df.columns:
+        df["month"] = 0
     
     # wrap call to underlying reply inference technique
     df = infer_replies({"social": df}, copy=False)["social"]

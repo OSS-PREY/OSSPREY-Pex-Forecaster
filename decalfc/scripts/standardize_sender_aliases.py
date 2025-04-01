@@ -117,7 +117,11 @@ def update_aliases(
             (data_alias_field).
     """
     
-    # merge on the alias field with the new sender names
+    # merge on the alias field with the new sender names, ensuring we ignore the
+    # email domain to match the aliases
+    df[data_alias_field] = df[data_alias_field].str.split("@").str[0]
+    df[data_alias_field] = df[data_alias_field].str.split(" at ").str[0]
+    
     df = df.merge(
         aliases, how="left", left_on=data_alias_field,
         right_on=lookup_alias_field
@@ -133,7 +137,7 @@ def update_aliases(
 # ------------- Primary Utility ------------- #
 def enforce_consistent_aliases(
     incubator: str, aliases: str | Path | pd.DataFrame,
-    load_save_versions: dict[str, str], alias_field: str="alias_id",
+    load_save_versions: dict[str, dict[str, str]], alias_field: str="alias_id",
     col_priority: list[str]=None,
 ) -> None:
     """Wrapper to truncate the social and technical data to only the time under
@@ -158,10 +162,15 @@ def enforce_consistent_aliases(
     
     # setup the fields to pass in
     log("aggregating aliases...")
-    cleaned_aliases = aggregate_aliases(aliases, alias_field, col_priority)
+    cleaned_aliases = aggregate_aliases(aliases, alias_field, col_priority).reset_index()
+    
+    # reporting
+    stats_report = dict()
     
     # load in the data to update and save one at a time to avoid OOM error
     for dtype, version_pkg in load_save_versions.items():
+        stats_report[dtype] = dict()
+        
         for load_version, save_version in version_pkg.items():
             # load data
             log(f"processing {dtype} data for version {load_version} --> {save_version}...")
@@ -169,6 +178,7 @@ def enforce_consistent_aliases(
                 Path(params_dict["dataset-dir"]) / f"{incubator}_data" /
                 f"{params_dict['augmentations'][incubator][dtype][load_version]}.parquet"
             )
+            nmissing_aliases = int(df[alias_field].isna().sum())
             
             # update aliases
             df = update_aliases(df, cleaned_aliases, alias_field, alias_field)
@@ -178,6 +188,22 @@ def enforce_consistent_aliases(
                 Path(params_dict["dataset-dir"]) / f"{incubator}_data" /
                 f"{params_dict['augmentations'][incubator][dtype][save_version]}.parquet"
             )
+            
+            # summary
+            stats_report[dtype][load_version] = {
+                "Number of Missing Aliases in Original": nmissing_aliases,
+                "Number of Unmatched Aliases in Final Data": int(df.sender_name.isna().sum())
+            }
+    
+    # summary info
+    stats_report["Number of Missing Aliases in Alias Lookup"] = int(cleaned_aliases.sender_name.isna().sum())
+    log(stats_report, "summary")
+    
+    save_path = Path(params_dict["preprocess-report-dir"]) / f"alias_standardization" / f"{incubator}.json"
+    check_dir(save_path.parent)
+    
+    with open(save_path, "w") as f:
+        dump(stats_report, f, indent=4)
 
     # all done
     log("all data updated with consistent aliases!")

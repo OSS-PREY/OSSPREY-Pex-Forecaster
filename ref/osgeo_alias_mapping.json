@@ -2,58 +2,58 @@
     "geomajas": {
         "Oliver Mooney": "Oliver Mooney",
         "OliverMay": "Oliver Mooney",
-        "dosi-bingov": "Dosi-bingov",
-        "dosi.bingov": "Dosi-bingov"
+        "dosi.bingov": "Dosi.bingov",
+        "dosi-bingov": "Dosi.bingov"
     },
     "geonode": {
-        "root": "Root@bgdem1.cr.usgs.gov",
         "root@bgdem1.cr.usgs.gov": "Root@bgdem1.cr.usgs.gov",
-        "Clarence Davis": "Clarence Davis",
+        "root": "Root@bgdem1.cr.usgs.gov",
         "Clarence": "Clarence Davis",
-        "bartvde@xs4all.nl": "Bartvde@xs4all.nl",
-        "bartvde": "Bartvde@xs4all.nl",
-        "bartvde@osgis.nl": "Bartvde@xs4all.nl",
-        "Jeremiah Cooper": "Jeremiah Cooper",
-        "Jeremiah C. Foster": "Jeremiah Cooper",
+        "Clarence Davis": "Clarence Davis",
         "PedroBelo": "Pedrobelo",
         "Pedro": "Pedrobelo",
+        "Jeremiah C. Foster": "Jeremiah Cooper",
+        "Jeremiah Cooper": "Jeremiah Cooper",
+        "bartvde": "Bartvde@xs4all.nl",
+        "bartvde@osgis.nl": "Bartvde@xs4all.nl",
+        "bartvde@xs4all.nl": "Bartvde@xs4all.nl",
         "Francesco": "Francesco Bartoli",
         "Francesco Bartoli": "Francesco Bartoli"
     },
     "geopaparazzi": {
-        "AndrewM-": "Andrewm-",
-        "Andrea": "Andrewm-"
+        "Andrea": "Andrewm-",
+        "AndrewM-": "Andrewm-"
     },
     "geoserver": {
-        "Andrea Aime": "Andrea Aime",
-        "Andrea": "Andrea Aime",
-        "yjacolin": "Yjacolin@free.fr",
-        "yjacolin@free.fr": "Yjacolin@free.fr",
-        "volayaf": "Volayaf",
-        "volaya": "Volayaf",
+        "DavidLeal": "Davidleal",
+        "Davide": "Davidleal",
         "dwinslow": "Dwinslow",
         "dwins": "Dwinslow",
-        "Davide": "Davidleal",
-        "DavidLeal": "Davidleal",
+        "yjacolin@free.fr": "Yjacolin@free.fr",
+        "yjacolin": "Yjacolin@free.fr",
+        "volayaf": "Volayaf",
+        "volaya": "Volayaf",
+        "Andrea": "Andrea Aime",
+        "Andrea Aime": "Andrea Aime",
         "jgarnett": "Jody.garnett",
         "jody.garnett": "Jody.garnett"
     },
     "geowave": {},
     "get-it": {
-        "alesarrett": "Alessandro.sarretta",
-        "alessandro.sarretta": "Alessandro.sarretta",
+        "root@bgdem1.cr.usgs.gov": "Root@bgdem1.cr.usgs.gov",
         "root": "Root@bgdem1.cr.usgs.gov",
-        "root@bgdem1.cr.usgs.gov": "Root@bgdem1.cr.usgs.gov"
+        "alesarrett": "Alessandro.sarretta",
+        "alessandro.sarretta": "Alessandro.sarretta"
     },
     "grass": {},
     "istsos": {},
     "mapserver": {},
     "osgeolive": {},
     "ossim": {
-        "dburken@comcast.net": "Dburken@comcast.net",
-        "dburken": "Dburken@comcast.net",
+        "65674943+McKenzieTugui": "Mckenzie Tugui",
         "McKenzie Tugui": "Mckenzie Tugui",
-        "65674943+McKenzieTugui": "Mckenzie Tugui"
+        "dburken@comcast.net": "Dburken@comcast.net",
+        "dburken": "Dburken@comcast.net"
     },
     "pdal": {},
     "proj": {},

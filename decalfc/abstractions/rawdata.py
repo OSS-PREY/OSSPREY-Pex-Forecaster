@@ -126,7 +126,7 @@ def _validate_data(data_lookup: dict[str, pd.DataFrame]) -> bool:
     # starting month
     def minimize_months(df: pd.DataFrame) -> bool:
         ## generate lookup
-        min_months = df.groupby("project_name")["month"].min().to_dict()
+        min_months = df.groupby("project_name", observed=True)["month"].min().to_dict()
         
         ## check passed
         if all(min_month == 0 for _, min_month in min_months.items()):
@@ -841,7 +841,8 @@ def dealias_senders(
         # returns
         return aft_num_tech, aft_num_social
     
-    if alias_mapping_path.exists():
+    # === CACHING MECHANISM === #
+    if alias_mapping_path.exists() and kwargs.get("use_cache", False):
         # grab some debugging info
         bef_num_tech = data_lookup["tech"][author_field].unique().shape[0]
         bef_num_social = data_lookup["social"][author_field].unique().shape[0]
@@ -944,6 +945,7 @@ def dealias_senders(
         
         tech_df = data_lookup["tech"][["project_name", author_field, "is_bot", "is_coding"]]
         social_df = data_lookup["social"][["project_name", author_field, "is_bot"]]
+        
         bef_num_tech = tech_df[author_field].unique().shape[0]
         bef_num_social = social_df[author_field].unique().shape[0]
         
@@ -954,9 +956,9 @@ def dealias_senders(
         social_df = social_df[(social_df["is_bot"] == False) & (social_df[author_field] != "none")]
         # tech_df.query(f"is_bot == False and is_coding == True and {author_field} != 'none'", inplace=True)
         # social_df.query(f"is_bot == False and {author_field} != 'none'", inplace=True)
-
-        tech_df = tech_df[tech_df[author_field].notna()]
-        social_df = social_df[social_df[author_field].notna()]
+        
+        tech_df.dropna(subset=[author_field], inplace=True)
+        social_df.dropna(subset=[author_field], inplace=True)
 
         # processing
         print("processing...")
@@ -1023,7 +1025,6 @@ def dealias_senders(
 
         with open(ref_dir / f"{incubator}_project_alias_clustering.json", "w") as f:
             json.dump(project_alias_clustering, f, indent = 4)
-
 
         # post-processing
         print("starting post-processing...")
@@ -1145,7 +1146,6 @@ def dealias_senders(
         # returns
         return bef_num_tech, bef_num_social
     
-
     # PROCESS 2 -- enforce aliases
     def _dealiasing_enforce_aliases(**kwargs):
         with open(ref_dir / f"{incubator}_alias_mapping.json", "r") as f:
@@ -1158,18 +1158,22 @@ def dealias_senders(
         
         # dealiasing
         tdf = data_lookup["tech"]
-        # df.query(f"is_bot == False and is_coding == True and {author_field} != 'none'", inplace=True)
-        tdf = tdf[(tdf["is_bot"] == False) & (tdf["is_coding"] == True) & (tdf[author_field] != "none")]
-        tdf = tdf[tdf[author_field].notna()]
+        print("DELIAS tech: ", tdf.shape[0])
+        tdf.query(f"is_bot == False and is_coding == True and {author_field} != 'none'", inplace=True)
+        # tdf = tdf[(tdf["is_bot"] == False) & (tdf["is_coding"] == True) & (tdf[author_field] != "none")]
+        tdf.dropna(subset=[author_field], inplace=True)
+        print("DELIAS tech: ", tdf.shape[0])
         tdf[output_field] = tdf.apply(lambda x: _dealiasing(x["project_name"], x[author_field]), axis=1)
         # tdf[output_field] = _dealiasing(tdf["project_name"], tdf[author_field])
         aft_num_tech = tdf[output_field].nunique()
 
         sdf = data_lookup["social"]
-        # df.query(f"is_bot == False and {author_field} != 'none'", inplace=True)
-        sdf = sdf[(sdf["is_bot"] == False) & (sdf[author_field] != "none")]
-        sdf = sdf[sdf[author_field].notna()]
+        sdf.query(f"is_bot == False and {author_field} != 'none'", inplace=True)
+        # sdf = sdf[(sdf["is_bot"] == False) & (sdf[author_field] != "none")]
+        print("DELIAS social: ", sdf.shape[0], tdf.shape[0])
+        sdf.dropna(subset=[author_field], inplace=True)
         # df[output_field] = _dealiasing(df["project_name"], df[author_field])
+        print("DELIAS social: ", sdf.shape[0], tdf.shape[0])
         sdf[output_field] = sdf.apply(lambda x: _dealiasing(x["project_name"], x[author_field]), axis=1)
         aft_num_social = sdf[output_field].nunique()
 
@@ -1240,6 +1244,7 @@ def pre_process_data(
         data_lookup=data_lookup, incubator=incubator, new_version=save_versions
     )
     data_lookup = dealias_senders(data_lookup, incubator=incubator, copy=False)
+    print("ALS:", data_lookup["social"].shape[0])
     _save_data(
         data_lookup=data_lookup, incubator=incubator, new_version=save_versions
     )
@@ -1250,6 +1255,8 @@ def pre_process_data(
 class RawData:
     # data
     incubator: str                                                  # original incubator
+    tech: str | pd.DataFrame = field(default=None)                  # convenience arg and data member
+    social: str | pd.DataFrame = field(default=None)                # convenience arg and data member
     versions: dict[str, str] = field(default=None)                  # tech & social augmentation number
     gen_full: bool = field(default=False)                           # if base data, generate processed version
     ext: str = field(default="parquet")                             # data file type
@@ -1257,13 +1264,23 @@ class RawData:
     data: dict[str, pd.DataFrame] = field(init=False, repr=False)   # type : df
 
     # post-initialization
-    def __post_init__(self):
+    def __post_init__(self, **kwargs):
         # load data
         if self.versions is None:
-            self.versions = dict(zip(
-                ["tech", "social"],
-                params_dict["default-versions"][self.incubator]
-            ))
+            # check other args format
+            if self.tech is None or self.social is None:
+                self.versions = dict(zip(
+                    ["tech", "social"],
+                    params_dict["default-versions"][self.incubator]
+                ))
+            
+            # infer from init args
+            else:
+                self.versions = dict(zip(
+                    ["tech", "social"],
+                    [self.tech, self.social]
+                ))
+                
         self.versions = {k: str(v) for k, v in self.versions.items()}   # allow for integer inputs
         self.paths = _load_paths(incubator=self.incubator, versions=self.versions, ext=self.ext)
 
@@ -1305,7 +1322,10 @@ class RawData:
                 incubator=self.incubator, 
                 new_version={"tech": 1, "social": 1}
             )
-    
+
+        # convenience
+        self.tech = self.data["tech"]
+        self.social = self.data["social"]
 
     # utility
     def validate_data(self):
