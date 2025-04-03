@@ -268,8 +268,11 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
             # unpack the previous author's information
             prev_author, prev_timestamp = msgid_to_author[reference_id]
             
-            # if replying to themselves, continue
+            # if replying to themselves, continue but track that there's one 
+            # social node
             if prev_author == sender_name:
+                if social_net.get(sender_name, None) is None:
+                    social_net[sender_name] = dict()
                 continue
             
             # if replying to someone already tracked in this email, skip

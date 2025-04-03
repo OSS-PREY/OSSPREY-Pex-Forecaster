@@ -1,6 +1,6 @@
 {
     "ActionBarSherlock": 79,
-    "airflow": 95,
+    "airflow": 103,
     "baker": 89,
     "busybox": 281,
     "calipso": 89,
@@ -10,7 +10,7 @@
     "famous": 21,
     "forem": 78,
     "generator-gulp-angular": 73,
-    "inherited_resources": 166,
+    "inherited_resources": 170,
     "kissy": 155,
     "meteor-up": 87,
     "mojito": 57,
