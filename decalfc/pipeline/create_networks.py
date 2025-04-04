@@ -211,6 +211,22 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
         # export references
         return new_refs
     
+    def track_only_node(social_net: dict[str, dict[str, dict[str, int]]], sender_name: str, prev_author: str) -> None:
+        """Tracks only the social node exists with no interaction; for now, 
+        creates a self-referential edge with weight zero. DOES NOT track the 
+        sender-receiver mapping for this pseudo-edge.
+
+        Args:
+            social_net (dict[str, dict[str, dict[str, int]]]): social network as
+                as dictionary lookup.
+            sender_name (str): sender name
+            prev_author (str): previous author
+        """
+        
+        # track the signal and ensure 0 weight
+        track_social_signal(social_net, sender_name, prev_author)
+        social_net[sender_name][prev_author]["weight"] = 0
+    
     def process_communication(
         row: pd.DataFrame, social_net: dict[str, dict[str, dict[str, int]]],
         sender_dic: dict[str, list], msgid_to_author: dict[str, tuple[str, str]]
@@ -233,12 +249,16 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
         sender_name = row[author_field]
         timestamp = row["date"]
         
+        # REGARDLESS OF ANYTHING, this sender exists so the number of social 
+        # nodes should reflect this person's existence; any future checks for an
+        # early return or skipping will assume this node is already tracked
+        if sender_name not in social_net:
+            track_only_node(social_net, sender_name, sender_name)
+        
         # ignores if this email does not reply to previous emails;
         # regardless of reply information, let's track that there exists a 
         # node in this month if we haven't already
         if pd.isna(references) or references == "None":
-            if social_net.get(sender_name, None) is None:
-                social_net[sender_name] = dict()
             return
         
         # clean and transform references into a list of references
@@ -269,10 +289,8 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
             prev_author, prev_timestamp = msgid_to_author[reference_id]
             
             # if replying to themselves, continue but track that there's one 
-            # social node
+            # social node with a self-referencing edge of weight zero
             if prev_author == sender_name:
-                if social_net.get(sender_name, None) is None:
-                    social_net[sender_name] = dict()
                 continue
             
             # if replying to someone already tracked in this email, skip
@@ -343,6 +361,8 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
         # sender-receiver relationship in a graph
         for _, row in df.iterrows():
             process_communication(row, social_net, sender_dic, msgid_to_author)
+        if project_name == "ActionBarSherlock" and period == "78":
+            print(json.dumps(social_net))
 
         # save as directed graph
         export_graph(social_net, project_name, period, s_output)
