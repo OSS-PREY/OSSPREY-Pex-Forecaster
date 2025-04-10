@@ -600,7 +600,7 @@ def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str=None
 
     # initialize if field doesn't exist
     if field not in df.columns:
-       df[field] = 0
+        df[field] = 0
 
     # specify tech files
     with open(tech_file_path, "r") as f:
@@ -608,12 +608,18 @@ def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str=None
 
     coding_extensions = set([".mdtext"])
     for pl in programming_languages_extensions:
+        # skip if we don't have information on the corresponding extensions for
+        # this language
         if "extensions" not in pl:
             continue
+        
         # filter out some data extensions, e.g., json
         if pl["type"] != "programming" and pl["type"] != "markup":
             continue
         coding_extensions = coding_extensions.union(set(pl["extensions"]))
+    
+    # extension should be case-insensitive
+    coding_extensions = {ext.lower() for ext in coding_extensions}
 
     # for later comparison
     num_entries = df.shape[0]
@@ -630,7 +636,7 @@ def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str=None
             num_changed[0] += 1 if row[field] != 0 else 0
             return 0
 
-        if ext in coding_extensions:
+        if ext.lower() in coding_extensions:
             num_changed[1] += 1 if row[field] != 1 else 0
             return 1
         else:
