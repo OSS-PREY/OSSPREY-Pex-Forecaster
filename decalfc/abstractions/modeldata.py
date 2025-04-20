@@ -1,7 +1,7 @@
 """
     @brief defines the network data class for easily interfacing with the 
-           post-processed dataset. Primary utility comes from bundling all 
-           relevant information in one object.
+        post-processed dataset. Primary utility comes from bundling all 
+        relevant information in one object.
     @author Arjun Ashok (arjun3.ashok@gmail.com)
     @acknowledgements Nafiz I. Khan, Dr. Likang Yin
     @creation-date January 2024
@@ -14,11 +14,10 @@ import numpy as np
 
 import json
 import re
-from typing import Any
+from typing import Any, Iterator
 from dataclasses import dataclass, field
 
-import decalfc.utils as util
-from decalfc.utils import PARQUET_ENGINE
+from decalfc.utils import *
 from decalfc.abstractions.tsmodel import *
 from decalfc.abstractions.netdata import *
 
@@ -30,17 +29,17 @@ class ModelData:
     transfer_strategy: str = field(default="A --> G")                           # how to train the model
     transform_kwargs: dict[str, Any] = field(default=None)                      # transform arguments to forward to NetData
     versions: dict[str, dict[str, dict[str, str]]] = field(                     # { train/test: { incubator: { tech/social: version } } }
-        default_factory=lambda: dict()
+        default_factory=dict
     )
     options: dict[str, dict[str, dict[str, bool]]] = field(                     # { train/test: { incbubator: { option: selection } } }
-        default_factory=lambda: dict()
+        default_factory=dict
     )
     is_interval: dict[str, bool] = field(
-        default_factory=lambda: dict()
+        default_factory=dict
     )                                                                           # { train/test: intervaled or not }
-    soft_prob: bool = field(default=True)                           
+    soft_prob: bool = field(default=False)                           
     test_props: dict[str, float] = field(                                       # { incubator: test_prop }
-        default_factory=lambda: dict()
+        default_factory=dict
     )
     drop_cols: list[str] = field(default_factory=lambda: [                      # what to not include in training
         "proj_name", 
@@ -61,25 +60,31 @@ class ModelData:
         """
 
         # generate
-        print(f"\n<Decoded Transfer Strategy>")
-        print(f"Original: `{self.transfer_strategy}`")
+        log("Decoded Transfer Strategy", "new")
+        log(f"Original: `{self.transfer_strategy}`")
         for t, o_info in self.options.items():
             print(f"Options selected for {t} set:")
             
             for i, options in o_info.items():
                 options_str = f"{', '.join(options)}"
                 options_str = "no augmentations" if len(options_str) == 0 else options_str
-                versions_str = f"tech: {self.versions[t][i]['tech']}, " \
-                               f"social: {self.versions[t][i]['social']}"
+                versions_str = (
+                    f"tech: {self.versions[t][i]['tech']}, "
+                    f"social: {self.versions[t][i]['social']}"
+                )
+                
                 if t == "train":
-                    print(f"\t{i} dataset, version {versions_str} with {options_str}", 
-                          f"using {(1 - self.test_props[i]) * 100:.2f}% of the",
-                          "data reserved for training")
+                    log((
+                        f"\t{i} dataset, version {versions_str} with {options_str} "
+                        f"using {(1 - self.test_props[i]) * 100:.2f}% of the "
+                        "data reserved for training"
+                    ))
                 else:
-                    print(f"\t{i} dataset, version {versions_str} with {options_str}", 
-                          f"using {self.test_props[i] * 100:.2f}% of the data",
-                          "reserved for testing")
-
+                    log((
+                        f"\t{i} dataset, version {versions_str} with {options_str} "
+                        f"using {self.test_props[i] * 100:.2f}% of the data "
+                        "reserved for testing"
+                    ))
 
     def _decode_strat_(self) -> None:
         """
@@ -99,7 +104,7 @@ class ModelData:
         """
 
         # setup
-        params = util.load_params()
+        params = params_dict
         possible_options = params["network-aug-shorthand"]
         decoder = dict(zip(
             params["abbreviations"].values(),
@@ -114,10 +119,14 @@ class ModelData:
         processed_str = re.sub(r"\^", "", processed_str)                    # remove ticks
         train_str, test_str = processed_str.split("-->")                    # split into train and test
         
-        train_prop_tokens = [s for s in train_prop_str.split(" ") \
-                             if any(c.upper() in decoder for c in s)]       # generate tokens for train proportions
-        test_prop_tokens = [s for s in test_prop_str.split(" ") \
-                            if any(c.upper() in decoder for c in s)]        # generate tokens for test proportions
+        train_prop_tokens = ([
+            s for s in train_prop_str.split(" ")
+            if any(c.upper() in decoder for c in s)
+        ])  # generate tokens for train proportions
+        test_prop_tokens = ([
+            s for s in test_prop_str.split(" ") \
+            if any(c.upper() in decoder for c in s)
+        ])  # generate tokens for test proportions
 
         train_strat_tokens = train_str.split()
         test_strat_tokens = test_str.split()
@@ -125,7 +134,7 @@ class ModelData:
         # generate test props using ticks (0 -- all, any -- 0.20)
         for token in train_prop_tokens:
             if "^" in token and token:
-                self.test_props[decoder[token[0].upper()]] = float(util.load_params()["test-prop"])
+                self.test_props[decoder[token[0].upper()]] = float(params_dict["test-prop"])
             else:
                 self.test_props[decoder[token[0].upper()]] = 0
 
@@ -170,7 +179,6 @@ class ModelData:
 
         # report
         self._list_options_()
-    
 
     def _gen_tensors_(self) -> None:
         """
@@ -179,7 +187,7 @@ class ModelData:
         """
 
         # setup
-        util.log("Generating Tensors for Model Data", "new")
+        log("Generating Tensors for Model Data", "new")
         t_keys = ["train", "test"]
         d_keys = ["x", "y"]
         self.tensors = {t: {d: None for d in d_keys} for t in t_keys}
@@ -195,14 +203,14 @@ class ModelData:
                 options = o_info[i]
 
                 # load NetData
-                util.log(f"Tensor for {i} for {t}", "new")
+                log(f"Tensor for {i} for {t}", "new")
 
                 subset_project = None
                 if self.predict_project is not None:
                     if i in self.predict_project:
                         subset_project = {"test": {self.predict_project[i]}}
 
-                nd = NetData(
+                cur_nd = NetData(
                     incubator=i,
                     versions=versions,
                     options=options,
@@ -220,31 +228,31 @@ class ModelData:
                 # projects
                 
                 ## testing on intervals
-                if nd.is_intervaled and t == "test":
+                if cur_nd.is_intervaled and t == "test":
                     if self.tensors[t]["x"] is None:
                         self.tensors[t]["x"] = dict()
                         self.tensors[t]["y"] = dict()
                     
-                    for m in nd.tensors[t]["x"]:
+                    for m in cur_nd.tensors[t]["x"]:
                         if m not in self.tensors[t]["x"]:
                             self.tensors[t]["x"][m] = list()
                             self.tensors[t]["y"][m] = list()
-                        self.tensors[t]["x"][m].extend(nd.tensors[t]["x"][m])
-                        self.tensors[t]["y"][m].extend(nd.tensors[t]["y"][m])
+                        self.tensors[t]["x"][m].extend(cur_nd.tensors[t]["x"][m])
+                        self.tensors[t]["y"][m].extend(cur_nd.tensors[t]["y"][m])
                 
                 ## soft probability training needed
-                elif nd.is_intervaled and t == "train" and self.soft_prob:
+                elif cur_nd.is_intervaled and t == "train" and self.soft_prob:
                     ### grab training data
                     if self.tensors[t]["x"] is None:
                         self.tensors[t]["x"] = dict()
                     
-                    for m in nd.tensors[t]["x"]:
+                    for m in cur_nd.tensors[t]["x"]:
                         if m not in self.tensors[t]["x"]:
                             self.tensors[t]["x"][m] = list()
-                        self.tensors[t]["x"][m].extend(nd.tensors[t]["x"][m])
+                        self.tensors[t]["x"][m].extend(cur_nd.tensors[t]["x"][m])
                     
                     ### grab soft probs
-                    soft_probs = ModelData.soft_proba(
+                    soft_probs = self.soft_proba(
                         train_strat=self.transfer_strategy,
                         X=self.tensors[t]["x"]
                     )
@@ -257,8 +265,8 @@ class ModelData:
                     if self.tensors[t]["x"] is None:
                         self.tensors[t]["x"] = list()
                         self.tensors[t]["y"] = list()
-                    self.tensors[t]["x"].extend(nd.tensors[t]["x"])
-                    self.tensors[t]["y"].extend(nd.tensors[t]["y"])
+                    self.tensors[t]["x"].extend(cur_nd.tensors[t]["x"])
+                    self.tensors[t]["y"].extend(cur_nd.tensors[t]["y"])
                 
         ## adjust train intervals to be pseudo projects and not monthly 
         ## divisions
@@ -279,7 +287,6 @@ class ModelData:
         # done
         return
 
-    
     def __post_init__(self):
         # generate lookups
         self._decode_strat_()
@@ -299,8 +306,8 @@ class ModelData:
         # generate tensors
         self._gen_tensors_()
 
-    
     # external utility
+    @staticmethod
     def soft_proba(train_strat: str, X: dict[str, list[torch.Tensor]]) -> dict[str, list[torch.Tensor]]:
         """
             Generates the soft probabilities for a given project across all of 
@@ -381,8 +388,9 @@ class ModelData:
         print("< ::::::::::::::::::: END SOFT PROBS ::::::::::::::::::: >\n\n")
         return soft_probs
     
-    def soft_probabilities(train_strat: str, 
-                           train_options: dict[str, dict[str, bool]]) -> dict[str, list[torch.Tensor]]:
+    def soft_probabilities(
+        self, train_strat: str, train_options: dict[str, dict[str, bool]]
+    ) -> dict[str, list[torch.Tensor]]:
         """
             Generates soft-probabilities to every incubator used in the given 
             strategy selected. To ensure Kosher-ness, i.e. avoid generating 
@@ -400,10 +408,75 @@ class ModelData:
         """
         
         raise NotImplementedError
+
+    @staticmethod
+    def gen_k_folds(
+        transfer_strategy: str, transform_kwargs: dict[str, Any]=None,
+        k_folds: int=5
+    ) -> Iterator:
+        """Generates modeldata's to iterate through for model training.
+
+        Args:
+            transfer_strategy (str): transfer strategy to use.
+            transform_kwargs (dict[str, Any], optional): augmentations to use on
+                the data. Defaults to None.
+            k_folds (int, optional): number of folds to generate. Defaults to 5
+                to preserve the 80-20 TT-split.
+
+        Yields:
+            Iterator[ModelData]: iterator of model data objects to use for 
+                training. Forgive me for how janky the following code will be.
+        """
         
-    
+        # build the ModelData with all of the data aggregated; we specify no 
+        # train/test split for the model data to ensure we load all of the data
+        temp_transfer_strategy = transfer_strategy.replace("^", "")
+        full_md = ModelData(
+            transfer_strategy=temp_transfer_strategy,
+            transform_kwargs=transform_kwargs
+        )
+        train_incubators = set(full_md.options["train"].keys())
+        test_incubators = set(full_md.options["test"].keys())
+        
+        # check we're not using kfolds on any banned augmentations
+        if any("downsampled" in opts for opts in full_md.options["train"].values()):
+            raise ValueError(
+                "Cannot use downsampling/any augmentations to the base projects set with kfolds"
+            )
+        
+        # find constant and dynamic incubators for the strategy
+        const_incubators = (train_incubators - test_incubators) | (test_incubators - train_incubators)
+        dynamic_incubators = train_incubators & test_incubators
+        
+        # create const dataset tensor lookup (i.e. data dict)
+        const_ds = dict()
+        
+        for incubator in const_incubators:
+            ## load the netdata for this incubator
+            const_nd = NetData(
+                incubator=incubator,
+                versions=full_md.versions["train"][incubator],
+                options=full_md.options["train"][incubator],
+                is_train="train",
+                transform_kwargs=transform_kwargs,
+                rand_seed=full_md.rand_seed
+            )
+            
+            ## track the data dictionary into the constant ds
+            const_ds.update(const_nd.data_dict)
+        
+        # create dynamics sets
+        
+        exit()
+        # iterate dynamic set folds, subset df each time for the new fold, add
+        # const data, make model data, yield the result
+        
+        # done
+        raise NotImplementedError
 
 # Testing
 if __name__ == "__main__":
-    ss = "A-1-1 + G-3-4^ --> G-3-4^^*"
-    md = ModelData(transfer_strategy=ss)
+    ss = "A-1-1 + G-3-4^ --> G-3-4^^"
+    # md = ModelData(transfer_strategy=ss)
+    it = ModelData.gen_k_folds(ss)
+    

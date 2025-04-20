@@ -784,6 +784,57 @@ class RobustTNN(nn.Module):
         return (logits > 0.5).float() if logits.shape[-1] == 1 else logits  # Threshold for binary classification
 
 
+# TKAN
+# class TKAN(nn.Module):
+#     def __init__(self, K: int=-1, num_phi: int=-1, input_size: int=14, hidden_size: int=64, **kwargs):
+#         super().__init__()
+        
+#         # enforce inputs
+#         if K <= 0:
+#             K = kwargs.get("input_size", 14)
+#         if num_phi <= 0:
+#             num_phi = 2 * K + 1
+        
+#         # Shared univariate transforms ψ_k
+#         self.psi = nn.ModuleList([
+#             nn.Sequential(
+#                 nn.Linear(input_size, hidden_size),  # ← was nn.Linear(1, hidden_dim)
+#                 nn.ReLU(),
+#                 nn.Linear(hidden_size, 1)
+#             )
+#             for _ in range(K)
+#         ])
+#         # KAN output: φ_j on weighted sums of u
+#         self.a = nn.Parameter(torch.randn(K, num_phi))
+#         self.phi = nn.ModuleList([
+#             nn.Sequential(
+#                 nn.Linear(1, 32), nn.ReLU(),
+#                 nn.Linear(32, 1)
+#             )
+#             for _ in range(num_phi)
+#         ])
+        
+#         self.classifier_head = nn.Linear(num_phi, 2)
+
+#     def forward(self, x):
+#         # x: (batch_size, timesteps, input dims)
+#         B, T, D = x.shape
+#         # 1) apply ψ_k to each time‑step
+#         #    result: (B, T, K)
+#         h = torch.stack([
+#             self.psi[k](x.unsqueeze(-1)).squeeze(-1)
+#             for k in range(len(self.psi))
+#         ], dim=2)
+#         # 2) sum‑pool over time → u of shape (B, K)
+#         u = h.sum(dim=1)
+#         # 3) weighted sums for each φ_j → (B, num_phi)
+#         v = u @ self.a  # (B, num_phi)
+#         # 4) apply φ_j and sum to scalar
+#         logits = self.classifier_head(v)
+#         return logits
+
+#     def predict(self, x):
+#         return F.softmax(self.forward(x), dim=1)
 
 
 ## Regressor (from Nafiz)
@@ -913,8 +964,14 @@ class TimeSeriesModel:
                     **self.hyperparams
                 ).to(self.device)
 
+            case "KAN":
+                log("Model Chosen :: TKAN", "new")
+                self.model = TKAN(
+                    **self.hyperparams
+                ).to(self.device)
+
             case "Regressor":
-                log("Model Chose :: Regressor", "new")
+                log("Model Chosen :: Regressor", "new")
                 self.model = Regressor(
                     self.hyperparams["input_size"],
                     32,
@@ -927,7 +984,6 @@ class TimeSeriesModel:
             case _:
                 log(f"model architecture `{self.model_arch}` undefined", "error")
                 exit(1)
-
 
     def save(self, strategy: str, metrics: dict[str, float]) -> None:
         """
@@ -962,7 +1018,6 @@ class TimeSeriesModel:
         torch.save(self.model.state_dict(), path)
         log(f"saved model weights to \"{path}\"")
         
-    
     def load(self, strategy: str, *args, **kwargs) -> bool:
         """
             Loads the best model without having to train; the assumption here is
@@ -1000,13 +1055,12 @@ class TimeSeriesModel:
         
         # load best model weight, prioritize perf in order of metric listing
         matched_weights.sort()
-        best_weights = Path().cwd().parent / "model-weights" / cleaned_strat / matched_weights[-1]
+        best_weights = Path().cwd() / "model-weights" / cleaned_strat / matched_weights[-1]
         
         log(f"using <{cleaned_strat}  {best_weights.stem}> for the model")
         self.model.load_state_dict(torch.load(best_weights))
         self.model.eval()
         return True
-
 
     def check_device(self) -> None:
         """
@@ -1014,9 +1068,12 @@ class TimeSeriesModel:
         """
 
         # check & report
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.device = torch.device(
+            "cuda" if torch.cuda.is_available() else (
+                "mps" if torch.backends.mps.is_available() else "cpu"
+            )
+        )
         print(f"using ***{self.device}*** for training...")
-
 
     def gen_report_name(self) -> None:
         """
@@ -1028,7 +1085,6 @@ class TimeSeriesModel:
 
         import time
         self.report_name = f"{self.model_arch}-{time.time()}"
-
 
     def __post_init__(self):
         # generate model archs
@@ -1061,7 +1117,6 @@ class TimeSeriesModel:
             
             # intialize
             self.scheduler = self.scheduler(optimizer=self.optimizer)
-
 
     def test_reg(self, X, y, raw_prob: bool=False) -> dict[str, list[Any]]:
         """
@@ -1100,7 +1155,6 @@ class TimeSeriesModel:
 
         return {"preds": preds_list, "targets": targets_list, "missed-projects": missed_projects}
 
-
     def test_intervaled(self, X_dict, y_dict, raw_prob: bool=False) -> dict[str, dict[str, list[Any]]]:
         """
             Defines the testing strategy specifically for the intervaled 
@@ -1124,7 +1178,6 @@ class TimeSeriesModel:
 
         # export
         return {"preds": preds_dict, "targets": targets_dict}
-
 
     # external utility
     def train(
@@ -1371,7 +1424,7 @@ class TimeSeriesModel:
         # dot.render("model_architecture", format="png")
 
         # visualize loss
-        dir = "../model-reports/loss-visualization/"
+        dir = Path().cwd() / "model-reports" / "loss-visualization"
         check_dir(dir)
 
         df = pd.DataFrame(list(losses.items()), columns=["Epoch", "Loss"])
@@ -1512,7 +1565,7 @@ class TimeSeriesModel:
             print_report = report
 
         if save:
-            with open(f"../model-reports/trials/{self.report_name}.txt", "w") as f:
+            with open(f"./model-reports/trials/{self.report_name}.txt", "w") as f:
                 f.write(report)
         if display:
             print(print_report)
@@ -1527,7 +1580,7 @@ class TimeSeriesModel:
         log("DEPRECATED save method, not saving w/ perf info", "warning")
         torch.save(
             self.model.state_dict(),
-            f"../model-reports/transfer-weights/{self.report_name}.pt"
+            f"./model-reports/transfer-weights/{self.report_name}.pt"
         )
 
     
@@ -1751,11 +1804,12 @@ class TimeSeriesModel:
         dot = make_dot(output, params=dict(self.model.named_parameters()))
 
         # save model graph
-        output_dir = "../model-reports/model-visualizations/"
+        output_dir = "./model-reports/model-visualizations/"
         check_dir(output_dir)
         dot.render(f"{output_dir}{self.gen_report_name()}", format="png")
     
     ## class utility
+    @staticmethod
     def clean_weights(dir: Path | str=None) -> dict[str, int]:
         """
             Script to only keep the best model weights. Assumes a directory 
@@ -1833,7 +1887,7 @@ class TimeSeriesModel:
         
         # ensure arguments
         if dir is None:
-            dir = Path().cwd().parent / "model-weights"
+            dir = Path().cwd() / "model-weights"
         dir = Path(dir)
         
         # track statistics

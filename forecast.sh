@@ -1,9 +1,9 @@
 # Forecasting Example Scripts (training + evaluation)
-# python3 -m decalfc.pipeline.modeling --kwargs \
-#     strategy="A-2-2^ --> A-2-2^^" \
-#     trials=3 \
-#     model-arch="BLSTM" \
-#     hyperparams='{"learning_rate": 0.001, "scheduler": "plateau", "num_epochs": 100, "hidden_size": 64, "num_layers": 2, "dropout_rate": 0.5}'
+python3 -m decalfc.pipeline.modeling --kwargs \
+    strategy="Acs^ --> Acs^^" \
+    trials=10 \
+    model-arch="BLSTM" \
+    hyperparams='{"learning_rate": 0.001, "scheduler": "plateau", "num_epochs": 100, "hidden_size": 64, "num_layers": 2, "dropout_rate": 0.5}'
 
 # python3 -m decalfc.pipeline.modeling --kwargs \
 #     strategy="A-2-2^ --> A-2-2^^" \
@@ -109,9 +109,9 @@
 #     model-arch="BLSTM" \
 #     hyperparams='{"learning_rate": 0.001, "scheduler": "plateau", "num_epochs": 200}'
 
-python3 -m decalfc.pipeline.modeling --kwargs \
-    strategy="O --> G" \
-    trials=1 \
-    model-arch="BLSTM" \
-    hyperparams='{"learning_rate": 0.001, "scheduler": "plateau", "num_epochs": 200}'
+# python3 -m decalfc.pipeline.modeling --kwargs \
+#     strategy="O --> G" \
+#     trials=1 \
+#     model-arch="BLSTM" \
+#     hyperparams='{"learning_rate": 0.001, "scheduler": "plateau", "num_epochs": 200}'
 

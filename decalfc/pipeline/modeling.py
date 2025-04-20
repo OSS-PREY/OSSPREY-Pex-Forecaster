@@ -24,7 +24,6 @@ from decalfc.abstractions.modeldata import *
 from decalfc.abstractions.perfdata import *
 from decalfc.abstractions.tsmodel import *
 
-
 # ---------------- modeling script ---------------- #
 def modeling(params_dict: dict, args_dict: dict, *args, **kwargs):
     """
@@ -35,7 +34,7 @@ def modeling(params_dict: dict, args_dict: dict, *args, **kwargs):
     """
 
     # load all data
-    md = ModelData(
+    cur_md = ModelData(
         transfer_strategy=args_dict["strategy"],
         transform_kwargs=args_dict.get("transform-kwargs", dict()),
         soft_prob=args_dict.get("soft-prob", 1)
@@ -43,7 +42,7 @@ def modeling(params_dict: dict, args_dict: dict, *args, **kwargs):
 
     # train model & test
     ## grab sample tensor, i.e. first tensor we have
-    sample_tensor = md.tensors["train"]["x"][0]
+    sample_tensor = cur_md.tensors["train"]["x"][0]
         
     ## ensure some hyperparams
     hyperparams = {"input_size": sample_tensor.shape[1]}
@@ -58,8 +57,8 @@ def modeling(params_dict: dict, args_dict: dict, *args, **kwargs):
     # model.visualize_model(
     #     data_shape=(md.tensors["train"]["x"][0].shape[0], hyperparams["input_size"])
     # )
-    model.train(md)
-    model.test(md)
+    model.train(cur_md)
+    model.test(cur_md)
     # model.interpret_model(md, strategy=hyperparams.get("interpretation-strategy", "SHAP"))
 
     # reporting
@@ -70,21 +69,85 @@ def modeling(params_dict: dict, args_dict: dict, *args, **kwargs):
     else:
         perf_db = PerfData(args_dict["perf-path"])
     perf_db.add_entry(
-        md.transfer_strategy,
+        cur_md.transfer_strategy,
         model_arch=model.model_arch,
         preds=model.preds,
         targets=model.targets,
-        intervaled=md.is_interval["test"]
+        intervaled=cur_md.is_interval["test"]
     )
 
-    if md.is_interval["test"]:
-        perf_db.perf_vs_time(md.transfer_strategy, model.model_arch)
+    if cur_md.is_interval["test"]:
+        perf_db.perf_vs_time(cur_md.transfer_strategy, model.model_arch)
 
     # monthly predictions
     if args_dict.get("monthly-preds", False):
         model.monthly_predictions(
             **args_dict["monthly-preds"]
         )
+
+def k_fold_trial(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> None:
+    """Generates a k-fold validation trial for the given strategy. Each fold 
+    will be a unique entry in the perfdata, i.e. this is equivalent to a normal
+    k-run of the regular trials except we enforce the different test sets each
+    time.
+    
+    NOTE: does not support soft-probs or monthly preds given this is for 
+    training purposes only.
+
+    Args:
+        params_dict (dict[str, Any]): params
+        args_dict (dict[str, Any]): args
+    """
+    
+    # unpack args
+    k = args_dict["k_folds"]
+    
+    # load all data in a folds iterator
+    folds = ModelData.gen_k_folds(
+        transfer_strategy=args_dict["strategy"],
+        transform_kwargs=args_dict.get("transform-kwargs", dict()),
+        k_folds=k
+    )
+
+    # train model & test for each fold
+    for fold in folds:
+        ## grab sample tensor, i.e. first tensor we have
+        sample_tensor = fold.tensors["train"]["x"][0]
+            
+        ## ensure some hyperparams
+        hyperparams = {"input_size": sample_tensor.shape[1]}
+        hyperparams.update(args_dict.get("hyperparams", dict()))
+
+        ## build model
+        model = TimeSeriesModel(
+            model_arch=args_dict.get("model-arch", "BLSTM"),
+            hyperparams=hyperparams
+        )
+        
+        ## train & test
+        model.train(fold)
+        model.test(fold)
+
+        ## reporting
+        model.report(display=True, save=False)
+
+        if args_dict.get("perf-path", None) is None:
+            perf_db = PerfData()
+        else:
+            perf_db = PerfData(args_dict["perf-path"])
+        perf_db.add_entry(
+            fold.transfer_strategy,
+            model_arch=model.model_arch,
+            preds=model.preds,
+            targets=model.targets,
+            intervaled=fold.is_interval["test"]
+        )
+
+        if fold.is_interval["test"]:
+            perf_db.perf_vs_time(fold.transfer_strategy, model.model_arch)
+
+    # done
+    return
 
 def monthly_predictions(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> None:
     """
@@ -640,7 +703,7 @@ def breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> None:
     # generate reports
     p = PerfData()
     p.subset_breakdown(options=options_str)
-    p.comparison(field="transfer_strategy")
+    p.comparison(src_field="transfer_strategy")
 
 def incubator_breakdown(
     params_dict: dict[str, Any], args_dict: dict[str, Any],
@@ -793,6 +856,65 @@ def icse_25_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) ->
     perf_db = PerfData(perf_source=perf_db_path)
     best_df = perf_db.best_perfs(transfer_strats=trial_structs)
 
+def tcse_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> None:
+    """Temporary utility for the TCSE '25 Paper table generation; saves all 
+    results in a separate TCSE db.
+
+    Args:
+        params_dict (dict[str, Any]): params.
+        args_dict (dict[str, Any]): args.
+    """
+    
+    # structs
+    models = [
+        "BLSTM",
+        "DLSTM",
+        "Transformer"
+    ]
+    options_structs = [
+        "",
+        "c",
+        "cs",
+        "cn",
+        "cbn"
+    ]
+    trial_structs = TRANSFER_STRATS
+    
+    # setup vars
+    num_trials = args_dict.get("trials", 5)
+    perf_db_path = "./model-reports/tcse-trials/final_icse_perf_db"
+    check_dir(perf_db_path)
+    
+    # try every set of trials
+    for model in models:
+        for option in options_structs:
+            for trial in trial_structs:
+                # get args dict, implement new options; note the test options don't 
+                # use balancing
+                new_args_dict = {
+                    "strategy": trial.format(opt=option, t_opt=option.replace("b", "")),
+                    "perf-path": perf_db_path,
+                    "model-arch": model,
+                    **args_dict
+                }
+                
+                # generate results
+                for _ in range(num_trials):
+                    modeling(params_dict, args_dict=new_args_dict)
+
+    # generate breakdown
+    perf_db = PerfData(perf_source=perf_db_path)
+    
+    ## get only trials with this model architecture
+    perf_db.data = perf_db.data[perf_db.data["model_arch"] == args_dict.get("model_arch", "BLSTM")]
+    perf_db.summary(metrics=["accuracy", "macro-f1-score"], export=True, verbose=False)
+    perf_db.comparison()
+    icse_25_experiments()
+    
+    ## generate overall comparison across all architectures
+    regex_matches = [re.sub(r"\{\}", r".*", s) for s in trial_structs]
+    perf_db = PerfData(perf_source=perf_db_path)
+    best_df = perf_db.best_perfs(transfer_strats=trial_structs, export=True)
 
 # Script
 def main():
@@ -803,7 +925,7 @@ def main():
     # match trial
     match trial_type:
         case "regular":
-            for i in range(args_dict.get("trials", 1)):
+            for _ in range(args_dict.get("trials", 1)):
                 modeling(params_dict=params_dict, args_dict=args_dict)
         
         case "full":
@@ -826,6 +948,12 @@ def main():
         
         case "icse":
             icse_25_breakdown(
+                params_dict=params_dict,
+                args_dict=args_dict
+            )
+        
+        case "tcse":
+            tcse_breakdown(
                 params_dict=params_dict,
                 args_dict=args_dict
             )

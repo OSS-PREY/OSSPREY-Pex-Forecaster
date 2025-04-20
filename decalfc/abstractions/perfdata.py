@@ -88,7 +88,6 @@ class PerfData:
         lambda: dt.datetime.now() - dt.timedelta(seconds=1)
     ))
 
-
     # internal utility
     def _load_data(self) -> None:
         """
@@ -116,7 +115,6 @@ class PerfData:
             ])
             self.export()
 
-
     def _get_colors(self, n):
         """
             Custom color map with n colors.
@@ -129,7 +127,6 @@ class PerfData:
 
         return colors
     
-
     def _order_intervals(self, interval: str | int) -> float:
         """
             Custom ordering for interval lengths.
@@ -142,11 +139,9 @@ class PerfData:
             return float(interval)
         return float(interval.split("-")[0])
     
-    
     def __post_init__(self):
         # load
         self._load_data()
-
 
     # external utility
     def export(self, path: Path | str="") -> None:
@@ -172,11 +167,12 @@ class PerfData:
                 log("failed to match extension to writer; defaulting to csv", "warning")
                 self.data.to_csv("../model-reports/TEMP_SAVE_FOR_PERF_DB.csv", index=False)
     
-
-    def perf_vs_time(self, transfer_strategy: str, model_arch: str="BLSTM",
-                     pred_labels: list[str]=["retired", "graduated"], 
-                     metrics: list[str]=["f1-score", "precision", "recall"], 
-                     stop_month: int=250) -> None:
+    def perf_vs_time(
+        self, transfer_strategy: str, model_arch: str="BLSTM",
+        pred_labels: list[str]=["retired", "graduated"],
+        metrics: list[str]=["f1-score", "precision", "recall"],
+        stop_month: int=250
+    ) -> None:
         """
             Generates a performance report with respect to each time period.
 
@@ -348,7 +344,6 @@ class PerfData:
         plt.savefig(report_name + "png", bbox_inches="tight")
         plt.close()
 
-
     def summary(self, verbose: bool=True, metrics: list[str]=None, full: bool=True,
                 export: bool=False, save: bool=True, agg_fns: list[str]=None,
                 output_path: str=None, average_type: str="macro") -> Optional[tuple[pd.DataFrame, str]]:
@@ -493,8 +488,7 @@ class PerfData:
             print(df.to_string())
             return (df, df.to_string())
 
-
-    def comparison(self, field: str="model_arch") -> pd.DataFrame:
+    def comparison(self, src_field: str="model_arch") -> pd.DataFrame:
         """
             Generates a comparison between every field, aggregating by the avg 
             of the other fields first. Generates a visualization and returns the 
@@ -511,7 +505,7 @@ class PerfData:
             "month": "numeric"
         }
 
-        if field not in group_fields:
+        if src_field not in group_fields:
             log("field is not currently supported", "warning")
             return
         
@@ -521,18 +515,18 @@ class PerfData:
         data.drop("metric", inplace=True, axis=1)
         data.rename(columns={"perf": "accuracy"}, inplace=True)
 
-        if field == "transfer_strategy":
+        if src_field == "transfer_strategy":
             # remove all interval trials
-            data = data[~data[field].str.contains("*")]
+            data = data[~data[src_field].str.contains("*")]
 
             # aggregate strategy, ignore version numbers (cleaner visualize)
             def clean_str(s):
                 tokens = s.split("-->")
                 tokens = [re.sub(r"[0-9-]", "", t) for t in tokens]
                 return " --> ".join(tokens)
-            data[field] = data[field].apply(clean_str)
+            data[src_field] = data[src_field].apply(clean_str)
         
-        data = data.groupby(field)["accuracy"].agg(["mean", "std"])
+        data = data.groupby(src_field)["accuracy"].agg(["mean", "std"])
         data = data.sort_values(by="mean")
 
         # visualize
@@ -543,17 +537,18 @@ class PerfData:
         plt.errorbar(x=data.index, y=data["mean"], yerr=data["std"], fmt="none", 
                      color="white", capsize=5)
 
-        plt.xlabel(f"{field.capitalize()}")
+        plt.xlabel(f"{src_field.capitalize()}")
         plt.ylabel("Mean Accuracy")
-        plt.title(f"Performance vs {field.capitalize()}")
+        plt.title(f"Performance vs {src_field.capitalize()}")
         plt.xticks(rotation=60)
         plt.ylim((0, 1))
 
         plt.tight_layout()
-        plt.savefig(f"../model-reports/comparisons/{field}-comparison")
+        save_path = Path("./model-reports") / "comparisons" / f"{src_field}-comparison.png"
+        check_dir(save_path.parent)
+        plt.savefig(save_path)
 
         return data
-
 
     def strategy_comparison(self, strategy_options: list[str | dict[str, bool]],
                             comparison_metrics: list[str]=None) -> None:
@@ -583,7 +578,6 @@ class PerfData:
 
         raise NotImplementedError
 
-
     def schema(self) -> None:
         print("""Schema for Performance Database:
             \t- `date` (str - unique key for distinguishing trials)
@@ -594,7 +588,6 @@ class PerfData:
             \t- `metric` (str - precision, recall, F1)
             \t- `perf` (float - measure of performance recorded)
             \t- `support` (int - num projects)""")
-
 
     def add_entry(self, transfer_strat: str, model_arch: str, preds: Iterable[Any], 
                   targets: Iterable[Any], month: str="all", intervaled: bool=False,
@@ -634,7 +627,6 @@ class PerfData:
 
         # generate summary
         self.summary()
-
 
     def _add_entry(self, transfer_strat: str, model_arch: str, preds: list[Any], 
                   targets: list[Any], month: str="all", 
@@ -728,7 +720,6 @@ class PerfData:
         else:
             self.export()
 
-
     def remove_entries(self, columns: str | list[str], 
                        remove_values: str | float | int | list[str | float | int]) -> None:
         """
@@ -754,11 +745,11 @@ class PerfData:
         self.data = self.data[~condition]
         self.export()
 
-
-    def subset_breakdown(self, trial_type: Any=None, options: dict[str, bool] | str=None,
-                         metrics: list[tuple[str, str]]=None, 
-                         aggregate: str="mean", strict: bool=True,
-                         export: bool=True, print_summary: bool=True) -> tuple[str, pd.DataFrame]:
+    def subset_breakdown(
+        self, trial_type: Any=None, options: dict[str, bool] | str=None,
+        metrics: list[tuple[str, str]]=None, aggregate: str="mean",
+        strict: bool=True, export: bool=True, print_summary: bool=True
+    ) -> tuple[str, pd.DataFrame]:
         """
             Generates a breakdown for a subset of trials based on key features 
             in every trial. If `trial_type` is specified, it uses regex matching 
@@ -793,7 +784,8 @@ class PerfData:
         if trial_type is not None:
             # select by regex matching
             name_modifier = "regex"
-            subset_df = self.data[self.data["transfer_strategy"].str.match(trial_type)]
+            match_locs = self.data["transfer_strategy"].str.match(re.escape(trial_type))
+            subset_df = self.data[match_locs]
         elif options is not None:
             # name modifications
             name_modifier = "-".join([abbrevations.get(k, "ERR") for k in options if options.get(k, False)])
@@ -849,6 +841,12 @@ class PerfData:
             columns=["metric"],
             values=["perf", "support"]
         )
+        
+        # exit prior to error
+        if breakdown.shape[0] == 0:
+            log("no matching entries found, escaping early", "warning")
+            return "", pd.DataFrame()
+        
         breakdown = breakdown.sort_values(
             by=[("perf", label_metric) for label_metric in metrics] + [("support", metrics[0])],
             ascending=False
@@ -919,7 +917,6 @@ class PerfData:
         # returns
         plt.close()
         return breakdown.to_string(), export_df
-
 
     def monthly_predictions(self, incubator: str=None, 
                             proj_subset: dict[str, list[str]]=dict(),
@@ -1109,10 +1106,11 @@ class PerfData:
             # iterate projects and graph each one
             for proj in tqdm(subset):
                 graph_forecast([proj], exp_dir=predictions_dir, incubators=[incubator])
-            
-            
-    def best_perfs(self, transfer_strats: list[str]=None, agg_strat: str="median", 
-                   use_regex: bool=True, export: bool=True) -> pd.DataFrame:
+
+    def best_perfs(
+        self, transfer_strats: list[str]=None, agg_strat: str="median",
+        use_regex: bool=True, export: bool=True
+    ) -> pd.DataFrame:
         """
             Breakdown of the best performances per transfer strategy.
 
@@ -1130,19 +1128,7 @@ class PerfData:
         
         # args check
         if transfer_strats is None:
-            transfer_strats = [
-                "A{opt}^ --> A{t_opt}^^",
-                "E{opt} --> A{t_opt}",
-                "A{opt}^ + E{opt} --> A{t_opt}^^",
-                "A{opt} --> E{t_opt}",
-                "E{opt}^ --> E{t_opt}^^",
-                "A{opt} + E{opt}^ --> E{t_opt}^^",
-                "A{opt} --> G{t_opt}",
-                "E{opt} --> G{t_opt}",
-                "A{opt} + E{opt} --> G{t_opt}",
-                "A{opt}^ + E{opt}^ --> A{t_opt}^^ + E{t_opt}^^",
-                "A{opt}^ + E{opt}^ --> A{t_opt}^^ + E{t_opt}^^ + G{t_opt}"
-            ]
+            transfer_strats = TRANSFER_STRATS
         
         # generate overall comparison across all architectures
         if use_regex:
@@ -1165,9 +1151,9 @@ class PerfData:
         ## compare every transfer strat
         best_dfs: list[pd.Dataframe] = list()
         
-        for i, transfer_strat in enumerate(regex_matches):
+        for _, transfer_strat in enumerate(regex_matches):
             ## add the best rows from the results of the breakdown
-            result_str, result_df = self.subset_breakdown(
+            _, result_df = self.subset_breakdown(
                 trial_type=transfer_strat, 
                 metrics=[
                     ("accuracy", "accuracy"),
@@ -1179,18 +1165,26 @@ class PerfData:
                 aggregate=agg_strat,
                 print_summary=False
             )
-            result_df = result_df.iloc[0, :]
-            best_dfs.append(result_df)
+            
+            ## skip if the result is empty
+            if result_df.shape[0] > 0:
+                result_df = result_df.iloc[0, :]
+                best_dfs.append(result_df)
         
         ### concatenate all dfs and export
-        best_df = pd.concat(best_dfs, axis=1, ignore_index=True).transpose()
+        if len(best_dfs) > 1:
+            best_df = pd.concat(best_dfs, axis=1, ignore_index=True).transpose()
+        elif len(best_dfs) == 0:
+            log("no matching entries found, escaping early", "warning")
+            return pd.DataFrame()
+        else:
+            best_df = best_dfs[0]
         
         if export:
             best_df.to_csv("../model-reports/icse-trials/icse_breakdown.csv", index=False)
             with open("../model-reports/icse-trials/icse_breakdown.txt", "w") as f:
                 f.write(best_df.to_string(index=False))
         return best_df
-    
 
 # Testing
 def icse_wrapper():
@@ -1253,6 +1247,8 @@ if __name__ == "__main__":
     ############################################################################
     
     pfd = PerfData()
+    res = pfd.best_perfs()
+    print(res)
     
     # normal experiments
     # pfd = PerfData()

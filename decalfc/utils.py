@@ -34,6 +34,28 @@ DEVICE = (
         else "cpu"
     )
 )
+TRANSFER_STRATS = [
+    "A{opt}^ --> A{t_opt}^^",
+    "E{opt} --> A{t_opt}",
+    "O{opt} --> A{t_opt}",
+    "E{opt} + O{opt} --> A{t_opt}",
+    "A{opt}^ + E{opt} --> A{t_opt}^^",
+    "A{opt} --> E{t_opt}",
+    "O{opt} --> E{t_opt}",
+    "A{opt} + O{opt} --> E{t_opt}",
+    "E{opt}^ --> E{t_opt}^^",
+    "A{opt} + E{opt}^ --> E{t_opt}^^",
+    "A{opt} --> G{t_opt}",
+    "E{opt} --> G{t_opt}",
+    "O{opt} --> G{t_opt}",
+    "A{opt} + E{opt} --> G{t_opt}",
+    "A{opt} + O{opt} --> G{t_opt}",
+    "E{opt} + O{opt} --> G{t_opt}",
+    "A{opt}^ + E{opt}^ --> A{t_opt}^^ + E{t_opt}^^",
+    "A{opt}^ + E{opt}^ + O{opt}^ --> A{t_opt}^^ + E{t_opt}^^ + O{t_opt}^^",
+    "A{opt}^ + E{opt}^ --> A{t_opt}^^ + E{t_opt}^^ + G{t_opt}",
+    "A{opt}^ + E{opt}^ + O{opt}^ --> A{t_opt}^^ + E{t_opt}^^ + O{t_opt}^^ + G{t_opt}"
+]
 
 
 # --- Utility --- #

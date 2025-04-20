@@ -1854,7 +1854,7 @@ class NetData:
         return data_copy
     
     def smoothe_netdata(
-        self, cols: list=None, strat: str="exp", inplace: bool=True, 
+        self, cols: list=None, strat: str="gauss", inplace: bool=True, 
         export: bool=False, verbose: bool=True
     ) -> None | pd.DataFrame:
         """Imputes any holes in the network data by project and feature.
@@ -1914,18 +1914,18 @@ class NetData:
             # apply the threshold and reconstruct the data
             return pywt.waverec(coeff, wavelet, mode="per")[:data.shape[0]]
 
-        def exp_smoothing(data: np.ndarray, alpha: float = 0.2) -> np.ndarray:
+        def exp_smoothing(data: np.ndarray, alpha: float=0.2) -> np.ndarray:
             """Smooth data using simple exponential smoothing.
 
-            This function applies simple exponential smoothing to the input data.
-            Exponential smoothing computes a weighted average of past observations,
-            where the weights decay exponentially with time. A higher alpha discounts
-            older observations faster, giving more emphasis to recent data.
+            This function applies simple exponential smoothing to the input
+            data. Computes a weighted average of past observations, w/ weights
+            exponentially decaying with time. Higher alpha discounts older
+            observations faster, giving more emphasis to recent data.
 
             Args:
                 data (np.ndarray): col of data to smooth.
                 alpha (float, optional): smoothing factor between 0 (exclusive)
-                    and 1 (inclusive). A higher value gives more weight to 
+                    and 1 (inclusive). A higher value gives more weight to
                     recent observations. Defaults to 0.2.
 
             Returns:
@@ -1947,12 +1947,49 @@ class NetData:
             # export
             return smoothed
 
+        def gauss_kernel(data: np.ndarray, sigma: float=0.47) -> np.ndarray:
+            """Gaussian kernel smoothing for time series.
+
+            Args:
+                data (np.ndarray): single column of data.
+                sigma (float, optional): decay of the observations to consider.
+                    Defaults to 0.47.
+
+            Returns:
+                np.ndarray: smoothed data.
+            """
+            
+            # gen Gaussian kernel, cover the 99.7% conf interval for the kernel
+            kernel_size = int(6 * sigma + 1)
+            
+            # ensure odd kernel size
+            kernel_size += kernel_size % 2
+            
+            # if the kernel is larger than the data, we can't really smooth it
+            if kernel_size > len(data):
+                return data
+            
+            # create the kernel
+            kernel_range = np.arange(-(kernel_size // 2), (kernel_size // 2) + 1)
+            kernel = np.exp(-0.5 * (kernel_range / sigma) ** 2)
+            kernel /= kernel.sum()
+            
+            # convolve across the time series
+            smoothed = np.convolve(data, kernel, mode="same")
+            
+            # ensure equal size
+            smoothed = smoothed[:data.shape[0]]
+            
+            # export
+            return smoothed
+
         # infer args
         if cols is None:
             cols = self.data.columns.difference(self.drop_cols)
         smooth_fn = {
             "exp": exp_smoothing,
-            "wav": wavelet_smoothing
+            "wav": wavelet_smoothing,
+            "gauss": gauss_kernel
         }[strat]
         
         data_copy = self.data.copy()
@@ -1972,7 +2009,7 @@ class NetData:
         if export:
             raise NotImplementedError
 
-    def combine_options() -> None:
+    def combine_options(self) -> None:
         """
             Allows for new column generation via concatenating two different 
             sets of options together.
@@ -1980,7 +2017,7 @@ class NetData:
             @param
         """
 
-        pass
+        raise NotImplementedError
 
 
 # Testing
