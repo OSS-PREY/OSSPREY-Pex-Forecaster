@@ -16,6 +16,7 @@ import json
 import re
 from typing import Any, Iterator
 from dataclasses import dataclass, field
+from math import ceil
 
 from decalfc.utils import *
 from decalfc.abstractions.tsmodel import *
@@ -51,6 +52,8 @@ class ModelData:
     )
     predict_project: dict[str, str] = field(default=None)                       # if a single project is to be predicted on, maps incubator: project-name
     rand_seed: int = field(default=42)                                          # seed for reproducability
+    
+    skip_tensors: bool = field(default=False)                                   # skip tensor generation
 
     # internal utility
     def _list_options_(self) -> None:
@@ -304,7 +307,8 @@ class ModelData:
         )
 
         # generate tensors
-        self._gen_tensors_()
+        if not self.skip_tensors:
+            self._gen_tensors_()
 
     # external utility
     @staticmethod
@@ -412,7 +416,7 @@ class ModelData:
     @staticmethod
     def gen_k_folds(
         transfer_strategy: str, transform_kwargs: dict[str, Any]=None,
-        k_folds: int=5
+        nfolds: int=5
     ) -> Iterator:
         """Generates modeldata's to iterate through for model training.
 
@@ -420,7 +424,7 @@ class ModelData:
             transfer_strategy (str): transfer strategy to use.
             transform_kwargs (dict[str, Any], optional): augmentations to use on
                 the data. Defaults to None.
-            k_folds (int, optional): number of folds to generate. Defaults to 5
+            nfolds (int, optional): number of folds to generate. Defaults to 5
                 to preserve the 80-20 TT-split.
 
         Yields:
@@ -433,7 +437,8 @@ class ModelData:
         temp_transfer_strategy = transfer_strategy.replace("^", "")
         full_md = ModelData(
             transfer_strategy=temp_transfer_strategy,
-            transform_kwargs=transform_kwargs
+            transform_kwargs=transform_kwargs,
+            skip_tensors=True
         )
         train_incubators = set(full_md.options["train"].keys())
         test_incubators = set(full_md.options["test"].keys())
@@ -445,38 +450,136 @@ class ModelData:
             )
         
         # find constant and dynamic incubators for the strategy
-        const_incubators = (train_incubators - test_incubators) | (test_incubators - train_incubators)
+        const_incubators = train_incubators ^ test_incubators
         dynamic_incubators = train_incubators & test_incubators
         
-        # create const dataset tensor lookup (i.e. data dict)
-        const_ds = dict()
+        # create const dataset tensor lookup
+        const_ds = {"train": {"x": list(), "y": list()}, "test": {"x": list(), "y": list()}}
         
         for incubator in const_incubators:
+            ## unpack options
+            cur_set = "train" if incubator in train_incubators else "test"
+            
             ## load the netdata for this incubator
             const_nd = NetData(
                 incubator=incubator,
-                versions=full_md.versions["train"][incubator],
-                options=full_md.options["train"][incubator],
-                is_train="train",
+                versions=full_md.versions[cur_set][incubator],
+                options=full_md.options[cur_set][incubator],
+                is_train="both",
                 transform_kwargs=transform_kwargs,
-                rand_seed=full_md.rand_seed
+                rand_seed=full_md.rand_seed,
+                verbose=False
             )
             
-            ## track the data dictionary into the constant ds
-            const_ds.update(const_nd.data_dict)
-        
+            ## track the tensors into the constant ds
+            const_ds[cur_set]["x"].extend(const_nd.tensors["train"]["x"])
+            const_ds[cur_set]["y"].extend(const_nd.tensors["train"]["y"])
+            
+            const_ds[cur_set]["x"].extend(const_nd.tensors["test"]["x"])
+            const_ds[cur_set]["y"].extend(const_nd.tensors["test"]["y"])
+            
         # create dynamics sets
+        dynamic_ds = {"train": {"x": dict(), "y": dict()}, "test": {"x": dict(), "y": dict()}}
         
-        exit()
+        for incubator in dynamic_incubators:
+            ## unpack options
+            cur_set = "train"
+            
+            ## load the netdata for this incubator
+            dynamic_nd = NetData(
+                incubator=incubator,
+                versions=full_md.versions[cur_set][incubator],
+                options=full_md.options[cur_set][incubator],
+                is_train="both",
+                transform_kwargs=transform_kwargs,
+                rand_seed=full_md.rand_seed,
+                verbose=False
+            )
+            
+            ## track the tensors into the dynamic ds
+            dynamic_ds[cur_set]["x"][incubator] = list()
+            dynamic_ds[cur_set]["y"][incubator] = list()
+            
+            dynamic_ds[cur_set]["x"][incubator].extend(dynamic_nd.tensors["train"]["x"])
+            dynamic_ds[cur_set]["y"][incubator].extend(dynamic_nd.tensors["train"]["y"])
+            
+            dynamic_ds[cur_set]["x"][incubator].extend(dynamic_nd.tensors["test"]["x"])
+            dynamic_ds[cur_set]["y"][incubator].extend(dynamic_nd.tensors["test"]["y"])
+        
+        # figure out the fold information
+        nprojs_per_inc = {incubator: len(dynamic_ds["train"]["y"][incubator]) for incubator in dynamic_incubators}
+        nprojs_per_fold = {incubator: int(nprojs / nfolds) for incubator, nprojs in nprojs_per_inc.items()}
+        
         # iterate dynamic set folds, subset df each time for the new fold, add
-        # const data, make model data, yield the result
-        
+        # const data, make model data, yield the result; we'll avoid trying
+        # every combination of folds to avoid an O(x^n) problem with n
+        # incubators and x projects; rather, we'll iterate each fold in parallel
+        # which sacrifices on the folding structure but gains performance and
+        # simplicity
+        for f in range(nfolds):
+            # unpack the fold ranges for this fold
+            fold_ranges = {
+                incubator: (
+                    f * nprojs_per_fold[incubator],
+                    (f + 1) * nprojs_per_fold[incubator] if f != nfolds - 1
+                    else nprojs_per_inc[incubator]
+                ) for incubator in dynamic_incubators
+            }
+            
+            # dynamic sets for the current fold
+            dynamic_tensors = {
+                "train": {"x": list(), "y": list()},
+                "test": {"x": list(), "y": list()}
+            }
+            
+            for dyn_inc in dynamic_incubators:
+                # unpack fold range
+                fold_range = fold_ranges[dyn_inc]
+                
+                # grab the subset of data we'll use for this fold
+                test_fold_x = dynamic_ds["train"]["x"][dyn_inc][fold_range[0]:fold_range[1]]
+                test_fold_y = dynamic_ds["train"]["y"][dyn_inc][fold_range[0]:fold_range[1]]
+                
+                train_fold_x = (
+                    dynamic_ds["train"]["x"][dyn_inc][0:fold_range[0]] 
+                    + dynamic_ds["train"]["x"][dyn_inc][fold_range[1]:]
+                )
+                train_fold_y = (
+                    dynamic_ds["train"]["y"][dyn_inc][0:fold_range[0]] 
+                    + dynamic_ds["train"]["y"][dyn_inc][fold_range[1]:]
+                )
+                
+                # append to the tensors for this fold
+                dynamic_tensors["test"]["x"].extend(test_fold_x)
+                dynamic_tensors["test"]["y"].extend(test_fold_y)
+                
+                dynamic_tensors["train"]["x"].extend(train_fold_x)
+                dynamic_tensors["train"]["y"].extend(train_fold_y)
+            
+            # combine with the static set of tensors
+            dynamic_tensors["train"]["x"].extend(const_ds["train"]["x"])
+            dynamic_tensors["train"]["y"].extend(const_ds["train"]["y"])
+            
+            dynamic_tensors["test"]["x"].extend(const_ds["test"]["x"])
+            dynamic_tensors["test"]["y"].extend(const_ds["test"]["y"])
+
+            # create model data instance to yield
+            cur_md = ModelData(
+                transfer_strategy=transfer_strategy,
+                transform_kwargs=transform_kwargs,
+                skip_tensors=True
+            )
+            cur_md.tensors = dynamic_tensors
+            
+            # generator
+            yield cur_md
+            
         # done
-        raise NotImplementedError
+        return
 
 # Testing
 if __name__ == "__main__":
-    ss = "A-1-1 + G-3-4^ --> G-3-4^^"
+    ss = "A --> G"
     # md = ModelData(transfer_strategy=ss)
     it = ModelData.gen_k_folds(ss)
     

@@ -59,12 +59,13 @@ class NetData:
         "lag-interval": False
     })
     transform_kwargs: dict[str, dict[str, Any]] = field(
-        default_factory=lambda: dict()
+        default_factory=dict
     )                                                                           # specify params to pass into transform functions if netdata is to be generated
     is_train: str = field(default="none")                                       # specify if train or test; if None, generates both
     do_compute_tensors: bool = field(default=True)                              # whether to generate tensors or not
     soft_prob: bool = field(default=False)                                      # soft probabilities for training
     ignore_cache: bool = field(default=False)                                   # ignore cache if needed
+    verbose: bool = field(default=True)                                         # verbose setup
 
     # internal
     generate: bool = field(default=True)                                        # generate data if not prepared already
@@ -228,7 +229,7 @@ class NetData:
             exit(1)
     
         log("Data was not available, automatically generating", "warning")
-        log("using default params for transforms. . .", "note")
+        log("using default params for transforms. . .", "note", check_verbosity=self.verbose)
 
         # load base
         self.data = pd.read_csv(self.gen_default_path())
@@ -256,9 +257,9 @@ class NetData:
 
             # route the correct transforms
             if len(self.transform_kwargs[option]) == 0:
-                log(f"Performing transformation [{option}] with default params")
+                log(f"Performing transformation [{option}] with default params", check_verbosity=self.verbose)
             else:
-                log(f"Performing transformation [{option}] with the following params: {self.transform_kwargs[option]}")
+                log(f"Performing transformation [{option}] with the following params: {self.transform_kwargs[option]}", check_verbosity=self.verbose)
             
             self.transform_router[option](
                 self,
@@ -362,10 +363,11 @@ class NetData:
             self.split_set["train"] = set()
             
         # reporting
-        log("\n< :::: TRAIN SET :::: >", "new", "file", "temp_log")
-        log(f"{self.split_set['train']}", "none", "file", "temp_log")
-        log("\n< :::: TEST SET :::: >", "new", "file", "temp_log")
-        log(f"{self.split_set['test']}", "none", "file", "temp_log")
+        if self.verbose:
+            log("\n< :::: TRAIN SET :::: >", "new", "file", "temp_log")
+            log(f"{self.split_set['train']}", "none", "file", "temp_log")
+            log("\n< :::: TEST SET :::: >", "new", "file", "temp_log")
+            log(f"{self.split_set['test']}", "none", "file", "temp_log")
 
     def gen_data_dict(self) -> None:
         """
@@ -399,6 +401,7 @@ class NetData:
             project_status = json.load(f)
         self.project_status = {s: set(project_status[s]) for s in project_status}
 
+    @staticmethod
     def split_data(dataset_dirs: dict[str, str]) -> dict[str, dict[str, set]]:
         """
             In the generic case, we'll always be using train, test, or both 
@@ -477,12 +480,13 @@ class NetData:
                 log_info["skip"] += 1
         
         # return the package + report
-        print(f"<{set_type}>")
-        print(f"\tx: {len(subset)} base projects, {len(X)} total")
-        print(f"\ty: {len(subset)} base projects, {len(y)} total")
-        print(f"\tgraduated:          {len(self.project_status['graduated'] & (subset))} base, {log_info['grad']} total")
-        print(f"\tretired:            {len(self.project_status['retired'] & (subset))} base, {log_info['ret']} total")
-        print(f"\tincubating/skipped: {len(self.project_status['incubating'] & (subset))} base, {log_info['skip']} total")
+        if self.verbose:
+            print(f"<{set_type}>")
+            print(f"\tx: {len(subset)} base projects, {len(X)} total")
+            print(f"\ty: {len(subset)} base projects, {len(y)} total")
+            print(f"\tgraduated:          {len(self.project_status['graduated'] & (subset))} base, {log_info['grad']} total")
+            print(f"\tretired:            {len(self.project_status['retired'] & (subset))} base, {log_info['ret']} total")
+            print(f"\tincubating/skipped: {len(self.project_status['incubating'] & (subset))} base, {log_info['skip']} total")
         
         return {"x": X, "y": y, "log": log_info}
 
@@ -528,12 +532,13 @@ class NetData:
                 log_info["skip"] += 1
 
         # export + report
-        print(f"<{set_type}>")
-        print(f"\tx: {len(X)}")
-        print(f"\ty: {len(y)}")
-        print(f"\tgraduated:          {log_info['grad']}")
-        print(f"\tretired:            {log_info['ret']}")
-        print(f"\tincubating/skipped: {log_info['skip']}")
+        if self.verbose:
+            print(f"<{set_type}>")
+            print(f"\tx: {len(X)}")
+            print(f"\ty: {len(y)}")
+            print(f"\tgraduated:          {log_info['grad']}")
+            print(f"\tretired:            {log_info['ret']}")
+            print(f"\tincubating/skipped: {log_info['skip']}")
 
         return {"x": X, "y": y, "log": log_info}
 
@@ -546,9 +551,9 @@ class NetData:
         self.tensors = dict(zip(["train", "test"], [dict(), dict()]))
         self.is_intervaled = any((("interval" in opt) and sel) for opt, sel in self.options.items())
 
-        log(f"Tensor Info for {self.incubator}", "new")
+        log(f"Tensor Info for {self.incubator}", "new", check_verbosity=self.verbose)
         if self.is_train in {"train", "both"}:
-            ## soft probabilities don't require a split, we can simply pretend 
+            ## soft probabilities don't require a split, we can simply pretend
             ## they're pseudo projects again
             train_pkg = self.reg_tensors("train")
             self.tensors["train"]["x"] = train_pkg["x"]
@@ -569,9 +574,9 @@ class NetData:
             self.transform_kwargs = dict()
 
         # generate NetData object
-        log("setting up NetData")
+        log("setting up NetData", check_verbosity=self.verbose)
         self.gen_netdata_path()
-        log("reading in/generating data")
+        log("reading in/generating data", check_verbosity=self.verbose)
         self.load()
         
         # ensure column order
@@ -584,15 +589,15 @@ class NetData:
         self.data = self.data[self.column_order]
 
         # generation
-        log("generating project status, split")
+        log("generating project status, split", check_verbosity=self.verbose)
         self.load_proj_status()
         self.train_test_split()
 
         if self.do_compute_tensors:
-            log("generating data lookup")
+            log("generating data lookup", check_verbosity=self.verbose)
             self.gen_data_dict()
             
-            log("generating tensors")
+            log("generating tensors", check_verbosity=self.verbose)
             self.gen_tensors()
 
 
@@ -736,6 +741,7 @@ class NetData:
             f.write("\n")
         incubator_wide_data.to_csv(f"{report_path}-incubator-wide.csv")
 
+    @staticmethod
     def project_length_distribution(incubators: list[str]=None) -> None:
         """
             Generates a distribution of the specified incubators and their 
@@ -838,6 +844,7 @@ class NetData:
         plt.savefig(Path(save_dir) / f"{self.incubator}_feature_correlations")
         plt.close()
 
+    @staticmethod
     def compare_netdata_timelines(df1: pd.DataFrame, df2: pd.DataFrame, proj_name: str=None) -> None:
         """Plot a grid of lineplots to compare each column from two DataFrames.
 

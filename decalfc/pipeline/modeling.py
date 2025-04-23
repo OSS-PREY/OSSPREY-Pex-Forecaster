@@ -100,14 +100,19 @@ def k_fold_trial(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> None
     """
     
     # unpack args
-    k = args_dict["k_folds"]
+    k = args_dict.get("k_folds", 5)
     
     # load all data in a folds iterator
     folds = ModelData.gen_k_folds(
         transfer_strategy=args_dict["strategy"],
         transform_kwargs=args_dict.get("transform-kwargs", dict()),
-        k_folds=k
+        nfolds=k
     )
+    
+    # store only the median trial in the perf database; we'll create a temporary
+    # perf-db for this kfold trial, pick the median, and update the actual perf
+    # db
+    pfd = PerfData("./model-reports/TEMP_KFOLD_DB")
 
     # train model & test for each fold
     for fold in folds:
@@ -130,21 +135,34 @@ def k_fold_trial(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> None
 
         ## reporting
         model.report(display=True, save=False)
-
-        if args_dict.get("perf-path", None) is None:
-            perf_db = PerfData()
-        else:
-            perf_db = PerfData(args_dict["perf-path"])
-        perf_db.add_entry(
-            fold.transfer_strategy,
+        
+        pfd.add_entry(
+            args_dict.get("strategy", ""),
             model_arch=model.model_arch,
             preds=model.preds,
             targets=model.targets,
             intervaled=fold.is_interval["test"]
         )
-
-        if fold.is_interval["test"]:
-            perf_db.perf_vs_time(fold.transfer_strategy, model.model_arch)
+    
+    # update actual perf db
+    if args_dict.get("perf-path", None) is None:
+        perf_db = PerfData()
+    else:
+        perf_db = PerfData(args_dict["perf-path"])
+    
+    nentries = 13
+    new_row_metadata = pfd.data[["date", "transfer_strategy", "model_arch"]].iloc[:nentries, :]
+    nrs = pfd.data.groupby(["month", "label", "metric"])[["perf", "support"]].median().reset_index()
+    
+    # combine into new rows
+    new_rows = pd.concat([new_row_metadata, nrs], axis=1)
+    perf_db.data = pd.concat([perf_db.data, new_rows], axis=0, ignore_index=True)
+    
+    # export and remove the temp db
+    perf_db.export()
+    
+    temp_perf_path = Path(f"{pfd.perf_source}.{pfd.ext}")
+    del_file(temp_perf_path)
 
     # done
     return
@@ -856,7 +874,7 @@ def icse_25_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) ->
     perf_db = PerfData(perf_source=perf_db_path)
     best_df = perf_db.best_perfs(transfer_strats=trial_structs)
 
-def tcse_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> None:
+def tse_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> None:
     """Temporary utility for the TCSE '25 Paper table generation; saves all 
     results in a separate TCSE db.
 
@@ -868,8 +886,8 @@ def tcse_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> No
     # structs
     models = [
         "BLSTM",
-        "DLSTM",
-        "Transformer"
+        "Transformer",
+        "DLSTM"
     ]
     options_structs = [
         "",
@@ -881,16 +899,16 @@ def tcse_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> No
     trial_structs = TRANSFER_STRATS
     
     # setup vars
-    num_trials = args_dict.get("trials", 5)
-    perf_db_path = "./model-reports/tcse-trials/final_icse_perf_db"
-    check_dir(perf_db_path)
+    num_trials = args_dict.get("trials", 3)
+    perf_db_path = "./model-reports/tse-trials/tse_perf_db"
+    check_path(perf_db_path)
     
     # try every set of trials
     for model in models:
         for option in options_structs:
             for trial in trial_structs:
-                # get args dict, implement new options; note the test options don't 
-                # use balancing
+                # get args dict, implement new options; note the test options
+                # don't use balancing
                 new_args_dict = {
                     "strategy": trial.format(opt=option, t_opt=option.replace("b", "")),
                     "perf-path": perf_db_path,
@@ -900,7 +918,7 @@ def tcse_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> No
                 
                 # generate results
                 for _ in range(num_trials):
-                    modeling(params_dict, args_dict=new_args_dict)
+                    k_fold_trial(params_dict, new_args_dict)
 
     # generate breakdown
     perf_db = PerfData(perf_source=perf_db_path)
@@ -917,7 +935,7 @@ def tcse_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> No
     best_df = perf_db.best_perfs(transfer_strats=trial_structs, export=True)
 
 # Script
-def main():
+def __modeling_main():
     # setup
     args_dict = parse_input(sys.argv)
     trial_type = args_dict.get("trial-type", "regular")
@@ -927,6 +945,10 @@ def main():
         case "regular":
             for _ in range(args_dict.get("trials", 1)):
                 modeling(params_dict=params_dict, args_dict=args_dict)
+        
+        case "kfold":
+            for _ in range(args_dict.get("trials", 1)):
+                k_fold_trial(params_dict=params_dict, args_dict=args_dict)
         
         case "full":
             full_trials(
@@ -952,8 +974,8 @@ def main():
                 args_dict=args_dict
             )
         
-        case "tcse":
-            tcse_breakdown(
+        case "tse":
+            tse_breakdown(
                 params_dict=params_dict,
                 args_dict=args_dict
             )
@@ -963,5 +985,5 @@ def main():
 
 if __name__ == "__main__":
     # forward parameters to main
-    main()
+    __modeling_main()
 

@@ -16,6 +16,7 @@ from sklearn.metrics import accuracy_score, classification_report
 
 import os
 import re
+import sys
 import datetime as dt
 from pathlib import Path
 from warnings import catch_warnings, filterwarnings
@@ -35,7 +36,7 @@ def icse_25_experiments():
     """
     
     # read in
-    perf_db = PerfData("../model-reports/icse-trials/final_icse_perf_db")
+    perf_db = PerfData("./model-reports/icse-trials/final_icse_perf_db")
     
     # subset breakdowns
     ## exp 1
@@ -165,7 +166,7 @@ class PerfData:
 
             case _:
                 log("failed to match extension to writer; defaulting to csv", "warning")
-                self.data.to_csv("../model-reports/TEMP_SAVE_FOR_PERF_DB.csv", index=False)
+                self.data.to_csv("./model-reports/TEMP_SAVE_FOR_PERF_DB.csv", index=False)
     
     def perf_vs_time(
         self, transfer_strategy: str, model_arch: str="BLSTM",
@@ -195,7 +196,7 @@ class PerfData:
         """
 
         # setup
-        report_name = f"../model-reports/perf-testing/perf-report-{transfer_strategy}-{model_arch}"
+        report_name = f"./model-reports/perf-testing/perf-report-{transfer_strategy}-{model_arch}"
         df = self.data.copy()
         df["date"] = pd.to_datetime(df["date"])
         append_indicators = {
@@ -460,7 +461,7 @@ class PerfData:
 
             # generate new output path
             if output_path is None:
-                output_path = Path("../model-reports") / "summaries" / "summary_db_trunc"
+                output_path = Path("./model-reports") / "summaries" / "summary_db_trunc"
                 
         # clean & aggregate
         df = df[df["label"].isin([f"{average_type} avg", "accuracy"])]
@@ -476,7 +477,7 @@ class PerfData:
         if save:
             # generate output path
             if output_path is None:
-                output_path = Path("../model-reports") / "summaries" / "summary_db"
+                output_path = Path("./model-reports") / "summaries" / "summary_db"
             check_path(output_path)
 
             # save
@@ -906,7 +907,7 @@ class PerfData:
             print(breakdown)
 
         if export:
-            save_dir = "../model-reports/breakdowns/"
+            save_dir = "./model-reports/breakdowns/"
             check_dir(save_dir)
 
             plt.savefig(f"{save_dir}breakdown-{name_modifier}", bbox_inches="tight")
@@ -1181,10 +1182,87 @@ class PerfData:
             best_df = best_dfs[0]
         
         if export:
-            best_df.to_csv("../model-reports/icse-trials/icse_breakdown.csv", index=False)
-            with open("../model-reports/icse-trials/icse_breakdown.txt", "w") as f:
+            best_df.to_csv("./model-reports/icse-trials/icse_breakdown.csv", index=False)
+            with open("./model-reports/icse-trials/icse_breakdown.txt", "w") as f:
                 f.write(best_df.to_string(index=False))
         return best_df
+
+    def paper_table(self, save_path: Path | str, acc_measure: str="mac-f1"):
+        """Generates a full breakdown for a paper and exports to multiple 
+        formats (csv, latex).
+        
+        Breakdown by transfer strategy and model architecture, uses the median 
+        and reports the stddev (only in the csv, not in latex). 
+
+        Args:
+            save_path (Path | str, optional): directory to save to. Defaults to 
+                TSE trial dirs.
+            acc_measure (str, optional): accuracy measure to use, should be one 
+                of {"acc", "mac-f1", "mic-f1"}. Defaults to "acc".
+        """
+        
+        # we'll groupby transfer strategy and model archs, but we need to ignore
+        # augmentations, we'll only consider the best transfer protocols
+        def remove_aug_chars(s: str) -> str:
+            """Removes the augmentation chars from a transfer strategy.
+
+            Args:
+                s (str): transfer strat.
+
+            Returns:
+                str: cleaned str, i.e. the base level of the strategy.
+            """
+            
+            # remove all lower case letters
+            return "".join(filter(lambda c: not c.islower(), s))
+        
+        self.data["transfer_strategy"] = self.data.transfer_strategy.apply(remove_aug_chars)
+        
+        # groupby and breakdown setup
+        group_cols = ["transfer_strategy", "model_arch"]
+        measure_translation = {
+            "acc": ("accuracy", "accuracy"),
+            "mac-f1": ("macro avg", "f1-score"),
+            "mic-f1": ("weighted avg", "f1-score")
+        }[acc_measure]
+        
+        # only keep the measure we want
+        measure_data = self.data[
+            (self.data.label == measure_translation[0]) &
+            (self.data.metric == measure_translation[1])
+        ]
+        measure_data = measure_data.drop(columns=["label", "metric", "month", "date"])
+        measure_data.rename(columns={"perf": acc_measure}, inplace=True)
+        
+        # aggregate after grouping
+        summary_df = measure_data.groupby(group_cols)[[acc_measure, "support"]].agg(["median", "mean", "std"])
+        summary_df = summary_df.reset_index()
+        summary_df.columns = ["_".join(col) if col[1] != "" else col[0] for col in summary_df.columns]
+        
+        summary_df.drop(columns=["support_mean", "support_std"], inplace=True)
+        summary_df.rename(columns={"support_median": "support"}, inplace=True)
+        summary_df["support"] = summary_df["support"].astype(int)
+        
+        # export csv
+        summary_df.to_csv(Path(save_path) / "paper_table.csv", index=False)
+        
+        # drop the useless columns and format in the paper style
+        summary_df.drop(columns=[f"{acc_measure}_mean", f"{acc_measure}_std"], inplace=True)
+        summary_df.rename(columns={f"{acc_measure}_median": "performance"}, inplace=True)
+        
+        summary_df = pd.pivot(
+            summary_df,
+            index="transfer_strategy",
+            values="performance",
+            columns="model_arch"
+        ).reset_index()
+        summary_df.set_index("transfer_strategy", inplace=True)
+        
+        summary_df.to_latex(
+            Path(save_path) / "breakdown.tex",
+            float_format="%.2f",
+            index=True
+        )
 
 # Testing
 def icse_wrapper():
@@ -1192,7 +1270,7 @@ def icse_wrapper():
     """
     # MONTHLY PREDS #
     ## loading
-    pfd = PerfData(perf_source="../model-reports/icse-trials/icse_monthly_preds")
+    pfd = PerfData(perf_source="./model-reports/icse-trials/icse_monthly_preds")
     
     ## generate comparisons
     pfd.monthly_predictions(
@@ -1208,7 +1286,7 @@ def icse_wrapper():
     
     # NORMAL TRIALS #
     ## loading
-    pfd = PerfData(perf_source="../model-reports/icse-trials/final_icse_perf_db")
+    pfd = PerfData(perf_source="./model-reports/icse-trials/final_icse_perf_db")
     
     ## breakdowns by options and transfer
     icse_25_experiments()
@@ -1218,16 +1296,46 @@ def icse_wrapper():
     best_model_perfs = dict()
     
     for model_arch in model_archs:
-        pfd = PerfData(perf_source="../model-reports/icse-trials/final_icse_perf_db")
+        pfd = PerfData(perf_source="./model-reports/icse-trials/final_icse_perf_db")
         pfd.data = pfd.data[pfd.data["model_arch"] == model_arch]
         best_model_perfs[model_arch] = pfd.best_perfs(use_regex=False)
         
-    with open("../model-reports/icse-trials/icse_breakdown.txt", "w") as f:
+    with open("./model-reports/icse-trials/icse_breakdown.txt", "w") as f:
         for ma, perf in best_model_perfs.items():
             f.write(f"< :::: {ma} :::: >\n")
             f.write(perf.to_string(index=False))
             f.write("\n\n\n")
 
+def tse_wrapper(**kwargs):
+    """Wraps the breakdowns for the TSE trials.
+    """
+    
+    # load the perf db
+    pfd = PerfData(perf_source="./model-reports/databases/performance_db")
+    # pfd = PerfData(perf_source="./model-reports/tse-trials/tse_perf_db")
+    
+    # breakdown
+    pfd.paper_table(save_path="./model-reports/tse-trials/")
+
+
+# Script
+def __pfd_main():
+    # setup
+    args_dict = parse_input(sys.argv)
+    breakdown_type = args_dict.get("breakdown-type", "tse")
+    
+    # match trial
+    match breakdown_type:
+        case "icse":
+            icse_wrapper()
+        
+        case "tse":
+            tse_wrapper(
+                args_dict=args_dict
+            )
+        
+        case _:
+            print(":(")
 
 if __name__ == "__main__":
     """
@@ -1245,10 +1353,8 @@ if __name__ == "__main__":
     # ICSE EXPERIMENTS #
     # icse_wrapper()
     ############################################################################
-    
-    pfd = PerfData()
-    res = pfd.best_perfs()
-    print(res)
+
+    __pfd_main()
     
     # normal experiments
     # pfd = PerfData()
