@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 189, in _run_module_as_main
+  File "<frozen runpy>", line 112, in _get_module_details
+  File "/mnt/data1/Arjun/pex-forecaster/decalfc/__init__.py", line 1, in <module>
+    from . import abstractions
+  File "/mnt/data1/Arjun/pex-forecaster/decalfc/abstractions/__init__.py", line 1, in <module>
+    from . import deltadata
+  File "/mnt/data1/Arjun/pex-forecaster/decalfc/abstractions/deltadata.py", line 32, in <module>
+    from decalfc.abstractions.tsmodel import *
+  File "/mnt/data1/Arjun/pex-forecaster/decalfc/abstractions/tsmodel.py", line 38, in <module>
+    from decalfc.abstractions.netdata import *
+  File "/mnt/data1/Arjun/pex-forecaster/decalfc/abstractions/netdata.py", line 16, in <module>
+    import pywt
+ModuleNotFoundError: No module named 'pywt'
+INFO: Pandarallel will run on 12 workers.
+INFO: Pandarallel will use Memory file system to transfer data between the main process and workers.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 189, in _run_module_as_main
+  File "<frozen runpy>", line 112, in _get_module_details
+  File "/mnt/data1/Arjun/pex-forecaster/decalfc/__init__.py", line 1, in <module>
+    from . import abstractions
+  File "/mnt/data1/Arjun/pex-forecaster/decalfc/abstractions/__init__.py", line 1, in <module>
+    from . import deltadata
+  File "/mnt/data1/Arjun/pex-forecaster/decalfc/abstractions/deltadata.py", line 32, in <module>
+    from decalfc.abstractions.tsmodel import *
+  File "/mnt/data1/Arjun/pex-forecaster/decalfc/abstractions/tsmodel.py", line 38, in <module>
+    from decalfc.abstractions.netdata import *
+  File "/mnt/data1/Arjun/pex-forecaster/decalfc/abstractions/netdata.py", line 16, in <module>
+    import pywt
+ModuleNotFoundError: No module named 'pywt'
+INFO: Pandarallel will run on 12 workers.
+INFO: Pandarallel will use Memory file system to transfer data between the main process and workers.

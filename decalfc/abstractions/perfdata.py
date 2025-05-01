@@ -1187,6 +1187,87 @@ class PerfData:
                 f.write(best_df.to_string(index=False))
         return best_df
 
+    @staticmethod
+    def remove_aug_chars(s: str) -> str:
+        """Removes the augmentation chars from a transfer strategy.
+
+        Args:
+            s (str): transfer strat.
+
+        Returns:
+            str: cleaned str, i.e. the base level of the strategy.
+        """
+        
+        # remove all lower case letters
+        return "".join(filter(lambda c: not c.islower(), s))
+
+    @staticmethod
+    def extract_aug_chars(s: str) -> str:
+        """Extracts just the augmentation string from a transfer strategy 
+        string.
+        """
+        
+        # regex extraction for the first group of lowercase chars
+        m = re.search(r"[a-z]+", s)
+        return m.group(0) if m else ""
+
+    @staticmethod
+    def gather_best_trial_augs(df: pd.DataFrame, acc_measure: str="mac-f1") -> tuple[dict[str, str], pd.DataFrame]:
+        """Subsets a larger perfdb to only pick the unique transfer trials (i.e.
+        augmentation agnostic grouping) that perform the best. Simultaneously 
+        records the best performing augmentation for each unqiue transfer.
+
+        Args:
+            df (pd.DataFrame): performance db post summarization, i.e. with 
+                columns {"transfer_strategy", "model_arg",
+                "{acc_measure}_{median/mean/std}", "support"}. So, 6 columns 
+                total.
+            acc_measure (str, optional): accuracy measure to use when subsetting
+                the db. Defaults to "mac-f1".
+
+        Returns:
+            tuple[dict[str, str], pd.DataFrame]:
+                - lookup of strategy: best_aug_str
+                - subsetted df with only the trials for a given strategy that 
+                  performed best
+        """
+        
+        # helper fn for picking the best augmentations for a given strategy
+        def pick_best_augmentation(strat_group) -> pd.DataFrame:
+            """Given a mono-strategic group of data, subsets the best trial aug
+            to use.
+            """
+            
+            # sort by the grouping we want (median, mean, -std, support) in 
+            # decreasing order
+            sorted_group = strat_group.sort_values(
+                by=[
+                    f"{acc_measure}_median",
+                    f"{acc_measure}_mean",
+                    f"{acc_measure}_std",
+                    "support"
+                ],
+                ascending=[False, False, True, False]
+            )
+            
+            # pick only the first entry for each model
+            return sorted_group.head(1).reset_index(drop=True)
+        
+        # new field for the grouping
+        df["strategy"] = df["transfer_strategy"].apply(PerfData.remove_aug_chars)
+        df["augmentation"] = df["transfer_strategy"].apply(PerfData.extract_aug_chars)
+        
+        # modify based on the max performance
+        df = pd.concat([
+            pick_best_augmentation(strat_group[1])
+            for strat_group in df.groupby(["strategy", "model_arch"])
+        ])
+        df.transfer_strategy = df.strategy
+        df.drop(columns="strategy", inplace=True)
+        
+        # export result
+        return df
+
     def paper_table(self, save_path: Path | str, acc_measure: str="mac-f1"):
         """Generates a full breakdown for a paper and exports to multiple 
         formats (csv, latex).
@@ -1202,21 +1283,8 @@ class PerfData:
         """
         
         # we'll groupby transfer strategy and model archs, but we need to ignore
-        # augmentations, we'll only consider the best transfer protocols
-        def remove_aug_chars(s: str) -> str:
-            """Removes the augmentation chars from a transfer strategy.
-
-            Args:
-                s (str): transfer strat.
-
-            Returns:
-                str: cleaned str, i.e. the base level of the strategy.
-            """
-            
-            # remove all lower case letters
-            return "".join(filter(lambda c: not c.islower(), s))
-        
-        self.data["transfer_strategy"] = self.data.transfer_strategy.apply(remove_aug_chars)
+        # augmentations, we'll only consider the best transfer protocols. For 
+        # now, compute them separately. We can aggregate by the best perf later.
         
         # groupby and breakdown setup
         group_cols = ["transfer_strategy", "model_arch"]
@@ -1243,13 +1311,24 @@ class PerfData:
         summary_df.rename(columns={"support_median": "support"}, inplace=True)
         summary_df["support"] = summary_df["support"].astype(int)
         
+        # prior to removing the augmentation we used, let's pick the 
+        # augmentation that worked best of the three by grouping by the strategy
+        
+        print(summary_df)
+        
+        summary_df = PerfData.gather_best_trial_augs(summary_df)
+        
+        print(summary_df)
+        
         # export csv
         summary_df.to_csv(Path(save_path) / "paper_table.csv", index=False)
         
-        # drop the useless columns and format in the paper style
+        # drop the useless columns and format in the paper style #
+        # drop useless cols
         summary_df.drop(columns=[f"{acc_measure}_mean", f"{acc_measure}_std"], inplace=True)
         summary_df.rename(columns={f"{acc_measure}_median": "performance"}, inplace=True)
         
+        # pivot to format in a model arch 
         summary_df = pd.pivot(
             summary_df,
             index="transfer_strategy",
@@ -1258,11 +1337,38 @@ class PerfData:
         ).reset_index()
         summary_df.set_index("transfer_strategy", inplace=True)
         
-        summary_df.to_latex(
-            Path(save_path) / "breakdown.tex",
-            float_format="%.2f",
-            index=True
+        # sort by performance and trial type
+        summary_df["plus_count"] = summary_df.index.str.count(r"\+")
+        summary_df.sort_values(
+            by=["plus_count", "BLSTM", "Transformer"],
+            ascending=[True, False, False],
+            inplace=True
         )
+        summary_df.drop(columns=["plus_count"], inplace=True)
+        
+        # save to latex with bolded formats for each row
+        def bold_max_row(data):
+            return (data.style
+                .highlight_max(axis=1, props="textbf:--rwrap;")
+                .format(precision=4)
+                .to_latex(
+                    hrules=True
+                )
+            )
+        
+        latex_str = bold_max_row(summary_df)
+        
+        # fix the formatting bugs (i.e. replace arrows, replace special escapes)
+        latex_str = (latex_str
+            .replace(r"-->", r"$\to$")
+            .replace(r"^", r"\textasciicircum")
+            .replace(r"_", r" ")
+            .replace(r"model arch", r"Model Architecture")
+            .replace(r"transfer strategy", r"Strategy")
+        )
+        
+        with open(Path(save_path) / "breakdown.tex", "w") as f:
+            f.write(latex_str)
 
 # Testing
 def icse_wrapper():
@@ -1311,8 +1417,7 @@ def tse_wrapper(**kwargs):
     """
     
     # load the perf db
-    pfd = PerfData(perf_source="./model-reports/databases/performance_db")
-    # pfd = PerfData(perf_source="./model-reports/tse-trials/tse_perf_db")
+    pfd = PerfData(perf_source="./model-reports/tse-trials/tse_perf_db")
     
     # breakdown
     pfd.paper_table(save_path="./model-reports/tse-trials/")
