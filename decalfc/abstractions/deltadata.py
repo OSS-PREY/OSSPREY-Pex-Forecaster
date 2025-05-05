@@ -84,7 +84,9 @@ def _route_preprocesses(data: dict[str, pd.DataFrame], tasks: list[str],
         if not task.startswith("pp"):
             continue
         
-        # route
+        # route; skip de-aliasing as a temporary measure
+        if task == "pp-de-alias":
+            continue
         data = IMPLEMENTED_TASKS[task](data, incubator=incubator, copy=False)
         
     # return if needed
@@ -295,7 +297,7 @@ class DeltaData:
         """
         
         # call the utility
-        return reset_cache(proj=self.proj_name, products=products)
+        return reset_cache(proj_name=self.proj_name, products=products)
 
     # split by month
     def monthwise_split(self) -> None:

@@ -12,13 +12,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from statsmodels.tsa.arima.model import ARIMA
+from tqdm import tqdm
 # from pmdarima import auto_arima
 
 ## built-in
 import unittest
 import json
-from pathlib import Path
 import warnings
+from pathlib import Path
 
 
 # Helper Algorithms
@@ -262,7 +263,7 @@ def traj_ar(forecast: np.ndarray, lag: int=3, k: int=3, arch: str="ARIMA", ci: i
     )
     
     # generation of the monthly trajectories
-    for i in range(lag, n):
+    for i in tqdm(range(lag, n)):
         # build simple AR model; we'll use basic lag terms
         match arch:
             case "ARIMA":
@@ -349,7 +350,7 @@ def route_traj(forecast: np.ndarray, strat: str="AR", lag: int=3, k: int=3, **kw
     # convert to dictionary in standard format
     traj_pkg = dict()
     
-    for i in range(trajectories.shape[0]):
+    for i in tqdm(range(trajectories.shape[0])):
         # current package; add the baseline results
         cur_pkg = dict()
         cur_pkg["NEUTRAL"] = bound_traj(list(trajectories[i]))

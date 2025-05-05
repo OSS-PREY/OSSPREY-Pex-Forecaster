@@ -1,105 +1,25 @@
 [
     {
-        "Alex Sorokoumov": {
+        "Nafiz Imtiaz Khan": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 8.004482510205715e-05,
+            "is-bot": 0
+        }
+    },
+    {
+        "Nafiz43": {
             "substring": 0,
             "outlier": 1,
-            "proportion": 0.11327433628318584,
+            "proportion": 0.9852183889644868,
             "is-bot": 0
         }
     },
     {
-        "Guy Bolton King": {
-            "substring": 0,
-            "outlier": 1,
-            "proportion": 0.12035398230088495,
-            "is-bot": 0
-        }
-    },
-    {
-        "Henrik Ingo": {
-            "substring": 0,
-            "outlier": 1,
-            "proportion": 0.0584070796460177,
-            "is-bot": 0
-        }
-    },
-    {
-        "Joe Talerico": {
+        "Raiyan Jahangir": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.005309734513274336,
-            "is-bot": 0
-        }
-    },
-    {
-        "Madhavan": {
-            "substring": 0,
-            "outlier": 0,
-            "proportion": 0.0017699115044247787,
-            "is-bot": 0
-        }
-    },
-    {
-        "Matt Fleming": {
-            "substring": 0,
-            "outlier": 0,
-            "proportion": 0.007079646017699115,
-            "is-bot": 0
-        }
-    },
-    {
-        "Piotr Ko\u0142aczkowski": {
-            "substring": 0,
-            "outlier": 1,
-            "proportion": 0.42123893805309737,
-            "is-bot": 0
-        }
-    },
-    {
-        "Sean McCarthy": {
-            "substring": 0,
-            "outlier": 1,
-            "proportion": 0.13097345132743363,
-            "is-bot": 0
-        }
-    },
-    {
-        "Shaunak Das": {
-            "substring": 0,
-            "outlier": 0,
-            "proportion": 0.04601769911504425,
-            "is-bot": 0
-        }
-    },
-    {
-        "ShaunakDas88": {
-            "substring": 0,
-            "outlier": 1,
-            "proportion": 0.08672566371681416,
-            "is-bot": 0
-        }
-    },
-    {
-        "crucio55": {
-            "substring": 0,
-            "outlier": 0,
-            "proportion": 0.0017699115044247787,
-            "is-bot": 0
-        }
-    },
-    {
-        "pushkala-datastax": {
-            "substring": 0,
-            "outlier": 0,
-            "proportion": 0.005309734513274336,
-            "is-bot": 0
-        }
-    },
-    {
-        "sahan": {
-            "substring": 0,
-            "outlier": 0,
-            "proportion": 0.0017699115044247787,
+            "proportion": 0.014701566210411163,
             "is-bot": 0
         }
     }

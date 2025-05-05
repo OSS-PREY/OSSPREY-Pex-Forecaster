@@ -670,26 +670,27 @@ if __name__ == "__main__":
     # --- testing --- #
     # format pkg
     test_data = {
-        "project_name": "hunter",
-        "tech_data": pd.read_csv("./data/ospos_data/hunter_commits.csv").sort_values(by="date", ascending=True),
-        "social_data": pd.read_csv("./data/ospos_data/hunter_issues.csv").sort_values(by="created_at", ascending=True),
+        "project_name": "MammoGen-RAG",
+        "tech_data": pd.read_csv("./data/ospos_data/mammogen_rag_commits.csv").sort_values(by="date", ascending=True),
+        "social_data": pd.read_csv("./data/ospos_data/mammogen_rag_issues.csv").sort_values(by="created_at", ascending=True),
         "tasks": ["ALL"],
         "month_range": [0, -1],
         "ignore_cache": True
     }
     
+    print(test_data)
     # partition data
-    partial_one = test_data.copy()
-    partial_one["tech_data"] = test_data["tech_data"].iloc[:10, :]
-    partial_one["social_data"] = test_data["social_data"].iloc[:10, :]
+    # partial_one = test_data.copy()
+    # partial_one["tech_data"] = test_data["tech_data"].iloc[:10, :]
+    # partial_one["social_data"] = test_data["social_data"].iloc[:10, :]
     
-    partial_two = test_data.copy()
-    partial_two["tech_data"] = test_data["tech_data"].iloc[10:, :]
-    partial_two["social_data"] = test_data["social_data"].iloc[10:, :]
+    # partial_two = test_data.copy()
+    # partial_two["tech_data"] = test_data["tech_data"].iloc[10:, :]
+    # partial_two["social_data"] = test_data["social_data"].iloc[10:, :]
     
     # call and check output
-    reset_cache("hunter")
+    reset_cache(test_data["project_name"])
     # res = compute_forecast(partial_one)
     # res = compute_forecast(partial_two)
-    # res = compute_forecast(test_data)
+    res = compute_forecast(test_data)
 
