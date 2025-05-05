@@ -261,8 +261,8 @@ class DeltaData:
         """
         
         # MONTHWISE SPLIT
-        # clear disk usage to limit space requirement and prevent double 
-        # writing (using the same data twice) or mis-association (using one 
+        # clear disk usage to limit space requirement and prevent double
+        # writing (using the same data twice) or mis-association (using one
         # project's data in another's)
         dataset_dir = Path(params_dict["dataset-dir"])
         monthly_data_dir = dataset_dir / f"{self.incubator}_data" / "monthly_data/"
@@ -676,8 +676,11 @@ class DeltaData:
         fcs.update(old_fcs)
         fcs = dict(sorted(fcs.items()))
         
-        with open(forecast_path, "w") as f:
-            dump(fcs, f, indent=4)
+        try:
+            with open(forecast_path, "w") as f:
+                dump(fcs, f, indent=4)
+        except Exception as e:
+            log(f"failed to save the forecasts in a JSON format :: {e}", "error")
             
         self.forecasts = fcs
         return fcs
@@ -731,8 +734,11 @@ class DeltaData:
         trajs.update(old_trajs)
         trajs = dict(sorted(trajs.items()))
         
-        with open(traj_path, "w") as f:
-            dump(trajs, f, indent=4)
+        try:
+            with open(traj_path, "w") as f:
+                dump(trajs, f, indent=4)
+        except Exception as e:
+            log(f"failed to save the trajectories in a JSON format :: {e}", "error")
             
         self.trajectories = trajs
         return trajs
