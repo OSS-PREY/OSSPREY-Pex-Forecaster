@@ -59,8 +59,8 @@ def cal_tech_net(path, visualize_net: bool=False):
 
     num_file_nodes = len(file_degrees)
     num_dev_nodes = len(dev_degrees)
-    file_node_degree = sum([degree for node, degree in file_degrees])/len(file_degrees)
-    dev_node_degree = sum([degree for node, degree in dev_degrees])/len(dev_degrees)
+    file_node_degree = sum([degree for node, degree in file_degrees])/max(len(file_degrees), 1)
+    dev_node_degree = sum([degree for node, degree in dev_degrees])/max(len(dev_degrees), 1)
 
     if visualize_net:
         nx.draw_networkx(bipartite_G, with_labels=False)
@@ -95,7 +95,7 @@ def cal_social_net(path, visualize_net: bool=False):
     num_nodes = len(dev_nodes)
     # weighted mean degree
     degrees = G.degree(weight="weight")
-    weighted_mean_degree = sum([degree for node, degree in degrees])/num_nodes
+    weighted_mean_degree = sum([degree for node, degree in degrees])/max(num_nodes, 1)
     # average clustering coefficient
     avg_clustering_coef = nx.average_clustering(G)
     # betweenness = nx.betweenness_centrality(G, weight="weight")
@@ -141,7 +141,7 @@ def get_net_overlap(net1, net2):
 	if len(net1_set) == len(net2_set) == 0:
 		return 0
 	intersection_edges = net1_set.intersection(net2_set)
-	return len(intersection_edges) / (len(net1_set) + len(net2_set)) 
+	return len(intersection_edges) / max(len(net1_set) + len(net2_set), 1)
 
 
 # ---------------- network features calculation ---------------- #
