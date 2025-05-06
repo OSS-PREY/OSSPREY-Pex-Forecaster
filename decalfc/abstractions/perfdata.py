@@ -1268,7 +1268,7 @@ class PerfData:
         # export result
         return df
 
-    def paper_table(self, save_path: Path | str, acc_measure: str="mac-f1"):
+    def paper_tables(self, save_path: Path | str, acc_measure: str="mic-f1"):
         """Generates a full breakdown for a paper and exports to multiple 
         formats (csv, latex).
         
@@ -1316,7 +1316,7 @@ class PerfData:
         
         print(summary_df)
         
-        summary_df = PerfData.gather_best_trial_augs(summary_df)
+        summary_df = PerfData.gather_best_trial_augs(summary_df, acc_measure)
         
         print(summary_df)
         

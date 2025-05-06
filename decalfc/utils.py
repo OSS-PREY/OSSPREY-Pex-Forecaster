@@ -35,7 +35,7 @@ DEVICE = (
     )
 )
 TRANSFER_STRATS = [
-    "A{opt}^ --> A{t_opt}^^",
+    "A{opt} --> A{t_opt}",
     "E{opt} --> A{t_opt}",
     "O{opt} --> A{t_opt}",
     "E{opt} + O{opt} --> A{t_opt}",
@@ -55,7 +55,68 @@ TRANSFER_STRATS = [
     "A{opt}^ + E{opt}^ + O{opt}^ --> A{t_opt}^^ + E{t_opt}^^ + O{t_opt}^^",
     "A{opt}^ + E{opt}^ --> A{t_opt}^^ + E{t_opt}^^ + G{t_opt}",
     "A{opt}^ + E{opt}^ + O{opt}^ --> A{t_opt}^^ + E{t_opt}^^ + O{t_opt}^^ + G{t_opt}"
+    "A{opt} + E{opt} + O{opt} --> G{t_opt}"
 ]
+PAPER_STRATS = {
+    "sustainability_to_success": [
+        "A{opt} --> G{t_opt}",
+        "E{opt} --> G{t_opt}",
+        "O{opt} --> G{t_opt}",
+        \
+        "A{opt} + E{opt} --> G{t_opt}",
+        "A{opt} + O{opt} --> G{t_opt}",
+        "E{opt} + O{opt} --> G{t_opt}",
+        \
+        "A{opt} + E{opt} + O{opt} --> G{t_opt}"
+    ],
+    "success_to_sustainability": [
+        "G{opt} --> A{t_opt}",
+        "G{opt} --> E{t_opt}",
+        "G{opt} --> O{t_opt}"
+    ],
+    "in_incubator": [
+        "A{opt}^ --> A{t_opt}^^",
+        "E{opt}^ --> E{t_opt}^^",
+        "O{opt}^ --> O{t_opt}^^",
+        \
+        "G{opt}^ --> G{t_opt}^^",
+    ],
+    "mix_incubator": [
+        "A{opt}^ + E{opt} --> A{t_opt}^^",
+        "A{opt}^ + O{opt} --> A{t_opt}^^",
+        "A{opt}^ + E{opt} + O{opt} --> A{t_opt}^^",
+        \
+        "E{opt}^ + A{opt} --> E{t_opt}^^",
+        "E{opt}^ + O{opt} --> E{t_opt}^^",
+        "E{opt}^ + A{opt} + O{opt} --> E{t_opt}^^",
+        \
+        "O{opt}^ + A{opt} --> O{t_opt}^^",
+        "O{opt}^ + E{opt} --> O{t_opt}^^",
+        "O{opt}^ + A{opt} + E{opt} --> O{t_opt}^^",
+        \
+        "A{opt}^ + E{opt}^ --> A{t_opt}^^ + E{t_opt}^^",
+        "A{opt}^ + O{opt}^ --> A{t_opt}^^ + O{t_opt}^^",
+        "E{opt}^ + O{opt}^ --> E{t_opt}^^ + O{t_opt}^^",
+        \
+        "A{opt}^ + E{opt}^ + O{opt}^ --> A{t_opt}^^ + E{t_opt}^^ + O{t_opt}^^",
+    ],
+    "cross_incubator": [
+        "E{opt} --> A{t_opt}",
+        "O{opt} --> A{t_opt}",
+        "E{opt} + O{opt} --> A{t_opt}",
+        \
+        "A{opt} --> E{t_opt}",
+        "O{opt} --> E{t_opt}",
+        "A{opt} + O{opt} --> E{t_opt}",
+        \
+        "A{opt} --> O{t_opt}",
+        "E{opt} --> O{t_opt}",
+        "A{opt} + E{opt} --> O{t_opt}",
+        \
+        "A{opt}^ + E{opt}^ --> A{t_opt}^^ + E{t_opt}^^",
+        "A{opt}^ + E{opt}^ + O{opt}^ --> A{t_opt}^^ + E{t_opt}^^ + O{t_opt}^^"
+    ]
+}
 
 
 # --- Utility --- #
