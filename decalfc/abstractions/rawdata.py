@@ -390,8 +390,8 @@ def impute_messageid(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
 
     # check not overriding
     print("\n<Imputing Message ID>")
-    if len(df["message_id"].unique()) / df.shape[0] > 0.90:
-        print(f"<WARNING> :: message id field already has >95% unique IDs: {len(df['message_id'].unique()) / df.shape[0] * 100}%")
+    if len(df["message_id"].unique()) / max(df.shape[0], 1) > 0.90:
+        print(f"<WARNING> :: message id field already has >95% unique IDs: {len(df['message_id'].unique()) / max(df.shape[0], 1) * 100}%")
 
         # resp = input("Continue [y/n]?")
         resp = "y"
@@ -402,7 +402,7 @@ def impute_messageid(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
     # setup
     print("continuing imputation. . .")
     field = "message_id"
-    num_entries = df.shape[0]
+    num_entries = max(df.shape[0], 1)
     num_missing_bef = df[field].isna().sum()
     missing_field = 0
     
@@ -463,18 +463,18 @@ def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, cop
 
     # utility for checking inference strategy (check number of potential replies)
     reply_freq = df.groupby(["project_name", "month", "subject"]).size().reset_index(name="count")
-    prop_replies_inference = (reply_freq["count"] > 1).sum() / len(reply_freq)
+    prop_replies_inference = (reply_freq["count"] > 1).sum() / max(len(reply_freq), 1)
 
     # check overriding
     print("\n<Inferring Reply Information>")
-    prop_filled = len(df["in_reply_to"].unique()) / df.shape[0]
+    prop_filled = len(df["in_reply_to"].unique()) / max(df.shape[0], 1)
     if prop_replies_inference <= prop_filled:
         print(f"<WARNING> :: inference strategy obtains less threads than already provided: {prop_replies_inference * 100}% < {prop_filled * 100}%")
         print("not imputing. . .")
         return data_lookup
 
     if prop_filled > 0.95:
-        print(f"<WARNING> :: in_reply_to field already has >95% unique replies: {len(df['in_reply_to'].unique()) / df.shape[0] * 100}%")
+        print(f"<WARNING> :: in_reply_to field already has >95% unique replies: {len(df['in_reply_to'].unique()) / max(df.shape[0], 1) * 100}%")
         print("not imputing. . .")
         return data_lookup
 
@@ -485,7 +485,7 @@ def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, cop
 
     # for later comparison
     missing_before = (df[field] == "").sum() + df[field].isnull().sum()
-    num_entries = df.shape[0]
+    num_entries = max(df.shape[0], 1)
     prop_before = missing_before / num_entries * 100
 
     # sort and group for easy association
@@ -681,7 +681,7 @@ def infer_bots(data_lookup: dict[str, pd.DataFrame], incubator: str, threshold: 
         # counts
         num_commits = group.shape[0]
         num_proj = type_activity[proj]
-        prop = num_commits / num_proj
+        prop = num_commits / max(num_proj, 1)
 
         # flags
         name_match = sender.lower() in bot_specific                         # specifically defined as bot (manually)
@@ -1014,7 +1014,7 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
                             if name_i == name_j: continue
                             p2 = process_name(name_j)
                             jaro_winkler_similarity_score = jaro_winkler_similarity(p1, p2)
-                            this_score += jaro_winkler_similarity_score/(len(cluster)-1)
+                            this_score += jaro_winkler_similarity_score / max(len(cluster) - 1, 1)
                         if this_score < lowest_score:
                             name_to_pop = name_i
                             lowest_score = this_score
@@ -1360,7 +1360,7 @@ class RawData:
                 cols = list(df.columns)
 
             # reading data
-            num_entries = df.shape[0]
+            num_entries = max(df.shape[0], 1)
 
             print(f"\n<SUMMARY for {dtype}>")
             for col in cols:

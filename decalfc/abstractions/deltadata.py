@@ -232,7 +232,7 @@ class DeltaData:
                 cols = list(df.columns)
 
             # reading data
-            num_entries = df.shape[0]
+            num_entries = max(df.shape[0], 1)
 
             print(f"\n<SUMMARY for {dtype}>")
             for col in cols:
