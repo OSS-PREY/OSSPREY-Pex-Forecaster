@@ -68,7 +68,7 @@ def run_pipeline_with_data(ds_name: str):
     
     # dispatch to forecaster, catch any errors
     try:
-        res = compute_forecast(data_pkg)
+        res = compute_forecast(test_pkg)
     except Exception as e:
         log(f"errored in testing :: {e}", "error")
     
