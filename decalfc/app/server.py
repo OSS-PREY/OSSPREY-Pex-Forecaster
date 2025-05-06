@@ -692,5 +692,5 @@ if __name__ == "__main__":
     reset_cache(test_data["project_name"])
     # res = compute_forecast(partial_one)
     # res = compute_forecast(partial_two)
-    res = compute_forecast(test_data)
+    # res = compute_forecast(test_data)
 
