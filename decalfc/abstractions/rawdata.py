@@ -538,8 +538,12 @@ def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str=None
         df[field] = 0
 
     # specify tech files
-    with open(tech_file_path, "r") as f:
-        programming_languages_extensions = json.load(f)
+    try:
+        with open(tech_file_path, "r") as f:
+            programming_languages_extensions = json.load(f)
+    except Exception as e:
+        log(f"failed to load tech file list from {tech_file_path}: {e}", "error")
+        return data_lookup
 
     coding_extensions = set([".mdtext"])
     for pl in programming_languages_extensions:
@@ -551,37 +555,55 @@ def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str=None
         # filter out some data extensions, e.g., json
         if pl["type"] != "programming" and pl["type"] != "markup":
             continue
-        coding_extensions = coding_extensions.union(set(pl["extensions"]))
+        
+        # append extension
+        coding_extensions.update(pl["extensions"])
     
     # extension should be case-insensitive
     coding_extensions = {ext.lower() for ext in coding_extensions}
 
     # for later comparison
-    num_entries = df.shape[0]
+    num_entries = max(df.shape[0], 1)
     num_coding_bef = df[field].sum()
-    num_changed = [0, 0, 0]
 
     # imputing
-    def check_source(row):
-        file = row["file_name"]
-
+    def check_source(file):
         try:
-            ext = file[file.rindex("."): ]
-        except:
-            num_changed[0] += 1 if row[field] != 0 else 0
-            return 0
-
+            ext = file[file.rindex("."):]
+        except Exception:
+            return (0, "skipped")
+        
         if ext.lower() in coding_extensions:
-            num_changed[1] += 1 if row[field] != 1 else 0
-            return 1
+            return (1, "fs")
         else:
-            num_changed[2] += 1 if row[field] != 0 else 0
-            return 0
+            return (0, "fns")
 
-    df[field] = df[["file_name", field]].parallel_apply(check_source, axis=1)
+    # apply as efficiently as possible
+    try:
+        # apply to generate the two cols
+        out = df["file_name"].parallel_apply(check_source)
+
+        # split into sep cols
+        df[["is_coding", "change_type"]] = pd.DataFrame(
+            out.tolist(),
+            index=df.index
+        )
+    except Exception as e:
+        # logging
+        log(f"parallel_apply failed: {e}", "error")
+        log("[Fallback] switching to regular apply...", "warning")
+        
+        # normal apply
+        df[["is_coding", "change_type"]] = df[["file_name"]].apply(
+            lambda row: pd.Series(check_source(row)),
+            axis=1
+        )
 
     # report
     num_coding_aft = df[field].sum()
+    # num_changed = df["change_type"].value_counts().to_dict()
+    df.drop(columns="change_type", inplace=True)
+    
     delta = num_coding_aft - num_coding_bef
     prop_before = num_coding_bef / num_entries * 100
     prop_after = num_coding_aft / num_entries * 100
@@ -591,9 +613,9 @@ def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str=None
     print(f"Number of Coding files (before): {num_coding_bef}")
     print(f"Number of Coding files (after): {num_coding_aft}")
     print(f"Number of {field} Entries Forced: {delta}")
-    print(f"Number of {field} Entries Corrected: {sum(num_changed)}")
-    print(f"Number changed: {num_changed[0]} skipped, {num_changed[1]} forced src, {num_changed[2]} forced non-src")
-    print(f"Corrected {prop_delta}% of the data, from {prop_before}% to {prop_after}% source files considered")
+    # print(f"Number of {field} Entries Corrected: {sum(num_changed.values())}")
+    # print(f"Number changed: {num_changed['skipped']} skipped, {num_changed['fs']} forced src, {num_changed['fns']} forced non-src")
+    print(f"Corrected {prop_delta:.2f}% of the data, from {prop_before:.2f}% to {prop_after:.2f}% source files considered")
 
     # export
     return data_lookup
