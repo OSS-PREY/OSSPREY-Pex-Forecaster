@@ -86,6 +86,9 @@ def _route_preprocesses(data: dict[str, pd.DataFrame], tasks: list[str],
         
         # route; skip de-aliasing as a temporary measure
         if task == "pp-de-alias":
+            source_author_field = params_dict["author-source-field"][incubator]
+            data["tech"]["dealised_author_full_name"] = data["tech"][source_author_field]
+            data["social"]["dealised_author_full_name"] = data["social"][source_author_field]
             continue
         data = IMPLEMENTED_TASKS[task](data, incubator=incubator, copy=False)
         
