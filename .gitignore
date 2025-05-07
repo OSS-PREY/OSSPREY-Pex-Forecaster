@@ -5,6 +5,8 @@ model-weights/
 model-reports/
 !model-weights/BGRU.pt
 !model-weights/BLSTM.pt
+tests/inputs/*
+tests/outputs/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

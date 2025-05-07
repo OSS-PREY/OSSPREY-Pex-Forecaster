@@ -1,25 +1,121 @@
 [
     {
-        "Nafiz Imtiaz Khan": {
+        "Daniel Bast": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 8.004482510205715e-05,
+            "proportion": 0.001177856301531213,
             "is-bot": 0
         }
     },
     {
-        "Nafiz43": {
+        "Johannes Schindelin": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.001177856301531213,
+            "is-bot": 0
+        }
+    },
+    {
+        "Junko Suzuki": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.001177856301531213,
+            "is-bot": 0
+        }
+    },
+    {
+        "Lars Schneider": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.002355712603062426,
+            "is-bot": 0
+        }
+    },
+    {
+        "Michael Haggerty": {
             "substring": 0,
             "outlier": 1,
-            "proportion": 0.9852183889644868,
+            "proportion": 0.9552414605418139,
             "is-bot": 0
         }
     },
     {
-        "Raiyan Jahangir": {
+        "Miguel \u00c1ngel Pastor Olivar": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.014701566210411163,
+            "proportion": 0.024734982332155476,
+            "is-bot": 0
+        }
+    },
+    {
+        "Nathan Stocks": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.002355712603062426,
+            "is-bot": 0
+        }
+    },
+    {
+        "Oliver Bone": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.001177856301531213,
+            "is-bot": 0
+        }
+    },
+    {
+        "Russell Rollins": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.001177856301531213,
+            "is-bot": 0
+        }
+    },
+    {
+        "Thomas Gummerer": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.001177856301531213,
+            "is-bot": 0
+        }
+    },
+    {
+        "Timoth\u00e9e Mazzucotelli": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.001177856301531213,
+            "is-bot": 0
+        }
+    },
+    {
+        "Yaroslav Halchenko": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.001177856301531213,
+            "is-bot": 0
+        }
+    },
+    {
+        "elhmn": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0035335689045936395,
+            "is-bot": 0
+        }
+    },
+    {
+        "ferhat elmas": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.001177856301531213,
+            "is-bot": 0
+        }
+    },
+    {
+        "rajhawaldar": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.001177856301531213,
             "is-bot": 0
         }
     }
