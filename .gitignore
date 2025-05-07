@@ -175,3 +175,5 @@ cython_debug/
 forecasts/
 net-caches/
 net-vis/
+ref/ospos_social_bots_removed.json
+ref/ospos_tech_bots_removed.json
