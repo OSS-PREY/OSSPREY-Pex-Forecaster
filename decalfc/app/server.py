@@ -91,6 +91,7 @@ def compute_forecast(data: dict[str, str | pd.DataFrame | list[str] | list[int]]
     # fill shorthand
     if data["tasks"][0] == "ALL":
         data["tasks"] = list(IMPLEMENTED_TASKS.keys())
+        data["tasks"].remove("traj")
     
     # error handling if incorrectly structured
     check_request_structure(data)
@@ -691,5 +692,6 @@ if __name__ == "__main__":
     reset_cache(test_data["project_name"])
     # res = compute_forecast(partial_one)
     # res = compute_forecast(partial_two)
-    # res = compute_forecast(test_data)
+    res = compute_forecast(test_data)
+    reset_cache(test_data["project_name"])
 

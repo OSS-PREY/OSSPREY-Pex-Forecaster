@@ -1,1 +1,290 @@
-{}
+[
+    {
+        "Adminy": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "Ally Mat": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.017094017094017096,
+            "is-bot": 0
+        }
+    },
+    {
+        "Anil Kumar": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "Brendan Forster": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.3162393162393162,
+            "is-bot": 0
+        }
+    },
+    {
+        "Caesar Schinas": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "Danila Malyutin": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.017094017094017096,
+            "is-bot": 0
+        }
+    },
+    {
+        "Edward": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "Francesco Bramato": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "George Pollard": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.02564102564102564,
+            "is-bot": 0
+        }
+    },
+    {
+        "Gerard jourdain Gr\u00e9goire Charles ": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "G\u00e9rard jourdain": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "Jared L": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "Jed Fox": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.017094017094017096,
+            "is-bot": 0
+        }
+    },
+    {
+        "Josh Abernathy": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "Keith Mashinter": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "Kikelaguna": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.02564102564102564,
+            "is-bot": 0
+        }
+    },
+    {
+        "Markus Olsson": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "Mathias Ottosson": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.09401709401709402,
+            "is-bot": 0
+        }
+    },
+    {
+        "Mohammad Kermani": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.02564102564102564,
+            "is-bot": 0
+        }
+    },
+    {
+        "Mosh Feu": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "Rabbitzzc": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.02564102564102564,
+            "is-bot": 0
+        }
+    },
+    {
+        "Rendom": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "Rongjian Zhang": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "Samuel Andersson": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "Sergio Padrino": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.017094017094017096,
+            "is-bot": 0
+        }
+    },
+    {
+        "Subash Pathak": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "TINGSHU": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "Takashi Kawasaki": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "Tyler Liu": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "Vincent Weevers": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.042735042735042736,
+            "is-bot": 0
+        }
+    },
+    {
+        "William Weckl": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.017094017094017096,
+            "is-bot": 0
+        }
+    },
+    {
+        "Yanlin Sun": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.05128205128205128,
+            "is-bot": 0
+        }
+    },
+    {
+        "abdelkader": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    },
+    {
+        "lin onetwo": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.017094017094017096,
+            "is-bot": 0
+        }
+    },
+    {
+        "nvrbts": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.017094017094017096,
+            "is-bot": 0
+        }
+    },
+    {
+        "zredb": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008547008547008548,
+            "is-bot": 0
+        }
+    }
+]

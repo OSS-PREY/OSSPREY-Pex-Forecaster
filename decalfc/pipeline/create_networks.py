@@ -63,7 +63,6 @@ def process_tech_nets(author_field: str, t_source: Path, t_output: Path) -> None
             # file extension = "." + fils_source.split("/")[-1].split(".")[-1].split(" ")[0]
             file_name = fils_source.split("/")[-1]
             author_name = row[author_field]
-            print("DEBUG :: entry: ", author_name, file_name)
             
             if file_name not in technical_net:
                 technical_net[file_name] = {}

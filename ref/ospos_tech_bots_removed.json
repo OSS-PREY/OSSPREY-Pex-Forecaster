@@ -1,26 +1,130 @@
 [
     {
-        "Nafiz Imtiaz Khan": {
-            "substring": 0,
-            "outlier": 0,
-            "proportion": 8.004482510205715e-05,
-            "is-bot": 0
-        }
-    },
-    {
-        "Nafiz43": {
+        "Brendan Forster": {
             "substring": 0,
             "outlier": 1,
-            "proportion": 0.9852183889644868,
+            "proportion": 0.4302059496567506,
             "is-bot": 0
         }
     },
     {
-        "Raiyan Jahangir": {
+        "Corredera Romain": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.05034324942791762,
+            "is-bot": 0
+        }
+    },
+    {
+        "Danila Malyutin": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.014701566210411163,
+            "proportion": 0.009153318077803204,
             "is-bot": 0
+        }
+    },
+    {
+        "Dennis Ameling": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.004576659038901602,
+            "is-bot": 0
+        }
+    },
+    {
+        "George Pollard": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.02288329519450801,
+            "is-bot": 0
+        }
+    },
+    {
+        "HashimotoYT": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.018306636155606407,
+            "is-bot": 0
+        }
+    },
+    {
+        "Markus Olsson": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.09382151029748284,
+            "is-bot": 0
+        }
+    },
+    {
+        "Mathias Ottosson": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.02288329519450801,
+            "is-bot": 0
+        }
+    },
+    {
+        "Myles Borins": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.002288329519450801,
+            "is-bot": 0
+        }
+    },
+    {
+        "Sergio Padrino": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.06178489702517163,
+            "is-bot": 0
+        }
+    },
+    {
+        "Subash Pathak": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.002288329519450801,
+            "is-bot": 0
+        }
+    },
+    {
+        "Takashi Kawasaki": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.009153318077803204,
+            "is-bot": 0
+        }
+    },
+    {
+        "Tim Perry": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.002288329519450801,
+            "is-bot": 0
+        }
+    },
+    {
+        "Vlad Hashimoto": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.002288329519450801,
+            "is-bot": 0
+        }
+    },
+    {
+        "dependabot-preview[bot]": {
+            "substring": 1,
+            "outlier": 0,
+            "proportion": 0.038901601830663615,
+            "is-bot": 0
+        }
+    },
+    {
+        "dependabot[bot]": {
+            "substring": 1,
+            "outlier": 1,
+            "proportion": 0.2288329519450801,
+            "is-bot": 1
         }
     }
 ]

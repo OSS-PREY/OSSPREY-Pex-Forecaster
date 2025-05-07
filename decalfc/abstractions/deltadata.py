@@ -232,7 +232,7 @@ class DeltaData:
                 cols = list(df.columns)
 
             # reading data
-            num_entries = df.shape[0]
+            num_entries = max(df.shape[0], 1)
 
             print(f"\n<SUMMARY for {dtype}>")
             for col in cols:
@@ -254,6 +254,7 @@ class DeltaData:
         """
 
         # save
+        log("Caching Network Data", "note")
         path = _gen_cache_path(self.proj_name)
         check_path(path)
         self.netdata.to_csv(path, index=False)
@@ -262,6 +263,8 @@ class DeltaData:
         """To be run when the destructor is called. Clears any used storage on 
         disk to minimize concurrent disk usage.
         """
+        
+        log("Cleaning Disk", "new")
         
         # MONTHWISE SPLIT
         # clear disk usage to limit space requirement and prevent double
@@ -300,6 +303,7 @@ class DeltaData:
         """
         
         # call the utility
+        log("Clearing Cache", "new")
         return reset_cache(proj_name=self.proj_name, products=products)
 
     # split by month
@@ -362,6 +366,7 @@ class DeltaData:
         # clear disk usage to limit space requirement and prevent double 
         # writing (using the same data twice) or mis-association (using one 
         # project's data in another's)
+        log("clearing previous trials...")
         clear_dir(dir=t_output_dir, skip_input=True)
         clear_dir(dir=s_output_dir, skip_input=True)
 
@@ -427,8 +432,9 @@ class DeltaData:
         accordian graphs, etc.
         """
         
-        # check the networks match this project; if not, clear and generate 
+        # check the networks match this project; if not, clear and generate
         # networks
+        log("Visualizing Networks", "new")
         
         ## grab directories
         network_dir = Path(params_dict["network-dir"])
@@ -439,6 +445,7 @@ class DeltaData:
         s_dir = network_dir / f"{self.incubator}_{social_type}"
         
         ## check all files match
+        log("checking cross-process contamination...")
         if not all(f.name.startswith(self.proj_name) for f in t_dir.glob("**/*")):
             wrong_files = [f.name for f in t_dir.glob("**/*") if not f.name.startswith(self.proj_name)]
             raise ValueError(f"technical directory (\"{t_dir}\") contains non-matching project file (needs only {self.proj_name} files, got {wrong_files})")
@@ -447,9 +454,11 @@ class DeltaData:
             raise ValueError(f"social directory (\"{s_dir}\") contains non-matching project file (needs only {self.proj_name} files, got {wrong_files})")
         
         # generate visualizations
+        log("generating visualizations for this project...")
         self.net_vis = net_vis_info_projectwise(self.delta_args)
         
         # update old visualizations if possible and re-store
+        log("loading previous visualizations (cache, if it exists)...")
         vis_path = Path(params_dict["network-visualization-dir"]) / f"{self.proj_name}.json"
         check_path(vis_path)
         
@@ -467,13 +476,19 @@ class DeltaData:
                 "social": dict()
             }
 
+        log("updating cache...")
         old_vis["tech"].update(self.net_vis["tech"])
         old_vis["social"].update(self.net_vis["social"])
         self.net_vis["tech"] = dict(sorted(old_vis["tech"].items()))
         self.net_vis["social"] = dict(sorted(old_vis["social"].items()))
         
-        with open(vis_path, "w") as f:
-            json.dump(self.net_vis, f, indent=0)
+        try:
+            log("attempting save of network visualizations...")
+            with open(vis_path, "w") as f:
+                json.dump(self.net_vis, f, indent=0)
+            log("successfully saved network visualizations!")
+        except:
+            log("failed to save network visualizations!", "error")
 
 
     # predictions & trajectories
@@ -609,8 +624,13 @@ class DeltaData:
             return torch.tensor(data_dict)
         
         # apply augmentations and convert to tensor for use in the model
+        log("Generating Forecasts", "new")
         num_months = self.netdata.shape[0]
+        
+        log("augmenting network data to fit the trained model format...")
         transformed_netdata = apply_augs()
+        
+        log("generating tensors for forecasting...")
         X = gen_tensors(transformed_netdata)
         
         # # ensure columns order
@@ -623,6 +643,7 @@ class DeltaData:
         # ]]
         
         # load in model
+        log("loading model...")
         model = None
         path = Path(params_dict["weights-dir"])
         hyperparams = {
@@ -646,7 +667,7 @@ class DeltaData:
         
         # generate forecasts
         fcs = dict()
-        log("Generating Forecasts", "new")
+        log("generating monthly predictions...", "new")
         for i in tqdm(range(1, num_months + 1)):
             # grab the first i months up to lag months
             data = X[max(i - lag, 0):i, ...]
@@ -662,6 +683,7 @@ class DeltaData:
             fcs[i - 1] = float(preds.cpu().detach().numpy()[0])
 
         # load old forecasts if possible
+        log("loading old forecasts...")
         forecast_path = Path(params_dict["forecast-dir"]) / f"{self.proj_name}.json"
         check_path(forecast_path)
         
@@ -682,6 +704,7 @@ class DeltaData:
         try:
             with open(forecast_path, "w") as f:
                 dump(fcs, f, indent=4)
+            log(f"succesfully saved forecasts @ {forecast_path}")
         except Exception as e:
             log(f"failed to save the forecasts in a JSON format :: {e}", "error")
             
@@ -711,16 +734,17 @@ class DeltaData:
         """
         
         # generate via the strategy selected
+        log("Generating Trajectories", "new")
         lag = min(12, len(self.forecasts))
         k = nmonths
         forecasts = np.array(list(dict(sorted(self.forecasts.items())).values()))
         
-        log("Generating Trajectories", "new")
         trajs = route_traj(
             forecast=forecasts, strat=strat, lag=lag, k=k
         )
         
         # import previous trajectories
+        log("loading previous trajectories (cache, if it exists)...")
         traj_path = Path(params_dict["trajectory-dir"]) / f"{self.proj_name}.json"
         check_path(traj_path)
         
@@ -733,13 +757,14 @@ class DeltaData:
             old_trajs = dict()
         
         # update, save, and export
-        log("updating previous trajectories...", "log")
+        log("updating previous trajectories...")
         trajs.update(old_trajs)
         trajs = dict(sorted(trajs.items()))
         
         try:
             with open(traj_path, "w") as f:
                 dump(trajs, f, indent=4)
+            log(f"succesfully saved trajectories @ {traj_path}")
         except Exception as e:
             log(f"failed to save the trajectories in a JSON format :: {e}", "error")
             

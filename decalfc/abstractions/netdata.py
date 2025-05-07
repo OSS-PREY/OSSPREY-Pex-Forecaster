@@ -308,8 +308,8 @@ class NetData:
         ret_list.sort()
 
         # split mark
-        num_grad_test = ceil(len(grad_list) / len(self.base_projects) * num_test)
-        num_ret_test = ceil(len(ret_list) / len(self.base_projects) * num_test)
+        num_grad_test = ceil(len(grad_list) / max(len(self.base_projects), 1) * num_test)
+        num_ret_test = ceil(len(ret_list) / max(len(self.base_projects), 1) * num_test)
 
         # split into train/test set
         random.seed(self.rand_seed)
@@ -1151,7 +1151,7 @@ class NetData:
             # notice also we end at one before the number of months to control 0-indexing
             max_month = group["month"].max()
             end_month = min(end_month + 1, max_month) if end_month is not None else max_month
-            if (end_month - start_month) / step_month <= 1:                 # skip if too few months to interval
+            if (end_month - start_month) / max(step_month, 1) <= 1:                 # skip if too few months to interval
                 return
 
             intervals = gen_intervals(start_month, end_month, step_month)  # skip end month
@@ -1184,11 +1184,11 @@ class NetData:
             
             # get divisions
             proj_length = group["month"].max() + 1
-            exp_intervals = round(1 / proportion)
+            exp_intervals = round(1 / max(proportion, 1))
             
             # account for edge case with shorter projects
             num_intervals = min(proj_length, exp_intervals)
-            step = proj_length / num_intervals
+            step = proj_length / max(num_intervals, 1)
             
             if num_intervals <= 1:
                 return pd.DataFrame(columns=group.columns)
@@ -1310,7 +1310,7 @@ class NetData:
                 if end_month is not None:
                     base_count = min(end_month, base_count)
 
-                expected_months = ceil((base_count - start_month - 1) / step)
+                expected_months = ceil((base_count - start_month - 1) / max(step, 1))
                 counted_months = mod_projects[base_proj]
                 if expected_months != counted_months:
                     log(f"FAILED COUNTS CHECK, expected {expected_months}, got {counted_months} for {base_proj}", "error")
@@ -1343,7 +1343,7 @@ class NetData:
 
         log(log_type="summary")
         print(f"Num Rows: {data.shape[0]} --> {intervaled_df.shape[0]}")
-        bef_projects = data["proj_name"].unique().shape[0]
+        bef_projects = max(data["proj_name"].unique().shape[0], 1)
         aft_projects = intervaled_df["proj_name"].unique().shape[0]
         print(f"Num Projects: {bef_projects} --> {aft_projects}; {aft_projects / bef_projects:.2f}x increase")
         print("done!")
@@ -1534,7 +1534,7 @@ class NetData:
 
         # strategy
         project_subset = list(self.split_set["train"] & self.project_status[imbalanced_label] & self.projects_set)
-        num_subset = len(project_subset)
+        num_subset = max(len(project_subset), 1)
         log(f"Balancing for [{imbalanced_label}] projects w/ imbalance of {imbalance} projects and {num_subset} projects to sample from")
 
         upsampled_df = strat_router[strat](
@@ -1544,7 +1544,7 @@ class NetData:
         )
 
         # visualize
-        self._visualize_synthetic(upsampled_df, base_proj=project_subset[0], strategy=strat)
+        self.visualize_synthetic(upsampled_df, base_proj=project_subset[0], strategy=strat)
 
         # export
         if inplace:

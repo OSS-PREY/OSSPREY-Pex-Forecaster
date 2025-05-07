@@ -191,11 +191,25 @@ def clean_file_paths(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
     
     # aux fn
     def process_filename(filename):
-        regex_str = r"^  - copied, (changed|unchanged) from r\d*, "
-        rem = re.subn(regex_str, "", filename)
-        if rem[1] > 1:
-            print(":: ERROR :: double replacement w/", filename)
-        return rem[0] #, rem[1]
+        try:
+            # check type
+            if not isinstance(filename, str):
+                return filename
+            
+            # regex matching to remove
+            regex_str = r"^  - copied, (changed|unchanged) from r\d*, "
+            rem = re.subn(regex_str, "", filename)
+            
+            # check multiple occurrences
+            if rem[1] > 1:
+                log(f"double replacement w/ {filename}", "warning")
+            
+            # export cleaned str
+            return rem[0]
+        except Exception as e:
+            # return original as a fallback
+            log(f"failed to process filename '{filename}': {e}", "error")
+            return filename
     
     # diverge if copying
     if copy:
@@ -206,7 +220,13 @@ def clean_file_paths(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
     old_file_names = df["file_name"].copy()
     
     log("processing file paths...")
-    df["file_name"] = df["file_name"].parallel_apply(process_filename)
+    try:
+        log("processing file paths...")
+        df["file_name"] = df["file_name"].parallel_apply(process_filename)
+    except Exception as e:
+        log(f"parallel_apply failed: {e}", "warning")
+        log("fallback :: using regular apply...", "warning")
+        df["file_name"] = df["file_name"].apply(process_filename)
 
     # report
     num_changed = (df["file_name"] != old_file_names).sum()
@@ -390,8 +410,8 @@ def impute_messageid(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
 
     # check not overriding
     print("\n<Imputing Message ID>")
-    if len(df["message_id"].unique()) / df.shape[0] > 0.90:
-        print(f"<WARNING> :: message id field already has >95% unique IDs: {len(df['message_id'].unique()) / df.shape[0] * 100}%")
+    if len(df["message_id"].unique()) / max(df.shape[0], 1) > 0.90:
+        print(f"<WARNING> :: message id field already has >95% unique IDs: {len(df['message_id'].unique()) / max(df.shape[0], 1) * 100}%")
 
         # resp = input("Continue [y/n]?")
         resp = "y"
@@ -402,7 +422,7 @@ def impute_messageid(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
     # setup
     print("continuing imputation. . .")
     field = "message_id"
-    num_entries = df.shape[0]
+    num_entries = max(df.shape[0], 1)
     num_missing_bef = df[field].isna().sum()
     missing_field = 0
     
@@ -463,18 +483,18 @@ def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, cop
 
     # utility for checking inference strategy (check number of potential replies)
     reply_freq = df.groupby(["project_name", "month", "subject"]).size().reset_index(name="count")
-    prop_replies_inference = (reply_freq["count"] > 1).sum() / len(reply_freq)
+    prop_replies_inference = (reply_freq["count"] > 1).sum() / max(len(reply_freq), 1)
 
     # check overriding
     print("\n<Inferring Reply Information>")
-    prop_filled = len(df["in_reply_to"].unique()) / df.shape[0]
+    prop_filled = len(df["in_reply_to"].unique()) / max(df.shape[0], 1)
     if prop_replies_inference <= prop_filled:
         print(f"<WARNING> :: inference strategy obtains less threads than already provided: {prop_replies_inference * 100}% < {prop_filled * 100}%")
         print("not imputing. . .")
         return data_lookup
 
     if prop_filled > 0.95:
-        print(f"<WARNING> :: in_reply_to field already has >95% unique replies: {len(df['in_reply_to'].unique()) / df.shape[0] * 100}%")
+        print(f"<WARNING> :: in_reply_to field already has >95% unique replies: {len(df['in_reply_to'].unique()) / max(df.shape[0], 1) * 100}%")
         print("not imputing. . .")
         return data_lookup
 
@@ -485,7 +505,7 @@ def infer_replies(data_lookup: dict[str, pd.DataFrame], incubator: str=None, cop
 
     # for later comparison
     missing_before = (df[field] == "").sum() + df[field].isnull().sum()
-    num_entries = df.shape[0]
+    num_entries = max(df.shape[0], 1)
     prop_before = missing_before / num_entries * 100
 
     # sort and group for easy association
@@ -538,8 +558,12 @@ def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str=None
         df[field] = 0
 
     # specify tech files
-    with open(tech_file_path, "r") as f:
-        programming_languages_extensions = json.load(f)
+    try:
+        with open(tech_file_path, "r") as f:
+            programming_languages_extensions = json.load(f)
+    except Exception as e:
+        log(f"failed to load tech file list from {tech_file_path}: {e}", "error")
+        return data_lookup
 
     coding_extensions = set([".mdtext"])
     for pl in programming_languages_extensions:
@@ -551,37 +575,55 @@ def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str=None
         # filter out some data extensions, e.g., json
         if pl["type"] != "programming" and pl["type"] != "markup":
             continue
-        coding_extensions = coding_extensions.union(set(pl["extensions"]))
+        
+        # append extension
+        coding_extensions.update(pl["extensions"])
     
     # extension should be case-insensitive
     coding_extensions = {ext.lower() for ext in coding_extensions}
 
     # for later comparison
-    num_entries = df.shape[0]
+    num_entries = max(df.shape[0], 1)
     num_coding_bef = df[field].sum()
-    num_changed = [0, 0, 0]
 
     # imputing
-    def check_source(row):
-        file = row["file_name"]
-
+    def check_source(file):
         try:
-            ext = file[file.rindex("."): ]
-        except:
-            num_changed[0] += 1 if row[field] != 0 else 0
-            return 0
-
+            ext = file[file.rindex("."):]
+        except Exception:
+            return (0, "skipped")
+        
         if ext.lower() in coding_extensions:
-            num_changed[1] += 1 if row[field] != 1 else 0
-            return 1
+            return (1, "fs")
         else:
-            num_changed[2] += 1 if row[field] != 0 else 0
-            return 0
+            return (0, "fns")
 
-    df[field] = df[["file_name", field]].parallel_apply(check_source, axis=1)
+    # apply as efficiently as possible
+    try:
+        # apply to generate the two cols
+        out = df["file_name"].parallel_apply(check_source)
+
+        # split into sep cols
+        df[["is_coding", "change_type"]] = pd.DataFrame(
+            out.tolist(),
+            index=df.index
+        )
+    except Exception as e:
+        # logging
+        log(f"parallel_apply failed: {e}", "error")
+        log("[Fallback] switching to regular apply...", "warning")
+        
+        # normal apply
+        df[["is_coding", "change_type"]] = df[["file_name"]].apply(
+            lambda row: pd.Series(check_source(row)),
+            axis=1
+        )
 
     # report
     num_coding_aft = df[field].sum()
+    # num_changed = df["change_type"].value_counts().to_dict()
+    df.drop(columns="change_type", inplace=True)
+    
     delta = num_coding_aft - num_coding_bef
     prop_before = num_coding_bef / num_entries * 100
     prop_after = num_coding_aft / num_entries * 100
@@ -591,9 +633,9 @@ def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str=None
     print(f"Number of Coding files (before): {num_coding_bef}")
     print(f"Number of Coding files (after): {num_coding_aft}")
     print(f"Number of {field} Entries Forced: {delta}")
-    print(f"Number of {field} Entries Corrected: {sum(num_changed)}")
-    print(f"Number changed: {num_changed[0]} skipped, {num_changed[1]} forced src, {num_changed[2]} forced non-src")
-    print(f"Corrected {prop_delta}% of the data, from {prop_before}% to {prop_after}% source files considered")
+    # print(f"Number of {field} Entries Corrected: {sum(num_changed.values())}")
+    # print(f"Number changed: {num_changed['skipped']} skipped, {num_changed['fs']} forced src, {num_changed['fns']} forced non-src")
+    print(f"Corrected {prop_delta:.2f}% of the data, from {prop_before:.2f}% to {prop_after:.2f}% source files considered")
 
     # export
     return data_lookup
@@ -659,7 +701,7 @@ def infer_bots(data_lookup: dict[str, pd.DataFrame], incubator: str, threshold: 
         # counts
         num_commits = group.shape[0]
         num_proj = type_activity[proj]
-        prop = num_commits / num_proj
+        prop = num_commits / max(num_proj, 1)
 
         # flags
         name_match = sender.lower() in bot_specific                         # specifically defined as bot (manually)
@@ -992,7 +1034,7 @@ def dealias_senders(data_lookup: dict[str, pd.DataFrame], incubator: str, source
                             if name_i == name_j: continue
                             p2 = process_name(name_j)
                             jaro_winkler_similarity_score = jaro_winkler_similarity(p1, p2)
-                            this_score += jaro_winkler_similarity_score/(len(cluster)-1)
+                            this_score += jaro_winkler_similarity_score / max(len(cluster) - 1, 1)
                         if this_score < lowest_score:
                             name_to_pop = name_i
                             lowest_score = this_score
@@ -1338,7 +1380,7 @@ class RawData:
                 cols = list(df.columns)
 
             # reading data
-            num_entries = df.shape[0]
+            num_entries = max(df.shape[0], 1)
 
             print(f"\n<SUMMARY for {dtype}>")
             for col in cols:
