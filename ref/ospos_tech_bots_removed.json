@@ -1,122 +1,130 @@
 [
     {
-        "Daniel Bast": {
-            "substring": 0,
-            "outlier": 0,
-            "proportion": 0.001177856301531213,
-            "is-bot": 0
-        }
-    },
-    {
-        "Johannes Schindelin": {
-            "substring": 0,
-            "outlier": 0,
-            "proportion": 0.001177856301531213,
-            "is-bot": 0
-        }
-    },
-    {
-        "Junko Suzuki": {
-            "substring": 0,
-            "outlier": 0,
-            "proportion": 0.001177856301531213,
-            "is-bot": 0
-        }
-    },
-    {
-        "Lars Schneider": {
-            "substring": 0,
-            "outlier": 0,
-            "proportion": 0.002355712603062426,
-            "is-bot": 0
-        }
-    },
-    {
-        "Michael Haggerty": {
+        "Brendan Forster": {
             "substring": 0,
             "outlier": 1,
-            "proportion": 0.9552414605418139,
+            "proportion": 0.4302059496567506,
             "is-bot": 0
         }
     },
     {
-        "Miguel \u00c1ngel Pastor Olivar": {
+        "Corredera Romain": {
             "substring": 0,
-            "outlier": 0,
-            "proportion": 0.024734982332155476,
+            "outlier": 1,
+            "proportion": 0.05034324942791762,
             "is-bot": 0
         }
     },
     {
-        "Nathan Stocks": {
+        "Danila Malyutin": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.002355712603062426,
+            "proportion": 0.009153318077803204,
             "is-bot": 0
         }
     },
     {
-        "Oliver Bone": {
+        "Dennis Ameling": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.001177856301531213,
+            "proportion": 0.004576659038901602,
             "is-bot": 0
         }
     },
     {
-        "Russell Rollins": {
+        "George Pollard": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.001177856301531213,
+            "proportion": 0.02288329519450801,
             "is-bot": 0
         }
     },
     {
-        "Thomas Gummerer": {
+        "HashimotoYT": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.001177856301531213,
+            "proportion": 0.018306636155606407,
             "is-bot": 0
         }
     },
     {
-        "Timoth\u00e9e Mazzucotelli": {
+        "Markus Olsson": {
             "substring": 0,
-            "outlier": 0,
-            "proportion": 0.001177856301531213,
+            "outlier": 1,
+            "proportion": 0.09382151029748284,
             "is-bot": 0
         }
     },
     {
-        "Yaroslav Halchenko": {
+        "Mathias Ottosson": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.001177856301531213,
+            "proportion": 0.02288329519450801,
             "is-bot": 0
         }
     },
     {
-        "elhmn": {
+        "Myles Borins": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.0035335689045936395,
+            "proportion": 0.002288329519450801,
             "is-bot": 0
         }
     },
     {
-        "ferhat elmas": {
+        "Sergio Padrino": {
             "substring": 0,
-            "outlier": 0,
-            "proportion": 0.001177856301531213,
+            "outlier": 1,
+            "proportion": 0.06178489702517163,
             "is-bot": 0
         }
     },
     {
-        "rajhawaldar": {
+        "Subash Pathak": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.001177856301531213,
+            "proportion": 0.002288329519450801,
             "is-bot": 0
+        }
+    },
+    {
+        "Takashi Kawasaki": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.009153318077803204,
+            "is-bot": 0
+        }
+    },
+    {
+        "Tim Perry": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.002288329519450801,
+            "is-bot": 0
+        }
+    },
+    {
+        "Vlad Hashimoto": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.002288329519450801,
+            "is-bot": 0
+        }
+    },
+    {
+        "dependabot-preview[bot]": {
+            "substring": 1,
+            "outlier": 0,
+            "proportion": 0.038901601830663615,
+            "is-bot": 0
+        }
+    },
+    {
+        "dependabot[bot]": {
+            "substring": 1,
+            "outlier": 1,
+            "proportion": 0.2288329519450801,
+            "is-bot": 1
         }
     }
 ]

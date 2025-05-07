@@ -14,6 +14,43 @@ from tests.__init__ import INPUT_PATH, RESULT_PATH, OUTPUT_PATH
 import pickle
 from pathlib import Path
 
+TECH_COLS = [
+    "project",
+	"start_date",
+	"end_date",
+	"status",
+	"incubation_month",
+	"commit_sha",
+	"email",
+	"name",
+	"date",
+	"timestamp",
+	"filename",
+	"change_type",
+	"lines_added",
+	"lines_deleted",
+	"commit_message",
+	"commit_url"
+]
+SOCIAL_COLS = [
+    "type",
+    "issue_url",
+    "comment_url",
+    "repo_name",
+    "id",
+    "issue_num",
+    "title",
+    "user_login",
+    "user_id",
+    "user_name",
+    "user_email",
+    "issue_state",
+    "created_at",
+    "updated_at",
+    "body",
+    "reactions"
+]
+
 # --- Utility --- #
 def save_result(path: Path, res_dict: dict) -> None:
     """Saves the result of the pipeline for comparison."""
@@ -176,23 +213,46 @@ def convert_inputs():
     
     # aggregate names
     sample_ds_path = INPUT_PATH / "datasets.json"
-    ds_names = list()
-    projects = {f.stem.split("_issues")[0] for f in INPUT_PATH.glob("*_issues.csv")}
+    
+    if sample_ds_path.exists():
+        with open(sample_ds_path, "r") as f:
+            ds_names = load(f)
+    else:
+        ds_names = list()
+    
+    projects = (
+        {f.stem.split("_issues")[0] for f in INPUT_PATH.glob("*_issues.csv")} |
+        {f.stem.split("-commit")[0] for f in INPUT_PATH.glob("*-commit-file-dev.csv")}
+    )
     
     # go through all csvs and convert them as needed
-    print(INPUT_PATH)
     for proj in tqdm(projects):
+        # flags
+        tflag = False
+        sflag = False
+        
         # read pairs
         try:
             tdf = pd.read_csv(INPUT_PATH / f"{proj}-commit-file-dev.csv")
-        except Exception as _:
-            log(f"failed to read in tech data for {proj}! Skipping for now", "warning")
-            continue
+        except Exception as e:
+            log(f"failed to read in tech data for {proj}!", "warning")
+            tdf = pd.DataFrame(
+                dict(zip(TECH_COLS, [list() for _ in TECH_COLS]))
+            )
+            tflag = True
         
         try:
             sdf = pd.read_csv(INPUT_PATH / f"{proj}_issues.csv")
-        except Exception as _:
-            log(f"failed to read in social data for {proj}! Skipping for now", "warning")
+        except Exception as e:
+            log(f"failed to read in social data for {proj}!", "warning")
+            sdf = pd.DataFrame(
+                dict(zip(SOCIAL_COLS, [list() for _ in SOCIAL_COLS]))
+            )
+            sflag = True
+        
+        # skip if we have no data
+        if tflag and sflag:
+            log(f"failed to convert project {proj} at all since both tech and social data are missing!", "error")
             continue
         
         # export
@@ -200,8 +260,8 @@ def convert_inputs():
         sdf.to_parquet(INPUT_PATH / f"{proj}_social.parquet", index=False)
         
         # remove previous files
-        (INPUT_PATH / f"{proj}-commit-file-dev.csv").unlink()
-        (INPUT_PATH / f"{proj}_issues.csv").unlink()
+        (INPUT_PATH / f"{proj}-commit-file-dev.csv").unlink(missing_ok=True)
+        (INPUT_PATH / f"{proj}_issues.csv").unlink(missing_ok=True)
         
         # add to tracker
         ds_names.append(proj)
@@ -250,6 +310,7 @@ sample_ds = load_datasets()
 )
 def test_end_to_end(ds):
     assert run_pipeline_with_data(ds)
+
 
 if __name__ == "__main__":
     convert_inputs()
