@@ -78,6 +78,11 @@ links:
 - [eclipse_data](https://drive.google.com/drive/folders/1CNLy-d353_KL0L-QxiUMTOZTpfCj1YSA?usp=drive_link)
 - [github_data](https://drive.google.com/drive/folders/1NPa5oBV_e9mduITmXyw_VrxnrmmBXc1e?usp=drive_link)
 
+Running the following should also be sufficient for downloading all the data and
+verifying the directory structure.
+```
+python3 -m decalfc.verify
+```
 
 ### Environment Setup
 It's recommended to use virtual environments to run this module, although most
@@ -132,6 +137,11 @@ python3 -m decalforecaster.pipeline.pipeline --kwargs \
 - Visualizations:
 ```
 python3 -m decalforecaster.abstractions.perfdata
+```
+
+- Testing:
+```
+pytest
 ```
 
 

@@ -682,6 +682,7 @@ class DeltaData:
         try:
             with open(forecast_path, "w") as f:
                 dump(fcs, f, indent=4)
+            log(f"succesfully saved forecasts @ {forecast_path}")
         except Exception as e:
             log(f"failed to save the forecasts in a JSON format :: {e}", "error")
             
@@ -740,6 +741,7 @@ class DeltaData:
         try:
             with open(traj_path, "w") as f:
                 dump(trajs, f, indent=4)
+            log(f"succesfully saved trajectories @ {traj_path}")
         except Exception as e:
             log(f"failed to save the trajectories in a JSON format :: {e}", "error")
             

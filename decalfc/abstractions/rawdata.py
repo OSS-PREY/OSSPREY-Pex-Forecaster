@@ -191,11 +191,25 @@ def clean_file_paths(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
     
     # aux fn
     def process_filename(filename):
-        regex_str = r"^  - copied, (changed|unchanged) from r\d*, "
-        rem = re.subn(regex_str, "", filename)
-        if rem[1] > 1:
-            print(":: ERROR :: double replacement w/", filename)
-        return rem[0] #, rem[1]
+        try:
+            # check type
+            if not isinstance(filename, str):
+                return filename
+            
+            # regex matching to remove
+            regex_str = r"^  - copied, (changed|unchanged) from r\d*, "
+            rem = re.subn(regex_str, "", filename)
+            
+            # check multiple occurrences
+            if rem[1] > 1:
+                log(f"double replacement w/ {filename}", "warning")
+            
+            # export cleaned str
+            return rem[0]
+        except Exception as e:
+            # return original as a fallback
+            log(f"failed to process filename '{filename}': {e}", "error")
+            return filename
     
     # diverge if copying
     if copy:
@@ -206,7 +220,13 @@ def clean_file_paths(data_lookup: dict[str, pd.DataFrame], incubator: str=None, 
     old_file_names = df["file_name"].copy()
     
     log("processing file paths...")
-    df["file_name"] = df["file_name"].parallel_apply(process_filename)
+    try:
+        log("processing file paths...")
+        df["file_name"] = df["file_name"].parallel_apply(process_filename)
+    except Exception as e:
+        log(f"parallel_apply failed: {e}", "warning")
+        log("fallback :: using regular apply...", "warning")
+        df["file_name"] = df["file_name"].apply(process_filename)
 
     # report
     num_changed = (df["file_name"] != old_file_names).sum()
