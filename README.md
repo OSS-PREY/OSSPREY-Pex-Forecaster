@@ -175,3 +175,6 @@ Please feel free to report errors/bugs, suggest features, or reach out with any
 questions/concerns. The primary maintainer is Arjun (arjun3.ashok@gmail.com,
 arjashok@ucdavis.edu).
 
+For general discussions, contributions, and community updates, join our  
+[OSSPREY Slack workspace](https://join.slack.com/t/osspreyworkspace/shared_invite/zt-35bsf2ypc-tS1a5~~n~33FzVUZptKFUA).
+
