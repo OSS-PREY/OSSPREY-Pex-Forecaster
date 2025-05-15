@@ -1268,7 +1268,7 @@ class PerfData:
         # export result
         return df
 
-    def paper_tables(self, save_path: Path | str, acc_measure: str="mic-f1"):
+    def paper_tables(self, save_path: Path | str, acc_measure: str="acc"):
         """Generates a full breakdown for a paper and exports to multiple 
         formats (csv, latex).
         
@@ -1313,15 +1313,22 @@ class PerfData:
         
         # prior to removing the augmentation we used, let's pick the 
         # augmentation that worked best of the three by grouping by the strategy
-        
-        print(summary_df)
-        
         summary_df = PerfData.gather_best_trial_augs(summary_df, acc_measure)
         
-        print(summary_df)
+        # after getting the best trials from each transfer, group the trials by 
+        # the thing we're testing
+        cleaned_strats = ({
+            group: [s.replace(r"{opt}", "").replace(r"{t_opt}", "") for s in strats]
+            for group, strats in PAPER_STRATS.items()
+        })
+        tables = ({
+            group: summary_df[summary_df.transfer_strategy.isin(strats)]
+            for group, strats in cleaned_strats.items()
+        })
         
-        # export csv
-        summary_df.to_csv(Path(save_path) / "paper_table.csv", index=False)
+        # export csvs
+        for group, table in tables.items():
+            table.to_csv(Path(save_path) / f"paper_table_{group}.csv", index=False)
         
         # drop the useless columns and format in the paper style #
         # drop useless cols
@@ -1346,6 +1353,12 @@ class PerfData:
         )
         summary_df.drop(columns=["plus_count"], inplace=True)
         
+        # group by table
+        tables = ({
+            group: summary_df[summary_df.index.isin(strats)]
+            for group, strats in cleaned_strats.items()
+        })
+        
         # save to latex with bolded formats for each row
         def bold_max_row(data):
             return (data.style
@@ -1356,19 +1369,26 @@ class PerfData:
                 )
             )
         
-        latex_str = bold_max_row(summary_df)
+        tables = {group: bold_max_row(table) for group, table in tables.items()}
         
         # fix the formatting bugs (i.e. replace arrows, replace special escapes)
-        latex_str = (latex_str
-            .replace(r"-->", r"$\to$")
-            .replace(r"^", r"\textasciicircum")
-            .replace(r"_", r" ")
-            .replace(r"model arch", r"Model Architecture")
-            .replace(r"transfer strategy", r"Strategy")
-        )
+        def clean_latex_str(latex_str: str) -> str:
+            return (latex_str
+                .replace(r"-->", r"$\to$")
+                .replace(r"^", "") #r"\textasciicircum")
+                .replace(r"_", r" ")
+                .replace(r"model arch", r"Model Architecture")
+                .replace(r"transfer strategy", r"Strategy")
+            )
         
+        tables = {group: clean_latex_str(table) for group, table in tables.items()}
+        
+        # save the breakdowns for the paper
+        for group, table_str in tables.items():
+            with open(Path(save_path) / f"breakdown_{group}.tex", "w") as f:
+                f.write(table_str)
         with open(Path(save_path) / "breakdown.tex", "w") as f:
-            f.write(latex_str)
+            f.write("\n".join(tables.values()))
 
 # Testing
 def icse_wrapper():
@@ -1420,7 +1440,7 @@ def tse_wrapper(**kwargs):
     pfd = PerfData(perf_source="./model-reports/tse-trials/tse_perf_db")
     
     # breakdown
-    pfd.paper_table(save_path="./model-reports/tse-trials/")
+    pfd.paper_tables(save_path="./model-reports/tse-trials/")
 
 
 # Script

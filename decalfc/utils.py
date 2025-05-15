@@ -81,14 +81,14 @@ PAPER_STRATS = {
         \
         "G{opt}^ --> G{t_opt}^^",
     ],
-    "mix_incubator": [
+    "mix_incubator": [ # target present in train
         "A{opt}^ + E{opt} --> A{t_opt}^^",
         "A{opt}^ + O{opt} --> A{t_opt}^^",
         "A{opt}^ + E{opt} + O{opt} --> A{t_opt}^^",
         \
-        "E{opt}^ + A{opt} --> E{t_opt}^^",
+        "A{opt} + E{opt}^ --> E{t_opt}^^",
         "E{opt}^ + O{opt} --> E{t_opt}^^",
-        "E{opt}^ + A{opt} + O{opt} --> E{t_opt}^^",
+        "A{opt} + E{opt}^ + O{opt} --> E{t_opt}^^",
         \
         "O{opt}^ + A{opt} --> O{t_opt}^^",
         "O{opt}^ + E{opt} --> O{t_opt}^^",
@@ -100,7 +100,7 @@ PAPER_STRATS = {
         \
         "A{opt}^ + E{opt}^ + O{opt}^ --> A{t_opt}^^ + E{t_opt}^^ + O{t_opt}^^",
     ],
-    "cross_incubator": [
+    "cross_incubator": [ # target not present in train
         "E{opt} --> A{t_opt}",
         "O{opt} --> A{t_opt}",
         "E{opt} + O{opt} --> A{t_opt}",
@@ -113,8 +113,9 @@ PAPER_STRATS = {
         "E{opt} --> O{t_opt}",
         "A{opt} + E{opt} --> O{t_opt}",
         \
-        "A{opt}^ + E{opt}^ --> A{t_opt}^^ + E{t_opt}^^",
-        "A{opt}^ + E{opt}^ + O{opt}^ --> A{t_opt}^^ + E{t_opt}^^ + O{t_opt}^^"
+        "A{opt} --> E{t_opt} + O{t_opt}",
+        "E{opt} --> A{t_opt} + O{t_opt}",
+        "O{opt} --> A{t_opt} + E{t_opt}"
     ]
 }
 

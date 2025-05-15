@@ -15,6 +15,7 @@ from tqdm import tqdm
 
 # built-in modules
 import sys
+from time import time
 from typing import Iterable, Any
 from itertools import product, permutations, chain, combinations
 
@@ -112,7 +113,9 @@ def k_fold_trial(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> None
     # store only the median trial in the perf database; we'll create a temporary
     # perf-db for this kfold trial, pick the median, and update the actual perf
     # db
-    pfd = PerfData("./model-reports/TEMP_KFOLD_DB")
+    unique_str = str(time())
+    temp_perf_path = f"./model-reports/TEMP_KFOLD_DB_{unique_str}"
+    pfd = PerfData(temp_perf_path)
 
     # train model & test for each fold
     for fold in folds:
@@ -896,7 +899,7 @@ def tse_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> Non
         "cn",
         "cbn"
     ]
-    trial_structs = TRANSFER_STRATS
+    trial_structs = PAPER_STRATS
     
     # setup vars
     num_trials = args_dict.get("trials", 3)
@@ -906,7 +909,7 @@ def tse_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> Non
     # try every set of trials
     for model in models:
         for option in options_structs:
-            for trial in trial_structs:
+            for trial in chain(*trial_structs.values()):
                 # get args dict, implement new options; note the test options
                 # don't use balancing
                 new_args_dict = {
