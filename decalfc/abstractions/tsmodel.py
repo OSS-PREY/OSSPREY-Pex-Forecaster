@@ -1340,31 +1340,33 @@ class TimeSeriesModel:
         for epoch in range(self.hyperparams["num_epochs"]):
             self.model.train()
             losses[epoch] = []
+            
+            # full-batch descent, pad the tensors
+            max_seq_len = max([tensor.size(0) for tensor in md.tensors["train"]["x"]])
+            padded_tensors = [
+                F.pad(tensor, (0, 0, 0, max_seq_len - tensor.size(0))) for tensor in md.tensors["train"]["x"]
+            ]
+            data = torch.stack(padded_tensors, dim=0).to(self.device)
+            target = torch.cat(md.tensors["train"]["y"], dim=0).to(self.device).to(torch.float32)
 
-            for data, target in tqdm(list(zip(md.tensors["train"]["x"], md.tensors["train"]["y"]))):
-                data = data.to(self.device).reshape(1, data.shape[0], -1)
-                target = target.to(self.device).to(torch.float32)
+            # forward
+            pred = self.model(data)[..., 1].to(torch.float32)
 
-                # Forward pass
-                pred = self.model.predict(data)[..., 1].to(torch.float32)
+            # focal loss, backward pass
+            loss = self.loss_fc(pred, target)
+            self.optimizer.zero_grad()
+            loss.backward()
 
-                # Compute loss (Focal Loss)
-                loss = self.loss_fc(pred, target)
-                
-                # Backward pass
-                self.optimizer.zero_grad()
-                loss.backward()
+            # grad clipping
+            torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
 
-                # Gradient clipping
-                torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
+            # step the optimizer
+            self.optimizer.step()
 
-                # Optimizer step
-                self.optimizer.step()
+            # loss tracking
+            losses[epoch].append(loss.item())
 
-                # Track loss
-                losses[epoch].append(loss.item())
-
-            # Validation loss computation
+            # compute val loss
             self.model.eval()
             test_losses[epoch] = []
 
@@ -1376,21 +1378,21 @@ class TimeSeriesModel:
                     pred = self.model(data)[..., 1].to(torch.float32)
                     test_losses[epoch].append(self.loss_fc(pred, target).item())
 
-            # Compute mean loss per epoch
+            # mean loss
             losses[epoch] = np.mean(losses[epoch])
             test_losses[epoch] = np.mean(test_losses[epoch])
 
-            # Logging
+            # logging
             current_lr = self.optimizer.param_groups[0]["lr"]
             log(f"Epoch [{epoch + 1}/{self.hyperparams['num_epochs']}] | "
                 f"Loss: {losses[epoch]:.4f}, Test Loss: {test_losses[epoch]:.4f}, "
                 f"LR: {current_lr:.6f}", "log")
 
-            # Learning rate scheduling
+            # lr scheduling
             if self.scheduler is not None:
                 self.scheduler.step(test_losses[epoch])
 
-            # Early stopping
+            # early stopping protocol
             avg_loss = losses[epoch]
 
             if avg_loss < best_loss - TOLERANCE:
@@ -1407,7 +1409,7 @@ class TimeSeriesModel:
                     self.model.load_state_dict(best_model_weights)
                     break
 
-        # Final check for NaN or Inf loss
+        # check for divergence
         if np.isnan(sorted(losses.items(), reverse=True)[0][1]) or np.isinf(sorted(losses.items(), reverse=True)[0][1]):
             log("NaN or Inf loss generated, i.e. failed to converge: ignoring and exiting", "error")
 

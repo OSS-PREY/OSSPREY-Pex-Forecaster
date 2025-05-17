@@ -1268,7 +1268,7 @@ class PerfData:
         # export result
         return df
 
-    def paper_tables(self, save_path: Path | str, acc_measure: str="acc"):
+    def paper_tables(self, save_path: Path | str, acc_measure: str="mic-f1", **kwargs):
         """Generates a full breakdown for a paper and exports to multiple 
         formats (csv, latex).
         
@@ -1440,7 +1440,7 @@ def tse_wrapper(**kwargs):
     pfd = PerfData(perf_source="./model-reports/tse-trials/tse_perf_db")
     
     # breakdown
-    pfd.paper_tables(save_path="./model-reports/tse-trials/")
+    pfd.paper_tables(save_path="./model-reports/tse-trials/", **kwargs["args_dict"])
 
 
 # Script
