@@ -1969,3 +1969,4 @@ def load_hyperparams(new_hp: dict[str, Any]) -> dict[str, Any]:
 # Testing
 if __name__ == "__main__":
     TimeSeriesModel.clean_weights()
+
