@@ -19,6 +19,7 @@ from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
 
 import os
+import sys
 import re
 import json
 import random
@@ -158,7 +159,6 @@ class NetData:
         """
 
         # gen_string
-        params_dict = load_params()
         if self.options == {}:
             return "clean"
 
@@ -171,9 +171,6 @@ class NetData:
         """
             Generates the path for saving/loading the data.
         """
-
-        # load params
-        params_dict = load_params()
 
         # generate path
         PATH_FORMAT = params_dict["network-data-format"]
@@ -191,7 +188,6 @@ class NetData:
         """
 
         # generate the default versions dict
-        params_dict = load_params()
         self.versions = (dict(zip(
             ["tech", "social"],
             params_dict["default-versions"][self.incubator]
@@ -609,7 +605,7 @@ class NetData:
         """
 
         # load project incubation
-        proj_inc_path = load_params()["incubation-time"][self.incubator]
+        proj_inc_path = params_dict["incubation-time"][self.incubator]
         with open(proj_inc_path, "r") as f:
             proj_inc_dict = json.load(f)
         
@@ -656,7 +652,7 @@ class NetData:
         plt.savefig(f"../model-reports/synthetic-data/{strategy}-{self.incubator}-comparison")
         plt.clf()
     
-    def distributions(self, outlier_threshold: float=None) -> int:
+    def distributions(self, outlier_threshold: float=None) -> None:
         """
             Generates a summary of the distributions of a network by feature. 
             Does a project-wise aggregate (i.e. how is each project distributed) 
@@ -697,7 +693,7 @@ class NetData:
         # setup report
         output_dir = network_dir / "statistics" / "distributions/"
         check_dir(output_dir)
-        report_path = f"{output_dir}{self.incubator}-{self.versions['tech']}-{self.versions['social']}"
+        report_path = output_dir / f"{self.incubator}-{self.versions['tech']}-{self.versions['social']}"
 
         # project-wise metrics
         ## group by time-series
@@ -754,10 +750,10 @@ class NetData:
         
         # check args
         if incubators is None:
-            incubators = load_params()["datasets"]
+            incubators = params_dict["datasets"]
         
         # load in all incubation timings
-        incubation_paths = load_params()["incubation-time"]
+        incubation_paths = params_dict["incubation-time"]
         project_lengths = {
             incubator: list(json.load(open(incubation_paths[incubator], "r")).values())
             for incubator in incubators
@@ -1329,7 +1325,7 @@ class NetData:
             """
             
             # load data
-            with open(load_params()["incubation-time"][incubator], "r") as f:
+            with open(params_dict["incubation-time"][incubator], "r") as f:
                 base_projects = json.load(f)                                        # compare count for each base
             
             mod_unique_projects = set(mod_data["proj_name"].unique()) - set(base_projects.keys())
@@ -2027,25 +2023,38 @@ class NetData:
         raise NotImplementedError
 
 
-# Testing
+# Scripting & Testing
+def __nd_main(args_dict: dict[str, Any]) -> None:
+    match args_dict.get("script", "tse"):
+        case "tse":
+            TSE_INCS = ["apache", "github", "eclipse", "osgeo"]
+            
+            NetData.project_length_distribution(
+                incubators=TSE_INCS
+            )
+            
+            for inc in TSE_INCS:
+                nd = NetData(inc, do_compute_tensors=False)
+                nd.distributions()
+                nd.feature_correlations()
+        
+        case _:
+            raise ValueError(f"Script {args_dict['script']} does not have an implementation / DNE")
+
+
 if __name__ == "__main__":
-    # load all incubators
-    nd = NetData("apache", do_compute_tensors=False)
-    nd_s = NetData("apache", options={"smooth": True}, do_compute_tensors=False, ignore_cache=True)
+    args_dict = parse_input(sys.argv)
+    __nd_main(args_dict=args_dict)
     
-    NetData.compare_netdata_timelines(nd.data, nd_s.data, "spark")
+    # # load all incubators
+    # nd = NetData("apache", do_compute_tensors=False)
+    # nd_s = NetData("apache", options={"smooth": True}, do_compute_tensors=False, ignore_cache=True)
+    
+    # NetData.compare_netdata_timelines(nd.data, nd_s.data, "spark")
     
     # print(nd_b.split_set["train"] & nd.split_set["test"])
     # print({len(s) for _, s in nd.split_set.items()})
     # print({len(s) for _, s in nd_b.split_set.items()})
-    
-    # incubators = _load_params()["datasets"]
-    # for incubator in incubators:
-    #     nd = NetData(incubator, gen_tensors=False)
-    #     nd.distributions()
-    #     nd.feature_correlations()
-    
-    # NetData.project_length_distribution()
         
     # nd.interval_netdata(proportion=1/8)
     # nd.aggregate_netdata()

@@ -1441,6 +1441,15 @@ def tse_wrapper(**kwargs):
     
     # breakdown
     pfd.paper_tables(save_path="./model-reports/tse-trials/", **kwargs["args_dict"])
+    
+    # load and re-save the paper tables for mic and macro
+    df = pd.read_csv("./model-reports/tse-trials/paper_table.csv")
+    df = df[~df.transfer_strategy.str.contains("+", regex=False)]
+    df.transfer_strategy = df.transfer_strategy.str.replace("^", "")
+    
+    df.pivot()
+    
+    
 
 
 # Script
