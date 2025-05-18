@@ -42,6 +42,7 @@ from decalfc.abstractions.perfdata import *
 # Constants
 params_dict = load_params()
 weights_dir = Path(params_dict["weights-dir"])
+PAD_SEQ_LEN = 128
 
 
 # Model Architectures
@@ -1118,42 +1119,40 @@ class TimeSeriesModel:
             # intialize
             self.scheduler = self.scheduler(optimizer=self.optimizer)
 
-    def test_reg(self, X, y, raw_prob: bool=False) -> dict[str, list[Any]]:
+    def test_reg(self, X, y, raw_prob: bool=False) -> tuple[dict[str, list[Any]], float]:
         """
             Regular trials.
         """
 
-        # setup
-        preds_list = np.empty(0)
-        targets_list = np.empty(0)
-        missed_projects = []
-
         # generate prediction
-        for i, (data, target) in enumerate(zip(X, y)):
-            # transform data to use
-            data = data.to(self.device)# .squeeze(1)
-            data = data.reshape(1, data.shape[0], -1)
+        self.model.eval()
+        with torch.no_grad():
+            # pad the input sequences to (ntest_samples, PAD_SEQ_LEN, D)
+            padded_data = [
+                F.pad(data, (0, 0, 0, PAD_SEQ_LEN - data.size(0))) for data in X
+            ]
+            data_tensor = torch.stack(padded_data, dim=0).to(self.device)
+            targets_tensor = torch.tensor(y, dtype=torch.float32).to(self.device)
 
-            targets = target.to(self.device)
-
+            # run prediction
             if raw_prob:
-                preds = self.model.predict(data)[:, 1].to(self.device)  # grab probability of success
+                preds = self.model.predict(data_tensor)[:, 1].to(self.device)  # grab probability of success
             else:
-                preds = torch.argmax(self.model.predict(data), dim=1).to(self.device)
-                
-                # mismatched
-                if targets.cpu().detach().numpy()[0] != preds.cpu().detach().numpy()[0]:
-                    missed_projects.append(i)
+                preds = torch.argmax(self.model.predict(data_tensor), dim=1).to(self.device)
 
-            # concatenate lists
-            preds_list = np.concatenate((preds_list, preds.cpu().detach().numpy()))
-            targets_list = np.concatenate((targets_list, targets.cpu().detach().numpy()))
+            # erroneous predictions
+            mismatched_indices = (targets_tensor.cpu().numpy() != preds.cpu().numpy()).nonzero()[0]
+            missed_projects = mismatched_indices.tolist()
+            
+            # sum loss
+            total_loss = self.loss_fc(preds.to(torch.float32), targets_tensor).item() / len(data_tensor)
 
-        # reshape
-        preds_list.flatten()
-        targets_list.flatten()
-
-        return {"preds": preds_list, "targets": targets_list, "missed-projects": missed_projects}
+        self.model.train()
+        return {
+            "preds": preds.cpu().tolist(),
+            "targets": targets_tensor.cpu().tolist(),
+            "missed-projects": missed_projects
+        }, total_loss
 
     def test_intervaled(self, X_dict, y_dict, raw_prob: bool=False) -> dict[str, dict[str, list[Any]]]:
         """
@@ -1341,42 +1340,59 @@ class TimeSeriesModel:
             self.model.train()
             losses[epoch] = []
             
-            # full-batch descent, pad the tensors
+            # mini-batch gradient descent
+            global PAD_SEQ_LEN
+            
+            batch_size = self.hyperparams.get("batch_size", len(md.tensors["train"]["x"]))
             max_seq_len = max([tensor.size(0) for tensor in md.tensors["train"]["x"]])
-            padded_tensors = [
-                F.pad(tensor, (0, 0, 0, max_seq_len - tensor.size(0))) for tensor in md.tensors["train"]["x"]
-            ]
-            data = torch.stack(padded_tensors, dim=0).to(self.device)
-            target = torch.cat(md.tensors["train"]["y"], dim=0).to(self.device).to(torch.float32)
+            PAD_SEQ_LEN = max(max_seq_len, PAD_SEQ_LEN)
 
-            # forward
-            pred = self.model(data)[..., 1].to(torch.float32)
+            # create batches
+            for i in range(0, len(md.tensors["train"]["x"]), batch_size):
+                batch_x = md.tensors["train"]["x"][i:i + batch_size]
+                batch_y = md.tensors["train"]["y"][i:i + batch_size]
 
-            # focal loss, backward pass
-            loss = self.loss_fc(pred, target)
-            self.optimizer.zero_grad()
-            loss.backward()
+                # pad the tensors in the batch
+                padded_tensors = [
+                    F.pad(tensor, (0, 0, 0, max_seq_len - tensor.size(0))) for tensor in batch_x
+                ]
+                data = torch.stack(padded_tensors, dim=0).to(self.device)
+                target = torch.cat(batch_y, dim=0).to(self.device).to(torch.float32)
 
-            # grad clipping
-            torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
+                # forward
+                pred = self.model(data)[..., 1].to(torch.float32)
 
-            # step the optimizer
-            self.optimizer.step()
+                # focal loss, backward pass
+                loss = self.loss_fc(pred, target)
+                self.optimizer.zero_grad()
+                loss.backward()
 
-            # loss tracking
-            losses[epoch].append(loss.item())
+                # grad clipping
+                torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
+
+                # step the optimizer
+                self.optimizer.step()
+
+                # loss tracking
+                losses[epoch].append(loss.item())
 
             # compute val loss
             self.model.eval()
-            test_losses[epoch] = []
+            
+            cur_test_acc, cur_test_loss = self.test(md)
+            test_losses[epoch] = [cur_test_loss]
 
-            with torch.no_grad():
-                for data, target in list(zip(md.tensors["test"]["x"], md.tensors["test"]["y"])):
-                    data = data.to(self.device).reshape(1, data.shape[0], -1)
-                    target = target.to(self.device).to(torch.float32)
+            # with torch.no_grad():
+            #     self.model.eval()
+                
+            #     for data, target in list(zip(md.tensors["test"]["x"], md.tensors["test"]["y"])):
+            #         data = data.to(self.device).reshape(1, data.shape[0], -1)
+            #         target = target.to(self.device).to(torch.float32)
 
-                    pred = self.model(data)[..., 1].to(torch.float32)
-                    test_losses[epoch].append(self.loss_fc(pred, target).item())
+            #         pred = self.model(data)[..., 1].to(torch.float32)
+            #         test_losses[epoch].append(self.loss_fc(pred, target).item())
+                
+            #     self.model.train()
 
             # mean loss
             losses[epoch] = np.mean(losses[epoch])
@@ -1386,6 +1402,7 @@ class TimeSeriesModel:
             current_lr = self.optimizer.param_groups[0]["lr"]
             log(f"Epoch [{epoch + 1}/{self.hyperparams['num_epochs']}] | "
                 f"Loss: {losses[epoch]:.4f}, Test Loss: {test_losses[epoch]:.4f}, "
+                f"Test Acc: {cur_test_acc:.4f} | " 
                 f"LR: {current_lr:.6f}", "log")
 
             # lr scheduling
@@ -1425,12 +1442,12 @@ class TimeSeriesModel:
         # dot = make_dot(y, params=dict(model.named_parameters()))
         # dot.render("model_architecture", format="png")
 
-        # visualize loss
-        dir = Path().cwd() / "model-reports" / "loss-visualization"
-        check_dir(dir)
+        # # visualize loss
+        # dir = Path().cwd() / "model-reports" / "loss-visualization"
+        # check_dir(dir)
 
-        df = pd.DataFrame(list(losses.items()), columns=["Epoch", "Loss"])
-        test_df = pd.DataFrame(list(test_losses.items()), columns=["Epoch", "Loss"])
+        # df = pd.DataFrame(list(losses.items()), columns=["Epoch", "Loss"])
+        # test_df = pd.DataFrame(list(test_losses.items()), columns=["Epoch", "Loss"])
 
         # sns.set_style("darkgrid")
         # sns.lineplot(x="Epoch", y="Loss", data=df, color="darkred", label="train_loss")
@@ -1447,7 +1464,7 @@ class TimeSeriesModel:
         # plt.clf()
 
 
-    def test(self, md, raw_prob: bool=False) -> None:
+    def test(self, md, raw_prob: bool=False) -> tuple[float, float]:
         """
             Runs the model on the test data and returns the results. NOTE for 
             intervaled testing we assume all testing incubators have been 
@@ -1462,12 +1479,17 @@ class TimeSeriesModel:
         
         if self.is_interval["test"]:
             test_results = self.test_intervaled(md.tensors["test"]["x"], md.tensors["test"]["y"], raw_prob=raw_prob)
+            test_loss = -1
         else:
-            test_results = self.test_reg(md.tensors["test"]["x"], md.tensors["test"]["y"], raw_prob=raw_prob)
+            test_results, test_loss = self.test_reg(md.tensors["test"]["x"], md.tensors["test"]["y"], raw_prob=raw_prob)
         
         self.preds = test_results["preds"]
         self.targets = test_results["targets"]
         self.case_studies = test_results.get("missed-projects", list())
+        return (
+            sum(1 if p == t else 0 for p, t in zip(self.preds, self.targets)) / len(self.preds),
+            test_loss
+        )
 
 
     def soft_probs(self, interval_data: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:
