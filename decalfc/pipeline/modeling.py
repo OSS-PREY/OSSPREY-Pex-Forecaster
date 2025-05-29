@@ -905,6 +905,7 @@ def tse_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> Non
     num_trials = args_dict.get("trials", 3)
     perf_db_path = "./model-reports/tse-trials/tse_perf_db"
     check_path(perf_db_path)
+    df = pd.read_csv("./model-reports/tse-trials/paper_table.csv")
     
     # try every set of trials
     for model in models:
@@ -918,6 +919,15 @@ def tse_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> Non
                     "model-arch": model,
                     **args_dict
                 }
+                
+                # skip if we already have done this trial
+                trial_cleaned = trial.replace("{opt}", "").replace("{t_opt}","")
+                if not df[
+                    (df["model_arch"] == model) &
+                    (df["transfer_strategy"] == trial_cleaned)
+                ].empty:
+                    log(f"SKIPPING {model} :: {trial_cleaned} w/ AUG {option if option else 'clean'}")
+                    continue
                 
                 # generate results
                 for _ in range(num_trials):

@@ -15,6 +15,7 @@ from tqdm import tqdm
 import argparse
 import json
 import shutil
+from itertools import chain
 from time import time
 from pprint import pformat, pprint
 from os import cpu_count
@@ -25,6 +26,9 @@ from typing import Any
 ## constants
 PARAMS_PATH = Path("./ref/params.json")
 NUM_PROCESSES = cpu_count()
+NUM_PROCESSES = 1 if NUM_PROCESSES is None else (NUM_PROCESSES // 2) # use 50% of the cpu
+NUM_PROCESSES = max(NUM_PROCESSES, 1)
+
 PARQUET_ENGINE = "pyarrow"
 CSV_ENGINE = "python"
 DEVICE = (
@@ -34,40 +38,18 @@ DEVICE = (
         else "cpu"
     )
 )
-TRANSFER_STRATS = [
-    "A{opt} --> A{t_opt}",
-    "E{opt} --> A{t_opt}",
-    "O{opt} --> A{t_opt}",
-    "E{opt} + O{opt} --> A{t_opt}",
-    "A{opt}^ + E{opt} --> A{t_opt}^^",
-    "A{opt} --> E{t_opt}",
-    "O{opt} --> E{t_opt}",
-    "A{opt} + O{opt} --> E{t_opt}",
-    "E{opt}^ --> E{t_opt}^^",
-    "A{opt} + E{opt}^ --> E{t_opt}^^",
-    "A{opt} --> G{t_opt}",
-    "E{opt} --> G{t_opt}",
-    "O{opt} --> G{t_opt}",
-    "A{opt} + E{opt} --> G{t_opt}",
-    "A{opt} + O{opt} --> G{t_opt}",
-    "E{opt} + O{opt} --> G{t_opt}",
-    "A{opt}^ + E{opt}^ --> A{t_opt}^^ + E{t_opt}^^",
-    "A{opt}^ + E{opt}^ + O{opt}^ --> A{t_opt}^^ + E{t_opt}^^ + O{t_opt}^^",
-    "A{opt}^ + E{opt}^ --> A{t_opt}^^ + E{t_opt}^^ + G{t_opt}",
-    "A{opt}^ + E{opt}^ + O{opt}^ --> A{t_opt}^^ + E{t_opt}^^ + O{t_opt}^^ + G{t_opt}"
-    "A{opt} + E{opt} + O{opt} --> G{t_opt}"
-]
+
 PAPER_STRATS = {
     "sustainability_to_success": [
         "A{opt} --> G{t_opt}",
         "E{opt} --> G{t_opt}",
         "O{opt} --> G{t_opt}",
         \
-        "A{opt} + E{opt} --> G{t_opt}",
-        "A{opt} + O{opt} --> G{t_opt}",
-        "E{opt} + O{opt} --> G{t_opt}",
+        # "A{opt} + E{opt} --> G{t_opt}",
+        # "A{opt} + O{opt} --> G{t_opt}",
+        # "E{opt} + O{opt} --> G{t_opt}",
         \
-        "A{opt} + E{opt} + O{opt} --> G{t_opt}"
+        # "A{opt} + E{opt} + O{opt} --> G{t_opt}"
     ],
     "success_to_sustainability": [
         "G{opt} --> A{t_opt}",
@@ -81,43 +63,44 @@ PAPER_STRATS = {
         \
         "G{opt}^ --> G{t_opt}^^",
     ],
-    "mix_incubator": [ # target present in train
-        "A{opt}^ + E{opt} --> A{t_opt}^^",
-        "A{opt}^ + O{opt} --> A{t_opt}^^",
-        "A{opt}^ + E{opt} + O{opt} --> A{t_opt}^^",
+    "mix_incubator": [
+        # "A{opt}^ + E{opt} --> A{t_opt}^^",
+        # "A{opt}^ + O{opt} --> A{t_opt}^^",
+        # "A{opt}^ + E{opt} + O{opt} --> A{t_opt}^^",
         \
-        "A{opt} + E{opt}^ --> E{t_opt}^^",
-        "E{opt}^ + O{opt} --> E{t_opt}^^",
-        "A{opt} + E{opt}^ + O{opt} --> E{t_opt}^^",
+        # "A{opt} + E{opt}^ --> E{t_opt}^^",
+        # "E{opt}^ + O{opt} --> E{t_opt}^^",
+        # "A{opt} + E{opt}^ + O{opt} --> E{t_opt}^^",
         \
-        "O{opt}^ + A{opt} --> O{t_opt}^^",
-        "O{opt}^ + E{opt} --> O{t_opt}^^",
-        "O{opt}^ + A{opt} + E{opt} --> O{t_opt}^^",
+        # "O{opt}^ + A{opt} --> O{t_opt}^^",
+        # "O{opt}^ + E{opt} --> O{t_opt}^^",
+        # "O{opt}^ + A{opt} + E{opt} --> O{t_opt}^^",
         \
-        "A{opt}^ + E{opt}^ --> A{t_opt}^^ + E{t_opt}^^",
-        "A{opt}^ + O{opt}^ --> A{t_opt}^^ + O{t_opt}^^",
-        "E{opt}^ + O{opt}^ --> E{t_opt}^^ + O{t_opt}^^",
+        # "A{opt}^ + E{opt}^ --> A{t_opt}^^ + E{t_opt}^^",
+        # "A{opt}^ + O{opt}^ --> A{t_opt}^^ + O{t_opt}^^",
+        # "E{opt}^ + O{opt}^ --> E{t_opt}^^ + O{t_opt}^^",
         \
-        "A{opt}^ + E{opt}^ + O{opt}^ --> A{t_opt}^^ + E{t_opt}^^ + O{t_opt}^^",
+        # "A{opt}^ + E{opt}^ + O{opt}^ --> A{t_opt}^^ + E{t_opt}^^ + O{t_opt}^^",
     ],
     "cross_incubator": [ # target not present in train
         "E{opt} --> A{t_opt}",
         "O{opt} --> A{t_opt}",
-        "E{opt} + O{opt} --> A{t_opt}",
+        # "E{opt} + O{opt} --> A{t_opt}",
         \
         "A{opt} --> E{t_opt}",
         "O{opt} --> E{t_opt}",
-        "A{opt} + O{opt} --> E{t_opt}",
+        # "A{opt} + O{opt} --> E{t_opt}",
         \
         "A{opt} --> O{t_opt}",
         "E{opt} --> O{t_opt}",
-        "A{opt} + E{opt} --> O{t_opt}",
+        # "A{opt} + E{opt} --> O{t_opt}",
         \
-        "A{opt} --> E{t_opt} + O{t_opt}",
-        "E{opt} --> A{t_opt} + O{t_opt}",
-        "O{opt} --> A{t_opt} + E{t_opt}"
+        # "A{opt} --> E{t_opt} + O{t_opt}",
+        # "E{opt} --> A{t_opt} + O{t_opt}",
+        # "O{opt} --> A{t_opt} + E{t_opt}"
     ]
 }
+TRANSFER_STRATS = chain(PAPER_STRATS.values())
 
 
 # --- Utility --- #

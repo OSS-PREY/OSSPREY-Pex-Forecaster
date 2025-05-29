@@ -1291,7 +1291,11 @@ class PerfData:
         measure_translation = {
             "acc": ("accuracy", "accuracy"),
             "mac-f1": ("macro avg", "f1-score"),
-            "mic-f1": ("weighted avg", "f1-score")
+            "mic-f1": ("weighted avg", "f1-score"),
+            "mic-prec": ("weighted avg", "precision"),
+            "mic-rec": ("weighted avg", "recall"),
+            "mac-prec": ("macro avg", "precision"),
+            "mac-rec": ("macro avg", "recall"),
         }[acc_measure]
         
         # only keep the measure we want
@@ -1439,18 +1443,68 @@ def tse_wrapper(**kwargs):
     # load the perf db
     pfd = PerfData(perf_source="./model-reports/tse-trials/tse_perf_db")
     
-    # breakdown
-    pfd.paper_tables(save_path="./model-reports/tse-trials/", **kwargs["args_dict"])
-    
-    # load and re-save the paper tables for mic and macro
-    df = pd.read_csv("./model-reports/tse-trials/paper_table.csv")
-    df = df[~df.transfer_strategy.str.contains("+", regex=False)]
-    df.transfer_strategy = df.transfer_strategy.str.replace("^", "")
-    
-    df.pivot()
-    
-    
+    # sub-wrapper for aggregating and pivoting
+    def sub_wrapper(metric: str="mic-f1_mean"):
+        # load and re-save the paper tables for mic and macro
+        df = pd.concat([
+            pd.read_csv("model-reports/tse-trials/paper_table_in_incubator.csv"),
+            pd.read_csv("model-reports/tse-trials/paper_table_cross_incubator.csv"),
+            pd.read_csv("model-reports/tse-trials/paper_table_success_to_sustainability.csv"),
+            pd.read_csv("model-reports/tse-trials/paper_table_sustainability_to_success.csv")
+        ])
+        df = df[~df.transfer_strategy.str.contains("+", regex=False)]
+        df.transfer_strategy = df.transfer_strategy.str.replace("^", "")
+        
+        # pivot
+        df = df.pivot(
+            index="transfer_strategy", columns="model_arch", values=metric
+        ).reset_index()
+        
+        return df
 
+    # use aggregation for multiple trials; weighted averages
+    def avg_strat_wrapper(strat: str="mic"):
+        dfs = list()
+        pfd.paper_tables(
+            save_path="./model-reports/tse-trials/", acc_measure=f"{strat}-prec"
+        )
+        dfs.append(sub_wrapper(f"{strat}-prec_mean"))
+        pfd.paper_tables(
+            save_path="./model-reports/tse-trials/", acc_measure=f"{strat}-rec"
+        )
+        dfs.append(sub_wrapper(f"{strat}-rec_mean"))
+        pfd.paper_tables(
+            save_path="./model-reports/tse-trials/", acc_measure=f"{strat}-f1"
+        )
+        dfs.append(sub_wrapper(f"{strat}-f1_mean"))
+        
+        # combine
+        for i, d in enumerate(dfs):
+            d.set_index("transfer_strategy", inplace=True)
+            dfs[i] = d
+
+        # concatenate and flip the hierarchy of the columns
+        df = pd.concat(dfs, axis=1, keys=["precision", "recall", "f1-score"])
+        df = df.stack(level=0).unstack(level=1).reset_index()
+        
+        # sort by strategy
+        df = df.sort_values(by=["transfer_strategy"], ascending=[True])
+        
+        # concatenate the support
+        support_df = sub_wrapper("support")[["transfer_strategy", "BLSTM"]]
+        support_df.rename(columns={"BLSTM": "support"}, inplace=True)
+        support_df = support_df.sort_values(by=["transfer_strategy"], ascending=[True])
+        support_df.set_index("transfer_strategy")
+        df = pd.concat([df, support_df[["support"]]], axis="columns", ignore_index=False)
+
+        # save to csv
+        df.to_csv(f"./model-reports/tse-trials/paper_table_pivoted_{strat}.csv", index=False)
+    
+    avg_strat_wrapper()
+    avg_strat_wrapper("mac")
+    
+    # redo final breakdown
+    pfd.paper_tables(save_path="./model-reports/tse-trials/", **kwargs["args_dict"])
 
 # Script
 def __pfd_main():

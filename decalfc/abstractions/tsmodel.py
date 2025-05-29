@@ -1124,33 +1124,40 @@ class TimeSeriesModel:
             Regular trials.
         """
 
+        # trackers
+        preds = list()
+        targets = list()
+        total_loss = 0.0
+
         # generate prediction
         self.model.eval()
         with torch.no_grad():
-            # pad the input sequences to (ntest_samples, PAD_SEQ_LEN, D)
-            padded_data = [
-                F.pad(data, (0, 0, 0, PAD_SEQ_LEN - data.size(0))) for data in X
-            ]
-            data_tensor = torch.stack(padded_data, dim=0).to(self.device)
-            targets_tensor = torch.tensor(y, dtype=torch.float32).to(self.device)
+            for data, target in zip(X, y):
+                # transform to (1, ntimesteps, nfeatures)
+                data_tensor = data.unsqueeze(0).to(self.device)
+                target_tensor = torch.tensor([target], dtype=torch.float32).to(self.device)
 
-            # run prediction
-            if raw_prob:
-                preds = self.model.predict(data_tensor)[:, 1].to(self.device)  # grab probability of success
-            else:
-                preds = torch.argmax(self.model.predict(data_tensor), dim=1).to(self.device)
+                # predictions
+                if raw_prob:
+                    pred = self.model.predict(data_tensor)[:, 1]
+                else:
+                    pred = torch.argmax(self.model.predict(data_tensor), dim=1)
 
-            # erroneous predictions
-            mismatched_indices = (targets_tensor.cpu().numpy() != preds.cpu().numpy()).nonzero()[0]
-            missed_projects = mismatched_indices.tolist()
+                # accumulate
+                preds.append(pred.cpu().item())
+                targets.append(target_tensor.cpu().item())
+                total_loss += self.loss_fc(pred.to(torch.float32), target_tensor).item()
+                
+            # avg the loss
+            total_loss /= len(X)
             
-            # sum loss
-            total_loss = self.loss_fc(preds.to(torch.float32), targets_tensor).item() / len(data_tensor)
+            # erroneous predictions
+            missed_projects = (np.array(targets) != np.array(preds)).tolist()
 
         self.model.train()
         return {
-            "preds": preds.cpu().tolist(),
-            "targets": targets_tensor.cpu().tolist(),
+            "preds": preds,
+            "targets": targets,
             "missed-projects": missed_projects
         }, total_loss
 
@@ -1339,31 +1346,20 @@ class TimeSeriesModel:
         for epoch in range(self.hyperparams["num_epochs"]):
             self.model.train()
             losses[epoch] = []
-            
-            # mini-batch gradient descent
-            global PAD_SEQ_LEN
-            
-            batch_size = self.hyperparams.get("batch_size", len(md.tensors["train"]["x"]))
-            max_seq_len = max([tensor.size(0) for tensor in md.tensors["train"]["x"]])
-            PAD_SEQ_LEN = max(max_seq_len, PAD_SEQ_LEN)
 
-            # create batches
-            for i in range(0, len(md.tensors["train"]["x"]), batch_size):
-                batch_x = md.tensors["train"]["x"][i:i + batch_size]
-                batch_y = md.tensors["train"]["y"][i:i + batch_size]
+            # stochastic GD
+            for data, target in tqdm(list(zip(md.tensors["train"]["x"], md.tensors["train"]["y"]))):
+                # shape into (B --> 1, ntimesteps, nfeatures)
+                data = data.to(self.device).reshape(1, data.shape[0], -1)
+                target = target.to(self.device).to(torch.float32)
 
-                # pad the tensors in the batch
-                padded_tensors = [
-                    F.pad(tensor, (0, 0, 0, max_seq_len - tensor.size(0))) for tensor in batch_x
-                ]
-                data = torch.stack(padded_tensors, dim=0).to(self.device)
-                target = torch.cat(batch_y, dim=0).to(self.device).to(torch.float32)
+                # forward pass
+                pred = self.model.predict(data)[..., 1].to(torch.float32)
 
-                # forward
-                pred = self.model(data)[..., 1].to(torch.float32)
-
-                # focal loss, backward pass
+                # compute loss (Focal Loss)
                 loss = self.loss_fc(pred, target)
+                
+                # backward pass
                 self.optimizer.zero_grad()
                 loss.backward()
 
