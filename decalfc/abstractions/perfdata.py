@@ -1506,6 +1506,30 @@ def tse_wrapper(**kwargs):
     # redo final breakdown
     pfd.paper_tables(save_path="./model-reports/tse-trials/", **kwargs["args_dict"])
 
+def check_augmentation_perf(perf_metric: tuple[str, str]=("weighted avg", "f1-score")):
+    """Breakdown of performance by augmentation."""
+    
+    # pivot to only keep the requested performance metric
+    pfd = PerfData(perf_source="./model-reports/tse-trials/tse_perf_db")
+    pfd.data = pfd.data[(pfd.data.label == perf_metric[0]) & (pfd.data.metric == perf_metric[1])]
+    pfd.data.rename(columns={"perf": perf_metric[1]}, inplace=True)
+    pfd.data.drop(columns=["label", "metric"], inplace=True)
+    
+    # create the augmentation flag
+    pfd.data["augmentation"] = pfd.data.transfer_strategy.str.split(" ").str[0].str[1:]
+    pfd.data["augmentation"] = pfd.data.augmentation.str.replace(r"^", "", regex=False)
+    
+    # summarize by the augmentation and model arch
+    summary = pfd.data.groupby(["model_arch", "augmentation"])[perf_metric[1]].agg(["mean", "median", "max", "min", "std"]).reset_index()
+    summary.sort_values(
+        by=["mean", "median", "std", "max", "min"],
+        ascending=[False, False, True, False, False], inplace=True
+    )
+    
+    # export to the results
+    summary.to_csv(Path().cwd() / params_dict["reports-dir"] / "comparisons" / "augmentation_breakdown.csv", index=False)
+    
+
 # Script
 def __pfd_main():
     # setup
@@ -1521,6 +1545,9 @@ def __pfd_main():
             tse_wrapper(
                 args_dict=args_dict
             )
+        
+        case "augmentation":
+            check_augmentation_perf()
         
         case _:
             print(":(")

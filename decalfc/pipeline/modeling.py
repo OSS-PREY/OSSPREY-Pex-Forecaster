@@ -25,7 +25,7 @@ from decalfc.abstractions.modeldata import *
 from decalfc.abstractions.perfdata import *
 from decalfc.abstractions.tsmodel import *
 
-# ---------------- modeling script ---------------- #
+# ---------------- training scripts ---------------- #
 def modeling(params_dict: dict, args_dict: dict, *args, **kwargs):
     """
         Wraps modeling functionality.
@@ -947,7 +947,7 @@ def tse_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> Non
     perf_db = PerfData(perf_source=perf_db_path)
     best_df = perf_db.best_perfs(transfer_strats=trial_structs, export=True)
 
-# Script
+# ---------------- script ---------------- #
 def __modeling_main():
     # setup
     args_dict = parse_input(sys.argv)
