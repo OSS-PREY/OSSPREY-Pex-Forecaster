@@ -1,0 +1,25 @@
+project,prediction,target,train_strategy,model_arch
+deegree,graduated,graduated,Oc^ --> Oc^^,DLSTM
+gdal-ogr,graduated,incubating,Oc^ --> Oc^^,DLSTM
+geomajas,retired,retired,Oc^ --> Oc^^,DLSTM
+geonetwork,graduated,graduated,Oc^ --> Oc^^,DLSTM
+geonode,graduated,graduated,Oc^ --> Oc^^,DLSTM
+geopaparazzi,retired,retired,Oc^ --> Oc^^,DLSTM
+geos,retired,graduated,Oc^ --> Oc^^,DLSTM
+geoserver,graduated,graduated,Oc^ --> Oc^^,DLSTM
+geowave,retired,retired,Oc^ --> Oc^^,DLSTM
+get-it,retired,retired,Oc^ --> Oc^^,DLSTM
+gisquick,retired,retired,Oc^ --> Oc^^,DLSTM
+grass,graduated,incubating,Oc^ --> Oc^^,DLSTM
+istsos,retired,retired,Oc^ --> Oc^^,DLSTM
+mapserver,graduated,graduated,Oc^ --> Oc^^,DLSTM
+openlayers,graduated,graduated,Oc^ --> Oc^^,DLSTM
+osgeolive,graduated,graduated,Oc^ --> Oc^^,DLSTM
+ossim,graduated,graduated,Oc^ --> Oc^^,DLSTM
+pdal,retired,retired,Oc^ --> Oc^^,DLSTM
+pgrouting,retired,incubating,Oc^ --> Oc^^,DLSTM
+postgis,graduated,graduated,Oc^ --> Oc^^,DLSTM
+proj,graduated,graduated,Oc^ --> Oc^^,DLSTM
+pycsw,graduated,graduated,Oc^ --> Oc^^,DLSTM
+pywps,graduated,graduated,Oc^ --> Oc^^,DLSTM
+qgis,graduated,incubating,Oc^ --> Oc^^,DLSTM

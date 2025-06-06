@@ -1,0 +1,22 @@
+project,prediction,target,train_strategy,model_arch
+ActionBarSherlock,retired,retired,Gc^ --> Gc^^,BLSTM
+airflow,graduated,graduated,Gc^ --> Gc^^,BLSTM
+baker,retired,retired,Gc^ --> Gc^^,BLSTM
+busybox,graduated,graduated,Gc^ --> Gc^^,BLSTM
+calipso,retired,retired,Gc^ --> Gc^^,BLSTM
+component,retired,retired,Gc^ --> Gc^^,BLSTM
+django-social-auth,retired,retired,Gc^ --> Gc^^,BLSTM
+docker-registry,retired,retired,Gc^ --> Gc^^,BLSTM
+famous,retired,retired,Gc^ --> Gc^^,BLSTM
+forem,retired,retired,Gc^ --> Gc^^,BLSTM
+generator-gulp-angular,retired,retired,Gc^ --> Gc^^,BLSTM
+inherited_resources,retired,retired,Gc^ --> Gc^^,BLSTM
+kissy,retired,retired,Gc^ --> Gc^^,BLSTM
+meteor-up,retired,retired,Gc^ --> Gc^^,BLSTM
+mojito,retired,retired,Gc^ --> Gc^^,BLSTM
+neocomplcache.vim,retired,retired,Gc^ --> Gc^^,BLSTM
+node,graduated,graduated,Gc^ --> Gc^^,BLSTM
+scripted,retired,retired,Gc^ --> Gc^^,BLSTM
+social-app-django,graduated,graduated,Gc^ --> Gc^^,BLSTM
+sstoolkit,retired,retired,Gc^ --> Gc^^,BLSTM
+tensorflow,graduated,graduated,Gc^ --> Gc^^,BLSTM

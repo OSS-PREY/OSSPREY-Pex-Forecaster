@@ -1,0 +1,140 @@
+project,prediction,target,train_strategy,model_arch
+AJDT - AspectJ Development Tools Project,graduated,retired,Ec^ --> Ec^^,DLSTM
+ATL,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Acceleo,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Accessibility Tools Framework,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Activation,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Amalgam,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Angus,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Annotations,graduated,graduated,Ec^ --> Ec^^,DLSTM
+AspectJ,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Authentication,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Authorization,graduated,graduated,Ec^ --> Ec^^,DLSTM
+BIRT (Business Intelligence and Reporting Tools),graduated,graduated,Ec^ --> Ec^^,DLSTM
+Batch,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Bridge.IoT,graduated,retired,Ec^ --> Ec^^,DLSTM
+Buildship: Plug-ins for Gradle,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Bundle Recipes,graduated,retired,Ec^ --> Ec^^,DLSTM
+CDT (C_C++ Development Tooling),graduated,graduated,Ec^ --> Ec^^,DLSTM
+Capella,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Cargo Tracker,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Ceylon,graduated,retired,Ec^ --> Ec^^,DLSTM
+Collections,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Communications Framework,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Concierge,graduated,retired,Ec^ --> Ec^^,DLSTM
+Concurrency,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Connectors,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Contexts and Dependency Injection,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Dirigible,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Ditto,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Dynamic Languages Toolkit,graduated,graduated,Ec^ --> Ec^^,DLSTM
+EE Platform,graduated,graduated,Ec^ --> Ec^^,DLSTM
+EE TCK,graduated,graduated,Ec^ --> Ec^^,DLSTM
+EE4J,graduated,graduated,Ec^ --> Ec^^,DLSTM
+EGerrit,graduated,graduated,Ec^ --> Ec^^,DLSTM
+EGit: Git Integration for Eclipse,graduated,graduated,Ec^ --> Ec^^,DLSTM
+EMF Client Platform,graduated,graduated,Ec^ --> Ec^^,DLSTM
+EMF Compare,graduated,graduated,Ec^ --> Ec^^,DLSTM
+EMF Parsley,graduated,graduated,Ec^ --> Ec^^,DLSTM
+EMFStore,graduated,graduated,Ec^ --> Ec^^,DLSTM
+EclEmma,graduated,graduated,Ec^ --> Ec^^,DLSTM
+EclipseLink,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Ecore Tools,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Edapt,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Edje,graduated,retired,Ec^ --> Ec^^,DLSTM
+Embedded CDT (C_C++ Development Tools),graduated,graduated,Ec^ --> Ec^^,DLSTM
+Enterprise Beans,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Epsilon,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Equinox,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Expression Language,graduated,graduated,Ec^ --> Ec^^,DLSTM
+GLSP,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Generation Factories (EGF),graduated,graduated,Ec^ --> Ec^^,DLSTM
+GeoMesa,graduated,graduated,Ec^ --> Ec^^,DLSTM
+GlassFish,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Golo,graduated,retired,Ec^ --> Ec^^,DLSTM
+Graphical Editing Framework (GEF),graduated,graduated,Ec^ --> Ec^^,DLSTM
+Grizzly,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Hono,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Implementation of JAXB,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Interceptors,graduated,graduated,Ec^ --> Ec^^,DLSTM
+JGit: Java implementation of Git,graduated,graduated,Ec^ --> Ec^^,DLSTM
+JKube,graduated,graduated,Ec^ --> Ec^^,DLSTM
+JSON Binding,graduated,graduated,Ec^ --> Ec^^,DLSTM
+JSON Processing,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Jersey,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Jetty - Servlet Engine and Http Server,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Kapua,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Keyple,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Kiso,graduated,retired,Ec^ --> Ec^^,DLSTM
+Kitalpha,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Krazo,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Kura,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Leshan,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Linux Tools,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Lyo,graduated,graduated,Ec^ --> Ec^^,DLSTM
+MDT UML2,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Mail,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Marketplace Client,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Maven Integration - m2eclipse,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Memory Analyzer,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Metro,graduated,graduated,Ec^ --> Ec^^,DLSTM
+MoDisco,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Modeling Project,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Modeling Workflow Engine,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Mojarra,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Mosquitto,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Mylyn,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Nebula NatTable,graduated,graduated,Ec^ --> Ec^^,DLSTM
+OCL (Object Constraint Language),graduated,graduated,Ec^ --> Ec^^,DLSTM
+ORB,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Oomph,graduated,graduated,Ec^ --> Ec^^,DLSTM
+OpenMQ,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Orion,graduated,retired,Ec^ --> Ec^^,DLSTM
+PHP Development Tools,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Paho,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Parallel Tools Platform (PTP),graduated,retired,Ec^ --> Ec^^,DLSTM
+Passage,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Persistence,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Ponte,graduated,retired,Ec^ --> Ec^^,DLSTM
+RCP Testing Tool,graduated,graduated,Ec^ --> Ec^^,DLSTM
+RDF4J,graduated,graduated,Ec^ --> Ec^^,DLSTM
+RESTful Web Services,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Remote Application Platform,graduated,graduated,Ec^ --> Ec^^,DLSTM
+SUMO,graduated,graduated,Ec^ --> Ec^^,DLSTM
+SW360antenna,graduated,retired,Ec^ --> Ec^^,DLSTM
+SWTBot,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Scout,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Security,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Server Pages,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Servlet,graduated,graduated,Ec^ --> Ec^^,DLSTM
+ShellWax,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Sirius,graduated,graduated,Ec^ --> Ec^^,DLSTM
+SmartHome,graduated,retired,Ec^ --> Ec^^,DLSTM
+Soteria,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Spatial4j,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Sprotty,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Stable APIs,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Standard Tag Library,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Tangle Marketplaces,graduated,retired,Ec^ --> Ec^^,DLSTM
+Temurin,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Theia,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Tools for Cloud Foundry,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Tools for Faces,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Trace Compass,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Transactions,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Tyrus,graduated,graduated,Ec^ --> Ec^^,DLSTM
+VIATRA,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Validation,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Virgo,graduated,graduated,Ec^ --> Ec^^,DLSTM
+WTP Java EE Tools,graduated,graduated,Ec^ --> Ec^^,DLSTM
+WaSP,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Wakaama,graduated,graduated,Ec^ --> Ec^^,DLSTM
+WebSocket,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Wild Web Developer,graduated,graduated,Ec^ --> Ec^^,DLSTM
+WindowBuilder,graduated,graduated,Ec^ --> Ec^^,DLSTM
+XML Binding,graduated,graduated,Ec^ --> Ec^^,DLSTM
+XML Web Services,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Xtext,graduated,graduated,Ec^ --> Ec^^,DLSTM
+Yasson,graduated,graduated,Ec^ --> Ec^^,DLSTM
+e(fx)clipse,graduated,graduated,Ec^ --> Ec^^,DLSTM
+iceoryx,graduated,graduated,Ec^ --> Ec^^,DLSTM
