@@ -1,13 +1,33 @@
+import random
+
+import numpy as np
 import pandas as pd
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader, TensorDataset, WeightedRandomSampler
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import StandardScaler
 
 
-def load_data(drop_proj_name: bool = True):
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+
+def set_seed(seed: int = 42) -> None:
+    """Set random seeds for reproducibility."""
+
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+
+
+def load_data():
+    """Load all foundation datasets with project names and labels."""
+
     data_files = {
         "apache": "clean-apache-network-data-2-2.csv",
         "eclipse": "clean-eclipse-network-data-3-3.csv",
@@ -18,32 +38,44 @@ def load_data(drop_proj_name: bool = True):
     dfs = []
     for label, fname in data_files.items():
         df = pd.read_csv(f"Forecasting-Paper-Utils/{fname}")
-        if drop_proj_name:
-            df = df.drop(columns=["proj_name"])  # drop the project name
         df["label"] = label
         dfs.append(df)
-    full_df = pd.concat(dfs, ignore_index=True)
-    return full_df
+    return pd.concat(dfs, ignore_index=True)
 
 
-def preprocess(df, drop_proj_name: bool = True):
-    cols_to_drop = ["label"]
-    if drop_proj_name and "proj_name" in df.columns:
-        cols_to_drop.append("proj_name")
-    X = df.drop(columns=cols_to_drop)
-    y = df["label"].factorize()[0]
+def preprocess(df):
+    """Scale features and encode labels while preserving project names."""
+
+    project_names = df["proj_name"].to_numpy()
+    labels_str = df["label"].to_numpy()
+    y, label_names = pd.factorize(labels_str)
+
+    X = df.drop(columns=["proj_name", "label"])
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
-    return train_test_split(X_scaled, y, test_size=0.2, random_state=42), scaler
+
+    return X_scaled, y, project_names, labels_str, scaler, label_names
 
 
 class ProjectRouterNet(nn.Module):
-    def __init__(self, in_dim, hidden_dim=32, out_dim=4):
+    """Deeper network with batch norm and dropout for richer representations."""
+
+    def __init__(self, in_dim, out_dim: int = 4):
         super().__init__()
         self.model = nn.Sequential(
-            nn.Linear(in_dim, hidden_dim),
+            nn.Linear(in_dim, 128),
+            nn.BatchNorm1d(128),
             nn.ReLU(),
-            nn.Linear(hidden_dim, out_dim),
+            nn.Dropout(0.3),
+            nn.Linear(128, 64),
+            nn.BatchNorm1d(64),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(64, 32),
+            nn.BatchNorm1d(32),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            nn.Linear(32, out_dim),
         )
 
     def forward(self, x):
@@ -89,12 +121,16 @@ def train_model(
         patience: Number of epochs to wait for improvement before stopping.
     """
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model = ProjectRouterNet(in_dim).to(device)
-    criterion = FocalLoss(alpha=class_weights.to(device))
-    optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+    model = ProjectRouterNet(in_dim).to(DEVICE)
+    criterion = FocalLoss(alpha=class_weights.to(DEVICE))
+    optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-4)
+    # Older versions of PyTorch do not accept the ``verbose`` argument in
+    # ``ReduceLROnPlateau``.  The previous implementation passed
+    # ``verbose=True`` which raised a ``TypeError`` in environments with an
+    # older scheduler signature.  Removing the argument preserves the
+    # adaptive learning rate behaviour without triggering an exception.
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
-        optimizer, mode="min", factor=0.5, patience=5, verbose=True
+        optimizer, mode="min", factor=0.5, patience=5
     )
 
     best_loss = float("inf")
@@ -103,11 +139,12 @@ def train_model(
     for epoch in range(epochs):
         model.train()
         for xb, yb in train_loader:
-            xb, yb = xb.to(device), yb.to(device)
+            xb, yb = xb.to(DEVICE), yb.to(DEVICE)
             optimizer.zero_grad()
             out = model(xb)
             loss = criterion(out, yb)
             loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
             optimizer.step()
 
         # validation
@@ -117,7 +154,7 @@ def train_model(
         val_loss = 0.0
         with torch.no_grad():
             for xb, yb in val_loader:
-                xb, yb = xb.to(device), yb.to(device)
+                xb, yb = xb.to(DEVICE), yb.to(DEVICE)
                 out = model(xb)
                 loss = criterion(out, yb)
                 val_loss += loss.item() * yb.size(0)
@@ -143,6 +180,21 @@ def train_model(
     return model
 
 
+def evaluate(model, loader):
+    """Compute accuracy on a data loader."""
+
+    model.eval()
+    correct = 0
+    total = 0
+    with torch.no_grad():
+        for xb, yb in loader:
+            xb, yb = xb.to(DEVICE), yb.to(DEVICE)
+            pred = model(xb).argmax(dim=1)
+            correct += (pred == yb).sum().item()
+            total += yb.size(0)
+    return correct / total if total else 0
+
+
 def prepare_loaders(X_train, X_val, y_train, y_val, batch_size=32):
     train_y = torch.tensor(y_train, dtype=torch.long)
     class_counts = torch.bincount(train_y)
@@ -159,48 +211,71 @@ def prepare_loaders(X_train, X_val, y_train, y_val, batch_size=32):
     return train_loader, val_loader, class_weights
 
 
-def predict_project(model, scaler, sample_df):
+def predict_project(model, scaler, sample_df, label_names=None):
     cols_to_drop = ["proj_name"]
     if "label" in sample_df.columns:
         cols_to_drop.append("label")
     sample = scaler.transform(sample_df.drop(columns=cols_to_drop))
     with torch.no_grad():
-        logits = model(torch.tensor(sample, dtype=torch.float32))
+        logits = model(torch.tensor(sample, dtype=torch.float32).to(DEVICE))
         pred = logits.argmax(dim=1).item()
-    labels = ["apache", "eclipse", "github", "osgeo"]
-    return labels[pred]
+    if label_names is None:
+        label_names = ["apache", "eclipse", "github", "osgeo"]
+    return label_names[pred]
 
 
 if __name__ == "__main__":
+    set_seed(42)
     df = load_data()
-    (X_train, X_val, y_train, y_val), scaler = preprocess(df)
-    train_loader, val_loader, class_weights = prepare_loaders(
-        X_train, X_val, y_train, y_val
-    )
-    model = train_model(
-        train_loader,
-        val_loader,
-        X_train.shape[1],
-        class_weights,
-        epochs=200,
-        patience=20,
-    )
+    X, y, proj_names, labels_str, scaler, label_names = preprocess(df)
 
-    # demo on a single sample using data with project names
-    df_with_names = load_data(drop_proj_name=False)
-    sample_project = df_with_names.iloc[[0]]
-    foundation = predict_project(model, scaler, sample_project)
-    print("Predicted foundation:", foundation)
-
-    # run prediction for all projects and save results
+    skf = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
     predictions = []
-    for _, row in df_with_names.iterrows():
-        pred = predict_project(model, scaler, row.to_frame().T)
-        predictions.append({
-            "project-name": row["proj_name"],
-            "target-foundation": row["label"],
-            "predicted-foundation": pred,
-        })
+    accuracies = []
 
-    out_df = pd.DataFrame(predictions)
-    out_df.to_csv("project-router-output.csv", index=False)
+    for fold, (train_idx, val_idx) in enumerate(skf.split(X, y), 1):
+        X_train, X_val = X[train_idx], X[val_idx]
+        y_train, y_val = y[train_idx], y[val_idx]
+        train_loader, val_loader, class_weights = prepare_loaders(
+            X_train, X_val, y_train, y_val
+        )
+        model = train_model(
+            train_loader,
+            val_loader,
+            X_train.shape[1],
+            class_weights,
+            epochs=200,
+            patience=20,
+        )
+        acc = evaluate(model, val_loader)
+        accuracies.append(acc)
+        print(f"Fold {fold} accuracy: {acc:.3f}")
+
+        fold_preds = []
+        model.eval()
+        with torch.no_grad():
+            for xb, _ in val_loader:
+                xb = xb.to(DEVICE)
+                out = model(xb)
+                fold_preds.extend(out.argmax(1).cpu().numpy())
+        for idx, pred in zip(val_idx, fold_preds):
+            predictions.append(
+                {
+                    "project-name": proj_names[idx],
+                    "target-foundation": labels_str[idx],
+                    "predicted-foundation": label_names[pred],
+                }
+            )
+
+    print(f"Average CV accuracy: {np.mean(accuracies):.3f}")
+    pd.DataFrame(predictions).to_csv("project-router-output.csv", index=False)
+
+    sample = predictions[0]
+    print(
+        "Sample project:",
+        sample["project-name"],
+        "target:",
+        sample["target-foundation"],
+        "predicted:",
+        sample["predicted-foundation"],
+    )
