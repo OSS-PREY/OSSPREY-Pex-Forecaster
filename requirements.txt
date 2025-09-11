@@ -18,3 +18,4 @@ jellyfish
 gdown
 setuptools
 statsmodels
+timesfm>=1.0.0; python_version >= '3.10'
