@@ -124,11 +124,7 @@ def train_model(
     model = ProjectRouterNet(in_dim).to(DEVICE)
     criterion = FocalLoss(alpha=class_weights.to(DEVICE))
     optimizer = torch.optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-4)
-    # Older versions of PyTorch do not accept the ``verbose`` argument in
-    # ``ReduceLROnPlateau``.  The previous implementation passed
-    # ``verbose=True`` which raised a ``TypeError`` in environments with an
-    # older scheduler signature.  Removing the argument preserves the
-    # adaptive learning rate behaviour without triggering an exception.
+
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
         optimizer, mode="min", factor=0.5, patience=5
     )
