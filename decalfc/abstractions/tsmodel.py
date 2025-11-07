@@ -1245,101 +1245,6 @@ class TimeSeriesModel:
             self.optimizer, mode="min", factor=0.5, patience=10
         )
 
-        # training
-        # for epoch in range(self.hyperparams["num_epochs"]):
-        #     # setup
-        #     self.model.train()
-        #     losses[epoch] = []
-
-        #     ## iterate batches
-        #     for data, target in tqdm(list(zip(md.tensors["train"]["x"], md.tensors["train"]["y"]))):
-        #         # transform data for training
-        #         data = data.to(self.device)
-        #         data = data.reshape(1, data.shape[0], -1)
-        #         target = target.to(self.device).to(torch.float32)
-                
-        #         # forward; grab the probability of success
-        #         pred = self.model.predict(data)
-        #         pred = pred[..., 1].to(torch.float32)
-
-        #         # backward
-        #         loss = self.loss_fc(pred, target)   
-        #         self.optimizer.zero_grad()
-        #         loss.backward()
-
-        #         # Gradient clipping
-        #         torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
-
-        #         # optimizer step
-        #         self.optimizer.step()
-                
-        #         # loss
-        #         losses[epoch].append(loss.item())
-                        
-        #     # validation loss & loss tracking
-        #     X_test = md.tensors["test"]["x"]
-        #     y_test = md.tensors["test"]["y"]
-            
-        #     # only gauge fit on full projects
-        #     if md.is_interval["test"]:
-        #         X_val = X_test["all"]
-        #         y_val = y_test["all"]
-        #     else:
-        #         X_val = X_test
-        #         y_val = y_test
-
-        #     if validation_loss:
-        #         self.model.eval()
-        #         test_losses[epoch] = []
-
-        #         with torch.no_grad():                    
-        #             # for every test tensor; treated as validation here
-        #             for data, target in list(zip(X_val, y_val)):
-        #                 # transform data
-        #                 data = data.to(self.device)
-        #                 data = data.reshape(1, data.shape[0], -1)
-        #                 target = target.to(self.device).to(torch.float32)
-
-        #                 # prediction
-        #                 pred = self.model(data)[..., 1].to(torch.float32)
-
-        #                 # track loss
-        #                 test_losses[epoch].append(self.loss_fc(pred, target).item())
-            
-        #     losses[epoch] = np.mean(losses[epoch])
-        #     test_losses[epoch] = np.mean(test_losses[epoch])
-
-        #     current_lr = self.optimizer.param_groups[0]["lr"]
-        #     log(f"Epoch [{epoch + 1}/{self.hyperparams['num_epochs']}] | "
-        #               f"Loss: {losses[epoch]:.4f}, Test Loss: {test_losses[epoch]:.4f}, "
-        #               f"LR: {current_lr:.6f}", "log")
-
-        #     # scheduler step
-        #     if self.scheduler is not None:
-        #         if not validation_loss:
-        #             log("Unable to schedule step without validation loss", "error")
-        #         else:
-        #             self.scheduler.step(test_losses[epoch])
-
-        #     # early stopping; avg the test and train perf since we don't have enough for validation
-        #     # avg_loss = (test_losses[epoch] + losses[epoch]) / 2
-        #     avg_loss = losses[epoch]
-
-        #     if avg_loss < best_loss - TOLERANCE:
-        #         best_loss = avg_loss
-        #         best_model_weights = copy.deepcopy(self.model.state_dict())      
-        #         patience = 10
-        #         best_epoch = epoch
-        #         if save_epochs:
-        #             torch.save(self.model.state_dict(), f"best_model_epoch_{epoch}.pth")
-        #     else:
-        #         patience -= 1
-
-        #         if patience == 0:
-        #             log("Early stopping triggered. Loading best model weights.", "log")
-        #             self.model.load_state_dict(best_model_weights)
-        #             break
-
         self.loss_fc = FocalLoss(alpha=0.5, gamma=2.0)
 
         # Training loop
@@ -1432,6 +1337,94 @@ class TimeSeriesModel:
         print(f"Input size: {self.hyperparams['input_size']}")
         print(f"Hidden size: {self.hyperparams['hidden_size']}")
         print(f"Number of layers: {self.hyperparams['num_layers']}")
+
+
+        X_train = md.tensors["train"]["x"]
+        X_test = md.tensors["test"]["x"]
+        if md.is_interval["train"]:
+            X_train = X_train["all"]
+        if md.is_interval["test"]:
+            X_test = X_test["all"]
+                
+        print(f"Shape of X_train: {X_train[2].shape}")
+
+        # # determine the number of features and maximum sequence length
+        # n_features = X_train[0].shape[-1]  # Should be 13/14 depending on if feature subset was taken or not
+        # max_seq_length = max(len(seq) for seq in X_train)  # Should be 530
+        # log(f"Number of features: {n_features}, Max sequence length: {max_seq_length}", "log")
+        # feature_names = [f"f{i}_t{t}" for t in range(max_seq_length) for i in range(n_features)]
+
+        # # pad the training data
+        # X_train_padded = []
+        # for sequence in X_train:
+        #     if isinstance(sequence, torch.Tensor):
+        #         sequence = sequence.cpu().numpy()
+        #     padded_seq = np.pad(sequence, ((0, max_seq_length - len(sequence)), (0, 0)), mode='constant')
+        #     X_train_padded.append(padded_seq)
+        # X_train_padded = np.array(X_train_padded)
+
+        # log(f"Shape of padded training data: {X_train_padded.shape}", "log")
+
+        # def compute_shap_values(model_wrapper, inputs):
+        #     inputs = inputs.detach().requires_grad_(True)
+        #     outputs = model_wrapper(inputs)
+                
+        #     if outputs.shape[1] > 1:  # Multi-class
+        #         shap_values = []
+        #         for target_class in range(outputs.shape[1]):
+        #             outputs[:, target_class].sum().backward(retain_graph=True)
+        #             shap_values.append(inputs.grad.cpu().numpy().copy())
+        #             inputs.grad.zero_()
+        #     else:  # Binary classification
+        #         outputs.sum().backward()
+        #         shap_values = [inputs.grad.cpu().numpy().copy()]
+                
+        #     return shap_values
+
+        # total_importance = {f"feature_{i}": 0 for i in range(n_features)}
+        # print("total importance: ", total_importance)
+
+        # # Wrap the model
+        # model_wrapper = self.model
+
+        # for i in range(0, len(X_test)):
+        #     X_test_sample = X_test[i]
+
+        #     if isinstance(X_test_sample, torch.Tensor):
+        #         X_test_sample = X_test_sample.cpu().numpy()
+        #     X_test_padded = np.pad(X_test_sample, ((0, max_seq_length - len(X_test_sample)), (0, 0)), mode='constant')
+
+        #     log(f"Shape of padded test sample: {X_test_padded.shape}", "log")
+
+        #     # Convert to tensor
+        #     X_test_tensor = torch.tensor(X_test_padded.reshape(1, max_seq_length, n_features), dtype=torch.float32).to(self.device)
+
+        #     # Compute SHAP values
+        #     shap_values = compute_shap_values(model_wrapper, X_test_tensor)
+
+        #     # Assuming binary classification, we'll use the positive class (index 0)
+        #     shap_values = shap_values[1]
+
+        #     # Aggregate importance across time steps
+        #     for feature in range(n_features):
+        #         importance = np.sum(shap_values[0, :, feature])
+        #         total_importance[f"feature_{feature}"] += importance
+
+        # log("Aggregated Feature Importance (SHAP-like):", "log")
+
+        # # Normalize importances so they sum to 100
+        # total = sum(total_importance.values())
+        # normalized_importance = {feat: (imp / total) * 100 for feat, imp in total_importance.items()}
+
+        # # Log the normalized importances
+        # for feature, importance in normalized_importance.items():
+        #     log(f"{feature}: {importance:.4f}", "log")
+
+        # # Save to CSV
+        # importance_df = pd.DataFrame(list(normalized_importance.items()), columns=["Feature", "Importance"])
+        # importance_df.to_csv("_total_importance.csv", index=False)
+
+        # log("SHAP-like analysis completed. Feature importances saved to total_importance.csv", "log")
 
         # x = torch.randn(1, input_size)
         # y = model(x)
@@ -1947,7 +1940,7 @@ def load_hyperparams(new_hp: dict[str, Any]) -> dict[str, Any]:
         "dropout_rate": 0.1,
         "learning_rate": 0.001,
         # "batch_size": 16,
-        "num_epochs": 1,
+        "num_epochs": 100,
         "num_layers": 2,
         "scheduler": "plateau"
     }

@@ -11,7 +11,12 @@
 
 
 # inferencing
-python3 -m decalfc.pipeline.inference --kwargs trial-type=inference incubator=apache
-python3 -m decalfc.pipeline.inference --kwargs trial-type=inference incubator=eclipse
-python3 -m decalfc.pipeline.inference --kwargs trial-type=inference incubator=github
-python3 -m decalfc.pipeline.inference --kwargs trial-type=inference incubator=osgeo
+# python3 -m decalfc.pipeline.inference --kwargs trial-type=inference incubator=apache
+# python3 -m decalfc.pipeline.inference --kwargs trial-type=inference incubator=eclipse
+# python3 -m decalfc.pipeline.inference --kwargs trial-type=inference incubator=github
+# python3 -m decalfc.pipeline.inference --kwargs trial-type=inference incubator=osgeo
+
+python3 -m decalfc.pipeline.inference --kwargs trial-type=monthwise incubator=apache
+python3 -m decalfc.pipeline.inference --kwargs trial-type=monthwise incubator=eclipse
+python3 -m decalfc.pipeline.inference --kwargs trial-type=monthwise incubator=github
+python3 -m decalfc.pipeline.inference --kwargs trial-type=monthwise incubator=osgeo
