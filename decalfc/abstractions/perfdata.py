@@ -630,9 +630,10 @@ class PerfData:
         self.summary()
 
     def _add_entry(self, transfer_strat: str, model_arch: str, preds: list[Any], 
-                  targets: list[Any], month: str="all", 
-                  pred_labels: list[str]=["retired", "graduated"],
-                  check_export: bool=False, print_report: bool=False) -> None:
+        targets: list[Any], month: str="all",
+        pred_labels: list[str]=["retired", "graduated"],
+        check_export: bool=False, print_report: bool=False, export_db: bool=True
+    ) -> None:
         """
             Adds an entry to the performance data db given the necessary info.
         """
@@ -713,6 +714,9 @@ class PerfData:
 
         if print_report:
             print(new_entries)
+        
+        if not export_db:
+            return
 
         if check_export:
             resp = input("\n\ncontinue to export data [y/n]? ")

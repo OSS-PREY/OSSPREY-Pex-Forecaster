@@ -32,7 +32,7 @@ class ModelData:
     versions: dict[str, dict[str, dict[str, str]]] = field(                     # { train/test: { incubator: { tech/social: version } } }
         default_factory=dict
     )
-    options: dict[str, dict[str, dict[str, bool]]] = field(                     # { train/test: { incbubator: { option: selection } } }
+    options: dict[str, dict[str, dict[str, bool]]] = field(                     # { train/test: { incubator: { option: selection } } }
         default_factory=dict
     )
     is_interval: dict[str, bool] = field(
@@ -54,6 +54,8 @@ class ModelData:
     rand_seed: int = field(default=42)                                          # seed for reproducability
     
     skip_tensors: bool = field(default=False)                                   # skip tensor generation
+    
+    tt_split: dict = field(default_factory=dict)                                # { train/test: { incubator: list[str] } }, project names used in each
 
     # internal utility
     def _list_options_(self) -> None:
@@ -305,6 +307,10 @@ class ModelData:
             (("interval" in opt) and sel) 
             for opt, sel in self.options["train"][first_train_proj].items()
         )
+        
+        # train test split
+        self.tt_split["train"] = dict()
+        self.tt_split["test"] = dict()
 
         # generate tensors
         if not self.skip_tensors:
@@ -416,7 +422,7 @@ class ModelData:
     @staticmethod
     def gen_k_folds(
         transfer_strategy: str, transform_kwargs: dict[str, Any]=None,
-        nfolds: int=5
+        nfolds: int=5, yield_projs: bool=False
     ) -> Iterator:
         """Generates modeldata's to iterate through for model training.
 
@@ -426,6 +432,7 @@ class ModelData:
                 the data. Defaults to None.
             nfolds (int, optional): number of folds to generate. Defaults to 5
                 to preserve the 80-20 TT-split.
+            yield_projs (bool, optional): whether to yield the projects used.
 
         Yields:
             Iterator[ModelData]: iterator of model data objects to use for 
@@ -455,6 +462,7 @@ class ModelData:
         
         # create const dataset tensor lookup
         const_ds = {"train": {"x": list(), "y": list()}, "test": {"x": list(), "y": list()}}
+        const_projs = {"train": list(), "test": list()}
         
         for incubator in const_incubators:
             ## unpack options
@@ -478,8 +486,12 @@ class ModelData:
             const_ds[cur_set]["x"].extend(const_nd.tensors["test"]["x"])
             const_ds[cur_set]["y"].extend(const_nd.tensors["test"]["y"])
             
+            ## track the projects used
+            const_projs[cur_set].extend(const_nd.split_set["train"])
+            
         # create dynamics sets
         dynamic_ds = {"train": {"x": dict(), "y": dict()}, "test": {"x": dict(), "y": dict()}}
+        dynamic_projs = dict()
         
         for incubator in dynamic_incubators:
             ## unpack options
@@ -505,6 +517,11 @@ class ModelData:
             
             dynamic_ds[cur_set]["x"][incubator].extend(dynamic_nd.tensors["test"]["x"])
             dynamic_ds[cur_set]["y"][incubator].extend(dynamic_nd.tensors["test"]["y"])
+            
+            ## projs
+            dynamic_projs[incubator] = list()
+            dynamic_projs[incubator].extend(dynamic_nd.split_set["train"])
+            dynamic_projs[incubator].extend(dynamic_nd.split_set["test"])
         
         # figure out the fold information
         nprojs_per_inc = {incubator: len(dynamic_ds["train"]["y"][incubator]) for incubator in dynamic_incubators}
@@ -531,6 +548,7 @@ class ModelData:
                 "train": {"x": list(), "y": list()},
                 "test": {"x": list(), "y": list()}
             }
+            dynamic_fold_projs = {"train": list(), "test": list()}
             
             for dyn_inc in dynamic_incubators:
                 # unpack fold range
@@ -541,11 +559,11 @@ class ModelData:
                 test_fold_y = dynamic_ds["train"]["y"][dyn_inc][fold_range[0]:fold_range[1]]
                 
                 train_fold_x = (
-                    dynamic_ds["train"]["x"][dyn_inc][0:fold_range[0]] 
+                    dynamic_ds["train"]["x"][dyn_inc][0:fold_range[0]]
                     + dynamic_ds["train"]["x"][dyn_inc][fold_range[1]:]
                 )
                 train_fold_y = (
-                    dynamic_ds["train"]["y"][dyn_inc][0:fold_range[0]] 
+                    dynamic_ds["train"]["y"][dyn_inc][0:fold_range[0]]
                     + dynamic_ds["train"]["y"][dyn_inc][fold_range[1]:]
                 )
                 
@@ -555,6 +573,15 @@ class ModelData:
                 
                 dynamic_tensors["train"]["x"].extend(train_fold_x)
                 dynamic_tensors["train"]["y"].extend(train_fold_y)
+                
+                # track the projects used
+                dynamic_fold_projs["train"].extend(
+                    dynamic_projs[dyn_inc][0:fold_range[0]]
+                    + dynamic_projs[dyn_inc][fold_range[1]:]
+                )
+                dynamic_fold_projs["test"].extend(
+                    dynamic_projs[dyn_inc][fold_range[0]:fold_range[1]]
+                )
             
             # combine with the static set of tensors
             dynamic_tensors["train"]["x"].extend(const_ds["train"]["x"])
@@ -562,6 +589,9 @@ class ModelData:
             
             dynamic_tensors["test"]["x"].extend(const_ds["test"]["x"])
             dynamic_tensors["test"]["y"].extend(const_ds["test"]["y"])
+            
+            dynamic_fold_projs["train"].extend(const_projs["train"])
+            dynamic_fold_projs["test"].extend(const_projs["test"])
 
             # create model data instance to yield
             cur_md = ModelData(
@@ -572,7 +602,10 @@ class ModelData:
             cur_md.tensors = dynamic_tensors
             
             # generator
-            yield cur_md
+            if yield_projs:
+                yield cur_md, (dynamic_fold_projs["train"], dynamic_fold_projs["test"])
+            else:
+                yield cur_md
             
         # done
         return

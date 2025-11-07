@@ -62,7 +62,7 @@ class NetData:
     transform_kwargs: dict[str, dict[str, Any]] = field(
         default_factory=dict
     )                                                                           # specify params to pass into transform functions if netdata is to be generated
-    is_train: str = field(default="none")                                       # specify if train or test; if None, generates both
+    is_train: str = field(default="both")                                       # specify if train or test; if None, generates both
     do_compute_tensors: bool = field(default=True)                              # whether to generate tensors or not
     soft_prob: bool = field(default=False)                                      # soft probabilities for training
     ignore_cache: bool = field(default=False)                                   # ignore cache if needed
@@ -1949,7 +1949,7 @@ class NetData:
 
             # export
             return smoothed
-
+        
         def gauss_kernel(data: np.ndarray, sigma: float=0.47) -> np.ndarray:
             """Gaussian kernel smoothing for time series.
 
