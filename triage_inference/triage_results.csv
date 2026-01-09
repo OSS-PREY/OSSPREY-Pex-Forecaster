@@ -1,0 +1,93 @@
+incubator,project,target,apache_pred,eclipse_pred,osgeo_pred,github_pred
+apache,accumulo,graduated,graduated,graduated,graduated,retired
+apache,alois,retired,retired,graduated,retired,retired
+apache,amaterasu,retired,retired,graduated,retired,retired
+apache,asterixdb,graduated,graduated,graduated,graduated,retired
+apache,awf,retired,retired,graduated,graduated,retired
+apache,beehive,graduated,graduated,graduated,graduated,retired
+apache,blur,retired,retired,graduated,retired,retired
+apache,brooklyn,graduated,graduated,graduated,graduated,graduated
+apache,calcite,graduated,graduated,graduated,graduated,retired
+apache,cayenne,graduated,graduated,graduated,retired,retired
+apache,deltacloud,graduated,graduated,graduated,graduated,retired
+apache,dolphinscheduler,graduated,graduated,graduated,graduated,graduated
+apache,eagle,graduated,graduated,graduated,graduated,graduated
+apache,echarts,graduated,graduated,graduated,graduated,graduated
+apache,falcon,graduated,graduated,graduated,graduated,retired
+apache,flume,graduated,graduated,graduated,graduated,retired
+apache,freemarker,graduated,graduated,graduated,retired,retired
+apache,ftpserver,graduated,retired,graduated,retired,retired
+apache,geode,graduated,graduated,graduated,graduated,graduated
+apache,gobblin,graduated,graduated,graduated,graduated,graduated
+apache,gossip,retired,retired,graduated,retired,retired
+apache,graffito,retired,retired,graduated,retired,retired
+apache,hawq,graduated,graduated,graduated,graduated,graduated
+apache,hcatalog,graduated,graduated,graduated,graduated,retired
+apache,isis,graduated,graduated,graduated,graduated,retired
+apache,joshua,graduated,retired,graduated,graduated,retired
+apache,juice,retired,retired,graduated,graduated,retired
+apache,knox,graduated,graduated,graduated,graduated,retired
+apache,libcloud,graduated,graduated,graduated,graduated,retired
+apache,madlib,graduated,graduated,graduated,graduated,retired
+apache,mrunit,graduated,graduated,graduated,graduated,retired
+apache,nutch,graduated,graduated,graduated,graduated,retired
+apache,ode,graduated,graduated,graduated,graduated,retired
+apache,olio,retired,retired,graduated,retired,retired
+apache,oodt,graduated,graduated,graduated,graduated,retired
+apache,pdfbox,graduated,graduated,graduated,graduated,retired
+apache,phoenix,graduated,graduated,graduated,graduated,retired
+apache,predictionio,graduated,graduated,graduated,graduated,graduated
+apache,provisionr,retired,retired,graduated,graduated,retired
+apache,qpid,graduated,graduated,graduated,graduated,graduated
+apache,rave,graduated,graduated,graduated,graduated,retired
+apache,reef,graduated,graduated,graduated,graduated,retired
+apache,river,graduated,graduated,graduated,graduated,retired
+apache,s2graph,retired,retired,graduated,retired,retired
+apache,servicemix,graduated,graduated,graduated,graduated,retired
+apache,tajo,graduated,graduated,graduated,graduated,graduated
+apache,tinkerpop,graduated,graduated,graduated,graduated,retired
+apache,trafficcontrol,graduated,graduated,graduated,graduated,retired
+apache,tvm,graduated,graduated,graduated,graduated,retired
+apache,unomi,graduated,graduated,graduated,retired,retired
+apache,wadi,retired,retired,retired,retired,retired
+apache,zipkin,retired,graduated,graduated,graduated,retired
+eclipse,AspectJ,graduated,retired,graduated,retired,retired
+eclipse,Ceylon,retired,retired,retired,graduated,retired
+eclipse,Concierge,retired,retired,graduated,retired,retired
+eclipse,Dirigible,graduated,graduated,graduated,retired,retired
+eclipse,EE4J,graduated,graduated,graduated,graduated,retired
+eclipse,EMFStore,graduated,graduated,graduated,graduated,graduated
+eclipse,Edapt,graduated,retired,retired,retired,retired
+eclipse,Epsilon,graduated,graduated,graduated,graduated,retired
+eclipse,Golo,retired,retired,graduated,retired,retired
+eclipse,Grizzly,graduated,retired,graduated,retired,retired
+eclipse,JKube,graduated,graduated,graduated,graduated,retired
+eclipse,Krazo,graduated,graduated,graduated,retired,retired
+eclipse,Kura,graduated,graduated,graduated,graduated,retired
+eclipse,Leshan,graduated,graduated,graduated,retired,retired
+eclipse,Marketplace Client,graduated,graduated,graduated,retired,retired
+eclipse,Metro,graduated,retired,graduated,retired,retired
+eclipse,Modeling Project,graduated,graduated,graduated,graduated,retired
+eclipse,Modeling Workflow Engine,graduated,graduated,graduated,graduated,retired
+eclipse,OCL (Object Constraint Language),graduated,graduated,graduated,graduated,retired
+eclipse,Oomph,graduated,graduated,graduated,graduated,retired
+eclipse,Passage,graduated,graduated,graduated,graduated,retired
+eclipse,RESTful Web Services,graduated,graduated,graduated,retired,retired
+eclipse,SW360antenna,retired,retired,graduated,graduated,retired
+eclipse,Scout,graduated,graduated,graduated,graduated,graduated
+eclipse,Security,graduated,retired,graduated,retired,retired
+eclipse,ShellWax,graduated,retired,graduated,graduated,retired
+eclipse,Soteria,graduated,retired,graduated,retired,retired
+eclipse,Spatial4j,graduated,retired,graduated,graduated,retired
+eclipse,Standard Tag Library,graduated,retired,graduated,retired,retired
+eclipse,WTP Java EE Tools,graduated,retired,graduated,retired,retired
+eclipse,XML Binding,graduated,retired,graduated,retired,retired
+osgeo,deegree,graduated,graduated,graduated,graduated,graduated
+osgeo,geopaparazzi,retired,graduated,graduated,retired,retired
+osgeo,proj,graduated,graduated,graduated,graduated,retired
+osgeo,pycsw,graduated,retired,graduated,graduated,retired
+github,busybox,graduated,retired,graduated,retired,retired
+github,django-social-auth,retired,retired,graduated,retired,retired
+github,inherited_resources,retired,retired,graduated,retired,retired
+github,scripted,retired,retired,graduated,retired,retired
+github,social-app-django,graduated,retired,graduated,retired,retired
