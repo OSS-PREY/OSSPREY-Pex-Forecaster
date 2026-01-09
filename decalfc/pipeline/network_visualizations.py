@@ -79,25 +79,19 @@ def net_vis_info(args_dict: dict[str, Any]) -> dict[str, list[list[str | int]]]:
     print("\n<Generating Network Info for Visualization>")
 
     # execute input
-    social_type = params_dict["social-type"][args_dict["incubator"]]
-    tech_type = params_dict["tech-type"][args_dict["incubator"]]
+    incubator = args_dict["incubator"]
+    social_type = params_dict["social-type"][incubator]
+    tech_type = params_dict["tech-type"][incubator]
     network_dir = Path(params_dict["network-dir"])
 
-    t_dir = network_dir / f"{args_dict['incubator']}_{tech_type}/"
-    s_dir = network_dir / f"{args_dict['incubator']}_{social_type}/"
-    proj_inc_path = params_dict["incubation-time"][args_dict["incubator"]]
+    t_dir = network_dir / f"{incubator}_{tech_type}/"
+    s_dir = network_dir / f"{incubator}_{social_type}/"
+    proj_inc_path = params_dict["incubation-time"][incubator]
 
     base_dir = Path(params_dict["network-visualization-dir"])
-    t_output_dir = base_dir / f"{args_dict['incubator']}_{tech_type}/"
-    s_output_dir = base_dir / f"{args_dict['incubator']}_{social_type}/"
 
-    # setup & prepare (clear output dirs, get iteration list)
+    # setup & get iteration
     check_dir(base_dir)
-    clear_dir(t_output_dir, skip_input=True)
-    check_dir(t_output_dir)
-    clear_dir(s_output_dir, skip_input=True)
-    check_dir(s_output_dir)
-
     s_nets = set(os.listdir(s_dir))
     t_nets = set(os.listdir(t_dir))
     nets = s_nets.union(t_nets)
@@ -123,6 +117,10 @@ def net_vis_info(args_dict: dict[str, Any]) -> dict[str, list[list[str | int]]]:
     }
     
     for project_name in tqdm(sorted(projects.keys())):
+        # make entry
+        net_visuals["tech"][project_name] = dict()
+        net_visuals["social"][project_name] = dict()
+        
         # may not have the network data
         for month in range(project_incubation_dict.get(project_name, 0)):
             # unpack file directions
@@ -131,10 +129,15 @@ def net_vis_info(args_dict: dict[str, Any]) -> dict[str, list[list[str | int]]]:
             social_net_path = s_dir / net_file
 
             # grab necessary info & save
-            net_visuals["tech"][month] = tech_net_info(tech_net_path)
-            net_visuals["social"][month] = social_net_info(social_net_path)
+            net_visuals["tech"][project_name][month] = tech_net_info(tech_net_path)
+            net_visuals["social"][project_name][month] = social_net_info(social_net_path)
             
-    # export to memory
+    # export to memory & save
+    save_path = base_dir / f"{incubator}_network_visualizations.json"
+    
+    with open(save_path, "w") as f:
+        json.dump(net_visuals, f, indent=4)
+    
     return net_visuals
 
 def net_vis_info_projectwise(args_dict: dict[str, Any]) -> dict[str, list[list[str | int]]]:
