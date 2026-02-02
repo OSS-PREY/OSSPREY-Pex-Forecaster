@@ -83,7 +83,7 @@
         "404": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.0009198741224885015,
+            "proportion": 0.0018380574634807004,
             "is-bot": 0
         }
     },
@@ -91,7 +91,7 @@
         "406": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.0009198741224885015,
+            "proportion": 0.0018380574634807004,
             "is-bot": 0
         }
     },
@@ -99,7 +99,7 @@
         "Andrea": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.006197046719922537,
+            "proportion": 0.006191351455934991,
             "is-bot": 0
         }
     },
@@ -107,7 +107,7 @@
         "Andrey": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.047881868796901476,
+            "proportion": 0.0478378639837477,
             "is-bot": 0
         }
     },
@@ -115,7 +115,7 @@
         "Ari Maniatis": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.02851609779714355,
+            "proportion": 0.028489890683950855,
             "is-bot": 0
         }
     },
@@ -123,7 +123,7 @@
         "Bas Peters": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.0011135318324860808,
+            "proportion": 0.0011125084647383187,
             "is-bot": 0
         }
     },
@@ -131,7 +131,7 @@
         "Benjamin Birnbaum": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.0006293875574921327,
+            "proportion": 0.0006288091322433975,
             "is-bot": 0
         }
     },
@@ -139,7 +139,7 @@
         "Chris Ortner": {
             "substring": 0,
             "outlier": 1,
-            "proportion": 0.0692326313241346,
+            "proportion": 0.06916900454677373,
             "is-bot": 0
         }
     },
@@ -147,7 +147,7 @@
         "DanielEriksson": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.007649479544904382,
+            "proportion": 0.007642449453419754,
             "is-bot": 0
         }
     },
@@ -155,7 +155,7 @@
         "DavidMo": {
             "substring": 0,
             "outlier": 1,
-            "proportion": 0.19762769305252964,
+            "proportion": 0.1974460675244268,
             "is-bot": 0
         }
     },
@@ -163,7 +163,7 @@
         "Denis Barushev": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.0010167029774872912,
+            "proportion": 0.0010157685982393344,
             "is-bot": 0
         }
     },
@@ -171,7 +171,7 @@
         "Francesco Dal Canton": {
             "substring": 0,
             "outlier": 1,
-            "proportion": 0.42212539336722343,
+            "proportion": 0.42173744800232177,
             "is-bot": 0
         }
     },
@@ -179,7 +179,7 @@
         "Hannah Zabarsky": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.00029048656499636893,
+            "proportion": 0.0002902195994969527,
             "is-bot": 0
         }
     },
@@ -187,7 +187,7 @@
         "IvanKozik": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.020527717259743405,
+            "proportion": 0.020508851697784658,
             "is-bot": 0
         }
     },
@@ -195,7 +195,7 @@
         "Konstantin.Baumann": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.00019365770999757928,
+            "proportion": 0.00019347973299796846,
             "is-bot": 0
         }
     },
@@ -203,7 +203,7 @@
         "Martin Baum": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.00029048656499636893,
+            "proportion": 0.0002902195994969527,
             "is-bot": 0
         }
     },
@@ -211,7 +211,7 @@
         "Mateusz U": {
             "substring": 0,
             "outlier": 1,
-            "proportion": 0.10215444202372306,
+            "proportion": 0.10206055915642837,
             "is-bot": 0
         }
     },
@@ -219,7 +219,7 @@
         "Oleg Prozorov": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.0011619462599854757,
+            "proportion": 0.0011608783979878108,
             "is-bot": 0
         }
     },
@@ -227,7 +227,7 @@
         "Petr Romanovsky": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.00019365770999757928,
+            "proportion": 0.00019347973299796846,
             "is-bot": 0
         }
     },
@@ -235,7 +235,7 @@
         "Phil Balchin": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.004066811909949165,
+            "proportion": 0.0040630743929573375,
             "is-bot": 0
         }
     },
@@ -243,7 +243,7 @@
         "Pirmin Braun": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.006245461147421931,
+            "proportion": 0.0062397213891844825,
             "is-bot": 0
         }
     },
@@ -251,7 +251,7 @@
         "Radim": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.00019365770999757928,
+            "proportion": 0.00019347973299796846,
             "is-bot": 0
         }
     },
@@ -259,7 +259,7 @@
         "Ray": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.0016945049624788188,
+            "proportion": 0.0016929476637322241,
             "is-bot": 0
         }
     },
@@ -267,7 +267,7 @@
         "Simon Lelievre": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.0007262164124909223,
+            "proportion": 0.0007255489987423818,
             "is-bot": 0
         }
     },
@@ -275,7 +275,7 @@
         "Steve Sanderson": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.0010167029774872912,
+            "proportion": 0.0010157685982393344,
             "is-bot": 0
         }
     },
@@ -283,7 +283,7 @@
         "Tamas Denes": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.022125393367223432,
+            "proportion": 0.022105059495017898,
             "is-bot": 0
         }
     },
@@ -291,7 +291,7 @@
         "dreamil": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.00038731541999515855,
+            "proportion": 0.0003869594659959369,
             "is-bot": 0
         }
     },
@@ -299,7 +299,7 @@
         "even.rouault": {
             "substring": 0,
             "outlier": 1,
-            "proportion": 0.05359477124183006,
+            "proportion": 0.053545516107187774,
             "is-bot": 0
         }
     },
@@ -307,7 +307,7 @@
         "lichun": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.00038731541999515855,
+            "proportion": 0.0003869594659959369,
             "is-bot": 0
         }
     },
@@ -2283,7 +2283,7 @@
         "404": {
             "substring": 0,
             "outlier": 0,
-            "proportion": 0.0002849544072948328,
+            "proportion": 0.0338145896656535,
             "is-bot": 0
         }
     },

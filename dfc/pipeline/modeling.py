@@ -875,7 +875,7 @@ def icse_25_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) ->
     perf_db = PerfData(perf_source=perf_db_path)
     best_df = perf_db.best_perfs(transfer_strats=trial_structs)
 
-def tse_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> None:
+def jss_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> None:
     """Temporary utility for the TCSE '25 Paper table generation; saves all 
     results in a separate TCSE db.
 
@@ -901,9 +901,10 @@ def tse_breakdown(params_dict: dict[str, Any], args_dict: dict[str, Any]) -> Non
     
     # setup vars
     num_trials = args_dict.get("trials", 3)
-    perf_db_path = "./model-reports/tse-trials/tse_perf_db"
+    perf_db_path = "./model-reports/jss-trials/jss_perf_db"
     check_path(perf_db_path)
-    df = pd.read_csv("./model-reports/tse-trials/paper_table.csv")
+    pfd = PerfData(perf_source=perf_db_path)
+    df = pfd.data
     
     # try every set of trials
     for model in models:
@@ -985,8 +986,8 @@ def __modeling_main():
                 args_dict=args_dict
             )
         
-        case "tse":
-            tse_breakdown(
+        case "jss":
+            jss_breakdown(
                 params_dict=params_dict,
                 args_dict=args_dict
             )

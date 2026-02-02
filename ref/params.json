@@ -136,46 +136,46 @@
     "augmentations": {
         "apache": {
             "tech": {
-                "1": "01-commits",
+                "1": "commits",
                 "2": "02-commits"
             },
             "social": {
-                "1": "01-emails",
+                "1": "emails",
                 "2": "02-emails"
             }
         },
         "github": {
             "tech": {
-                "3": "03-commits",
+                "3": "commits",
                 "4": "04-commits"
             },
             "social": {
-                "4": "04-issues",
+                "4": "issues",
                 "5": "05-issues"
             }
         },
         "eclipse": {
             "tech": {
-                "1": "01-commits",
+                "1": "commits",
                 "2": "02-commits",
                 "3": "03-commits"
             },
             "social": {
-                "1": "01-emails-issues",
+                "1": "emails-issues",
                 "2": "02-emails-issues",
                 "3": "03-emails-issues"
             }
         },
         "osgeo": {
             "tech": {
-                "0": "00-commits",
+                "0": "commits",
                 "0a": "00-commits-alias",
                 "1": "01-commits",
                 "2": "02-commits"
             },
             "social": {
-                "0e": "00-emails",
-                "0i": "00-issues",
+                "0e": "emails",
+                "0i": "issues",
                 "0ea": "00-emails-alias",
                 "0ia": "00-issues-alias",
                 "0": "00-emails-issues",

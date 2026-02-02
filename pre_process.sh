@@ -1,14 +1,14 @@
 
 ## ECLIPSE
 # truncate datasets
-python3 -m decalfc.scripts.enforce_dates --kwargs \
+python3 -m dfc.scripts.enforce_dates --kwargs \
     incubator="eclipse" \
     dates="./ref/eclipse_incubation_times.json" \
     versions='{"tech": "1", "social": "1"}' \
     save_versions='{"tech": "2", "social": "2"}'
 
 # re-infer replies
-python3 -m decalfc.scripts.pre_process --kwargs \
+python3 -m dfc.scripts.pre_process --kwargs \
     incubator="eclipse" \
     load_versions='{"tech": "2", "social": "2"}' \
     save_versions='{"tech": "3", "social": "3"}'
@@ -16,31 +16,31 @@ python3 -m decalfc.scripts.pre_process --kwargs \
 
 ## OSGEO
 # clean column names
-python3 -m decalfc.scripts.enforce_column_names --kwargs \
+python3 -m dfc.scripts.enforce_column_names --kwargs \
     incubator="osgeo" \
     versions='{"tech": ["0"], "social": ["0i", "0e"]}'
 
 # standardize sender aliases
-python3 -m decalfc.scripts.standardize_sender_aliases --kwargs \
+python3 -m dfc.scripts.standardize_sender_aliases --kwargs \
     incubator="osgeo" \
     aliases="./ref/osgeo_aliases.csv" \
     load_save_versions='{"tech": {"0": "0a"}, "social": {"0i": "0ia", "0e": "0ea"}}'
 
 # combine social data in emails-issues
-python3 -m decalfc.scripts.combine_social --kwargs \
+python3 -m dfc.scripts.combine_social --kwargs \
     incubator="osgeo" \
     social_versions='["0ia", "0ea"]' \
     save_version="0"
 
 # truncate datasets
-python3 -m decalfc.scripts.enforce_dates --kwargs \
+python3 -m dfc.scripts.enforce_dates --kwargs \
     incubator="osgeo" \
     dates="./ref/osgeo_incubation_times.json" \
     versions='{"tech": "0a", "social": "0"}' \
     save_versions='{"tech": "1", "social": "1"}'
 
 # regular cleaning steps, new reply inference
-python3 -m decalfc.scripts.pre_process --kwargs \
+python3 -m dfc.scripts.pre_process --kwargs \
     incubator="osgeo" \
     load_versions='{"tech": "1", "social": "1"}' \
     save_versions='{"tech": "2", "social": "2"}' \

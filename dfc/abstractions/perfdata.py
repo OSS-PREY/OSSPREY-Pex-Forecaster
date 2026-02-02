@@ -1280,7 +1280,7 @@ class PerfData:
 
         Args:
             save_path (Path | str, optional): directory to save to. Defaults to 
-                TSE trial dirs.
+                jss trial dirs.
             acc_measure (str, optional): accuracy measure to use, should be one 
                 of {"acc", "mac-f1", "mic-f1"}. Defaults to "acc".
         """
@@ -1439,21 +1439,21 @@ def icse_wrapper():
             f.write(perf.to_string(index=False))
             f.write("\n\n\n")
 
-def tse_wrapper(**kwargs):
-    """Wraps the breakdowns for the TSE trials.
+def jss_wrapper(**kwargs):
+    """Wraps the breakdowns for the jss trials.
     """
     
     # load the perf db
-    pfd = PerfData(perf_source="./model-reports/tse-trials/tse_perf_db")
+    pfd = PerfData(perf_source="./model-reports/jss-trials/jss_perf_db")
     
     # sub-wrapper for aggregating and pivoting
     def sub_wrapper(metric: str="mic-f1_mean"):
         # load and re-save the paper tables for mic and macro
         df = pd.concat([
-            pd.read_csv("model-reports/tse-trials/paper_table_in_incubator.csv"),
-            pd.read_csv("model-reports/tse-trials/paper_table_cross_incubator.csv"),
-            pd.read_csv("model-reports/tse-trials/paper_table_success_to_sustainability.csv"),
-            pd.read_csv("model-reports/tse-trials/paper_table_sustainability_to_success.csv")
+            pd.read_csv("model-reports/jss-trials/paper_table_in_incubator.csv"),
+            pd.read_csv("model-reports/jss-trials/paper_table_cross_incubator.csv"),
+            pd.read_csv("model-reports/jss-trials/paper_table_success_to_sustainability.csv"),
+            pd.read_csv("model-reports/jss-trials/paper_table_sustainability_to_success.csv")
         ])
         df = df[~df.transfer_strategy.str.contains("+", regex=False)]
         df.transfer_strategy = df.transfer_strategy.str.replace("^", "")
@@ -1469,15 +1469,15 @@ def tse_wrapper(**kwargs):
     def avg_strat_wrapper(strat: str="mic"):
         dfs = list()
         pfd.paper_tables(
-            save_path="./model-reports/tse-trials/", acc_measure=f"{strat}-prec"
+            save_path="./model-reports/jss-trials/", acc_measure=f"{strat}-prec"
         )
         dfs.append(sub_wrapper(f"{strat}-prec_mean"))
         pfd.paper_tables(
-            save_path="./model-reports/tse-trials/", acc_measure=f"{strat}-rec"
+            save_path="./model-reports/jss-trials/", acc_measure=f"{strat}-rec"
         )
         dfs.append(sub_wrapper(f"{strat}-rec_mean"))
         pfd.paper_tables(
-            save_path="./model-reports/tse-trials/", acc_measure=f"{strat}-f1"
+            save_path="./model-reports/jss-trials/", acc_measure=f"{strat}-f1"
         )
         dfs.append(sub_wrapper(f"{strat}-f1_mean"))
         
@@ -1501,19 +1501,19 @@ def tse_wrapper(**kwargs):
         df = pd.concat([df, support_df[["support"]]], axis="columns", ignore_index=False)
 
         # save to csv
-        df.to_csv(f"./model-reports/tse-trials/paper_table_pivoted_{strat}.csv", index=False)
+        df.to_csv(f"./model-reports/jss-trials/paper_table_pivoted_{strat}.csv", index=False)
     
     avg_strat_wrapper()
     avg_strat_wrapper("mac")
     
     # redo final breakdown
-    pfd.paper_tables(save_path="./model-reports/tse-trials/", **kwargs["args_dict"])
+    pfd.paper_tables(save_path="./model-reports/jss-trials/", **kwargs["args_dict"])
 
 def check_augmentation_perf(perf_metric: tuple[str, str]=("weighted avg", "f1-score")):
     """Breakdown of performance by augmentation."""
     
     # pivot to only keep the requested performance metric
-    pfd = PerfData(perf_source="./model-reports/tse-trials/tse_perf_db")
+    pfd = PerfData(perf_source="./model-reports/jss-trials/jss_perf_db")
     pfd.data = pfd.data[(pfd.data.label == perf_metric[0]) & (pfd.data.metric == perf_metric[1])]
     pfd.data.rename(columns={"perf": perf_metric[1]}, inplace=True)
     pfd.data.drop(columns=["label", "metric"], inplace=True)
@@ -1537,15 +1537,15 @@ def check_augmentation_perf(perf_metric: tuple[str, str]=("weighted avg", "f1-sc
 def __pfd_main():
     # setup
     args_dict = parse_input(sys.argv)
-    breakdown_type = args_dict.get("breakdown-type", "tse")
+    breakdown_type = args_dict.get("breakdown-type", "jss")
     
     # match trial
     match breakdown_type:
         case "icse":
             icse_wrapper()
         
-        case "tse":
-            tse_wrapper(
+        case "jss":
+            jss_wrapper(
                 args_dict=args_dict
             )
         

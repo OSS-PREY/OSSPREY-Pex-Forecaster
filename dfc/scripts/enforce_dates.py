@@ -37,8 +37,6 @@ def merge_st_end_dates(df: pd.DataFrame, dates: pd.DataFrame) -> pd.DataFrame:
     """
     
     # return the merged dataframe without the excess project column
-    print(dates)
-    exit()
     merged = pd.merge(
         df, dates, left_on="project_name", right_on="project", how="left"
     )
@@ -88,6 +86,14 @@ def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame, ndays_tol: int
             }
     """
     
+    # keep only columns we actually use to reduce memory pressure
+    # but preserve original frames for the return value
+    keep_cols = ["project_name", "date", "st_date", "end_date"]
+    orig_mtdf = mtdf
+    orig_msdf = msdf
+    mtdf = orig_mtdf[keep_cols].copy()
+    msdf = orig_msdf[keep_cols].copy()
+
     # auxiliary fn
     def is_valid_project(proj_tdf: pd.DataFrame, proj_sdf: pd.DataFrame, ndays_tol=12000000) -> str:
         """Indicator function to test if a project contains the necessary 
@@ -146,9 +152,9 @@ def check_sufficient_data(mtdf: pd.DataFrame, msdf: pd.DataFrame, ndays_tol: int
                 "inc_st_date": str(proj_tdf.st_date.iloc[0])
             }
     
-    # remove invalids
-    mtdf = mtdf[mtdf.project_name.isin(valid_projects)]
-    msdf = msdf[msdf.project_name.isin(valid_projects)]
+    # remove invalids (apply to original frames to preserve columns)
+    mtdf = orig_mtdf[orig_mtdf.project_name.isin(valid_projects)]
+    msdf = orig_msdf[orig_msdf.project_name.isin(valid_projects)]
     
     # return lookup
     return {
@@ -312,4 +318,3 @@ def truncate_incubation_time(
 if __name__ == "__main__":
     kwargs = parse_input(sys.argv)
     truncate_incubation_time(**kwargs)
-

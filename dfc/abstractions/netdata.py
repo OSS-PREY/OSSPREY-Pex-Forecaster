@@ -381,7 +381,7 @@ class NetData:
         
         def process_group(group):
             # truncate cols & generate list of data points
-            return group.drop(self.drop_cols, axis=1).values.tolist()
+            return group.drop(columns=(set(self.drop_cols) - {"proj_name"})).values.tolist()
         
         # group apply to every project for lookup generation
         grouped_data = self.data[self.data["proj_name"].isin(project_subset)].groupby("proj_name").apply(process_group)
@@ -2024,15 +2024,15 @@ class NetData:
 
 # Scripting & Testing
 def __nd_main(args_dict: dict[str, Any]) -> None:
-    match args_dict.get("script", "tse"):
-        case "tse":
-            TSE_INCS = ["apache", "github", "eclipse", "osgeo"]
+    match args_dict.get("script", "jss"):
+        case "jss":
+            JSS_INCS = ["apache", "github", "eclipse", "osgeo"]
             
             NetData.project_length_distribution(
-                incubators=TSE_INCS
+                incubators=JSS_INCS
             )
             
-            for inc in TSE_INCS:
+            for inc in JSS_INCS:
                 nd = NetData(inc, do_compute_tensors=False)
                 nd.distributions()
                 nd.feature_correlations()

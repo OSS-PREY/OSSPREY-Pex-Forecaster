@@ -5,35 +5,75 @@
             "OliverMay"
         ],
         [
-            "dosi.bingov",
-            "dosi-bingov"
+            "dosi-bingov",
+            "dosi.bingov"
         ]
     ],
     "geonode": [
         [
-            "root@bgdem1.cr.usgs.gov",
-            "root"
+            "Jon Doig",
+            "Jonathan Doig"
         ],
         [
-            "Clarence",
-            "Clarence Davis"
+            "FedEx International Economy",
+            "FedEx International Ground"
         ],
         [
-            "PedroBelo",
-            "Pedro"
+            "Annalisa Schiavon",
+            "AnnalisaSchiavon"
+        ],
+        [
+            "yygherbert at loyno.edu",
+            "gherbert at loyno.edu"
+        ],
+        [
+            "Clarence Davis",
+            "Clarence"
+        ],
+        [
+            "VivienDeparday",
+            "Vivien Deparday"
+        ],
+        [
+            "FedEx 2Day A.M.",
+            "FedEx 2Day"
+        ],
+        [
+            "Paolo Corti",
+            "PaoloCastro"
+        ],
+        [
+            "SaraSafavi",
+            "Sara Safavi"
+        ],
+        [
+            "Francesco",
+            "Francesco Bartoli"
+        ],
+        [
+            "marcelovillarroel",
+            "Marcelo Villarroel"
+        ],
+        [
+            "Lautaro Silva",
+            "LautaroSilva"
         ],
         [
             "Jeremiah C. Foster",
             "Jeremiah Cooper"
         ],
         [
-            "bartvde",
-            "bartvde@osgis.nl",
-            "bartvde@xs4all.nl"
+            "root",
+            "root@bgdem1.cr.usgs.gov"
         ],
         [
-            "Francesco",
-            "Francesco Bartoli"
+            "bartvde@osgis.nl",
+            "bartvde@xs4all.nl",
+            "bartvde"
+        ],
+        [
+            "Pedro",
+            "PedroBelo"
         ]
     ],
     "geopaparazzi": [
@@ -42,58 +82,921 @@
             "AndrewM-"
         ]
     ],
+    "geos": [
+        [
+            "James Sewell",
+            "James.Sewell@lisasoft.com"
+        ],
+        [
+            "Jens Jahnke",
+            "Jens H. Jahnke"
+        ],
+        [
+            "Stephen Lime",
+            "Steve Lime"
+        ],
+        [
+            "Sanak Goe",
+            "Sanak"
+        ],
+        [
+            "jingping.xie",
+            "jingping xie"
+        ],
+        [
+            "Ragi Burhum",
+            "Ragi Y. Burhum"
+        ],
+        [
+            "Andrea Peri 2007",
+            "Andrea Peri"
+        ],
+        [
+            "geos-commits@geos.refractions.net",
+            "geos-commits"
+        ],
+        [
+            "strk@refractions.net",
+            "'strk'",
+            "strk"
+        ],
+        [
+            "Chris G. Nicholas",
+            "Chris Nicholas"
+        ],
+        [
+            "Namrata",
+            "Namrata Sorte"
+        ],
+        [
+            "sgillies@frii.com",
+            "sgillies"
+        ],
+        [
+            "Maximo Pech Jaramillo",
+            "Maximo Pech"
+        ],
+        [
+            "dblasby@refractions.net",
+            "dblasby",
+            "dblasby@openplans.org"
+        ],
+        [
+            "bartvde@osgis.nl",
+            "bartvde@xs4all.nl",
+            "bartvde"
+        ],
+        [
+            "Charles F. I. Savage",
+            "Charlie Savage"
+        ],
+        [
+            "mchapman",
+            "mchapman@texelinc.com",
+            "mchapman@fortifieddatacom.com"
+        ],
+        [
+            "David Blasby",
+            "Dave Blasby"
+        ],
+        [
+            "Kralidis,Tom [Ontario]",
+            "Kralidis,Tom [Burlington]"
+        ]
+    ],
     "geoserver": [
         [
-            "DavidLeal",
-            "Davide"
+            "jody.garnett",
+            "jgarnett"
         ],
         [
-            "dwinslow",
-            "dwins"
+            "yjacolin",
+            "yjacolin@free.fr"
         ],
         [
-            "yjacolin@free.fr",
-            "yjacolin"
+            "dwins",
+            "dwinslow"
         ],
         [
-            "volayaf",
-            "volaya"
+            "volaya",
+            "volayaf"
+        ],
+        [
+            "Davide",
+            "DavidLeal"
         ],
         [
             "Andrea",
             "Andrea Aime"
-        ],
-        [
-            "jgarnett",
-            "jody.garnett"
         ]
     ],
     "geowave": [],
     "get-it": [
         [
-            "root@bgdem1.cr.usgs.gov",
-            "root"
-        ],
-        [
             "alesarrett",
             "alessandro.sarretta"
+        ],
+        [
+            "root",
+            "root@bgdem1.cr.usgs.gov"
         ]
     ],
-    "grass": [],
+    "gisquick": [],
+    "grass": [
+        [
+            "Bruce Byars",
+            "Bruce_Byars@baylor.edu"
+        ],
+        [
+            "Anabel Donadios Algarra",
+            "Anabel Donadios"
+        ],
+        [
+            "roberto marzocchi",
+            "roberto.marzocchi"
+        ],
+        [
+            "benjamin.ducke@ufg.uni-kiel.de",
+            "benducke@compuserve.de"
+        ],
+        [
+            "mohsen@interlog.com",
+            "mose"
+        ],
+        [
+            "root",
+            "root@bgdem1.cr.usgs.gov"
+        ],
+        [
+            "John F. Stamm",
+            "John Stamm"
+        ],
+        [
+            "Eric G . Miller",
+            "Eric G. Miller"
+        ],
+        [
+            "Don Newcomb",
+            "Donald Newcomb"
+        ],
+        [
+            "Kenn Gardels CEDR-REGIS",
+            "Kenn Gardels"
+        ],
+        [
+            "Nalneesh gaur",
+            "Nalneesh Gaur"
+        ],
+        [
+            "Chris Skelly",
+            "Chris W Skelly"
+        ],
+        [
+            "Andreas Lange via RT",
+            "Andreas Lange",
+            "Andreas C. Lange"
+        ],
+        [
+            "Francisco Alonso Sarria",
+            "Francisco Alonso"
+        ],
+        [
+            "ati",
+            "Kati"
+        ],
+        [
+            "Hamish",
+            "Hamish B"
+        ],
+        [
+            "rgrmill",
+            "rgrmill@rt66.com"
+        ],
+        [
+            "Dave Gerdes",
+            "David Gerdes"
+        ],
+        [
+            "kyngchaos@kyngchaos.com",
+            "kyngchaos"
+        ],
+        [
+            "A Chandrasekar",
+            "A chandrasekar"
+        ],
+        [
+            "sznury",
+            "sznury@gazeta.pl"
+        ],
+        [
+            "Justin Hickey via RT",
+            "Justin Hickey"
+        ],
+        [
+            "news@festival.ed.ac.uk",
+            "news@cs.utwente.nl",
+            "news@data.interserv.net"
+        ],
+        [
+            "=?ISO-8859-15?Q?Carlos_D=E1vila?=",
+            "=?ISO-8859-2?Q?Carlos_D=E1vila?=",
+            "=?ISO-8859-1?Q?Carlos_D=E1vila?="
+        ],
+        [
+            "Venkatesh Raghavan",
+            "Venkatesh raghavan"
+        ],
+        [
+            "glynn@gclements.plus.com",
+            "glynn"
+        ],
+        [
+            "Laura I. Toma",
+            "Laura Toma"
+        ],
+        [
+            "Chris Heg",
+            "Christoph Hoegl"
+        ],
+        [
+            "frank@gevaerts.be",
+            "frank"
+        ],
+        [
+            "Thomas.Ragland@A.GP.CS.CMU.EDU",
+            "Thomas E. Ragland"
+        ],
+        [
+            "postmaster@grasskeepers.net",
+            "postmaster@matrad.it"
+        ],
+        [
+            "Francesco P. Lovergine",
+            "Francesco Paolo Lovergine"
+        ],
+        [
+            "Marketingwap",
+            "Marketing"
+        ],
+        [
+            "John N. Schmidt",
+            "John N Schmidt"
+        ],
+        [
+            "mystusvittatus",
+            "Mystus vittatus"
+        ],
+        [
+            "Steven March",
+            "Steve March"
+        ],
+        [
+            "H Bowman",
+            "H. Bowman"
+        ],
+        [
+            "mlennert@ulb.ac.be",
+            "mlennert@club.worldonline.be",
+            "mlennert"
+        ],
+        [
+            "Erika K. Crosse",
+            "Erika Kathryn Crosse"
+        ],
+        [
+            "Bernhard Reiter",
+            "Bernhard Reiter via RT"
+        ],
+        [
+            "Wolfgang",
+            "Wolfgang Zillig",
+            "WolfgangZ"
+        ],
+        [
+            "bakerwl@uwyo.edu",
+            "bakerwl"
+        ],
+        [
+            "Arnulf Christl OSGeo",
+            "Arnulf Christl"
+        ],
+        [
+            "GRASS-trac",
+            "GRASS",
+            "GRASS 4.0"
+        ],
+        [
+            "Gerald Evenden",
+            "Gerald I. Evenden"
+        ],
+        [
+            "Janusz Michalak",
+            "Janusz W. Michalak"
+        ],
+        [
+            "Scott W Mitchell",
+            "Scott Miller",
+            "ScottMiller"
+        ],
+        [
+            "linux@crischan.net",
+            "jg-linux@triad.rr.com",
+            "linux@celticblues.com"
+        ],
+        [
+            "marco.pasetti at alice.it",
+            "marco.pasetti@alice.it"
+        ],
+        [
+            "Vytautas",
+            "Vytautas V"
+        ],
+        [
+            "info@dbsoftsnc.it",
+            "info@datamarche.com",
+            "info@e-gav.com"
+        ],
+        [
+            "jimg@ocean.rutgers.edu",
+            "jimg",
+            "jim@cast.uark.edu",
+            "jimg@atlantic.rutgers.edu",
+            "jimg@lake.rutgers.edu"
+        ],
+        [
+            "Thomas.Adams@noaa.gov",
+            "Thomas Adams"
+        ],
+        [
+            "David Guo",
+            "David   Guei"
+        ],
+        [
+            "javier garcia-pintado",
+            "javier Garcia Prieto",
+            "javier garcia"
+        ],
+        [
+            "Moritz Lenz",
+            "Moritz Lennert"
+        ],
+        [
+            "Helena Mitasova - staff",
+            "Helena Mitasova"
+        ],
+        [
+            "Jarekj Jasiewicz",
+            "Jarek Jasiewicz"
+        ],
+        [
+            "Anthony Jonh Bizos",
+            "Anthony Bizos"
+        ],
+        [
+            "Paul Kelly",
+            "Paul D Kelly"
+        ],
+        [
+            "moovida_lists",
+            "moovida",
+            "moovida@katamail.com"
+        ],
+        [
+            "Maciek Sieczka",
+            "Maciej Sieczka"
+        ],
+        [
+            "Ivan Marchesini",
+            "ivan marchesini"
+        ],
+        [
+            "ss",
+            "ssp@swiss.daa.uc.EDU"
+        ],
+        [
+            "Peter N. Strong",
+            "Peter Strong"
+        ],
+        [
+            "cheg01@comcast.net",
+            "cheg01@attbi.com"
+        ],
+        [
+            "Radoslav Bonk",
+            "Rado Bonk"
+        ],
+        [
+            "Tom Orth",
+            "Thomas Orth"
+        ],
+        [
+            "=?iso-8859-15?q?S=F6ren_Gebbert?=",
+            "=?iso-8859-1?q?S=F6ren_Gebbert?=",
+            "=?iso-8859-1?Q?=22S=F6ren_Gebbert=22?="
+        ],
+        [
+            "Douglas P. Dotson",
+            "Doug Dotson"
+        ],
+        [
+            "Rainer M. Krug",
+            "Rainer M Krug"
+        ],
+        [
+            "roger@spinn.net",
+            "roger@pocketterra.com",
+            "roger"
+        ],
+        [
+            "John A. Preston",
+            "John Preston"
+        ],
+        [
+            "Michael Barton via RT",
+            "Michael Barton"
+        ],
+        [
+            "nicholas.g.lawrence@tmr.qld.gov.au",
+            "nicholas.g.lawrence at tmr.qld.gov.au",
+            "nicholas.g.lawrence@mainroads.qld.gov.au"
+        ],
+        [
+            "francesco.pirotti",
+            "francesco",
+            "francesco pirotti"
+        ],
+        [
+            "Kenneth R Brownfield",
+            "Kenneth R. Brownfield"
+        ],
+        [
+            "vincent",
+            "vincent@ecovla.nl"
+        ],
+        [
+            "Markus Neteler OSGeo",
+            "Markus Neteler via RT",
+            "Markus Neteler"
+        ],
+        [
+            "Richard E Nairn",
+            "Richard Nairn"
+        ],
+        [
+            "huw@se.houston.geoquest.slb.com",
+            "huw@houston.geoquest.slb.com"
+        ],
+        [
+            "Crudeli",
+            "crudeli"
+        ],
+        [
+            "chemin@grass.itc.it",
+            "chemin"
+        ],
+        [
+            "Claus Huettermann",
+            "Claus =?iso-8859-1?Q?H=FCttermann?="
+        ],
+        [
+            "maximilian maldacker",
+            "maximilian.krambach"
+        ],
+        [
+            "BAKERWL",
+            "BAKERWL@UWYO.EDU"
+        ],
+        [
+            "=?iso-8859-2?q?Stef=E1n_Istv=E1n?=",
+            "=?iso-8859-1?q?Stef=E1n_Istv=E1n?="
+        ],
+        [
+            "neteler@grass.itc.it",
+            "neteler@itc.it"
+        ],
+        [
+            "Andreas Holz",
+            "Andreas Holz CIP guests"
+        ],
+        [
+            "fpacheco@dinama.gub.uy",
+            "fpacheco@adinet.com.uy"
+        ],
+        [
+            "Tim Szeliga - NWS",
+            "Tim Szeliga"
+        ],
+        [
+            "Roger S. Miller",
+            "Roger Miller"
+        ],
+        [
+            "William L. Baker",
+            "William Baker"
+        ],
+        [
+            "Mail Delivery Subsystem",
+            "Mail Delivery System"
+        ],
+        [
+            "Daniel Calvelo via RT",
+            "Daniel Calvelo Aros",
+            "Daniel Calvelo"
+        ],
+        [
+            "jan",
+            "jan@intevation.de"
+        ],
+        [
+            "Aleksey Naumov",
+            "Aleksey Y Naumov"
+        ],
+        [
+            "tlaronde@polynum.com",
+            "tlaronde@polynum.org"
+        ],
+        [
+            "lists@nabble.com",
+            "lists@linfiniti.com",
+            "lists@dwillis.gotadsl.co.uk"
+        ],
+        [
+            "Hamish Bowman via RT",
+            "Harmish Bowman via RT",
+            "Harmisch Bowman via RT"
+        ],
+        [
+            "Yile Wang",
+            "Yile Wang {regular}"
+        ],
+        [
+            "Anantha Prasad",
+            "Anantha Prasad/NE/USDAFS"
+        ],
+        [
+            "Kirk Wythers",
+            "Kirk R. Wythers"
+        ],
+        [
+            "peter Mikes",
+            "Peter Mikes"
+        ],
+        [
+            " =?ISO-8859-2?Q?J=E1chym?= =?ISO-8859-2?Q?=20=C8epick=FD?=",
+            "=?ISO-8859-2?Q?J=E1chym_=C8epick=FD?="
+        ],
+        [
+            "Pierluig De Rosa",
+            "Pierluigi De Rosa"
+        ],
+        [
+            "Yann.Chemin@ait.ac.th",
+            "Yann Chemin"
+        ],
+        [
+            "Kirby Stephen AM-A 678-4329 505",
+            "Kirby Stephen AM-A 678-4329/88"
+        ],
+        [
+            "aaime",
+            "aaime@comune.modena.it"
+        ],
+        [
+            "Wolf Bergehneim",
+            "Wolf Bergenheim"
+        ],
+        [
+            "Luis Coronado Chacon",
+            "Luis Coronado"
+        ],
+        [
+            "Glenn",
+            "Glenn@qs655.pair.com"
+        ],
+        [
+            "N R A  ",
+            "N R A ",
+            "N R A"
+        ],
+        [
+            "Cedric Shock via RT",
+            "Cedric Shock"
+        ],
+        [
+            "Steven T.Stoddard",
+            "Steven Stoddard"
+        ],
+        [
+            "brownfld@enterprise.cecer.army.mil",
+            "brownfld@cecer.army.mil"
+        ],
+        [
+            "Mark P. Line",
+            "Mark Line"
+        ],
+        [
+            "O. Hellwich",
+            "O. Hellwich             "
+        ],
+        [
+            "=?ISO-8859-1?Q?=22S=F6ren_Gebbert=22?=",
+            "=?ISO-8859-1?Q?S=F6ren_Gebbert?=",
+            "=?ISO-8859-2?Q?S=F6ren_Gebbert?=",
+            "=?ISO-8859-15?Q?S=F6ren_Gebbert?="
+        ],
+        [
+            "Chris Rewerts",
+            "Chris C Rewerts"
+        ],
+        [
+            "Christian S. Ferreira",
+            "Christian Ferreira"
+        ],
+        [
+            "Jerry Ballard",
+            " Jerry Ballard "
+        ],
+        [
+            "Mark J. Bailey",
+            "Mark J. Bailey [HOME]"
+        ],
+        [
+            "Seppo.Kaitala@fimr.fi",
+            "Seppo Kaitala"
+        ],
+        [
+            "DUNN JEREMY SIMON",
+            "DUNN  JEREMY SIMON"
+        ],
+        [
+            "Bill Brown - staff",
+            "Bill Brown"
+        ],
+        [
+            "and@lka.lt",
+            "andy"
+        ],
+        [
+            "Stephen Clark",
+            "Stephen C. Martin"
+        ],
+        [
+            "Ronald Thomas",
+            "Ronald E. Thomas"
+        ],
+        [
+            "hoffmann@urzdfn.kartographie.tu-dresden.d400.de",
+            "hoffmann@urzdfn.kartographie.tu-dresden.dbp.de"
+        ]
+    ],
     "istsos": [],
-    "mapserver": [],
+    "mapserver": [
+        [
+            "Norman",
+            "Norman Vine"
+        ],
+        [
+            "David Graham",
+            "David W. Graham"
+        ],
+        [
+            "Bradley McLain",
+            "Bradley Mclain"
+        ],
+        [
+            "Mark MacLennan",
+            "Mark J. MacLennan"
+        ],
+        [
+            "Tom Kralidis [Burlington]",
+            "Tom.Kralidis@CCRS.NRCan.gc.ca"
+        ],
+        [
+            "Hallgren Johan E",
+            "Hallgren, Johan"
+        ],
+        [
+            "Arnulf Christl CCGIS",
+            "Arnulf Christl",
+            "Arnulf Christl OSGeo"
+        ],
+        [
+            "David Fuhry",
+            "Dave Fuhry"
+        ],
+        [
+            "Bart van den Eijnden",
+            "Bart van den Eijnden OSGIS"
+        ],
+        [
+            "Stephen",
+            "Stephen Lime"
+        ],
+        [
+            "Valik =?iso-8859-1?Q?Sol=F3rzano?= Barboza",
+            "Valik Solorzano Barboza"
+        ],
+        [
+            "Thomas E Burk",
+            "Thomas E. Burk"
+        ],
+        [
+            "Pericles Nacionales",
+            "Pericles S. Nacionales"
+        ],
+        [
+            "Titus v.d. Malsburg",
+            "Titus von der Malsburg"
+        ],
+        [
+            "sgillies@frii.com",
+            "sgillies"
+        ],
+        [
+            "xslove sent by Nabble.com",
+            "cholmes sent by Nabble.com"
+        ],
+        [
+            "Fernando S.",
+            "Fernando"
+        ],
+        [
+            "bartvde@osgis.nl",
+            "bartvde@xs4all.nl",
+            "bartvde"
+        ],
+        [
+            "Laurent HENRY",
+            "Laurent HENRY EHESS/CRI"
+        ],
+        [
+            "dmorissette",
+            "dmorissette@dmsolutions.ca"
+        ],
+        [
+            "Chris Galli XC Skies",
+            "Chris Galli"
+        ],
+        [
+            "aboudreault@mapgears.com",
+            "aboudreault"
+        ],
+        [
+            "Kralidis,Tom [Ontario]",
+            "Kralidis,Tom [Burlington]"
+        ],
+        [
+            "porath@web.de",
+            "porath"
+        ]
+    ],
     "osgeolive": [],
     "ossim": [
         [
-            "65674943+McKenzieTugui",
-            "McKenzie Tugui"
+            "dburken",
+            "dburken@comcast.net"
         ],
         [
-            "dburken@comcast.net",
-            "dburken"
+            "65674943+McKenzieTugui",
+            "McKenzie Tugui"
         ]
     ],
-    "pdal": [],
-    "proj": [],
-    "pycsw": []
+    "pdal": [
+        [
+            "Doug_Newcomb@fws.gov",
+            "Doug Newcomb"
+        ],
+        [
+            "Smith, Michael ERDC-RDE-CRREL-NH CIV",
+            "Smith, Michael ERDC-RDE-CRREL-NH",
+            "Smith, Michael ERDC-CRREL-NH"
+        ],
+        [
+            "Oscar Martinez Rubi - BK",
+            "Oscar Martinez Rubi"
+        ],
+        [
+            "Michael Gerlek",
+            "Michael P. Gerlek"
+        ],
+        [
+            "Matthew Hanson",
+            "Matt Hanson"
+        ],
+        [
+            "Stephen V. Mather",
+            "Stephen Mather"
+        ]
+    ],
+    "postgis": [
+        [
+            "David Potts",
+            "Dave Potts"
+        ],
+        [
+            "'Sandro Santilli'",
+            "Sandro Santilli"
+        ],
+        [
+            "George Silva",
+            "George R. C. Silva"
+        ],
+        [
+            "Nathaniel Clay",
+            "Nathan Clay"
+        ],
+        [
+            "David Fuhry",
+            "Dave Fuhry"
+        ],
+        [
+            "James Sewell",
+            "James.Sewell@lisasoft.com"
+        ],
+        [
+            "Salvatore Larosa",
+            "Salvatore Larosa-1"
+        ],
+        [
+            "Jose Carlos Martinez Llario",
+            "Jose Carlos Martinez"
+        ],
+        [
+            "Andrea Peri 2007",
+            "Andrea Peri"
+        ]
+    ],
+    "proj": [
+        [
+            "Alan Snow",
+            "Alan D. Snow"
+        ],
+        [
+            "Matt.Wilkie at yukon.ca",
+            "Matt.Wilkie at gov.yk.ca"
+        ]
+    ],
+    "pycsw": [
+        [
+            "DanRamage",
+            "Dan Ramage"
+        ]
+    ],
+    "pywps": [],
+    "qgis": [
+        [
+            "Albert Cervera i Areny",
+            "Albert Cervera Areny"
+        ],
+        [
+            "qgis@rigacci.org",
+            "qgis"
+        ],
+        [
+            "bmoskovi",
+            "bmoskovi@surewest.net"
+        ],
+        [
+            "Gavin Macaulay",
+            "gavin macaulay"
+        ],
+        [
+            "Steven Bell",
+            "StevenB"
+        ],
+        [
+            "Mateusz Loskot",
+            "Mateusz ?oskot"
+        ],
+        [
+            "=?ISO-8859-15?Q?Carlos_D=E1vila?=",
+            "=?ISO-8859-2?Q?Carlos_D=E1vila?=",
+            "=?ISO-8859-1?Q?Carlos_D=E1vila?="
+        ],
+        [
+            "mhugent",
+            "nhugent@hispeed.ch"
+        ],
+        [
+            "Maciek Sieczka",
+            "Maciej Sieczka"
+        ],
+        [
+            "sherman@mrcc.com",
+            "gsherman"
+        ],
+        [
+            "lists@nabble.com",
+            "lists@linfiniti.com",
+            "lists@dwillis.gotadsl.co.uk"
+        ],
+        [
+            "marco.pasetti at alice.it",
+            "marco.pasetti@alice.it"
+        ],
+        [
+            "lami@faunalia.it",
+            "lami@gis3w.it"
+        ]
+    ]
 }

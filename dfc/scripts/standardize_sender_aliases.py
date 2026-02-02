@@ -48,11 +48,9 @@ def load_aliases(aliases: Path | str | pd.DataFrame) -> pd.DataFrame:
     aliases.alias_id = aliases.alias_id.str.split(" at ").str[0]
     
     # remove special character names
-    pd.set_option("future.no_silent_downcasting", True)
     special_char_locations = aliases.name.str.contains(
         r"[^\x00-\x7F]", regex=True
     ).fillna(False)
-    pd.set_option("future.no_silent_downcasting", False)
     aliases.loc[special_char_locations, "name"] = pd.NA
     
     # export aliases
@@ -80,9 +78,7 @@ def aggregate_aliases(lookup: pd.DataFrame, alias_field: str="alias_id", col_pri
         col_priority = ["name", "email_addr", "alias_id", "person_id"]
     
     # merge aliases into one column
-    pd.set_option("future.no_silent_downcasting", True)
     lookup["sender_name"] = lookup[col_priority].bfill(axis=1).iloc[:, 0]
-    pd.set_option("future.no_silent_downcasting", False)
     
     # for each unique sender name, accumulate its aliases (one per row)
     lookup = lookup.groupby("sender_name")[alias_field].apply(

@@ -28,7 +28,7 @@ INFERENCE_DIR = Path().cwd() / params_dict["reports-dir"] / "inferences"
 # ---------------- auxiliary functions ---------------- #
 def load_best_cached_weight(incubator: str, aug: str="") -> Any:
     """Loads the best model weights possible for the target incubator. BUILT FOR
-    THE TSE PAPER, i.e. we're only considering all trials {A, E, G, O} -> target
+    THE JSS PAPER, i.e. we're only considering all trials {A, E, G, O} -> target
     with any augmentation, no cross-/mix-incubators.
 
     Args:
@@ -111,7 +111,7 @@ def load_best_cached_weight(incubator: str, aug: str="") -> Any:
             # print(f"skipping {trial_dir.stem} :: not target incubator or not `c`")
             continue
         
-        ## TSE SPECIFIC: skip any directories with multiple incubators for
+        ## JSS SPECIFIC: skip any directories with multiple incubators for
         ## the training; '_' is the char on UNIX systems for '+' since it's 
         ## illegal for filenames
         if ("+" in trial_dir.stem) or ("_" in trial_dir.stem):
@@ -131,7 +131,7 @@ def inference(incubator: str, model_arch: str=None, *args, **kwargs):
     """Runs inference on all projects in the given incubator using the best 
     weights possible for the given model arch.
     
-    Hard-coded right now for `c` and TSE trials (i.e. no mix-incubator).
+    Hard-coded right now for `c` and JSS trials (i.e. no mix-incubator).
 
     Args:
         incubator (str): target incubator.
@@ -218,7 +218,7 @@ def monthly_inference(incubator: str, model_arch: str=None, T: float=2, smooth: 
     the final softmax to allow for more reasonable probabilities and capture the
     uncertainty.
     
-    Hard-coded right now for `c` and TSE trials (i.e. no mix-incubator).
+    Hard-coded right now for `c` and JSS trials (i.e. no mix-incubator).
 
     Args:
         incubator (str): target incubator.

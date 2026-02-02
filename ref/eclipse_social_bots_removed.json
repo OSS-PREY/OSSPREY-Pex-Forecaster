@@ -11256,7 +11256,7 @@
         }
     },
     {
-        "Glocker Gerald (INST-ECS1)": {
+        "Glocker Gerald (INST/ECS1)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.006756756756756757,
@@ -11272,7 +11272,7 @@
         }
     },
     {
-        "Jaeckle Thomas (INST-ECS1)": {
+        "Jaeckle Thomas (INST/ECS1)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0472972972972973,
@@ -19040,7 +19040,7 @@
         }
     },
     {
-        "Per Norrman (KI-EAB)": {
+        "Per Norrman (KI/EAB)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0003245699448231094,
@@ -19392,7 +19392,7 @@
         }
     },
     {
-        "Susan_M_Franklin-Beaverton-IBM%IBMUS": {
+        "Susan_M_Franklin/Beaverton/IBM%IBMUS": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0022719896137617657,
@@ -20460,6 +20460,446 @@
             "substring": 0,
             "outlier": 0,
             "proportion": 0.002163331530557058,
+            "is-bot": 0
+        }
+    },
+    {
+        "Aaron Whiteside": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.012598425196850394,
+            "is-bot": 0
+        }
+    },
+    {
+        "Alexander Shutyaev": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.028346456692913385,
+            "is-bot": 0
+        }
+    },
+    {
+        "Andrew Clemons": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0031496062992125984,
+            "is-bot": 0
+        }
+    },
+    {
+        "Andrew Scully": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.007874015748031496,
+            "is-bot": 0
+        }
+    },
+    {
+        "Andy Piper": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Anthony Bargnesi": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Chris Frost": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.01732283464566929,
+            "is-bot": 0
+        }
+    },
+    {
+        "Christian Trutz": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0031496062992125984,
+            "is-bot": 0
+        }
+    },
+    {
+        "Christopher Frost": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.012598425196850394,
+            "is-bot": 0
+        }
+    },
+    {
+        "Costin Leau": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0031496062992125984,
+            "is-bot": 0
+        }
+    },
+    {
+        "Cristiano Gavi\u00e3o": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.01889763779527559,
+            "is-bot": 0
+        }
+    },
+    {
+        "Dmitry Sklyut": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.031496062992125984,
+            "is-bot": 0
+        }
+    },
+    {
+        "Dominguez Fern\u00e1ndez, Jos\u00e9 Carlos": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Dominic Hilsbos": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Eclipse Webmaster": {
+            "substring": 1,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Florian Pirchner": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Florian Waibel": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.014173228346456693,
+            "is-bot": 0
+        }
+    },
+    {
+        "Giormov, Dimitar": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Glyn Normington": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.16062992125984252,
+            "is-bot": 0
+        }
+    },
+    {
+        "Jan Stamer": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0031496062992125984,
+            "is-bot": 0
+        }
+    },
+    {
+        "Joseph D Carroll Jr": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0031496062992125984,
+            "is-bot": 0
+        }
+    },
+    {
+        "Juergen G. Kissner": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0031496062992125984,
+            "is-bot": 0
+        }
+    },
+    {
+        "Kirchev, Lazar": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.01732283464566929,
+            "is-bot": 0
+        }
+    },
+    {
+        "Kissner, Juergen": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.047244094488188976,
+            "is-bot": 0
+        }
+    },
+    {
+        "Kristian Marinkovic": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Lavrenko, Denis": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006299212598425197,
+            "is-bot": 0
+        }
+    },
+    {
+        "Maria Teresa Delgado": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Markus Knauer": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006299212598425197,
+            "is-bot": 0
+        }
+    },
+    {
+        "Matthieu Foucault": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Michael Keith": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.004724409448818898,
+            "is-bot": 0
+        }
+    },
+    {
+        "Michael Pilquist": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Mike Keith": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.025196850393700787,
+            "is-bot": 0
+        }
+    },
+    {
+        "Nepomuk Seiler": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.011023622047244094,
+            "is-bot": 0
+        }
+    },
+    {
+        "Olaf": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.028346456692913385,
+            "is-bot": 0
+        }
+    },
+    {
+        "Olaf Otto": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.02047244094488189,
+            "is-bot": 0
+        }
+    },
+    {
+        "Pablo Beltran": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Peshev, Peter": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Raghuram Devarakonda": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.007874015748031496,
+            "is-bot": 0
+        }
+    },
+    {
+        "Ralf Heydenreich": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0031496062992125984,
+            "is-bot": 0
+        }
+    },
+    {
+        "Robert Weiser": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Romain Gilles": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006299212598425197,
+            "is-bot": 0
+        }
+    },
+    {
+        "Scott Lewis": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Slavova, Siyana": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.007874015748031496,
+            "is-bot": 0
+        }
+    },
+    {
+        "Tom De Wolf": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Tsvetkov, Krum": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "Violeta Georgieva": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.11653543307086614,
+            "is-bot": 0
+        }
+    },
+    {
+        "Wayne Beaton": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.014173228346456693,
+            "is-bot": 0
+        }
+    },
+    {
+        "denghui.huang": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0031496062992125984,
+            "is-bot": 0
+        }
+    },
+    {
+        "detelinyordanov": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.014173228346456693,
+            "is-bot": 0
+        }
+    },
+    {
+        "emo": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.08188976377952756,
+            "is-bot": 0
+        }
+    },
+    {
+        "huangdenghui": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.007874015748031496,
+            "is-bot": 0
+        }
+    },
+    {
+        "jingxuanzhang": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0015748031496062992,
+            "is-bot": 0
+        }
+    },
+    {
+        "michael keith": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.13700787401574804,
+            "is-bot": 0
+        }
+    },
+    {
+        "portal-noreply": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.07086614173228346,
+            "is-bot": 0
+        }
+    },
+    {
+        "yingsean": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.011023622047244094,
             "is-bot": 0
         }
     },
@@ -25384,7 +25824,7 @@
         }
     },
     {
-        "Azhagappan Balasubramanian (INST-ECS4)": {
+        "Azhagappan Balasubramanian (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0005080655404547187,
@@ -25424,7 +25864,7 @@
         }
     },
     {
-        "Bohn Daniel (INST-ECS1)": {
+        "Bohn Daniel (INST/ECS1)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.00012701638511367967,
@@ -25440,7 +25880,7 @@
         }
     },
     {
-        "Buck Caroline (INST-PRM)": {
+        "Buck Caroline (INST/PRM)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.00038104915534103897,
@@ -25448,7 +25888,7 @@
         }
     },
     {
-        "Buechner Abel (INST-ECS4)": {
+        "Buechner Abel (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.00012701638511367967,
@@ -25456,7 +25896,7 @@
         }
     },
     {
-        "Buechner-Mihaljevic Abel (INST-ECS4)": {
+        "Buechner-Mihaljevic Abel (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0006350819255683983,
@@ -25464,7 +25904,7 @@
         }
     },
     {
-        "Bunk Anita (INST-MKC1)": {
+        "Bunk Anita (INST/MKC1)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.00012701638511367967,
@@ -25592,7 +26032,7 @@
         }
     },
     {
-        "Frank Karsten (INST-ECS4)": {
+        "Frank Karsten (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.008764130572843898,
@@ -25616,7 +26056,7 @@
         }
     },
     {
-        "Graser Leon (INST-CSS-BSV-OS)": {
+        "Graser Leon (INST-CSS/BSV-OS)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0005080655404547187,
@@ -25632,7 +26072,7 @@
         }
     },
     {
-        "Guggemos Dominik (INST-ECS1)": {
+        "Guggemos Dominik (INST/ECS1)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.002413311317159914,
@@ -25640,7 +26080,7 @@
         }
     },
     {
-        "Hemmeter Mathias (INST-ECS4)": {
+        "Hemmeter Mathias (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.00012701638511367967,
@@ -25672,7 +26112,7 @@
         }
     },
     {
-        "Hudalla Kai (INST-ECS4)": {
+        "Hudalla Kai (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.021592785469325543,
@@ -25680,7 +26120,7 @@
         }
     },
     {
-        "Hudalla Kai (INST-ESY)": {
+        "Hudalla Kai (INST/ESY)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.00025403277022735933,
@@ -25688,7 +26128,7 @@
         }
     },
     {
-        "Hudalla Kai (INST-ESY1)": {
+        "Hudalla Kai (INST/ESY1)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.00762098310682078,
@@ -25720,7 +26160,7 @@
         }
     },
     {
-        "Jaeckle Thomas (INST-ECS1)": {
+        "Jaeckle Thomas (INST/ECS1)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0006350819255683983,
@@ -25800,7 +26240,7 @@
         }
     },
     {
-        "Kalidass Kartheeswaran (INST-ECS4)": {
+        "Kalidass Kartheeswaran (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0013971802362504762,
@@ -25864,7 +26304,7 @@
         }
     },
     {
-        "Lohmann Carsten (INST-ECS4)": {
+        "Lohmann Carsten (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0017782293915915154,
@@ -25872,7 +26312,7 @@
         }
     },
     {
-        "Maas Ingo (CS-EFS2)": {
+        "Maas Ingo (CS/EFS2)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.00012701638511367967,
@@ -25880,7 +26320,7 @@
         }
     },
     {
-        "Maas Ingo (INST-ECS4)": {
+        "Maas Ingo (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0006350819255683983,
@@ -25888,7 +26328,7 @@
         }
     },
     {
-        "Mack Alexander (INST-ECS4)": {
+        "Mack Alexander (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.00012701638511367967,
@@ -25896,7 +26336,7 @@
         }
     },
     {
-        "Maier Daniel (INST-ECS4)": {
+        "Maier Daniel (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0006350819255683983,
@@ -25936,7 +26376,7 @@
         }
     },
     {
-        "Marinov Avgustin (INST-ECS8)": {
+        "Marinov Avgustin (INST/ECS8)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0013971802362504762,
@@ -26040,7 +26480,7 @@
         }
     },
     {
-        "Pascan Marko (INST-ECS4)": {
+        "Pascan Marko (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.00025403277022735933,
@@ -26056,7 +26496,7 @@
         }
     },
     {
-        "Pellmann Marc (INST-ECS4)": {
+        "Pellmann Marc (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0030483932427283118,
@@ -26072,7 +26512,7 @@
         }
     },
     {
-        "Poehn Sebastian (INST-ECS4)": {
+        "Poehn Sebastian (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0005080655404547187,
@@ -26088,7 +26528,7 @@
         }
     },
     {
-        "Renz Christian (INST-ESW INST-ECS7)": {
+        "Renz Christian (INST/ESW INST/ECS7)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.00012701638511367967,
@@ -26096,7 +26536,7 @@
         }
     },
     {
-        "Renz Christian (INST-ESW)": {
+        "Renz Christian (INST/ESW)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.00012701638511367967,
@@ -26136,7 +26576,7 @@
         }
     },
     {
-        "Schmid Christian (INST-ECS4)": {
+        "Schmid Christian (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.00025403277022735933,
@@ -26144,7 +26584,7 @@
         }
     },
     {
-        "Schuster Sebastian (INST-ESY1)": {
+        "Schuster Sebastian (INST/ESY1)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.00038104915534103897,
@@ -26248,7 +26688,7 @@
         }
     },
     {
-        "Till Markus (INST-CSS-BSV-OS)": {
+        "Till Markus (INST-CSS/BSV-OS)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.00025403277022735933,
@@ -31472,6 +31912,62 @@
         }
     },
     {
+        "Christopher Stura": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.026143790849673203,
+            "is-bot": 0
+        }
+    },
+    {
+        "Heiko W. Rupp": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0196078431372549,
+            "is-bot": 0
+        }
+    },
+    {
+        "Karsten Thoms": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0196078431372549,
+            "is-bot": 0
+        }
+    },
+    {
+        "Kevin Sutter": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006535947712418301,
+            "is-bot": 0
+        }
+    },
+    {
+        "Yannis Theocharis": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.06535947712418301,
+            "is-bot": 0
+        }
+    },
+    {
+        "dependabot[bot]": {
+            "substring": 1,
+            "outlier": 1,
+            "proportion": 0.8366013071895425,
+            "is-bot": 1
+        }
+    },
+    {
+        "emo": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.026143790849673203,
+            "is-bot": 0
+        }
+    },
+    {
         "Brig TB Musheno": {
             "substring": 0,
             "outlier": 0,
@@ -32072,7 +32568,7 @@
         }
     },
     {
-        "Carre, Laurent (Nokia - FR-Paris-Saclay)": {
+        "Carre, Laurent (Nokia - FR/Paris-Saclay)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.00015571473061351605,
@@ -33176,7 +33672,7 @@
         }
     },
     {
-        "Fischer Sebastian (AE-PJ-SW41)": {
+        "Fischer Sebastian (AE/PJ-SW41)": {
             "substring": 0,
             "outlier": 1,
             "proportion": 0.16666666666666666,
@@ -33624,7 +34120,7 @@
         }
     },
     {
-        "Azhagappan Balasubramanian (INST-ECS4)": {
+        "Azhagappan Balasubramanian (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.006653992395437262,
@@ -33832,7 +34328,7 @@
         }
     },
     {
-        "Ellwein Alexander (INST-ESY4)": {
+        "Ellwein Alexander (INST/ESY4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0019011406844106464,
@@ -33920,7 +34416,7 @@
         }
     },
     {
-        "Hudalla Kai (INST-ECS4)": {
+        "Hudalla Kai (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0009505703422053232,
@@ -33928,7 +34424,7 @@
         }
     },
     {
-        "Hudalla Kai (INST-ESY)": {
+        "Hudalla Kai (INST/ESY)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.03612167300380228,
@@ -33936,7 +34432,7 @@
         }
     },
     {
-        "Hudalla Kai (INST-ESY1)": {
+        "Hudalla Kai (INST/ESY1)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.03326996197718631,
@@ -34120,7 +34616,7 @@
         }
     },
     {
-        "Kraus Achim (INST-ECS4)": {
+        "Kraus Achim (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.03326996197718631,
@@ -34128,7 +34624,7 @@
         }
     },
     {
-        "Kraus Achim (INST-ESY1)": {
+        "Kraus Achim (INST/ESY1)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.015209125475285171,
@@ -34136,7 +34632,7 @@
         }
     },
     {
-        "Kraus Achim (INST-ESY4)": {
+        "Kraus Achim (INST/ESY4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0009505703422053232,
@@ -34144,7 +34640,7 @@
         }
     },
     {
-        "Kraus Achim (IOC-PAP-HU)": {
+        "Kraus Achim (IOC/PAP-HU)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0009505703422053232,
@@ -34176,7 +34672,7 @@
         }
     },
     {
-        "Maier Daniel (INST-ECS4)": {
+        "Maier Daniel (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0076045627376425855,
@@ -34400,7 +34896,7 @@
         }
     },
     {
-        "Schaal Ingo (INST-ECS4)": {
+        "Schaal Ingo (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0028517110266159697,
@@ -34408,7 +34904,7 @@
         }
     },
     {
-        "Schaal Ingo (INST-ESY4)": {
+        "Schaal Ingo (INST/ESY4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0028517110266159697,
@@ -41488,7 +41984,7 @@
         }
     },
     {
-        "Bayerlein, Markus (I-AEV-23)": {
+        "Bayerlein, Markus (I/AEV-23)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0005341880341880342,
@@ -44672,7 +45168,7 @@
         }
     },
     {
-        "Kranthi Kandula (RBEI-ETT4)": {
+        "Kranthi Kandula (RBEI/ETT4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0002670940170940171,
@@ -53232,6 +53728,726 @@
         }
     },
     {
+        "Aleksandar Kurtakov": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00937766410912191,
+            "is-bot": 0
+        }
+    },
+    {
+        "Alexander Fedorov": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.011082693947144074,
+            "is-bot": 0
+        }
+    },
+    {
+        "Alexander Kriegisch": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0025575447570332483,
+            "is-bot": 0
+        }
+    },
+    {
+        "Andreas Sewe": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0392156862745098,
+            "is-bot": 0
+        }
+    },
+    {
+        "Aur\u00e9lien Pupier": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0025575447570332483,
+            "is-bot": 0
+        }
+    },
+    {
+        "Brooks, Ryan D": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Carl Anderson": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0025575447570332483,
+            "is-bot": 0
+        }
+    },
+    {
+        "Carsten Reckord": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0076726342710997444,
+            "is-bot": 0
+        }
+    },
+    {
+        "Christian Bourque": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0017050298380221654,
+            "is-bot": 0
+        }
+    },
+    {
+        "Christian Dietrich": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.020460358056265986,
+            "is-bot": 0
+        }
+    },
+    {
+        "Christian Pontesegger": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.005115089514066497,
+            "is-bot": 0
+        }
+    },
+    {
+        "David Green": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0017050298380221654,
+            "is-bot": 0
+        }
+    },
+    {
+        "David M Williams": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.017902813299232736,
+            "is-bot": 0
+        }
+    },
+    {
+        "David Williams": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0076726342710997444,
+            "is-bot": 0
+        }
+    },
+    {
+        "Dawid Paku\u0142a": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.004262574595055414,
+            "is-bot": 0
+        }
+    },
+    {
+        "Deepthi Murugaiyan (MS/EMT5-XC)": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Dennis Hendriks": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.004262574595055414,
+            "is-bot": 0
+        }
+    },
+    {
+        "Dennis H\u00fcbner": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.004262574595055414,
+            "is-bot": 0
+        }
+    },
+    {
+        "Derek Lai": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Dietrich, Christian": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.011935208866155157,
+            "is-bot": 0
+        }
+    },
+    {
+        "Dirk Fauth": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.023870417732310314,
+            "is-bot": 0
+        }
+    },
+    {
+        "Doug Schaefer": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0017050298380221654,
+            "is-bot": 0
+        }
+    },
+    {
+        "Duc Nguyen Nhu": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "EMO EMO": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Eclipse Webmaster": {
+            "substring": 1,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Eike Stepper": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Erwin DL": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0068201193520886615,
+            "is-bot": 0
+        }
+    },
+    {
+        "Evgeny Mandrikov": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.011935208866155157,
+            "is-bot": 0
+        }
+    },
+    {
+        "Fabian Pfaff": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0017050298380221654,
+            "is-bot": 0
+        }
+    },
+    {
+        "Frank Benoit": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0017050298380221654,
+            "is-bot": 0
+        }
+    },
+    {
+        "Frederic Gurr": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Gorkem Ercan": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0025575447570332483,
+            "is-bot": 0
+        }
+    },
+    {
+        "Gunnar Wagenknecht": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.06820119352088662,
+            "is-bot": 0
+        }
+    },
+    {
+        "Himanshu Balasamanta": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0017050298380221654,
+            "is-bot": 0
+        }
+    },
+    {
+        "Homer, Tony": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.028985507246376812,
+            "is-bot": 0
+        }
+    },
+    {
+        "Igor Fedorenko": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Jens Reimann": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0017050298380221654,
+            "is-bot": 0
+        }
+    },
+    {
+        "Jesse McConnell": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0025575447570332483,
+            "is-bot": 0
+        }
+    },
+    {
+        "Joakim Erdfelt": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Johan Compagner": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.005967604433077579,
+            "is-bot": 0
+        }
+    },
+    {
+        "Jonah Graham": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.08013640238704177,
+            "is-bot": 0
+        }
+    },
+    {
+        "Krishanu Chattopadhyay": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Lars Vogel": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.010230179028132993,
+            "is-bot": 0
+        }
+    },
+    {
+        "Marc-Andr\u00e9 Laperle": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00937766410912191,
+            "is-bot": 0
+        }
+    },
+    {
+        "Marcel Bruch": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Markus Keller": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0017050298380221654,
+            "is-bot": 0
+        }
+    },
+    {
+        "Markus Knauer": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0017050298380221654,
+            "is-bot": 0
+        }
+    },
+    {
+        "Martin D'Aloia": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0025575447570332483,
+            "is-bot": 0
+        }
+    },
+    {
+        "Mat Booth": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0068201193520886615,
+            "is-bot": 0
+        }
+    },
+    {
+        "Matthias Sohn": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.04688832054560955,
+            "is-bot": 0
+        }
+    },
+    {
+        "Mickael Istria": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.004262574595055414,
+            "is-bot": 0
+        }
+    },
+    {
+        "Mika\u00ebl Barbero": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Muhammad Umair Sair": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Nicholas Loulloudes": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Nick Boldt": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.005115089514066497,
+            "is-bot": 0
+        }
+    },
+    {
+        "Nitin Dahyabhai": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0025575447570332483,
+            "is-bot": 0
+        }
+    },
+    {
+        "Noopur Gupta": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0017050298380221654,
+            "is-bot": 0
+        }
+    },
+    {
+        "Paul Clarke": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Peter Kirschner": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0017050298380221654,
+            "is-bot": 0
+        }
+    },
+    {
+        "Philip Wenig": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.01619778346121057,
+            "is-bot": 0
+        }
+    },
+    {
+        "Pierre-Charles David": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.011082693947144074,
+            "is-bot": 0
+        }
+    },
+    {
+        "Ranjana Radhakrishnan (RBEI/EMT2)": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Raymond Auge": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0017050298380221654,
+            "is-bot": 0
+        }
+    },
+    {
+        "Roland Grunberg": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.28218243819266836,
+            "is-bot": 0
+        }
+    },
+    {
+        "Scott Lewis": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0017050298380221654,
+            "is-bot": 0
+        }
+    },
+    {
+        "Sebastian Zarnekow": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0034100596760443308,
+            "is-bot": 0
+        }
+    },
+    {
+        "ShiHeng Guan": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.010230179028132993,
+            "is-bot": 0
+        }
+    },
+    {
+        "Sina Madani": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.00937766410912191,
+            "is-bot": 0
+        }
+    },
+    {
+        "Stefan Kapferer": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0017050298380221654,
+            "is-bot": 0
+        }
+    },
+    {
+        "Steffen Pingel": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0034100596760443308,
+            "is-bot": 0
+        }
+    },
+    {
+        "Stephan Herrmann": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0025575447570332483,
+            "is-bot": 0
+        }
+    },
+    {
+        "Stephanie": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Thomas Watson": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.014492753623188406,
+            "is-bot": 0
+        }
+    },
+    {
+        "Tom Schindl": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.005967604433077579,
+            "is-bot": 0
+        }
+    },
+    {
+        "Tony HEDOUX": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Torkild U. Resheim": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "V\u00e1clav Haisman": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0017050298380221654,
+            "is-bot": 0
+        }
+    },
+    {
+        "Wayne Beaton": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.010230179028132993,
+            "is-bot": 0
+        }
+    },
+    {
+        "Webmaster": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0017050298380221654,
+            "is-bot": 0
+        }
+    },
+    {
+        "Wim Jongman": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.005115089514066497,
+            "is-bot": 0
+        }
+    },
+    {
+        "Yonni Chen": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "Your Friendly Orbit Builder": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "arcanefoam": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.004262574595055414,
+            "is-bot": 0
+        }
+    },
+    {
+        "emo": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.014492753623188406,
+            "is-bot": 0
+        }
+    },
+    {
+        "erwindl0": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.005967604433077579,
+            "is-bot": 0
+        }
+    },
+    {
+        "jingxuanzhang": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "john": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "mythral0": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "orbitBuilder": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0008525149190110827,
+            "is-bot": 0
+        }
+    },
+    {
+        "portal-noreply": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.0741687979539642,
+            "is-bot": 0
+        }
+    },
+    {
         "Alex Boone": {
             "substring": 0,
             "outlier": 0,
@@ -56328,7 +57544,7 @@
         }
     },
     {
-        "Ranjana Radhakrishnan (RBEI-EMT2)": {
+        "Ranjana Radhakrishnan (RBEI/EMT2)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0022471910112359553,
@@ -57480,7 +58696,7 @@
         }
     },
     {
-        "Sivaraman Kanniah (RBEI-EAA2)": {
+        "Sivaraman Kanniah (RBEI/EAA2)": {
             "substring": 0,
             "outlier": 1,
             "proportion": 0.14285714285714285,
@@ -58600,6 +59816,574 @@
         }
     },
     {
+        "Achilles, Erich": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0013550135501355014,
+            "is-bot": 0
+        }
+    },
+    {
+        "Achilles, Sabine": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008130081300813009,
+            "is-bot": 0
+        }
+    },
+    {
+        "Alexander Gerbig": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0020325203252032522,
+            "is-bot": 0
+        }
+    },
+    {
+        "Alexander Ziegler": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.013550135501355014,
+            "is-bot": 0
+        }
+    },
+    {
+        "Anne Jacko": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0013550135501355014,
+            "is-bot": 0
+        }
+    },
+    {
+        "Barth, Heiko": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.008807588075880758,
+            "is-bot": 0
+        }
+    },
+    {
+        "Bjorn\tFreeman-Benson": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0020325203252032522,
+            "is-bot": 0
+        }
+    },
+    {
+        "Bjorn Freeman-Benson": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "Campo, Christian": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.027777777777777776,
+            "is-bot": 0
+        }
+    },
+    {
+        "Carsten Drossel": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0047425474254742545,
+            "is-bot": 0
+        }
+    },
+    {
+        "Christian Campo": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.2222222222222222,
+            "is-bot": 0
+        }
+    },
+    {
+        "Ciubenco, Dumitru": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006097560975609756,
+            "is-bot": 0
+        }
+    },
+    {
+        "Cristiano Gavi\u00e3o": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "Drossel, Carsten": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.016937669376693765,
+            "is-bot": 0
+        }
+    },
+    {
+        "Ekkehard Gentz": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0027100271002710027,
+            "is-bot": 0
+        }
+    },
+    {
+        "Elias Volanakis": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.1619241192411924,
+            "is-bot": 0
+        }
+    },
+    {
+        "Erich Achilles": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "Eugen Reiswich": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "FONTENEAU, JEAN-CHRISTOPHE (JEAN-CHRISTOPHE)": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "Flick, Stefan": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.01016260162601626,
+            "is-bot": 0
+        }
+    },
+    {
+        "Florian Pirchner": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.012195121951219513,
+            "is-bot": 0
+        }
+    },
+    {
+        "Frank Schepp": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.005420054200542005,
+            "is-bot": 0
+        }
+    },
+    {
+        "Gayk Wanja": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.005420054200542005,
+            "is-bot": 0
+        }
+    },
+    {
+        "Heiko Barth": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0027100271002710027,
+            "is-bot": 0
+        }
+    },
+    {
+        "Hoch, Holger": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006097560975609756,
+            "is-bot": 0
+        }
+    },
+    {
+        "Jose Carlos Missias": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0027100271002710027,
+            "is-bot": 0
+        }
+    },
+    {
+        "Kriese, Steffen": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0013550135501355014,
+            "is-bot": 0
+        }
+    },
+    {
+        "Liebig, Stefan": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.024390243902439025,
+            "is-bot": 0
+        }
+    },
+    {
+        "Marcin Gryszko": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0020325203252032522,
+            "is-bot": 0
+        }
+    },
+    {
+        "Martin Below": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "Meyer, Yang": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0027100271002710027,
+            "is-bot": 0
+        }
+    },
+    {
+        "Olaf Fricke": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0040650406504065045,
+            "is-bot": 0
+        }
+    },
+    {
+        "Patrick": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0020325203252032522,
+            "is-bot": 0
+        }
+    },
+    {
+        "Patrick He": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "Prasanna Tummala": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0040650406504065045,
+            "is-bot": 0
+        }
+    },
+    {
+        "R.  Paulsen": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "Sabine Achilles": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0020325203252032522,
+            "is-bot": 0
+        }
+    },
+    {
+        "Schenkel, Thorsten": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.02168021680216802,
+            "is-bot": 0
+        }
+    },
+    {
+        "Schepp Frank": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0027100271002710027,
+            "is-bot": 0
+        }
+    },
+    {
+        "Schepp, Frank": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.012195121951219513,
+            "is-bot": 0
+        }
+    },
+    {
+        "Scott Lewis": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.024390243902439025,
+            "is-bot": 0
+        }
+    },
+    {
+        "Sjoerd Kessels": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "Sofya Zhbankova": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0020325203252032522,
+            "is-bot": 0
+        }
+    },
+    {
+        "Stefan Diener": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "Stefan Geiger": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "Stefan Liebig": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.0508130081300813,
+            "is-bot": 0
+        }
+    },
+    {
+        "Steffen Kriese": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006097560975609756,
+            "is-bot": 0
+        }
+    },
+    {
+        "Stuckert, Ralf": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "Thorsten Schenkel": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.005420054200542005,
+            "is-bot": 0
+        }
+    },
+    {
+        "Todd Lee": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "Volanakis, Elias": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.0535230352303523,
+            "is-bot": 0
+        }
+    },
+    {
+        "Wayne Beaton": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0027100271002710027,
+            "is-bot": 0
+        }
+    },
+    {
+        "Webmaster(Matt Ward)": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0020325203252032522,
+            "is-bot": 0
+        }
+    },
+    {
+        "Wei-Dong Lian": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "William Jones": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "Yau": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0040650406504065045,
+            "is-bot": 0
+        }
+    },
+    {
+        "Yurukov, Boyan": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0020325203252032522,
+            "is-bot": 0
+        }
+    },
+    {
+        "Ziegler, Alexander": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0040650406504065045,
+            "is-bot": 0
+        }
+    },
+    {
+        "alphax": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "bill jones": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0020325203252032522,
+            "is-bot": 0
+        }
+    },
+    {
+        "ekke": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.08265582655826559,
+            "is-bot": 0
+        }
+    },
+    {
+        "ekkehard": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.07181571815718157,
+            "is-bot": 0
+        }
+    },
+    {
+        "emo": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.01964769647696477,
+            "is-bot": 0
+        }
+    },
+    {
+        "jim liu": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0013550135501355014,
+            "is-bot": 0
+        }
+    },
+    {
+        "jingxuanzhang": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "portal-noreply": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.02032520325203252,
+            "is-bot": 0
+        }
+    },
+    {
+        "r.paulsen": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "yao_163": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0013550135501355014,
+            "is-bot": 0
+        }
+    },
+    {
+        "yau": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.006775067750677507,
+            "is-bot": 0
+        }
+    },
+    {
+        "\u5e7f\u4eae \u6881": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0013550135501355014,
+            "is-bot": 0
+        }
+    },
+    {
+        "\u6d9b \u5f20": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.0013550135501355014,
+            "is-bot": 0
+        }
+    },
+    {
         "Alessandro Farina": {
             "substring": 0,
             "outlier": 0,
@@ -59032,7 +60816,7 @@
         }
     },
     {
-        "EXTERNAL Huber Maximilian (TNG Consulting, INST-CSS-BSV-OS)": {
+        "EXTERNAL Huber Maximilian (TNG Consulting, INST-CSS/BSV-OS)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.037037037037037035,
@@ -59040,7 +60824,7 @@
         }
     },
     {
-        "Geyer-Blaumeiser Lars (INST-CSS-BSV-OS3)": {
+        "Geyer-Blaumeiser Lars (INST-CSS/BSV-OS3)": {
             "substring": 0,
             "outlier": 1,
             "proportion": 0.07407407407407407,
@@ -59048,7 +60832,7 @@
         }
     },
     {
-        "Geyer-Blaumeiser Lars (IOC-PDL4)": {
+        "Geyer-Blaumeiser Lars (IOC/PDL4)": {
             "substring": 0,
             "outlier": 1,
             "proportion": 0.07407407407407407,
@@ -66048,6 +67832,118 @@
         }
     },
     {
+        "Axel Meinhardt": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.03488372093023256,
+            "is-bot": 0
+        }
+    },
+    {
+        "Benjamin Cab\u00e9": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.12790697674418605,
+            "is-bot": 0
+        }
+    },
+    {
+        "Bor Gonzalez Usach": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.09302325581395349,
+            "is-bot": 0
+        }
+    },
+    {
+        "Frank Patz-Brockmann": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.08139534883720931,
+            "is-bot": 0
+        }
+    },
+    {
+        "Henryk Fischer": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.011627906976744186,
+            "is-bot": 0
+        }
+    },
+    {
+        "Hudalla Kai (INST/ECS4)": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.05813953488372093,
+            "is-bot": 0
+        }
+    },
+    {
+        "Johannes Kristan": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.011627906976744186,
+            "is-bot": 0
+        }
+    },
+    {
+        "Meinhardt Axel (BCI/ECM2)": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.2441860465116279,
+            "is-bot": 0
+        }
+    },
+    {
+        "Meinhardt Axel (INST-INL/PRM1)": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.06976744186046512,
+            "is-bot": 0
+        }
+    },
+    {
+        "Pankesh Patel": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.011627906976744186,
+            "is-bot": 0
+        }
+    },
+    {
+        "Roxanne Joncas": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.011627906976744186,
+            "is-bot": 0
+        }
+    },
+    {
+        "Woodard, David": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.011627906976744186,
+            "is-bot": 0
+        }
+    },
+    {
+        "emo": {
+            "substring": 0,
+            "outlier": 0,
+            "proportion": 0.011627906976744186,
+            "is-bot": 0
+        }
+    },
+    {
+        "portal-noreply": {
+            "substring": 0,
+            "outlier": 1,
+            "proportion": 0.22093023255813954,
+            "is-bot": 0
+        }
+    },
+    {
         "Andr\u00e1s Szabolcs Nagy": {
             "substring": 0,
             "outlier": 0,
@@ -67152,7 +69048,7 @@
         }
     },
     {
-        "Diego Michel Sahagun Ramirez-Mexico-Contr-IBM": {
+        "Diego Michel Sahagun Ramirez/Mexico/Contr/IBM": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0004666355576294914,
@@ -67160,7 +69056,7 @@
         }
     },
     {
-        "Diego Michel Sahagun Ramirez-Mexico-IBM": {
+        "Diego Michel Sahagun Ramirez/Mexico/IBM": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0004666355576294914,
@@ -67368,7 +69264,7 @@
         }
     },
     {
-        "Ivan Castro Alvarez-Mexico-IBM": {
+        "Ivan Castro Alvarez/Mexico/IBM": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0013999066728884741,
@@ -67504,7 +69400,7 @@
         }
     },
     {
-        "Julio Cesar Chavez Ortiz-Mexico-IBM": {
+        "Julio Cesar Chavez Ortiz/Mexico/IBM": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0055996266915538965,
@@ -68080,7 +69976,7 @@
         }
     },
     {
-        "Roberto Sanchez Herrera-Mexico-IBM": {
+        "Roberto Sanchez Herrera/Mexico/IBM": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0009332711152589828,
@@ -68104,7 +70000,7 @@
         }
     },
     {
-        "Salvador Galileo Perez Coronado-Mexico-Contr-IBM": {
+        "Salvador Galileo Perez Coronado/Mexico/Contr/IBM": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0004666355576294914,
@@ -68112,7 +70008,7 @@
         }
     },
     {
-        "Salvador Galileo Perez Coronado-Mexico-IBM": {
+        "Salvador Galileo Perez Coronado/Mexico/IBM": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0004666355576294914,
@@ -68120,7 +70016,7 @@
         }
     },
     {
-        "Salvador Zalapa Velazquez-Mexico-IBM": {
+        "Salvador Zalapa Velazquez/Mexico/IBM": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0004666355576294914,
@@ -69160,7 +71056,7 @@
         }
     },
     {
-        "Hubschneider Joerg (INST-ESY4)": {
+        "Hubschneider Joerg (INST/ESY4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.002325581395348837,
@@ -69288,7 +71184,7 @@
         }
     },
     {
-        "Kraus Achim (INST-ECS4)": {
+        "Kraus Achim (INST/ECS4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0011627906976744186,
@@ -69296,7 +71192,7 @@
         }
     },
     {
-        "Kraus Achim (INST-ESY1)": {
+        "Kraus Achim (INST/ESY1)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0069767441860465115,
@@ -69304,7 +71200,7 @@
         }
     },
     {
-        "Kraus Achim (INST-ESY4)": {
+        "Kraus Achim (INST/ESY4)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.021511627906976746,
@@ -69544,7 +71440,7 @@
         }
     },
     {
-        "Renz Christian (INST-ESW-Be)": {
+        "Renz Christian (INST/ESW-Be)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0011627906976744186,
@@ -69872,7 +71768,7 @@
         }
     },
     {
-        "Zeng, Liang 1. (NSB - CN-Hangzhou)": {
+        "Zeng, Liang 1. (NSB - CN/Hangzhou)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0017441860465116279,
@@ -73312,7 +75208,7 @@
         }
     },
     {
-        "Hintz Martin (CC-AD-ESW1)": {
+        "Hintz Martin (CC-AD/ESW1)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0004972650422675286,
@@ -73320,7 +75216,7 @@
         }
     },
     {
-        "Hoinkis Simon (CC-AD-ESW1)": {
+        "Hoinkis Simon (CC-AD/ESW1)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.000994530084535057,
@@ -73456,7 +75352,7 @@
         }
     },
     {
-        "Poehnl Michael (CC-AD-ESW1)": {
+        "Poehnl Michael (CC-AD/ESW1)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.0004972650422675286,
@@ -73480,7 +75376,7 @@
         }
     },
     {
-        "Riexinger Andreas (CC-PRM-PE-ADDA)": {
+        "Riexinger Andreas (CC/PRM-PE-ADDA)": {
             "substring": 0,
             "outlier": 0,
             "proportion": 0.000994530084535057,

@@ -1,20 +1,20 @@
 {
     "AJDT - AspectJ Development Tools Project": [
         [
-            "Raffi Khatchadourian",
-            "Raffi T. Khatchadourian"
-        ],
-        [
-            "chris colombo",
-            "chriscol002"
+            "cristi.popovici",
+            "cristi popovici"
         ],
         [
             "Szel, Zoltan \\(IDEAS\\)",
             "Szel, Zoltan"
         ],
         [
-            "cristi.popovici",
-            "cristi popovici"
+            "Raffi T. Khatchadourian",
+            "Raffi Khatchadourian"
+        ],
+        [
+            "chriscol002",
+            "chris colombo"
         ]
     ],
     "ATL": [],
@@ -57,24 +57,24 @@
             "Yulin Wang"
         ],
         [
-            "Susan L. Cline",
-            "Susan Cline"
+            "Susan Cline",
+            "Susan L. Cline"
         ],
         [
-            "Dazhen Gao",
-            "Dazheng Gao"
+            "Dazheng Gao",
+            "Dazhen Gao"
+        ],
+        [
+            "xizhang",
+            "xiazhang"
         ],
         [
             "Wei Zhao \\(Shang\\)",
             "Wei Zhao (Shang)"
         ],
         [
-            "Yu Liang",
-            "Yu Li"
-        ],
-        [
-            "xizhang",
-            "xiazhang"
+            "Yu Li",
+            "Yu Liang"
         ]
     ],
     "Batch": [
@@ -86,31 +86,28 @@
     "Bridge.IoT": [],
     "Buildship: Plug-ins for Gradle": [
         [
-            "Ian Stewart-Binks",
-            "Ian Stewart-binks"
+            "Donat Csikos",
+            "Don\u00e1t Csik\u00f3s"
         ],
         [
-            "Don\u00e1t Csik\u00f3s",
-            "Donat Csikos"
+            "Ian Stewart-Binks",
+            "Ian Stewart-binks"
         ]
     ],
     "Bundle Recipes": [],
     "CDT (C_C++ Development Tooling)": [
         [
-            "Corey Ashford",
-            "Corey J Ashford"
-        ],
-        [
             "Leonardo Augusto Guimaraes Garcia",
             "Leonardo Augusto Guimar\u00e3es Garcia"
         ],
         [
-            "Balasubramaniyan K",
-            "Balasubramaniyan"
+            "Balasubramaniyan",
+            "Balasubramaniyan K"
         ],
         [
-            "Laurin, Troy \\(Singapore\\)",
-            "Laurin, Troy (Singapore)"
+            "Andrew Ferguson",
+            "andrew.ferguson",
+            "Andrew.Ferguson"
         ],
         [
             "Ploett, Norbert",
@@ -121,16 +118,32 @@
             "Daniel"
         ],
         [
-            "Andrew Ferguson",
-            "Andrew.Ferguson",
-            "andrew.ferguson"
+            "Laurin, Troy (Singapore)",
+            "Laurin, Troy \\(Singapore\\)"
         ],
         [
             "Karl Pietrzak",
             "Karol Pietrzak"
+        ],
+        [
+            "Corey Ashford",
+            "Corey J Ashford"
         ]
     ],
     "Capella": [
+        [
+            "claudiasima",
+            "claudiasima-ro"
+        ],
+        [
+            "AnitaMateiGabriel",
+            "Anita Matei",
+            "Anita Matei Gabriel"
+        ],
+        [
+            "Cosmin-Visan",
+            "Cosmin Visan"
+        ],
         [
             "georgiana-ecobici",
             "georgiana-e"
@@ -138,19 +151,6 @@
         [
             "Steve Monnier",
             "SteveMonnier"
-        ],
-        [
-            "Cosmin Visan",
-            "Cosmin-Visan"
-        ],
-        [
-            "claudiasima",
-            "claudiasima-ro"
-        ],
-        [
-            "Anita Matei",
-            "AnitaMateiGabriel",
-            "Anita Matei Gabriel"
         ]
     ],
     "Cargo Tracker": [],
@@ -168,137 +168,137 @@
     ],
     "Concierge": [
         [
-            "Jan Rellermeyer",
-            "Jan S Rellermeyer",
-            "Jan S. Rellermeyer"
+            "Ladislav T\u00f6r\u00f6k",
+            "Ladislav T\ucca0r\ucca0k"
         ],
         [
-            "Ladislav T\ucca0r\ucca0k",
-            "Ladislav T\u00f6r\u00f6k"
+            "Jan S Rellermeyer",
+            "Jan Rellermeyer",
+            "Jan S. Rellermeyer"
         ]
     ],
     "Concurrency": [
         [
-            "Steve Millidge (Payara)",
-            "Steve Millidge"
+            "Steve Millidge",
+            "Steve Millidge (Payara)"
         ]
     ],
     "Connectors": [
         [
-            "James Stephens",
-            "James M. Stephens"
-        ],
-        [
-            "Steve Millidge (Payara)",
-            "Steve Millidge"
+            "Steve Millidge",
+            "Steve Millidge (Payara)"
         ],
         [
             "Piotrek \u017bygie\u0142o",
             "Piotrek Zygielo"
+        ],
+        [
+            "James M. Stephens",
+            "James Stephens"
         ]
     ],
     "Contexts and Dependency Injection": [
         [
-            "Jason Greene",
-            "Jason T. Greene"
-        ],
-        [
-            "Scott Stark",
-            "Scott M Stark"
-        ],
-        [
-            "cen",
-            "cen1"
-        ],
-        [
             "Thiago Henrique Hupner",
             "Thiago Henrique H\u00fcpner"
+        ],
+        [
+            "Scott M Stark",
+            "Scott Stark"
+        ],
+        [
+            "cen1",
+            "cen"
+        ],
+        [
+            "Jason Greene",
+            "Jason T. Greene"
         ]
     ],
     "Dirigible": [],
     "Ditto": [
         [
-            "Cai Yufei",
-            "Cai Yufei (INST-ECS1)"
+            "Cai Yufei (INST/ECS1)",
+            "Cai Yufei"
         ]
     ],
     "Dynamic Languages Toolkit": [
         [
-            "Andrei Sobolev",
-            "Andrei Sovolev"
+            "Bjorn Freeman-Benson",
+            "Bjorn\tFreeman-Benson"
         ],
         [
-            "Hisham El-Hifnawi",
-            "Hisham ElHifnawi"
+            "Andrei Sovolev",
+            "Andrei Sobolev"
         ],
         [
             "Alexey Panchenko",
             "Alex Panchenko"
         ],
         [
-            "Bjorn Freeman-Benson",
-            "Bjorn\tFreeman-Benson"
+            "Hisham El-Hifnawi",
+            "Hisham ElHifnawi"
         ]
     ],
     "EE Platform": [
         [
-            "Scott Stark",
-            "Scott M Stark"
+            "Piotr \u017bygie\u0142o",
+            "Piotrek \u017bygie\u0142o"
         ],
         [
             "Hussain",
             "Hussain.NM"
         ],
         [
-            "Steve Millidge (Payara)",
-            "Steve Millidge"
+            "Steve Millidge",
+            "Steve Millidge (Payara)"
         ],
         [
-            "Piotrek \u017bygie\u0142o",
-            "Piotr \u017bygie\u0142o"
+            "Scott M Stark",
+            "Scott Stark"
         ]
     ],
     "EE TCK": [
         [
-            "gurunandan",
-            "Gurunandan",
-            "gurunandan.rao@oracle.com",
-            "Gurunandan Rao"
+            "alwin-joseph",
+            "alwin.joseph"
         ],
         [
+            "Anand Francis Joseph",
             "Anand Francis J",
-            "Anand Francis Joseph Augustine",
-            "Anand Francis Joseph"
+            "Anand Francis Joseph Augustine"
         ],
         [
-            "alwin.joseph",
-            "alwin-joseph"
+            "gurunandan",
+            "gurunandan.rao@oracle.com",
+            "Gurunandan Rao",
+            "Gurunandan"
         ],
         [
-            "CesarHernandezGt",
-            "Cesar Hernandez"
+            "Cesar Hernandez",
+            "CesarHernandezGt"
         ]
     ],
     "EE4J": [
         [
-            "Ian Skerrett",
-            "IanSkerrett"
-        ],
-        [
-            "will-lyons",
-            "will.lyons"
+            "Steve Millidge",
+            "Steve Millidge (Payara)"
         ],
         [
             "Ondrej Mih\u00e1lyi",
             "Ondro Mih\u00e1lyi"
         ],
         [
-            "Raymond Aug\u00e9",
-            "Raymond Auge"
+            "will.lyons",
+            "will-lyons"
         ],
         [
-            "Steve Millidge (Payara)",
-            "Steve Millidge"
+            "IanSkerrett",
+            "Ian Skerrett"
+        ],
+        [
+            "Raymond Aug\u00e9",
+            "Raymond Auge"
         ]
     ],
     "EGerrit": [],
@@ -318,22 +318,22 @@
     ],
     "EclEmma": [
         [
-            "Marc R. Hoffmann",
-            "Marc Hoffmann"
+            "Marc Hoffmann",
+            "Marc R. Hoffmann"
         ]
     ],
     "EclipseLink": [
-        [
-            "Douglas Clarke",
-            "Doug Clarke"
-        ],
         [
             "Bjorn Freeman-Benson",
             "Bjorn\tFreeman-Benson"
         ],
         [
-            "christopher delahunt",
-            "Christopher Delahunt"
+            "Douglas Clarke",
+            "Doug Clarke"
+        ],
+        [
+            "Christopher Delahunt",
+            "christopher delahunt"
         ]
     ],
     "Edje": [],
@@ -356,17 +356,17 @@
     "Epsilon": [],
     "Equinox": [
         [
-            "Timothy Webb",
-            "Tim Webb"
-        ],
-        [
             "Susan Franklin McCourt",
-            "Susan Franklin",
-            "Susan M Franklin"
+            "Susan M Franklin",
+            "Susan Franklin"
         ],
         [
-            "Juan M. Wajnerman",
-            "Juan Wajnerman"
+            "Tim Webb",
+            "Timothy Webb"
+        ],
+        [
+            "Juan Wajnerman",
+            "Juan M. Wajnerman"
         ]
     ],
     "Expression Language": [
@@ -375,12 +375,12 @@
             "James R. Perkins"
         ],
         [
-            "Paul Nicolucci",
-            "Paul A. Nicolucci"
-        ],
-        [
             "arjantijms",
             "arjan tijms"
+        ],
+        [
+            "Paul A. Nicolucci",
+            "Paul Nicolucci"
         ],
         [
             "Piotrek \u017bygie\u0142o",
@@ -389,31 +389,40 @@
     ],
     "GLSP": [
         [
-            "Christian",
-            "Christian W. Damus"
+            "Christian W. Damus",
+            "Christian"
         ]
     ],
+    "Gemini Naming": [],
     "Generation Factories (EGF)": [],
     "GeoMesa": [
+        [
+            "Austin Heyne (JIRA)",
+            "Austin Heyne"
+        ],
         [
             "Jason Brown",
             "Jason T Brown"
         ],
         [
-            "James Hughes (JIRA)",
-            "James Hughes"
-        ],
-        [
-            "Simeon H.K. Fitch",
-            "Simeon Fitch (JIRA)"
-        ],
-        [
-            "Atallah Hezbor (JIRA)",
-            "Atallah Hezbor"
+            "Atallah Hezbor",
+            "Atallah Hezbor (JIRA)"
         ],
         [
             "Emilio Lahr-Vivaz (JIRA)",
             "Emilio Lahr-Vivaz"
+        ],
+        [
+            "Simeon Fitch (JIRA)",
+            "Simeon H.K. Fitch"
+        ],
+        [
+            "Matthew Zimmerman",
+            "Matt Zimmerman"
+        ],
+        [
+            "James Hughes (JIRA)",
+            "James Hughes"
         ],
         [
             "Andrew Hulbert (JIRA)",
@@ -422,45 +431,16 @@
         [
             "Anthony Fox",
             "Anthony Fox (JIRA)"
-        ],
-        [
-            "Austin Heyne (JIRA)",
-            "Austin Heyne"
-        ],
-        [
-            "Matthew Zimmerman",
-            "Matt Zimmerman"
         ]
     ],
     "GlassFish": [
         [
-            "Michael S",
-            "Michael",
-            "Michael Wirth"
-        ],
-        [
-            "Patrik Dudits",
-            "Patrik Dudit\u0161"
-        ],
-        [
-            "Attila Houtkooper",
-            "Attila Houtkooper, Roughdot.nl"
-        ],
-        [
-            "Steve Millidge (Payara)",
-            "Steve Millidge"
-        ],
-        [
-            "MertCaliskan",
-            "Mert Caliskan"
-        ],
-        [
-            "David Matejcek",
-            "David Mat\u011bj\u010dek"
-        ],
-        [
             "Hussain",
             "Hussain.NM"
+        ],
+        [
+            "Jorge Bescos",
+            "Jorge Bescos Gascon"
         ],
         [
             "Piotr \u017bygie\u0142o",
@@ -469,111 +449,132 @@
         ],
         [
             "gurunandan",
-            "Gurunandan",
-            "Gurunandan Rao"
+            "Gurunandan Rao",
+            "Gurunandan"
         ],
         [
-            "Jorge Bescos",
-            "Jorge Bescos Gascon"
+            "Patrik Dudits",
+            "Patrik Dudit\u0161"
+        ],
+        [
+            "Steve Millidge",
+            "Steve Millidge (Payara)"
+        ],
+        [
+            "Mert Caliskan",
+            "MertCaliskan"
         ],
         [
             "arjantijms",
             "arjan tijms"
-        ]
-    ],
-    "Golo": [
-        [
-            "Romain Lespinasse",
-            "romain lespinasse"
-        ]
-    ],
-    "Graphical Editing Framework (GEF)": [
-        [
-            "Iain Hull",
-            "Ian Bull"
         ],
         [
-            "Jon Hatcher",
-            "John Hatcher"
-        ]
-    ],
-    "Grizzly": [
-        [
-            "Markus",
-            "Markus Duft",
-            "Markus KARG"
-        ],
-        [
-            "Anand Francis Joseph Augustine",
-            "Anand Francis Joseph"
-        ],
-        [
-            "Dmitry Konstantinov",
-            "Dmitry Kornilov"
-        ],
-        [
-            "Matthew Gill",
-            "Matt Gill"
+            "Michael",
+            "Michael S",
+            "Michael Wirth"
         ],
         [
             "David Matejcek",
             "David Mat\u011bj\u010dek"
         ],
         [
+            "Attila Houtkooper, Roughdot.nl",
+            "Attila Houtkooper"
+        ]
+    ],
+    "Golo": [
+        [
+            "romain lespinasse",
+            "Romain Lespinasse"
+        ]
+    ],
+    "Graphical Editing Framework (GEF)": [
+        [
+            "Jon Hatcher",
+            "John Hatcher"
+        ],
+        [
+            "Ian Bull",
+            "Iain Hull"
+        ]
+    ],
+    "Grizzly": [
+        [
+            "Markus KARG",
+            "Markus Duft",
+            "Markus"
+        ],
+        [
+            "Piotrek \u017bygie\u0142o",
+            "Piotrek Zygielo"
+        ],
+        [
+            "Dmitry Konstantinov",
+            "Dmitry Kornilov"
+        ],
+        [
+            "Matt Gill",
+            "Matthew Gill"
+        ],
+        [
             "arjantijms",
             "arjan tijms"
         ],
         [
-            "Piotrek \u017bygie\u0142o",
-            "Piotrek Zygielo"
+            "Anand Francis Joseph",
+            "Anand Francis Joseph Augustine"
+        ],
+        [
+            "David Matejcek",
+            "David Mat\u011bj\u010dek"
         ]
     ],
     "Hono": [
         [
-            "Abel Buechner-Mihaljevic",
-            "Abel B\u00fcchner-Mihaljevi\u0107",
-            "Abel Buechner"
+            "Balasubramanian",
+            "Balasubramanian Azhagappan"
         ],
         [
-            "Maas Ingo (CS-EFS2)",
-            "Maas Ingo (INST-ECS4)"
-        ],
-        [
-            "Balasubramanian Azhagappan",
-            "Balasubramanian"
-        ],
-        [
-            "Alfu Jallow",
             "Alfusainey Jallow",
-            "Alfusainey"
+            "Alfusainey",
+            "Alfu Jallow"
         ],
         [
-            "Hudalla Kai (INST-ESY)",
-            "Hudalla Kai (INST-ECS4)",
-            "Hudalla Kai (INST-ESY1)"
+            "Maas Ingo (CS/EFS2)",
+            "Maas Ingo (INST/ECS4)"
         ],
         [
-            "Renz Christian (INST-ESW INST-ECS7)",
-            "Renz Christian (INST-ESW)"
+            "Kartheeswaran Kalidass",
+            "Karthees Kalidass"
         ],
         [
-            "Karthees Kalidass",
-            "Kartheeswaran Kalidass"
+            "Abel Buechner-Mihaljevic",
+            "Abel Buechner",
+            "Abel B\u00fcchner-Mihaljevi\u0107"
+        ],
+        [
+            "Renz Christian (INST/ESW INST/ECS7)",
+            "Renz Christian (INST/ESW)"
+        ],
+        [
+            "Hudalla Kai (INST/ESY1)",
+            "Hudalla Kai (INST/ECS4)",
+            "Hudalla Kai (INST/ESY)"
         ]
     ],
     "Implementation of JAXB": [
         [
-            "David Kr\u00e1l",
-            "David Kral"
-        ],
-        [
-            "Christian Ambach",
             "Christian",
-            "Christian Walther"
+            "Christian Walther",
+            "Christian Ambach"
         ],
         [
             "Piotrek \u017bygie\u0142o",
             "Piotrek Zygielo"
+        ],
+        [
+            "David Kr\u00e1l",
+            "David Kral"
         ]
     ],
     "Interceptors": [
@@ -584,58 +585,59 @@
     ],
     "JGit: Java implementation of Git": [
         [
-            "Shawn O. Pearce",
-            "Shawn Pearce"
+            "Lluis Sanchez",
+            "Lluis Sanchez Gual"
         ],
         [
-            "Lluis Sanchez Gual",
-            "Lluis Sanchez"
+            "Shawn O. Pearce",
+            "Shawn Pearce"
         ]
     ],
     "JKube": [
         [
-            "Sun S. D. Tan",
-            "Sun Tan"
-        ],
-        [
-            "Rohan Kumar",
-            "Rohan Kumar "
-        ],
-        [
-            "Manjooth",
-            "Manjooth Kler"
-        ],
-        [
-            "Adrian Moreno",
-            "Adri\u00e1n Moreno"
-        ],
-        [
-            "Rasmita",
-            "rasmita404"
-        ],
-        [
-            "Sergiy Fomin",
-            "sergiyFomin"
+            "Manjooth Kler",
+            "Manjooth"
         ],
         [
             "Muhammad Wasi",
             "Muhammad Wasi Naseer"
         ],
         [
+            "Sebastian Roland",
+            "Sebastian Rolon"
+        ],
+        [
+            "Rasmita",
+            "rasmita404"
+        ],
+        [
+            "Adrian Moreno",
+            "Adri\u00e1n Moreno"
+        ],
+        [
+            "Sergiy Fomin",
+            "sergiyFomin"
+        ],
+        [
+            "Sun S. D. Tan",
+            "Sun Tan"
+        ],
+        [
             "Attyuttam",
             "attyuttam"
         ],
         [
-            "Marcos Trejo",
-            "Marcos Trejo Munguia"
+            "Rohan Kumar ",
+            "Rohan Kumar"
         ],
         [
-            "Sebastian Rolon",
-            "Sebastian Roland"
+            "Marcos Trejo Munguia",
+            "Marcos Trejo"
         ]
     ],
     "JSON Binding": [],
     "JSON Processing": [],
+    "Jemo - Cloud Application Runtime": [],
     "Jersey": [
         [
             "Santiago Pericas-Geertsen",
@@ -646,42 +648,42 @@
             "David Kral"
         ],
         [
-            "David Matejcek",
-            "David Mat\u011bj\u010dek"
-        ],
-        [
             "arjantijms",
             "arjan tijms"
+        ],
+        [
+            "David Matejcek",
+            "David Mat\u011bj\u010dek"
         ]
     ],
     "Jetty - Servlet Engine and Http Server": [
         [
-            "Athena",
-            "Athena Yao"
+            "Athena Yao",
+            "Athena"
         ]
     ],
     "Kapua": [
         [
-            "andrejn-ct",
-            "andrejn"
+            "Leonardo",
+            "Leonardo Gaube"
+        ],
+        [
+            "andrejn",
+            "andrejn-ct"
+        ],
+        [
+            "Marko Dragicevic",
+            "Marko Dragi\u0107evi\u0107"
         ],
         [
             "Benjamin Cab\u00c3\u00a9",
             "Benjamin Cab\u00e9"
-        ],
-        [
-            "Leonardo Gaube",
-            "Leonardo"
-        ],
-        [
-            "Marko Dragi\u0107evi\u0107",
-            "Marko Dragicevic"
         ]
     ],
     "Keyple": [
         [
-            "OlivierDelcroix",
-            "Olivier Delcroix"
+            "Olivier Delcroix",
+            "OlivierDelcroix"
         ],
         [
             "Meddy M.",
@@ -691,64 +693,64 @@
     "Kiso": [],
     "Kitalpha": [
         [
-            "Faycal",
-            "Faycal Abka"
+            "Faycal Abka",
+            "Faycal"
         ]
     ],
     "Krazo": [],
     "Kura": [],
     "Leshan": [
         [
-            "Hudalla Kai (INST-ESY1)",
-            "Hudalla Kai (INST-ECS4)",
-            "Hudalla Kai (INST-ESY)"
-        ],
-        [
-            "Schaal Ingo (INST-ESY4)",
-            "Schaal Ingo (INST-ECS4)"
-        ],
-        [
             "Manu Sangoi",
+            "Manuel Sangoi",
             "Manuel Sango\u00ef",
-            "Manu Sangoi Dev",
-            "Manuel Sangoi"
+            "Manu Sangoi Dev"
         ],
         [
-            "Kraus Achim (INST-ESY1)",
-            "Kraus Achim (IOC-PAP-HU)",
-            "Kraus Achim (INST-ECS4)",
-            "Kraus Achim (INST-ESY4)"
+            "Kraus Achim (INST/ECS4)",
+            "Kraus Achim (INST/ESY1)",
+            "Kraus Achim (IOC/PAP-HU)",
+            "Kraus Achim (INST/ESY4)"
+        ],
+        [
+            "Schaal Ingo (INST/ECS4)",
+            "Schaal Ingo (INST/ESY4)"
+        ],
+        [
+            "Hudalla Kai (INST/ESY1)",
+            "Hudalla Kai (INST/ECS4)",
+            "Hudalla Kai (INST/ESY)"
         ]
     ],
     "Linux Tools": [
         [
-            "Genevieve Bastien",
-            "Genevi?ve Bastien",
-            "Genevi\u00e8ve Bastien"
+            "Daniel Henrique Barboza",
+            "Daniel H Barboza"
         ],
         [
             "Etienneb Bergeron",
             "Etienne Bergeron"
         ],
         [
-            "Wainer Moschetta",
-            "Wainer S. Moschetta"
-        ],
-        [
-            "Daniel Henrique Barboza",
-            "Daniel H Barboza"
-        ],
-        [
             "Ot\u00e1vio Pontes",
             "Otavio Pontes"
         ],
         [
-            "Marc-Andr\u00e9 Laperle",
-            "Marc-Andre Laperle"
-        ],
-        [
             "Jean-Christian Kouam\u00e9",
             "Jean-Christian Kouame"
+        ],
+        [
+            "Genevi?ve Bastien",
+            "Genevieve Bastien",
+            "Genevi\u00e8ve Bastien"
+        ],
+        [
+            "Wainer S. Moschetta",
+            "Wainer Moschetta"
+        ],
+        [
+            "Marc-Andre Laperle",
+            "Marc-Andr\u00e9 Laperle"
         ],
         [
             "Sami Wagiaalla",
@@ -758,8 +760,8 @@
     "Lyo": [],
     "MDT UML2": [
         [
-            "Kenneth Hussey",
-            "Kenn Hussey"
+            "Kenn Hussey",
+            "Kenneth Hussey"
         ]
     ],
     "Mail": [
@@ -768,24 +770,24 @@
             "Pawe\u0142 Dryga\u015b"
         ],
         [
-            "Diego Salvi",
-            "Diego Salvi - Diennea"
-        ],
-        [
-            "Mateusz Marz\u0119cki",
-            "Mateusz Marzecki"
-        ],
-        [
             "Piotr \u017bygie\u0142o",
             "Piotrek \u017bygie\u0142o",
             "Piotrek Zygielo"
+        ],
+        [
+            "Diego Salvi - Diennea",
+            "Diego Salvi"
+        ],
+        [
+            "Mateusz Marzecki",
+            "Mateusz Marz\u0119cki"
         ]
     ],
     "Marketplace Client": [
         [
+            "Pascal Rapicault (Jboss)",
             "Pascal Rapicault",
-            "Pascal Rapicault (JBoss)",
-            "Pascal Rapicault (Jboss)"
+            "Pascal Rapicault (JBoss)"
         ]
     ],
     "Maven Integration - m2eclipse": [
@@ -801,246 +803,246 @@
     "Memory Analyzer": [],
     "Metro": [
         [
+            "David",
             "David Kr\u00e1l",
-            "David Kral",
-            "David"
+            "David Kral"
         ]
     ],
     "MoDisco": [],
     "Modeling Project": [
         [
-            "Kenneth Hussey",
-            "Kenn Hussey"
-        ],
-        [
-            "Christian Damus",
+            "Christian W. Damus",
             "Christian Krause",
-            "Christian W. Damus"
+            "Christian Damus"
         ],
         [
-            "Bernd Kolb \\(KolbW",
-            "Bernd Kolb"
-        ],
-        [
-            "Dimitrios Kolovos",
-            "Dimitris Kolovos"
+            "Kenn Hussey",
+            "Kenneth Hussey"
         ],
         [
             "Fr\u00e9d\u00e9ric Jouault",
             "Frederic Jouault"
+        ],
+        [
+            "Dimitris Kolovos",
+            "Dimitrios Kolovos"
+        ],
+        [
+            "Bernd Kolb \\(KolbW",
+            "Bernd Kolb"
         ]
     ],
     "Mojarra": [
-        [
-            "David Matejcek",
-            "David Mat\u011bj\u010dek"
-        ],
-        [
-            "Paul Nicolucci",
-            "Paul A. Nicolucci"
-        ],
         [
             "Hussain",
             "Hussain.NM"
         ],
         [
-            "Tomas Hofman",
-            "TomasHofman"
+            "TomasHofman",
+            "Tomas Hofman"
         ],
         [
-            "Manfred Riem",
-            "Manfred Riem (Oracle account)"
+            "Steve Millidge",
+            "Steve Millidge (Payara)"
+        ],
+        [
+            "Piotrek \u017bygie\u0142o",
+            "Piotrek Zygielo"
         ],
         [
             "Melloware",
             "melloware"
         ],
         [
+            "Paul A. Nicolucci",
+            "Paul Nicolucci"
+        ],
+        [
+            "Manfred Riem",
+            "Manfred Riem (Oracle account)"
+        ],
+        [
             "arjantijms",
             "arjan tijms"
         ],
         [
-            "Steve Millidge (Payara)",
-            "Steve Millidge"
-        ],
-        [
-            "Piotrek \u017bygie\u0142o",
-            "Piotrek Zygielo"
+            "David Matejcek",
+            "David Mat\u011bj\u010dek"
         ]
     ],
     "Mosquitto": [
         [
-            "MaxG",
-            "Max"
-        ],
-        [
-            "Mike Tran",
-            "Mike Turalenka"
-        ],
-        [
+            "ChristianKuehnel",
             "Chris .",
             "Christian Walther",
-            "Christian",
-            "Christian Rugland",
             "Chris-008",
-            "Chris",
-            "ChristianKuehnel"
+            "Christian Rugland",
+            "Christian",
+            "Chris"
         ],
         [
+            "Max",
+            "MaxG"
+        ],
+        [
+            "Robert",
+            "Robert Elek"
+        ],
+        [
+            "Matthias",
             "Matthew Giassa",
-            "Matthias Stone",
-            "Matthias"
+            "Matthias Stone"
         ],
         [
-            "Martin Holc",
-            "Martin",
-            "Martin Eden"
-        ],
-        [
-            "Jan Lukavsky",
-            "Jan Lukavsk\u00fd"
-        ],
-        [
-            "Jonah Fang",
-            "Jonathan",
-            "Jonathan Hanson"
-        ],
-        [
-            "Samuel Dan",
-            "Samuel"
-        ],
-        [
-            "Thomas Beckmann",
-            "Thomas Beckmann (M-Way)"
-        ],
-        [
-            "bitfreak",
-            "bitfreak25"
+            "Roger Light",
+            "Roger A. Light"
         ],
         [
             "chriswue",
             "chris"
         ],
         [
+            "Aska Wu",
+            "Aska.Wu"
+        ],
+        [
+            "Jonathan",
+            "Jonathan Hanson",
+            "Jonah Fang"
+        ],
+        [
+            "Martin Holc",
+            "Martin Eden",
+            "Martin"
+        ],
+        [
+            "Michael Buhr",
+            "Michael",
+            "Michael Adams",
+            "Michael CHEN",
+            "Michael Rahr",
+            "Michael.Chen"
+        ],
+        [
             "Shekhar Singhal",
             "shekhar singhal"
         ],
         [
-            "Marco",
-            "Marco401",
-            "Marc"
+            "YuLun Shih",
+            "Yu-Lun Shih"
         ],
         [
-            "Michael Buhr",
-            "Michael CHEN",
-            "Michael",
-            "Michael.Chen",
-            "Michael Adams",
-            "Michael Rahr"
+            "Samuel Dan",
+            "Samuel"
         ],
         [
-            "Roger A. Light",
-            "Roger Light"
+            "Srikanth Ramu",
+            "Srikanth ramu"
         ],
         [
-            "Timon",
-            "Timoline"
-        ],
-        [
-            "Jahn",
-            "Jan"
-        ],
-        [
-            "Dr. Lars Voelker",
-            "Dr. Lars V\u00f6lker"
-        ],
-        [
-            "Robert Elek",
-            "Robert"
+            "korish23",
+            "korish"
         ],
         [
             "jianhui zhan",
             "jianhui"
         ],
         [
-            "Aska.Wu",
-            "Aska Wu"
+            "Jan Lukavsk\u00fd",
+            "Jan Lukavsky"
         ],
         [
-            "Yu-Lun Shih",
-            "YuLun Shih"
+            "Eric ",
+            "EricQ47"
         ],
         [
-            "korish",
-            "korish23"
-        ],
-        [
-            "Nik",
+            "Nik0902",
             "Nick An",
             "Nick",
-            "Nik0902"
+            "Nik"
         ],
         [
-            "Srikanth ramu",
-            "Srikanth Ramu"
+            "Jahn",
+            "Jan"
         ],
         [
             "Alexey",
             "Alex"
         ],
         [
-            "Anto Nello",
-            "Antonello"
+            "Dr. Lars V\u00f6lker",
+            "Dr. Lars Voelker"
         ],
         [
-            "Eric ",
-            "EricQ47"
+            "bitfreak",
+            "bitfreak25"
+        ],
+        [
+            "Mike Turalenka",
+            "Mike Tran"
+        ],
+        [
+            "Thomas Beckmann (M-Way)",
+            "Thomas Beckmann"
+        ],
+        [
+            "Marco",
+            "Marc",
+            "Marco401"
+        ],
+        [
+            "Antonello",
+            "Anto Nello"
+        ],
+        [
+            "Timoline",
+            "Timon"
         ]
     ],
     "Mylyn": [
         [
-            "David E. Narv\u00e1ez",
-            "David Carver"
+            "David Carver",
+            "David E. Narv\u00e1ez"
         ],
         [
             "Pasquale Vitale",
             "pasquale vitale"
         ],
         [
-            "Torkild Ulv\u00f8y Resheim",
-            "Torkild U. Resheim"
+            "Cedric Brun",
+            "C\u00e9dric Brun"
         ],
         [
-            "C\u00e9dric Brun",
-            "Cedric Brun"
+            "Torkild Ulv\u00f8y Resheim",
+            "Torkild U. Resheim"
         ]
     ],
     "Nebula NatTable": [],
     "OCL (Object Constraint Language)": [
         [
-            "Aleksandr Igdalov",
-            "Alexander Igdalov"
+            "Alexander Igdalov",
+            "Aleksandr Igdalov"
         ]
     ],
     "ORB": [
         [
-            "Hussain",
-            "Hussain.NM"
+            "Steve Millidge",
+            "Steve Millidge (Payara)"
         ],
         [
-            "Steve Millidge (Payara)",
-            "Steve Millidge"
+            "Hussain",
+            "Hussain.NM"
         ]
     ],
     "Oomph": [],
     "OpenMQ": [
         [
-            "arjantijms",
-            "arjan tijms"
+            "Steve Millidge",
+            "Steve Millidge (Payara)"
         ],
         [
-            "Steve Millidge (Payara)",
-            "Steve Millidge"
+            "arjantijms",
+            "arjan tijms"
         ],
         [
             "Piotr \u017bygie\u0142o",
@@ -1048,51 +1050,57 @@
             "Piotrek Zygielo"
         ]
     ],
+    "Orbit Project": [
+        [
+            "David M Williams",
+            "David Williams"
+        ]
+    ],
     "Orion": [
-        [
-            "John Arthorne",
-            "John_Arthorne@ca.ibm.com"
-        ],
-        [
-            "John J. Barton",
-            "John J Barton"
-        ],
         [
             "Mark MacDonald",
             "Mark Macdonald"
         ],
         [
-            "kenwalker",
-            "kwalker"
+            "kwalker",
+            "kenwalker"
+        ],
+        [
+            "John J Barton",
+            "John J. Barton"
+        ],
+        [
+            "John Arthorne",
+            "John_Arthorne@ca.ibm.com"
         ]
     ],
     "PHP Development Tools": [
         [
-            "yleon",
-            "y.le.ny"
+            "y.le.ny",
+            "yleon"
+        ],
+        [
+            "Adrian Zi\u00f3\u0142kowski",
+            "Adrian Ziolkowski"
         ],
         [
             "James Mohr",
             "James M. Orr"
-        ],
-        [
-            "Adrian Ziolkowski",
-            "Adrian Zi\u00f3\u0142kowski"
         ]
     ],
     "Paho": [
         [
-            "Allan Stockdill-Mander",
-            "Al Stockdill-Mander"
+            "Al Stockdill-Mander",
+            "Allan Stockdill-Mander"
         ],
         [
             "Roger A. Light",
             "Roger Light"
         ],
         [
-            "Benjamin Cab\u0102\u00a9",
             "Benjamin Cab\u00c3\u00a9",
-            "Benjamin Cab\u00e9"
+            "Benjamin Cab\u00e9",
+            "Benjamin Cab\u0102\u00a9"
         ]
     ],
     "Parallel Tools Platform (PTP)": [],
@@ -1112,158 +1120,168 @@
             "Santiago Pericasgeertsen"
         ]
     ],
+    "Riena": [
+        [
+            "Bjorn Freeman-Benson",
+            "Bjorn\tFreeman-Benson"
+        ],
+        [
+            "Schepp Frank",
+            "Schepp, Frank"
+        ],
+        [
+            "Ekkehard Gentz",
+            "Ekke Gentz"
+        ],
+        [
+            "Patrick",
+            "Patrick He"
+        ]
+    ],
     "SUMO": [
         [
-            "Pablo Alvarez Lopez",
-            "Pablo.AlvarezLopez"
+            "Laura Bieker",
+            "Laura Bieker-Walz"
+        ],
+        [
+            "Robert.Hilbrich",
+            "Robert Hilbrich"
         ],
         [
             "Matthias.Schwamborn",
             "Matthias Schwamborn"
         ],
         [
-            "Leonhard Luecken",
-            "Leonhard L\u00fccken"
-        ],
-        [
             "Jan P\u0159ikryl",
             "Jan Prikryl"
         ],
         [
-            "yun-pang.floetteroed",
-            "yunpangfloetteroed"
+            "yunpangfloetteroed",
+            "yun-pang.floetteroed"
         ],
         [
-            "Laura Bieker-Walz",
-            "Laura Bieker"
+            "Pablo Alvarez Lopez",
+            "Pablo.AlvarezLopez"
         ],
         [
-            "Robert.Hilbrich",
-            "Robert Hilbrich"
+            "Leonhard L\u00fccken",
+            "Leonhard Luecken"
         ]
     ],
     "SW360antenna": [
         [
-            "Geyer-Blaumeiser Lars (INST-CSS-BSV-OS3)",
-            "Geyer-Blaumeiser Lars (IOC-PDL4)"
+            "Geyer-Blaumeiser Lars (IOC/PDL4)",
+            "Geyer-Blaumeiser Lars (INST-CSS/BSV-OS3)"
         ]
     ],
     "SWTBot": [
         [
-            "saleem khan",
-            "saleem.khan.insha"
+            "Micka\u00ebl\tIstria",
+            "Micka\u00ebl Istria",
+            "Mickael Istria"
         ],
         [
-            "Micka\u00ebl Istria",
-            "Mickael Istria",
-            "Micka\u00ebl\tIstria"
+            "saleem.khan.insha",
+            "saleem khan"
         ]
     ],
     "Scout": [
         [
-            "Hannes M\u00fcller",
-            "Hannes Mueller"
+            "Hannes Mueller",
+            "Hannes M\u00fcller"
         ],
         [
-            "Judith Gull",
-            "Judtih Gull"
+            "Oli Schmid",
+            "Oliver Schmid"
         ],
         [
-            "Andre Wegmueller",
-            "Andr\u00e9 Wegm\u00fcller"
+            "Bruno K\u00f6ferli",
+            "Bruno Koeferli"
         ],
         [
-            "Bruno Koeferli",
-            "Bruno K\u00f6ferli"
+            "Stephan Leicht",
+            "Stephan Leicht Vogt"
         ],
         [
-            "Stephan Leicht Vogt",
-            "Stephan Leicht"
+            "Judtih Gull",
+            "Judith Gull"
         ],
         [
-            "Oliver Schmid",
-            "Oli Schmid"
+            "Andr\u00e9 Wegm\u00fcller",
+            "Andre Wegmueller"
         ]
     ],
     "Security": [
         [
-            "Matthew Gill",
-            "Matt Gill"
+            "Matt Gill",
+            "Matthew Gill"
         ]
     ],
     "Server Pages": [
         [
-            "Paul Nicolucci",
-            "Paul A. Nicolucci"
+            "Piotrek \u017bygie\u0142o",
+            "Piotrek Zygielo"
         ],
         [
-            "Hussain",
-            "Hussain.NM"
+            "Paul A. Nicolucci",
+            "Paul Nicolucci"
         ],
         [
             "arjantijms",
             "arjan tijms"
         ],
         [
-            "Piotrek \u017bygie\u0142o",
-            "Piotrek Zygielo"
+            "Hussain",
+            "Hussain.NM"
         ]
     ],
     "Servlet": [
         [
-            "Paul Nicolucci",
-            "Paul A. Nicolucci"
+            "Piotrek \u017bygie\u0142o",
+            "Piotrek Zygielo"
         ],
         [
             "Thiago Henrique Hupner",
             "Thiago Henrique H\u00fcpner"
         ],
         [
-            "Piotrek \u017bygie\u0142o",
-            "Piotrek Zygielo"
+            "Paul A. Nicolucci",
+            "Paul Nicolucci"
         ]
     ],
     "ShellWax": [],
     "Sirius": [],
     "SmartHome": [
         [
-            "David Gr\u00e4ff",
-            "David Graeff"
-        ],
-        [
-            "Kristina Simova",
-            "Kristina S. Simova"
-        ],
-        [
-            "Thomas Ho\u0308fer",
-            "Thomas H\u00f6fer"
-        ],
-        [
-            "BenediktNiehues",
-            "Benedikt Niehues"
-        ],
-        [
-            "Benjamin Cab\u0102\u00a9",
-            "Benjamin Cab\u00e9"
+            "Benedikt Niehues",
+            "BenediktNiehues"
         ],
         [
             "Thomas Eichst\u00e4dt-Engelen",
             "Thomas Eichsta\u0308dt-Engelen"
         ],
         [
+            "Benjamin Cab\u00e9",
+            "Benjamin Cab\u0102\u00a9"
+        ],
+        [
+            "David Gr\u00e4ff",
+            "David Graeff"
+        ],
+        [
+            "Thomas H\u00f6fer",
+            "Thomas Ho\u0308fer"
+        ],
+        [
             "Stefan Bu\u00dfweiler",
             "Stefan Bussweiler"
+        ],
+        [
+            "Kristina S. Simova",
+            "Kristina Simova"
         ]
     ],
     "Soteria": [
-        [
-            "Gurunandan",
-            "Gurunandan Rao"
-        ],
-        [
-            "Thiago Henrique Hupner",
-            "Thiago Henrique H\u00fcpner"
-        ],
         [
             "arjantijms",
             "arjan tijms"
@@ -1271,227 +1289,237 @@
         [
             "Piotrek \u017bygie\u0142o",
             "Piotrek Zygielo"
+        ],
+        [
+            "Thiago Henrique Hupner",
+            "Thiago Henrique H\u00fcpner"
+        ],
+        [
+            "Gurunandan Rao",
+            "Gurunandan"
         ]
     ],
     "Spatial4j": [],
     "Sprotty": [
         [
-            "Miro Sp\u00f6nemann",
-            "Miro Spo\u0308nemann"
-        ],
-        [
-            "Dennis H\u00fcbner",
-            "Dennis Huebner"
-        ],
-        [
             "Jan Koehnlein",
             "Jan K\u00f6hnlein"
         ],
         [
-            "NiklasRentzCAU",
-            "Niklas Rentz"
+            "Dennis Huebner",
+            "Dennis H\u00fcbner"
+        ],
+        [
+            "Niklas Rentz",
+            "NiklasRentzCAU"
+        ],
+        [
+            "Miro Spo\u0308nemann",
+            "Miro Sp\u00f6nemann"
         ]
     ],
     "Stable APIs": [],
     "Standard Tag Library": [
         [
-            "Paul Nicolucci",
-            "Paul A. Nicolucci"
-        ],
-        [
             "arjantijms",
             "arjan tijms"
+        ],
+        [
+            "Paul A. Nicolucci",
+            "Paul Nicolucci"
         ]
     ],
     "Tangle Marketplaces": [],
     "Temurin": [],
     "Theia": [
         [
-            "Miro Sp\u00f6nemann",
-            "Miro Spo\u0308nemann"
+            "Anatolii Bazko",
+            "Anatoliy Bazko"
         ],
         [
-            "Alex Tugarev",
-            "AlexTugarev"
-        ],
-        [
-            "Valeriy Svydenko",
-            "Valerii Svydenko"
-        ],
-        [
-            "Anton Kosiakov",
-            "Anton Kosyakov"
-        ],
-        [
-            "Karthik Bhat",
-            "Karthik Bhat K"
+            "Valerii Svydenko",
+            "Valeriy Svydenko"
         ],
         [
             "Jan Koehnlein",
             "JanKoehnlein"
         ],
         [
-            "Feng Qingxue",
-            "FengQingxue"
+            "FengQingxue",
+            "Feng Qingxue"
         ],
         [
-            "Anatoliy Bazko",
-            "Anatolii Bazko"
+            "Karthik Bhat K",
+            "Karthik Bhat"
         ],
         [
-            "xieyuanhuata",
-            "xieyuanhu"
+            "AlexTugarev",
+            "Alex Tugarev"
         ],
         [
             "Joshua Bradley",
             "Josh Bradley"
+        ],
+        [
+            "Anton Kosyakov",
+            "Anton Kosiakov"
+        ],
+        [
+            "Miro Spo\u0308nemann",
+            "Miro Sp\u00f6nemann"
+        ],
+        [
+            "xieyuanhu",
+            "xieyuanhuata"
         ]
     ],
     "Tools for Cloud Foundry": [],
     "Tools for Faces": [],
     "Transactions": [],
     "Tyrus": [],
+    "Unide": [
+        [
+            "Meinhardt Axel (INST-INL/PRM1)",
+            "Meinhardt Axel (BCI/ECM2)"
+        ],
+        [
+            "Bor Gonzalez Usach",
+            "Bor Gonzalez-Usach"
+        ],
+        [
+            "Benjamin Cab\u00e9",
+            "Benjamin Cabe\u0301"
+        ]
+    ],
     "VIATRA": [
         [
             "Abel Hegedus",
             "\u00c1bel Heged\u00fcs"
         ],
         [
-            "Istv\u00e1n R\u00e1th",
-            "Istvan Rath"
+            "Grill Bal\u00e1zs",
+            "Grill Balazs"
         ],
         [
             "D\u00e1vid Istv\u00e1n",
             "David, Istvan"
         ],
         [
-            "Grill Balazs",
-            "Grill Bal\u00e1zs"
+            "Istvan Rath",
+            "Istv\u00e1n R\u00e1th"
         ]
     ],
     "Validation": [],
     "Virgo": [],
     "WTP Java EE Tools": [
         [
-            "Jesper Steen M\u00f8ller",
-            "Jesper M\u00f8ller"
+            "Victor V. Rubezhny",
+            "Victor Rubezhny"
         ],
         [
-            "Diego Michel Sahagun Ramirez-Mexico-Contr-IBM",
-            "Diego Michel Sahagun Ramirez-Mexico-IBM"
+            "Jason A Sholl",
+            "Jason Sholl"
         ],
         [
-            "Salvador Galileo Perez Coronado-Mexico-Contr-IBM",
-            "Salvador Galileo Perez Coronado-Mexico-IBM"
+            "Julio Cesar Chavez",
+            "Julio Cesar Chavez Ortiz/Mexico/IBM"
+        ],
+        [
+            "Salvador Galileo Perez Coronado/Mexico/IBM",
+            "Salvador Galileo Perez Coronado/Mexico/Contr/IBM"
         ],
         [
             "David M Williams",
             "David Williams"
         ],
         [
-            "Jacek Pospycha\u0142a",
-            "Jacek Pospychala"
+            "Roberto Sanchez",
+            "Roberto Sanchez Herrera/Mexico/IBM",
+            "Roberto Sanchez Herrera"
         ],
         [
-            "Victor Rubezhny",
-            "Victor V. Rubezhny"
-        ],
-        [
-            "Max Rydahl Andersen",
-            "Max Andersen"
-        ],
-        [
-            "Roberto Sanchez Herrera",
-            "Roberto Sanchez Herrera-Mexico-IBM",
-            "Roberto Sanchez"
-        ],
-        [
-            "Julio Cesar Chavez Ortiz-Mexico-IBM",
-            "Julio Cesar Chavez"
-        ],
-        [
-            "Jason Sholl",
-            "Jason A Sholl"
-        ],
-        [
-            "Konstantin\tKomissarchik",
-            "Konstantin Komissarchik",
-            "Konstantinos Komissarchik"
+            "Jesper Steen M\u00f8ller",
+            "Jesper M\u00f8ller"
         ],
         [
             "David Carver",
             "David Carverd"
+        ],
+        [
+            "Diego Michel Sahagun Ramirez/Mexico/IBM",
+            "Diego Michel Sahagun Ramirez/Mexico/Contr/IBM"
+        ],
+        [
+            "Jacek Pospycha\u0142a",
+            "Jacek Pospychala"
+        ],
+        [
+            "Konstantin\tKomissarchik",
+            "Konstantinos Komissarchik",
+            "Konstantin Komissarchik"
+        ],
+        [
+            "Max Rydahl Andersen",
+            "Max Andersen"
         ]
     ],
     "WaSP": [],
     "Wakaama": [
         [
+            "FrankGerlach",
+            "Frank Gerlach"
+        ],
+        [
+            "Benjamin Cab\u221a\u00a9",
+            "Benjamin Cab\u00e9",
+            "Benjamin Cab\u0102\u00a9"
+        ],
+        [
+            "Manuel Sango\u00ef",
+            "Manuel Sangoi",
+            "Manu Sangoi"
+        ],
+        [
             "David Gr\u00e4ff",
             "David Graeff"
+        ],
+        [
+            "Joaquin",
+            "Joaquin Prado"
+        ],
+        [
+            "Kraus Achim (INST/ECS4)",
+            "Kraus Achim (INST/ESY1)",
+            "Kraus Achim (INST/ESY4)"
         ],
         [
             "Sena Bayraktaroglu",
             "senabayraktaroglu"
         ],
         [
-            "Frank Gerlach",
-            "FrankGerlach"
-        ],
-        [
-            "Manuel Sangoi",
-            "Manu Sangoi",
-            "Manuel Sango\u00ef"
-        ],
-        [
-            "Benjamin Cab\u221a\u00a9",
-            "Benjamin Cab\u0102\u00a9",
-            "Benjamin Cab\u00e9"
-        ],
-        [
-            "Joaquin Prado",
-            "Joaquin"
-        ],
-        [
             "David Navarro",
             "David Navarro - IoTerop"
-        ],
-        [
-            "Kraus Achim (INST-ESY1)",
-            "Kraus Achim (INST-ECS4)",
-            "Kraus Achim (INST-ESY4)"
         ]
     ],
     "WebSocket": [],
     "Wild Web Developer": [
         [
-            "Victor Rubezhny",
-            "Victor V. Rubezhny"
+            "Victor V. Rubezhny",
+            "Victor Rubezhny"
         ]
     ],
     "WindowBuilder": [],
     "XML Binding": [
         [
             "gurunandan",
-            "Gurunandan",
             "gurunandan.rao@oracle.com",
-            "Gurunandan Rao"
+            "Gurunandan Rao",
+            "Gurunandan"
         ]
     ],
     "XML Web Services": [],
     "Xtext": [],
     "Yasson": [
-        [
-            "Scott Stark",
-            "Scott M Stark"
-        ],
-        [
-            "David Kr\u00e1l",
-            "David Kral"
-        ],
-        [
-            "Katie Richter",
-            "Katie-Richter"
-        ],
         [
             "Patrik Dudits",
             "Patrik Dudit\u0161"
@@ -1499,47 +1527,59 @@
         [
             "Derek Moore",
             "Derek P. Moore"
+        ],
+        [
+            "Katie Richter",
+            "Katie-Richter"
+        ],
+        [
+            "David Kr\u00e1l",
+            "David Kral"
+        ],
+        [
+            "Scott M Stark",
+            "Scott Stark"
         ]
     ],
     "e(fx)clipse": [],
     "iceoryx": [
         [
             "chiranjeevimaddi",
-            "Chiranjeevi Maddi (RBEI-EBB1)",
+            "Chiranjeevi Maddi (RBEI/EBB1)",
             "chiranjeevi maddi"
-        ],
-        [
-            "Prasanna Bhat",
-            "Prasanna Bhat (RBEI-EBB)"
-        ],
-        [
-            "pabloEnzes",
-            "pabloEnzes2"
-        ],
-        [
-            "Michael P\u00f6hnl",
-            "Michael Poehnl"
-        ],
-        [
-            "MatthiasKillat",
-            "Matthias Killat"
-        ],
-        [
-            "Bernd Eickhoff",
-            "Bernhard Eickhoff (CC-AD-ESW1)"
         ],
         [
             "Dietrich Kr\u00f6nke",
             "Dietrich Kroenke"
         ],
         [
-            "Hintz Martin (CC-AD-ESW1)",
-            "Hintz Martin (XC-AD-ESB5)",
-            "Hintz Martin (XC-AD-ESW1-J1)"
+            "Matthias Killat",
+            "MatthiasKillat"
         ],
         [
             "ChenYing Kuo",
             "ChenYing Kuo (CY)"
+        ],
+        [
+            "Bernd Eickhoff",
+            "Bernhard Eickhoff (CC-AD/ESW1)"
+        ],
+        [
+            "pabloEnzes2",
+            "pabloEnzes"
+        ],
+        [
+            "Hintz Martin (CC-AD/ESW1)",
+            "Hintz Martin (XC-AD/ESW1-J1)",
+            "Hintz Martin (XC-AD/ESB5)"
+        ],
+        [
+            "Michael Poehnl",
+            "Michael P\u00f6hnl"
+        ],
+        [
+            "Prasanna Bhat",
+            "Prasanna Bhat (RBEI/EBB)"
         ]
     ]
 }

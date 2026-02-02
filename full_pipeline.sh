@@ -2,14 +2,11 @@
 
 
 ## STEP I: Retrieve Raw Data & Pre-Process ##
-## Note: This is pre-computed to save time and file size, but the script is left
-## below + commented out to preserve reproducability.
-
-# bash pre_process.sh
-python3 -m dfc.verify
+python3 -m dfc.verify # retrieve
+bash pre_process.sh # adjustments
 
 
-## STEP II: Socio-Technical Network Generation
+# STEP II: Socio-Technical Network Generation
 python3 -m dfc.pipeline.pipeline --kwargs \
     incubator=apache \
     versions='{"tech": 1, "social": 1}'
@@ -30,13 +27,13 @@ python3 -m dfc.pipeline.pipeline --kwargs \
 ## STEP III: Modeling Trials
 # generate trials
 python3 -m dfc.pipeline.modeling --kwargs \
-    trial-type="tse" \
+    trial-type="jss" \
     trials=3 \
     hyperparams='{"learning_rate": 0.001, "scheduler": "plateau", "num_epochs": 100, "hidden_size": 64, "num_layers": 2, "dropout_rate": 0.5}'
 
 # summarize
 python3 -m dfc.abstractions.perfdata --kwargs \
-    breakdown-type="tse" \
+    breakdown-type="jss" \
     acc_measure="mic-f1"
 
 

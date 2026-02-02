@@ -717,8 +717,8 @@ def infer_bots(data_lookup: dict[str, pd.DataFrame], incubator: str, threshold: 
         """
 
         # match extension
-        proj = str(group["project_name"].iloc[0])
-        sender = str(group[author_field].iloc[0])
+        proj = str(group.name[0])
+        sender = str(group.name[1])
 
         # counts
         num_commits = group.shape[0]

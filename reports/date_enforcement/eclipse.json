@@ -1409,71 +1409,21 @@
             "inc_st_date": "NaT"
         }
     },
-    "st_late": {
-        "Orbit Project": {
-            "delta_st": "3483 days 22:41:44",
-            "delta_end": "372 days 15:31:11",
-            "data_end_date": "2024-02-15 15:31:11+00:00",
-            "data_st_date": "2016-03-25 22:41:44+00:00",
-            "inc_end_date": "2023-02-08 00:00:00+00:00",
-            "inc_st_date": "2006-09-11 00:00:00+00:00"
-        },
-        "Packaging Project": {
-            "delta_st": "4635 days 13:51:43",
-            "delta_end": "4895 days 09:10:28",
-            "data_end_date": "2021-10-14 09:10:28+00:00",
-            "data_st_date": "2019-10-10 13:51:43+00:00",
-            "inc_end_date": "2008-05-20 00:00:00+00:00",
-            "inc_st_date": "2007-01-31 00:00:00+00:00"
-        }
-    },
-    "end_early": {
-        "Gemini Naming": {
-            "delta_st": "-727 days +16:16:40",
-            "delta_end": "-2652 days +15:02:27",
-            "data_end_date": "2015-02-19 15:02:27+00:00",
-            "data_st_date": "2010-02-18 16:16:40+00:00",
-            "inc_end_date": "2022-05-25 00:00:00+00:00",
-            "inc_st_date": "2012-02-15 00:00:00+00:00"
-        },
-        "Jemo - Cloud Application Runtime": {
-            "delta_st": "20 days 15:45:56",
-            "delta_end": "-1424 days +09:38:32",
-            "data_end_date": "2019-10-21 09:38:32+00:00",
-            "data_st_date": "2019-01-08 15:45:56+00:00",
-            "inc_end_date": "2023-09-14 00:00:00+00:00",
-            "inc_st_date": "2018-12-19 00:00:00+00:00"
-        },
-        "Riena": {
-            "delta_st": "28 days 16:40:54",
-            "delta_end": "-1588 days +12:43:37",
-            "data_end_date": "2020-06-02 12:43:37+00:00",
-            "data_st_date": "2008-01-16 16:40:54+00:00",
-            "inc_end_date": "2024-10-07 00:00:00+00:00",
-            "inc_st_date": "2007-12-19 00:00:00+00:00"
-        },
-        "Unide": {
-            "delta_st": "84 days 11:54:29",
-            "delta_end": "-1398 days +08:26:38",
-            "data_end_date": "2019-11-29 08:26:38+00:00",
-            "data_st_date": "2016-12-07 11:54:29+00:00",
-            "inc_end_date": "2023-09-27 00:00:00+00:00",
-            "inc_st_date": "2016-09-14 00:00:00+00:00"
-        }
-    },
+    "st_late": {},
+    "end_early": {},
     "unmatched_inc_labels": [
-        "WTP Source Editing",
-        "Lua Development Tools",
-        "Handly",
         "EMF",
+        "Lua Development Tools",
         "Papyrus",
+        "Target Management: Terminal and Remote System Explorer (RSE)",
+        "WTP Source Editing",
         "BPMN2 Modeler Project",
-        "Target Management: Terminal and Remote System Explorer (RSE)"
+        "Handly"
     ],
     "Number of Incubation Labels that went Unmatched": 7,
     "Number of Missing Dates": 176,
-    "Number of Start Late": 2,
-    "Number of End Early": 4,
-    "Number of Truncated Tech Projects": 136,
-    "Number of Truncated Social Projects": 142
+    "Number of Start Late": 0,
+    "Number of End Early": 0,
+    "Number of Truncated Tech Projects": 139,
+    "Number of Truncated Social Projects": 147
 }

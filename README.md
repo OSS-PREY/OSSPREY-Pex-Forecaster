@@ -120,7 +120,7 @@ python3 -m dfc.pipeline.pipeline --kwargs \
 - **Modeling**:
 ```
 python3 -m dfc.pipeline.modeling --kwargs \
-    trial-type="tse" \
+    trial-type="jss" \
     trials=3 \
     hyperparams='{"learning_rate": 0.001, "scheduler": "plateau", "num_epochs": 100}'
 ```

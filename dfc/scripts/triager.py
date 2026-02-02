@@ -21,10 +21,10 @@
 # ## Env Setup
 
 # %%
-import decalfc as pex
-from decalfc.abstractions.modeldata import *
-from decalfc.abstractions.tsmodel import *
-from decalfc.pipeline.inference import *
+import dfc as pex
+from dfc.abstractions.modeldata import *
+from dfc.abstractions.tsmodel import *
+from dfc.pipeline.inference import *
 
 import numpy as np
 
