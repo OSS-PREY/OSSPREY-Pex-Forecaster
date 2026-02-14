@@ -2,6 +2,12 @@
 This codebase is a modified (streamlined, simplified) pipeline based on the
 deeper research done for sustainability forecasting.
 
+## Regeneration
+To regenerate the complete pipeline and results, run `full_pipeline.sh`:
+```bash
+bash full_pipeline.sh
+```
+
 ## Installation
 The directory structure is as follows:
 ```
@@ -95,15 +101,13 @@ requirements via:
 pip install -r requirements.txt
 ```
 
-## Regeneration
-To regenerate the complete pipeline and results:
-
+## Scripts
 1. **Pre-process raw data** (optional): Run `pre_process.sh` to clean, standardize, and prepare data for Eclipse and OSGeo incubators:
 ```bash
 bash pre_process.sh
 ```
 
-2. **Execute full pipeline**: Run `full_pipeline.sh` to generate networks, train models, and produce forecasts:
+1. **Execute full pipeline**: Run `full_pipeline.sh` to generate networks, train models, and produce forecasts:
 ```bash
 bash full_pipeline.sh
 ```
