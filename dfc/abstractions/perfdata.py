@@ -1339,19 +1339,52 @@ class PerfData:
         
         # drop the useless columns and format in the paper style #
         # drop useless cols
-        summary_df.drop(columns=[f"{acc_measure}_mean", f"{acc_measure}_std"], inplace=True)
-        summary_df.rename(columns={f"{acc_measure}_median": "performance"}, inplace=True)
+        summary_df.drop(columns=[f"{acc_measure}_mean"], inplace=True)
+        summary_df.rename(columns={f"{acc_measure}_median": "performance", f"{acc_measure}_std": "stddev"}, inplace=True)
         
         # pivot to format in a model arch 
+        var_df = pd.pivot(
+            summary_df,
+            index="transfer_strategy",
+            values="stddev",
+            columns="model_arch"
+        ).reset_index()
         summary_df = pd.pivot(
             summary_df,
             index="transfer_strategy",
             values="performance",
             columns="model_arch"
         ).reset_index()
-        summary_df.set_index("transfer_strategy", inplace=True)
+        
+        # variance of the best model
+        transformer_best = (
+            (summary_df["Transformer"] >= summary_df["BLSTM"]) &
+            (summary_df["Transformer"] >= summary_df["DLSTM"])
+        )
+        dlstm_best = (
+            (summary_df["DLSTM"] >= summary_df["BLSTM"]) &
+            (summary_df["DLSTM"] >= summary_df["Transformer"])
+        )
+            
+        var_df["stddev"] = var_df["BLSTM"]
+        var_df.loc[transformer_best, "stddev"] = var_df["Transformer"].loc[transformer_best]
+        var_df.loc[dlstm_best, "stddev"] = var_df["DLSTM"].loc[dlstm_best]
+        
+        var_df["performance"] = summary_df["BLSTM"]
+        var_df.loc[transformer_best, "performance"] = summary_df["Transformer"].loc[transformer_best]
+        var_df.loc[dlstm_best, "performance"] = summary_df["DLSTM"].loc[dlstm_best]
+        
+        var_df.drop(columns=["BLSTM", "Transformer", "DLSTM"], inplace=True)
+        var_df.set_index("transfer_strategy", inplace=True)
+        var_df["plus_count"] = var_df.index.str.count(r"\+")
+        var_df.sort_values(by="plus_count", inplace=True)
+        var_df.drop(columns="plus_count", inplace=True)
+        
+        var_df.to_csv(Path(save_path) / "variance.csv")
         
         # sort by performance and trial type
+        summary_df.set_index("transfer_strategy", inplace=True)
+        
         summary_df["plus_count"] = summary_df.index.str.count(r"\+")
         summary_df.sort_values(
             by=["plus_count", "BLSTM", "Transformer"],
@@ -1396,6 +1429,8 @@ class PerfData:
                 f.write(table_str)
         with open(Path(save_path) / "breakdown.tex", "w") as f:
             f.write("\n".join(tables.values()))
+        with open(Path(save_path) / "variance.tex", "w") as f:
+            f.write(clean_latex_str(bold_max_row(var_df)))
 
 # Testing
 def icse_wrapper():
@@ -1567,12 +1602,17 @@ if __name__ == "__main__":
         - `support` (int - num projects)
     """
 
+    
+    pfd = PerfData("./model-reports/paper-trials/paper_db")
+    pfd.paper_tables("./model-reports/paper-trials/variance")
+    
+    
     ############################################################################
     # ICSE EXPERIMENTS #
     # icse_wrapper()
     ############################################################################
 
-    __pfd_main()
+    # __pfd_main()
     
     # normal experiments
     # pfd = PerfData()
