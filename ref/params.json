@@ -168,10 +168,10 @@
         },
         "osgeo": {
             "tech": {
-                "0": "commits",
+                "0": "00-commits",
                 "0a": "00-commits-alias",
                 "1": "01-commits",
-                "2": "02-commits"
+                "2": "commits"
             },
             "social": {
                 "0e": "emails",
@@ -181,7 +181,7 @@
                 "0": "00-emails-issues",
                 "0t": "00-emails-issues-trunc",
                 "1": "01-emails-issues",
-                "2": "02-emails-issues"
+                "2": "emails-issues"
             }
         },
         "ospos": {
