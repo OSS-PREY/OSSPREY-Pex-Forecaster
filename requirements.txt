@@ -20,3 +20,4 @@ setuptools
 statsmodels
 PyWavelets
 gdown
+python-dotenv
