@@ -21,4 +21,5 @@ statsmodels
 PyWavelets
 gdown
 python-dotenv
-gambit
+gambit-disambig
+rabbit-ng
