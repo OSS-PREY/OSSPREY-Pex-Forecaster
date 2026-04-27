@@ -21,3 +21,4 @@ statsmodels
 PyWavelets
 gdown
 python-dotenv
+gambit
