@@ -7,8 +7,8 @@ Benchmark DFC rawdata aliases against Gambit disambiguation.
 3. Run ``gambit.disambiguate_aliases``.
 4. Join Gambit's disambiguated names back onto rawdata rows.
 5. Compare DFC dealiased names against Gambit names.
-6. Repeat for every incubator listed in ``ref/params.json`` unless one
-   incubator is requested.
+6. Sample one project per incubator and repeat for every incubator listed in
+   ``ref/params.json`` unless one incubator is requested.
 """
 
 from __future__ import annotations
@@ -51,6 +51,7 @@ GAMBIT_ID_FIELDS = (
     "person_id",
     "cluster_id",
 )
+DEFAULT_SAMPLE_SEED = 0
 
 
 def _first_existing(columns: set[str], candidates: tuple[str, ...]) -> str | None:
@@ -69,6 +70,38 @@ def load_rawdata(incubator: str) -> dict[str, pd.DataFrame]:
     """Load local rawdata through RawData's default-version handling."""
 
     return RawData(incubator=incubator).data
+
+
+def sample_one_project(
+    data_lookup: dict[str, pd.DataFrame],
+    incubator: str,
+    sample_seed: int = DEFAULT_SAMPLE_SEED,
+) -> dict[str, pd.DataFrame]:
+    """Return rawdata filtered to one seeded random project."""
+
+    project_frames = [
+        df["project_name"].dropna().astype(str)
+        for df in data_lookup.values()
+        if "project_name" in df.columns
+    ]
+    project_names = (
+        pd.concat(project_frames, ignore_index=True).drop_duplicates()
+        if project_frames
+        else pd.Series(dtype=str)
+    )
+    if project_names.empty:
+        raise ValueError(f"No project_name values found for {incubator}")
+
+    sampled_project = project_names.sample(n=1, random_state=sample_seed).iloc[0]
+    log(f"{incubator}: sampled project {sampled_project}", "note")
+    return {
+        activity_type: (
+            df[df["project_name"].astype(str) == sampled_project].copy()
+            if "project_name" in df.columns
+            else df.copy()
+        )
+        for activity_type, df in data_lookup.items()
+    }
 
 
 def _alias_fields(df: pd.DataFrame, author_field: str) -> tuple[str, str, str]:
@@ -395,10 +428,15 @@ def benchmark_incubator(
     params: dict[str, Any],
     gambit_cache_dir: str | Path = "reports/gambit",
     refresh_gambit: bool = False,
+    sample_seed: int = DEFAULT_SAMPLE_SEED,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Load rawdata, run Gambit, attach names, and compare one incubator."""
 
-    data_lookup = load_rawdata(incubator=incubator)
+    data_lookup = sample_one_project(
+        data_lookup=load_rawdata(incubator=incubator),
+        incubator=incubator,
+        sample_seed=sample_seed,
+    )
     gambit_cache_path = Path(gambit_cache_dir) / f"{incubator}.csv"
 
     if gambit_cache_path.exists() and not refresh_gambit:
@@ -432,8 +470,9 @@ def benchmark_all_incubators(
     gambit_cache_dir: str | Path = "reports/gambit",
     refresh_gambit: bool = False,
     output_dir: str | Path = "reports/alias_benchmark",
+    sample_seed: int = DEFAULT_SAMPLE_SEED,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    """Run the alias benchmark for every incubator in params.json."""
+    """Run the alias benchmark for one sampled project per incubator."""
 
     params = load_params()
     comparisons: list[pd.DataFrame] = []
@@ -451,6 +490,7 @@ def benchmark_all_incubators(
                 params=params,
                 gambit_cache_dir=gambit_cache_dir,
                 refresh_gambit=refresh_gambit,
+                sample_seed=sample_seed,
             )
             comparisons.append(comparison)
             summaries.append(summary)
@@ -505,7 +545,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
             "Compare DFC rawdata dealiased names against Gambit aliases "
-            "for every incubator in ref/params.json."
+            "for one sampled project per incubator in ref/params.json."
         )
     )
     parser.add_argument(
@@ -525,6 +565,12 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Re-run Gambit even when cached incubator CSVs exist.",
     )
+    parser.add_argument(
+        "--sample-seed",
+        type=int,
+        default=DEFAULT_SAMPLE_SEED,
+        help="Random seed used to sample one project per incubator.",
+    )
     parser.add_argument("--output-dir", default="reports/alias_benchmark")
     return parser
 
@@ -538,6 +584,7 @@ def main() -> None:
         gambit_cache_dir=args.gambit_cache_dir,
         refresh_gambit=args.refresh_gambit,
         output_dir=args.output_dir,
+        sample_seed=args.sample_seed,
     )
 
     print(status.to_string(index=False))

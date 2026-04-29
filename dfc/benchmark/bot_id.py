@@ -7,7 +7,8 @@ Benchmark DFC rawdata bot labels against RABBIT predictions.
    key loaded from dotenv.
 3. Join RABBIT predictions onto the same rows as ``rabbit_is_bot``.
 4. Compare the two labels.
-5. Repeat for every incubator listed in ``ref/params.json``.
+5. Sample one project per incubator and repeat for every incubator listed in
+   ``ref/params.json``.
 """
 
 from __future__ import annotations
@@ -39,6 +40,7 @@ RABBIT_CONFIDENCE_FIELDS = (
     "probability",
 )
 RABBIT_FEATURE_FIELDS = ("features", "FEATURES", "rabbit_features")
+DEFAULT_SAMPLE_SEED = 0
 
 
 def _first_existing(columns: set[str], candidates: tuple[str, ...]) -> str | None:
@@ -57,6 +59,38 @@ def load_rawdata(incubator: str) -> dict[str, pd.DataFrame]:
     """Load local rawdata through RawData's default-version handling."""
 
     return RawData(incubator=incubator).data
+
+
+def sample_one_project(
+    data_lookup: dict[str, pd.DataFrame],
+    incubator: str,
+    sample_seed: int = DEFAULT_SAMPLE_SEED,
+) -> dict[str, pd.DataFrame]:
+    """Return rawdata filtered to one seeded random project."""
+
+    project_frames = [
+        df["project_name"].dropna().astype(str)
+        for df in data_lookup.values()
+        if "project_name" in df.columns
+    ]
+    project_names = (
+        pd.concat(project_frames, ignore_index=True).drop_duplicates()
+        if project_frames
+        else pd.Series(dtype=str)
+    )
+    if project_names.empty:
+        raise ValueError(f"No project_name values found for {incubator}")
+
+    sampled_project = project_names.sample(n=1, random_state=sample_seed).iloc[0]
+    log(f"{incubator}: sampled project {sampled_project}", "note")
+    return {
+        activity_type: (
+            df[df["project_name"].astype(str) == sampled_project].copy()
+            if "project_name" in df.columns
+            else df.copy()
+        )
+        for activity_type, df in data_lookup.items()
+    }
 
 
 def load_dotenv_api_key() -> str:
@@ -447,10 +481,15 @@ def benchmark_incubator(
     min_confidence: float = 1.0,
     max_queries: int = 3,
     no_wait: bool = False,
+    sample_seed: int = DEFAULT_SAMPLE_SEED,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Load rawdata, run RABBIT, attach labels, and compare one incubator."""
 
-    data_lookup = load_rawdata(incubator=incubator)
+    data_lookup = sample_one_project(
+        data_lookup=load_rawdata(incubator=incubator),
+        incubator=incubator,
+        sample_seed=sample_seed,
+    )
     rabbit_cache_path = Path(rabbit_cache_dir) / f"{incubator}.csv"
     cached_rabbit = rabbit_cache_path.exists() and not refresh_rabbit
 
@@ -497,8 +536,9 @@ def benchmark_all_incubators(
     min_confidence: float = 1.0,
     max_queries: int = 3,
     no_wait: bool = False,
+    sample_seed: int = DEFAULT_SAMPLE_SEED,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    """Run the bot benchmark for every incubator in params.json."""
+    """Run the bot benchmark for one sampled project per incubator."""
 
     params = load_params()
     github_api_key = load_dotenv_api_key()
@@ -522,6 +562,7 @@ def benchmark_all_incubators(
                 min_confidence=min_confidence,
                 max_queries=max_queries,
                 no_wait=no_wait,
+                sample_seed=sample_seed,
             )
             comparisons.append(comparison)
             summaries.append(summary)
@@ -576,7 +617,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description=(
             "Compare DFC rawdata bot labels against RABBIT predictions "
-            "for every incubator in ref/params.json."
+            "for one sampled project per incubator in ref/params.json."
         )
     )
     parser.add_argument(
@@ -600,6 +641,12 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--min-confidence", type=float, default=1.0)
     parser.add_argument("--max-queries", type=int, default=3)
     parser.add_argument("--no-wait", action="store_true")
+    parser.add_argument(
+        "--sample-seed",
+        type=int,
+        default=DEFAULT_SAMPLE_SEED,
+        help="Random seed used to sample one project per incubator.",
+    )
     parser.add_argument("--output-dir", default="reports/bot_id_benchmark")
     return parser
 
@@ -617,6 +664,7 @@ def main() -> None:
         min_confidence=args.min_confidence,
         max_queries=args.max_queries,
         no_wait=args.no_wait,
+        sample_seed=args.sample_seed,
     )
 
     print(status.to_string(index=False))
