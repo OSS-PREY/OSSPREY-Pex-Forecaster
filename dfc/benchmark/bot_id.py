@@ -192,6 +192,7 @@ def run_rabbit_predictions(
         )
 
     rows: list[dict[str, Any]] = []
+    log(f"{incubator}: detecting bots for {len(contributors)} contributors", "note")
     results = run_rabbit(
         contributors=contributors,
         api_key=github_api_key,
@@ -200,7 +201,11 @@ def run_rabbit_predictions(
         max_queries=max_queries,
         no_wait=no_wait,
     )
-    for result in results:
+    for result in tqdm(
+        results,
+        total=len(contributors),
+        desc=f"{incubator}: RABBIT bot detection",
+    ):
         user_type = getattr(result, "user_type", getattr(result, "type", None))
         rows.append(
             {
