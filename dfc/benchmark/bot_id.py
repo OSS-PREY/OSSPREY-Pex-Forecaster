@@ -42,6 +42,7 @@ RABBIT_CONFIDENCE_FIELDS = (
 )
 RABBIT_FEATURE_FIELDS = ("features", "FEATURES", "rabbit_features")
 DEFAULT_SAMPLE_SEED = 0
+ASSUMED_DFC_RABBIT_TYPE = "AssumedDFC"
 
 
 def _first_existing(columns: set[str], candidates: tuple[str, ...]) -> str | None:
@@ -122,9 +123,9 @@ def rawdata_contributors(
             )
 
         contributors.update(
-            str(value)
+            str(value).strip()
             for value in df[author_field].dropna().unique()
-            if str(value).strip() and str(value).lower() != "none"
+            if str(value).strip() and str(value).strip().lower() != "none"
         )
 
     return sorted(contributors)
@@ -191,33 +192,62 @@ def run_rabbit_predictions(
             columns=["contributor", "rabbit_type", "rabbit_confidence", "rabbit_is_bot"]
         )
 
+    def result_to_row(result: Any) -> dict[str, Any]:
+        user_type = getattr(result, "user_type", getattr(result, "type", None))
+        return {
+            "contributor": result.contributor,
+            "rabbit_type": user_type,
+            "rabbit_confidence": result.confidence,
+            "rabbit_features": json.dumps(
+                getattr(result, "features", None),
+                default=str,
+            ),
+        }
+
+    def error_row(contributor: str, exc: Exception) -> dict[str, Any]:
+        return {
+            "contributor": contributor,
+            "rabbit_type": "Error",
+            "rabbit_confidence": pd.NA,
+            "rabbit_features": json.dumps({"error": str(exc)}),
+        }
+
+    def rabbit_results(batch: list[str]):
+        return run_rabbit(
+            contributors=batch,
+            api_key=github_api_key,
+            min_events=min_events,
+            min_confidence=min_confidence,
+            max_queries=max_queries,
+            no_wait=no_wait,
+        )
+
     rows: list[dict[str, Any]] = []
     log(f"{incubator}: detecting bots for {len(contributors)} contributors", "note")
-    results = run_rabbit(
-        contributors=contributors,
-        api_key=github_api_key,
-        min_events=min_events,
-        min_confidence=min_confidence,
-        max_queries=max_queries,
-        no_wait=no_wait,
-    )
-    for result in tqdm(
-        results,
-        total=len(contributors),
-        desc=f"{incubator}: RABBIT bot detection",
-    ):
-        user_type = getattr(result, "user_type", getattr(result, "type", None))
-        rows.append(
-            {
-                "contributor": result.contributor,
-                "rabbit_type": user_type,
-                "rabbit_confidence": result.confidence,
-                "rabbit_features": json.dumps(
-                    getattr(result, "features", None),
-                    default=str,
-                ),
-            }
+    try:
+        results = rabbit_results(contributors)
+        for result in tqdm(
+            results,
+            total=len(contributors),
+            desc=f"{incubator}: RABBIT bot detection",
+        ):
+            rows.append(result_to_row(result))
+    except Exception as exc:
+        log(
+            f"{incubator}: RABBIT batch failed; retrying one contributor at a time: {exc}",
+            "warning",
         )
+        for contributor in tqdm(
+            contributors,
+            total=len(contributors),
+            desc=f"{incubator}: RABBIT fallback",
+        ):
+            try:
+                for result in rabbit_results([contributor]):
+                    rows.append(result_to_row(result))
+            except Exception as contributor_exc:
+                rows.append(error_row(contributor, contributor_exc))
+
     result_df = pd.DataFrame.from_records(rows)
     if result_df.empty:
         return pd.DataFrame(
@@ -260,9 +290,13 @@ def attach_rabbit_predictions(
             right_on="contributor",
             how="left",
         )
+        unresolved = out["rabbit_type"].isna() | out["rabbit_type"].eq("Error")
+        out["rabbit_assumed_dfc"] = unresolved.astype(int)
+        out.loc[unresolved, "rabbit_type"] = ASSUMED_DFC_RABBIT_TYPE
+        out.loc[unresolved, "rabbit_is_bot"] = out.loc[unresolved, "is_bot"]
         out.drop(columns=["_rabbit_join_contributor", "contributor"], inplace=True)
         out["rabbit_type"] = out["rabbit_type"].fillna("Missing")
-        out["rabbit_is_bot"] = out["rabbit_is_bot"].fillna(0).astype(int)
+        out["rabbit_is_bot"] = out["rabbit_is_bot"].fillna(out["is_bot"]).astype(int)
         enriched[activity_type] = out
 
     return enriched
@@ -285,6 +319,7 @@ def rawdata_to_comparison_rows(
             "is_bot",
             "rabbit_is_bot",
             "rabbit_type",
+            "rabbit_assumed_dfc",
         }
         missing = required - set(df.columns)
         if missing:
@@ -302,6 +337,7 @@ def rawdata_to_comparison_rows(
                 rabbit_is_bot=("rabbit_is_bot", "max"),
                 rabbit_type=("rabbit_type", "last"),
                 rabbit_confidence=("rabbit_confidence", "last"),
+                rabbit_assumed_dfc=("rabbit_assumed_dfc", "max"),
             )
             .reset_index()
         )
@@ -325,6 +361,7 @@ def rawdata_to_comparison_rows(
                 "rabbit_is_bot": int(row["rabbit_is_bot"]),
                 "rabbit_type": row["rabbit_type"],
                 "rabbit_confidence": row["rabbit_confidence"],
+                "rabbit_assumed_dfc": int(row["rabbit_assumed_dfc"]),
             }
 
         tqdm.pandas(desc=f"{incubator}: compare {activity_type}")
@@ -340,23 +377,48 @@ def rawdata_to_comparison_rows(
     return comparison
 
 
-def summarize_comparison(comparison: pd.DataFrame) -> pd.DataFrame:
+def summarize_comparison(
+    comparison: pd.DataFrame,
+    incubator: str | None = None,
+    activity_types: list[str] | None = None,
+) -> pd.DataFrame:
     """Summarize DFC-vs-RABBIT agreement."""
 
+    columns = [
+        "incubator",
+        "activity_type",
+        "rabbit_type",
+        "contributors",
+        "project_contributors",
+        "dfc_bots",
+        "rabbit_bots",
+        "agreements",
+        "agreement_rate",
+    ]
+
+    def zero_row(incubator_name: str, activity_type: str) -> dict[str, Any]:
+        return {
+            "incubator": incubator_name,
+            "activity_type": activity_type,
+            "rabbit_type": "all",
+            "contributors": 0,
+            "project_contributors": 0,
+            "dfc_bots": 0,
+            "rabbit_bots": 0,
+            "agreements": 0,
+            "agreement_rate": 0.0,
+        }
+
     if comparison.empty:
-        return pd.DataFrame(
-            columns=[
-                "incubator",
-                "activity_type",
-                "rabbit_type",
-                "contributors",
-                "project_contributors",
-                "dfc_bots",
-                "rabbit_bots",
-                "agreements",
-                "agreement_rate",
-            ]
+        if incubator is None:
+            return pd.DataFrame(columns=columns)
+
+        rows = [zero_row(incubator, "all")]
+        rows.extend(
+            zero_row(incubator, activity_type)
+            for activity_type in (activity_types or [])
         )
+        return pd.DataFrame.from_records(rows, columns=columns)
 
     summary = (
         comparison.groupby(["incubator", "activity_type", "rabbit_type"], dropna=False)
@@ -385,6 +447,20 @@ def summarize_comparison(comparison: pd.DataFrame) -> pd.DataFrame:
     overall["activity_type"] = "all"
     overall["rabbit_type"] = "all"
     overall["agreement_rate"] = overall["agreements"] / overall["project_contributors"]
+
+    if activity_types:
+        existing_activity_types = set(summary["activity_type"])
+        missing_rows = [
+            zero_row(incubator_name, activity_type)
+            for incubator_name in comparison["incubator"].dropna().unique()
+            for activity_type in activity_types
+            if activity_type not in existing_activity_types
+        ]
+        if missing_rows:
+            summary = pd.concat(
+                [summary, pd.DataFrame.from_records(missing_rows)],
+                ignore_index=True,
+            )
 
     return pd.concat([overall[summary.columns], summary], ignore_index=True)
 
@@ -510,7 +586,11 @@ def benchmark_incubator(
         incubator=incubator,
         params=params,
     )
-    return comparison, summarize_comparison(comparison)
+    return comparison, summarize_comparison(
+        comparison,
+        incubator=incubator,
+        activity_types=list(data_lookup.keys()),
+    )
 
 
 def benchmark_all_incubators(
