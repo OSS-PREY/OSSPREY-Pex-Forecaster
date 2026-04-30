@@ -1,6 +1,6 @@
 incubator,status,rabbit_results,rows,error
 apache,ok,reports/bot_id_benchmark/rabbit/apache.csv,100,
 github,ok,reports/bot_id_benchmark/rabbit/github.csv,991,
-eclipse,error,reports/bot_id_benchmark/rabbit/eclipse.csv,0,'DataFrame' object has no attribute 'tolist'
-osgeo,ok,reports/bot_id_benchmark/rabbit/osgeo.csv,26,
+eclipse,ok,reports/bot_id_benchmark/rabbit/eclipse.csv,226,
+osgeo,error,reports/bot_id_benchmark/rabbit/osgeo.csv,0,[Errno 2] No such file or directory: 'data/osgeo_data/commits.csv'
 ospos,error,reports/bot_id_benchmark/rabbit/ospos.csv,0,'ospos'

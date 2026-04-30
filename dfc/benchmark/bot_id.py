@@ -313,6 +313,9 @@ def rawdata_to_comparison_rows(
     records: list[dict[str, Any]] = []
 
     for activity_type, df in data_lookup.items():
+        if df.empty:
+            continue
+
         required = {
             "project_name",
             author_field,

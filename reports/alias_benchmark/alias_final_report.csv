@@ -1,11 +1,9 @@
 section,incubator,activity_type,alignment_pct,median_alignment_pct
 incubator,apache,social,92.2,
 incubator,apache,tech,100.0,
-incubator,github,social,89.63,
+incubator,github,social,73.7,
 incubator,github,tech,84.42,
-incubator,eclipse,tech,94.44,
 incubator,eclipse,social,100.0,
-incubator,osgeo,social,50.0,
-incubator,osgeo,tech,75.0,
-overall,all,social,82.96,89.63
-overall,all,tech,88.47,89.63
+incubator,eclipse,tech,100.0,
+overall,all,social,88.63,92.2
+overall,all,tech,94.81,92.2

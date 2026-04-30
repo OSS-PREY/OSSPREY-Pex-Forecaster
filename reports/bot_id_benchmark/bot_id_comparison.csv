@@ -1090,29 +1090,229 @@ github,generator-gulp-angular,social,zhouhao27,7,3834,0.0018257694314032342,0,0,
 github,generator-gulp-angular,social,zychj1,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
 github,generator-gulp-angular,social,zymr-keshav,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
 github,generator-gulp-angular,social,zztop101,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
-osgeo,get-it,tech,404,3,5719,0.0005245672320335723,0,0,Invalid,,0,1
-osgeo,get-it,tech,Alessandro Oggioni,16,5719,0.002797691904179052,0,0,Invalid,,0,1
-osgeo,get-it,tech,Alessio Fabiani,421,5719,0.07361426822871131,0,0,Invalid,,0,1
-osgeo,get-it,tech,Andrea,1,5719,0.00017485574401119076,0,0,Unknown,,0,1
-osgeo,get-it,tech,Andrea Vianello,65,5719,0.0113656233607274,0,0,Invalid,,0,1
-osgeo,get-it,tech,Diego,107,5719,0.018709564609197413,0,0,Unknown,,0,1
-osgeo,get-it,tech,Fabio Pavesi,4,5719,0.000699422976044763,0,0,Invalid,,0,1
-osgeo,get-it,tech,Francesco,260,5719,0.0454624934429096,0,0,Unknown,,0,1
-osgeo,get-it,tech,Monica,3,5719,0.0005245672320335723,0,0,Unknown,,0,1
-osgeo,get-it,tech,Paolo Tagliolato,127,5719,0.022206679489421226,0,0,Invalid,,0,1
-osgeo,get-it,tech,Simone Lanucara,84,5719,0.014687882496940025,0,0,Invalid,,0,1
-osgeo,get-it,tech,Stefano,235,5719,0.04109109984262983,0,0,Unknown,,0,1
-osgeo,get-it,tech,Stefano Menegon,875,5719,0.15299877600979192,0,0,Invalid,,0,1
-osgeo,get-it,tech,Walter Lorenzetti,14,5719,0.0024479804161566705,0,0,Invalid,,0,1
-osgeo,get-it,tech,Walter McGinnis,112,5719,0.019583843329253364,0,0,Invalid,,0,1
-osgeo,get-it,tech,alesarrett,1,5719,0.00017485574401119076,0,0,Unknown,,0,1
-osgeo,get-it,tech,alessandro.sarretta,589,5719,0.10299003322259136,0,0,Invalid,,0,1
-osgeo,get-it,tech,angular-cli,16,5719,0.002797691904179052,0,0,Unknown,,0,1
-osgeo,get-it,tech,fzeiser,2057,5719,0.3596782654310194,0,0,Unknown,,0,1
-osgeo,get-it,tech,noreply,555,5719,0.09704493792621087,0,0,Unknown,,0,1
-osgeo,get-it,tech,root,9,5719,0.0015737016961007168,0,0,Unknown,,0,1
-osgeo,get-it,tech,root@bgdem1.cr.usgs.gov,18,5719,0.0031474033922014337,0,0,Invalid,,0,1
-osgeo,get-it,tech,spookyisland,135,5719,0.023605525441510754,0,0,Unknown,,0,1
-osgeo,get-it,tech,starterkit,12,5719,0.0020982689281342894,0,0,Unknown,,0,1
-osgeo,get-it,social,Alessandro Oggioni,2,4,0.5,0,0,Invalid,,0,1
-osgeo,get-it,social,Laura ,2,4,0.5,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Aaron Somi,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Aditya Sharma,3,13621,0.0002202481462447691,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Akos Kitta,590,13621,0.04331546876147126,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Alex Logan,7,13621,0.0005139123412377946,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Alex Tugarev,237,13621,0.017399603553336758,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,AlexTugarev,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Amiram Wingarten,37,13621,0.0027163938036854855,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Anas Shahid,3,13621,0.0002202481462447691,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Anatoliy Bazko,300,13621,0.02202481462447691,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Andrew Casey,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Anirban Ghosh,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Anton Kosiakov,1096,13621,0.08046398942808898,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Anton Kosyakov,2893,13621,0.21239262902870568,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Artem Zatsarynnyi,155,13621,0.011379487555979737,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Beetix,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Bogdan Stolojan,4,13621,0.0002936641949930255,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Bolarinwa Balogun,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,BoykoAlex,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Brendan Forster,59,13621,0.004331546876147126,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Brokun,9,13621,0.0006607444387343073,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Cai Xuye,40,13621,0.002936641949930255,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Casey Flynn,33,13621,0.0024227296086924604,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Chengrui Deng,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Cornelius A. Ludmann,4,13621,0.0002936641949930255,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Dan McCarthy,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Danny Tuppeny,4,13621,0.0002936641949930255,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,David Saunders,9,13621,0.0006607444387343073,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Doron Nahari,7,13621,0.0005139123412377946,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Eyal Barlev,3,13621,0.0002202481462447691,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Fasoro-Joseph Alexander,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Federico Bozzini,11,13621,0.00080757653623082,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Feng Qingxue,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,FengQingxue,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Florent BENOIT,300,13621,0.02202481462447691,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Florent Benoit,127,13621,0.009323838191028559,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Florian Gareis,13,13621,0.0009544086337273328,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Gan Lin,4,13621,0.0002936641949930255,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Gareth Whittaker,12,13621,0.0008809925849790764,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Gennady Zlobin,3,13621,0.0002202481462447691,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,George Vinokhodov,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Gero Posmyk-Leinemann,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Gorkem Ercan,7,13621,0.0005139123412377946,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Hanksha,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Hemkaran Raghav,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,I060847,3,13621,0.0002202481462447691,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Idan Treivish,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Igor Vinokur,234,13621,0.01717935540709199,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Iurii Shchekochikhin,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Jacques Bouthillier,39,13621,0.0028632259011819984,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Jan Bicker,352,13621,0.02584244915938624,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Jan Keromnes,51,13621,0.0037442184861610746,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Jan Koehnlein,11,13621,0.00080757653623082,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,JanKoehnlein,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Jason Attwood,5,13621,0.00036708024374128187,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,John Pitman,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Jonah Graham,3,13621,0.0002202481462447691,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Jonas Helming,8,13621,0.000587328389986051,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Josh Bradley,3,13621,0.0002202481462447691,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Josh Pinkney,79,13621,0.005799867851112253,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Joshua Bradley,3,13621,0.0002202481462447691,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Joy Lal Chattaraj,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Julien Isorce,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Justin Ang,10,13621,0.0007341604874825637,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Kaiyue Pan,7,13621,0.0005139123412377946,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Karthik Bhat,4,13621,0.0002936641949930255,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Kassem Sandarusi,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Katrina Uychaco,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Kavith Thiranga Lokuhewage,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Knut Ahlers,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Kris Bradley,5,13621,0.00036708024374128187,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Liang Huang,127,13621,0.009323838191028559,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Lital Gilboa,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Liwen Guo,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Marc Dumais,194,13621,0.014242713457161736,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Marc-Andre Laperle,6,13621,0.0004404962924895382,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Mario Varas,4,13621,0.0002936641949930255,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Markus Olsson,10,13621,0.0007341604874825637,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Masaki Muranaka,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Mathieu Dutour,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Matthew Gordon,14,13621,0.0010278246824755892,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,MiaoWoo,6,13621,0.0004404962924895382,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Miro Spönemann,11,13621,0.00080757653623082,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Miro Spönemann,155,13621,0.011379487555979737,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Moritz Eysholdt,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Muhammad Anas Shahid,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Mykola Morhun,183,13621,0.013435136920930915,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Nathan Ridge,4,13621,0.0002936641949930255,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Nicholas Stenbeck,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Nigel Westbury,113,13621,0.00829601350855297,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Nisar Hassan Naqvi,56,13621,0.004111298729902357,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Nishant Varma,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Oleksandr Andriienko,69,13621,0.00506570736362969,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Oleksii Kurinnyi,181,13621,0.013288304823434403,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Oleksii Orel,67,13621,0.004918875266133177,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Patrick-Jeffrey Pollo Guilbert,44,13621,0.00323030614492328,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Paul Maréchal,932,13621,0.06842375743337493,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Reece Dunham,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Rob Moran,640,13621,0.04698627119888408,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Roman Nikitenko,136,13621,0.009984582629762866,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Samuel Frylmark,4,13621,0.0002936641949930255,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Shimon Ben Yair,15,13621,0.0011012407312238454,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Simon Marchi,247,13621,0.018133764040819324,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Simon Stone,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Steven Yeh,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Sun Seng David TAN,4,13621,0.0002936641949930255,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Sun Tan,8,13621,0.000587328389986051,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Sven Efftinge,305,13621,0.02239189486821819,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Thomas Drosdzoll,21,13621,0.0015417370237133837,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Thomas Mäder,27,13621,0.001982233316202922,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Todd Oquist,4,13621,0.0002936641949930255,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Tomer Epstein,8,13621,0.000587328389986051,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Toon Van Dooren,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Ulysse McConnell,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Uni Sayo,22,13621,0.00161515307246164,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Valeriy Svydenko,58,13621,0.00425813082739887,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Vered Constantin,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Victor Rubezhny,109,13621,0.008002349313559944,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Vincent Fugnitto,1261,13621,0.09257763747155127,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Vitalii Parfonov,19,13621,0.001394904926216871,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Vitaliy Gulyy,116,13621,0.00851626165479774,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Vivien Jovet,6,13621,0.0004404962924895382,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Vlad Zhukovskyi,4,13621,0.0002936641949930255,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Vladyslav Zhukovskyi,45,13621,0.0033037221936715365,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Webmaster,5,13621,0.00036708024374128187,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,William Gonzalez,29,13621,0.002129065413699435,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,William Shepherd,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Yazeed Sabri,4,13621,0.0002936641949930255,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,Yevhen Vydolob,449,13621,0.03296380588796711,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,adamsteen,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,akosyakov,28,13621,0.0020556493649511783,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,alainbernard,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,arekzaluski,10,13621,0.0007341604874825637,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,elaihau,316,13621,0.023199471404449012,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,ensorrow,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,evelyn masso,16,13621,0.001174656779972102,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,fangnx,61,13621,0.004478378973643639,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,hacke2,12,13621,0.0008809925849790764,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,iAmWillShepherd,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,jbicker,53,13621,0.0038910505836575876,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,jpinkney,21,13621,0.0015417370237133837,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,kpge,10,13621,0.0007341604874825637,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,kriti-a,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,kumudhakn,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,marechal-p,8,13621,0.000587328389986051,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,mathieudutour,4,13621,0.0002936641949930255,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,nisarhassan12,145,13621,0.010645327068497173,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,say25,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,svenefftinge,49,13621,0.003597386388664562,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,svor,13,13621,0.0009544086337273328,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,thegecko,8,13621,0.000587328389986051,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,tom-shan,5,13621,0.00036708024374128187,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,vinayb21,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,vince-fugnitto,275,13621,0.0201894134057705,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,xieyuanhu,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,yewei,5,13621,0.00036708024374128187,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,yoshimoto,3,13621,0.0002202481462447691,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,yotamshapira,1,13621,7.341604874825637e-05,0,0,AssumedDFC,,1,1
+eclipse,Theia,tech,二凢,2,13621,0.00014683209749651274,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Akos Kitta,26,1060,0.024528301886792454,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Alain BERNARD,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Alex Tugarev,8,1060,0.007547169811320755,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Amiram Wingarten,5,1060,0.0047169811320754715,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Anatolii Bazko,5,1060,0.0047169811320754715,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Anna Shumilova,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Anton Kosyakov,77,1060,0.07264150943396226,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Artem Zatsarynnyi,5,1060,0.0047169811320754715,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Ben Marengo,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Briffou,2,1060,0.0018867924528301887,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,DInne Bosman,10,1060,0.009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Daisuke Yoshimoto,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,David Craven,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Denis Kuniß,2,1060,0.0018867924528301887,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Dildar,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Dominique Rochefort,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Florent BENOIT,50,1060,0.04716981132075472,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Florent Benoit,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Gabriel Bodeen,2,1060,0.0018867924528301887,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Gorkem Ercan,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Halil Özkan,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Hanksha,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Helianthella,2,1060,0.0018867924528301887,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Jacques Bouthillier,21,1060,0.01981132075471698,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Jan Bicker,2,1060,0.0018867924528301887,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Jan Keromnes,59,1060,0.05566037735849057,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Jan Koehnlein,4,1060,0.0037735849056603774,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Jonas Helming,18,1060,0.016981132075471698,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Karthik Bhat K,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Lance Mao,4,1060,0.0037735849056603774,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Leonardo Araneda Freccero,2,1060,0.0018867924528301887,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Liang,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Magno Correa,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Marc Dumais,143,1060,0.1349056603773585,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Mario Loriedo,2,1060,0.0018867924528301887,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Martha Benitez,3,1060,0.002830188679245283,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Miro Spönemann,7,1060,0.006603773584905661,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Mykola Morhun,4,1060,0.0037735849056603774,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Nick Chen,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Nisar Hassan Naqvi,64,1060,0.06037735849056604,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Oleksii Kurinnyi,2,1060,0.0018867924528301887,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Paul Maréchal,42,1060,0.03962264150943396,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Rob Moran,22,1060,0.020754716981132074,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Simon Marchi,37,1060,0.03490566037735849,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Stefano Populin,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Sumit Ashok Ghewade,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Sven Efftinge,31,1060,0.029245283018867925,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Tim Stibbs,6,1060,0.005660377358490566,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Uni Sayo,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Valerii Svydenko,2,1060,0.0018867924528301887,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Vincent Fugnitto,248,1060,0.2339622641509434,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Vitaliy Gulyy,7,1060,0.006603773584905661,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Vladyslav Zhukovskyi,2,1060,0.0018867924528301887,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Xuye Cai,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Yawei Wang,2,1060,0.0018867924528301887,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,Yevhen Vydolob,11,1060,0.010377358490566037,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,akashgoswami,5,1060,0.0047169811320754715,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,alxflam,4,1060,0.0037735849056603774,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,christin,8,1060,0.007547169811320755,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,cosmoarunn,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,danieltomasku,7,1060,0.006603773584905661,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,dependabot[bot],21,1060,0.01981132075471698,1,1,AssumedDFC,,1,1
+eclipse,Theia,social,emo,48,1060,0.045283018867924525,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,gitpod-io[bot],3,1060,0.002830188679245283,1,1,AssumedDFC,,1,1
+eclipse,Theia,social,hustzza,2,1060,0.0018867924528301887,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,micellius,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,songwei,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
+eclipse,Theia,social,xieyuanhuata,1,1060,0.0009433962264150943,0,0,AssumedDFC,,1,1
