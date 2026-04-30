@@ -21,7 +21,7 @@ from typing import Any
 import pandas as pd
 from tqdm import tqdm
 
-import gambit
+from gambit import main as gambit
 from dfc.abstractions.rawdata import RawData
 from dfc.utils import check_path, load_params, log
 
