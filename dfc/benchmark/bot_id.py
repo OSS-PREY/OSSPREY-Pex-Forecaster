@@ -23,6 +23,7 @@ from typing import Any
 import pandas as pd
 from dotenv import load_dotenv
 from tqdm import tqdm
+from rabbit_ng import run_rabbit
 
 from dfc.abstractions.rawdata import RawData
 from dfc.utils import check_path, load_params, log
@@ -173,25 +174,6 @@ def _read_rabbit_csv(path: str | Path) -> pd.DataFrame:
     return _normalize_rabbit_predictions(df)
 
 
-def _load_rabbit_runner():
-    """Load RABBIT's Python runner from the installed package."""
-
-    for module_name in ("rabbit", "rabbit_ng"):
-        try:
-            module = import_module(module_name)
-        except ImportError:
-            continue
-
-        runner = getattr(module, "run_rabbit", None)
-        if runner is not None:
-            return runner
-
-    raise ImportError(
-        "Could not import RABBIT's Python API. Install the RABBIT package that "
-        "exports `run_rabbit`, then retry."
-    )
-
-
 def run_rabbit_predictions(
     contributors: list[str],
     github_api_key: str,
@@ -209,9 +191,8 @@ def run_rabbit_predictions(
             columns=["contributor", "rabbit_type", "rabbit_confidence", "rabbit_is_bot"]
         )
 
-    rabbit_run = _load_rabbit_runner()
     rows: list[dict[str, Any]] = []
-    results = rabbit_run(
+    results = run_rabbit(
         contributors=contributors,
         api_key=github_api_key,
         min_events=min_events,
