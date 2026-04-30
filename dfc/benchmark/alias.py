@@ -4,7 +4,7 @@ Benchmark DFC rawdata aliases against Gambit disambiguation.
 1. Load RawData with its default versions; the data must already contain DFC's
    dealiased author field.
 2. Build Gambit alias inputs from rawdata author names and emails.
-3. Run ``gambit.disambiguate_aliases``.
+3. Run ``gambit.main.disambiguate_aliases``.
 4. Join Gambit's disambiguated names back onto rawdata rows.
 5. Compare DFC dealiased names against Gambit names.
 6. Sample one project per incubator and repeat for every incubator listed in
@@ -207,7 +207,7 @@ def run_gambit_aliases(aliases: pd.DataFrame, incubator: str) -> pd.DataFrame:
     tqdm.pandas(desc=f"{incubator}: Gambit aliases")
     aliases = aliases.copy()
     aliases["alias_name"] = aliases["alias_name"].progress_apply(str)
-    result = gambit.disambiguate_aliases(aliases[["alias_name", "alias_email"]])
+    result = gambit.main.disambiguate_aliases(aliases[["alias_name", "alias_email"]])
     return normalize_gambit_output(aliases, result)
 
 
