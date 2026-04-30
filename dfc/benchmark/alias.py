@@ -330,9 +330,18 @@ def rawdata_to_comparison_rows(
     if comparison.empty:
         comparison["agreement"] = pd.Series(dtype="int64")
     else:
+        dfc_names = comparison["dfc_dealiased_name"].str.replace(
+            r"\s*\([^)]*\)",
+            "",
+            regex=True,
+        )
+        gambit_names = comparison["gambit_disambiguated_name"].str.replace(
+            r"\s*\([^)]*\)",
+            "",
+            regex=True,
+        )
         comparison["agreement"] = (
-            comparison["dfc_dealiased_name"].str.casefold()
-            == comparison["gambit_disambiguated_name"].str.casefold()
+            dfc_names.str.casefold() == gambit_names.str.casefold()
         ).astype(int)
     return comparison
 
