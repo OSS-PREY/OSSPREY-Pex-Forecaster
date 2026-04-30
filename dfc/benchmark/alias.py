@@ -52,6 +52,7 @@ GAMBIT_ID_FIELDS = (
     "cluster_id",
 )
 DEFAULT_SAMPLE_SEED = 0
+BOT_FIELD = "is_bot"
 
 
 def _first_existing(columns: set[str], candidates: tuple[str, ...]) -> str | None:
@@ -102,6 +103,20 @@ def sample_one_project(
         )
         for activity_type, df in data_lookup.items()
     }
+
+
+def filter_bot_rows(data_lookup: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
+    """Drop rows with binary is_bot flags before alias benchmarking."""
+
+    filtered: dict[str, pd.DataFrame] = {}
+    for activity_type, df in data_lookup.items():
+        if BOT_FIELD not in df.columns:
+            filtered[activity_type] = df.copy()
+            continue
+
+        filtered[activity_type] = df[df[BOT_FIELD] != 1].copy()
+
+    return filtered
 
 
 def _alias_fields(df: pd.DataFrame, author_field: str) -> tuple[str, str, str]:
@@ -437,6 +452,7 @@ def benchmark_incubator(
         incubator=incubator,
         sample_seed=sample_seed,
     )
+    data_lookup = filter_bot_rows(data_lookup)
     gambit_cache_path = Path(gambit_cache_dir) / f"{incubator}.csv"
 
     if gambit_cache_path.exists() and not refresh_gambit:

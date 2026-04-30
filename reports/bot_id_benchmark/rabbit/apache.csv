@@ -1,0 +1,95 @@
+contributor,rabbit_type,rabbit_confidence,rabbit_features,rabbit_is_bot
+aapo kyrola,Invalid,,{},0
+abhishek srivastava,Invalid,,{},0
+amani,Unknown,,{},0
+andr kelpe,Invalid,,{},0
+andrew purtell,Invalid,,{},0
+andy schlaikjer,Invalid,,{},0
+arun suresh,Invalid,,{},0
+ashish,Unknown,,{},0
+attila csordas,Invalid,,{},0
+avery ching,Invalid,,{},0
+benjamin heitmann,Invalid,,{},0
+bo wang,Invalid,,{},0
+brian femiano,Invalid,,{},0
+charles thayer,Invalid,,{},0
+christian kunz,Invalid,,{},0
+christoph bhm,Invalid,,{},0
+claudio martella,Invalid,,{},0
+dan brickley,Invalid,,{},0
+dan mcclary,Invalid,,{},0
+dave,Human,0.924,"{""NA"": 25.0, ""NT"": 10.0, ""NOR"": 5.0, ""ORR"": 0.625, ""DCA_mean"": 28.724, ""DCA_median"": 0.361, ""DCA_std"": 60.458, ""DCA_gini"": 0.808, ""NAR_mean"": 3.125, ""NAR_median"": 2.5, ""NAR_gini"": 0.325, ""NAR_IQR"": 1.0, ""NTR_mean"": 2.375, ""NTR_median"": 2.5, ""NTR_std"": 0.744, ""NTR_gini"": 0.151, ""NCAR_mean"": 1.923, ""NCAR_std"": 1.935, ""NCAR_IQR"": 1.0, ""DCAR_mean"": 10.561, ""DCAR_median"": 0.0, ""DCAR_std"": 30.891, ""DCAR_IQR"": 0.006, ""DAAR_mean"": 46.006, ""DAAR_median"": 1.08, ""DAAR_std"": 77.356, ""DAAR_gini"": 0.734, ""DAAR_IQR"": 64.476, ""DCAT_mean"": 31.772, ""DCAT_median"": 0.332, ""DCAT_std"": 64.113, ""DCAT_gini"": 0.795, ""DCAT_IQR"": 33.801, ""NAT_mean"": 2.5, ""NAT_median"": 2.5, ""NAT_std"": 1.354, ""NAT_gini"": 0.284, ""NAT_IQR"": 1.75}",0
+david capwell,Invalid,,{},0
+david garcia,Invalid,,{},0
+deepak nettem,Invalid,,{},0
+devaraj k,Invalid,,{},0
+dionysios logothetis,Invalid,,{},0
+dionysis logothetis,Invalid,,{},0
+dmitriy ryaboy,Invalid,,{},0
+dmitriy v ryaboy,Invalid,,{},0
+ed kohlwey,Invalid,,{},0
+edward j yoon,Invalid,,{},0
+eli reisman,Invalid,,{},0
+eric charles,Invalid,,{},0
+etienne dumoulin,Invalid,,{},0
+eugene koontz,Invalid,,{},0
+eugenia gabrielova,Invalid,,{},0
+fleischman stephen,Invalid,,{},0
+gavan hood,Invalid,,{},0
+gianmarco de francisci morales,Invalid,,{},0
+harsh j,Invalid,,{},0
+henry saputra,Invalid,,{},0
+hudson,Organization,1.0,{},0
+hyunsik choi,Invalid,,{},0
+inci cetindil,Invalid,,{},0
+jake mannix,Invalid,,{},0
+jakob homan,Invalid,,{},0
+jan van der lugt,Invalid,,{},0
+jeff g,Invalid,,{},0
+jeffrey yunes,Invalid,,{},0
+jg homan,Invalid,,{},0
+jianfeng qian,Invalid,,{},0
+jiraposter,Invalid,,{},0
+joe xie,Invalid,,{},0
+jon allen,Invalid,,{},0
+joseph boyd,Invalid,,{},0
+josh patterson,Invalid,,{},0
+juan f codagnone,Invalid,,{},0
+ken nakagama,Invalid,,{},0
+kenin coloma,Invalid,,{},0
+kohei ozaki,Invalid,,{},0
+kyle teague,Invalid,,{},0
+listenbruder,Invalid,,{},0
+liyang,Unknown,,{},0
+locker,Human,0.927,"{""NA"": 118.0, ""NT"": 13.0, ""NOR"": 2.0, ""ORR"": 0.333, ""DCA_mean"": 5.937, ""DCA_median"": 0.163, ""DCA_std"": 31.435, ""DCA_gini"": 0.918, ""NAR_mean"": 19.667, ""NAR_median"": 11.0, ""NAR_gini"": 0.582, ""NAR_IQR"": 13.0, ""NTR_mean"": 4.667, ""NTR_median"": 2.5, ""NTR_std"": 4.227, ""NTR_gini"": 0.429, ""NCAR_mean"": 2.034, ""NCAR_std"": 2.008, ""NCAR_IQR"": 1.0, ""DCAR_mean"": 7.765, ""DCAR_median"": 0.0, ""DCAR_std"": 46.887, ""DCAR_IQR"": 0.281, ""DAAR_mean"": 4.285, ""DAAR_median"": 0.14, ""DAAR_std"": 11.573, ""DAAR_gini"": 0.873, ""DAAR_IQR"": 0.849, ""DCAT_mean"": 3.479, ""DCAT_median"": 0.163, ""DCAT_std"": 9.599, ""DCAT_gini"": 0.867, ""DCAT_IQR"": 1.036, ""NAT_mean"": 9.077, ""NAT_median"": 6.0, ""NAT_std"": 8.431, ""NAT_gini"": 0.456, ""NAT_IQR"": 5.0}",0
+marvin,Unknown,,{},0
+mattmann chris a,Invalid,,{},0
+mitul tiwari,Invalid,,{},0
+nils rethmeier,Invalid,,{},0
+oana theogarajan,Invalid,,{},0
+owen omalley,Invalid,,{},0
+paolo castagna,Invalid,,{},0
+pradeep gollakota,Invalid,,{},0
+prasenjit mukherjee,Invalid,,{},0
+praveen sripati,Invalid,,{},0
+raimon bosch,Invalid,,{},0
+robert davis,Invalid,,{},0
+roman k,Invalid,,{},0
+roman shaposhnik,Invalid,,{},0
+sebastian schelter,Invalid,,{},0
+semih salihoglu,Invalid,,{},0
+severin andreas corsten,Invalid,,{},0
+severin corsten,Invalid,,{},0
+shaunak kashyap,Invalid,,{},0
+thomas jungblut,Invalid,,{},0
+thomas quintana,Invalid,,{},0
+timmy wilson,Invalid,,{},0
+vinod kumar vavilapalli,Invalid,,{},0
+yavuz gokirmak,Invalid,,{},0
+ycombinator,Human,0.83,"{""NA"": 157.0, ""NT"": 9.0, ""NOR"": 3.0, ""ORR"": 0.2, ""DCA_mean"": 1.225, ""DCA_median"": 0.074, ""DCA_std"": 3.574, ""DCA_gini"": 0.868, ""NAR_mean"": 10.467, ""NAR_median"": 7.0, ""NAR_gini"": 0.476, ""NAR_IQR"": 9.0, ""NTR_mean"": 3.067, ""NTR_median"": 2.0, ""NTR_std"": 2.154, ""NTR_gini"": 0.31, ""NCAR_mean"": 1.539, ""NCAR_std"": 1.453, ""NCAR_IQR"": 0.0, ""DCAR_mean"": 0.112, ""DCAR_median"": 0.0, ""DCAR_std"": 0.387, ""DCAR_IQR"": 0.0, ""DAAR_mean"": 1.778, ""DAAR_median"": 0.111, ""DAAR_std"": 4.339, ""DAAR_gini"": 0.846, ""DAAR_IQR"": 0.64, ""DCAT_mean"": 1.106, ""DCAT_median"": 0.045, ""DCAT_std"": 3.471, ""DCAT_gini"": 0.884, ""DCAT_IQR"": 0.342, ""NAT_mean"": 17.444, ""NAT_median"": 8.0, ""NAT_std"": 21.167, ""NAT_gini"": 0.559, ""NAT_IQR"": 18.0}",0
+yingyi bu,Invalid,,{},0
+yuanyuan tian,Invalid,,{},0
+yury litvinov,Invalid,,{},0
+zechao shang,Invalid,,{},0
+zhiwei gu,Invalid,,{},0
+zuhair khayyat,Invalid,,{},0
