@@ -1,0 +1,1118 @@
+incubator,project_name,activity_type,contributor,activity_count,project_activity_count,activity_proportion,dfc_is_bot,rabbit_is_bot,rabbit_type,rabbit_confidence,rabbit_assumed_dfc,agreement
+apache,giraph,tech,avery ching,384,619,0.6203554119547657,0,0,Invalid,,0,1
+apache,giraph,tech,christian kunz,18,619,0.029079159935379646,0,0,Invalid,,0,1
+apache,giraph,tech,claudio martella,35,619,0.05654281098546042,0,0,Invalid,,0,1
+apache,giraph,tech,hyunsik choi,65,619,0.1050080775444265,0,0,Invalid,,0,1
+apache,giraph,tech,jakob homan,99,619,0.15993537964458804,0,0,Invalid,,0,1
+apache,giraph,tech,sebastian schelter,18,619,0.029079159935379646,0,0,Invalid,,0,1
+apache,giraph,social,aapo kyrola,7,2797,0.0025026814444047193,0,0,Invalid,,0,1
+apache,giraph,social,abhishek srivastava,5,2797,0.001787629603146228,0,0,Invalid,,0,1
+apache,giraph,social,amani,3,2797,0.0010725777618877368,0,0,Unknown,,0,1
+apache,giraph,social,andr kelpe,34,2797,0.01215588130139435,0,0,Invalid,,0,1
+apache,giraph,social,andrew purtell,4,2797,0.0014301036825169824,0,0,Invalid,,0,1
+apache,giraph,social,andy schlaikjer,1,2797,0.0003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,arun suresh,19,2797,0.006792992491955667,0,0,Invalid,,0,1
+apache,giraph,social,ashish,1,2797,0.0003575259206292456,0,0,Unknown,,0,1
+apache,giraph,social,attila csordas,12,2797,0.004290311047550947,0,0,Invalid,,0,1
+apache,giraph,social,avery ching,767,2797,0.27422238112263136,0,0,Invalid,,0,1
+apache,giraph,social,benjamin heitmann,36,2797,0.012870933142652842,0,0,Invalid,,0,1
+apache,giraph,social,bo wang,19,2797,0.006792992491955667,0,0,Invalid,,0,1
+apache,giraph,social,brian femiano,66,2797,0.02359671076153021,0,0,Invalid,,0,1
+apache,giraph,social,charles thayer,1,2797,0.0003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,christian kunz,7,2797,0.0025026814444047193,0,0,Invalid,,0,1
+apache,giraph,social,christoph bhm,6,2797,0.0021451555237754737,0,0,Invalid,,0,1
+apache,giraph,social,claudio martella,272,2797,0.0972470504111548,0,0,Invalid,,0,1
+apache,giraph,social,dan brickley,14,2797,0.0050053628888094386,0,0,Invalid,,0,1
+apache,giraph,social,dan mcclary,1,2797,0.0003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,dave,1,2797,0.0003575259206292456,0,0,Human,0.942,0,1
+apache,giraph,social,david capwell,1,2797,0.0003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,david garcia,33,2797,0.011798355380765105,0,0,Invalid,,0,1
+apache,giraph,social,deepak nettem,3,2797,0.0010725777618877368,0,0,Invalid,,0,1
+apache,giraph,social,devaraj k,12,2797,0.004290311047550947,0,0,Invalid,,0,1
+apache,giraph,social,dionysios logothetis,12,2797,0.004290311047550947,0,0,Invalid,,0,1
+apache,giraph,social,dionysis logothetis,2,2797,0.0007150518412584912,0,0,Invalid,,0,1
+apache,giraph,social,dmitriy ryaboy,10,2797,0.003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,dmitriy v ryaboy,36,2797,0.012870933142652842,0,0,Invalid,,0,1
+apache,giraph,social,ed kohlwey,10,2797,0.003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,edward j yoon,2,2797,0.0007150518412584912,0,0,Invalid,,0,1
+apache,giraph,social,eli reisman,14,2797,0.0050053628888094386,0,0,Invalid,,0,1
+apache,giraph,social,eric charles,2,2797,0.0007150518412584912,0,0,Invalid,,0,1
+apache,giraph,social,etienne dumoulin,5,2797,0.001787629603146228,0,0,Invalid,,0,1
+apache,giraph,social,eugene koontz,57,2797,0.020378977475867,0,0,Invalid,,0,1
+apache,giraph,social,eugenia gabrielova,1,2797,0.0003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,fleischman stephen,5,2797,0.001787629603146228,0,0,Invalid,,0,1
+apache,giraph,social,gavan hood,4,2797,0.0014301036825169824,0,0,Invalid,,0,1
+apache,giraph,social,gianmarco de francisci morales,17,2797,0.006077940650697175,0,0,Invalid,,0,1
+apache,giraph,social,harsh j,9,2797,0.0032177332856632105,0,0,Invalid,,0,1
+apache,giraph,social,henry saputra,9,2797,0.0032177332856632105,0,0,Invalid,,0,1
+apache,giraph,social,hudson,87,2797,0.03110475509474437,0,0,Organization,1.0,0,1
+apache,giraph,social,hyunsik choi,126,2797,0.04504826599928495,0,0,Invalid,,0,1
+apache,giraph,social,inci cetindil,6,2797,0.0021451555237754737,0,0,Invalid,,0,1
+apache,giraph,social,jake mannix,150,2797,0.053628888094386845,0,0,Invalid,,0,1
+apache,giraph,social,jakob homan,395,2797,0.14122273864855203,0,0,Invalid,,0,1
+apache,giraph,social,jan van der lugt,9,2797,0.0032177332856632105,0,0,Invalid,,0,1
+apache,giraph,social,jeff g,3,2797,0.0010725777618877368,0,0,Invalid,,0,1
+apache,giraph,social,jeffrey yunes,1,2797,0.0003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,jg homan,1,2797,0.0003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,jianfeng qian,6,2797,0.0021451555237754737,0,0,Invalid,,0,1
+apache,giraph,social,jiraposter,77,2797,0.027529495888451914,0,0,Invalid,,0,1
+apache,giraph,social,joe xie,3,2797,0.0010725777618877368,0,0,Invalid,,0,1
+apache,giraph,social,jon allen,3,2797,0.0010725777618877368,0,0,Invalid,,0,1
+apache,giraph,social,joseph boyd,1,2797,0.0003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,josh patterson,2,2797,0.0007150518412584912,0,0,Invalid,,0,1
+apache,giraph,social,juan f codagnone,1,2797,0.0003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,ken nakagama,1,2797,0.0003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,kenin coloma,2,2797,0.0007150518412584912,0,0,Invalid,,0,1
+apache,giraph,social,kohei ozaki,3,2797,0.0010725777618877368,0,0,Invalid,,0,1
+apache,giraph,social,kyle teague,2,2797,0.0007150518412584912,0,0,Invalid,,0,1
+apache,giraph,social,listenbruder,1,2797,0.0003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,liyang,1,2797,0.0003575259206292456,0,0,Unknown,,0,1
+apache,giraph,social,locker,2,2797,0.0007150518412584912,0,0,Human,0.927,0,1
+apache,giraph,social,marvin,9,2797,0.0032177332856632105,0,0,Unknown,,0,1
+apache,giraph,social,mattmann chris a,26,2797,0.009295673936360386,0,0,Invalid,,0,1
+apache,giraph,social,mitul tiwari,3,2797,0.0010725777618877368,0,0,Invalid,,0,1
+apache,giraph,social,nils rethmeier,2,2797,0.0007150518412584912,0,0,Invalid,,0,1
+apache,giraph,social,oana theogarajan,3,2797,0.0010725777618877368,0,0,Invalid,,0,1
+apache,giraph,social,owen omalley,47,2797,0.016803718269574545,0,0,Invalid,,0,1
+apache,giraph,social,paolo castagna,67,2797,0.023954236682159458,0,0,Invalid,,0,1
+apache,giraph,social,pradeep gollakota,4,2797,0.0014301036825169824,0,0,Invalid,,0,1
+apache,giraph,social,prasenjit mukherjee,5,2797,0.001787629603146228,0,0,Invalid,,0,1
+apache,giraph,social,praveen sripati,7,2797,0.0025026814444047193,0,0,Invalid,,0,1
+apache,giraph,social,raimon bosch,1,2797,0.0003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,robert davis,5,2797,0.001787629603146228,0,0,Invalid,,0,1
+apache,giraph,social,roman k,9,2797,0.0032177332856632105,0,0,Invalid,,0,1
+apache,giraph,social,roman shaposhnik,4,2797,0.0014301036825169824,0,0,Invalid,,0,1
+apache,giraph,social,sebastian schelter,118,2797,0.042188058634250986,0,0,Invalid,,0,1
+apache,giraph,social,semih salihoglu,5,2797,0.001787629603146228,0,0,Invalid,,0,1
+apache,giraph,social,severin andreas corsten,2,2797,0.0007150518412584912,0,0,Invalid,,0,1
+apache,giraph,social,severin corsten,10,2797,0.003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,shaunak kashyap,14,2797,0.0050053628888094386,0,0,Invalid,,0,1
+apache,giraph,social,thomas jungblut,1,2797,0.0003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,thomas quintana,1,2797,0.0003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,timmy wilson,4,2797,0.0014301036825169824,0,0,Invalid,,0,1
+apache,giraph,social,vinod kumar vavilapalli,4,2797,0.0014301036825169824,0,0,Invalid,,0,1
+apache,giraph,social,yavuz gokirmak,11,2797,0.003932785126921702,0,0,Invalid,,0,1
+apache,giraph,social,ycombinator,3,2797,0.0010725777618877368,0,0,Unknown,,0,1
+apache,giraph,social,yingyi bu,4,2797,0.0014301036825169824,0,0,Invalid,,0,1
+apache,giraph,social,yuanyuan tian,8,2797,0.002860207365033965,0,0,Invalid,,0,1
+apache,giraph,social,yury litvinov,1,2797,0.0003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,zechao shang,1,2797,0.0003575259206292456,0,0,Invalid,,0,1
+apache,giraph,social,zhiwei gu,12,2797,0.004290311047550947,0,0,Invalid,,0,1
+apache,giraph,social,zuhair khayyat,3,2797,0.0010725777618877368,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Abhishek Shende,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,An Phan,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Andy Perlitch,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Arnaud Kleinpeter,2,3966,0.0005042864346949068,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,BhagyashriK,3,3966,0.0007564296520423601,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,Bradley Flood,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Can Aksakalli,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Chase Fleming,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,David,5,3966,0.0012607160867372667,0,0,Human,0.857,0,1
+github,generator-gulp-angular,tech,David Pertiller,13,3966,0.0032778618255168935,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Denis Schneider,13,3966,0.0032778618255168935,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Dmytro TOLSTYI,10,3966,0.0025214321734745334,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Dominic Watson,3,3966,0.0007564296520423601,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Dominik Moritz,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Forrest Thomas,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Gladney,4,3966,0.0010085728693898135,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,Glenn Geenen,6,3966,0.0015128593040847202,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Jbz797,2,3966,0.0005042864346949068,0,1,Bot,0.848,0,0
+github,generator-gulp-angular,tech,Jean-Baptiste Pionnier,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Jean-François Genillier,3,3966,0.0007564296520423601,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Jeremy Granadillo,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Jesse Pinuelas,2,3966,0.0005042864346949068,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Joao Dias,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Jozef Dúc,3,3966,0.0007564296520423601,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Karl Horky,2,3966,0.0005042864346949068,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Kate Lizogubova,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Kirill Fuchs,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Kyle Alwyn,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Lawrence Hunt,4,3966,0.0010085728693898135,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Manu Phatak,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Matthieu Lux,1865,3966,0.4702471003530005,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Maxim Abramchuk,3,3966,0.0007564296520423601,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Mehdy Dara,985,3966,0.24836106908724156,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Michael Asimakopoulos,15,3966,0.0037821482602118004,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Michael Blakeney,3,3966,0.0007564296520423601,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Michał Błotniak,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Mike Sigsworth,10,3966,0.0025214321734745334,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Mohsen Azimi,2,3966,0.0005042864346949068,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Moshe,1,3966,0.0002521432173474534,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,Nek (Maxime Veber),1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Otávio Augusto Soares,3,3966,0.0007564296520423601,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Rajarshi Nigam,2,3966,0.0005042864346949068,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Ramon Boss,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Scott Busche,19,3966,0.004790721129601614,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Scott Cooper,26,3966,0.006555723651033787,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Sergey Lapin,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Shinnosuke Watanabe,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Steve Mao,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Swiip,246,3966,0.06202723146747353,0,0,Human,0.609,0,1
+github,generator-gulp-angular,tech,TMD,48,3966,0.012102874432677761,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,Thib,1,3966,0.0002521432173474534,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,Toilal,53,3966,0.013363590519415028,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,Tom Vincent,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Touched,1,3966,0.0002521432173474534,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,Veronica,1,3966,0.0002521432173474534,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,Vladimir Stolyarov,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,Wojciech Krzystek,4,3966,0.0010085728693898135,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,amrynsky,1,3966,0.0002521432173474534,0,0,Human,0.794,0,1
+github,generator-gulp-angular,tech,andrenovax,1,3966,0.0002521432173474534,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,arcdev1,1,3966,0.0002521432173474534,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,artem,1,3966,0.0002521432173474534,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,burakgormek,1,3966,0.0002521432173474534,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,cgaudreau,1,3966,0.0002521432173474534,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,chhsiao,5,3966,0.0012607160867372667,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,eseceve,6,3966,0.0015128593040847202,0,1,Bot,0.085,0,0
+github,generator-gulp-angular,tech,getglad,1,3966,0.0002521432173474534,0,0,Human,0.344,0,1
+github,generator-gulp-angular,tech,jbnizet,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,kevin_zenika,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,tech,loezix,6,3966,0.0015128593040847202,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,tommyfok,3,3966,0.0007564296520423601,0,0,Human,0.908,0,1
+github,generator-gulp-angular,tech,unknown,4,3966,0.0010085728693898135,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,vukoje,1,3966,0.0002521432173474534,0,0,Unknown,,0,1
+github,generator-gulp-angular,tech,wrseward,1,3966,0.0002521432173474534,0,0,Human,0.214,0,1
+github,generator-gulp-angular,tech,zckrs,544,3966,0.13716591023701463,0,0,Human,0.927,0,1
+github,generator-gulp-angular,tech,֍ DaAwesomeP ֎,1,3966,0.0002521432173474534,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,0101adm,53,3834,0.013823682837767345,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,13sergy,1,3834,0.0002608242044861763,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,32teeths,1,3834,0.0002608242044861763,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,360disrupt,9,3834,0.002347417840375587,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,4kochi,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,4vanger,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,70853n,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,AEPKILL,1,3834,0.0002608242044861763,0,0,Human,0.726,0,1
+github,generator-gulp-angular,social,ARaqeeb,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,AbdelhadiLahlou,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,AdamJessop,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,AhmetCanSolak,8,3834,0.0020865936358894104,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,AlbertoBasalo,2,3834,0.0005216484089723526,0,0,Human,0.293,0,1
+github,generator-gulp-angular,social,AlejandroDelRioAlbrechet,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,AleksMeshkov,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,AleskiWeb,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,AlexGrs,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,AlexVKO,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,AlexanderTserkovniy,13,3834,0.003390714658320292,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Alligatore3,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,AndresDevelop,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,AntonyPritchett,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,BAByrne,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Badisi,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,BeOleg,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,BertrandNOEL,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,BhagyashriK,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,BobbieBarker,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Boscop,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,CarlAmbroselli,2,3834,0.0005216484089723526,0,1,Bot,0.04,0,0
+github,generator-gulp-angular,social,ChandraKantPaliwal,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,CodeMonkey128,3,3834,0.000782472613458529,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,CodeOneTwo,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Codem3ay,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,CosticaPuntaru,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,CrankNPlank,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,CristianMR,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,DaAwesomeP,6,3834,0.001564945226917058,0,0,Human,0.962,0,1
+github,generator-gulp-angular,social,DallanQ,1,3834,0.0002608242044861763,0,0,Human,0.557,0,1
+github,generator-gulp-angular,social,DarKDinDoN,1,3834,0.0002608242044861763,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,DarrylD,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,EmmanuelDemey,1,3834,0.0002608242044861763,0,0,Human,0.906,0,1
+github,generator-gulp-angular,social,F1LT3R,1,3834,0.0002608242044861763,0,0,Human,0.884,0,1
+github,generator-gulp-angular,social,Gary-Pan,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,GlennGeenen,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Grandiz,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,GregaVrbancic,1,3834,0.0002608242044861763,0,0,Human,0.62,0,1
+github,generator-gulp-angular,social,Gu3,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,GuillaumeUnice,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Gujarats,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Henry0422,2,3834,0.0005216484089723526,0,0,AssumedDFC,,1,1
+github,generator-gulp-angular,social,Hesesses,14,3834,0.0036515388628064684,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Hosar,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,IvanCoronado,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,JG-CMASS,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,JR-Utily,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,JackNorris,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,JacoboDB,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,JamesBender,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Janzelf,6,3834,0.001564945226917058,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,JimLynchCodes,12,3834,0.003129890453834116,0,0,Human,0.613,0,1
+github,generator-gulp-angular,social,JoshuaAdamYoung,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,JustinLien,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Kageetai,7,3834,0.0018257694314032342,0,0,Human,0.831,0,1
+github,generator-gulp-angular,social,KamBha,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,KarlNewark,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Kehet,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Lesac76,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,LiranBri,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,MCautreels,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,MQuy,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,MRichardson1,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,MaksimAbramchuk,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,MarcLoupias,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,MarioAraque,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Martin-Andersen,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,MasonFI,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,MattCowski,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,MaxFlower,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,McGiogen,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,MelissaMMDP,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,MicFin,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Miguel-Herrero,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,MinDokan,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Mmpc1994,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,MoatazAbdallh,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Mr-LiuDC,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,NTag,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,NathanWalker,1,3834,0.0002608242044861763,0,0,Human,0.958,0,1
+github,generator-gulp-angular,social,NeXTs,1,3834,0.0002608242044861763,0,0,Human,0.853,0,1
+github,generator-gulp-angular,social,Nek-,2,3834,0.0005216484089723526,0,0,Human,0.755,0,1
+github,generator-gulp-angular,social,NicoBleh,2,3834,0.0005216484089723526,0,1,Bot,0.47,0,0
+github,generator-gulp-angular,social,ObiKerui,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Olgagr,9,3834,0.002347417840375587,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,OvidiuGuta,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Pentiado,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,PierreRAFFA,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,RainingNight,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,RobEasthope,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,RobbieTheWagner,19,3834,0.00495565988523735,0,0,Human,0.956,0,1
+github,generator-gulp-angular,social,RomFouq,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,RootProgger,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,SalmonRiver,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,SanDiegoCasey,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Santino-Wu,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Sasicumaar,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Schurke,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Sepho,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,SergeyKhval,2,3834,0.0005216484089723526,0,0,Human,0.866,0,1
+github,generator-gulp-angular,social,SergiySev,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,ShMcK,6,3834,0.001564945226917058,0,0,Human,0.918,0,1
+github,generator-gulp-angular,social,ShawnTalbert,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,SinaArdehali,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Soumya-mp,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,St1c,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,SunEagle,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Swiip,662,3834,0.17266562336984873,0,0,Human,0.609,0,1
+github,generator-gulp-angular,social,TJKoury,1,3834,0.0002608242044861763,0,0,Human,0.867,0,1
+github,generator-gulp-angular,social,Tallyb,15,3834,0.003912363067292645,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,TheNemus,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,TheOpti,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Toilal,67,3834,0.017475221700573813,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,TomaszScisloGS,11,3834,0.0028690662493479394,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Toub,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Tsouef,2,3834,0.0005216484089723526,0,0,Human,0.787,0,1
+github,generator-gulp-angular,social,Undergrounder,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,UzEE,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,VishneviyMazhor,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Vvaltz,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Webbrother,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,Webenius,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,XIXIAOSHI124,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,XavierLeTohic,1,3834,0.0002608242044861763,0,0,Human,0.651,0,1
+github,generator-gulp-angular,social,Xepe,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,YonatanKra,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,YuriZaliznyak,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,a14m,19,3834,0.00495565988523735,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,a50397,1,3834,0.0002608242044861763,0,0,Human,0.18,0,1
+github,generator-gulp-angular,social,aarondufall,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,abbish,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,abdulwahid24,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,abrown28,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,abruzzihraig,2,3834,0.0005216484089723526,0,0,Human,0.944,0,1
+github,generator-gulp-angular,social,adam404,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,adamkarb,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,admorphit,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,adrianchung,3,3834,0.000782472613458529,0,0,Human,0.425,0,1
+github,generator-gulp-angular,social,adriangordon1231,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,adrianoresende,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,adriatic,4,3834,0.0010432968179447052,0,1,Bot,0.674,0,0
+github,generator-gulp-angular,social,adstep,4,3834,0.0010432968179447052,0,0,Human,0.791,0,1
+github,generator-gulp-angular,social,aendra-rininsland,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,aforanil,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,agdolla,2,3834,0.0005216484089723526,0,0,Human,0.785,0,1
+github,generator-gulp-angular,social,agustin107,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,aitk,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,ajay12892,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,akhileshmohan,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,aksakalli,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,al-the-x,8,3834,0.0020865936358894104,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,aladine,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,alaksandarjesus,12,3834,0.003129890453834116,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,alangunning,1,3834,0.0002608242044861763,0,0,Human,0.712,0,1
+github,generator-gulp-angular,social,alejandronanez,1,3834,0.0002608242044861763,0,0,Human,0.842,0,1
+github,generator-gulp-angular,social,alexpaluzzi,9,3834,0.002347417840375587,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,alfaproject,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,alinnert,4,3834,0.0010432968179447052,0,1,Bot,0.594,0,0
+github,generator-gulp-angular,social,altinselimi,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,alumallachandan,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,amgadfahmi,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,amirtuval,2,3834,0.0005216484089723526,0,0,Human,0.605,0,1
+github,generator-gulp-angular,social,anaumov,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,andrea-spotsoftware,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,andreicojea,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,andreierdoss,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,andrekampert,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,andrenovax,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,andrescuev,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,andyjessop,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,andyperlitch,7,3834,0.0018257694314032342,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,anggiaj,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,anishbenji,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,ansumanshah,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,ant0ha,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,antoescu,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,aonemd,1,3834,0.0002608242044861763,0,0,Human,0.939,0,1
+github,generator-gulp-angular,social,apartyka,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,arcdev1,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,asafper,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,asm0dey,1,3834,0.0002608242044861763,0,0,Human,0.967,0,1
+github,generator-gulp-angular,social,astw,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,atul-bhosale,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,auxcoder,1,3834,0.0002608242044861763,0,1,Bot,0.007,0,0
+github,generator-gulp-angular,social,axetroy,4,3834,0.0010432968179447052,0,0,Human,0.951,0,1
+github,generator-gulp-angular,social,bagusflyer,10,3834,0.0026082420448617634,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,barretodavid,12,3834,0.003129890453834116,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,bartsmilner,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,bartvanremortele,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,bastienJS,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,bcg-amitag,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,bdizha,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,bearfriend,3,3834,0.000782472613458529,0,0,Human,0.949,0,1
+github,generator-gulp-angular,social,beckler,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,behrad,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,benjamincharity,11,3834,0.0028690662493479394,0,0,Human,0.906,0,1
+github,generator-gulp-angular,social,benkroeger,1,3834,0.0002608242044861763,0,0,Human,0.942,0,1
+github,generator-gulp-angular,social,benmurden,1,3834,0.0002608242044861763,0,0,Human,0.778,0,1
+github,generator-gulp-angular,social,bennypowers,1,3834,0.0002608242044861763,0,0,Human,0.926,0,1
+github,generator-gulp-angular,social,bertramn,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,bhj,4,3834,0.0010432968179447052,0,0,Human,0.158,0,1
+github,generator-gulp-angular,social,biglanggwapoventures,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,biks152207,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,blackfyre,1,3834,0.0002608242044861763,0,0,Human,0.877,0,1
+github,generator-gulp-angular,social,blackleafs,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,blended-ideas,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,blowsie,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,bluesliverx,1,3834,0.0002608242044861763,0,0,Human,0.933,0,1
+github,generator-gulp-angular,social,bondarewicz,1,3834,0.0002608242044861763,0,0,Human,0.953,0,1
+github,generator-gulp-angular,social,bradleyflood,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,bramvanoploo,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,brian428,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,brijesh1ec,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,brucejcw,19,3834,0.00495565988523735,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,brunoeris,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,brunoksato,6,3834,0.001564945226917058,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,bsides,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,bsitruk,1,3834,0.0002608242044861763,0,0,Human,0.31,0,1
+github,generator-gulp-angular,social,btn0s,2,3834,0.0005216484089723526,0,1,Bot,0.495,0,0
+github,generator-gulp-angular,social,buoto,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,busches,40,3834,0.010432968179447054,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,bx2,1,3834,0.0002608242044861763,0,0,Human,0.959,0,1
+github,generator-gulp-angular,social,c-johnson,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,c0debreaker,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,carlosfunk,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,carlosrbta,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,cazacugmihai,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,cbentley,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,chachra,2,3834,0.0005216484089723526,0,0,Human,0.883,0,1
+github,generator-gulp-angular,social,chakatodd,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,chalettu,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,chandrabezzo,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,chandraflyrobe,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,chanu,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,chap31,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,chhsiao1981,2,3834,0.0005216484089723526,0,0,Human,0.916,0,1
+github,generator-gulp-angular,social,chojowliu,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,chrisUsick,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,chrisheninger,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,chriskolenko,4,3834,0.0010432968179447052,0,0,Human,0.684,0,1
+github,generator-gulp-angular,social,christianmalek,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,christophertrudel,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,cksachdev,1,3834,0.0002608242044861763,0,0,Human,0.933,0,1
+github,generator-gulp-angular,social,claboran,4,3834,0.0010432968179447052,0,1,Bot,0.239,0,0
+github,generator-gulp-angular,social,claytondus,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,clement-escolano,3,3834,0.000782472613458529,0,0,Human,0.716,0,1
+github,generator-gulp-angular,social,clessg,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,climboid,8,3834,0.0020865936358894104,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,cm325,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,cmcnamara87,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,cmelion,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,cmullix,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,codeofsumit,28,3834,0.007303077725612937,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,color2life,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,coryarmbrecht,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,cosminonnet,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,cousine,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,craigsh,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,crdil,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,creimers,8,3834,0.0020865936358894104,0,0,Human,0.925,0,1
+github,generator-gulp-angular,social,crimsondr,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,csablons,6,3834,0.001564945226917058,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,cttobin,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,cveld,1,3834,0.0002608242044861763,0,0,Human,0.936,0,1
+github,generator-gulp-angular,social,cyberdemon8,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,cyborg92,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,d0d0,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,damdoum,10,3834,0.0026082420448617634,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,damienstanton,1,3834,0.0002608242044861763,0,0,Human,0.966,0,1
+github,generator-gulp-angular,social,dancancro,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,danieldiazastudillo,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,danielrvt,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,danivek,2,3834,0.0005216484089723526,0,0,Human,0.52,0,1
+github,generator-gulp-angular,social,dannygoncalves,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,danpii,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,danprime,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,danyim,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,darmie,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,datnq201088,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,daveteply,1,3834,0.0002608242044861763,0,1,Bot,0.866,0,0
+github,generator-gulp-angular,social,davewalk,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,davguij,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,davidalekna,2,3834,0.0005216484089723526,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,davidpv,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,dbajpeyi,1,3834,0.0002608242044861763,0,0,Human,0.794,0,1
+github,generator-gulp-angular,social,dbogda,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,debuggerpk,6,3834,0.001564945226917058,0,0,Human,0.905,0,1
+github,generator-gulp-angular,social,dedoyle,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,deebloo,8,3834,0.0020865936358894104,0,0,Human,0.771,0,1
+github,generator-gulp-angular,social,dereklin,23,3834,0.005998956703182056,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,designnotdrum,1,3834,0.0002608242044861763,0,0,Human,0.777,0,1
+github,generator-gulp-angular,social,devakone,2,3834,0.0005216484089723526,0,0,Human,0.926,0,1
+github,generator-gulp-angular,social,devmark,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,devonzara,1,3834,0.0002608242044861763,0,1,Bot,0.105,0,0
+github,generator-gulp-angular,social,devsaik,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,deyceg,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,dfromero,5,3834,0.0013041210224308817,0,0,Human,0.537,0,1
+github,generator-gulp-angular,social,dheerajui,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,digitalfiz,2,3834,0.0005216484089723526,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,dingguijin,1,3834,0.0002608242044861763,0,0,Human,0.598,0,1
+github,generator-gulp-angular,social,dinuchiriac,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,dirknilius,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,disharmonized,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,disolovyov,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,djedi,1,3834,0.0002608242044861763,0,0,Human,0.734,0,1
+github,generator-gulp-angular,social,dlombardi,4,3834,0.0010432968179447052,0,0,Human,0.897,0,1
+github,generator-gulp-angular,social,dmastag,11,3834,0.0028690662493479394,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,dmitriynosenko,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,dnlbox,1,3834,0.0002608242044861763,0,0,Human,0.551,0,1
+github,generator-gulp-angular,social,domoritz,3,3834,0.000782472613458529,0,0,Human,0.951,0,1
+github,generator-gulp-angular,social,donnygunawan93,6,3834,0.001564945226917058,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,doronsever,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,dpocheketa,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,drGrove,7,3834,0.0018257694314032342,0,1,Bot,0.665,0,0
+github,generator-gulp-angular,social,drcsantos,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,drejohnson,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,drixie,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,drmikeh,1,3834,0.0002608242044861763,0,0,Human,0.764,0,1
+github,generator-gulp-angular,social,drock07,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,dsimmons,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,dstroyrofworlds,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,dtolstyi,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,dts,3,3834,0.000782472613458529,0,1,Bot,0.412,0,0
+github,generator-gulp-angular,social,duleorlovic,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,dxxvi,1,3834,0.0002608242044861763,0,0,Human,0.217,0,1
+github,generator-gulp-angular,social,dylanlawrence,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,dylanwatsonsoftware,2,3834,0.0005216484089723526,0,1,Bot,0.613,0,0
+github,generator-gulp-angular,social,dzafel,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,dzonatan,2,3834,0.0005216484089723526,0,0,Human,0.947,0,1
+github,generator-gulp-angular,social,e-oz,54,3834,0.014084507042253521,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,ebowers,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,eddiemonge,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,edimoldovan,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,edmanolache,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,edu2004eu,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,eduardosanzb,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,egor-smirnov,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,ehteshamkafeel,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,eigotec,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,elado,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,elboman,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,elimence,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,elliot-a,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,elouazzany,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,emersonmellado,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,end-user,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,eperedo,1,3834,0.0002608242044861763,0,0,Human,0.582,0,1
+github,generator-gulp-angular,social,equero,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,ereze,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,erichiggins,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,erikdonohoo,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,eseceve,9,3834,0.002347417840375587,0,1,Bot,0.085,0,0
+github,generator-gulp-angular,social,esquevin,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,estudiooka,7,3834,0.0018257694314032342,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,fa8ster,1,3834,0.0002608242044861763,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,faidoc,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,falahatiali,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,fannur,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,fd,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,fdcastel,1,3834,0.0002608242044861763,0,0,Human,0.909,0,1
+github,generator-gulp-angular,social,fespinoza,1,3834,0.0002608242044861763,0,0,Human,0.02,0,1
+github,generator-gulp-angular,social,fpernia,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,frankalbenesius,1,3834,0.0002608242044861763,0,0,Human,0.343,0,1
+github,generator-gulp-angular,social,frankradocaj,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,franzherzog,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,freeman29,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,fubu,12,3834,0.003129890453834116,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,fuchao2012,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,furnace915,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,fvezzoso,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,gablabelle,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,gaboesquivel,3,3834,0.000782472613458529,0,0,Human,0.628,0,1
+github,generator-gulp-angular,social,gadieichhorn,8,3834,0.0020865936358894104,0,0,Human,0.032,0,1
+github,generator-gulp-angular,social,galenmarchetti,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,gameboyzone,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,gangadharjannu,3,3834,0.000782472613458529,0,1,Bot,0.744,0,0
+github,generator-gulp-angular,social,gauravsahu21,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,gavinbarron,3,3834,0.000782472613458529,0,0,Human,0.895,0,1
+github,generator-gulp-angular,social,gelevanog,1,3834,0.0002608242044861763,0,0,Human,0.905,0,1
+github,generator-gulp-angular,social,gen4sp,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,genu,2,3834,0.0005216484089723526,0,0,Human,0.844,0,1
+github,generator-gulp-angular,social,geoHeil,10,3834,0.0026082420448617634,0,0,Human,0.889,0,1
+github,generator-gulp-angular,social,getglad,4,3834,0.0010432968179447052,0,0,Human,0.344,0,1
+github,generator-gulp-angular,social,gimox,8,3834,0.0020865936358894104,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,gintsgints,1,3834,0.0002608242044861763,0,0,Human,0.734,0,1
+github,generator-gulp-angular,social,girod,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,gitsuraj,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,glennz,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,glsee,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,gnicol-bzh,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,gokhandemirtas,2,3834,0.0005216484089723526,0,0,Human,0.809,0,1
+github,generator-gulp-angular,social,goncalomarques,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,goodmind,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,grahamtwine,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,greg-js,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,grimaldo,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,grimurd,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,gryftir,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,gsemet,1,3834,0.0002608242044861763,0,0,Human,0.826,0,1
+github,generator-gulp-angular,social,gt-tech,7,3834,0.0018257694314032342,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,gunish,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,handijk,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,haohello,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,harconst,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,hardywu,6,3834,0.001564945226917058,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,hartwm,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,hassansw,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,healthyme,8,3834,0.0020865936358894104,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,hege088,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,heikoholland,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,henry74,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,heshamelmasry77,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,hilel,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,histfuture,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,homeway,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,horizon0514,1,3834,0.0002608242044861763,0,1,Bot,0.053,0,0
+github,generator-gulp-angular,social,hourliert,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,huguangju,1,3834,0.0002608242044861763,0,0,Human,0.872,0,1
+github,generator-gulp-angular,social,hwoarangzk,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,iam4x,3,3834,0.000782472613458529,0,0,Human,0.856,0,1
+github,generator-gulp-angular,social,ianks,2,3834,0.0005216484089723526,0,0,Human,0.957,0,1
+github,generator-gulp-angular,social,idanb11,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,idoo,1,3834,0.0002608242044861763,0,0,Human,0.594,0,1
+github,generator-gulp-angular,social,idwd,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,igisav,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,igor-yamshchykov,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,iki,2,3834,0.0005216484089723526,0,0,Human,0.127,0,1
+github,generator-gulp-angular,social,intellix,20,3834,0.005216484089723527,0,0,Human,0.874,0,1
+github,generator-gulp-angular,social,iomgi,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,ipansensoy,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,isaacweathers,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,ismarslomic,1,3834,0.0002608242044861763,0,1,Bot,0.672,0,0
+github,generator-gulp-angular,social,isrd1,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,iwhy,6,3834,0.001564945226917058,0,0,Human,0.204,0,1
+github,generator-gulp-angular,social,iwuvjhdva,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,j0hnsmith,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,j4ml3t,1,3834,0.0002608242044861763,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,jaarong,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jackhutu,1,3834,0.0002608242044861763,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,jackrobertscott,1,3834,0.0002608242044861763,0,0,Human,0.784,0,1
+github,generator-gulp-angular,social,jagwire,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jahammo2,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jahumes,1,3834,0.0002608242044861763,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,jajourda,1,3834,0.0002608242044861763,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,jamesbehr,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jamesdixon,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jamiebuilds,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jasel-lewis,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jaskaran14,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jasonswett,1,3834,0.0002608242044861763,0,1,Bot,0.771,0,0
+github,generator-gulp-angular,social,jasperblues,5,3834,0.0013041210224308817,0,0,Human,0.96,0,1
+github,generator-gulp-angular,social,jballands,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jbaroudi,11,3834,0.0028690662493479394,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jbonigomes,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jbrantly,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jchayan,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jcollum,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jdhiro,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jeansaigne,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jedwards1211,2,3834,0.0005216484089723526,0,0,Human,0.959,0,1
+github,generator-gulp-angular,social,jeffscottward,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jerexyz,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jeserkin,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jessepinuelas,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jesucarr,3,3834,0.000782472613458529,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,jetspeed,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jgodi,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jlu1202,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jmcmichael,2,3834,0.0005216484089723526,0,0,Human,0.214,0,1
+github,generator-gulp-angular,social,jmfirth,1,3834,0.0002608242044861763,0,1,Bot,0.407,0,0
+github,generator-gulp-angular,social,jmls,14,3834,0.0036515388628064684,0,0,Human,0.907,0,1
+github,generator-gulp-angular,social,jnizet,1,3834,0.0002608242044861763,0,0,Human,0.214,0,1
+github,generator-gulp-angular,social,joaocc,4,3834,0.0010432968179447052,0,1,Bot,0.227,0,0
+github,generator-gulp-angular,social,joelcdoyle,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,joelim01,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,joelso,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,johnoscott,1,3834,0.0002608242044861763,0,0,Human,0.908,0,1
+github,generator-gulp-angular,social,johnstontrav,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jolugama,6,3834,0.001564945226917058,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jonathanhds,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jonathanobino,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jonlil,4,3834,0.0010432968179447052,0,0,Human,0.825,0,1
+github,generator-gulp-angular,social,jordic,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jordond,2,3834,0.0005216484089723526,0,0,Human,0.919,0,1
+github,generator-gulp-angular,social,jorovipe97,1,3834,0.0002608242044861763,0,0,Human,0.024,0,1
+github,generator-gulp-angular,social,joshhornby,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,joshmu,1,3834,0.0002608242044861763,0,0,Human,0.743,0,1
+github,generator-gulp-angular,social,jpca999,1,3834,0.0002608242044861763,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,jpoiri,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jsmylnycky,4,3834,0.0010432968179447052,0,0,Human,0.057,0,1
+github,generator-gulp-angular,social,jspizziri,1,3834,0.0002608242044861763,0,0,Human,0.826,0,1
+github,generator-gulp-angular,social,jstoneky,2,3834,0.0005216484089723526,0,0,Human,0.93,0,1
+github,generator-gulp-angular,social,jsvini,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jt3k,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jtallen,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jtrollia,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,juan-manuel-alberro,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jukka-varis,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,julianfresco,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,julmot,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jwbaart,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,jwickowski,3,3834,0.000782472613458529,0,0,Human,0.224,0,1
+github,generator-gulp-angular,social,jxjj,2,3834,0.0005216484089723526,0,0,Human,0.968,0,1
+github,generator-gulp-angular,social,kamilshahzad,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,kanitw,1,3834,0.0002608242044861763,0,0,Human,0.084,0,1
+github,generator-gulp-angular,social,karneaud,1,3834,0.0002608242044861763,0,0,Human,0.739,0,1
+github,generator-gulp-angular,social,karolrynio,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,karthick-manoharan,1,3834,0.0002608242044861763,0,0,Human,0.333,0,1
+github,generator-gulp-angular,social,kbjorklid,1,3834,0.0002608242044861763,0,1,Bot,0.625,0,0
+github,generator-gulp-angular,social,keichi,2,3834,0.0005216484089723526,0,0,Human,0.873,0,1
+github,generator-gulp-angular,social,keithkml,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,kgopi,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,kikar,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,kikoanis,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,kkavod,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,kl09,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,klovelovely,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,klueless-io,1,3834,0.0002608242044861763,0,0,Human,0.681,0,1
+github,generator-gulp-angular,social,knicholes,6,3834,0.001564945226917058,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,kondi,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,konradhalas,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,koraybalci,2,3834,0.0005216484089723526,0,0,Human,0.494,0,1
+github,generator-gulp-angular,social,koutakou,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,kraihn,1,3834,0.0002608242044861763,0,0,Human,0.943,0,1
+github,generator-gulp-angular,social,krewmarco,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,krzksz,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,krzysieki,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,ksambhav,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,ksgupta,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,kudresov,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,kuka,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,kuncevic,1,3834,0.0002608242044861763,0,0,AssumedDFC,,1,1
+github,generator-gulp-angular,social,kvetis,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,kylebuckingham,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,labrute,6,3834,0.001564945226917058,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,lahdo,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,lancevo,6,3834,0.001564945226917058,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,langerc,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,larodiel,1,3834,0.0002608242044861763,0,0,Human,0.837,0,1
+github,generator-gulp-angular,social,lbecraft,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,lebsral,4,3834,0.0010432968179447052,0,1,Bot,0.829,0,0
+github,generator-gulp-angular,social,lellex,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,leonli,1,3834,0.0002608242044861763,0,0,Human,0.672,0,1
+github,generator-gulp-angular,social,leviathanbeak,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,lialosiu,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,lioman,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,lokeshjain2008,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,lordfriend,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,lotas,1,3834,0.0002608242044861763,0,0,Human,0.955,0,1
+github,generator-gulp-angular,social,louiswilbrink,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,lswith,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,lucasangelon,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,luckymancvp,6,3834,0.001564945226917058,0,0,Human,0.58,0,1
+github,generator-gulp-angular,social,lukasholcik,6,3834,0.001564945226917058,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,lunatik-210,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,luxp,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,luyaohua2016,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,lyuehh,1,3834,0.0002608242044861763,0,0,Human,0.267,0,1
+github,generator-gulp-angular,social,m1rc0,6,3834,0.001564945226917058,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,maciej-gurban,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mackelito,19,3834,0.00495565988523735,0,1,Bot,0.547,0,0
+github,generator-gulp-angular,social,mahmoudmy,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,majidln,1,3834,0.0002608242044861763,0,1,Bot,0.431,0,0
+github,generator-gulp-angular,social,majkelo,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,maks-rafalko,2,3834,0.0005216484089723526,0,0,Human,0.961,0,1
+github,generator-gulp-angular,social,malikba,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,manuel-m,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,marani,66,3834,0.017214397496087636,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,marcelaulenbacher,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,marchdoe,2,3834,0.0005216484089723526,0,1,Bot,0.237,0,0
+github,generator-gulp-angular,social,marcvangend,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,markevich,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,markstewie,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,marlncpe,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,martyla,2,3834,0.0005216484089723526,0,0,Human,0.211,0,1
+github,generator-gulp-angular,social,masonlamy,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mastermind1981,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mastix,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,matantsu,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mateuo,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,matiishyn,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mattarau,9,3834,0.002347417840375587,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mattxo,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mattycraig,1,3834,0.0002608242044861763,0,1,Bot,0.049,0,0
+github,generator-gulp-angular,social,max-SS,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,maxehnert,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,maximdresvyankin,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mburbea,7,3834,0.0018257694314032342,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mde17,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mescher,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mewdriller,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mfilotto,3,3834,0.000782472613458529,0,0,Human,0.414,0,1
+github,generator-gulp-angular,social,mfrachet,1,3834,0.0002608242044861763,0,0,Human,0.953,0,1
+github,generator-gulp-angular,social,micah-williamson,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,michalmw,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,michalstolinski,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mikedidomizio,2,3834,0.0005216484089723526,0,0,Human,0.961,0,1
+github,generator-gulp-angular,social,mikeerickson,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mikesigs,6,3834,0.001564945226917058,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mikiasmohamed,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,milkshoes,16,3834,0.004173187271778821,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,millarde,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,milushov,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mistaanthony,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mittalabhas1,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mjeanroy,2,3834,0.0005216484089723526,0,0,Human,0.21,0,1
+github,generator-gulp-angular,social,mkalpana,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mmospanenko,1,3834,0.0002608242044861763,0,0,Human,0.935,0,1
+github,generator-gulp-angular,social,mnzaki,1,3834,0.0002608242044861763,0,1,Bot,0.663,0,0
+github,generator-gulp-angular,social,mohsen1,14,3834,0.0036515388628064684,0,1,Bot,0.48,0,0
+github,generator-gulp-angular,social,mojiAh,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mojics,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,monstromatic,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,montogeek,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,morrislaptop,1,3834,0.0002608242044861763,0,0,Human,0.869,0,1
+github,generator-gulp-angular,social,mpgn,4,3834,0.0010432968179447052,0,0,Human,0.95,0,1
+github,generator-gulp-angular,social,mrafalkoitr,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mrdulin,1,3834,0.0002608242044861763,0,0,Human,0.771,0,1
+github,generator-gulp-angular,social,mrowles,1,3834,0.0002608242044861763,0,1,Bot,0.603,0,0
+github,generator-gulp-angular,social,msenosiain,2,3834,0.0005216484089723526,0,1,Bot,0.351,0,0
+github,generator-gulp-angular,social,msgilligan,1,3834,0.0002608242044861763,0,0,Human,0.96,0,1
+github,generator-gulp-angular,social,mt3ck,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mthomson-csi,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mustela,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mutumarieru,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mvidailhet,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,mzellho,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,nabinkumarn,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,nadavelyashiv,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,nadeemse,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,nafiul-islam-43,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,nanocom,12,3834,0.003129890453834116,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,naveenjafer,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,navjinder,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,nbnotabene,2,3834,0.0005216484089723526,0,1,Bot,0.887,0,0
+github,generator-gulp-angular,social,nelreina,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,nelsonomuto,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,neoblackcap,1,3834,0.0002608242044861763,0,0,Human,0.82,0,1
+github,generator-gulp-angular,social,netfish88,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,nhducit,5,3834,0.0013041210224308817,0,0,Human,0.767,0,1
+github,generator-gulp-angular,social,niallobrien,12,3834,0.003129890453834116,0,0,Human,0.953,0,1
+github,generator-gulp-angular,social,nickroberts,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,nidheeshdas,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,nigel-dewar,4,3834,0.0010432968179447052,0,1,Bot,0.06,0,0
+github,generator-gulp-angular,social,nikolaz111,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,nilsonsrjunior,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,nitetrik,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,nitzanav,1,3834,0.0002608242044861763,0,0,Human,0.308,0,1
+github,generator-gulp-angular,social,nomantintash,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,noob9527,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,notrab,1,3834,0.0002608242044861763,0,0,Human,0.955,0,1
+github,generator-gulp-angular,social,nowres,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,noxecane,2,3834,0.0005216484089723526,0,0,Human,0.634,0,1
+github,generator-gulp-angular,social,npearson72,10,3834,0.0026082420448617634,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,nsarno,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,ntimmerman,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,oblogic7,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,okjulian,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,oleg-ria,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,olimungo,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,oliverjanik,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,omribenari,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,opadilla,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,orangr1989,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,oreqizer,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,osdevisnot,5,3834,0.0013041210224308817,0,0,Human,0.795,0,1
+github,generator-gulp-angular,social,oswaldofreitas,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,otaviosoares,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,otg-kalex,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,ottigerb,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,ottojimb,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,pablorsk,9,3834,0.002347417840375587,0,0,Human,0.025,0,1
+github,generator-gulp-angular,social,paddybasi,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,paglias,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,palpalani,1,3834,0.0002608242044861763,0,1,Bot,0.229,0,0
+github,generator-gulp-angular,social,pashaigood,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,pasine,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,paulchubatyy,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,pavelhoral,1,3834,0.0002608242044861763,0,0,Human,0.93,0,1
+github,generator-gulp-angular,social,paweln1986,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,pbellon,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,pbojinov,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,pdf,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,pdf13,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,pdrosos,1,3834,0.0002608242044861763,0,0,Human,0.199,0,1
+github,generator-gulp-angular,social,pedro3900,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,pedrodelgallego,2,3834,0.0005216484089723526,0,1,Bot,0.372,0,0
+github,generator-gulp-angular,social,peec,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,perchi,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,pfried,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,pgrm,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,phamdt,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,phazei,1,3834,0.0002608242044861763,0,0,Human,0.862,0,1
+github,generator-gulp-angular,social,phedinkus,7,3834,0.0018257694314032342,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,philipmadeley,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,pierol,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,pineauk,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,pirhoo,1,3834,0.0002608242044861763,0,0,Human,0.929,0,1
+github,generator-gulp-angular,social,piu130,6,3834,0.001564945226917058,0,0,Human,0.323,0,1
+github,generator-gulp-angular,social,pluswave,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,poliveira89,5,3834,0.0013041210224308817,0,0,Human,0.485,0,1
+github,generator-gulp-angular,social,prashanth-sams,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,prbaron,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,priithansen,3,3834,0.000782472613458529,0,0,Human,0.934,0,1
+github,generator-gulp-angular,social,priley86,2,3834,0.0005216484089723526,0,0,Human,0.949,0,1
+github,generator-gulp-angular,social,psvensson,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,psychowood,1,3834,0.0002608242044861763,0,0,Human,0.947,0,1
+github,generator-gulp-angular,social,pulakb,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,qlonik,1,3834,0.0002608242044861763,0,0,Human,0.842,0,1
+github,generator-gulp-angular,social,qorsmond,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,quipu,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,qumani-designs,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,rabr2ro,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,radarsu,1,3834,0.0002608242044861763,0,0,Human,0.357,0,1
+github,generator-gulp-angular,social,radyz,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,rajarju,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,ramirescm,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,raphaelluchini,9,3834,0.002347417840375587,0,0,Human,0.797,0,1
+github,generator-gulp-angular,social,raphox,7,3834,0.0018257694314032342,0,0,Human,0.891,0,1
+github,generator-gulp-angular,social,raslasarslas,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,redaikidoka,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,redskyburning,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,rgjamkhedkar,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,rictorres,1,3834,0.0002608242044861763,0,0,Human,0.811,0,1
+github,generator-gulp-angular,social,ripper2hl,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,riyadhalnur,4,3834,0.0010432968179447052,0,0,Human,0.058,0,1
+github,generator-gulp-angular,social,rkeshmir,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,rkoberg,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,rnugraha,1,3834,0.0002608242044861763,0,0,Human,0.081,0,1
+github,generator-gulp-angular,social,rogerkerse,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,rootical,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,rosieks,6,3834,0.001564945226917058,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,rosscdh,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,rotavio,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,rrajewski,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,rubenCodeforges,3,3834,0.000782472613458529,0,0,Human,0.601,0,1
+github,generator-gulp-angular,social,rulir,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,rummik,1,3834,0.0002608242044861763,0,0,Human,0.658,0,1
+github,generator-gulp-angular,social,runmael,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,rvbiljouw,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,s-y,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,saaqibz,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sabarish-sa,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sak55,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sam2x,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,samhghanmi,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,samskrithib,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,santiagobasulto,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,saqueib,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sarod,2,3834,0.0005216484089723526,0,0,Human,0.889,0,1
+github,generator-gulp-angular,social,sarunast,7,3834,0.0018257694314032342,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sasajib,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sb8244,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sbuljac,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,scanferla,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,scarroll32,1,3834,0.0002608242044861763,0,0,Human,0.945,0,1
+github,generator-gulp-angular,social,schacki,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,scottymeyers,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,scttcper,4,3834,0.0010432968179447052,0,0,Human,0.746,0,1
+github,generator-gulp-angular,social,sdornan,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sebastialonso,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sebastianovide,10,3834,0.0026082420448617634,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sebeichholz,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sebolio,3,3834,0.000782472613458529,0,0,Organization,1.0,0,1
+github,generator-gulp-angular,social,semeano,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,seonetartem,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sercba,1,3834,0.0002608242044861763,0,0,Human,0.877,0,1
+github,generator-gulp-angular,social,sergeymorkovkin,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sergonius,10,3834,0.0026082420448617634,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,seyDoggy,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sgybas,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,shahar84,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,shakyShane,1,3834,0.0002608242044861763,0,0,Human,0.769,0,1
+github,generator-gulp-angular,social,shantanugautam,3,3834,0.000782472613458529,0,1,Bot,0.479,0,0
+github,generator-gulp-angular,social,shaunpatterson,2,3834,0.0005216484089723526,0,0,Human,0.709,0,1
+github,generator-gulp-angular,social,shawn-simon,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,shersial,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,shicholas,1,3834,0.0002608242044861763,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,shootermv,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,shrutiaggarwal3012,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,shubhammaheshan,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sibelius,1,3834,0.0002608242044861763,0,0,Human,0.959,0,1
+github,generator-gulp-angular,social,silkroad57,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,simonerni,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,simonghales,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sinorga,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,skeenan,9,3834,0.002347417840375587,0,0,Human,0.288,0,1
+github,generator-gulp-angular,social,skeep,8,3834,0.0020865936358894104,0,0,Human,0.36,0,1
+github,generator-gulp-angular,social,skjolber,2,3834,0.0005216484089723526,0,0,Human,0.774,0,1
+github,generator-gulp-angular,social,skrenek,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,slawojstanislawski,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,smakosh,1,3834,0.0002608242044861763,0,0,Human,0.925,0,1
+github,generator-gulp-angular,social,smart987,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,snc,1,3834,0.0002608242044861763,0,1,Bot,0.805,0,0
+github,generator-gulp-angular,social,snikch,2,3834,0.0005216484089723526,0,0,Human,0.853,0,1
+github,generator-gulp-angular,social,snow-swallow,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sombra-development,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sookinoby,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,souravmondal93,3,3834,0.000782472613458529,0,0,Human,0.269,0,1
+github,generator-gulp-angular,social,sqal,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,srdjanprpa,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,srsgores,3,3834,0.000782472613458529,0,1,Bot,0.086,0,0
+github,generator-gulp-angular,social,sruthigit,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sswainright,17,3834,0.004434011476264998,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,stanosmith,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,steeren,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,stefanaerts,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,stefanpenner,6,3834,0.001564945226917058,0,1,Bot,0.677,0,0
+github,generator-gulp-angular,social,stepanic,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,stevebritton,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,stewones,10,3834,0.0026082420448617634,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,stoked74,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,storkme,2,3834,0.0005216484089723526,0,0,Human,0.445,0,1
+github,generator-gulp-angular,social,stryju,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,styler,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,sunilkumarkm,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,supersonicclay,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,superstructor,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,svlapin,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,swamper,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,syzer,3,3834,0.000782472613458529,0,0,Human,0.763,0,1
+github,generator-gulp-angular,social,tallboy,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,tawanda,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,tb,1,3834,0.0002608242044861763,0,1,Bot,0.009,0,0
+github,generator-gulp-angular,social,tchiss,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,telemakhos,4,3834,0.0010432968179447052,0,0,Human,0.652,0,1
+github,generator-gulp-angular,social,tghamm,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,thangtx,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,theseanstewart,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,thetruechar,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,thiagosbrito,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,thinksource,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,thnt,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,tiagomelilo,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,timmaybrown,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,timmyg,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,timofeysie,3,3834,0.000782472613458529,0,1,Bot,0.881,0,0
+github,generator-gulp-angular,social,tirli,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,tjcprince,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,tlvince,13,3834,0.003390714658320292,0,0,Human,0.795,0,1
+github,generator-gulp-angular,social,tommyfok,3,3834,0.000782472613458529,0,0,Human,0.908,0,1
+github,generator-gulp-angular,social,tomwetjens,1,3834,0.0002608242044861763,0,0,Human,0.93,0,1
+github,generator-gulp-angular,social,tossp,2,3834,0.0005216484089723526,0,0,Human,0.929,0,1
+github,generator-gulp-angular,social,tscislo,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,tuvokki,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,tuxity,4,3834,0.0010432968179447052,0,0,Human,0.611,0,1
+github,generator-gulp-angular,social,tvararu,4,3834,0.0010432968179447052,0,0,Human,0.949,0,1
+github,generator-gulp-angular,social,uaKorona,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,ufoscout,5,3834,0.0013041210224308817,0,0,Human,0.923,0,1
+github,generator-gulp-angular,social,ulilicht,1,3834,0.0002608242044861763,0,0,Human,0.944,0,1
+github,generator-gulp-angular,social,ulion,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,umair-khanzada,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,urosjarc,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,utamanna,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,valeriosillari,6,3834,0.001564945226917058,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,vamsikrishnamannem,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,vanderleisilva,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,vasiliy0s,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,vaubrun13,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,vbud,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,vespertilian,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,viikas,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,vinicius73,1,3834,0.0002608242044861763,0,0,Human,0.947,0,1
+github,generator-gulp-angular,social,vinod-ttnd,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,vitorreis,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,vitr,1,3834,0.0002608242044861763,0,0,Human,0.602,0,1
+github,generator-gulp-angular,social,vivascau,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,vko-online,3,3834,0.000782472613458529,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,vlio20,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,vmlf01,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,volodchenkov,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,vredchenko,3,3834,0.000782472613458529,0,0,Human,0.901,0,1
+github,generator-gulp-angular,social,vronvali,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,vucalur,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,vuhrmeister,7,3834,0.0018257694314032342,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,vuptt,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,w3debugger,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,wadijm,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,wangchen,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,wanglong167,3,3834,0.000782472613458529,0,0,Invalid,,0,1
+github,generator-gulp-angular,social,wb14123,4,3834,0.0010432968179447052,0,0,Human,0.562,0,1
+github,generator-gulp-angular,social,webcaetano,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,wester97,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,wgorder,61,3834,0.015910276473656754,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,williamboman,1,3834,0.0002608242044861763,0,0,Human,0.953,0,1
+github,generator-gulp-angular,social,wjehring,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,wmceff,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,wonsikin,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,wstam88,1,3834,0.0002608242044861763,0,0,Human,0.848,0,1
+github,generator-gulp-angular,social,wwlweihai,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,xkeshav,1,3834,0.0002608242044861763,0,0,Human,0.957,0,1
+github,generator-gulp-angular,social,xml,3,3834,0.000782472613458529,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,yakuzaaaa,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,yantakus,5,3834,0.0013041210224308817,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,yordis,3,3834,0.000782472613458529,0,0,Human,0.781,0,1
+github,generator-gulp-angular,social,ytkj,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,yuanphoon,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,yyw1994,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,zakdances,8,3834,0.0020865936358894104,0,0,Human,0.527,0,1
+github,generator-gulp-angular,social,zawilliams,9,3834,0.002347417840375587,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,zckrs,540,3834,0.14084507042253522,0,0,Human,0.927,0,1
+github,generator-gulp-angular,social,zhekaus,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,zhenyi2697,2,3834,0.0005216484089723526,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,zhouhao27,7,3834,0.0018257694314032342,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,zychj1,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,zymr-keshav,1,3834,0.0002608242044861763,0,0,Unknown,,0,1
+github,generator-gulp-angular,social,zztop101,4,3834,0.0010432968179447052,0,0,Unknown,,0,1
+osgeo,get-it,tech,404,3,5719,0.0005245672320335723,0,0,Invalid,,0,1
+osgeo,get-it,tech,Alessandro Oggioni,16,5719,0.002797691904179052,0,0,Invalid,,0,1
+osgeo,get-it,tech,Alessio Fabiani,421,5719,0.07361426822871131,0,0,Invalid,,0,1
+osgeo,get-it,tech,Andrea,1,5719,0.00017485574401119076,0,0,Unknown,,0,1
+osgeo,get-it,tech,Andrea Vianello,65,5719,0.0113656233607274,0,0,Invalid,,0,1
+osgeo,get-it,tech,Diego,107,5719,0.018709564609197413,0,0,Unknown,,0,1
+osgeo,get-it,tech,Fabio Pavesi,4,5719,0.000699422976044763,0,0,Invalid,,0,1
+osgeo,get-it,tech,Francesco,260,5719,0.0454624934429096,0,0,Unknown,,0,1
+osgeo,get-it,tech,Monica,3,5719,0.0005245672320335723,0,0,Unknown,,0,1
+osgeo,get-it,tech,Paolo Tagliolato,127,5719,0.022206679489421226,0,0,Invalid,,0,1
+osgeo,get-it,tech,Simone Lanucara,84,5719,0.014687882496940025,0,0,Invalid,,0,1
+osgeo,get-it,tech,Stefano,235,5719,0.04109109984262983,0,0,Unknown,,0,1
+osgeo,get-it,tech,Stefano Menegon,875,5719,0.15299877600979192,0,0,Invalid,,0,1
+osgeo,get-it,tech,Walter Lorenzetti,14,5719,0.0024479804161566705,0,0,Invalid,,0,1
+osgeo,get-it,tech,Walter McGinnis,112,5719,0.019583843329253364,0,0,Invalid,,0,1
+osgeo,get-it,tech,alesarrett,1,5719,0.00017485574401119076,0,0,Unknown,,0,1
+osgeo,get-it,tech,alessandro.sarretta,589,5719,0.10299003322259136,0,0,Invalid,,0,1
+osgeo,get-it,tech,angular-cli,16,5719,0.002797691904179052,0,0,Unknown,,0,1
+osgeo,get-it,tech,fzeiser,2057,5719,0.3596782654310194,0,0,Unknown,,0,1
+osgeo,get-it,tech,noreply,555,5719,0.09704493792621087,0,0,Unknown,,0,1
+osgeo,get-it,tech,root,9,5719,0.0015737016961007168,0,0,Unknown,,0,1
+osgeo,get-it,tech,root@bgdem1.cr.usgs.gov,18,5719,0.0031474033922014337,0,0,Invalid,,0,1
+osgeo,get-it,tech,spookyisland,135,5719,0.023605525441510754,0,0,Unknown,,0,1
+osgeo,get-it,tech,starterkit,12,5719,0.0020982689281342894,0,0,Unknown,,0,1
+osgeo,get-it,social,Alessandro Oggioni,2,4,0.5,0,0,Invalid,,0,1
+osgeo,get-it,social,Laura ,2,4,0.5,0,0,AssumedDFC,,1,1

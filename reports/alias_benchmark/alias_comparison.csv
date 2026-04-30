@@ -1,0 +1,1262 @@
+incubator,project_name,activity_type,alias_name,alias_email,dfc_dealiased_name,gambit_disambiguated_name,activity_count,agreement
+apache,giraph,tech,avery ching,aching@apache.org,Avery Ching,avery ching,384,1
+apache,giraph,tech,christian kunz,kunzchr@apache.org,Christian Kunz,christian kunz,18,1
+apache,giraph,tech,claudio martella,claudio@apache.org,Claudio Martella,claudio martella,35,1
+apache,giraph,tech,hyunsik choi,hyunsik@apache.org,Hyunsik Choi,hyunsik choi,65,1
+apache,giraph,tech,jakob homan,jghoman@apache.org,Jakob Homan,jakob homan,99,1
+apache,giraph,tech,sebastian schelter,ssc@apache.org,Sebastian Schelter,sebastian schelter,18,1
+apache,giraph,social,aapo kyrola,akyrola@cs.cmu.edu,Aapo Kyrola,aapo kyrola,7,1
+apache,giraph,social,abhishek srivastava,asr.lkml@gmail.com,Abhishek Srivastava,abhishek srivastava,3,1
+apache,giraph,social,abhishek srivastava,jira@apache.org,Abhishek Srivastava (JIRA),abhishek srivastava,2,1
+apache,giraph,social,amani,jira@apache.org,Amani  (JIRA),amani,3,1
+apache,giraph,social,andr kelpe,efeshundertelf@googlemail.com,André Kelpe,andr kelpe,13,0
+apache,giraph,social,andr kelpe,jira@apache.org,André Kelpe (Commented JIRA),andr kelpe,9,0
+apache,giraph,social,andr kelpe,jira@apache.org,André Kelpe (Created JIRA),andr kelpe,5,0
+apache,giraph,social,andr kelpe,jira@apache.org,André Kelpe (Updated JIRA),andr kelpe,7,0
+apache,giraph,social,andrew purtell,apurtell@apache.org,Andrew Purtell,andrew purtell,1,1
+apache,giraph,social,andrew purtell,jira@apache.org,Andrew Purtell (JIRA),andrew purtell,3,1
+apache,giraph,social,andy schlaikjer,hazen@twitter.com,Andy Schlaikjer,andy schlaikjer,1,1
+apache,giraph,social,arun suresh,jira@apache.org,Arun Suresh (Assigned) (JIRA),arun suresh,1,1
+apache,giraph,social,arun suresh,jira@apache.org,Arun Suresh (Commented) (JIRA),arun suresh,14,1
+apache,giraph,social,arun suresh,jira@apache.org,Arun Suresh (Created) (JIRA),arun suresh,2,1
+apache,giraph,social,arun suresh,jira@apache.org,Arun Suresh (Updated) (JIRA),arun suresh,2,1
+apache,giraph,social,ashish,paliwalashish@gmail.com,Ashish,ashish,1,1
+apache,giraph,social,attila csordas,attilacsordas@gmail.com,Attila Csordas,attila csordas,3,1
+apache,giraph,social,attila csordas,jira@apache.org,Attila Csordas (Assigned) (JIRA),attila csordas,4,1
+apache,giraph,social,attila csordas,jira@apache.org,Attila Csordas (Commented) (JIRA),attila csordas,3,1
+apache,giraph,social,attila csordas,jira@apache.org,Attila Csordas (Updated) (JIRA),attila csordas,2,1
+apache,giraph,social,avery ching,aching@apache.org,Avery Ching,avery ching,196,1
+apache,giraph,social,avery ching,aching@yahoo-inc.com,Avery Ching,avery ching,13,1
+apache,giraph,social,avery ching,avery.ching@gmail.com,Avery Ching,avery ching,50,1
+apache,giraph,social,avery ching,jira@apache.org,Avery Ching (Assigned) (JIRA),avery ching,19,1
+apache,giraph,social,avery ching,jira@apache.org,Avery Ching (Closed) (JIRA),avery ching,3,1
+apache,giraph,social,avery ching,jira@apache.org,Avery Ching (Commented) (JIRA),avery ching,230,1
+apache,giraph,social,avery ching,jira@apache.org,Avery Ching (Created) (JIRA),avery ching,16,1
+apache,giraph,social,avery ching,jira@apache.org,Avery Ching (Issue Comment Edited) (JIRA),avery ching,3,1
+apache,giraph,social,avery ching,jira@apache.org,Avery Ching (JIRA),avery ching,175,1
+apache,giraph,social,avery ching,jira@apache.org,Avery Ching (Resolved) (JIRA),avery ching,26,1
+apache,giraph,social,avery ching,jira@apache.org,Avery Ching (Updated) (JIRA),avery ching,36,1
+apache,giraph,social,benjamin heitmann,benjamin.heitmann@deri.org,Benjamin Heitmann,benjamin heitmann,25,1
+apache,giraph,social,benjamin heitmann,jira@apache.org,Benjamin Heitmann (Commented) (JIRA),benjamin heitmann,5,1
+apache,giraph,social,benjamin heitmann,jira@apache.org,Benjamin Heitmann (Created) (JIRA),benjamin heitmann,1,1
+apache,giraph,social,benjamin heitmann,jira@apache.org,Benjamin Heitmann (JIRA),benjamin heitmann,4,1
+apache,giraph,social,benjamin heitmann,jira@apache.org,Benjamin Heitmann (Updated) (JIRA),benjamin heitmann,1,1
+apache,giraph,social,bo wang,david.b.wang@gmail.com,Bo Wang,bo wang,5,1
+apache,giraph,social,bo wang,jira@apache.org,Bo Wang (Commented) (JIRA),bo wang,1,1
+apache,giraph,social,bo wang,jira@apache.org,Bo Wang (Created) (JIRA),bo wang,2,1
+apache,giraph,social,bo wang,jira@apache.org,Bo Wang (JIRA),bo wang,11,1
+apache,giraph,social,brian femiano,bfemiano@gmail.com,Brian Femiano,brian femiano,2,1
+apache,giraph,social,brian femiano,jira@apache.org,Brian Femiano (Commented) (JIRA),brian femiano,20,1
+apache,giraph,social,brian femiano,jira@apache.org,Brian Femiano (Created) (JIRA),brian femiano,2,1
+apache,giraph,social,brian femiano,jira@apache.org,Brian Femiano (JIRA),brian femiano,19,1
+apache,giraph,social,brian femiano,jira@apache.org,Brian Femiano (Updated) (JIRA),brian femiano,23,1
+apache,giraph,social,charles thayer,jira@apache.org,Charles Thayer (JIRA),charles thayer,1,1
+apache,giraph,social,christian kunz,christian@jybe-inc.com,Christian Kunz,christian kunz,3,1
+apache,giraph,social,christian kunz,jira@apache.org,Christian Kunz (JIRA),christian kunz,4,1
+apache,giraph,social,christoph bhm,listenbruder@gmx.net,Christoph Böhm,christoph bhm,6,0
+apache,giraph,social,claudio martella,claudio.martella@gmail.com,Claudio Martella,claudio martella,120,1
+apache,giraph,social,claudio martella,jira@apache.org,Claudio Martella (Assigned) (JIRA),claudio martella,2,1
+apache,giraph,social,claudio martella,jira@apache.org,Claudio Martella (Commented) (JIRA),claudio martella,92,1
+apache,giraph,social,claudio martella,jira@apache.org,Claudio Martella (Created) (JIRA),claudio martella,13,1
+apache,giraph,social,claudio martella,jira@apache.org,Claudio Martella (JIRA),claudio martella,14,1
+apache,giraph,social,claudio martella,jira@apache.org,Claudio Martella (Resolved) (JIRA),claudio martella,8,1
+apache,giraph,social,claudio martella,jira@apache.org,Claudio Martella (Updated) (JIRA),claudio martella,23,1
+apache,giraph,social,dan brickley,danbri@danbri.org,Dan Brickley,dan brickley,5,1
+apache,giraph,social,dan brickley,jira@apache.org,Dan Brickley (Commented) (JIRA),dan brickley,7,1
+apache,giraph,social,dan brickley,jira@apache.org,Dan Brickley (Created) (JIRA),dan brickley,1,1
+apache,giraph,social,dan brickley,jira@apache.org,Dan Brickley (JIRA),dan brickley,1,1
+apache,giraph,social,dan mcclary,dan.mcclary@northwestern.edu,Dan McClary,dan mcclary,1,1
+apache,giraph,social,dave,jira@apache.org,Dave (Created) (JIRA),dave,1,1
+apache,giraph,social,david capwell,jira@apache.org,David Capwell (Commented) (JIRA),david capwell,1,1
+apache,giraph,social,david garcia,dgarcia@potomacfusion.com,David Garcia,david garcia,33,1
+apache,giraph,social,deepak nettem,deepaknettem@gmail.com,Deepak Nettem,deepak nettem,3,1
+apache,giraph,social,devaraj k,devaraj.k@huawei.com,Devaraj k,devaraj k,1,1
+apache,giraph,social,devaraj k,jira@apache.org,Devaraj K (Assigned) (JIRA),devaraj k,1,1
+apache,giraph,social,devaraj k,jira@apache.org,Devaraj K (Commented) (JIRA),devaraj k,1,1
+apache,giraph,social,devaraj k,jira@apache.org,Devaraj K (Created) (JIRA),devaraj k,1,1
+apache,giraph,social,devaraj k,jira@apache.org,Devaraj K (Updated) (JIRA),devaraj k,8,1
+apache,giraph,social,dionysios logothetis,dlogothetis@cs.ucsd.edu,Dionysios Logothetis,dionysios logothetis,2,1
+apache,giraph,social,dionysios logothetis,jira@apache.org,Dionysios Logothetis (Commented) (JIRA),dionysios logothetis,1,1
+apache,giraph,social,dionysios logothetis,jira@apache.org,Dionysios Logothetis (Created) (JIRA),dionysios logothetis,3,1
+apache,giraph,social,dionysios logothetis,jira@apache.org,Dionysios Logothetis (JIRA),dionysios logothetis,3,1
+apache,giraph,social,dionysios logothetis,jira@apache.org,Dionysios Logothetis (Updated) (JIRA),dionysios logothetis,3,1
+apache,giraph,social,dionysis logothetis,dlogothetis@gmail.com,Dionysis Logothetis,dionysis logothetis,2,1
+apache,giraph,social,dmitriy ryaboy,dmitriy@twitter.com,Dmitriy Ryaboy,dmitriy ryaboy,9,1
+apache,giraph,social,dmitriy ryaboy,dvryaboy@gmail.com,Dmitriy Ryaboy,dmitriy ryaboy,1,1
+apache,giraph,social,dmitriy v ryaboy,jira@apache.org,Dmitriy V. Ryaboy (Commented) (JIRA),dmitriy v ryaboy,12,0
+apache,giraph,social,dmitriy v ryaboy,jira@apache.org,Dmitriy V. Ryaboy (JIRA),dmitriy v ryaboy,24,0
+apache,giraph,social,ed kohlwey,jira@apache.org,Ed Kohlwey (Commented) (JIRA),ed kohlwey,6,1
+apache,giraph,social,ed kohlwey,jira@apache.org,Ed Kohlwey (Created) (JIRA),ed kohlwey,2,1
+apache,giraph,social,ed kohlwey,jira@apache.org,Ed Kohlwey (Updated) (JIRA),ed kohlwey,2,1
+apache,giraph,social,edward j yoon,edwardyoon@apache.org,Edward J. Yoon,edward j yoon,2,0
+apache,giraph,social,eli reisman,jira@apache.org,Eli Reisman (Commented) (JIRA),eli reisman,5,1
+apache,giraph,social,eli reisman,jira@apache.org,Eli Reisman (Created) (JIRA),eli reisman,1,1
+apache,giraph,social,eli reisman,jira@apache.org,Eli Reisman (Updated) (JIRA),eli reisman,8,1
+apache,giraph,social,eric charles,jira@apache.org,Eric Charles (Commented) (JIRA),eric charles,1,1
+apache,giraph,social,eric charles,jira@apache.org,Eric Charles (Updated) (JIRA),eric charles,1,1
+apache,giraph,social,etienne dumoulin,etienne.dumoulin@idiro.com,Etienne Dumoulin,etienne dumoulin,5,1
+apache,giraph,social,eugene koontz,ekoontz@hiro-tan.org,Eugene Koontz,eugene koontz,8,1
+apache,giraph,social,eugene koontz,jira@apache.org,Eugene Koontz (Commented) (JIRA),eugene koontz,17,1
+apache,giraph,social,eugene koontz,jira@apache.org,Eugene Koontz (Created) (JIRA),eugene koontz,9,1
+apache,giraph,social,eugene koontz,jira@apache.org,Eugene Koontz (JIRA),eugene koontz,1,1
+apache,giraph,social,eugene koontz,jira@apache.org,Eugene Koontz (Updated) (JIRA),eugene koontz,22,1
+apache,giraph,social,eugenia gabrielova,eugenia.g@uci.edu,Eugenia Gabrielova,eugenia gabrielova,1,1
+apache,giraph,social,fleischman stephen,stephen.fleischman@hp.com,"Fleischman, Stephen (ISS SCI - Plano TX)",fleischman stephen,5,0
+apache,giraph,social,gavan hood,gwhood@simul-tech.com,Gavan Hood,gavan hood,4,1
+apache,giraph,social,gianmarco de francisci morales,gdfm@apache.org,Gianmarco De Francisci Morales,gianmarco de francisci morales,10,1
+apache,giraph,social,gianmarco de francisci morales,jira@apache.org,Gianmarco De Francisci Morales (Commented) (JIRA),gianmarco de francisci morales,3,1
+apache,giraph,social,gianmarco de francisci morales,jira@apache.org,Gianmarco De Francisci Morales (Created) (JIRA),gianmarco de francisci morales,1,1
+apache,giraph,social,gianmarco de francisci morales,jira@apache.org,Gianmarco De Francisci Morales (JIRA),gianmarco de francisci morales,3,1
+apache,giraph,social,harsh j,harsh@cloudera.com,Harsh J,harsh j,4,1
+apache,giraph,social,harsh j,jira@apache.org,Harsh J (Commented) (JIRA),harsh j,2,1
+apache,giraph,social,harsh j,jira@apache.org,Harsh J (Updated) (JIRA),harsh j,3,1
+apache,giraph,social,henry saputra,henry.saputra@gmail.com,Henry Saputra,henry saputra,6,1
+apache,giraph,social,henry saputra,jira@apache.org,Henry Saputra (JIRA),henry saputra,3,1
+apache,giraph,social,hudson,jira@apache.org,Hudson (Commented) (JIRA),hudson,87,1
+apache,giraph,social,hyunsik choi,hyunsik.choi@gmail.com,Hyunsik Choi,hyunsik choi,3,1
+apache,giraph,social,hyunsik choi,hyunsik@apache.org,Hyunsik Choi,hyunsik choi,22,1
+apache,giraph,social,hyunsik choi,jira@apache.org,Hyunsik Choi (Assigned) (JIRA),hyunsik choi,3,1
+apache,giraph,social,hyunsik choi,jira@apache.org,Hyunsik Choi (Commented) (JIRA),hyunsik choi,29,1
+apache,giraph,social,hyunsik choi,jira@apache.org,Hyunsik Choi (Created) (JIRA),hyunsik choi,4,1
+apache,giraph,social,hyunsik choi,jira@apache.org,Hyunsik Choi (JIRA),hyunsik choi,58,1
+apache,giraph,social,hyunsik choi,jira@apache.org,Hyunsik Choi (Resolved) (JIRA),hyunsik choi,1,1
+apache,giraph,social,hyunsik choi,jira@apache.org,Hyunsik Choi (Updated) (JIRA),hyunsik choi,6,1
+apache,giraph,social,inci cetindil,icetindil@gmail.com,Inci Cetindil,inci cetindil,6,1
+apache,giraph,social,jake mannix,jake.mannix@gmail.com,Jake Mannix,jake mannix,45,1
+apache,giraph,social,jake mannix,jira@apache.org,Jake Mannix (Commented) (JIRA),jake mannix,31,1
+apache,giraph,social,jake mannix,jira@apache.org,Jake Mannix (Created) (JIRA),jake mannix,1,1
+apache,giraph,social,jake mannix,jira@apache.org,Jake Mannix (JIRA),jake mannix,69,1
+apache,giraph,social,jake mannix,jira@apache.org,Jake Mannix (Resolved) (JIRA),jake mannix,1,1
+apache,giraph,social,jake mannix,jira@apache.org,Jake Mannix (Updated) (JIRA),jake mannix,3,1
+apache,giraph,social,jakob homan,jghoman@apache.org,Jakob Homan,jakob homan,5,1
+apache,giraph,social,jakob homan,jghoman@gmail.com,Jakob Homan,jakob homan,74,1
+apache,giraph,social,jakob homan,jira@apache.org,Jakob Homan (Assigned) (JIRA),jakob homan,14,1
+apache,giraph,social,jakob homan,jira@apache.org,Jakob Homan (Commented) (JIRA),jakob homan,145,1
+apache,giraph,social,jakob homan,jira@apache.org,Jakob Homan (Created) (JIRA),jakob homan,53,1
+apache,giraph,social,jakob homan,jira@apache.org,Jakob Homan (JIRA),jakob homan,47,1
+apache,giraph,social,jakob homan,jira@apache.org,Jakob Homan (Resolved) (JIRA),jakob homan,14,1
+apache,giraph,social,jakob homan,jira@apache.org,Jakob Homan (Updated) (JIRA),jakob homan,43,1
+apache,giraph,social,jan van der lugt,janlugt@gmail.com,Jan van der Lugt,jan van der lugt,2,1
+apache,giraph,social,jan van der lugt,jira@apache.org,Jan van der Lugt (Created) (JIRA),jan van der lugt,1,1
+apache,giraph,social,jan van der lugt,jira@apache.org,Jan van der Lugt (JIRA),jan van der lugt,6,1
+apache,giraph,social,jeff g,jeffgemail@gmail.com,Jeff G,jeff g,1,1
+apache,giraph,social,jeff g,jira@apache.org,Jeff G (Commented) (JIRA),jeff g,2,1
+apache,giraph,social,jeffrey yunes,jeff.yunes@berkeley.edu,Jeffrey Yunes,jeffrey yunes,1,1
+apache,giraph,social,jg homan,jghoman@gmail.com,JG Homan,jg homan,1,1
+apache,giraph,social,jianfeng qian,jira@apache.org,Jianfeng Qian (Commented) (JIRA),jianfeng qian,5,1
+apache,giraph,social,jianfeng qian,jira@apache.org,Jianfeng Qian (Created) (JIRA),jianfeng qian,1,1
+apache,giraph,social,jiraposter,jira@apache.org,jiraposter@reviews.apache.org (Commented) (JIRA),jiraposter,54,0
+apache,giraph,social,jiraposter,jira@apache.org,jiraposter@reviews.apache.org (JIRA),jiraposter,23,0
+apache,giraph,social,joe xie,jira@apache.org,Joe Xie (JIRA),joe xie,3,1
+apache,giraph,social,jon allen,ramanujon@gmail.com,Jon Allen,jon allen,3,1
+apache,giraph,social,joseph boyd,joseph.boyd@cbsinteractive.com,Joseph Boyd,joseph boyd,1,1
+apache,giraph,social,josh patterson,josh@cloudera.com,Josh Patterson,josh patterson,2,1
+apache,giraph,social,juan f codagnone,jira@apache.org,Juan F. Codagnone (Commented) (JIRA),juan f codagnone,1,0
+apache,giraph,social,ken nakagama,jira@apache.org,Ken Nakagama (Commented) (JIRA),ken nakagama,1,1
+apache,giraph,social,kenin coloma,jira@apache.org,Kenin Coloma (JIRA),kenin coloma,2,1
+apache,giraph,social,kohei ozaki,jira@apache.org,Kohei Ozaki (Commented) (JIRA),kohei ozaki,1,1
+apache,giraph,social,kohei ozaki,jira@apache.org,Kohei Ozaki (Created) (JIRA),kohei ozaki,1,1
+apache,giraph,social,kohei ozaki,jira@apache.org,Kohei Ozaki (Updated) (JIRA),kohei ozaki,1,1
+apache,giraph,social,kyle teague,kyteague@gmail.com,Kyle Teague,kyle teague,2,1
+apache,giraph,social,listenbruder,listenbruder@gmx.net,listenbruder,listenbruder,1,1
+apache,giraph,social,liyang,tangliyang921@gmail.com,Liyang,liyang,1,1
+apache,giraph,social,locker,jira@apache.org,locker (Commented) (JIRA),locker,1,1
+apache,giraph,social,locker,jira@apache.org,locker (Created) (JIRA),locker,1,1
+apache,giraph,social,marvin,no-reply@apache.org,Marvin,marvin,9,1
+apache,giraph,social,mattmann chris a,chris.a.mattmann@jpl.nasa.gov,"Mattmann, Chris A (388J)",mattmann chris a,26,0
+apache,giraph,social,mitul tiwari,jira@apache.org,Mitul Tiwari (Created) (JIRA),mitul tiwari,1,1
+apache,giraph,social,mitul tiwari,jira@apache.org,Mitul Tiwari (Updated) (JIRA),mitul tiwari,2,1
+apache,giraph,social,nils rethmeier,nils.rethmeier@gmx.net,Nils Rethmeier,nils rethmeier,2,1
+apache,giraph,social,oana theogarajan,oana.catu@gmail.com,Oana Theogarajan,oana theogarajan,3,1
+apache,giraph,social,owen omalley,jira@apache.org,Owen O'Malley (Commented) (JIRA),owen omalley,4,0
+apache,giraph,social,owen omalley,jira@apache.org,Owen O'Malley (JIRA),owen omalley,20,0
+apache,giraph,social,owen omalley,omalley@apache.org,Owen O'Malley,owen omalley,16,0
+apache,giraph,social,owen omalley,owen@hortonworks.com,Owen O'Malley,owen omalley,7,0
+apache,giraph,social,paolo castagna,castagna.lists@googlemail.com,Paolo Castagna,paolo castagna,41,1
+apache,giraph,social,paolo castagna,jira@apache.org,Paolo Castagna (Commented) (JIRA),paolo castagna,7,1
+apache,giraph,social,paolo castagna,jira@apache.org,Paolo Castagna (Created) (JIRA),paolo castagna,1,1
+apache,giraph,social,paolo castagna,jira@apache.org,Paolo Castagna (JIRA),paolo castagna,17,1
+apache,giraph,social,paolo castagna,jira@apache.org,Paolo Castagna (Updated) (JIRA),paolo castagna,1,1
+apache,giraph,social,pradeep gollakota,jira@apache.org,Pradeep Gollakota (Commented) (JIRA),pradeep gollakota,2,1
+apache,giraph,social,pradeep gollakota,jira@apache.org,Pradeep Gollakota (Created) (JIRA),pradeep gollakota,1,1
+apache,giraph,social,pradeep gollakota,jira@apache.org,Pradeep Gollakota (Updated) (JIRA),pradeep gollakota,1,1
+apache,giraph,social,prasenjit mukherjee,prasen.bea@gmail.com,prasenjit mukherjee,prasenjit mukherjee,5,1
+apache,giraph,social,praveen sripati,praveensripati@gmail.com,Praveen Sripati,praveen sripati,7,1
+apache,giraph,social,raimon bosch,raimon.bosch@gmail.com,Raimon Bosch,raimon bosch,1,1
+apache,giraph,social,robert davis,dwb2812877@gmail.com,Robert Davis,robert davis,5,1
+apache,giraph,social,roman k,jira@apache.org,Roman K (JIRA),roman k,9,1
+apache,giraph,social,roman shaposhnik,roman@shaposhnik.org,Roman Shaposhnik,roman shaposhnik,4,1
+apache,giraph,social,sebastian schelter,jira@apache.org,Sebastian Schelter (Commented) (JIRA),sebastian schelter,13,1
+apache,giraph,social,sebastian schelter,jira@apache.org,Sebastian Schelter (Created) (JIRA),sebastian schelter,10,1
+apache,giraph,social,sebastian schelter,jira@apache.org,Sebastian Schelter (JIRA),sebastian schelter,13,1
+apache,giraph,social,sebastian schelter,jira@apache.org,Sebastian Schelter (Updated) (JIRA),sebastian schelter,15,1
+apache,giraph,social,sebastian schelter,ssc.open@googlemail.com,Sebastian Schelter,sebastian schelter,2,1
+apache,giraph,social,sebastian schelter,ssc@apache.org,Sebastian Schelter,sebastian schelter,65,1
+apache,giraph,social,semih salihoglu,jira@apache.org,Semih Salihoglu (Created) (JIRA),semih salihoglu,1,1
+apache,giraph,social,semih salihoglu,jira@apache.org,Semih Salihoglu (JIRA),semih salihoglu,1,1
+apache,giraph,social,semih salihoglu,semih@stanford.edu,Semih Salihoglu,semih salihoglu,3,1
+apache,giraph,social,severin andreas corsten,severin.corsten@de.ibm.com,Severin Andreas Corsten,severin andreas corsten,2,1
+apache,giraph,social,severin corsten,jira@apache.org,Severin Corsten (Commented) (JIRA),severin corsten,5,1
+apache,giraph,social,severin corsten,jira@apache.org,Severin Corsten (Created) (JIRA),severin corsten,1,1
+apache,giraph,social,severin corsten,jira@apache.org,Severin Corsten (JIRA),severin corsten,4,1
+apache,giraph,social,shaunak kashyap,jira@apache.org,Shaunak Kashyap (Assigned) (JIRA),shaunak kashyap,1,1
+apache,giraph,social,shaunak kashyap,jira@apache.org,Shaunak Kashyap (Commented) (JIRA),shaunak kashyap,3,1
+apache,giraph,social,shaunak kashyap,jira@apache.org,Shaunak Kashyap (Resolved) (JIRA),shaunak kashyap,1,1
+apache,giraph,social,shaunak kashyap,jira@apache.org,Shaunak Kashyap (Updated) (JIRA),shaunak kashyap,2,1
+apache,giraph,social,shaunak kashyap,ycombinator@gmail.com,Shaunak Kashyap,shaunak kashyap,7,1
+apache,giraph,social,thomas jungblut,thomas.jungblut@googlemail.com,Thomas Jungblut,thomas jungblut,1,1
+apache,giraph,social,thomas quintana,quintana.thomas@gmail.com,Thomas Quintana,thomas quintana,1,1
+apache,giraph,social,timmy wilson,timmyt@smarttypes.org,Timmy Wilson,timmy wilson,4,1
+apache,giraph,social,vinod kumar vavilapalli,jira@apache.org,Vinod Kumar Vavilapalli (JIRA),vinod kumar vavilapalli,1,1
+apache,giraph,social,vinod kumar vavilapalli,vinodkv@hortonworks.com,Vinod Kumar Vavilapalli,vinod kumar vavilapalli,3,1
+apache,giraph,social,yavuz gokirmak,jira@apache.org,yavuz gokirmak (Created) (JIRA),yavuz gokirmak,1,1
+apache,giraph,social,yavuz gokirmak,ygokirmak@gmail.com,yavuz gokirmak,yavuz gokirmak,10,1
+apache,giraph,social,ycombinator,ycombinator@gmail.com,ycombinator,ycombinator,3,1
+apache,giraph,social,yingyi bu,buyingyi@gmail.com,Yingyi Bu,yingyi bu,4,1
+apache,giraph,social,yuanyuan tian,jira@apache.org,Yuanyuan Tian (Created) (JIRA),yuanyuan tian,2,1
+apache,giraph,social,yuanyuan tian,jira@apache.org,Yuanyuan Tian (Updated) (JIRA),yuanyuan tian,1,1
+apache,giraph,social,yuanyuan tian,ytian@us.ibm.com,Yuanyuan Tian,yuanyuan tian,5,1
+apache,giraph,social,yury litvinov,jira@apache.org,Yury Litvinov (Created) (JIRA),yury litvinov,1,1
+apache,giraph,social,zechao shang,jira@apache.org,Zechao Shang (Created) (JIRA),zechao shang,1,1
+apache,giraph,social,zhiwei gu,guzhiwei@gmail.com,Zhiwei Gu,zhiwei gu,2,1
+apache,giraph,social,zhiwei gu,jira@apache.org,Zhiwei Gu (Commented) (JIRA),zhiwei gu,4,1
+apache,giraph,social,zhiwei gu,jira@apache.org,Zhiwei Gu (Created) (JIRA),zhiwei gu,4,1
+apache,giraph,social,zhiwei gu,jira@apache.org,Zhiwei Gu (Updated) (JIRA),zhiwei gu,2,1
+apache,giraph,social,zuhair khayyat,zuhair.khayyat@kaust.edu.sa,Zuhair Khayyat,zuhair khayyat,3,1
+github,generator-gulp-angular,tech,Abhishek Shende,a.shende@contractor.verio.net,Abhishek Shende,abhishek shende,1,1
+github,generator-gulp-angular,tech,An Phan,an@construct.sg,An Phan,an phan,1,1
+github,generator-gulp-angular,tech,Andy Perlitch,andyperlitch@gmail.com,Andy Perlitch,andy perlitch,1,1
+github,generator-gulp-angular,tech,Arnaud Kleinpeter,arnaud.kleinpeter@gmail.com,Arnaud Kleinpeter,arnaud kleinpeter,2,1
+github,generator-gulp-angular,tech,BhagyashriK,bhagyashri.kulkarni@agrostar.in,Bhagyashrik,bhagyashri k,3,0
+github,generator-gulp-angular,tech,Bradley Flood,bradleyflood@users.noreply.github.com,Bradley Flood,bradley flood,1,1
+github,generator-gulp-angular,tech,Can Aksakalli,can.aksakalli@recogizer.de,Can Aksakalli,can aksakalli,1,1
+github,generator-gulp-angular,tech,Chase Fleming,chaseefleming@gmail.com,Chase Fleming,chase fleming,1,1
+github,generator-gulp-angular,tech,David,david.bocle@misys.com,David,david,5,1
+github,generator-gulp-angular,tech,David Pertiller,david.pertiller@bwinparty.com,David Pertiller,david pertiller,13,1
+github,generator-gulp-angular,tech,Denis Schneider,highfivedenis@gmail.com,Denis Schneider,denis schneider,13,1
+github,generator-gulp-angular,tech,Dmytro TOLSTYI,dmytro.tolstyi@gmail.com,Dmytro Tolstyi,dmytro tolstyi,10,1
+github,generator-gulp-angular,tech,Dominic Watson,intellix@users.noreply.github.com,Dominic Watson,dominic watson,3,1
+github,generator-gulp-angular,tech,Dominik Moritz,domoritz@gmail.com,Dominik Moritz,dominik moritz,1,1
+github,generator-gulp-angular,tech,Forrest Thomas,forrestbthomas@gmail.com,Forrest Thomas,forrest thomas,1,1
+github,generator-gulp-angular,tech,Gladney,matthew_gladney@ftcm.com,Gladney,gladney,4,1
+github,generator-gulp-angular,tech,Glenn Geenen,glenn@geenentijd.be,Glenn Geenen,glenn geenen,2,1
+github,generator-gulp-angular,tech,Glenn Geenen,glenngeenen@outlook.com,Glenn Geenen,glenn geenen,4,1
+github,generator-gulp-angular,tech,Jbz797,jibusss50@gmail.com,Jbz797,jbz,2,0
+github,generator-gulp-angular,tech,Jean-Baptiste Pionnier,jb.pionnier@gmail.com,Jean-baptiste Pionnier,jean baptiste pionnier,1,0
+github,generator-gulp-angular,tech,Jean-François Genillier,jean-francois.genillier@open-groupe.com,Jean-françois Genillier,jean francois genillier,3,0
+github,generator-gulp-angular,tech,Jeremy Granadillo,akakitsu@gmail.com,Jeremy Granadillo,jeremy granadillo,1,1
+github,generator-gulp-angular,tech,Jesse Pinuelas,me@jessepinuelas.com,Jesse Pinuelas,jesse pinuelas,2,1
+github,generator-gulp-angular,tech,Joao Dias,joao.dias@cherrygroup.com,Joao Dias,joao dias,1,1
+github,generator-gulp-angular,tech,Jozef Dúc,D0d0@users.noreply.github.com,Jozef Dúc,jozef duc,3,0
+github,generator-gulp-angular,tech,Karl Horky,karl.horky@gmail.com,Karl Horky,karl horky,2,1
+github,generator-gulp-angular,tech,Kate Lizogubova,tirli95@gmail.com,Kate Lizogubova,kate lizogubova,1,1
+github,generator-gulp-angular,tech,Kirill Fuchs,kfuchs87@gmail.com,Kirill Fuchs,kirill fuchs,1,1
+github,generator-gulp-angular,tech,Kyle Alwyn,kjalwyn@gmail.com,Kyle Alwyn,kyle alwyn,1,1
+github,generator-gulp-angular,tech,Lawrence Hunt,lawrence.hunt@gmail.com,Lawrence Hunt,lawrence hunt,4,1
+github,generator-gulp-angular,tech,Manu Phatak,bionikspoon@gmail.com,Manu Phatak,manu phatak,1,1
+github,generator-gulp-angular,tech,Matthieu Lux,matthieu.lux@gmail.com,Matthieu Lux,matthieu lux,1865,1
+github,generator-gulp-angular,tech,Maxim Abramchuk,MaximAbramchuck@gmail.com,Maxim Abramchuk,maxim abramchuk,1,1
+github,generator-gulp-angular,tech,Maxim Abramchuk,maximabramchuck@gmail.com,Maxim Abramchuk,maxim abramchuk,2,1
+github,generator-gulp-angular,tech,Mehdy Dara,mdara@eleven-labs.com,Mehdy Dara,mehdy dara,985,1
+github,generator-gulp-angular,tech,Michael Asimakopoulos,m.asimakopoulos@gmail.com,Michael Asimakopoulos,michael asimakopoulos,15,1
+github,generator-gulp-angular,tech,Michael Blakeney,mike@acts18tech.com,Michael Blakeney,michael blakeney,3,1
+github,generator-gulp-angular,tech,Michał Błotniak,buoto@buzytor.com,Michał Błotniak,michal blotniak,1,0
+github,generator-gulp-angular,tech,Mike Sigsworth,mikesigsworth@hotmail.com,Mike Sigsworth,mike sigsworth,10,1
+github,generator-gulp-angular,tech,Mohsen Azimi,me@azimi.me,Mohsen Azimi,mohsen azimi,2,1
+github,generator-gulp-angular,tech,Moshe,shootermv@gmail.com,Moshe,moshe,1,1
+github,generator-gulp-angular,tech,Nek (Maxime Veber),nek.dev@gmail.com,Nek (maxime Veber),nek maxime veber,1,0
+github,generator-gulp-angular,tech,Otávio Augusto Soares,otaviokk@gmail.com,Otávio Augusto Soares,otavio augusto soares,3,0
+github,generator-gulp-angular,tech,Rajarshi Nigam,rajington@users.noreply.github.com,Rajarshi Nigam,rajarshi nigam,2,1
+github,generator-gulp-angular,tech,Ramon Boss,ramon.boss@outlook.com,Ramon Boss,ramon boss,1,1
+github,generator-gulp-angular,tech,Scott Busche,swbusche@gmail.com,Scott Busche,scott busche,19,1
+github,generator-gulp-angular,tech,Scott Cooper,scttcper@gmail.com,Scott Cooper,scott cooper,26,1
+github,generator-gulp-angular,tech,Sergey Lapin,sv0lapin@gmail.com,Sergey Lapin,sergey lapin,1,1
+github,generator-gulp-angular,tech,Shinnosuke Watanabe,snnskwtnb@gmail.com,Shinnosuke Watanabe,shinnosuke watanabe,1,1
+github,generator-gulp-angular,tech,Steve Mao,steve.mao@healthinteract.com.au,Steve Mao,steve mao,1,1
+github,generator-gulp-angular,tech,Swiip,matthieu.lux@gmail.com,Swiip,swiip,246,1
+github,generator-gulp-angular,tech,TMD,dung1@e.ntu.edu.sg,Tmd,tmd,48,1
+github,generator-gulp-angular,tech,Thib,thibaud.de@gmail.com,Thib,thib,1,1
+github,generator-gulp-angular,tech,Toilal,toilal.dev@gmail.com,Toilal,toilal,53,1
+github,generator-gulp-angular,tech,Tom Vincent,git@tlvince.com,Tom Vincent,tom vincent,1,1
+github,generator-gulp-angular,tech,Touched,jamesbehr@gmail.com,Touched,touched,1,1
+github,generator-gulp-angular,tech,Veronica,veronicacookv@gmail.com,Veronica,veronica,1,1
+github,generator-gulp-angular,tech,Vladimir Stolyarov,phoerix@gmail.com,Vladimir Stolyarov,vladimir stolyarov,1,1
+github,generator-gulp-angular,tech,Wojciech Krzystek,vucalur.work+git@gmail.com,Wojciech Krzystek,wojciech krzystek,4,1
+github,generator-gulp-angular,tech,amrynsky,amrynsky@gmail.com,Amrynsky,amrynsky,1,1
+github,generator-gulp-angular,tech,andrenovax,andrenovax@gmail.com,Andrenovax,andrenovax,1,1
+github,generator-gulp-angular,tech,arcdev1,arcdev1@users.noreply.github.com,Arcdev1,arcdev,1,0
+github,generator-gulp-angular,tech,artem,seonetartem@gmail.com,Artem,artem,1,1
+github,generator-gulp-angular,tech,burakgormek,burak.gormek@gmail.com,Burakgormek,burakgormek,1,1
+github,generator-gulp-angular,tech,cgaudreau,chris@crystala.net,Cgaudreau,cgaudreau,1,1
+github,generator-gulp-angular,tech,chhsiao,hsiao.chuanheng@gmail.com,Chhsiao1981,chhsiao,5,0
+github,generator-gulp-angular,tech,eseceve,eseceve@gmail.com,Eseceve,eseceve,6,1
+github,generator-gulp-angular,tech,getglad,getglad@users.noreply.github.com,Getglad,getglad,1,1
+github,generator-gulp-angular,tech,jbnizet,jb@ninja-squad.com,Jbnizet,jbnizet,1,1
+github,generator-gulp-angular,tech,kevin_zenika,kevin.llopart@zenika.com,Kevin_zenika,kevin zenika,1,0
+github,generator-gulp-angular,tech,loezix,loezix@gmail.com,Loezix,loezix,6,1
+github,generator-gulp-angular,tech,tommyfok,154274174@qq.com,Tommyfok,tommyfok,3,1
+github,generator-gulp-angular,tech,unknown,C:\Users\Angel\AppData\Roaming\The Bat!,Unknown,unknown,4,1
+github,generator-gulp-angular,tech,vukoje,vukojekg@yahoo.com,Vukoje,vukoje,1,1
+github,generator-gulp-angular,tech,wrseward,wrseward@gmail.com,Wrseward,wrseward,1,1
+github,generator-gulp-angular,tech,zckrs,mdara@eleven-labs.com,Zckrs,zckrs,544,1
+github,generator-gulp-angular,tech,֍ DaAwesomeP ֎,DaAwesomeP@users.noreply.github.com,֍ Daawesomep ֎,da awesome p,1,0
+github,generator-gulp-angular,social,0101adm,None,Adam404,0101adm,53,0
+github,generator-gulp-angular,social,13sergy,None,13sergy,13sergy,1,1
+github,generator-gulp-angular,social,32teeths,None,32teeths,32teeths,1,1
+github,generator-gulp-angular,social,360disrupt,None,360disrupt,360disrupt,9,1
+github,generator-gulp-angular,social,4kochi,None,4kochi,4kochi,4,1
+github,generator-gulp-angular,social,4vanger,github@4vanger.com,4vanger,vanger,2,0
+github,generator-gulp-angular,social,70853n,info@code708.com,70853n,n,1,0
+github,generator-gulp-angular,social,AEPKILL,a@aepkill.com,Aepkill,aepkill,1,1
+github,generator-gulp-angular,social,ARaqeeb,None,Araqeeb,ARaqeeb,1,1
+github,generator-gulp-angular,social,AbdelhadiLahlou,None,Abdelhadilahlou,AbdelhadiLahlou,1,1
+github,generator-gulp-angular,social,AdamJessop,None,Adamjessop,AdamJessop,1,1
+github,generator-gulp-angular,social,AhmetCanSolak,asolak14@ku.edu.tr,Ahmetcansolak,ahmet can solak,8,0
+github,generator-gulp-angular,social,AlbertoBasalo,albertobasalo@hotmail.com,Albertobasalo,alberto basalo,2,0
+github,generator-gulp-angular,social,AlejandroDelRioAlbrechet,alejandro.del.rio.albrechet@gmail.com,Alejandrodelrioalbrechet,alejandro del rio albrechet,1,0
+github,generator-gulp-angular,social,AleksMeshkov,None,Aleksmeshkov,AleksMeshkov,5,1
+github,generator-gulp-angular,social,AleskiWeb,None,Aleskiweb,AleskiWeb,1,1
+github,generator-gulp-angular,social,AlexGrs,None,Alexgrs,AlexGrs,3,1
+github,generator-gulp-angular,social,AlexVKO,None,Alexvko,AlexVKO,1,1
+github,generator-gulp-angular,social,AlexanderTserkovniy,kemperomg@gmail.com,Alexandertserkovniy,alexander tserkovniy,13,0
+github,generator-gulp-angular,social,Alligatore3,None,Alligatore3,Alligatore3,1,1
+github,generator-gulp-angular,social,AndresDevelop,None,Andresdevelop,AndresDevelop,1,1
+github,generator-gulp-angular,social,AntonyPritchett,None,Antonypritchett,AntonyPritchett,1,1
+github,generator-gulp-angular,social,BAByrne,None,Babyrne,BAByrne,1,1
+github,generator-gulp-angular,social,Badisi,None,Badisi,Badisi,1,1
+github,generator-gulp-angular,social,BeOleg,oleg@nexchange.co.uk,Beoleg,be oleg,1,0
+github,generator-gulp-angular,social,BertrandNOEL,None,Bertrandnoel,BertrandNOEL,1,1
+github,generator-gulp-angular,social,BhagyashriK,kulkarnibj@gmail.com,Bhagyashrik,bhagyashri k,2,0
+github,generator-gulp-angular,social,BobbieBarker,None,Bobbiebarker,BobbieBarker,5,1
+github,generator-gulp-angular,social,Boscop,None,Boscop,Boscop,1,1
+github,generator-gulp-angular,social,CarlAmbroselli,github-contact@carl-ambroselli.de,Carlambroselli,carl ambroselli,2,0
+github,generator-gulp-angular,social,ChandraKantPaliwal,paliwal.ck@gmail.com,Chandrakantpaliwal,chandra kant paliwal,2,0
+github,generator-gulp-angular,social,CodeMonkey128,None,Codemonkey128,CodeMonkey128,3,1
+github,generator-gulp-angular,social,CodeOneTwo,jan.dietrich.12@gmail.com,Codeonetwo,code one two,1,0
+github,generator-gulp-angular,social,Codem3ay,None,Codem3ay,Codem3ay,1,1
+github,generator-gulp-angular,social,CosticaPuntaru,None,Costicapuntaru,CosticaPuntaru,1,1
+github,generator-gulp-angular,social,CrankNPlank,None,Cranknplank,CrankNPlank,2,1
+github,generator-gulp-angular,social,CristianMR,mcristianrios@gmail.com,Cristianmr,cristian mr,2,0
+github,generator-gulp-angular,social,DaAwesomeP,None,֍ Daawesomep ֎,DaAwesomeP,6,0
+github,generator-gulp-angular,social,DallanQ,dallan@quass.org,Dallanq,dallan q,1,0
+github,generator-gulp-angular,social,DarKDinDoN,None,Darkdindon,DarKDinDoN,1,1
+github,generator-gulp-angular,social,DarrylD,darryl.dex@gmail.com,Darryld,darryl d,1,0
+github,generator-gulp-angular,social,EmmanuelDemey,demey.emmanuel@gmail.com,Emmanueldemey,emmanuel demey,1,0
+github,generator-gulp-angular,social,F1LT3R,None,F1lt3r,F1LT3R,1,1
+github,generator-gulp-angular,social,Gary-Pan,None,Gary-pan,Gary-Pan,1,1
+github,generator-gulp-angular,social,GlennGeenen,glenn@geenentijd.be,Glenn Geenen,glenn geenen,2,1
+github,generator-gulp-angular,social,Grandiz,None,Grandiz,Grandiz,5,1
+github,generator-gulp-angular,social,GregaVrbancic,grega.vrbancic@gmail.com,Gregavrbancic,grega vrbancic,1,0
+github,generator-gulp-angular,social,Gu3,None,Gu3,Gu3,5,1
+github,generator-gulp-angular,social,GuillaumeUnice,guillaume.unice@gmail.com,Guillaumeunice,guillaume unice,1,0
+github,generator-gulp-angular,social,Gujarats,gujarat.santana@gmail.com,Gujarats,gujarats,2,1
+github,generator-gulp-angular,social,Henry0422,None,Henry0422,Henry0422,2,1
+github,generator-gulp-angular,social,Hesesses,None,Hesesses,Hesesses,14,1
+github,generator-gulp-angular,social,Hosar,hosarsiph.valle@gmail.com,Hosar,hosar,2,1
+github,generator-gulp-angular,social,IvanCoronado,None,Ivancoronado,IvanCoronado,2,1
+github,generator-gulp-angular,social,JG-CMASS,None,Jg-cmass,JG-CMASS,1,1
+github,generator-gulp-angular,social,JR-Utily,None,Jr-utily,JR-Utily,4,1
+github,generator-gulp-angular,social,JackNorris,None,Jacknorris,JackNorris,3,1
+github,generator-gulp-angular,social,JacoboDB,jacobodb21@gmail.com,Jacobodb,jacobo db,1,0
+github,generator-gulp-angular,social,JamesBender,james@jamescbender.com,Jamesbender,james bender,1,0
+github,generator-gulp-angular,social,Janzelf,None,Janzelf,Janzelf,6,1
+github,generator-gulp-angular,social,JimLynchCodes,None,Jimlynchcodes,JimLynchCodes,12,1
+github,generator-gulp-angular,social,JoshuaAdamYoung,None,Joshuaadamyoung,JoshuaAdamYoung,1,1
+github,generator-gulp-angular,social,JustinLien,None,Justinlien,JustinLien,1,1
+github,generator-gulp-angular,social,Kageetai,None,Kageetai,Kageetai,7,1
+github,generator-gulp-angular,social,KamBha,kamal.bhatt@gmail.com,Kambha,kam bha,1,0
+github,generator-gulp-angular,social,KarlNewark,None,Karlnewark,KarlNewark,1,1
+github,generator-gulp-angular,social,Kehet,None,Kehet,Kehet,3,1
+github,generator-gulp-angular,social,Lesac76,None,Lesac76,Lesac76,1,1
+github,generator-gulp-angular,social,LiranBri,None,Liranbri,LiranBri,1,1
+github,generator-gulp-angular,social,MCautreels,maarten.cautreels@gmail.com,Mcautreels,mcautreels,1,1
+github,generator-gulp-angular,social,MQuy,mholdb@gmail.com,Mquy,mquy,2,1
+github,generator-gulp-angular,social,MRichardson1,None,Mrichardson1,MRichardson1,1,1
+github,generator-gulp-angular,social,MaksimAbramchuk,MaximAbramchuck@gmail.com,Maxim Abramchuk,maksim abramchuk,1,0
+github,generator-gulp-angular,social,MarcLoupias,contact@marcosoft.io,Marcloupias,marc loupias,1,0
+github,generator-gulp-angular,social,MarioAraque,None,Marioaraque,MarioAraque,1,1
+github,generator-gulp-angular,social,Martin-Andersen,MartinHerlovAndersen@gmail.com,Martin-andersen,martin andersen,1,0
+github,generator-gulp-angular,social,MasonFI,None,Masonfi,MasonFI,1,1
+github,generator-gulp-angular,social,MattCowski,None,Mattcowski,MattCowski,2,1
+github,generator-gulp-angular,social,MaxFlower,None,Maxflower,MaxFlower,1,1
+github,generator-gulp-angular,social,McGiogen,None,Mcgiogen,McGiogen,1,1
+github,generator-gulp-angular,social,MelissaMMDP,None,Melissammdp,MelissaMMDP,2,1
+github,generator-gulp-angular,social,MicFin,None,Micfin,MicFin,1,1
+github,generator-gulp-angular,social,Miguel-Herrero,None,Miguel-herrero,Miguel-Herrero,2,1
+github,generator-gulp-angular,social,MinDokan,None,Mindokan,MinDokan,3,1
+github,generator-gulp-angular,social,Mmpc1994,None,Mmpc1994,Mmpc1994,1,1
+github,generator-gulp-angular,social,MoatazAbdallh,moataz.abdallh@gmail.com,Moatazabdallh,moataz abdallh,1,0
+github,generator-gulp-angular,social,Mr-LiuDC,liudecai.hpe@gmail.com,Mr-liudc,mr liu dc,1,0
+github,generator-gulp-angular,social,NTag,basile@bruneau.email,Ntag,ntag,2,1
+github,generator-gulp-angular,social,NathanWalker,None,Nathanwalker,NathanWalker,1,1
+github,generator-gulp-angular,social,NeXTs,None,Nexts,NeXTs,1,1
+github,generator-gulp-angular,social,Nek-,nek.dev@gmail.com,Nek (maxime Veber),nek,2,1
+github,generator-gulp-angular,social,NicoBleh,None,Nicobleh,NicoBleh,2,1
+github,generator-gulp-angular,social,ObiKerui,None,Obikerui,ObiKerui,3,1
+github,generator-gulp-angular,social,Olgagr,None,Olgagr,Olgagr,9,1
+github,generator-gulp-angular,social,OvidiuGuta,ovidiu.guta@gmail.com,Ovidiuguta,ovidiu guta,1,0
+github,generator-gulp-angular,social,Pentiado,None,Pentiado,Pentiado,1,1
+github,generator-gulp-angular,social,PierreRAFFA,pierre.raffa@gmail.com,Pierreraffa,pierre raffa,2,0
+github,generator-gulp-angular,social,RainingNight,leshin@live.com,Rainingnight,raining night,2,0
+github,generator-gulp-angular,social,RobEasthope,hello@robeasthope.com,Robeasthope,rob easthope,2,0
+github,generator-gulp-angular,social,RobbieTheWagner,rwwagner90@gmail.com,Robbiethewagner,robbie the wagner,19,0
+github,generator-gulp-angular,social,RomFouq,None,Romfouq,RomFouq,4,1
+github,generator-gulp-angular,social,RootProgger,None,Rootprogger,RootProgger,2,1
+github,generator-gulp-angular,social,SalmonRiver,david.nelson.moscow@gmail.com,Salmonriver,salmon river,1,0
+github,generator-gulp-angular,social,SanDiegoCasey,sandiegocasey@gmail.com,Sandiegocasey,san diego casey,1,0
+github,generator-gulp-angular,social,Santino-Wu,santinowu.wsq@gmail.com,Santino-wu,santino wu,1,0
+github,generator-gulp-angular,social,Sasicumaar,None,Sasicumaar,Sasicumaar,3,1
+github,generator-gulp-angular,social,Schurke,None,Schurke,Schurke,4,1
+github,generator-gulp-angular,social,Sepho,None,Sepho,Sepho,2,1
+github,generator-gulp-angular,social,SergeyKhval,sergeykhval@gmail.com,Sergeykhval,sergey khval,2,0
+github,generator-gulp-angular,social,SergiySev,None,Sergiysev,SergiySev,1,1
+github,generator-gulp-angular,social,ShMcK,shawn.j.mckay@gmail.com,Shmck,sh mc k,6,0
+github,generator-gulp-angular,social,ShawnTalbert,None,Shawntalbert,ShawnTalbert,2,1
+github,generator-gulp-angular,social,SinaArdehali,sina.ardehali@gmail.com,Sinaardehali,sina ardehali,1,0
+github,generator-gulp-angular,social,Soumya-mp,None,Soumya-mp,Soumya-mp,1,1
+github,generator-gulp-angular,social,St1c,bruno.gardlo@gmail.com,St1c,stc,1,0
+github,generator-gulp-angular,social,SunEagle,None,Suneagle,SunEagle,2,1
+github,generator-gulp-angular,social,Swiip,matthieu.lux@protonmail.com,Swiip,swiip,662,1
+github,generator-gulp-angular,social,TJKoury,tj@digitalarsenal.io,Tjkoury,tjkoury,1,1
+github,generator-gulp-angular,social,Tallyb,tally.barak@gmail.com,Tallyb,tallyb,15,1
+github,generator-gulp-angular,social,TheNemus,None,Thenemus,TheNemus,1,1
+github,generator-gulp-angular,social,TheOpti,None,Theopti,TheOpti,1,1
+github,generator-gulp-angular,social,Toilal,toilal.dev@gmail.com,Toilal,toilal,67,1
+github,generator-gulp-angular,social,TomaszScisloGS,None,Tomaszscislogs,TomaszScisloGS,11,1
+github,generator-gulp-angular,social,Toub,None,Toub,Toub,2,1
+github,generator-gulp-angular,social,Tsouef,None,Tsouef,Tsouef,2,1
+github,generator-gulp-angular,social,Undergrounder,None,Undergrounder,Undergrounder,1,1
+github,generator-gulp-angular,social,UzEE,None,Uzee,UzEE,1,1
+github,generator-gulp-angular,social,VishneviyMazhor,pavel.gdr@gmail.com,Vishneviymazhor,vishneviy mazhor,1,0
+github,generator-gulp-angular,social,Vvaltz,None,Vvaltz,Vvaltz,2,1
+github,generator-gulp-angular,social,Webbrother,komarov.vitaliy@gmail.com,Webbrother,webbrother,2,1
+github,generator-gulp-angular,social,Webenius,None,Webenius,Webenius,1,1
+github,generator-gulp-angular,social,XIXIAOSHI124,xixiaoshi124@outlook.com,Xixiaoshi124,xixiaoshi,1,0
+github,generator-gulp-angular,social,XavierLeTohic,None,Xavierletohic,XavierLeTohic,1,1
+github,generator-gulp-angular,social,Xepe,None,Xepe,Xepe,1,1
+github,generator-gulp-angular,social,YonatanKra,None,Yonatankra,YonatanKra,1,1
+github,generator-gulp-angular,social,YuriZaliznyak,None,Yurizaliznyak,YuriZaliznyak,1,1
+github,generator-gulp-angular,social,a14m,a14m@pm.me,A14m,am,19,0
+github,generator-gulp-angular,social,a50397,None,A50397,a50397,1,1
+github,generator-gulp-angular,social,aarondufall,None,Aarondufall,aarondufall,2,1
+github,generator-gulp-angular,social,abbish,None,Abbish,abbish,4,1
+github,generator-gulp-angular,social,abdulwahid24,abdulwahid24@gmail.com,Abdulwahid24,abdulwahid,5,0
+github,generator-gulp-angular,social,abrown28,None,Abrown28,abrown28,1,1
+github,generator-gulp-angular,social,abruzzihraig,abruzzi.hraig@gmail.com,Abruzzihraig,abruzzihraig,2,1
+github,generator-gulp-angular,social,adam404,None,Adam404,adam404,1,1
+github,generator-gulp-angular,social,adamkarb,adamkarb@gmail.com,Adamkarb,adamkarb,1,1
+github,generator-gulp-angular,social,admorphit,None,Admorphit,admorphit,1,1
+github,generator-gulp-angular,social,adrianchung,None,Adrianchung,adrianchung,3,1
+github,generator-gulp-angular,social,adriangordon1231,adriangordon@outlook.com,Adriangordon1231,adriangordon,2,0
+github,generator-gulp-angular,social,adrianoresende,None,Adrianoresende,adrianoresende,1,1
+github,generator-gulp-angular,social,adriatic,nik@congral.us,Adriatic,adriatic,4,1
+github,generator-gulp-angular,social,adstep,None,Adstep,adstep,4,1
+github,generator-gulp-angular,social,aendra-rininsland,hello@aendra.com,Aendra-rininsland,aendra rininsland,4,0
+github,generator-gulp-angular,social,aforanil,None,Aforanil,aforanil,1,1
+github,generator-gulp-angular,social,agdolla,None,Agdolla,agdolla,2,1
+github,generator-gulp-angular,social,agustin107,None,Agustin107,agustin107,1,1
+github,generator-gulp-angular,social,aitk,github@aitk.co,Aitk,aitk,1,1
+github,generator-gulp-angular,social,ajay12892,None,Ajay12892,ajay12892,1,1
+github,generator-gulp-angular,social,akhileshmohan,None,Akhileshmohan,akhileshmohan,1,1
+github,generator-gulp-angular,social,aksakalli,can.aksakalli@rwth-aachen.de,Aksakalli,aksakalli,2,1
+github,generator-gulp-angular,social,al-the-x,None,Al-the-x,al-the-x,8,1
+github,generator-gulp-angular,social,aladine,None,Aladine,aladine,1,1
+github,generator-gulp-angular,social,alaksandarjesus,None,Alaksandarjesus,alaksandarjesus,12,1
+github,generator-gulp-angular,social,alangunning,None,Alangunning,alangunning,1,1
+github,generator-gulp-angular,social,alejandronanez,git@alejandro.dev,Alejandronanez,alejandronanez,1,1
+github,generator-gulp-angular,social,alexpaluzzi,alexpaluzzi@gmail.com,Alexpaluzzi,alexpaluzzi,9,1
+github,generator-gulp-angular,social,alfaproject,mail@joaodias.eu,Alfaproject,alfaproject,4,1
+github,generator-gulp-angular,social,alinnert,andreas@linnertmedia.de,Alinnert,alinnert,4,1
+github,generator-gulp-angular,social,altinselimi,altinselimi@msn.com,Altinselimi,altinselimi,2,1
+github,generator-gulp-angular,social,alumallachandan,None,Alumallachandan,alumallachandan,1,1
+github,generator-gulp-angular,social,amgadfahmi,amgadnady@gmail.com,Amgadfahmi,amgadfahmi,2,1
+github,generator-gulp-angular,social,amirtuval,None,Amirtuval,amirtuval,2,1
+github,generator-gulp-angular,social,anaumov,alexsnaumov@gmail.com,Anaumov,anaumov,1,1
+github,generator-gulp-angular,social,andrea-spotsoftware,None,Andrea-spotsoftware,andrea-spotsoftware,5,1
+github,generator-gulp-angular,social,andreicojea,andreicojea@gmail.com,Andreicojea,andreicojea,1,1
+github,generator-gulp-angular,social,andreierdoss,None,Andreierdoss,andreierdoss,1,1
+github,generator-gulp-angular,social,andrekampert,None,Andrekampert,andrekampert,2,1
+github,generator-gulp-angular,social,andrenovax,None,Andrenovax,andrenovax,1,1
+github,generator-gulp-angular,social,andrescuev,None,Andrescuev,andrescuev,1,1
+github,generator-gulp-angular,social,andyjessop,None,Andyjessop,andyjessop,2,1
+github,generator-gulp-angular,social,andyperlitch,None,Andyperlitch,andyperlitch,7,1
+github,generator-gulp-angular,social,anggiaj,None,Anggiaj,anggiaj,2,1
+github,generator-gulp-angular,social,anishbenji,None,Anishbenji,anishbenji,2,1
+github,generator-gulp-angular,social,ansumanshah,ansumanshah@gmail.com,Ansumanshah,ansumanshah,4,1
+github,generator-gulp-angular,social,ant0ha,None,Ant0ha,ant0ha,5,1
+github,generator-gulp-angular,social,antoescu,antonio.escudero.huedo@gmail.com,Antoescu,antoescu,5,1
+github,generator-gulp-angular,social,aonemd,None,Aonemd,aonemd,1,1
+github,generator-gulp-angular,social,apartyka,None,Apartyka,apartyka,1,1
+github,generator-gulp-angular,social,arcdev1,None,Arcdev1,arcdev1,1,1
+github,generator-gulp-angular,social,asafper,None,Asafper,asafper,2,1
+github,generator-gulp-angular,social,asm0dey,pavel.finkelshtein@gmail.com,Asm0dey,asmdey,1,0
+github,generator-gulp-angular,social,astw,None,Astw,astw,3,1
+github,generator-gulp-angular,social,atul-bhosale,None,Atul-bhosale,atul-bhosale,1,1
+github,generator-gulp-angular,social,auxcoder,None,Auxcoder,auxcoder,1,1
+github,generator-gulp-angular,social,axetroy,troy450409405@gmail.com,Axetroy,axetroy,4,1
+github,generator-gulp-angular,social,bagusflyer,bagusflyer@gmail.com,Bagusflyer,bagusflyer,10,1
+github,generator-gulp-angular,social,barretodavid,barretollano@gmail.com,Barretodavid,barretodavid,12,1
+github,generator-gulp-angular,social,bartsmilner,None,Bartsmilner,bartsmilner,2,1
+github,generator-gulp-angular,social,bartvanremortele,bartvanremortele@gmail.com,Bartvanremortele,bartvanremortele,1,1
+github,generator-gulp-angular,social,bastienJS,None,Bastienjs,bastienJS,3,1
+github,generator-gulp-angular,social,bcg-amitag,None,Bcg-amitag,bcg-amitag,2,1
+github,generator-gulp-angular,social,bdizha,None,Bdizha,bdizha,1,1
+github,generator-gulp-angular,social,bearfriend,None,Bearfriend,bearfriend,3,1
+github,generator-gulp-angular,social,beckler,None,Beckler,beckler,2,1
+github,generator-gulp-angular,social,behrad,behradz@gmail.com,Behrad,behrad,1,1
+github,generator-gulp-angular,social,benjamincharity,ben.charity@hey.com,Benjamincharity,benjamincharity,11,1
+github,generator-gulp-angular,social,benkroeger,benjamin.kroeger@gmail.com,Benkroeger,benkroeger,1,1
+github,generator-gulp-angular,social,benmurden,None,Benmurden,benmurden,1,1
+github,generator-gulp-angular,social,bennypowers,None,Bennypowers,bennypowers,1,1
+github,generator-gulp-angular,social,bertramn,None,Bertramn,bertramn,2,1
+github,generator-gulp-angular,social,bhj,None,Bhj,bhj,4,1
+github,generator-gulp-angular,social,biglanggwapoventures,None,Biglanggwapoventures,biglanggwapoventures,1,1
+github,generator-gulp-angular,social,biks152207,bikrambasnet1@gmail.com,Biks152207,biks,1,0
+github,generator-gulp-angular,social,blackfyre,None,Blackfyre,blackfyre,1,1
+github,generator-gulp-angular,social,blackleafs,547324288@qq.com,Blackleafs,blackleafs,1,1
+github,generator-gulp-angular,social,blended-ideas,blendedidea@gmail.com,Blended-ideas,blended ideas,1,0
+github,generator-gulp-angular,social,blowsie,None,Blowsie,blowsie,2,1
+github,generator-gulp-angular,social,bluesliverx,bksaville@gmail.com,Bluesliverx,bluesliverx,1,1
+github,generator-gulp-angular,social,bondarewicz,None,Bondarewicz,bondarewicz,1,1
+github,generator-gulp-angular,social,bradleyflood,None,Bradleyflood,bradleyflood,5,1
+github,generator-gulp-angular,social,bramvanoploo,bram@sudo-systems.com,Bramvanoploo,bramvanoploo,2,1
+github,generator-gulp-angular,social,brian428,None,Brian428,brian428,2,1
+github,generator-gulp-angular,social,brijesh1ec,brijesh1ec@gmail.com,Brijesh1ec,brijeshec,1,0
+github,generator-gulp-angular,social,brucejcw,bruce.jcw@gmail.com,Brucejcw,brucejcw,19,1
+github,generator-gulp-angular,social,brunoeris,brunoeriss@gmail.com,Brunoeris,brunoeris,1,1
+github,generator-gulp-angular,social,brunoksato,bruno.sato@live.com,Brunoksato,brunoksato,6,1
+github,generator-gulp-angular,social,bsides,None,Bsides,bsides,2,1
+github,generator-gulp-angular,social,bsitruk,dev071090@gmail.com,Bsitruk,bsitruk,1,1
+github,generator-gulp-angular,social,btn0s,None,Btn0s,btn0s,2,1
+github,generator-gulp-angular,social,buoto,miblotniak@gmail.com,Buoto,buoto,1,1
+github,generator-gulp-angular,social,busches,None,Busches,busches,40,1
+github,generator-gulp-angular,social,bx2,None,Bx2,bx2,1,1
+github,generator-gulp-angular,social,c-johnson,chris@cjohnson.io,C-johnson,c johnson,1,0
+github,generator-gulp-angular,social,c0debreaker,None,C0debreaker,c0debreaker,3,1
+github,generator-gulp-angular,social,carlosfunk,None,Carlosfunk,carlosfunk,1,1
+github,generator-gulp-angular,social,carlosrbta,carlosrbta@gmail.com,Carlosrbta,carlosrbta,1,1
+github,generator-gulp-angular,social,cazacugmihai,cazacugmihai@gmail.com,Cazacugmihai,cazacugmihai,3,1
+github,generator-gulp-angular,social,cbentley,None,Cbentley,cbentley,1,1
+github,generator-gulp-angular,social,chachra,None,Chachra,chachra,2,1
+github,generator-gulp-angular,social,chakatodd,None,Chakatodd,chakatodd,1,1
+github,generator-gulp-angular,social,chalettu,None,Chalettu,chalettu,1,1
+github,generator-gulp-angular,social,chandrabezzo,chandrashibezzo@gmail.com,Chandrabezzo,chandrabezzo,1,1
+github,generator-gulp-angular,social,chandraflyrobe,None,Chandraflyrobe,chandraflyrobe,1,1
+github,generator-gulp-angular,social,chanu,None,Chanu,chanu,1,1
+github,generator-gulp-angular,social,chap31,None,Chap31,chap31,4,1
+github,generator-gulp-angular,social,chhsiao1981,hsiao.chuanheng@gmail.com,Chhsiao1981,chhsiao,2,0
+github,generator-gulp-angular,social,chojowliu,None,Chojowliu,chojowliu,1,1
+github,generator-gulp-angular,social,chrisUsick,None,Chrisusick,chrisUsick,1,1
+github,generator-gulp-angular,social,chrisheninger,None,Chrisheninger,chrisheninger,1,1
+github,generator-gulp-angular,social,chriskolenko,None,Chriskolenko,chriskolenko,4,1
+github,generator-gulp-angular,social,christianmalek,None,Christianmalek,christianmalek,1,1
+github,generator-gulp-angular,social,christophertrudel,None,Christophertrudel,christophertrudel,1,1
+github,generator-gulp-angular,social,cksachdev,mail@chetansachdev.com,Cksachdev,cksachdev,1,1
+github,generator-gulp-angular,social,claboran,christian@laboranowitsch.de,Claboran,claboran,4,1
+github,generator-gulp-angular,social,claytondus,cd@ae4ax.net,Claytondus,claytondus,1,1
+github,generator-gulp-angular,social,clement-escolano,None,Clement-escolano,clement-escolano,3,1
+github,generator-gulp-angular,social,clessg,chris@crystala.io,Clessg,clessg,4,1
+github,generator-gulp-angular,social,climboid,oscarvillarreal14@gmail.com,Climboid,climboid,8,1
+github,generator-gulp-angular,social,cm325,None,Cm325,cm325,2,1
+github,generator-gulp-angular,social,cmcnamara87,None,Cmcnamara87,cmcnamara87,1,1
+github,generator-gulp-angular,social,cmelion,None,Cmelion,cmelion,1,1
+github,generator-gulp-angular,social,cmullix,cmullix@gmail.com,Cmullix,cmullix,1,1
+github,generator-gulp-angular,social,codeofsumit,None,Codeofsumit,codeofsumit,28,1
+github,generator-gulp-angular,social,color2life,color2life@gmail.com,Color2life,colorlife,1,0
+github,generator-gulp-angular,social,coryarmbrecht,None,Coryarmbrecht,coryarmbrecht,3,1
+github,generator-gulp-angular,social,cosminonnet,None,Cosminonnet,cosminonnet,2,1
+github,generator-gulp-angular,social,cousine,iam@cousine.me,Cousine,cousine,1,1
+github,generator-gulp-angular,social,craigsh,None,Craigsh,craigsh,3,1
+github,generator-gulp-angular,social,crdil,None,Crdil,crdil,1,1
+github,generator-gulp-angular,social,creimers,None,Creimers,creimers,8,1
+github,generator-gulp-angular,social,crimsondr,None,Crimsondr,crimsondr,1,1
+github,generator-gulp-angular,social,csablons,csablons@megalo-company.com,Csablons,csablons,6,1
+github,generator-gulp-angular,social,cttobin,None,Cttobin,cttobin,4,1
+github,generator-gulp-angular,social,cveld,None,Cveld,cveld,1,1
+github,generator-gulp-angular,social,cyberdemon8,None,Cyberdemon8,cyberdemon8,4,1
+github,generator-gulp-angular,social,cyborg92,rachithanda93@yahoo.com,Cyborg92,cyborg,1,0
+github,generator-gulp-angular,social,d0d0,None,D0d0,d0d0,1,1
+github,generator-gulp-angular,social,damdoum,None,Damdoum,damdoum,10,1
+github,generator-gulp-angular,social,damienstanton,damien.stanton@gmail.com,Damienstanton,damienstanton,1,1
+github,generator-gulp-angular,social,dancancro,None,Dancancro,dancancro,3,1
+github,generator-gulp-angular,social,danieldiazastudillo,None,Danieldiazastudillo,danieldiazastudillo,1,1
+github,generator-gulp-angular,social,danielrvt,danielrvt1988@gmail.com,Danielrvt,danielrvt,5,1
+github,generator-gulp-angular,social,danivek,danielo.kevin@gmail.com,Danivek,danivek,2,1
+github,generator-gulp-angular,social,dannygoncalves,None,Dannygoncalves,dannygoncalves,3,1
+github,generator-gulp-angular,social,danpii,None,Danpii,danpii,1,1
+github,generator-gulp-angular,social,danprime,danprime@gmail.com,Danprime,danprime,4,1
+github,generator-gulp-angular,social,danyim,None,Danyim,danyim,4,1
+github,generator-gulp-angular,social,darmie,None,Darmie,darmie,1,1
+github,generator-gulp-angular,social,datnq201088,None,Datnq201088,datnq201088,2,1
+github,generator-gulp-angular,social,daveteply,davehamdan@gmail.com,Daveteply,daveteply,1,1
+github,generator-gulp-angular,social,davewalk,daviddwalk@gmail.com,Davewalk,davewalk,1,1
+github,generator-gulp-angular,social,davguij,guijarro.dav@gmail.com,Davguij,davguij,1,1
+github,generator-gulp-angular,social,davidalekna,alekna@live.co.uk,Davidalekna,davidalekna,2,1
+github,generator-gulp-angular,social,davidpv,davidpv@gmail.com,Davidpv,davidpv,1,1
+github,generator-gulp-angular,social,dbajpeyi,dbajpeyi@gmail.com,Dbajpeyi,dbajpeyi,1,1
+github,generator-gulp-angular,social,dbogda,None,Dbogda,dbogda,1,1
+github,generator-gulp-angular,social,debuggerpk,None,Debuggerpk,debuggerpk,6,1
+github,generator-gulp-angular,social,dedoyle,None,Dedoyle,dedoyle,1,1
+github,generator-gulp-angular,social,deebloo,dannybluedesign@gmail.com,Deebloo,deebloo,8,1
+github,generator-gulp-angular,social,dereklin,None,Dereklin,dereklin,23,1
+github,generator-gulp-angular,social,designnotdrum,None,Designnotdrum,designnotdrum,1,1
+github,generator-gulp-angular,social,devakone,None,Devakone,devakone,2,1
+github,generator-gulp-angular,social,devmark,None,Devmark,devmark,3,1
+github,generator-gulp-angular,social,devonzara,None,Devonzara,devonzara,1,1
+github,generator-gulp-angular,social,devsaik,None,Devsaik,devsaik,3,1
+github,generator-gulp-angular,social,deyceg,None,Deyceg,deyceg,3,1
+github,generator-gulp-angular,social,dfromero,None,Dfromero,dfromero,5,1
+github,generator-gulp-angular,social,dheerajui,None,Dheerajui,dheerajui,1,1
+github,generator-gulp-angular,social,digitalfiz,None,Digitalfiz,digitalfiz,2,1
+github,generator-gulp-angular,social,dingguijin,dingguijin@gmail.com,Dingguijin,dingguijin,1,1
+github,generator-gulp-angular,social,dinuchiriac,dinu88@gmail.com,Dinuchiriac,dinuchiriac,1,1
+github,generator-gulp-angular,social,dirknilius,None,Dirknilius,dirknilius,1,1
+github,generator-gulp-angular,social,disharmonized,None,Disharmonized,disharmonized,1,1
+github,generator-gulp-angular,social,disolovyov,None,Disolovyov,disolovyov,1,1
+github,generator-gulp-angular,social,djedi,dustin@davis.im,Djedi,djedi,1,1
+github,generator-gulp-angular,social,dlombardi,darien.lombardi@gmail.com,Dlombardi,dlombardi,4,1
+github,generator-gulp-angular,social,dmastag,None,Dmastag,dmastag,11,1
+github,generator-gulp-angular,social,dmitriynosenko,None,Dmitriynosenko,dmitriynosenko,5,1
+github,generator-gulp-angular,social,dnlbox,None,Dnlbox,dnlbox,1,1
+github,generator-gulp-angular,social,domoritz,None,Domoritz,domoritz,3,1
+github,generator-gulp-angular,social,donnygunawan93,None,Donnygunawan93,donnygunawan93,6,1
+github,generator-gulp-angular,social,doronsever,None,Doronsever,doronsever,3,1
+github,generator-gulp-angular,social,dpocheketa,dpocheketa@gmail.com,Dpocheketa,dpocheketa,2,1
+github,generator-gulp-angular,social,drGrove,danny@drgrovellc.com,Drgrove,dr grove,7,0
+github,generator-gulp-angular,social,drcsantos,None,Drcsantos,drcsantos,1,1
+github,generator-gulp-angular,social,drejohnson,None,Drejohnson,drejohnson,1,1
+github,generator-gulp-angular,social,drixie,None,Drixie,drixie,1,1
+github,generator-gulp-angular,social,drmikeh,None,Drmikeh,drmikeh,1,1
+github,generator-gulp-angular,social,drock07,None,Drock07,drock07,2,1
+github,generator-gulp-angular,social,dsimmons,None,Dsimmons,dsimmons,3,1
+github,generator-gulp-angular,social,dstroyrofworlds,None,Dstroyrofworlds,dstroyrofworlds,2,1
+github,generator-gulp-angular,social,dtolstyi,visonic.local@gmail.com,Dtolstyi,dtolstyi,3,1
+github,generator-gulp-angular,social,dts,dstaudigel@gmail.com,Dts,dts,3,1
+github,generator-gulp-angular,social,duleorlovic,None,Duleorlovic,duleorlovic,1,1
+github,generator-gulp-angular,social,dxxvi,None,Dxxvi,dxxvi,1,1
+github,generator-gulp-angular,social,dylanlawrence,None,Dylanlawrence,dylanlawrence,1,1
+github,generator-gulp-angular,social,dylanwatsonsoftware,None,Dylanwatsonsoftware,dylanwatsonsoftware,2,1
+github,generator-gulp-angular,social,dzafel,None,Dzafel,dzafel,1,1
+github,generator-gulp-angular,social,dzonatan,None,Dzonatan,dzonatan,2,1
+github,generator-gulp-angular,social,e-oz,normandiggs@gmail.com,E-oz,e oz,54,0
+github,generator-gulp-angular,social,ebowers,None,Ebowers,ebowers,2,1
+github,generator-gulp-angular,social,eddiemonge,None,Eddiemonge,eddiemonge,1,1
+github,generator-gulp-angular,social,edimoldovan,None,Edimoldovan,edimoldovan,2,1
+github,generator-gulp-angular,social,edmanolache,None,Edmanolache,edmanolache,1,1
+github,generator-gulp-angular,social,edu2004eu,None,Edu2004eu,edu2004eu,1,1
+github,generator-gulp-angular,social,eduardosanzb,eduardosanzb@gmail.com,Eduardosanzb,eduardosanzb,1,1
+github,generator-gulp-angular,social,egor-smirnov,None,Egor-smirnov,egor-smirnov,1,1
+github,generator-gulp-angular,social,ehteshamkafeel,ehtesham.kafeel@gmail.com,Ehteshamkafeel,ehteshamkafeel,1,1
+github,generator-gulp-angular,social,eigotec,None,Eigotec,eigotec,2,1
+github,generator-gulp-angular,social,elado,elad@ossadon.com,Elado,elado,1,1
+github,generator-gulp-angular,social,elboman,None,Elboman,elboman,1,1
+github,generator-gulp-angular,social,elimence,elimence@gmail.com,Elimence,elimence,3,1
+github,generator-gulp-angular,social,elliot-a,None,Elliot-a,elliot-a,1,1
+github,generator-gulp-angular,social,elouazzany,None,Elouazzany,elouazzany,1,1
+github,generator-gulp-angular,social,emersonmellado,None,Emersonmellado,emersonmellado,1,1
+github,generator-gulp-angular,social,end-user,None,End-user,end-user,1,1
+github,generator-gulp-angular,social,eperedo,jrperedo@gmail.com,Eperedo,eperedo,1,1
+github,generator-gulp-angular,social,equero,equero@kracode.com,Equero,equero,3,1
+github,generator-gulp-angular,social,ereze,None,Ereze,ereze,2,1
+github,generator-gulp-angular,social,erichiggins,erichiggins@gmail.com,Erichiggins,erichiggins,2,1
+github,generator-gulp-angular,social,erikdonohoo,erikdonohoo@gmail.com,Erikdonohoo,erikdonohoo,4,1
+github,generator-gulp-angular,social,eseceve,eseceve@gmail.com,Eseceve,eseceve,9,1
+github,generator-gulp-angular,social,esquevin,None,Esquevin,esquevin,2,1
+github,generator-gulp-angular,social,estudiooka,None,Estudiooka,estudiooka,7,1
+github,generator-gulp-angular,social,fa8ster,None,Fa8ster,fa8ster,1,1
+github,generator-gulp-angular,social,faidoc,faidoc@gmail.com,Faidoc,faidoc,1,1
+github,generator-gulp-angular,social,falahatiali,ali_fm2009@yahoo.com,Falahatiali,falahatiali,1,1
+github,generator-gulp-angular,social,fannur,None,Fannur,fannur,1,1
+github,generator-gulp-angular,social,fd,simon.menke@gmail.com,Fd,fd,1,1
+github,generator-gulp-angular,social,fdcastel,None,Fdcastel,fdcastel,1,1
+github,generator-gulp-angular,social,fespinoza,fespinozacast@gmail.com,Fespinoza,fespinoza,1,1
+github,generator-gulp-angular,social,fpernia,None,Fpernia,fpernia,1,1
+github,generator-gulp-angular,social,frankalbenesius,frankalbenesius@gmail.com,Frankalbenesius,frankalbenesius,1,1
+github,generator-gulp-angular,social,frankradocaj,None,Frankradocaj,frankradocaj,1,1
+github,generator-gulp-angular,social,franzherzog,None,Franzherzog,franzherzog,1,1
+github,generator-gulp-angular,social,freeman29,tordafrancis@gmail.com,Freeman29,freeman,4,0
+github,generator-gulp-angular,social,fubu,None,Fubu,fubu,12,1
+github,generator-gulp-angular,social,fuchao2012,zfc2012@126.com,Fuchao2012,fuchao,5,0
+github,generator-gulp-angular,social,furnace915,brent.velandra@gmail.com,Furnace915,furnace,1,0
+github,generator-gulp-angular,social,fvezzoso,None,Fvezzoso,fvezzoso,1,1
+github,generator-gulp-angular,social,gablabelle,None,Gablabelle,gablabelle,1,1
+github,generator-gulp-angular,social,gaboesquivel,contact@gaboesquivel.com,Gaboesquivel,gaboesquivel,3,1
+github,generator-gulp-angular,social,gadieichhorn,None,Gadieichhorn,gadieichhorn,8,1
+github,generator-gulp-angular,social,galenmarchetti,None,Galenmarchetti,galenmarchetti,1,1
+github,generator-gulp-angular,social,gameboyzone,None,Gameboyzone,gameboyzone,1,1
+github,generator-gulp-angular,social,gangadharjannu,None,Gangadharjannu,gangadharjannu,3,1
+github,generator-gulp-angular,social,gauravsahu21,None,Gauravsahu21,gauravsahu21,1,1
+github,generator-gulp-angular,social,gavinbarron,None,Gavinbarron,gavinbarron,3,1
+github,generator-gulp-angular,social,gelevanog,gelevanog@gmail.com,Gelevanog,gelevanog,1,1
+github,generator-gulp-angular,social,gen4sp,None,Gen4sp,gen4sp,1,1
+github,generator-gulp-angular,social,genu,None,Genu,genu,2,1
+github,generator-gulp-angular,social,geoHeil,e1225063@student.tuwien.ac.at,Geoheil,geo heil,10,0
+github,generator-gulp-angular,social,getglad,None,Getglad,getglad,4,1
+github,generator-gulp-angular,social,gimox,modogio@gmail.com,Gimox,gimox,8,1
+github,generator-gulp-angular,social,gintsgints,None,Gintsgints,gintsgints,1,1
+github,generator-gulp-angular,social,girod,franck.girodon@gmail.com,Girod,girod,1,1
+github,generator-gulp-angular,social,gitsuraj,None,Gitsuraj,gitsuraj,1,1
+github,generator-gulp-angular,social,glennz,None,Glennz,glennz,1,1
+github,generator-gulp-angular,social,glsee,None,Glsee,glsee,2,1
+github,generator-gulp-angular,social,gnicol-bzh,None,Gnicol-bzh,gnicol-bzh,1,1
+github,generator-gulp-angular,social,gokhandemirtas,gokhand@gmail.com,Gokhandemirtas,gokhandemirtas,2,1
+github,generator-gulp-angular,social,goncalomarques,None,Goncalomarques,goncalomarques,2,1
+github,generator-gulp-angular,social,goodmind,andwebar@gmail.com,Goodmind,goodmind,1,1
+github,generator-gulp-angular,social,grahamtwine,graham@liquidesign.co.za,Grahamtwine,grahamtwine,2,1
+github,generator-gulp-angular,social,greg-js,gregory.scheerlinck@gmail.com,Greg-js,greg js,1,0
+github,generator-gulp-angular,social,grimaldo,None,Grimaldo,grimaldo,3,1
+github,generator-gulp-angular,social,grimurd,grimur.danielsson@gmail.com,Grimurd,grimurd,3,1
+github,generator-gulp-angular,social,gryftir,None,Gryftir,gryftir,2,1
+github,generator-gulp-angular,social,gsemet,gaetan@xeberon.net,Gsemet,gsemet,1,1
+github,generator-gulp-angular,social,gt-tech,None,Gt-tech,gt-tech,7,1
+github,generator-gulp-angular,social,gunish,None,Gunish,gunish,4,1
+github,generator-gulp-angular,social,handijk,info@handijk.nl,Handijk,handijk,1,1
+github,generator-gulp-angular,social,haohello,None,Haohello,haohello,1,1
+github,generator-gulp-angular,social,harconst,None,Harconst,harconst,1,1
+github,generator-gulp-angular,social,hardywu,None,Hardywu,hardywu,6,1
+github,generator-gulp-angular,social,hartwm,None,Hartwm,hartwm,1,1
+github,generator-gulp-angular,social,hassansw,None,Hassansw,hassansw,1,1
+github,generator-gulp-angular,social,healthyme,None,Healthyme,healthyme,8,1
+github,generator-gulp-angular,social,hege088,None,Hege088,hege088,1,1
+github,generator-gulp-angular,social,heikoholland,None,Heikoholland,heikoholland,1,1
+github,generator-gulp-angular,social,henry74,None,Henry74,henry74,4,1
+github,generator-gulp-angular,social,heshamelmasry77,heshamelmasry1992@gmail.com,Heshamelmasry77,heshamelmasry,1,0
+github,generator-gulp-angular,social,hilel,hilel1011@gmail.com,Hilel,hilel,1,1
+github,generator-gulp-angular,social,histfuture,None,Histfuture,histfuture,1,1
+github,generator-gulp-angular,social,homeway,homeway.xue@gmail.com,Homeway,homeway,1,1
+github,generator-gulp-angular,social,horizon0514,horizon0514@gmail.com,Horizon0514,horizon,1,0
+github,generator-gulp-angular,social,hourliert,None,Hourliert,hourliert,3,1
+github,generator-gulp-angular,social,huguangju,None,Huguangju,huguangju,1,1
+github,generator-gulp-angular,social,hwoarangzk,1345744500@qq.com,Hwoarangzk,hwoarangzk,1,1
+github,generator-gulp-angular,social,iam4x,None,Iam4x,iam4x,3,1
+github,generator-gulp-angular,social,ianks,i.kerseymer@gmail.com,Ianks,ianks,2,1
+github,generator-gulp-angular,social,idanb11,idanb11@gmail.com,Idanb11,idanb,2,0
+github,generator-gulp-angular,social,idoo,None,Idoo,idoo,1,1
+github,generator-gulp-angular,social,idwd,None,Idwd,idwd,1,1
+github,generator-gulp-angular,social,igisav,None,Igisav,igisav,2,1
+github,generator-gulp-angular,social,igor-yamshchykov,ihor.yamshchykov@gmail.com,Igor-yamshchykov,igor yamshchykov,2,0
+github,generator-gulp-angular,social,iki,None,Iki,iki,2,1
+github,generator-gulp-angular,social,intellix,None,Intellix,intellix,20,1
+github,generator-gulp-angular,social,iomgi,None,Iomgi,iomgi,1,1
+github,generator-gulp-angular,social,ipansensoy,None,Ipansensoy,ipansensoy,1,1
+github,generator-gulp-angular,social,isaacweathers,isaac@isaacweathers.net,Isaacweathers,isaacweathers,2,1
+github,generator-gulp-angular,social,ismarslomic,None,Ismarslomic,ismarslomic,1,1
+github,generator-gulp-angular,social,isrd1,None,Isrd1,isrd1,4,1
+github,generator-gulp-angular,social,iwhy,None,Iwhy,iwhy,6,1
+github,generator-gulp-angular,social,iwuvjhdva,None,Iwuvjhdva,iwuvjhdva,1,1
+github,generator-gulp-angular,social,j0hnsmith,None,J0hnsmith,j0hnsmith,1,1
+github,generator-gulp-angular,social,j4ml3t,enrique.martinezm@gmail.com,J4ml3t,jmlt,1,0
+github,generator-gulp-angular,social,jaarong,None,Jaarong,jaarong,1,1
+github,generator-gulp-angular,social,jackhutu,hello@jackhu.top,Jackhutu,jackhutu,1,1
+github,generator-gulp-angular,social,jackrobertscott,jack.rob.scott@gmail.com,Jackrobertscott,jackrobertscott,1,1
+github,generator-gulp-angular,social,jagwire,pympnotiq@gmail.com,Jagwire,jagwire,1,1
+github,generator-gulp-angular,social,jahammo2,jahammo2@gmail.com,Jahammo2,jahammo,1,0
+github,generator-gulp-angular,social,jahumes,None,Jahumes,jahumes,1,1
+github,generator-gulp-angular,social,jajourda,None,Jajourda,jajourda,1,1
+github,generator-gulp-angular,social,jamesbehr,None,Jamesbehr,jamesbehr,3,1
+github,generator-gulp-angular,social,jamesdixon,None,Jamesdixon,jamesdixon,3,1
+github,generator-gulp-angular,social,jamiebuilds,None,Jamiebuilds,jamiebuilds,1,1
+github,generator-gulp-angular,social,jasel-lewis,None,Jasel-lewis,jasel-lewis,2,1
+github,generator-gulp-angular,social,jaskaran14,None,Jaskaran14,jaskaran14,1,1
+github,generator-gulp-angular,social,jasonswett,jason@codewithjason.com,Jasonswett,jasonswett,1,1
+github,generator-gulp-angular,social,jasperblues,jasper@appsquick.ly,Jasperblues,jasperblues,5,1
+github,generator-gulp-angular,social,jballands,jballands@gmail.com,Jballands,jballands,1,1
+github,generator-gulp-angular,social,jbaroudi,None,Jbaroudi,jbaroudi,11,1
+github,generator-gulp-angular,social,jbonigomes,None,Jbonigomes,jbonigomes,3,1
+github,generator-gulp-angular,social,jbrantly,james@jbrantly.com,Jbrantly,jbrantly,2,1
+github,generator-gulp-angular,social,jchayan,jorgechayan@gmail.com,Jchayan,jchayan,4,1
+github,generator-gulp-angular,social,jcollum,None,Jcollum,jcollum,1,1
+github,generator-gulp-angular,social,jdhiro,None,Jdhiro,jdhiro,3,1
+github,generator-gulp-angular,social,jeansaigne,None,Jeansaigne,jeansaigne,1,1
+github,generator-gulp-angular,social,jedwards1211,None,Jedwards1211,jedwards1211,2,1
+github,generator-gulp-angular,social,jeffscottward,None,Jeffscottward,jeffscottward,3,1
+github,generator-gulp-angular,social,jerexyz,None,Jerexyz,jerexyz,1,1
+github,generator-gulp-angular,social,jeserkin,jeserkin@gmail.com,Jeserkin,jeserkin,3,1
+github,generator-gulp-angular,social,jessepinuelas,None,Jessepinuelas,jessepinuelas,2,1
+github,generator-gulp-angular,social,jesucarr,None,Jesucarr,jesucarr,3,1
+github,generator-gulp-angular,social,jetspeed,None,Jetspeed,jetspeed,1,1
+github,generator-gulp-angular,social,jgodi,joshuagodi@gmail.com,Jgodi,jgodi,1,1
+github,generator-gulp-angular,social,jlu1202,jlu1202@gmail.com,Jlu1202,jlu,1,0
+github,generator-gulp-angular,social,jmcmichael,None,Jmcmichael,jmcmichael,2,1
+github,generator-gulp-angular,social,jmfirth,jmfirth@gmail.com,Jmfirth,jmfirth,1,1
+github,generator-gulp-angular,social,jmls,None,Jmls,jmls,14,1
+github,generator-gulp-angular,social,jnizet,None,Jbnizet,jnizet,1,0
+github,generator-gulp-angular,social,joaocc,None,Joaocc,joaocc,4,1
+github,generator-gulp-angular,social,joelcdoyle,None,Joelcdoyle,joelcdoyle,2,1
+github,generator-gulp-angular,social,joelim01,None,Joelim01,joelim01,2,1
+github,generator-gulp-angular,social,joelso,None,Joelso,joelso,1,1
+github,generator-gulp-angular,social,johnoscott,johnoscott@gmail.com,Johnoscott,johnoscott,1,1
+github,generator-gulp-angular,social,johnstontrav,None,Johnstontrav,johnstontrav,3,1
+github,generator-gulp-angular,social,jolugama,None,Jolugama,jolugama,6,1
+github,generator-gulp-angular,social,jonathanhds,None,Jonathanhds,jonathanhds,1,1
+github,generator-gulp-angular,social,jonathanobino,None,Jonathanobino,jonathanobino,2,1
+github,generator-gulp-angular,social,jonlil,jonas.liljestrand@gmail.com,Jonlil,jonlil,4,1
+github,generator-gulp-angular,social,jordic,jordic@gmail.com,Jordic,jordic,3,1
+github,generator-gulp-angular,social,jordond,jordon.dehoog@gmail.com,Jordond,jordond,2,1
+github,generator-gulp-angular,social,jorovipe97,jorovipe@gmail.com,Jorovipe97,jorovipe,1,0
+github,generator-gulp-angular,social,joshhornby,None,Joshhornby,joshhornby,5,1
+github,generator-gulp-angular,social,joshmu,hello@joshmu.dev,Joshmu,joshmu,1,1
+github,generator-gulp-angular,social,jpca999,None,Jpca999,jpca999,1,1
+github,generator-gulp-angular,social,jpoiri,None,Jpoiri,jpoiri,3,1
+github,generator-gulp-angular,social,jsmylnycky,jason@litteraeducation.com,Jsmylnycky,jsmylnycky,4,1
+github,generator-gulp-angular,social,jspizziri,None,Jspizziri,jspizziri,1,1
+github,generator-gulp-angular,social,jstoneky,None,Jstoneky,jstoneky,2,1
+github,generator-gulp-angular,social,jsvini,None,Jsvini,jsvini,1,1
+github,generator-gulp-angular,social,jt3k,None,Jt3k,jt3k,1,1
+github,generator-gulp-angular,social,jtallen,jturnerallen@gmail.com,Jtallen,jtallen,1,1
+github,generator-gulp-angular,social,jtrollia,None,Jtrollia,jtrollia,3,1
+github,generator-gulp-angular,social,juan-manuel-alberro,None,Juan-manuel-alberro,juan-manuel-alberro,2,1
+github,generator-gulp-angular,social,jukka-varis,None,Jukka-varis,jukka-varis,1,1
+github,generator-gulp-angular,social,julianfresco,None,Julianfresco,julianfresco,2,1
+github,generator-gulp-angular,social,julmot,me@juliankuehnel.com,Julmot,julmot,1,1
+github,generator-gulp-angular,social,jwbaart,jwbaart@gmail.com,Jwbaart,jwbaart,1,1
+github,generator-gulp-angular,social,jwickowski,None,Jwickowski,jwickowski,3,1
+github,generator-gulp-angular,social,jxjj,None,Jxjj,jxjj,2,1
+github,generator-gulp-angular,social,kamilshahzad,None,Kamilshahzad,kamilshahzad,2,1
+github,generator-gulp-angular,social,kanitw,None,Kanitw,kanitw,1,1
+github,generator-gulp-angular,social,karneaud,None,Karneaud,karneaud,1,1
+github,generator-gulp-angular,social,karolrynio,None,Karolrynio,karolrynio,1,1
+github,generator-gulp-angular,social,karthick-manoharan,None,Karthick-manoharan,karthick-manoharan,1,1
+github,generator-gulp-angular,social,kbjorklid,None,Kbjorklid,kbjorklid,1,1
+github,generator-gulp-angular,social,keichi,hello@keichi.dev,Keichi,keichi,2,1
+github,generator-gulp-angular,social,keithkml,None,Keithkml,keithkml,4,1
+github,generator-gulp-angular,social,kgopi,None,Kgopi,kgopi,2,1
+github,generator-gulp-angular,social,kikar,gady90@gmail.com,Kikar,kikar,1,1
+github,generator-gulp-angular,social,kikoanis,alitohami@gmail.com,Kikoanis,kikoanis,1,1
+github,generator-gulp-angular,social,kkavod,None,Kkavod,kkavod,4,1
+github,generator-gulp-angular,social,kl09,kl09@ya.ru,Kl09,kl,1,0
+github,generator-gulp-angular,social,klovelovely,klovelovely@live.com,Klovelovely,klovelovely,1,1
+github,generator-gulp-angular,social,klueless-io,david@ideasmen.com.au,Klueless-io,klueless io,1,0
+github,generator-gulp-angular,social,knicholes,kelbolicious@gmail.com,Knicholes,knicholes,6,1
+github,generator-gulp-angular,social,kondi,None,Kondi,kondi,2,1
+github,generator-gulp-angular,social,konradhalas,halas.konrad@gmail.com,Konradhalas,konradhalas,2,1
+github,generator-gulp-angular,social,koraybalci,None,Koraybalci,koraybalci,2,1
+github,generator-gulp-angular,social,koutakou,None,Koutakou,koutakou,2,1
+github,generator-gulp-angular,social,kraihn,code@jareddickson.com,Kraihn,kraihn,1,1
+github,generator-gulp-angular,social,krewmarco,None,Krewmarco,krewmarco,1,1
+github,generator-gulp-angular,social,krzksz,mateusz.krzeszowiak@gmail.com,Krzksz,krzksz,2,1
+github,generator-gulp-angular,social,krzysieki,None,Krzysieki,krzysieki,1,1
+github,generator-gulp-angular,social,ksambhav,kumar.sambhav.jain@gmail.com,Ksambhav,ksambhav,1,1
+github,generator-gulp-angular,social,ksgupta,None,Ksgupta,ksgupta,2,1
+github,generator-gulp-angular,social,kudresov,kudresov@gmail.com,Kudresov,kudresov,1,1
+github,generator-gulp-angular,social,kuka,kuka@xevol.com,Kuka,kuka,1,1
+github,generator-gulp-angular,social,kuncevic,None,Kuncevic,kuncevic,1,1
+github,generator-gulp-angular,social,kvetis,kvetis@gmail.com,Kvetis,kvetis,3,1
+github,generator-gulp-angular,social,kylebuckingham,None,Kylebuckingham,kylebuckingham,1,1
+github,generator-gulp-angular,social,labrute,None,Labrute,labrute,6,1
+github,generator-gulp-angular,social,lahdo,None,Lahdo,lahdo,1,1
+github,generator-gulp-angular,social,lancevo,None,Lancevo,lancevo,6,1
+github,generator-gulp-angular,social,langerc,None,Langerc,langerc,3,1
+github,generator-gulp-angular,social,larodiel,None,Larodiel,larodiel,1,1
+github,generator-gulp-angular,social,lbecraft,None,Lbecraft,lbecraft,1,1
+github,generator-gulp-angular,social,lebsral,larsbell@gmail.com,Lebsral,lebsral,4,1
+github,generator-gulp-angular,social,lellex,alexandra.janin@iadvize.com,Lellex,lellex,2,1
+github,generator-gulp-angular,social,leonli,None,Leonli,leonli,1,1
+github,generator-gulp-angular,social,leviathanbeak,elvis.dedic@pm.me,Leviathanbeak,leviathanbeak,1,1
+github,generator-gulp-angular,social,lialosiu,None,Lialosiu,lialosiu,1,1
+github,generator-gulp-angular,social,lioman,dev@lioman.de,Lioman,lioman,1,1
+github,generator-gulp-angular,social,lokeshjain2008,lokeshjain2008@gmail.com,Lokeshjain2008,lokeshjain,4,0
+github,generator-gulp-angular,social,lordfriend,None,Lordfriend,lordfriend,4,1
+github,generator-gulp-angular,social,lotas,None,Lotas,lotas,1,1
+github,generator-gulp-angular,social,louiswilbrink,None,Louiswilbrink,louiswilbrink,1,1
+github,generator-gulp-angular,social,lswith,None,Lswith,lswith,2,1
+github,generator-gulp-angular,social,lucasangelon,None,Lucasangelon,lucasangelon,1,1
+github,generator-gulp-angular,social,luckymancvp,luckymancvp@gmail.com,Luckymancvp,luckymancvp,6,1
+github,generator-gulp-angular,social,lukasholcik,None,Lukasholcik,lukasholcik,6,1
+github,generator-gulp-angular,social,lunatik-210,andrew.d.lapin@gmail.com,Lunatik-210,lunatik,2,0
+github,generator-gulp-angular,social,luxp,luxianpo@gmail.com,Luxp,luxp,3,1
+github,generator-gulp-angular,social,luyaohua2016,None,Luyaohua2016,luyaohua2016,1,1
+github,generator-gulp-angular,social,lyuehh,None,Lyuehh,lyuehh,1,1
+github,generator-gulp-angular,social,m1rc0,None,M1rc0,m1rc0,6,1
+github,generator-gulp-angular,social,maciej-gurban,None,Maciej-gurban,maciej-gurban,1,1
+github,generator-gulp-angular,social,mackelito,markus@thiels.se,Mackelito,mackelito,19,1
+github,generator-gulp-angular,social,mahmoudmy,m.mosalman@gmail.com,Mahmoudmy,mahmoudmy,3,1
+github,generator-gulp-angular,social,majidln,majidlotfinia12@gmail.com,Majidln,majidln,1,1
+github,generator-gulp-angular,social,majkelo,None,Majkelo,majkelo,1,1
+github,generator-gulp-angular,social,maks-rafalko,None,Maks-rafalko,maks-rafalko,2,1
+github,generator-gulp-angular,social,malikba,malik.mba@gmail.com,Malikba,malikba,2,1
+github,generator-gulp-angular,social,manuel-m,None,Manuel-m,manuel-m,2,1
+github,generator-gulp-angular,social,marani,None,Marani,marani,66,1
+github,generator-gulp-angular,social,marcelaulenbacher,None,Marcelaulenbacher,marcelaulenbacher,3,1
+github,generator-gulp-angular,social,marchdoe,dougmarch@gmail.com,Marchdoe,marchdoe,2,1
+github,generator-gulp-angular,social,marcvangend,None,Marcvangend,marcvangend,2,1
+github,generator-gulp-angular,social,markevich,slava.markevich@gmail.com,Markevich,markevich,2,1
+github,generator-gulp-angular,social,markstewie,mark@markstewart.co.nz,Markstewie,markstewie,2,1
+github,generator-gulp-angular,social,marlncpe,None,Marlncpe,marlncpe,1,1
+github,generator-gulp-angular,social,martyla,None,Martyla,martyla,2,1
+github,generator-gulp-angular,social,masonlamy,None,Masonlamy,masonlamy,2,1
+github,generator-gulp-angular,social,mastermind1981,None,Mastermind1981,mastermind1981,2,1
+github,generator-gulp-angular,social,mastix,mastixmc@gmail.com,Mastix,mastix,5,1
+github,generator-gulp-angular,social,matantsu,matantsuberi@gmail.com,Matantsu,matantsu,1,1
+github,generator-gulp-angular,social,mateuo,mateuo@gmail.com,Mateuo,mateuo,2,1
+github,generator-gulp-angular,social,matiishyn,matiyishyn.ivan@gmail.com,Matiishyn,matiishyn,2,1
+github,generator-gulp-angular,social,mattarau,matt@arau.pro,Mattarau,mattarau,9,1
+github,generator-gulp-angular,social,mattxo,None,Mattxo,mattxo,2,1
+github,generator-gulp-angular,social,mattycraig,None,Mattycraig,mattycraig,1,1
+github,generator-gulp-angular,social,max-SS,max.ss@outlook.com,Max-ss,max ss,1,0
+github,generator-gulp-angular,social,maxehnert,me@maxehnert.com,Maxehnert,maxehnert,2,1
+github,generator-gulp-angular,social,maximdresvyankin,None,Maximdresvyankin,maximdresvyankin,1,1
+github,generator-gulp-angular,social,mburbea,michaelburbea@gmail.com,Mburbea,mburbea,7,1
+github,generator-gulp-angular,social,mde17,None,Mde17,mde17,1,1
+github,generator-gulp-angular,social,mescher,None,Mescher,mescher,1,1
+github,generator-gulp-angular,social,mewdriller,None,Mewdriller,mewdriller,1,1
+github,generator-gulp-angular,social,mfilotto,None,Mfilotto,mfilotto,3,1
+github,generator-gulp-angular,social,mfrachet,marvin.frachet@protonmail.com,Mfrachet,mfrachet,1,1
+github,generator-gulp-angular,social,micah-williamson,None,Micah-williamson,micah-williamson,3,1
+github,generator-gulp-angular,social,michalmw,None,Michalmw,michalmw,2,1
+github,generator-gulp-angular,social,michalstolinski,None,Michalstolinski,michalstolinski,1,1
+github,generator-gulp-angular,social,mikedidomizio,None,Mikedidomizio,mikedidomizio,2,1
+github,generator-gulp-angular,social,mikeerickson,codedungeon@gmail.com,Mikeerickson,mikeerickson,2,1
+github,generator-gulp-angular,social,mikesigs,None,Mikesigs,mikesigs,6,1
+github,generator-gulp-angular,social,mikiasmohamed,None,Mikiasmohamed,mikiasmohamed,1,1
+github,generator-gulp-angular,social,milkshoes,None,Milkshoes,milkshoes,16,1
+github,generator-gulp-angular,social,millarde,millard.ellingsworth@gmail.com,Millarde,millarde,3,1
+github,generator-gulp-angular,social,milushov,roma@milushov.ru,Milushov,milushov,1,1
+github,generator-gulp-angular,social,mistaanthony,mranthonyakin@live.co.uk,Mistaanthony,mistaanthony,1,1
+github,generator-gulp-angular,social,mittalabhas1,hello@abhasmittal.com,Mittalabhas1,mittalabhas,2,0
+github,generator-gulp-angular,social,mjeanroy,None,Mjeanroy,mjeanroy,2,1
+github,generator-gulp-angular,social,mkalpana,None,Mkalpana,mkalpana,2,1
+github,generator-gulp-angular,social,mmospanenko,mmospanenko@gmail.com,Mmospanenko,mmospanenko,1,1
+github,generator-gulp-angular,social,mnzaki,mnzaki@gmail.com,Mnzaki,mnzaki,1,1
+github,generator-gulp-angular,social,mohsen1,None,Mohsen1,mohsen1,14,1
+github,generator-gulp-angular,social,mojiAh,mo.ahmadi@outlook.com,Mojiah,moji ah,1,0
+github,generator-gulp-angular,social,mojics,None,Mojics,mojics,3,1
+github,generator-gulp-angular,social,monstromatic,None,Monstromatic,monstromatic,2,1
+github,generator-gulp-angular,social,montogeek,montogeek@gmail.com,Montogeek,montogeek,4,1
+github,generator-gulp-angular,social,morrislaptop,cr@igmorr.is,Morrislaptop,morrislaptop,1,1
+github,generator-gulp-angular,social,mpgn,None,Mpgn,mpgn,4,1
+github,generator-gulp-angular,social,mrafalkoitr,None,Mrafalkoitr,mrafalkoitr,1,1
+github,generator-gulp-angular,social,mrdulin,novaline.dulin@gmail.com,Mrdulin,mrdulin,1,1
+github,generator-gulp-angular,social,mrowles,None,Mrowles,mrowles,1,1
+github,generator-gulp-angular,social,msenosiain,None,Msenosiain,msenosiain,2,1
+github,generator-gulp-angular,social,msgilligan,None,Msgilligan,msgilligan,1,1
+github,generator-gulp-angular,social,mt3ck,None,Mt3ck,mt3ck,2,1
+github,generator-gulp-angular,social,mthomson-csi,None,Mthomson-csi,mthomson-csi,1,1
+github,generator-gulp-angular,social,mustela,None,Mustela,mustela,5,1
+github,generator-gulp-angular,social,mutumarieru,None,Mutumarieru,mutumarieru,2,1
+github,generator-gulp-angular,social,mvidailhet,michel.vidailhet@gmail.com,Mvidailhet,mvidailhet,5,1
+github,generator-gulp-angular,social,mzellho,max.zellhofer@gmail.com,Mzellho,mzellho,4,1
+github,generator-gulp-angular,social,nabinkumarn,nabinkumarneupane@gmail.com,Nabinkumarn,nabinkumarn,1,1
+github,generator-gulp-angular,social,nadavelyashiv,None,Nadavelyashiv,nadavelyashiv,1,1
+github,generator-gulp-angular,social,nadeemse,None,Nadeemse,nadeemse,1,1
+github,generator-gulp-angular,social,nafiul-islam-43,None,Nafiul-islam-43,nafiul-islam-43,1,1
+github,generator-gulp-angular,social,nanocom,None,Nanocom,nanocom,12,1
+github,generator-gulp-angular,social,naveenjafer,f2013019@hyderabad.bits-pilani.ac.in,Naveenjafer,naveenjafer,3,1
+github,generator-gulp-angular,social,navjinder,None,Navjinder,navjinder,2,1
+github,generator-gulp-angular,social,nbnotabene,None,Nbnotabene,nbnotabene,2,1
+github,generator-gulp-angular,social,nelreina,None,Nelreina,nelreina,2,1
+github,generator-gulp-angular,social,nelsonomuto,None,Nelsonomuto,nelsonomuto,1,1
+github,generator-gulp-angular,social,neoblackcap,neo.blackcap@gmail.com,Neoblackcap,neoblackcap,1,1
+github,generator-gulp-angular,social,netfish88,hongdae88@gmail.com,Netfish88,netfish,2,0
+github,generator-gulp-angular,social,nhducit,None,Nhducit,nhducit,5,1
+github,generator-gulp-angular,social,niallobrien,None,Niallobrien,niallobrien,12,1
+github,generator-gulp-angular,social,nickroberts,djparadyme@gmail.com,Nickroberts,nickroberts,1,1
+github,generator-gulp-angular,social,nidheeshdas,nidheeshdas@gmail.com,Nidheeshdas,nidheeshdas,1,1
+github,generator-gulp-angular,social,nigel-dewar,nigeldewar@live.com,Nigel-dewar,nigel dewar,4,0
+github,generator-gulp-angular,social,nikolaz111,None,Nikolaz111,nikolaz111,2,1
+github,generator-gulp-angular,social,nilsonsrjunior,nilsonsrjunior@gmail.com,Nilsonsrjunior,nilsonsrjunior,1,1
+github,generator-gulp-angular,social,nitetrik,None,Nitetrik,nitetrik,2,1
+github,generator-gulp-angular,social,nitzanav,None,Nitzanav,nitzanav,1,1
+github,generator-gulp-angular,social,nomantintash,None,Nomantintash,nomantintash,1,1
+github,generator-gulp-angular,social,noob9527,xy2061864@gmail.com,Noob9527,noob,1,0
+github,generator-gulp-angular,social,notrab,jamie@notrab.dev,Notrab,notrab,1,1
+github,generator-gulp-angular,social,nowres,nowresrafid@yahoo.com,Nowres,nowres,2,1
+github,generator-gulp-angular,social,noxecane,arewa.olakunle@gmail.com,Noxecane,noxecane,2,1
+github,generator-gulp-angular,social,npearson72,None,Npearson72,npearson72,10,1
+github,generator-gulp-angular,social,nsarno,arnaud.mesureur@gmail.com,Nsarno,nsarno,2,1
+github,generator-gulp-angular,social,ntimmerman,None,Ntimmerman,ntimmerman,1,1
+github,generator-gulp-angular,social,oblogic7,matt@obscurelogic.com,Oblogic7,oblogic,2,0
+github,generator-gulp-angular,social,okjulian,mayorga.julian@gmail.com,Okjulian,okjulian,1,1
+github,generator-gulp-angular,social,oleg-ria,olegria.dev@gmail.com,Oleg-ria,oleg ria,3,0
+github,generator-gulp-angular,social,olimungo,None,Olimungo,olimungo,3,1
+github,generator-gulp-angular,social,oliverjanik,oliver.janik@gmail.com,Oliverjanik,oliverjanik,1,1
+github,generator-gulp-angular,social,omribenari,omri79@gmail.com,Omribenari,omribenari,1,1
+github,generator-gulp-angular,social,opadilla,None,Opadilla,opadilla,2,1
+github,generator-gulp-angular,social,orangr1989,None,Orangr1989,orangr1989,1,1
+github,generator-gulp-angular,social,oreqizer,None,Oreqizer,oreqizer,1,1
+github,generator-gulp-angular,social,osdevisnot,osdevisnot@gmail.com,Osdevisnot,osdevisnot,5,1
+github,generator-gulp-angular,social,oswaldofreitas,oswaldo.milet@gmail.com,Oswaldofreitas,oswaldofreitas,4,1
+github,generator-gulp-angular,social,otaviosoares,otaviokk@gmail.com,Otaviosoares,otaviosoares,1,1
+github,generator-gulp-angular,social,otg-kalex,None,Otg-kalex,otg-kalex,1,1
+github,generator-gulp-angular,social,ottigerb,None,Ottigerb,ottigerb,1,1
+github,generator-gulp-angular,social,ottojimb,ottojimenez@gmail.com,Ottojimb,ottojimb,2,1
+github,generator-gulp-angular,social,pablorsk,pablo@srtk.com,Pablorsk,pablorsk,9,1
+github,generator-gulp-angular,social,paddybasi,paddybasi@gmail.com,Paddybasi,paddybasi,1,1
+github,generator-gulp-angular,social,paglias,matteopagliazzi@gmail.com,Paglias,paglias,4,1
+github,generator-gulp-angular,social,palpalani,palani.p@gmail.com,Palpalani,palpalani,1,1
+github,generator-gulp-angular,social,pashaigood,None,Pashaigood,pashaigood,1,1
+github,generator-gulp-angular,social,pasine,None,Pasine,pasine,1,1
+github,generator-gulp-angular,social,paulchubatyy,xobb@citylance.biz,Paulchubatyy,paulchubatyy,2,1
+github,generator-gulp-angular,social,pavelhoral,None,Pavelhoral,pavelhoral,1,1
+github,generator-gulp-angular,social,paweln1986,p.nosal1986@gmail.com,Paweln1986,paweln,2,0
+github,generator-gulp-angular,social,pbellon,None,Pbellon,pbellon,1,1
+github,generator-gulp-angular,social,pbojinov,None,Pbojinov,pbojinov,1,1
+github,generator-gulp-angular,social,pdf,None,Pdf13,pdf,1,0
+github,generator-gulp-angular,social,pdf13,pedrodiasfonseca@gmail.com,Pdf13,pdf,1,0
+github,generator-gulp-angular,social,pdrosos,None,Pdrosos,pdrosos,1,1
+github,generator-gulp-angular,social,pedro3900,None,Pedro3900,pedro3900,1,1
+github,generator-gulp-angular,social,pedrodelgallego,None,Pedrodelgallego,pedrodelgallego,2,1
+github,generator-gulp-angular,social,peec,kjelkenes@gmail.com,Peec,peec,2,1
+github,generator-gulp-angular,social,perchi,None,Perchi,perchi,3,1
+github,generator-gulp-angular,social,pfried,maeckle@nantis.de,Pfried,pfried,1,1
+github,generator-gulp-angular,social,pgrm,peter.grman@gmail.com,Pgrm,pgrm,5,1
+github,generator-gulp-angular,social,phamdt,None,Phamdt,phamdt,1,1
+github,generator-gulp-angular,social,phazei,None,Phazei,phazei,1,1
+github,generator-gulp-angular,social,phedinkus,phedinkus@gmail.com,Phedinkus,phedinkus,7,1
+github,generator-gulp-angular,social,philipmadeley,philipmadeley@gmail.com,Philipmadeley,philipmadeley,2,1
+github,generator-gulp-angular,social,pierol,None,Pierol,pierol,2,1
+github,generator-gulp-angular,social,pineauk,None,Pineauk,pineauk,1,1
+github,generator-gulp-angular,social,pirhoo,None,Pirhoo,pirhoo,1,1
+github,generator-gulp-angular,social,piu130,None,Piu130,piu130,6,1
+github,generator-gulp-angular,social,pluswave,pluswave@xiaofuxing.name,Pluswave,pluswave,3,1
+github,generator-gulp-angular,social,poliveira89,None,Poliveira89,poliveira89,5,1
+github,generator-gulp-angular,social,prashanth-sams,sams.prashanth@gmail.com,Prashanth-sams,prashanth sams,1,0
+github,generator-gulp-angular,social,prbaron,None,Prbaron,prbaron,3,1
+github,generator-gulp-angular,social,priithansen,None,Priithansen,priithansen,3,1
+github,generator-gulp-angular,social,priley86,priley86@gmail.com,Priley86,priley,2,0
+github,generator-gulp-angular,social,psvensson,None,Psvensson,psvensson,3,1
+github,generator-gulp-angular,social,psychowood,None,Psychowood,psychowood,1,1
+github,generator-gulp-angular,social,pulakb,bhattacharyyapulak@gmail.com,Pulakb,pulakb,1,1
+github,generator-gulp-angular,social,qlonik,None,Qlonik,qlonik,1,1
+github,generator-gulp-angular,social,qorsmond,contact@quintinorsmond.dev,Qorsmond,qorsmond,1,1
+github,generator-gulp-angular,social,quipu,None,Quipu,quipu,1,1
+github,generator-gulp-angular,social,qumani-designs,None,Qumani-designs,qumani-designs,2,1
+github,generator-gulp-angular,social,rabr2ro,None,Rabr2ro,rabr2ro,2,1
+github,generator-gulp-angular,social,radarsu,radarsu@gmail.com,Radarsu,radarsu,1,1
+github,generator-gulp-angular,social,radyz,ejchavez88@gmail.com,Radyz,radyz,1,1
+github,generator-gulp-angular,social,rajarju,None,Rajarju,rajarju,4,1
+github,generator-gulp-angular,social,ramirescm,None,Ramirescm,ramirescm,1,1
+github,generator-gulp-angular,social,raphaelluchini,None,Raphaelluchini,raphaelluchini,9,1
+github,generator-gulp-angular,social,raphox,raphox.araujo@gmail.com,Raphox,raphox,7,1
+github,generator-gulp-angular,social,raslasarslas,None,Raslasarslas,raslasarslas,1,1
+github,generator-gulp-angular,social,redaikidoka,redaikidoka@gmail.com,Redaikidoka,redaikidoka,4,1
+github,generator-gulp-angular,social,redskyburning,None,Redskyburning,redskyburning,2,1
+github,generator-gulp-angular,social,rgjamkhedkar,rgjamkhedkar@gmail.com,Rgjamkhedkar,rgjamkhedkar,2,1
+github,generator-gulp-angular,social,rictorres,None,Rictorres,rictorres,1,1
+github,generator-gulp-angular,social,ripper2hl,israel-perales@outlook.com,Ripper2hl,ripperhl,1,0
+github,generator-gulp-angular,social,riyadhalnur,None,Riyadhalnur,riyadhalnur,4,1
+github,generator-gulp-angular,social,rkeshmir,rkeshmir@yahoo.com,Rkeshmir,rkeshmir,1,1
+github,generator-gulp-angular,social,rkoberg,None,Rkoberg,rkoberg,2,1
+github,generator-gulp-angular,social,rnugraha,rnugraha@gmail.com,Rnugraha,rnugraha,1,1
+github,generator-gulp-angular,social,rogerkerse,None,Rogerkerse,rogerkerse,1,1
+github,generator-gulp-angular,social,rootical,rootical.web@gmail.com,Rootical,rootical,2,1
+github,generator-gulp-angular,social,rosieks,None,Rosieks,rosieks,6,1
+github,generator-gulp-angular,social,rosscdh,None,Rosscdh,rosscdh,3,1
+github,generator-gulp-angular,social,rotavio,None,Rotavio,rotavio,1,1
+github,generator-gulp-angular,social,rrajewski,None,Rrajewski,rrajewski,1,1
+github,generator-gulp-angular,social,rubenCodeforges,ruben@codeforges.com,Rubencodeforges,ruben codeforges,3,0
+github,generator-gulp-angular,social,rulir,rulir93@gmail.com,Rulir,rulir,1,1
+github,generator-gulp-angular,social,rummik,k@9k1.us,Rummik,rummik,1,1
+github,generator-gulp-angular,social,runmael,None,Runmael,runmael,1,1
+github,generator-gulp-angular,social,rvbiljouw,None,Rvbiljouw,rvbiljouw,2,1
+github,generator-gulp-angular,social,s-y,None,S-y,s-y,1,1
+github,generator-gulp-angular,social,saaqibz,None,Saaqibz,saaqibz,5,1
+github,generator-gulp-angular,social,sabarish-sa,None,Sabarish-sa,sabarish-sa,1,1
+github,generator-gulp-angular,social,sak55,samuelkauffman@gmail.com,Sak55,sak,1,0
+github,generator-gulp-angular,social,sam2x,None,Sam2x,sam2x,1,1
+github,generator-gulp-angular,social,samhghanmi,None,Samhghanmi,samhghanmi,1,1
+github,generator-gulp-angular,social,samskrithib,None,Samskrithib,samskrithib,1,1
+github,generator-gulp-angular,social,santiagobasulto,None,Santiagobasulto,santiagobasulto,1,1
+github,generator-gulp-angular,social,saqueib,None,Saqueib,saqueib,2,1
+github,generator-gulp-angular,social,sarod,sebastien.arod@semarchy.com,Sarod,sarod,2,1
+github,generator-gulp-angular,social,sarunast,None,Sarunast,sarunast,7,1
+github,generator-gulp-angular,social,sasajib,None,Sasajib,sasajib,2,1
+github,generator-gulp-angular,social,sb8244,sb8244@cs.ship.edu,Sb8244,sb,3,0
+github,generator-gulp-angular,social,sbuljac,None,Sbuljac,sbuljac,1,1
+github,generator-gulp-angular,social,scanferla,gustavo@scanfer.la,Scanferla,scanferla,3,1
+github,generator-gulp-angular,social,scarroll32,None,Scarroll32,scarroll32,1,1
+github,generator-gulp-angular,social,schacki,None,Schacki,schacki,3,1
+github,generator-gulp-angular,social,scottymeyers,scottmey@gmail.com,Scottymeyers,scottymeyers,5,1
+github,generator-gulp-angular,social,scttcper,None,Scttcper,scttcper,4,1
+github,generator-gulp-angular,social,sdornan,sdornan@gmail.com,Sdornan,sdornan,2,1
+github,generator-gulp-angular,social,sebastialonso,sebagonz91@gmail.com,Sebastialonso,sebastialonso,3,1
+github,generator-gulp-angular,social,sebastianovide,None,Sebastianovide,sebastianovide,10,1
+github,generator-gulp-angular,social,sebeichholz,None,Sebeichholz,sebeichholz,2,1
+github,generator-gulp-angular,social,sebolio,None,Sebolio,sebolio,3,1
+github,generator-gulp-angular,social,semeano,None,Semeano,semeano,2,1
+github,generator-gulp-angular,social,seonetartem,None,Seonetartem,seonetartem,4,1
+github,generator-gulp-angular,social,sercba,None,Sercba,sercba,1,1
+github,generator-gulp-angular,social,sergeymorkovkin,None,Sergeymorkovkin,sergeymorkovkin,1,1
+github,generator-gulp-angular,social,sergonius,None,Sergonius,sergonius,10,1
+github,generator-gulp-angular,social,seyDoggy,None,Seydoggy,seyDoggy,1,1
+github,generator-gulp-angular,social,sgybas,None,Sgybas,sgybas,1,1
+github,generator-gulp-angular,social,shahar84,makore.shahar@gmail.com,Shahar84,shahar,1,0
+github,generator-gulp-angular,social,shakyShane,None,Shakyshane,shakyShane,1,1
+github,generator-gulp-angular,social,shantanugautam,None,Shantanugautam,shantanugautam,3,1
+github,generator-gulp-angular,social,shaunpatterson,shaunpatterson@gmail.com,Shaunpatterson,shaunpatterson,2,1
+github,generator-gulp-angular,social,shawn-simon,None,Shawn-simon,shawn-simon,5,1
+github,generator-gulp-angular,social,shersial,zahidshersial@gmail.com,Shersial,shersial,2,1
+github,generator-gulp-angular,social,shicholas,None,Shicholas,shicholas,1,1
+github,generator-gulp-angular,social,shootermv,shootermv@gmail.com,Shootermv,shootermv,1,1
+github,generator-gulp-angular,social,shrutiaggarwal3012,None,Shrutiaggarwal3012,shrutiaggarwal3012,1,1
+github,generator-gulp-angular,social,shubhammaheshan,None,Shubhammaheshan,shubhammaheshan,1,1
+github,generator-gulp-angular,social,sibelius,sibeliusseraphini@gmail.com,Sibelius,sibelius,1,1
+github,generator-gulp-angular,social,silkroad57,None,Silkroad57,silkroad57,1,1
+github,generator-gulp-angular,social,simonerni,None,Simonerni,simonerni,1,1
+github,generator-gulp-angular,social,simonghales,simonghales@gmail.com,Simonghales,simonghales,1,1
+github,generator-gulp-angular,social,sinorga,None,Sinorga,sinorga,2,1
+github,generator-gulp-angular,social,skeenan,None,Skeenan,skeenan,9,1
+github,generator-gulp-angular,social,skeep,sumank.paul@gmail.com,Skeep,skeep,8,1
+github,generator-gulp-angular,social,skjolber,thomas.skjolberg@gmail.com,Skjolber,skjolber,2,1
+github,generator-gulp-angular,social,skrenek,None,Skrenek,skrenek,3,1
+github,generator-gulp-angular,social,slawojstanislawski,None,Slawojstanislawski,slawojstanislawski,2,1
+github,generator-gulp-angular,social,smakosh,ismai23l@hotmail.com,Smakosh,smakosh,1,1
+github,generator-gulp-angular,social,smart987,None,Smart987,smart987,1,1
+github,generator-gulp-angular,social,snc,None,Snc,snc,1,1
+github,generator-gulp-angular,social,snikch,mal@mal.co.nz,Snikch,snikch,2,1
+github,generator-gulp-angular,social,snow-swallow,None,Snow-swallow,snow-swallow,1,1
+github,generator-gulp-angular,social,sombra-development,None,Sombra-development,sombra-development,1,1
+github,generator-gulp-angular,social,sookinoby,sookinoby@gmail.com,Sookinoby,sookinoby,1,1
+github,generator-gulp-angular,social,souravmondal93,souravrkl.gamefreak@gmail.com,Souravmondal93,souravmondal,3,0
+github,generator-gulp-angular,social,sqal,None,Sqal,sqal,3,1
+github,generator-gulp-angular,social,srdjanprpa,srdjanprpa@gmail.com,Srdjanprpa,srdjanprpa,1,1
+github,generator-gulp-angular,social,srsgores,seangores@gmail.com,Srsgores,srsgores,3,1
+github,generator-gulp-angular,social,sruthigit,None,Sruthigit,sruthigit,1,1
+github,generator-gulp-angular,social,sswainright,None,Sswainright,sswainright,17,1
+github,generator-gulp-angular,social,stanosmith,None,Stanosmith,stanosmith,1,1
+github,generator-gulp-angular,social,steeren,None,Steeren,steeren,1,1
+github,generator-gulp-angular,social,stefanaerts,None,Stefanaerts,stefanaerts,2,1
+github,generator-gulp-angular,social,stefanpenner,None,Stefanpenner,stefanpenner,6,1
+github,generator-gulp-angular,social,stepanic,stepanic.matija@gmail.com,Stepanic,stepanic,1,1
+github,generator-gulp-angular,social,stevebritton,None,Stevebritton,stevebritton,1,1
+github,generator-gulp-angular,social,stewones,None,Stewones,stewones,10,1
+github,generator-gulp-angular,social,stoked74,None,Stoked74,stoked74,2,1
+github,generator-gulp-angular,social,storkme,stork@not.gd,Storkme,storkme,2,1
+github,generator-gulp-angular,social,stryju,None,Stryju,stryju,1,1
+github,generator-gulp-angular,social,styler,styler@streamelements.com,Styler,styler,1,1
+github,generator-gulp-angular,social,sunilkumarkm,sunilkumarkm23@gmail.com,Sunilkumarkm,sunilkumarkm,1,1
+github,generator-gulp-angular,social,supersonicclay,None,Supersonicclay,supersonicclay,1,1
+github,generator-gulp-angular,social,superstructor,isaac@superstruct.nz,Superstructor,superstructor,1,1
+github,generator-gulp-angular,social,svlapin,sv0lapin@gmail.com,Svlapin,svlapin,1,1
+github,generator-gulp-angular,social,swamper,None,Swamper,swamper,2,1
+github,generator-gulp-angular,social,syzer,None,Syzer,syzer,3,1
+github,generator-gulp-angular,social,tallboy,None,Tallboy,tallboy,1,1
+github,generator-gulp-angular,social,tawanda,None,Tawanda,tawanda,4,1
+github,generator-gulp-angular,social,tb,tb@tomaszbak.com,Tb,tb,1,1
+github,generator-gulp-angular,social,tchiss,tchiss_a@epitech.eu,Tchiss,tchiss,1,1
+github,generator-gulp-angular,social,telemakhos,None,Telemakhos,telemakhos,4,1
+github,generator-gulp-angular,social,tghamm,None,Tghamm,tghamm,1,1
+github,generator-gulp-angular,social,thangtx,None,Thangtx,thangtx,2,1
+github,generator-gulp-angular,social,theseanstewart,None,Theseanstewart,theseanstewart,1,1
+github,generator-gulp-angular,social,thetruechar,None,Thetruechar,thetruechar,1,1
+github,generator-gulp-angular,social,thiagosbrito,None,Thiagosbrito,thiagosbrito,1,1
+github,generator-gulp-angular,social,thinksource,foretribe@gmail.com,Thinksource,thinksource,1,1
+github,generator-gulp-angular,social,thnt,None,Thnt,thnt,1,1
+github,generator-gulp-angular,social,tiagomelilo,None,Tiagomelilo,tiagomelilo,1,1
+github,generator-gulp-angular,social,timmaybrown,None,Timmaybrown,timmaybrown,1,1
+github,generator-gulp-angular,social,timmyg,timmyg13@gmail.com,Timmyg,timmyg,1,1
+github,generator-gulp-angular,social,timofeysie,None,Timofeysie,timofeysie,3,1
+github,generator-gulp-angular,social,tirli,None,Tirli,tirli,1,1
+github,generator-gulp-angular,social,tjcprince,None,Tjcprince,tjcprince,1,1
+github,generator-gulp-angular,social,tlvince,github@tlvince.com,Tlvince,tlvince,13,1
+github,generator-gulp-angular,social,tommyfok,154274174@qq.com,Tommyfok,tommyfok,3,1
+github,generator-gulp-angular,social,tomwetjens,None,Tomwetjens,tomwetjens,1,1
+github,generator-gulp-angular,social,tossp,github@tossp.com,Tossp,tossp,2,1
+github,generator-gulp-angular,social,tscislo,scislot@gmail.com,Tscislo,tscislo,5,1
+github,generator-gulp-angular,social,tuvokki,None,Tuvokki,tuvokki,1,1
+github,generator-gulp-angular,social,tuxity,None,Tuxity,tuxity,4,1
+github,generator-gulp-angular,social,tvararu,theo@vararu.org,Tvararu,tvararu,4,1
+github,generator-gulp-angular,social,uaKorona,None,Uakorona,uaKorona,3,1
+github,generator-gulp-angular,social,ufoscout,ufoscout@gmail.com,Ufoscout,ufoscout,5,1
+github,generator-gulp-angular,social,ulilicht,None,Ulilicht,ulilicht,1,1
+github,generator-gulp-angular,social,ulion,None,Ulion,ulion,1,1
+github,generator-gulp-angular,social,umair-khanzada,umairkz52@gmail.com,Umair-khanzada,umair khanzada,2,0
+github,generator-gulp-angular,social,urosjarc,jar.fmf@gmail.com,Urosjarc,urosjarc,1,1
+github,generator-gulp-angular,social,utamanna,None,Utamanna,utamanna,2,1
+github,generator-gulp-angular,social,valeriosillari,None,Valeriosillari,valeriosillari,6,1
+github,generator-gulp-angular,social,vamsikrishnamannem,vamsi.mannem@gmail.com,Vamsikrishnamannem,vamsikrishnamannem,2,1
+github,generator-gulp-angular,social,vanderleisilva,vanderlei.alves.da.silva@gmail.com,Vanderleisilva,vanderleisilva,1,1
+github,generator-gulp-angular,social,vasiliy0s,None,Vasiliy0s,vasiliy0s,1,1
+github,generator-gulp-angular,social,vaubrun13,None,Vaubrun13,vaubrun13,2,1
+github,generator-gulp-angular,social,vbud,None,Vbud,vbud,4,1
+github,generator-gulp-angular,social,vespertilian,vespertilian@gmail.com,Vespertilian,vespertilian,3,1
+github,generator-gulp-angular,social,viikas,vikas.ramtel@portpro.io,Viikas,viikas,2,1
+github,generator-gulp-angular,social,vinicius73,None,Vinicius73,vinicius73,1,1
+github,generator-gulp-angular,social,vinod-ttnd,None,Vinod-ttnd,vinod-ttnd,1,1
+github,generator-gulp-angular,social,vitorreis,None,Vitorreis,vitorreis,2,1
+github,generator-gulp-angular,social,vitr,vitr.dev@gmail.com,Vitr,vitr,1,1
+github,generator-gulp-angular,social,vivascau,None,Vivascau,vivascau,2,1
+github,generator-gulp-angular,social,vko-online,None,Vko-online,vko-online,3,1
+github,generator-gulp-angular,social,vlio20,None,Vlio20,vlio20,5,1
+github,generator-gulp-angular,social,vmlf01,None,Vmlf01,vmlf01,1,1
+github,generator-gulp-angular,social,volodchenkov,volodchenkov@gmail.com,Volodchenkov,volodchenkov,5,1
+github,generator-gulp-angular,social,vredchenko,vredchenko@gmail.com,Vredchenko,vredchenko,3,1
+github,generator-gulp-angular,social,vronvali,None,Vronvali,vronvali,1,1
+github,generator-gulp-angular,social,vucalur,None,Vucalur,vucalur,2,1
+github,generator-gulp-angular,social,vuhrmeister,None,Vuhrmeister,vuhrmeister,7,1
+github,generator-gulp-angular,social,vuptt,ptvu.it@gmail.com,Vuptt,vuptt,1,1
+github,generator-gulp-angular,social,w3debugger,w3debugger@gmail.com,W3debugger,wdebugger,1,0
+github,generator-gulp-angular,social,wadijm,None,Wadijm,wadijm,2,1
+github,generator-gulp-angular,social,wangchen,kitta4587@gmail.com,Wangchen,wangchen,1,1
+github,generator-gulp-angular,social,wanglong167,None,Wanglong167,wanglong167,3,1
+github,generator-gulp-angular,social,wb14123,None,Wb14123,wb14123,4,1
+github,generator-gulp-angular,social,webcaetano,webandrecaetano@gmail.com,Webcaetano,webcaetano,2,1
+github,generator-gulp-angular,social,wester97,None,Wester97,wester97,1,1
+github,generator-gulp-angular,social,wgorder,None,Wgorder,wgorder,61,1
+github,generator-gulp-angular,social,williamboman,None,Williamboman,williamboman,1,1
+github,generator-gulp-angular,social,wjehring,None,Wjehring,wjehring,2,1
+github,generator-gulp-angular,social,wmceff,wmceff@gmail.com,Wmceff,wmceff,3,1
+github,generator-gulp-angular,social,wonsikin,fnghwsj@gmail.com,Wonsikin,wonsikin,2,1
+github,generator-gulp-angular,social,wstam88,None,Wstam88,wstam88,1,1
+github,generator-gulp-angular,social,wwlweihai,545358072@qq.com,Wwlweihai,wwlweihai,1,1
+github,generator-gulp-angular,social,xkeshav,xkeshav@gmail.com,Xkeshav,xkeshav,1,1
+github,generator-gulp-angular,social,xml,None,Xml,xml,3,1
+github,generator-gulp-angular,social,yakuzaaaa,None,Yakuzaaaa,yakuzaaaa,1,1
+github,generator-gulp-angular,social,yantakus,None,Yantakus,yantakus,5,1
+github,generator-gulp-angular,social,yordis,yordis.prieto@gmail.com,Yordis,yordis,3,1
+github,generator-gulp-angular,social,ytkj,None,Ytkj,ytkj,2,1
+github,generator-gulp-angular,social,yuanphoon,None,Yuanphoon,yuanphoon,2,1
+github,generator-gulp-angular,social,yyw1994,None,Yyw1994,yyw1994,2,1
+github,generator-gulp-angular,social,zakdances,None,Zakdances,zakdances,8,1
+github,generator-gulp-angular,social,zawilliams,None,Zawilliams,zawilliams,9,1
+github,generator-gulp-angular,social,zckrs,mehdy.dara.fr@gmail.com,Zckrs,zckrs,540,1
+github,generator-gulp-angular,social,zhekaus,None,Zhekaus,zhekaus,1,1
+github,generator-gulp-angular,social,zhenyi2697,zhenyi2697@gmail.com,Zhenyi2697,zhenyi,2,0
+github,generator-gulp-angular,social,zhouhao27,None,Zhouhao27,zhouhao27,7,1
+github,generator-gulp-angular,social,zychj1,None,Zychj1,zychj1,1,1
+github,generator-gulp-angular,social,zymr-keshav,None,Zymr-keshav,zymr-keshav,1,1
+github,generator-gulp-angular,social,zztop101,None,Zztop101,zztop101,4,1
+eclipse,Remote Application Platform,tech,Benjamin Muskalla,benjamin.muskalla@tasktop.com,Benjamin Muskalla,benjamin muskalla,3725,1
+eclipse,Remote Application Platform,tech,Elias Volanakis,elias@eclipsesource.com,Elias Volanakis,elias volanakis,8,1
+eclipse,Remote Application Platform,tech,Frank Appel,fappel,Frank Appel,frank appel,3743,1
+eclipse,Remote Application Platform,tech,Holger Staudacher,hstaudacher@eclipsesource.com,Holger Staudacher,holger staudacher,64,1
+eclipse,Remote Application Platform,tech,Ivan Furnadjiev,ivan@eclipsesource.com,Ivan Furnadjiev,ivan furnadjiev,884,1
+eclipse,Remote Application Platform,tech,Jochen Krause,jkrause,Jochen Krause,jochen krause,13,1
+eclipse,Remote Application Platform,tech,Jordi Boehme Lopez,jboehme@eclipsesource.com,Jordi Boehme Lopez,jordi boehme lopez,3,1
+eclipse,Remote Application Platform,tech,Ralf Sternberg,rsternberg@eclipsesource.com,Ralf Sternberg,ralf sternberg,3293,1
+eclipse,Remote Application Platform,tech,Rüdiger Herrmann,ruediger.herrmann@gmx.de,Rüdiger Herrmann,rudiger herrmann,6115,0
+eclipse,Remote Application Platform,tech,bmuskalla,bmuskalla,bmuskalla,bmuskalla,27,1
+eclipse,Remote Application Platform,tech,droy,droy,droy,droy,5,1
+eclipse,Remote Application Platform,tech,fappel,fappel,fappel,fappel,54,1
+eclipse,Remote Application Platform,tech,hstaudacher,hstaudacher,hstaudacher,hstaudacher,2,1
+eclipse,Remote Application Platform,tech,jbohmelo,jbohmelo,jbohmelo,jbohmelo,6,1
+eclipse,Remote Application Platform,tech,jkrause,jkrause,jkrause,jkrause,248,1
+eclipse,Remote Application Platform,tech,mward,mward,mward,mward,1,1
+eclipse,Remote Application Platform,tech,rherrmann,rherrmann,rherrmann,rherrmann,579,1
+eclipse,Remote Application Platform,tech,rsternber,rsternber,rsternber,rsternber,42,1
+osgeo,get-it,tech,404,404,404,404,3,1
+osgeo,get-it,tech,Alessandro Oggioni,Alessandro Oggioni,Alessandro Oggioni,alessandro oggioni,16,1
+osgeo,get-it,tech,Alessio Fabiani,Alessio Fabiani,Alessio Fabiani,alessio fabiani,421,1
+osgeo,get-it,tech,Andrea,Andrea,Andrea,andrea,1,1
+osgeo,get-it,tech,Andrea Vianello,Andrea Vianello,Andrea Vianello,andrea vianello,65,1
+osgeo,get-it,tech,Diego,Diego,Diego,diego,107,1
+osgeo,get-it,tech,Fabio Pavesi,Fabio Pavesi,Fabio Pavesi,fabio pavesi,4,1
+osgeo,get-it,tech,Francesco,Francesco,Francesco,francesco,260,1
+osgeo,get-it,tech,Monica,Monica,Monica,monica,3,1
+osgeo,get-it,tech,Paolo Tagliolato,Paolo Tagliolato,Paolo Tagliolato,paolo tagliolato,127,1
+osgeo,get-it,tech,Simone Lanucara,Simone Lanucara,Simone Lanucara,simone lanucara,84,1
+osgeo,get-it,tech,Stefano,Stefano,Stefano,stefano,235,1
+osgeo,get-it,tech,Stefano Menegon,Stefano Menegon,Stefano Menegon,stefano menegon,875,1
+osgeo,get-it,tech,Walter Lorenzetti,Walter Lorenzetti,Walter Lorenzetti,walter lorenzetti,14,1
+osgeo,get-it,tech,Walter McGinnis,Walter McGinnis,Walter Mcginnis,walter mc ginnis,112,0
+osgeo,get-it,tech,alesarrett,alesarrett,Alessandro.sarretta,alesarrett,1,0
+osgeo,get-it,tech,alessandro.sarretta,alessandro.sarretta,Alessandro.sarretta,alessandro sarretta,589,0
+osgeo,get-it,tech,angular-cli,angular-cli,Angular-cli,angular cli,16,0
+osgeo,get-it,tech,fzeiser,fzeiser,Fzeiser,fzeiser,2057,1
+osgeo,get-it,tech,noreply,noreply,Noreply,noreply,555,1
+osgeo,get-it,tech,root,root,Root@bgdem1.cr.usgs.gov,root,9,0
+osgeo,get-it,tech,root@bgdem1.cr.usgs.gov,root@bgdem1.cr.usgs.gov,Root@bgdem1.cr.usgs.gov,rootbgdem cr usgs gov,18,0
+osgeo,get-it,tech,spookyisland,spookyisland,Spookyisland,spookyisland,135,1
+osgeo,get-it,tech,starterkit,starterkit,Starterkit,starterkit,12,1
+osgeo,get-it,social,Alessandro Oggioni,Alessandro Oggioni,Alessandro Oggioni,alessandro oggioni,2,1
+osgeo,get-it,social,Laura ,Laura ,Laura ,laura,2,0

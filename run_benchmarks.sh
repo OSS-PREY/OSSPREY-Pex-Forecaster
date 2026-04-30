@@ -18,10 +18,12 @@ set -euo pipefail
 #   --output-dir
 #     Directory for alias_comparison.csv, alias_summary.csv, and alias_status.csv.
 #     Optimal default: reports/alias_benchmark.
+
 python3 -m dfc.benchmark.alias \
   --gambit-cache-dir reports/alias_benchmark/gambit \
-  --output-dir reports/alias_benchmark \
-  --refresh-gambit
+  --output-dir reports/alias_benchmark
+  # --refresh-gambit
+
 ################################################################################
 
 ################################################################################
@@ -46,11 +48,13 @@ python3 -m dfc.benchmark.alias \
 #   --output-dir
 #     Directory for bot_id_comparison.csv, bot_id_summary.csv, and
 #     bot_id_status.csv. Optimal default: reports/bot_id_benchmark.
+
 python3 -m dfc.benchmark.bot_id \
   --rabbit-cache-dir reports/bot_id_benchmark/rabbit \
   --min-events 5 \
   --min-confidence 1.0 \
   --max-queries 3 \
-  --output-dir reports/bot_id_benchmark \
-  --refresh-rabbit
+  --output-dir reports/bot_id_benchmark
+  # --refresh-rabbit
+
 ################################################################################

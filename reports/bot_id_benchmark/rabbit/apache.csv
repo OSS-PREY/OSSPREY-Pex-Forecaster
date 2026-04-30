@@ -18,7 +18,7 @@ christoph bhm,Invalid,,{},0
 claudio martella,Invalid,,{},0
 dan brickley,Invalid,,{},0
 dan mcclary,Invalid,,{},0
-dave,Human,0.924,"{""NA"": 25.0, ""NT"": 10.0, ""NOR"": 5.0, ""ORR"": 0.625, ""DCA_mean"": 28.724, ""DCA_median"": 0.361, ""DCA_std"": 60.458, ""DCA_gini"": 0.808, ""NAR_mean"": 3.125, ""NAR_median"": 2.5, ""NAR_gini"": 0.325, ""NAR_IQR"": 1.0, ""NTR_mean"": 2.375, ""NTR_median"": 2.5, ""NTR_std"": 0.744, ""NTR_gini"": 0.151, ""NCAR_mean"": 1.923, ""NCAR_std"": 1.935, ""NCAR_IQR"": 1.0, ""DCAR_mean"": 10.561, ""DCAR_median"": 0.0, ""DCAR_std"": 30.891, ""DCAR_IQR"": 0.006, ""DAAR_mean"": 46.006, ""DAAR_median"": 1.08, ""DAAR_std"": 77.356, ""DAAR_gini"": 0.734, ""DAAR_IQR"": 64.476, ""DCAT_mean"": 31.772, ""DCAT_median"": 0.332, ""DCAT_std"": 64.113, ""DCAT_gini"": 0.795, ""DCAT_IQR"": 33.801, ""NAT_mean"": 2.5, ""NAT_median"": 2.5, ""NAT_std"": 1.354, ""NAT_gini"": 0.284, ""NAT_IQR"": 1.75}",0
+dave,Human,0.942,"{""NA"": 21.0, ""NT"": 10.0, ""NOR"": 5.0, ""ORR"": 0.625, ""DCA_mean"": 34.341, ""DCA_median"": 0.42, ""DCA_std"": 65.002, ""DCA_gini"": 0.771, ""NAR_mean"": 2.625, ""NAR_median"": 2.5, ""NAR_gini"": 0.22, ""NAR_IQR"": 1.0, ""NTR_mean"": 2.25, ""NTR_median"": 2.0, ""NTR_std"": 0.707, ""NTR_gini"": 0.153, ""NCAR_mean"": 1.615, ""NCAR_std"": 0.961, ""NCAR_IQR"": 1.0, ""DCAR_mean"": 10.365, ""DCAR_median"": 0.0, ""DCAR_std"": 30.786, ""DCAR_IQR"": 0.006, ""DAAR_mean"": 46.006, ""DAAR_median"": 1.08, ""DAAR_std"": 77.356, ""DAAR_gini"": 0.734, ""DAAR_IQR"": 64.476, ""DCAT_mean"": 36.935, ""DCAT_median"": 0.254, ""DCAT_std"": 68.104, ""DCAT_gini"": 0.762, ""DCAT_IQR"": 55.442, ""NAT_mean"": 2.1, ""NAT_median"": 2.0, ""NAT_std"": 0.876, ""NAT_gini"": 0.214, ""NAT_IQR"": 1.75}",0
 david capwell,Invalid,,{},0
 david garcia,Invalid,,{},0
 deepak nettem,Invalid,,{},0
@@ -86,7 +86,7 @@ thomas quintana,Invalid,,{},0
 timmy wilson,Invalid,,{},0
 vinod kumar vavilapalli,Invalid,,{},0
 yavuz gokirmak,Invalid,,{},0
-ycombinator,Human,0.83,"{""NA"": 157.0, ""NT"": 9.0, ""NOR"": 3.0, ""ORR"": 0.2, ""DCA_mean"": 1.225, ""DCA_median"": 0.074, ""DCA_std"": 3.574, ""DCA_gini"": 0.868, ""NAR_mean"": 10.467, ""NAR_median"": 7.0, ""NAR_gini"": 0.476, ""NAR_IQR"": 9.0, ""NTR_mean"": 3.067, ""NTR_median"": 2.0, ""NTR_std"": 2.154, ""NTR_gini"": 0.31, ""NCAR_mean"": 1.539, ""NCAR_std"": 1.453, ""NCAR_IQR"": 0.0, ""DCAR_mean"": 0.112, ""DCAR_median"": 0.0, ""DCAR_std"": 0.387, ""DCAR_IQR"": 0.0, ""DAAR_mean"": 1.778, ""DAAR_median"": 0.111, ""DAAR_std"": 4.339, ""DAAR_gini"": 0.846, ""DAAR_IQR"": 0.64, ""DCAT_mean"": 1.106, ""DCAT_median"": 0.045, ""DCAT_std"": 3.471, ""DCAT_gini"": 0.884, ""DCAT_IQR"": 0.342, ""NAT_mean"": 17.444, ""NAT_median"": 8.0, ""NAT_std"": 21.167, ""NAT_gini"": 0.559, ""NAT_IQR"": 18.0}",0
+ycombinator,Unknown,,{},0
 yingyi bu,Invalid,,{},0
 yuanyuan tian,Invalid,,{},0
 yury litvinov,Invalid,,{},0

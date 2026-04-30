@@ -1,0 +1,6 @@
+incubator,status,gambit_results,rows,error
+apache,ok,reports/alias_benchmark/gambit/apache.csv,224,
+github,ok,reports/alias_benchmark/gambit/github.csv,993,
+eclipse,ok,reports/alias_benchmark/gambit/eclipse.csv,18,
+osgeo,ok,reports/alias_benchmark/gambit/osgeo.csv,26,
+ospos,error,reports/alias_benchmark/gambit/ospos.csv,0,'ospos'
