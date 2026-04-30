@@ -78,7 +78,7 @@ def sample_one_project(
     incubator: str,
     sample_seed: int = DEFAULT_SAMPLE_SEED,
 ) -> dict[str, pd.DataFrame]:
-    """Return rawdata filtered to one seeded random project."""
+    """Return rawdata filtered to one seeded random non-bot project subset."""
 
     project_frames = [
         df["project_name"].dropna().astype(str)
@@ -95,26 +95,19 @@ def sample_one_project(
 
     sampled_project = project_names.sample(n=1, random_state=sample_seed).iloc[0]
     log(f"{incubator}: sampled project {sampled_project}", "note")
-    return {
-        activity_type: (
-            df[df["project_name"].astype(str) == sampled_project].copy()
-            if "project_name" in df.columns
-            else df.copy()
-        )
-        for activity_type, df in data_lookup.items()
-    }
-
-
-def filter_bot_rows(data_lookup: dict[str, pd.DataFrame]) -> dict[str, pd.DataFrame]:
-    """Drop rows with binary is_bot flags before alias benchmarking."""
-
     filtered: dict[str, pd.DataFrame] = {}
     for activity_type, df in data_lookup.items():
-        if BOT_FIELD not in df.columns:
-            filtered[activity_type] = df.copy()
+        if "project_name" not in df.columns:
+            filtered[activity_type] = df.iloc[0:0].copy()
             continue
 
-        filtered[activity_type] = df[df[BOT_FIELD] != 1].copy()
+        project_mask = df["project_name"].astype(str) == sampled_project
+        bot_mask = (
+            df[BOT_FIELD] == 1
+            if BOT_FIELD in df.columns
+            else pd.Series(False, index=df.index)
+        )
+        filtered[activity_type] = df[project_mask & ~bot_mask].copy()
 
     return filtered
 
@@ -452,7 +445,6 @@ def benchmark_incubator(
         incubator=incubator,
         sample_seed=sample_seed,
     )
-    data_lookup = filter_bot_rows(data_lookup)
     gambit_cache_path = Path(gambit_cache_dir) / f"{incubator}.csv"
 
     if gambit_cache_path.exists() and not refresh_gambit:
