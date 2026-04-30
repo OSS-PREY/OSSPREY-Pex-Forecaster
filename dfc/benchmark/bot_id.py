@@ -406,7 +406,7 @@ def summarize_comparison(
             "dfc_bots": 0,
             "rabbit_bots": 0,
             "agreements": 0,
-            "agreement_rate": 0.0,
+            "agreement_rate": 1.0,
         }
 
     if comparison.empty:
@@ -542,7 +542,6 @@ def final_alignment_report(summary: pd.DataFrame) -> pd.DataFrame:
         "activity_type",
         "alignment_pct",
         "median_alignment_pct",
-        "stddev_alignment_pct",
     ]
     if summary.empty:
         return pd.DataFrame(columns=columns)
@@ -566,40 +565,27 @@ def final_alignment_report(summary: pd.DataFrame) -> pd.DataFrame:
         .agg(
             project_contributors=("project_contributors", "sum"),
             agreements=("agreements", "sum"),
+            agreement_rate=("agreement_rate", "mean"),
         )
         .reset_index()
     )
     incubator_breakdown["alignment_pct"] = (
-        incubator_breakdown["agreements"]
-        .div(incubator_breakdown["project_contributors"])
-        .fillna(0.0)
-        .mul(100)
-        .round(2)
+        incubator_breakdown["agreement_rate"].mul(100).round(2)
     )
     incubator_breakdown["section"] = "incubator"
 
     overall = (
         activity_summary.groupby("activity_type", dropna=False)
-        .agg(
-            project_contributors=("project_contributors", "sum"),
-            agreements=("agreements", "sum"),
-        )
+        .agg(alignment_pct=("agreement_rate", lambda values: values.mean() * 100))
         .reset_index()
     )
-    overall["alignment_pct"] = (
-        overall["agreements"]
-        .div(overall["project_contributors"])
-        .fillna(0.0)
-        .mul(100)
-        .round(2)
-    )
+    overall["alignment_pct"] = overall["alignment_pct"].round(2)
     overall["section"] = "overall"
     overall["incubator"] = "all"
     median_alignment = weighted_median(
         incubator_breakdown["alignment_pct"],
         incubator_breakdown["project_contributors"],
     )
-    stddev_alignment = incubator_breakdown["alignment_pct"].std(ddof=0)
 
     report = pd.concat(
         [
@@ -611,10 +597,8 @@ def final_alignment_report(summary: pd.DataFrame) -> pd.DataFrame:
         ignore_index=True,
     )
     report["median_alignment_pct"] = pd.NA
-    report["stddev_alignment_pct"] = pd.NA
     overall_mask = report["section"] == "overall"
     report.loc[overall_mask, "median_alignment_pct"] = round(median_alignment, 2)
-    report.loc[overall_mask, "stddev_alignment_pct"] = round(stddev_alignment, 2)
     return report[columns]
 
 
