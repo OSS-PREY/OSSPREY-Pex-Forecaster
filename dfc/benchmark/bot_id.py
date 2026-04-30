@@ -542,7 +542,7 @@ def final_alignment_report(summary: pd.DataFrame) -> pd.DataFrame:
         "activity_type",
         "alignment_pct",
         "median_alignment_pct",
-        "variance_alignment_pct",
+        "stddev_alignment_pct",
     ]
     if summary.empty:
         return pd.DataFrame(columns=columns)
@@ -599,7 +599,7 @@ def final_alignment_report(summary: pd.DataFrame) -> pd.DataFrame:
         incubator_breakdown["alignment_pct"],
         incubator_breakdown["project_contributors"],
     )
-    variance_alignment = incubator_breakdown["alignment_pct"].var(ddof=0)
+    stddev_alignment = incubator_breakdown["alignment_pct"].std(ddof=0)
 
     report = pd.concat(
         [
@@ -611,10 +611,10 @@ def final_alignment_report(summary: pd.DataFrame) -> pd.DataFrame:
         ignore_index=True,
     )
     report["median_alignment_pct"] = pd.NA
-    report["variance_alignment_pct"] = pd.NA
+    report["stddev_alignment_pct"] = pd.NA
     overall_mask = report["section"] == "overall"
     report.loc[overall_mask, "median_alignment_pct"] = round(median_alignment, 2)
-    report.loc[overall_mask, "variance_alignment_pct"] = round(variance_alignment, 2)
+    report.loc[overall_mask, "stddev_alignment_pct"] = round(stddev_alignment, 2)
     return report[columns]
 
 
