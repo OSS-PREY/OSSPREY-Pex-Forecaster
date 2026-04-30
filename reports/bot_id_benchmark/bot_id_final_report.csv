@@ -5,5 +5,7 @@ incubator,eclipse,social,100.0,
 incubator,eclipse,tech,100.0,
 incubator,github,social,83.33,
 incubator,github,tech,75.0,
-overall,all,social,90.91,83.33
-overall,all,tech,83.33,83.33
+incubator,osgeo,social,100.0,
+incubator,osgeo,tech,100.0,
+overall,all,social,92.31,83.33
+overall,all,tech,88.89,83.33

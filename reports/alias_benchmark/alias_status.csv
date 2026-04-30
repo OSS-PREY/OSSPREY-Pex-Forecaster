@@ -1,6 +1,6 @@
 incubator,status,gambit_results,rows,error
 apache,ok,reports/alias_benchmark/gambit/apache.csv,224,
-github,ok,reports/alias_benchmark/gambit/github.csv,423,
-eclipse,ok,reports/alias_benchmark/gambit/eclipse.csv,238,
-osgeo,error,reports/alias_benchmark/gambit/osgeo.csv,0,[Errno 2] No such file or directory: 'data/osgeo_data/commits.csv'
+github,ok,reports/alias_benchmark/gambit/github.csv,993,
+eclipse,ok,reports/alias_benchmark/gambit/eclipse.csv,18,
+osgeo,ok,reports/alias_benchmark/gambit/osgeo.csv,26,
 ospos,error,reports/alias_benchmark/gambit/ospos.csv,0,'ospos'
