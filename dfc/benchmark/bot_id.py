@@ -551,6 +551,16 @@ def final_alignment_report(summary: pd.DataFrame) -> pd.DataFrame:
     if activity_summary.empty:
         return pd.DataFrame(columns=columns)
 
+    def weighted_median(values: pd.Series, weights: pd.Series) -> float:
+        valid = values.notna() & weights.notna() & weights.gt(0)
+        if not valid.any():
+            return float(values.median()) if not values.empty else 0.0
+
+        sorted_values = values[valid].sort_values()
+        sorted_weights = weights[valid].loc[sorted_values.index]
+        cutoff = sorted_weights.sum() / 2
+        return float(sorted_values[sorted_weights.cumsum() >= cutoff].iloc[0])
+
     incubator_breakdown = (
         activity_summary.groupby(["incubator", "activity_type"], dropna=False)
         .agg(
@@ -585,8 +595,11 @@ def final_alignment_report(summary: pd.DataFrame) -> pd.DataFrame:
     )
     overall["section"] = "overall"
     overall["incubator"] = "all"
-    median_alignment = overall["alignment_pct"].median()
-    variance_alignment = overall["alignment_pct"].var(ddof=0)
+    median_alignment = weighted_median(
+        incubator_breakdown["alignment_pct"],
+        incubator_breakdown["project_contributors"],
+    )
+    variance_alignment = incubator_breakdown["alignment_pct"].var(ddof=0)
 
     report = pd.concat(
         [
