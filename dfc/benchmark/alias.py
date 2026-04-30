@@ -139,6 +139,9 @@ def build_alias_inputs(
     alias_frames: list[pd.DataFrame] = []
 
     for activity_type, df in data_lookup.items():
+        if df.empty:
+            continue
+
         name_field, email_field, _ = _alias_fields(df, author_field)
         aliases = pd.DataFrame(
             {
@@ -237,6 +240,10 @@ def attach_gambit_aliases(
     enriched: dict[str, pd.DataFrame] = {}
 
     for activity_type, df in data_lookup.items():
+        if df.empty:
+            enriched[activity_type] = df.copy()
+            continue
+
         name_field, email_field, dfc_alias_field = _alias_fields(df, author_field)
         out = df.copy()
         tqdm.pandas(desc=f"{incubator}: attach {activity_type}")
@@ -270,6 +277,9 @@ def rawdata_to_comparison_rows(
     records: list[dict[str, Any]] = []
 
     for activity_type, df in data_lookup.items():
+        if df.empty:
+            continue
+
         required = {
             "project_name",
             author_field,
@@ -327,7 +337,11 @@ def rawdata_to_comparison_rows(
     return comparison
 
 
-def summarize_comparison(comparison: pd.DataFrame) -> pd.DataFrame:
+def summarize_comparison(
+    comparison: pd.DataFrame,
+    incubator: str | None = None,
+    activity_types: list[str] | None = None,
+) -> pd.DataFrame:
     """Summarize DFC-vs-Gambit alias agreement."""
 
     columns = [
@@ -340,8 +354,29 @@ def summarize_comparison(comparison: pd.DataFrame) -> pd.DataFrame:
         "dfc_names",
         "gambit_names",
     ]
+
+    def zero_row(incubator_name: str, activity_type: str) -> dict[str, Any]:
+        return {
+            "incubator": incubator_name,
+            "activity_type": activity_type,
+            "aliases": 0,
+            "rows": 0,
+            "agreements": 0,
+            "agreement_rate": 0.0,
+            "dfc_names": 0,
+            "gambit_names": 0,
+        }
+
     if comparison.empty:
-        return pd.DataFrame(columns=columns)
+        if incubator is None:
+            return pd.DataFrame(columns=columns)
+
+        rows = [zero_row(incubator, "all")]
+        rows.extend(
+            zero_row(incubator, activity_type)
+            for activity_type in (activity_types or [])
+        )
+        return pd.DataFrame.from_records(rows, columns=columns)
 
     summary = (
         comparison.groupby(["incubator", "activity_type"], dropna=False)
@@ -369,6 +404,20 @@ def summarize_comparison(comparison: pd.DataFrame) -> pd.DataFrame:
     )
     overall["activity_type"] = "all"
     overall["agreement_rate"] = overall["agreements"] / overall["rows"]
+
+    if activity_types:
+        existing_activity_types = set(summary["activity_type"])
+        missing_rows = [
+            zero_row(incubator_name, activity_type)
+            for incubator_name in comparison["incubator"].dropna().unique()
+            for activity_type in activity_types
+            if activity_type not in existing_activity_types
+        ]
+        if missing_rows:
+            summary = pd.concat(
+                [summary, pd.DataFrame.from_records(missing_rows)],
+                ignore_index=True,
+            )
 
     return pd.concat([overall[summary.columns], summary], ignore_index=True)
 
@@ -470,7 +519,11 @@ def benchmark_incubator(
         incubator=incubator,
         params=params,
     )
-    return comparison, summarize_comparison(comparison)
+    return comparison, summarize_comparison(
+        comparison,
+        incubator=incubator,
+        activity_types=list(data_lookup.keys()),
+    )
 
 
 def benchmark_all_incubators(
