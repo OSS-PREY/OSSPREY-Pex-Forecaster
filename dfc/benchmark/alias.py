@@ -207,7 +207,7 @@ def run_gambit_aliases(aliases: pd.DataFrame, incubator: str) -> pd.DataFrame:
     tqdm.pandas(desc=f"{incubator}: Gambit aliases")
     aliases = aliases.copy()
     aliases["alias_name"] = aliases["alias_name"].progress_apply(str)
-    result = gambit.main.disambiguate_aliases(aliases[["alias_name", "alias_email"]])
+    result = gambit.disambiguate_aliases(aliases[["alias_name", "alias_email"]])
     return normalize_gambit_output(aliases, result)
 
 
