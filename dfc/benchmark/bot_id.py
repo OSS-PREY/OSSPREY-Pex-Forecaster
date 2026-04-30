@@ -533,6 +533,78 @@ def print_summary_statistics(comparison: pd.DataFrame) -> None:
     print(stats.to_string(index=False))
 
 
+def final_alignment_report(summary: pd.DataFrame) -> pd.DataFrame:
+    """Build the final bot-id alignment report from the summary table."""
+
+    columns = [
+        "section",
+        "incubator",
+        "activity_type",
+        "alignment_pct",
+        "median_alignment_pct",
+        "variance_alignment_pct",
+    ]
+    if summary.empty:
+        return pd.DataFrame(columns=columns)
+
+    activity_summary = summary[summary["activity_type"] != "all"].copy()
+    if activity_summary.empty:
+        return pd.DataFrame(columns=columns)
+
+    incubator_breakdown = (
+        activity_summary.groupby(["incubator", "activity_type"], dropna=False)
+        .agg(
+            project_contributors=("project_contributors", "sum"),
+            agreements=("agreements", "sum"),
+        )
+        .reset_index()
+    )
+    incubator_breakdown["alignment_pct"] = (
+        incubator_breakdown["agreements"]
+        .div(incubator_breakdown["project_contributors"])
+        .fillna(0.0)
+        .mul(100)
+        .round(2)
+    )
+    incubator_breakdown["section"] = "incubator"
+
+    overall = (
+        activity_summary.groupby("activity_type", dropna=False)
+        .agg(
+            project_contributors=("project_contributors", "sum"),
+            agreements=("agreements", "sum"),
+        )
+        .reset_index()
+    )
+    overall["alignment_pct"] = (
+        overall["agreements"]
+        .div(overall["project_contributors"])
+        .fillna(0.0)
+        .mul(100)
+        .round(2)
+    )
+    overall["section"] = "overall"
+    overall["incubator"] = "all"
+    median_alignment = overall["alignment_pct"].median()
+    variance_alignment = overall["alignment_pct"].var(ddof=0)
+
+    report = pd.concat(
+        [
+            incubator_breakdown[
+                ["section", "incubator", "activity_type", "alignment_pct"]
+            ],
+            overall[["section", "incubator", "activity_type", "alignment_pct"]],
+        ],
+        ignore_index=True,
+    )
+    report["median_alignment_pct"] = pd.NA
+    report["variance_alignment_pct"] = pd.NA
+    overall_mask = report["section"] == "overall"
+    report.loc[overall_mask, "median_alignment_pct"] = round(median_alignment, 2)
+    report.loc[overall_mask, "variance_alignment_pct"] = round(variance_alignment, 2)
+    return report[columns]
+
+
 def benchmark_incubator(
     incubator: str,
     params: dict[str, Any],
@@ -669,10 +741,12 @@ def benchmark_all_incubators(
     detail_path = output_dir / "bot_id_comparison.csv"
     summary_path = output_dir / "bot_id_summary.csv"
     status_path = output_dir / "bot_id_status.csv"
+    final_report_path = output_dir / "bot_id_final_report.csv"
     check_path(detail_path)
     comparison_all.to_csv(detail_path, index=False)
     summary_all.to_csv(summary_path, index=False)
     status_df.to_csv(status_path, index=False)
+    final_alignment_report(summary_all).to_csv(final_report_path, index=False)
 
     return comparison_all, summary_all, status_df
 
