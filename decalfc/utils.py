@@ -12,6 +12,8 @@ from pandarallel import pandarallel
 from tqdm import tqdm
 
 ## built-in modules
+import os
+import sys
 import argparse
 import json
 from os import cpu_count
@@ -122,8 +124,13 @@ def clear_dir(dir: str | Path, skip_input: bool=False) -> None:
         print(f"<WARNING> attempting to delete potentially sensitive directory: {dir}")
 
         if not skip_input:
-            resp = input("Continue [y/n]? ")
-            if resp.lower() != "y":
+            # In a non-interactive/server context there is no TTY, so input()
+            # would block forever and hang the entire pipeline. Detect that and
+            # proceed (these are the pipeline's own scratch dirs, and every
+            # in-pipeline caller already passes skip_input=True).
+            if sys.stdin is None or not sys.stdin.isatty():
+                print("<WARNING> non-interactive session; proceeding without confirmation")
+            elif input("Continue [y/n]? ").lower() != "y":
                 return
     
     # remove
@@ -141,8 +148,10 @@ def del_file(path: str | Path) -> None:
     if path.is_dir():
         raise ValueError(f"Path provided \"{path.absolute()}\" is a directory; use util._clear_dir() instead")
     
-    # delete
-    path.unlink()
+    # delete; tolerate an already-absent file so best-effort cleanup can never
+    # crash the pipeline with FileNotFoundError (e.g. when a prior run or a
+    # particular task did not produce this artifact).
+    path.unlink(missing_ok=True)
 
 def log(msg: str="", log_type: str="log", output: str="console",
     file_name: str="logger", check_verbosity: bool=True) -> None:
@@ -206,7 +215,17 @@ def log(msg: str="", log_type: str="log", output: str="console",
 
 
 # --- Environment Setup --- #
-pandarallel.initialize(nb_workers=NUM_PROCESSES, progress_bar=True)
+# Bound the number of pandarallel workers. Each worker forks the process and
+# copies its chunk of the data, so using every CPU core multiplies peak memory
+# and can OOM-kill the process on large repositories (an uncatchable SIGKILL
+# that looks like a silent crash). Default to a small, memory-safe count and
+# allow overriding via PANDARALLEL_WORKERS (set to 1 to disable parallelism).
+try:
+    _PANDARALLEL_WORKERS = int(os.environ.get("PANDARALLEL_WORKERS", min(4, NUM_PROCESSES or 1)))
+except (TypeError, ValueError):
+    _PANDARALLEL_WORKERS = min(4, NUM_PROCESSES or 1)
+_PANDARALLEL_WORKERS = max(1, min(_PANDARALLEL_WORKERS, NUM_PROCESSES or 1))
+pandarallel.initialize(nb_workers=_PANDARALLEL_WORKERS, progress_bar=False)
 tqdm.pandas()
 params_dict = load_params()
 

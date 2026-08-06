@@ -613,10 +613,15 @@ def clean_source_files(data_lookup: dict[str, pd.DataFrame], incubator: str=None
         log(f"parallel_apply failed: {e}", "error")
         log("[Fallback] switching to regular apply...", "warning")
         
-        # normal apply
-        df[["is_coding", "change_type"]] = df[["file_name"]].apply(
-            lambda row: pd.Series(check_source(row)),
-            axis=1
+        # normal apply -- mirror the parallel path exactly: operate on the scalar
+        # file name (not the row Series). Applying over rows made check_source
+        # receive a Series, hit its except, and return "skipped" for every entry,
+        # marking everything non-source so the technical network came out empty
+        # (i.e. zero forecast months) whenever parallel_apply fell back to here.
+        out = df["file_name"].apply(check_source)
+        df[["is_coding", "change_type"]] = pd.DataFrame(
+            out.tolist(),
+            index=df.index
         )
 
     # report

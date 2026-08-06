@@ -262,37 +262,46 @@ class DeltaData:
     def clean_disk(self) -> None:
         """To be run when the destructor is called. Clears any used storage on 
         disk to minimize concurrent disk usage.
+
+        This is a best-effort disk-space optimization that runs *after* the
+        results have already been computed and cached to disk, so any failure
+        here (e.g. a scratch file a particular task never produced) must never
+        propagate: doing so would abort __post_init__ and discard the freshly
+        computed, already-saved forecasts.
         """
         
         log("Cleaning Disk", "new")
-        
-        # MONTHWISE SPLIT
-        # clear disk usage to limit space requirement and prevent double
-        # writing (using the same data twice) or mis-association (using one
-        # project's data in another's)
-        dataset_dir = Path(params_dict["dataset-dir"])
-        monthly_data_dir = dataset_dir / f"{self.incubator}_data" / "monthly_data/"
-        t_output_dir = monthly_data_dir / f"{params_dict['tech-type'][INCUBATOR_ALIAS]}/"
-        s_output_dir = monthly_data_dir / f"{params_dict['social-type'][INCUBATOR_ALIAS]}/"
-        
-        clear_dir(dir=t_output_dir, skip_input=True)
-        clear_dir(dir=s_output_dir, skip_input=True)
-        
-        # NETWORK GENERATION
-        data_dir = Path(params_dict["dataset-dir"]) / f"{self.incubator}_data"
-        network_dir = Path(params_dict["network-dir"])
-        t_type = params_dict["tech-type"][INCUBATOR_ALIAS]
-        s_type = params_dict["social-type"][INCUBATOR_ALIAS]
-        net_path = network_dir / "netdata" / f"{self.incubator}-network-data.csv"
-        mapping_path = network_dir / "mappings" / f"{self.incubator}-mapping.csv"
-        
-        # clear_dir(data_dir, skip_input=True)
-        clear_dir(network_dir / f"{self.incubator}_{t_type}", skip_input=True)
-        clear_dir(network_dir / f"{self.incubator}_{s_type}", skip_input=True)
-        
-        # check_dir(data_dir)
-        del_file(net_path)
-        del_file(mapping_path)
+
+        try:
+            # MONTHWISE SPLIT
+            # clear disk usage to limit space requirement and prevent double
+            # writing (using the same data twice) or mis-association (using one
+            # project's data in another's)
+            dataset_dir = Path(params_dict["dataset-dir"])
+            monthly_data_dir = dataset_dir / f"{self.incubator}_data" / "monthly_data/"
+            t_output_dir = monthly_data_dir / f"{params_dict['tech-type'][INCUBATOR_ALIAS]}/"
+            s_output_dir = monthly_data_dir / f"{params_dict['social-type'][INCUBATOR_ALIAS]}/"
+            
+            clear_dir(dir=t_output_dir, skip_input=True)
+            clear_dir(dir=s_output_dir, skip_input=True)
+            
+            # NETWORK GENERATION
+            data_dir = Path(params_dict["dataset-dir"]) / f"{self.incubator}_data"
+            network_dir = Path(params_dict["network-dir"])
+            t_type = params_dict["tech-type"][INCUBATOR_ALIAS]
+            s_type = params_dict["social-type"][INCUBATOR_ALIAS]
+            net_path = network_dir / "netdata" / f"{self.incubator}-network-data.csv"
+            mapping_path = network_dir / "mappings" / f"{self.incubator}-mapping.csv"
+            
+            # clear_dir(data_dir, skip_input=True)
+            clear_dir(network_dir / f"{self.incubator}_{t_type}", skip_input=True)
+            clear_dir(network_dir / f"{self.incubator}_{s_type}", skip_input=True)
+            
+            # check_dir(data_dir)
+            del_file(net_path)
+            del_file(mapping_path)
+        except Exception as e:
+            log(f"disk cleanup failed (non-fatal, results already saved): {e}", "warning")
 
     def clear_cache(self, products: list[str]=None) -> None:
         """Clears all cached data products specified, defaults to all.
