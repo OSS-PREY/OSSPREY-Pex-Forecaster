@@ -133,9 +133,22 @@ def clear_dir(dir: str | Path, skip_input: bool=False) -> None:
             elif input("Continue [y/n]? ").lower() != "y":
                 return
     
-    # remove
+    # Remove the CONTENTS, not the directory itself. rmtree(dir) would drop the
+    # directory and the next run would recreate it owned by whichever user ran
+    # it, at the default umask. This tree is written by more than one user (the
+    # server account and researchers running the pipeline by hand), so a
+    # recreated 775 directory locks the other user out and every subsequent job
+    # of theirs fails with EACCES on unlink. Keeping the directory keeps its
+    # (deliberately group/other-writable) mode stable across users.
     print("<Clearing Previous Trials>")
-    shutil.rmtree(dir)
+    for child in Path(dir).iterdir():
+        try:
+            if child.is_dir() and not child.is_symlink():
+                shutil.rmtree(child)
+            else:
+                child.unlink()
+        except FileNotFoundError:
+            pass  # another concurrent job already cleared it
 
 def del_file(path: str | Path) -> None:
     """

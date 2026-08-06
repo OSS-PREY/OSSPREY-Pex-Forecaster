@@ -665,8 +665,13 @@ def infer_bots(data_lookup: dict[str, pd.DataFrame], incubator: str, threshold: 
             bot_names = json.load(f)
     except FileNotFoundError as fe:
         log(f"Failed to find reference file for bot names @ {dir_bot_def}", "warning")
+        # NOTE: this fallback must not raise. "bot-substrings" is not a key in
+        # ref/params.json, so the previous params_dict["bot-substrings"] turned
+        # a recoverable missing-reference-file into a KeyError that failed the
+        # whole forecast. Fall back to the common bot name fragments instead.
         bot_names = {
-            "substring-bots": set(params_dict["bot-substrings"]),
+            "substring-bots": set(params_dict.get(
+                "bot-substrings", ["bot", "jenkins", "travis", "ci", "jira"])),
             "project-bots": set()
         }
 
