@@ -124,20 +124,32 @@ def cal_social_net(path, visualize_net: bool=False):
             "s_graph_density":graph_density}
 
 
+def _read_edges(path):
+	"""Read an edgelist as a set of (sender, receiver) pairs.
+
+	Blank lines are skipped: "".split("##") yields a single element, which used
+	to raise "not enough values to unpack (expected 3, got 1)" and fail the
+	whole forecast for a repository whose edgelist ended with a newline. A
+	malformed line is skipped rather than killing the run, since one bad edge
+	should not cost the entire project its forecast.
+	"""
+	edges = set()
+	with open(path, "r") as f:
+		for line in f.read().splitlines():
+			if not line.strip():
+				continue
+			parts = line.split("##")
+			if len(parts) != 3:
+				log(f"skipping malformed edge in {path}: {line!r}", "warning")
+				continue
+			sender, receiver, _weight = parts
+			edges.add((sender, receiver))
+	return edges
+
+
 def get_net_overlap(net1, net2):
-	net1_set = set()
-	with open(net1, "r") as f:
-		lines = f.read().splitlines()
-	# print([net1, net2])
-	for line in lines:
-		sender, receiver, weight = line.split("##")
-		net1_set.add((sender, receiver))
-	net2_set = set()
-	with open(net2, "r") as f:
-		lines = f.read().splitlines()
-	for line in lines:
-		sender, receiver, weight = line.split("##")		
-		net2_set.add((sender, receiver))
+	net1_set = _read_edges(net1)
+	net2_set = _read_edges(net2)
 	if len(net1_set) == len(net2_set) == 0:
 		return 0
 	intersection_edges = net1_set.intersection(net2_set)
