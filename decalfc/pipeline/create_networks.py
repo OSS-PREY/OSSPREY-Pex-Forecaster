@@ -76,7 +76,25 @@ def process_tech_nets(author_field: str, t_source: Path, t_output: Path) -> None
         
         # add disconnected nodes
         g.add_nodes_from(technical_net.keys())
-        nx.write_edgelist(g, t_output / "{}__{}.edgelist".format(project_name, str(period)), delimiter="##", data=["weight"])
+        nx.write_edgelist(_safe_labels(g), t_output / "{}__{}.edgelist".format(project_name, str(period)), delimiter=EDGELIST_DELIMITER, data=["weight"])
+
+
+
+# Edgelists are delimited by "##", but nothing stops a developer name or file
+# name from containing "#" -- e.g. a contributor called "Ran#" produced the line
+# "Ran###Ran###0", which parses as ["Ran", "#Ran", "#0"] and made int("#0")
+# abort the whole forecast. Percent-encoding "#" keeps "##" unambiguous, and is
+# reversible if a label ever needs to be shown raw.
+EDGELIST_DELIMITER = "##"
+
+
+def _safe_labels(g):
+    """Return g with "#" percent-encoded out of every node label."""
+    import networkx as nx
+    mapping = {n: str(n).replace("#", "%23") for n in g.nodes()}
+    if all(k == v for k, v in mapping.items()):
+        return g
+    return nx.relabel_nodes(g, mapping, copy=True)
 
 
 # ---------------- processing social nets ---------------------- #
@@ -328,8 +346,8 @@ def process_social_nets(author_field: str, s_source: Path, s_output: Path, mappi
         # add any disconnected nodes
         g.add_nodes_from(social_net.keys())
         nx.write_edgelist(
-            g, s_output / f"{project_name}__{str(period)}.edgelist",
-            delimiter="##", data=["weight"]
+            _safe_labels(g), s_output / f"{project_name}__{str(period)}.edgelist",
+            delimiter=EDGELIST_DELIMITER, data=["weight"]
         )
     
     # directory handling

@@ -88,7 +88,7 @@ def cal_social_net(path, visualize_net: bool=False):
                 "s_graph_density":0}
 
     # Processing features in social networks
-    G = nx.read_edgelist(path, create_using=nx.DiGraph(), nodetype=str, comments="*", delimiter="##", data=(("weight", int),))
+    G = nx.read_edgelist(path, create_using=nx.DiGraph(), nodetype=str, comments="*", delimiter="##", data=(("weight", _edge_weight),))
     # all dev nodes
     dev_nodes = set(G.nodes)
     # num. of total nodes
@@ -101,7 +101,7 @@ def cal_social_net(path, visualize_net: bool=False):
     # betweenness = nx.betweenness_centrality(G, weight="weight")
     graph_density = nx.density(G)
 
-    G = nx.read_edgelist(path, create_using=nx.Graph(), nodetype=str, comments="*", delimiter="##", data=(("weight", int),))
+    G = nx.read_edgelist(path, create_using=nx.Graph(), nodetype=str, comments="*", delimiter="##", data=(("weight", _edge_weight),))
     # num. of dis-connected components
     num_component = nx.number_connected_components(G)
     # largest connected component
@@ -145,6 +145,24 @@ def _read_edges(path):
 			sender, receiver, _weight = parts
 			edges.add((sender, receiver))
 	return edges
+
+
+def _edge_weight(value):
+	"""Parse an edge weight without ever raising.
+
+	networkx aborts the entire read if a data converter raises, so one corrupt
+	line would cost the project its forecast. Edgelists written before node
+	labels were sanitised can carry a stray "#" in this field (see
+	create_networks._safe_labels); fall back to 1 rather than dying.
+	"""
+	try:
+		return int(value)
+	except (TypeError, ValueError):
+		try:
+			return int(str(value).lstrip("#"))
+		except (TypeError, ValueError):
+			log(f"unparseable edge weight {value!r}; treating as 1", "warning")
+			return 1
 
 
 def get_net_overlap(net1, net2):
